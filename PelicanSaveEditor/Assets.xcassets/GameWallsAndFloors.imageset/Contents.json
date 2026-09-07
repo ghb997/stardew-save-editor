@@ -1,0 +1,13 @@
+{
+  "images": [
+    {
+      "filename": "walls_and_floors.png",
+      "idiom": "universal",
+      "scale": "1x"
+    }
+  ],
+  "info": {
+    "author": "xcode",
+    "version": 1
+  }
+}

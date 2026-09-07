@@ -1,0 +1,443 @@
+[
+  {
+    "asset": "GameAccessories",
+    "file": "PelicanSaveEditor/Assets.xcassets/GameAccessories.imageset/accessories.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/accessories.png",
+    "sha256": "2253ba339a1b5f9cb7d2d4e27e9fee28e1904e26c8de5457b5ddb41f598d695d",
+    "width": 128,
+    "height": 128
+  },
+  {
+    "asset": "GameBuildingBarn",
+    "file": "PelicanSaveEditor/Assets.xcassets/GameBuildingBarn.imageset/Barn.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/buildings/Barn.png",
+    "sha256": "f95d5b19ce1f16581afba7571a6a5f4fcbfc0d30bb14a6b29af865bcdcfa0d0b",
+    "width": 112,
+    "height": 128
+  },
+  {
+    "asset": "GameBuildingCoop",
+    "file": "PelicanSaveEditor/Assets.xcassets/GameBuildingCoop.imageset/Coop.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/buildings/Coop.png",
+    "sha256": "8d4535e8f84d00e14c8c40848b6bfc93b5d11bcffc03198edbd1968441b082e1",
+    "width": 96,
+    "height": 128
+  },
+  {
+    "asset": "GameBuildingGreenhouse",
+    "file": "PelicanSaveEditor/Assets.xcassets/GameBuildingGreenhouse.imageset/Greenhouse.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/buildings/Greenhouse.png",
+    "sha256": "e2b297f266c76f27896611d061b36ca41331dae6343dc413ae35ac507e3ed7b8",
+    "width": 240,
+    "height": 320
+  },
+  {
+    "asset": "GameBuildinghouses",
+    "file": "PelicanSaveEditor/Assets.xcassets/GameBuildinghouses.imageset/houses.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/buildings/houses.png",
+    "sha256": "6cee3034a269383cf60444124003cfc060af4c61e0d2013d41badccd10cfd73f",
+    "width": 272,
+    "height": 432
+  },
+  {
+    "asset": "GameBuildingShippingBin",
+    "file": "PelicanSaveEditor/Assets.xcassets/GameBuildingShippingBin.imageset/Shipping Bin.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/buildings/Shipping%20Bin.png",
+    "sha256": "78d738f6bb11c011138dcfbcd83698810fc890874c8bb48e0f1d799f860707dd",
+    "width": 32,
+    "height": 32
+  },
+  {
+    "asset": "GameBuildingSilo",
+    "file": "PelicanSaveEditor/Assets.xcassets/GameBuildingSilo.imageset/Silo.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/buildings/Silo.png",
+    "sha256": "7cb92b5b4312b6c1df6e533ba585b559e46770fef1b915f87fc92f5335a19e18",
+    "width": 48,
+    "height": 128
+  },
+  {
+    "asset": "GameCraftables",
+    "file": "PelicanSaveEditor/Assets.xcassets/GameCraftables.imageset/Craftables.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/Craftables.png",
+    "sha256": "5106e91302409fa333511de2fc7fa0e268cca51c94300056723e6a3d6d2b88e6",
+    "width": 128,
+    "height": 1472
+  },
+  {
+    "asset": "GameHair1",
+    "file": "PelicanSaveEditor/Assets.xcassets/GameHair1.imageset/hairstyles.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/hairstyles.png",
+    "sha256": "877b226ce8eb194dcd9c5aeea156c40b8c1d3ad567bea032787b965e359d0480",
+    "width": 128,
+    "height": 672
+  },
+  {
+    "asset": "GameHair2",
+    "file": "PelicanSaveEditor/Assets.xcassets/GameHair2.imageset/hairstyles2.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/hairstyles2.png",
+    "sha256": "8428d78701e96eb6379be7ce31cba821db5ef22654284d9cded2d1ea82f9c618",
+    "width": 128,
+    "height": 672
+  },
+  {
+    "asset": "GamePortraitAbigail",
+    "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitAbigail.imageset/Abigail.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/portraits/Abigail.png",
+    "sha256": "8e3d11e04747ff3b28350cf9ac48d2a2cdc839093b54572aa040c5795bc49ea1",
+    "width": 128,
+    "height": 320
+  },
+  {
+    "asset": "GamePortraitAlex",
+    "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitAlex.imageset/Alex.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/portraits/Alex.png",
+    "sha256": "5c9a0c259e51cc7f7e94eeba8bba0db72ae1cde8d1acaaed45b14cb278ddee23",
+    "width": 128,
+    "height": 384
+  },
+  {
+    "asset": "GamePortraitCaroline",
+    "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitCaroline.imageset/Caroline.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/portraits/Caroline.png",
+    "sha256": "e75f95ba800589058e6c106478936f792440e182729d5ac030d1f1e7218d48c6",
+    "width": 128,
+    "height": 128
+  },
+  {
+    "asset": "GamePortraitClint",
+    "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitClint.imageset/Clint.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/portraits/Clint.png",
+    "sha256": "9ae80c69f863579ec4c10ee3573bfb75a875bea06584dd1b8ec2b6d169dcf1ae",
+    "width": 128,
+    "height": 256
+  },
+  {
+    "asset": "GamePortraitDemetrius",
+    "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitDemetrius.imageset/Demetrius.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/portraits/Demetrius.png",
+    "sha256": "924ea370193af44704dc9286637c66eb6417ba87e87c6c998f8a7b4bed6fe957",
+    "width": 128,
+    "height": 256
+  },
+  {
+    "asset": "GamePortraitDwarf",
+    "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitDwarf.imageset/Dwarf.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/portraits/Dwarf.png",
+    "sha256": "53e84dc852d4cd3f733f38669e9453517715f2883b1e226c72389fb6b1c43351",
+    "width": 64,
+    "height": 64
+  },
+  {
+    "asset": "GamePortraitElliott",
+    "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitElliott.imageset/Elliott.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/portraits/Elliott.png",
+    "sha256": "d48a2857535c78ff8388c2a80b52a5245a6c175b25979bee5f36756637ccc391",
+    "width": 128,
+    "height": 320
+  },
+  {
+    "asset": "GamePortraitEmily",
+    "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitEmily.imageset/Emily.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/portraits/Emily.png",
+    "sha256": "7d1758b0145eb77174ad4537f7dceded70745df49ea7a611ab7bf4a66bc100cc",
+    "width": 128,
+    "height": 256
+  },
+  {
+    "asset": "GamePortraitEvelyn",
+    "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitEvelyn.imageset/Evelyn.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/portraits/Evelyn.png",
+    "sha256": "668737cd1138aea38eecba28c1ec7991b570f000820525f3760fb70232549af6",
+    "width": 128,
+    "height": 128
+  },
+  {
+    "asset": "GamePortraitGeorge",
+    "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitGeorge.imageset/George.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/portraits/George.png",
+    "sha256": "7ec7233ee656c54a9ede9142a3125023664fde7a00ccd051dc7fdc6edbb4e6bb",
+    "width": 128,
+    "height": 128
+  },
+  {
+    "asset": "GamePortraitGus",
+    "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitGus.imageset/Gus.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/portraits/Gus.png",
+    "sha256": "7aabb6f2312ebd942ecba51b27569363f8c60b96cc86cbda841bf2546eb771b6",
+    "width": 128,
+    "height": 128
+  },
+  {
+    "asset": "GamePortraitHaley",
+    "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitHaley.imageset/Haley.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/portraits/Haley.png",
+    "sha256": "adad32ed0477082dab056d5607a871071a1f219b21513248f8281234d148ce5b",
+    "width": 128,
+    "height": 448
+  },
+  {
+    "asset": "GamePortraitHarvey",
+    "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitHarvey.imageset/Harvey.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/portraits/Harvey.png",
+    "sha256": "a592c6bf2de8b0b34881734ea8cb40893bcdc2a37231e0edae8b4e8e226fb23d",
+    "width": 128,
+    "height": 384
+  },
+  {
+    "asset": "GamePortraitJas",
+    "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitJas.imageset/Jas.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/portraits/Jas.png",
+    "sha256": "d93338110453e27fc14818404a1408def18bd2fad40537e15a01610a8569d4e4",
+    "width": 128,
+    "height": 192
+  },
+  {
+    "asset": "GamePortraitJodi",
+    "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitJodi.imageset/Jodi.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/portraits/Jodi.png",
+    "sha256": "e3c29733b4f1e01286a775fe534279c29a238edd744040e311e12465a91ef48a",
+    "width": 128,
+    "height": 192
+  },
+  {
+    "asset": "GamePortraitKent",
+    "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitKent.imageset/Kent.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/portraits/Kent.png",
+    "sha256": "10cbf18101182569e53240956f5c303d651785d4daa7aad27298408fab57abf7",
+    "width": 128,
+    "height": 192
+  },
+  {
+    "asset": "GamePortraitKrobus",
+    "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitKrobus.imageset/Krobus.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/portraits/Krobus.png",
+    "sha256": "ca8f05b773eaf0ab9828173cedfdb626aa7d06e9fc930b072526343e73d2076c",
+    "width": 128,
+    "height": 320
+  },
+  {
+    "asset": "GamePortraitLeah",
+    "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitLeah.imageset/Leah.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/portraits/Leah.png",
+    "sha256": "8e8db30c2ae2a436471c3bda42714c323ce8b272d5d8757158899f214c44f59a",
+    "width": 128,
+    "height": 320
+  },
+  {
+    "asset": "GamePortraitLewis",
+    "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitLewis.imageset/Lewis.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/portraits/Lewis.png",
+    "sha256": "f80da82df92f59c950575e39c34c349cd5f9172fa25fd0def1849525c66525ca",
+    "width": 128,
+    "height": 192
+  },
+  {
+    "asset": "GamePortraitLinus",
+    "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitLinus.imageset/Linus.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/portraits/Linus.png",
+    "sha256": "08db3323dbfae429b0bc60670504b9c7a1b2b4b62a240293b9e080c4a00c9d68",
+    "width": 128,
+    "height": 192
+  },
+  {
+    "asset": "GamePortraitMarnie",
+    "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitMarnie.imageset/Marnie.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/portraits/Marnie.png",
+    "sha256": "2e2a7338f63025532a84555d73151738e2dca1af217ed1772a3c7819df7fd1f4",
+    "width": 128,
+    "height": 192
+  },
+  {
+    "asset": "GamePortraitMaru",
+    "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitMaru.imageset/Maru.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/portraits/Maru.png",
+    "sha256": "54634229d474f03417b0eae4d5d086bba4649a0c2f42ef59e7e2e638a2b2b58b",
+    "width": 128,
+    "height": 320
+  },
+  {
+    "asset": "GamePortraitPam",
+    "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitPam.imageset/Pam.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/portraits/Pam.png",
+    "sha256": "39b3220d2a19d7a697774cbd08876f59781fe92b826bf3fd826c1d306eb08376",
+    "width": 128,
+    "height": 192
+  },
+  {
+    "asset": "GamePortraitPenny",
+    "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitPenny.imageset/Penny.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/portraits/Penny.png",
+    "sha256": "1670476325942945ef400b3dd3a4fe1132074d758bc8cf22c33fdc74d3806ba1",
+    "width": 128,
+    "height": 448
+  },
+  {
+    "asset": "GamePortraitPierre",
+    "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitPierre.imageset/Pierre.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/portraits/Pierre.png",
+    "sha256": "836d1f0b459544d25f93de065743a860a9e152cfbe29428f728d6e856caeef76",
+    "width": 128,
+    "height": 192
+  },
+  {
+    "asset": "GamePortraitRobin",
+    "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitRobin.imageset/Robin.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/portraits/Robin.png",
+    "sha256": "7bb6f1d605695a3eefa94d1c78418e5f42f718234638e5cd19a459fb1e596668",
+    "width": 128,
+    "height": 256
+  },
+  {
+    "asset": "GamePortraitSam",
+    "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitSam.imageset/Sam.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/portraits/Sam.png",
+    "sha256": "ccf0a037fb89dc2b7e98507ed26ab8357db2cf5ca5a3223b6e85137d10c67d72",
+    "width": 128,
+    "height": 384
+  },
+  {
+    "asset": "GamePortraitSandy",
+    "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitSandy.imageset/Sandy.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/portraits/Sandy.png",
+    "sha256": "ac244039169a7cb41533e2f400d74010149a1464e85ca2b6c0626ec9d2ccc66f",
+    "width": 128,
+    "height": 128
+  },
+  {
+    "asset": "GamePortraitSebastian",
+    "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitSebastian.imageset/Sebastian.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/portraits/Sebastian.png",
+    "sha256": "c4f0a14845396250933d3296d61a4fef2558b05387914efa119af683a2fe32d0",
+    "width": 128,
+    "height": 320
+  },
+  {
+    "asset": "GamePortraitShane",
+    "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitShane.imageset/Shane.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/portraits/Shane.png",
+    "sha256": "3a013d098295fad2d80ef8090d3d1ca3061413a84637d0762f290312d2d167fb",
+    "width": 128,
+    "height": 384
+  },
+  {
+    "asset": "GamePortraitVincent",
+    "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitVincent.imageset/Vincent.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/portraits/Vincent.png",
+    "sha256": "08cd0ffb49bea282c5521f6099fd18b9d4680c1b387744cb2ed87d835064678a",
+    "width": 128,
+    "height": 128
+  },
+  {
+    "asset": "GamePortraitWilly",
+    "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitWilly.imageset/Willy.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/portraits/Willy.png",
+    "sha256": "93b6a76b092193e72bff4d2a7fd4aaf8e1a0889fe6ee313aa090f6ac9ce5f7f4",
+    "width": 128,
+    "height": 128
+  },
+  {
+    "asset": "GameTools",
+    "file": "PelicanSaveEditor/Assets.xcassets/GameTools.imageset/tools.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/tools.png",
+    "sha256": "44f109091a9c35986d49b58ac0d8c1e8698a3741a65b72c115a0b41fe6dbfca2",
+    "width": 336,
+    "height": 384
+  },
+  {
+    "asset": "GameFarmerBase",
+    "file": "PelicanSaveEditor/Assets.xcassets/GameFarmerBase.imageset/male_farmer_bald.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/img/male_farmer_bald.png",
+    "sha256": "07b1916b346a8cf9ff9be3d05ca0514afc8e2f3cf183c2c0bb09028231d920b6",
+    "width": 48,
+    "height": 32
+  },
+  {
+    "asset": "GamePortraitWizard",
+    "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitWizard.imageset/Wizard.png",
+    "source_url": "https://api.github.com/repos/colecrouter/stardew-save-editor/git/blobs/057badac97fa713075bf1f3145c7fe73ecb1502d",
+    "sha256": "79c330e77845eab11e45778068c993e4c35253f24ffec2124cfa29f6aac581ad",
+    "width": 128,
+    "height": 64
+  },
+  {
+    "asset": "GameWallsAndFloors",
+    "file": "PelicanSaveEditor/Assets.xcassets/GameWallsAndFloors.imageset/walls_and_floors.png",
+    "source_url": "https://raw.githubusercontent.com/AzimMuradov/stardew-valley-designer/21e1fe7d4d5aa472e7aeb321b943b991d4fb58b9/common/ui-components/editor/src/commonMain/composeResources/files/layouts/walls-and-floors.png",
+    "sha256": "db4610a7e272393a191b82e97cf2e4e8f46b1149a0647298453aa4d96b029ec1",
+    "width": 256,
+    "height": 688
+  },
+  {
+    "asset": "GameCrops",
+    "file": "PelicanSaveEditor/Assets.xcassets/GameCrops.imageset/crops.png",
+    "source_url": "https://raw.githubusercontent.com/AzimMuradov/stardew-valley-designer/21e1fe7d4d5aa472e7aeb321b943b991d4fb58b9/common/ui-components/editor/src/commonMain/composeResources/files/entities/crops.png",
+    "sha256": "f01c90841023317664d691248df8457576684e9f70cad70b185d543ec825f323",
+    "width": 32,
+    "height": 768
+  },
+  {
+    "asset": "GameFlooring",
+    "file": "PelicanSaveEditor/Assets.xcassets/GameFlooring.imageset/flooring.png",
+    "source_url": "https://raw.githubusercontent.com/AzimMuradov/stardew-valley-designer/21e1fe7d4d5aa472e7aeb321b943b991d4fb58b9/common/ui-components/editor/src/commonMain/composeResources/files/entities/flooring.png",
+    "sha256": "c15a3669f82c90e16954589dfe58081aba79d160ff24b442ac4fe3fdc3b85f2c",
+    "width": 256,
+    "height": 256
+  },
+  {
+    "asset": "GameCommonObjects",
+    "file": "PelicanSaveEditor/Assets.xcassets/GameCommonObjects.imageset/common-objects.png",
+    "source_url": "https://raw.githubusercontent.com/AzimMuradov/stardew-valley-designer/21e1fe7d4d5aa472e7aeb321b943b991d4fb58b9/common/ui-components/editor/src/commonMain/composeResources/files/entities/common-objects.png",
+    "sha256": "03e79e9baf43a94bd14f3e1b90dcc46859fd3fec0bf7c8035cf079115cf51aa8",
+    "width": 384,
+    "height": 624
+  },
+  {
+    "asset": "GameOakTree",
+    "file": "PelicanSaveEditor/Assets.xcassets/GameOakTree.imageset/oak-tree.png",
+    "source_url": "https://raw.githubusercontent.com/hpeinar/stardewplanner/f6c8dd5fba513d78b95d491a8aa77d6532c55ee6/public/planner/img/tiles/oak-tree.png",
+    "sha256": "9d3977bf111515d432c84c08ad484aeee1b679de6db15a9ea8074daa43a845ee",
+    "width": 48,
+    "height": 48
+  },
+  {
+    "asset": "GameFarmBackdrop",
+    "file": "PelicanSaveEditor/Assets.xcassets/GameFarmBackdrop.imageset/game-farm-backdrop.jpg",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/img/wallpaper.jpg",
+    "sha256": "04d608ce50c1ffe4033777d11f1a3e38912cd0b818c37642adee2ef53eb3d4e3",
+    "width": 1920,
+    "height": 1080
+  },
+  {
+    "asset": "GameSaveSummary",
+    "file": "PelicanSaveEditor/Assets.xcassets/GameSaveSummary.imageset/game-save-summary.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/img/summary.png",
+    "sha256": "aad57e39a00bf973d62007a889025dd92c5c5b5031c3dfc7f3ed3dcfafbaa9e3",
+    "width": 256,
+    "height": 256
+  },
+  {
+    "asset": "GameSpringObjects",
+    "file": "PelicanSaveEditor/Assets.xcassets/GameSpringObjects.imageset/springobjects.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/springobjects.png",
+    "sha256": "7782f4558756c111cefdd56d7306b8eb148e5ffa847528f0f19721ee8837d09e",
+    "width": 384,
+    "height": 624
+  },
+  {
+    "asset": "GameObjects2",
+    "file": "PelicanSaveEditor/Assets.xcassets/GameObjects2.imageset/Objects_2.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/assets/Objects_2.png",
+    "sha256": "daf740514e063decdc9bf767d24f8b0e427ab3ecbfb611045a86533846186894",
+    "width": 128,
+    "height": 320
+  },
+  {
+    "asset": "AppIcon",
+    "file": "PelicanSaveEditor/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png",
+    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/img/summary.png",
+    "sha256": "dc36e3b97d44059d81c574d2f22bad0ea1e3c13a49e8f8924b8a93946475ea94",
+    "width": 1024,
+    "height": 1024,
+    "transformation": "GameSaveSummary scaled 4x with nearest-neighbor resampling"
+  }
+]

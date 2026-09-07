@@ -1,0 +1,6 @@
+{
+  "images" : [
+    { "filename" : "game-save-summary.png", "idiom" : "universal", "scale" : "1x" }
+  ],
+  "info" : { "author" : "xcode", "version" : 1 }
+}

@@ -1,0 +1,759 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		09ADD2C9CAFA11E93CF663D3 /* RecentSaveSourceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAA452061AC7A52E05A6823 /* RecentSaveSourceStore.swift */; };
+		0E77236A593F88715FE4FE6C /* BackupStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD5AC26EFEE11C104C441C8 /* BackupStore.swift */; };
+		11C9D8668E35C800D95C216B /* SaveModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B43A9F6A6878EB13719B6B7 /* SaveModels.swift */; };
+		1286ADD35469CC9D7FD990D1 /* CropCalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09438F88862D126C81279564 /* CropCalculatorView.swift */; };
+		17F6F3D349FEFADEEBD9ABCC /* iteminfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BE61CDB4F498E3D123845EE /* iteminfo.json */; };
+		1A6AA37D01A1699ADFD544F0 /* SaveSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EBA090054179CCDD916F24 /* SaveSource.swift */; };
+		1AB62D6A42B56C36FA2414A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB7EE32FEDD4A88B77240732 /* Assets.xcassets */; };
+		1B948CA4C3F52DAC097812B4 /* RecipeCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6564519524639C718468354 /* RecipeCatalog.swift */; };
+		1E6903198C814120845C80F1 /* SaveParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD60BC7B010844DB7898510 /* SaveParser.swift */; };
+		24A7987C095E0FDFA380DD95 /* cookingrecipes.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F799D3D9E7A0CE4E93F6331 /* cookingrecipes.json */; };
+		2910C66AC3EB79BA975DE322 /* ReviewChangesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056B08299E1A29AD2B2F3A52 /* ReviewChangesView.swift */; };
+		34CEB0AFABA4C7B5E0DFC527 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 62DE6F1C0FC927E2CA92F6AA /* PrivacyInfo.xcprivacy */; };
+		35F8E8BA15CE09C922BCBD8E /* craftingrecipes.json in Resources */ = {isa = PBXBuildFile; fileRef = 74BE8C4656D72F890F2AD7B0 /* craftingrecipes.json */; };
+		3705FC413735DB1F00DF063D /* CoordinatedFileAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AD1C94D1E496BC8D9424C7 /* CoordinatedFileAccess.swift */; };
+		3F7CCA24E5B06E6D4CF8FB1F /* EditorShellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6385B28689BB1D7925A16D7A /* EditorShellView.swift */; };
+		40F46A844A1CAAFEC2D59E60 /* DebugDemoSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8025482BE6D94AFC1764AF /* DebugDemoSave.swift */; };
+		42F9EF55CA788688E28EEB06 /* stardew-save-editor-LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = 12BC1356FB69BFAA91E0A0A8 /* stardew-save-editor-LICENSE.md */; };
+		56216C46EEEEAA1AB0501B4E /* ItemCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C40486BDC5B03981B0A66 /* ItemCatalog.swift */; };
+		588926293E2E6E2EF65D5A9B /* EditorStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776B95D5C4F6340627E20FE3 /* EditorStore.swift */; };
+		58BAA8D7A61AF13194862E35 /* InventoryEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154CC3F8D4E78399645A0C09 /* InventoryEditorView.swift */; };
+		5AECC8684691A61B587D0311 /* stardew-valley-data-LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = 1C8896EDAB9FEAA7B84752F4 /* stardew-valley-data-LICENSE.md */; };
+		5D3841ACFEC8C74D865EC403 /* PelicanSaveEditorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C49BDDCF90D000C82556A07 /* PelicanSaveEditorApp.swift */; };
+		6F4A29B7D8E1C3059A72BC44 /* itemnames_zh.json in Resources */ = {isa = PBXBuildFile; fileRef = 9D27B4C60E3A58F1A7D92C11 /* itemnames_zh.json */; };
+		77E6CFEE767E4940070193D1 /* CharacterEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0A8CF57F67082225B7B955 /* CharacterEditorView.swift */; };
+		8487C2C4A47A01D6C0B33860 /* SaveCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD401330E4ABE133875B7E3 /* SaveCoreTests.swift */; };
+		89C8E5ECCFFA535A9CA9D3B9 /* SaveDiffBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84149BC06FE63040AD1C8D73 /* SaveDiffBuilder.swift */; };
+		8B24B70CE569D83B0A12C5E5 /* SaveMutator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC414B93896D7B44C8C3548 /* SaveMutator.swift */; };
+		A6337B341343A205A9797022 /* FarmMapAnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B786E42FC856BB2E6B13D64F /* FarmMapAnalysisView.swift */; };
+		B8EA08F5548B0A5AC6CF9261 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4C9673473E969E30408C3D /* RootView.swift */; };
+		C3498F7C339543F1AE5BD35A /* SaveCodec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38ADFD68183E8628EC05510 /* SaveCodec.swift */; };
+		D32D060BD7FF25A7EB7A1C76 /* DocumentPickers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BDA875A8AA0ADEA43DEC33 /* DocumentPickers.swift */; };
+		D4C3734E7C1B463E3898A9F1 /* FarmhouseEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44D3BDA2BD2C5A1B33AFC58 /* FarmhouseEditorView.swift */; };
+		D86E1CD7B0DFD39AFF3F6099 /* RelationshipsEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B611BADD2809A99B438A8FC9 /* RelationshipsEditorView.swift */; };
+		DAB76F8DC3B0D9E786343930 /* PersonalUseDataNotice.txt in Resources */ = {isa = PBXBuildFile; fileRef = 636214D5146067CE253CC268 /* PersonalUseDataNotice.txt */; };
+		E3BDD9401199747012902AD5 /* FarmSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E2999DB2EB5BBFB70EDA11 /* FarmSnapshot.swift */; };
+		E63CA37B803D277557D3BDFD /* cropinfo.json in Resources */ = {isa = PBXBuildFile; fileRef = AD9B436F53C12800B6F19162 /* cropinfo.json */; };
+		EBFBEC106D9A54376656C060 /* CropPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1B1BC924769B7D6D5BF902 /* CropPlanner.swift */; };
+		EDCAC80681B04AAA592EC630 /* RecipesEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4651EC69CCB98ED65E5F9224 /* RecipesEditorView.swift */; };
+		F4E1FFA7AFAC6E2040C1428B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876C45EFC08DFAE42A9AE1F4 /* HomeView.swift */; };
+		F4F7CB0904987DD65F5D8520 /* XMLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B47B9F601BE6208A9D4478 /* XMLNode.swift */; };
+		F516801561DB4C650BE21137 /* SaveTransactionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E1FE0622E2E2B3343FD7B6 /* SaveTransactionService.swift */; };
+		FDC491658901205809D398D3 /* XMLTreeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B5D30F31A9AF056431BA9C /* XMLTreeParser.swift */; };
+		AB978CB5552980D3763237EC /* SaveWorkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569D283272CC4BD5BC61915E /* SaveWorkService.swift */; };
+		62A35703494E6EFD4E87EE48 /* GameArtwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150C57F2D4387368604EF21B /* GameArtwork.swift */; };
+		D4E63ED7281883DA3E67898D /* OperationFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153742D893D49D377E0D18F6 /* OperationFeedback.swift */; };
+		F7D3ACDA66E315639EAA1F99 /* AnimalsEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9B37F0C4F3113F4C5E3DB2 /* AnimalsEditorView.swift */; };
+		697ADE098FB6C73EFCE08143 /* AppearanceEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7811AE798B10C6DBCC3542 /* AppearanceEditorView.swift */; };
+		7D03A047B6BCC971127AA5C2 /* BackupManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795AC336868751AAE1C50099 /* BackupManagerView.swift */; };
+		67D83B993170ADBB46033A48 /* CatalogPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C60FEABA2888CE61A12364A /* CatalogPickerView.swift */; };
+		B425A3693CB1B3535C0E0109 /* ProgressEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFF92F8DADE88D6278C4978 /* ProgressEditorView.swift */; };
+		2DD9953A0C41F6BDE89018AE /* SavePresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F79939711E4FA99354B3CCC /* SavePresentation.swift */; };
+		41ABFBD7254D254AB0E05B10 /* SkillsEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E744DA63B2086B78D5E0A00E /* SkillsEditorView.swift */; };
+		94813F27AC42CD66DCFEEA8A /* WalletEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FE2FAA18C16BB9769FA095 /* WalletEditorView.swift */; };
+		A3866EB7593617C7CC3ADC78 /* HomeComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4413EB53BBFD4FD57B9B5E7 /* HomeComponents.swift */; };
+		A3E30AB8157B5D86A88CF8FB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F87E158E65E798FD4EE44B /* SettingsView.swift */; };
+		09D5E13C74765D692D92560D /* ToolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3103E33FC4A2D53B84917B6 /* ToolsView.swift */; };
+		34D0DAD272AEF1BC30A7645C /* TrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68AAB9F5549F17B94BAB961B /* TrackerView.swift */; };
+		9AD7B1CE77A286F689D2556F /* FarmEntityListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40220DCA19D0A670C3700DE3 /* FarmEntityListView.swift */; };
+		8741A72CECCFE68FB7B16EEF /* GameLogicRegressionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877951E35F7D4E30B7D28218 /* GameLogicRegressionTests.swift */; };
+		AE16FF0007954354FC96EF9A /* TransactionRegressionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F666C112F70FABC42B14F171 /* TransactionRegressionTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		645194EBFCBF9473ED7A9E7B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0912CFA39F38A1C5F10DAE9D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 312F2C056E344BD05A5B3BB9;
+			remoteInfo = PelicanSaveEditor;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		056B08299E1A29AD2B2F3A52 /* ReviewChangesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewChangesView.swift; sourceTree = "<group>"; };
+		05AD1C94D1E496BC8D9424C7 /* CoordinatedFileAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatedFileAccess.swift; sourceTree = "<group>"; };
+		09438F88862D126C81279564 /* CropCalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropCalculatorView.swift; sourceTree = "<group>"; };
+		12BC1356FB69BFAA91E0A0A8 /* stardew-save-editor-LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "stardew-save-editor-LICENSE.md"; sourceTree = "<group>"; };
+		154CC3F8D4E78399645A0C09 /* InventoryEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryEditorView.swift; sourceTree = "<group>"; };
+		1C49BDDCF90D000C82556A07 /* PelicanSaveEditorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PelicanSaveEditorApp.swift; sourceTree = "<group>"; };
+		1C8896EDAB9FEAA7B84752F4 /* stardew-valley-data-LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "stardew-valley-data-LICENSE.md"; sourceTree = "<group>"; };
+		23B5D30F31A9AF056431BA9C /* XMLTreeParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLTreeParser.swift; sourceTree = "<group>"; };
+		2DD401330E4ABE133875B7E3 /* SaveCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveCoreTests.swift; sourceTree = "<group>"; };
+		32BDA875A8AA0ADEA43DEC33 /* DocumentPickers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPickers.swift; sourceTree = "<group>"; };
+		3BE61CDB4F498E3D123845EE /* iteminfo.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = iteminfo.json; sourceTree = "<group>"; };
+		3D0C40486BDC5B03981B0A66 /* ItemCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCatalog.swift; sourceTree = "<group>"; };
+		3D1B1BC924769B7D6D5BF902 /* CropPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropPlanner.swift; sourceTree = "<group>"; };
+		4651EC69CCB98ED65E5F9224 /* RecipesEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesEditorView.swift; sourceTree = "<group>"; };
+		4F799D3D9E7A0CE4E93F6331 /* cookingrecipes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cookingrecipes.json; sourceTree = "<group>"; };
+		62DE6F1C0FC927E2CA92F6AA /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		636214D5146067CE253CC268 /* PersonalUseDataNotice.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = PersonalUseDataNotice.txt; sourceTree = "<group>"; };
+		63667D1FA6F9C0D0AC468B95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		6385B28689BB1D7925A16D7A /* EditorShellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorShellView.swift; sourceTree = "<group>"; };
+		74BE8C4656D72F890F2AD7B0 /* craftingrecipes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = craftingrecipes.json; sourceTree = "<group>"; };
+		776B95D5C4F6340627E20FE3 /* EditorStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorStore.swift; sourceTree = "<group>"; };
+		7A0A8CF57F67082225B7B955 /* CharacterEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterEditorView.swift; sourceTree = "<group>"; };
+		7F8025482BE6D94AFC1764AF /* DebugDemoSave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugDemoSave.swift; sourceTree = "<group>"; };
+		84149BC06FE63040AD1C8D73 /* SaveDiffBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveDiffBuilder.swift; sourceTree = "<group>"; };
+		876C45EFC08DFAE42A9AE1F4 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		8B43A9F6A6878EB13719B6B7 /* SaveModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveModels.swift; sourceTree = "<group>"; };
+		95EBA090054179CCDD916F24 /* SaveSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveSource.swift; sourceTree = "<group>"; };
+		9D27B4C60E3A58F1A7D92C11 /* itemnames_zh.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = itemnames_zh.json; sourceTree = "<group>"; };
+		AD9B436F53C12800B6F19162 /* cropinfo.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cropinfo.json; sourceTree = "<group>"; };
+		AFD5AC26EFEE11C104C441C8 /* BackupStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupStore.swift; sourceTree = "<group>"; };
+		B611BADD2809A99B438A8FC9 /* RelationshipsEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelationshipsEditorView.swift; sourceTree = "<group>"; };
+		B786E42FC856BB2E6B13D64F /* FarmMapAnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmMapAnalysisView.swift; sourceTree = "<group>"; };
+		B9E2999DB2EB5BBFB70EDA11 /* FarmSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmSnapshot.swift; sourceTree = "<group>"; };
+		BB7EE32FEDD4A88B77240732 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BBC414B93896D7B44C8C3548 /* SaveMutator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveMutator.swift; sourceTree = "<group>"; };
+		C38ADFD68183E8628EC05510 /* SaveCodec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveCodec.swift; sourceTree = "<group>"; };
+		D0B47B9F601BE6208A9D4478 /* XMLNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLNode.swift; sourceTree = "<group>"; };
+		E44D3BDA2BD2C5A1B33AFC58 /* FarmhouseEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmhouseEditorView.swift; sourceTree = "<group>"; };
+		EC4C9673473E969E30408C3D /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		EEA72E1938B639DBE05ED5A5 /* SheaflightAmberVault.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SheaflightAmberVault.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2E1FE0622E2E2B3343FD7B6 /* SaveTransactionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveTransactionService.swift; sourceTree = "<group>"; };
+		F3D1AD39187DFB981932A877 /* PelicanSaveEditorTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = PelicanSaveEditorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6564519524639C718468354 /* RecipeCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCatalog.swift; sourceTree = "<group>"; };
+		FAD60BC7B010844DB7898510 /* SaveParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveParser.swift; sourceTree = "<group>"; };
+		FBAA452061AC7A52E05A6823 /* RecentSaveSourceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSaveSourceStore.swift; sourceTree = "<group>"; };
+		569D283272CC4BD5BC61915E /* SaveWorkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/App/SaveWorkService.swift"; sourceTree = SOURCE_ROOT; };
+		150C57F2D4387368604EF21B /* GameArtwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Components/GameArtwork.swift"; sourceTree = SOURCE_ROOT; };
+		153742D893D49D377E0D18F6 /* OperationFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Components/OperationFeedback.swift"; sourceTree = SOURCE_ROOT; };
+		4A9B37F0C4F3113F4C5E3DB2 /* AnimalsEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Editor/AnimalsEditorView.swift"; sourceTree = SOURCE_ROOT; };
+		5B7811AE798B10C6DBCC3542 /* AppearanceEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Editor/AppearanceEditorView.swift"; sourceTree = SOURCE_ROOT; };
+		795AC336868751AAE1C50099 /* BackupManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Editor/BackupManagerView.swift"; sourceTree = SOURCE_ROOT; };
+		3C60FEABA2888CE61A12364A /* CatalogPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Editor/CatalogPickerView.swift"; sourceTree = SOURCE_ROOT; };
+		4BFF92F8DADE88D6278C4978 /* ProgressEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Editor/ProgressEditorView.swift"; sourceTree = SOURCE_ROOT; };
+		9F79939711E4FA99354B3CCC /* SavePresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Editor/SavePresentation.swift"; sourceTree = SOURCE_ROOT; };
+		E744DA63B2086B78D5E0A00E /* SkillsEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Editor/SkillsEditorView.swift"; sourceTree = SOURCE_ROOT; };
+		A8FE2FAA18C16BB9769FA095 /* WalletEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Editor/WalletEditorView.swift"; sourceTree = SOURCE_ROOT; };
+		D4413EB53BBFD4FD57B9B5E7 /* HomeComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Home/HomeComponents.swift"; sourceTree = SOURCE_ROOT; };
+		D7F87E158E65E798FD4EE44B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Home/SettingsView.swift"; sourceTree = SOURCE_ROOT; };
+		D3103E33FC4A2D53B84917B6 /* ToolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Home/ToolsView.swift"; sourceTree = SOURCE_ROOT; };
+		68AAB9F5549F17B94BAB961B /* TrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Home/TrackerView.swift"; sourceTree = SOURCE_ROOT; };
+		40220DCA19D0A670C3700DE3 /* FarmEntityListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Tools/FarmEntityListView.swift"; sourceTree = SOURCE_ROOT; };
+		877951E35F7D4E30B7D28218 /* GameLogicRegressionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditorTests/GameLogicRegressionTests.swift"; sourceTree = SOURCE_ROOT; };
+		F666C112F70FABC42B14F171 /* TransactionRegressionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditorTests/TransactionRegressionTests.swift"; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		0BC0EB7CEC41FBB5929A9CF6 = {
+			isa = PBXGroup;
+			children = (
+				569D283272CC4BD5BC61915E /* SaveWorkService.swift */,
+				150C57F2D4387368604EF21B /* GameArtwork.swift */,
+				153742D893D49D377E0D18F6 /* OperationFeedback.swift */,
+				4A9B37F0C4F3113F4C5E3DB2 /* AnimalsEditorView.swift */,
+				5B7811AE798B10C6DBCC3542 /* AppearanceEditorView.swift */,
+				795AC336868751AAE1C50099 /* BackupManagerView.swift */,
+				3C60FEABA2888CE61A12364A /* CatalogPickerView.swift */,
+				4BFF92F8DADE88D6278C4978 /* ProgressEditorView.swift */,
+				9F79939711E4FA99354B3CCC /* SavePresentation.swift */,
+				E744DA63B2086B78D5E0A00E /* SkillsEditorView.swift */,
+				A8FE2FAA18C16BB9769FA095 /* WalletEditorView.swift */,
+				D4413EB53BBFD4FD57B9B5E7 /* HomeComponents.swift */,
+				D7F87E158E65E798FD4EE44B /* SettingsView.swift */,
+				D3103E33FC4A2D53B84917B6 /* ToolsView.swift */,
+				68AAB9F5549F17B94BAB961B /* TrackerView.swift */,
+				40220DCA19D0A670C3700DE3 /* FarmEntityListView.swift */,
+				877951E35F7D4E30B7D28218 /* GameLogicRegressionTests.swift */,
+				F666C112F70FABC42B14F171 /* TransactionRegressionTests.swift */,
+				52A33A42251270FA0061402D /* PelicanSaveEditor */,
+				D5CA3286FD20ABA40A3A831D /* PelicanSaveEditorTests */,
+				8CD10E84706A114D0FD96933 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0F2A22C2DA08531523DCBB36 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3D1B1BC924769B7D6D5BF902 /* CropPlanner.swift */,
+				B9E2999DB2EB5BBFB70EDA11 /* FarmSnapshot.swift */,
+				3D0C40486BDC5B03981B0A66 /* ItemCatalog.swift */,
+				F6564519524639C718468354 /* RecipeCatalog.swift */,
+				8B43A9F6A6878EB13719B6B7 /* SaveModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		509F463D109811F0494707D7 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				6915D59AAA196338D1A6657D /* Files */,
+				D94D075CC52D6B007C6F25DC /* Save */,
+				FEE574411744790750DABFA5 /* XML */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		52A33A42251270FA0061402D /* PelicanSaveEditor */ = {
+			isa = PBXGroup;
+			children = (
+				BB7EE32FEDD4A88B77240732 /* Assets.xcassets */,
+				63667D1FA6F9C0D0AC468B95 /* Info.plist */,
+				62DE6F1C0FC927E2CA92F6AA /* PrivacyInfo.xcprivacy */,
+				E5322E730399766034600606 /* App */,
+				509F463D109811F0494707D7 /* Core */,
+				0F2A22C2DA08531523DCBB36 /* Models */,
+				60F45EDC15FD2B59095F2656 /* Resources */,
+				B2E617D50811768FE3CF8587 /* Views */,
+			);
+			path = PelicanSaveEditor;
+			sourceTree = "<group>";
+		};
+		60F45EDC15FD2B59095F2656 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4F799D3D9E7A0CE4E93F6331 /* cookingrecipes.json */,
+				74BE8C4656D72F890F2AD7B0 /* craftingrecipes.json */,
+				AD9B436F53C12800B6F19162 /* cropinfo.json */,
+				3BE61CDB4F498E3D123845EE /* iteminfo.json */,
+				9D27B4C60E3A58F1A7D92C11 /* itemnames_zh.json */,
+				636214D5146067CE253CC268 /* PersonalUseDataNotice.txt */,
+				12BC1356FB69BFAA91E0A0A8 /* stardew-save-editor-LICENSE.md */,
+				1C8896EDAB9FEAA7B84752F4 /* stardew-valley-data-LICENSE.md */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		6915D59AAA196338D1A6657D /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				AFD5AC26EFEE11C104C441C8 /* BackupStore.swift */,
+				05AD1C94D1E496BC8D9424C7 /* CoordinatedFileAccess.swift */,
+				FBAA452061AC7A52E05A6823 /* RecentSaveSourceStore.swift */,
+				95EBA090054179CCDD916F24 /* SaveSource.swift */,
+				F2E1FE0622E2E2B3343FD7B6 /* SaveTransactionService.swift */,
+			);
+			path = Files;
+			sourceTree = "<group>";
+		};
+		6BAC5EFBD4EE3877A08DB185 /* Editor */ = {
+			isa = PBXGroup;
+			children = (
+				7A0A8CF57F67082225B7B955 /* CharacterEditorView.swift */,
+				6385B28689BB1D7925A16D7A /* EditorShellView.swift */,
+				E44D3BDA2BD2C5A1B33AFC58 /* FarmhouseEditorView.swift */,
+				154CC3F8D4E78399645A0C09 /* InventoryEditorView.swift */,
+				4651EC69CCB98ED65E5F9224 /* RecipesEditorView.swift */,
+				B611BADD2809A99B438A8FC9 /* RelationshipsEditorView.swift */,
+				056B08299E1A29AD2B2F3A52 /* ReviewChangesView.swift */,
+			);
+			path = Editor;
+			sourceTree = "<group>";
+		};
+		8CD10E84706A114D0FD96933 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EEA72E1938B639DBE05ED5A5 /* SheaflightAmberVault.app */,
+				F3D1AD39187DFB981932A877 /* PelicanSaveEditorTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8DDFFA78D31630079277CECC /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				876C45EFC08DFAE42A9AE1F4 /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		B2E617D50811768FE3CF8587 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B6673DD5A37DB4CF15AABA68 /* Components */,
+				6BAC5EFBD4EE3877A08DB185 /* Editor */,
+				8DDFFA78D31630079277CECC /* Home */,
+				ED7F1252B3E91875F3E70F08 /* Tools */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B6673DD5A37DB4CF15AABA68 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				32BDA875A8AA0ADEA43DEC33 /* DocumentPickers.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		D5CA3286FD20ABA40A3A831D /* PelicanSaveEditorTests */ = {
+			isa = PBXGroup;
+			children = (
+				2DD401330E4ABE133875B7E3 /* SaveCoreTests.swift */,
+			);
+			path = PelicanSaveEditorTests;
+			sourceTree = "<group>";
+		};
+		D94D075CC52D6B007C6F25DC /* Save */ = {
+			isa = PBXGroup;
+			children = (
+				C38ADFD68183E8628EC05510 /* SaveCodec.swift */,
+				84149BC06FE63040AD1C8D73 /* SaveDiffBuilder.swift */,
+				BBC414B93896D7B44C8C3548 /* SaveMutator.swift */,
+				FAD60BC7B010844DB7898510 /* SaveParser.swift */,
+			);
+			path = Save;
+			sourceTree = "<group>";
+		};
+		E5322E730399766034600606 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				7F8025482BE6D94AFC1764AF /* DebugDemoSave.swift */,
+				776B95D5C4F6340627E20FE3 /* EditorStore.swift */,
+				1C49BDDCF90D000C82556A07 /* PelicanSaveEditorApp.swift */,
+				EC4C9673473E969E30408C3D /* RootView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		ED7F1252B3E91875F3E70F08 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				09438F88862D126C81279564 /* CropCalculatorView.swift */,
+				B786E42FC856BB2E6B13D64F /* FarmMapAnalysisView.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		FEE574411744790750DABFA5 /* XML */ = {
+			isa = PBXGroup;
+			children = (
+				D0B47B9F601BE6208A9D4478 /* XMLNode.swift */,
+				23B5D30F31A9AF056431BA9C /* XMLTreeParser.swift */,
+			);
+			path = XML;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		312F2C056E344BD05A5B3BB9 /* PelicanSaveEditor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 862C1DDCCCEC0B5A19AC3D6B /* Build configuration list for PBXNativeTarget "PelicanSaveEditor" */;
+			buildPhases = (
+				C1A840DE81F30D6109FCF3D6 /* Sources */,
+				DE3563FA3B3B5E62FF407DF8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PelicanSaveEditor;
+			packageProductDependencies = (
+			);
+			productName = PelicanSaveEditor;
+			productReference = EEA72E1938B639DBE05ED5A5 /* SheaflightAmberVault.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B28024D7B768F52FA2F4623D /* PelicanSaveEditorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 980AB8F405F0AFE8204AFDE4 /* Build configuration list for PBXNativeTarget "PelicanSaveEditorTests" */;
+			buildPhases = (
+				6C1A9F6C5EE331BFAEB38906 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5F1BA4BAC1628B2FF049E63A /* PBXTargetDependency */,
+			);
+			name = PelicanSaveEditorTests;
+			packageProductDependencies = (
+			);
+			productName = PelicanSaveEditorTests;
+			productReference = F3D1AD39187DFB981932A877 /* PelicanSaveEditorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0912CFA39F38A1C5F10DAE9D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					312F2C056E344BD05A5B3BB9 = {
+						ProvisioningStyle = Automatic;
+					};
+					B28024D7B768F52FA2F4623D = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = C1468E84B3D12355D551B7AF /* Build configuration list for PBXProject "PelicanSaveEditor" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 0BC0EB7CEC41FBB5929A9CF6;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 8CD10E84706A114D0FD96933 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				312F2C056E344BD05A5B3BB9 /* PelicanSaveEditor */,
+				B28024D7B768F52FA2F4623D /* PelicanSaveEditorTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DE3563FA3B3B5E62FF407DF8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1AB62D6A42B56C36FA2414A4 /* Assets.xcassets in Resources */,
+				DAB76F8DC3B0D9E786343930 /* PersonalUseDataNotice.txt in Resources */,
+				34CEB0AFABA4C7B5E0DFC527 /* PrivacyInfo.xcprivacy in Resources */,
+				24A7987C095E0FDFA380DD95 /* cookingrecipes.json in Resources */,
+				35F8E8BA15CE09C922BCBD8E /* craftingrecipes.json in Resources */,
+				E63CA37B803D277557D3BDFD /* cropinfo.json in Resources */,
+				17F6F3D349FEFADEEBD9ABCC /* iteminfo.json in Resources */,
+				6F4A29B7D8E1C3059A72BC44 /* itemnames_zh.json in Resources */,
+				42F9EF55CA788688E28EEB06 /* stardew-save-editor-LICENSE.md in Resources */,
+				5AECC8684691A61B587D0311 /* stardew-valley-data-LICENSE.md in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6C1A9F6C5EE331BFAEB38906 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE16FF0007954354FC96EF9A /* TransactionRegressionTests.swift in Sources */,
+				8741A72CECCFE68FB7B16EEF /* GameLogicRegressionTests.swift in Sources */,
+				8487C2C4A47A01D6C0B33860 /* SaveCoreTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1A840DE81F30D6109FCF3D6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AD7B1CE77A286F689D2556F /* FarmEntityListView.swift in Sources */,
+				34D0DAD272AEF1BC30A7645C /* TrackerView.swift in Sources */,
+				09D5E13C74765D692D92560D /* ToolsView.swift in Sources */,
+				A3E30AB8157B5D86A88CF8FB /* SettingsView.swift in Sources */,
+				A3866EB7593617C7CC3ADC78 /* HomeComponents.swift in Sources */,
+				94813F27AC42CD66DCFEEA8A /* WalletEditorView.swift in Sources */,
+				41ABFBD7254D254AB0E05B10 /* SkillsEditorView.swift in Sources */,
+				2DD9953A0C41F6BDE89018AE /* SavePresentation.swift in Sources */,
+				B425A3693CB1B3535C0E0109 /* ProgressEditorView.swift in Sources */,
+				67D83B993170ADBB46033A48 /* CatalogPickerView.swift in Sources */,
+				7D03A047B6BCC971127AA5C2 /* BackupManagerView.swift in Sources */,
+				697ADE098FB6C73EFCE08143 /* AppearanceEditorView.swift in Sources */,
+				F7D3ACDA66E315639EAA1F99 /* AnimalsEditorView.swift in Sources */,
+				D4E63ED7281883DA3E67898D /* OperationFeedback.swift in Sources */,
+				62A35703494E6EFD4E87EE48 /* GameArtwork.swift in Sources */,
+				AB978CB5552980D3763237EC /* SaveWorkService.swift in Sources */,
+				0E77236A593F88715FE4FE6C /* BackupStore.swift in Sources */,
+				77E6CFEE767E4940070193D1 /* CharacterEditorView.swift in Sources */,
+				3705FC413735DB1F00DF063D /* CoordinatedFileAccess.swift in Sources */,
+				1286ADD35469CC9D7FD990D1 /* CropCalculatorView.swift in Sources */,
+				EBFBEC106D9A54376656C060 /* CropPlanner.swift in Sources */,
+				40F46A844A1CAAFEC2D59E60 /* DebugDemoSave.swift in Sources */,
+				D32D060BD7FF25A7EB7A1C76 /* DocumentPickers.swift in Sources */,
+				3F7CCA24E5B06E6D4CF8FB1F /* EditorShellView.swift in Sources */,
+				588926293E2E6E2EF65D5A9B /* EditorStore.swift in Sources */,
+				A6337B341343A205A9797022 /* FarmMapAnalysisView.swift in Sources */,
+				E3BDD9401199747012902AD5 /* FarmSnapshot.swift in Sources */,
+				D4C3734E7C1B463E3898A9F1 /* FarmhouseEditorView.swift in Sources */,
+				F4E1FFA7AFAC6E2040C1428B /* HomeView.swift in Sources */,
+				58BAA8D7A61AF13194862E35 /* InventoryEditorView.swift in Sources */,
+				56216C46EEEEAA1AB0501B4E /* ItemCatalog.swift in Sources */,
+				5D3841ACFEC8C74D865EC403 /* PelicanSaveEditorApp.swift in Sources */,
+				09ADD2C9CAFA11E93CF663D3 /* RecentSaveSourceStore.swift in Sources */,
+				1B948CA4C3F52DAC097812B4 /* RecipeCatalog.swift in Sources */,
+				EDCAC80681B04AAA592EC630 /* RecipesEditorView.swift in Sources */,
+				D86E1CD7B0DFD39AFF3F6099 /* RelationshipsEditorView.swift in Sources */,
+				2910C66AC3EB79BA975DE322 /* ReviewChangesView.swift in Sources */,
+				B8EA08F5548B0A5AC6CF9261 /* RootView.swift in Sources */,
+				C3498F7C339543F1AE5BD35A /* SaveCodec.swift in Sources */,
+				89C8E5ECCFFA535A9CA9D3B9 /* SaveDiffBuilder.swift in Sources */,
+				11C9D8668E35C800D95C216B /* SaveModels.swift in Sources */,
+				8B24B70CE569D83B0A12C5E5 /* SaveMutator.swift in Sources */,
+				1E6903198C814120845C80F1 /* SaveParser.swift in Sources */,
+				1A6AA37D01A1699ADFD544F0 /* SaveSource.swift in Sources */,
+				F516801561DB4C650BE21137 /* SaveTransactionService.swift in Sources */,
+				F4F7CB0904987DD65F5D8520 /* XMLNode.swift in Sources */,
+				FDC491658901205809D398D3 /* XMLTreeParser.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5F1BA4BAC1628B2FF049E63A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 312F2C056E344BD05A5B3BB9 /* PelicanSaveEditor */;
+			targetProxy = 645194EBFCBF9473ED7A9E7B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		06E5331D85B116DC5CA2767C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 6;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 0.3.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0FDE176C42548189625C34AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 6;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 0.3.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		1FF9BF0EB6E098FDA808044D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.personal.sheaflightambervault.v20260816f4c9.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SheaflightAmberVault.app/SheaflightAmberVault";
+			};
+			name = Release;
+		};
+		8596927A7C36EE4E18A07621 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.personal.sheaflightambervault.v20260816f4c9.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SheaflightAmberVault.app/SheaflightAmberVault";
+			};
+			name = Debug;
+		};
+		D92523D7C01A6F25489992A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = PelicanSaveEditor/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.personal.sheaflightambervault.v20260816f4c9;
+				PRODUCT_MODULE_NAME = PelicanSaveEditor;
+				PRODUCT_NAME = SheaflightAmberVault;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E1353FD1D67160D1B4D16E22 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = PelicanSaveEditor/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.personal.sheaflightambervault.v20260816f4c9;
+				PRODUCT_MODULE_NAME = PelicanSaveEditor;
+				PRODUCT_NAME = SheaflightAmberVault;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		862C1DDCCCEC0B5A19AC3D6B /* Build configuration list for PBXNativeTarget "PelicanSaveEditor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1353FD1D67160D1B4D16E22 /* Debug */,
+				D92523D7C01A6F25489992A2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		980AB8F405F0AFE8204AFDE4 /* Build configuration list for PBXNativeTarget "PelicanSaveEditorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8596927A7C36EE4E18A07621 /* Debug */,
+				1FF9BF0EB6E098FDA808044D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C1468E84B3D12355D551B7AF /* Build configuration list for PBXProject "PelicanSaveEditor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				06E5331D85B116DC5CA2767C /* Debug */,
+				0FDE176C42548189625C34AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0912CFA39F38A1C5F10DAE9D /* Project object */;
+}

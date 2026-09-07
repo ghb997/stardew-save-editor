@@ -1,0 +1,86 @@
+name: Build unsigned iOS IPA
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+      - 'codex/**'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: unsigned-ipa-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-ipa:
+    name: Release arm64 package
+    runs-on: macos-15
+    timeout-minutes: 45
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Select installed Xcode 16.4 or another installed 16.x
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/unsigned-ipa
+          python3 - <<'PY' | tee artifacts/unsigned-ipa/xcode-selection.log
+          import glob
+          import os
+          import re
+          import subprocess
+
+          candidates = []
+          for app in sorted(glob.glob('/Applications/Xcode*.app')):
+              developer = app + '/Contents/Developer'
+              executable = developer + '/usr/bin/xcodebuild'
+              if not os.path.isfile(executable):
+                  continue
+              result = subprocess.run([executable, '-version'], text=True, capture_output=True,
+                                      env={**os.environ, 'DEVELOPER_DIR': developer})
+              match = re.search(r'^Xcode (\d+(?:\.\d+)*)', result.stdout, re.MULTILINE)
+              if result.returncode != 0 or not match:
+                  continue
+              version = tuple(int(part) for part in match.group(1).split('.'))
+              print(f'Installed: {app}: {match.group(1)}', flush=True)
+              if version[0] == 16:
+                  candidates.append((version[:2] == (16, 4), version, developer, match.group(1)))
+          if not candidates:
+              raise SystemExit('ERROR: This runner has no usable Xcode 16.x. Update the pinned runner/toolchain selection; no toolchain was installed automatically.')
+          _, _, developer, version = sorted(candidates, reverse=True)[0]
+          with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as stream:
+              stream.write(f'DEVELOPER_DIR={developer}\n')
+              stream.write(f'EXPECTED_XCODE_VERSION={version}\n')
+          print(f'Selected Xcode {version}: {developer}', flush=True)
+          PY
+
+      - name: Build and validate unsigned device IPA
+        shell: bash
+        run: bash scripts/build-unsigned-ipa.sh
+
+      - name: Preserve package, checksums, build information, and logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: SheaflightAmberVault-unsigned-ipa-${{ github.run_number }}
+          path: artifacts/unsigned-ipa/
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Explain the build artifact
+        if: success()
+        shell: bash
+        run: |
+          printf '%s\n' \
+            '### Unsigned IPA created' \
+            'The artifact contains the Release arm64 IPA, SHA-256 checksum, build-info.json, and build logs.' \
+            'This is an unsigned build artifact. It requires your own signing before installation and is not an App Store or public release.' \
+            'This packaging job does not run the simulator test suite; use scripts/validate-on-macos.sh separately.' \
+            >> "$GITHUB_STEP_SUMMARY"

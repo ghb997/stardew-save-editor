@@ -1,0 +1,966 @@
+{
+  "baseline": "SheaflightAmberVault-source-v0.3.1-build5",
+  "release": "SheaflightAmberVault-source-v0.3.2-build6",
+  "note": "Source/resource differences only; this report excludes itself and is not a build or test result.",
+  "summary": {
+    "added": 128,
+    "modified": 31,
+    "removed": 0
+  },
+  "changes": [
+    {
+      "file": "CHANGELOG.md",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "0cbe96d1948b402a5e46230313c4632cca27c39c58f36b1d084d7c4d6c4a9465"
+    },
+    {
+      "file": "GAME_ASSETS_MANIFEST.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "c7bcbcff64b46342ba4149a1d4df53c5cec4c5ae498c6e8d2e4b9837e54e2ae4"
+    },
+    {
+      "file": "GAME_ASSET_PROVENANCE.md",
+      "change": "modified",
+      "original_sha256": "dd8eccc2176071166042eb782ee0e22d793042d652b17215685077ae61888f73",
+      "delivery_sha256": "20b5c0c37ddc41c623c10adaa89d45c38eaffc07a3f89fd0f2c9dd0487852c5a"
+    },
+    {
+      "file": "PelicanSaveEditor.xcodeproj/project.pbxproj",
+      "change": "modified",
+      "original_sha256": "1159531da7d99ed62ef9b63dccc5699281081cff379abcd07161f0963f99be26",
+      "delivery_sha256": "0158d05da49c25178ec7d9a4a56edbe814aec608095dcff7146fa39096dce7e8"
+    },
+    {
+      "file": "PelicanSaveEditor/App/EditorStore.swift",
+      "change": "modified",
+      "original_sha256": "88c0835f68baf7ce09304232c7f8c6ad7775b8e1d82346763e2494eee6eff456",
+      "delivery_sha256": "6c585fdcf46154757df5a148d8c6e7185445790adda3ee82f67152c58d74631f"
+    },
+    {
+      "file": "PelicanSaveEditor/App/RootView.swift",
+      "change": "modified",
+      "original_sha256": "3ea1542b042c2fab494829304f0797c7da9c6b8837b331bba5fcd3a584b7ce43",
+      "delivery_sha256": "96191029b9544febfe1c7efb1e8c7885462ac481a9f64c16e55e01fc3e5af4a6"
+    },
+    {
+      "file": "PelicanSaveEditor/App/SaveWorkService.swift",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "3b2343447a1c56dd2622fb5b28d07fb267c43b396ba8c5db1895f8db5556cbe4"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameAccessories.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "df4417fb52d5926fc2684ef5dba4e9e6b679957fe0d8291e8506e0566cd88f42"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameAccessories.imageset/accessories.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "2253ba339a1b5f9cb7d2d4e27e9fee28e1904e26c8de5457b5ddb41f598d695d"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameBuildingBarn.imageset/Barn.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "f95d5b19ce1f16581afba7571a6a5f4fcbfc0d30bb14a6b29af865bcdcfa0d0b"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameBuildingBarn.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "5acf4651444fdb76b883cc229ed9305bdf60f18cd5d51fb45cc8aea8ebfbca67"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameBuildingCoop.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "aea82f7217bf0f8bbdac74917bf0b8d68e0c20f30d2a1db3a6fc75eeab75dd3c"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameBuildingCoop.imageset/Coop.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "8d4535e8f84d00e14c8c40848b6bfc93b5d11bcffc03198edbd1968441b082e1"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameBuildingGreenhouse.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "681cd65b1324fd82016dd520a5aca6c65627510807159f5437184cf67337e0cd"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameBuildingGreenhouse.imageset/Greenhouse.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "e2b297f266c76f27896611d061b36ca41331dae6343dc413ae35ac507e3ed7b8"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameBuildingShippingBin.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "cf6c340a6b595062e0037c15abb6a476069bd2225b3a9eac7d8b05649605f836"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameBuildingShippingBin.imageset/Shipping Bin.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "78d738f6bb11c011138dcfbcd83698810fc890874c8bb48e0f1d799f860707dd"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameBuildingSilo.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "dd6e6cd637a3df524d59c05478d245eec6fcc6670c40026ee7461dd82a656456"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameBuildingSilo.imageset/Silo.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "7cb92b5b4312b6c1df6e533ba585b559e46770fef1b915f87fc92f5335a19e18"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameBuildinghouses.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "499576b8e63db164e376ddde8983992d8e84dd8be31179e13f963f1b669b56ee"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameBuildinghouses.imageset/houses.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "6cee3034a269383cf60444124003cfc060af4c61e0d2013d41badccd10cfd73f"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameCommonObjects.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "62bc4f31c54a5da8c2cc6683deb7eb131c351112b28584c81696b5c962df4365"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameCommonObjects.imageset/common-objects.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "03e79e9baf43a94bd14f3e1b90dcc46859fd3fec0bf7c8035cf079115cf51aa8"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameCraftables.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "91d5ca7dd825f086519be8a399526f9b840fb2d8699df077807fc42e4a06304d"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameCraftables.imageset/Craftables.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "5106e91302409fa333511de2fc7fa0e268cca51c94300056723e6a3d6d2b88e6"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameCrops.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "f9a93870e42cd85210609a0bb039b1a537a65bc3d74763f149beca5dd227ce28"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameCrops.imageset/crops.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "f01c90841023317664d691248df8457576684e9f70cad70b185d543ec825f323"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameFarmerBase.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "806cfbe9f6f800799780e1356ff3f23496c4dd8da0c0bab62d8659f95900ce5e"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameFarmerBase.imageset/male_farmer_bald.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "07b1916b346a8cf9ff9be3d05ca0514afc8e2f3cf183c2c0bb09028231d920b6"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameFlooring.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "e0d856489c7adfbcc47573b7e99e77933d6447a4f16275f2619a238a0d7e2e5d"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameFlooring.imageset/flooring.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "c15a3669f82c90e16954589dfe58081aba79d160ff24b442ac4fe3fdc3b85f2c"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameHair1.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "00ef8f0c00ec6fdb5198978283fbaf537bfb37cf0bbde1c56854221c7f3b51eb"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameHair1.imageset/hairstyles.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "877b226ce8eb194dcd9c5aeea156c40b8c1d3ad567bea032787b965e359d0480"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameHair2.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "400081dda6f2798f572471dd94238aca0081980e4d43b3875d58a668085859e3"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameHair2.imageset/hairstyles2.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "8428d78701e96eb6379be7ce31cba821db5ef22654284d9cded2d1ea82f9c618"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameOakTree.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "645ecb9571dd440de09239563c5094f868abb39acd847ee50f69aa4e77d857f8"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameOakTree.imageset/oak-tree.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "9d3977bf111515d432c84c08ad484aeee1b679de6db15a9ea8074daa43a845ee"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitAbigail.imageset/Abigail.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "8e3d11e04747ff3b28350cf9ac48d2a2cdc839093b54572aa040c5795bc49ea1"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitAbigail.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "c6e41030a35dc55413dde32cced1a5fe02caecb369da7e6e9835631acd9ec862"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitAlex.imageset/Alex.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "5c9a0c259e51cc7f7e94eeba8bba0db72ae1cde8d1acaaed45b14cb278ddee23"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitAlex.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "211c51a93bc96a5305cbea4c049331e297395d4b6d0671f8ab9b27d9c934716d"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitCaroline.imageset/Caroline.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "e75f95ba800589058e6c106478936f792440e182729d5ac030d1f1e7218d48c6"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitCaroline.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "9f66fa1d21baa26126b42b8646e9fd32fc2a360279050d42c22a9fa455979527"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitClint.imageset/Clint.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "9ae80c69f863579ec4c10ee3573bfb75a875bea06584dd1b8ec2b6d169dcf1ae"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitClint.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "d2556123ae8285610a84619866b6788456863607782b6ba4d5f7fbc52746a203"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitDemetrius.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "cc5434729268b3c0bb55f5919064bc922a6256e6fca3dee6d85f80efd3f29cda"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitDemetrius.imageset/Demetrius.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "924ea370193af44704dc9286637c66eb6417ba87e87c6c998f8a7b4bed6fe957"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitDwarf.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "ae3b48898e7c86abb903d4f7ca3bdf56d0645a866571aeba706129135416e74d"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitDwarf.imageset/Dwarf.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "53e84dc852d4cd3f733f38669e9453517715f2883b1e226c72389fb6b1c43351"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitElliott.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "6a57dff9c049504db4beb2ad974d4baae23c0c33c6eb433ace5eb4369690abf0"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitElliott.imageset/Elliott.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "d48a2857535c78ff8388c2a80b52a5245a6c175b25979bee5f36756637ccc391"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitEmily.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "4e1817216eebb00e192bad175dfd1e5b5917c26f2e2da46f7710b47ee488f25d"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitEmily.imageset/Emily.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "7d1758b0145eb77174ad4537f7dceded70745df49ea7a611ab7bf4a66bc100cc"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitEvelyn.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "bd3b8d8f8247692339e31c9769c9ffb3ea28009810f8afa5459980de05d02bfe"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitEvelyn.imageset/Evelyn.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "668737cd1138aea38eecba28c1ec7991b570f000820525f3760fb70232549af6"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitGeorge.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "e7c9ac9c8429d14ad50a7efb843ae2cfb1f2dd153101a3fd01702809546385fc"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitGeorge.imageset/George.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "7ec7233ee656c54a9ede9142a3125023664fde7a00ccd051dc7fdc6edbb4e6bb"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitGus.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "3a125e65e9f69dd9f09707ca43fc84668a7454acf2ecac867a627cb6809311d8"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitGus.imageset/Gus.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "7aabb6f2312ebd942ecba51b27569363f8c60b96cc86cbda841bf2546eb771b6"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitHaley.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "201dd80fe1921dd554a2a5724b9be1247e2bfa44347c8cf1a810ffbd1f65174d"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitHaley.imageset/Haley.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "adad32ed0477082dab056d5607a871071a1f219b21513248f8281234d148ce5b"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitHarvey.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "e35d8e3b03e456e765a9f8a37b2573e0f05726541a6a894809fae399e9a218f4"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitHarvey.imageset/Harvey.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "a592c6bf2de8b0b34881734ea8cb40893bcdc2a37231e0edae8b4e8e226fb23d"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitJas.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "fbc8a8164708b8f076b9f67ebdd33590c6f7129eb8dfc82b242970d7f9cab92c"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitJas.imageset/Jas.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "d93338110453e27fc14818404a1408def18bd2fad40537e15a01610a8569d4e4"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitJodi.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "acc69128a780956532bae45e86aff5b922db6dbd9fe4c7840604e44408551530"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitJodi.imageset/Jodi.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "e3c29733b4f1e01286a775fe534279c29a238edd744040e311e12465a91ef48a"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitKent.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "d28e88457fa690404f1658093335ef5ba8ca92b26c0eac3af6a39f9958be4ba9"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitKent.imageset/Kent.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "10cbf18101182569e53240956f5c303d651785d4daa7aad27298408fab57abf7"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitKrobus.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "d1970c7de455e50feb1467099215407a248adfde9916d05d674bbeec6c4b95b1"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitKrobus.imageset/Krobus.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "ca8f05b773eaf0ab9828173cedfdb626aa7d06e9fc930b072526343e73d2076c"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitLeah.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "00a38a3603c67e2e3d1bf8ddf7fa7dd3723eef07d538761c1ab60220c15eb24d"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitLeah.imageset/Leah.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "8e8db30c2ae2a436471c3bda42714c323ce8b272d5d8757158899f214c44f59a"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitLewis.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "88a6e013c4763236e95584d9ff9eff830e888db81fe514357c1a6d3428bf600f"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitLewis.imageset/Lewis.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "f80da82df92f59c950575e39c34c349cd5f9172fa25fd0def1849525c66525ca"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitLinus.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "55c7672cee4d80eca5b53dc537310956c0602cad34983a041c9fd21caf8aa1dd"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitLinus.imageset/Linus.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "08db3323dbfae429b0bc60670504b9c7a1b2b4b62a240293b9e080c4a00c9d68"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitMarnie.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "c39957087dbaedc979d88ef18b10eaa89fdcfedf0cf6af917143ad61ed9878d7"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitMarnie.imageset/Marnie.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "2e2a7338f63025532a84555d73151738e2dca1af217ed1772a3c7819df7fd1f4"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitMaru.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "661a373bbae6b9f588ebd0a534d23272913c9713c4a99a046db59a8e2ae354fa"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitMaru.imageset/Maru.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "54634229d474f03417b0eae4d5d086bba4649a0c2f42ef59e7e2e638a2b2b58b"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitPam.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "e43a6647efdf7c3694c969fad51ead77afc423dfc3ce9892697aab5af4018930"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitPam.imageset/Pam.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "39b3220d2a19d7a697774cbd08876f59781fe92b826bf3fd826c1d306eb08376"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitPenny.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "90d85a64b059d6a745248eca884703ff8b82490ec651dcb7e32645edad04153a"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitPenny.imageset/Penny.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "1670476325942945ef400b3dd3a4fe1132074d758bc8cf22c33fdc74d3806ba1"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitPierre.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "be2688879fb6451e1313701e25d8a85c6f3236e301de5b612e0d331ca3769ae4"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitPierre.imageset/Pierre.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "836d1f0b459544d25f93de065743a860a9e152cfbe29428f728d6e856caeef76"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitRobin.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "2198bba46dc7e78b1f9b76e0773557373523adec63de098eb01c1a00c4272443"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitRobin.imageset/Robin.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "7bb6f1d605695a3eefa94d1c78418e5f42f718234638e5cd19a459fb1e596668"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitSam.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "4ef4ed01145aca3a698d7ddaa2e49c11ae90b40356747c41d12cf6185f748e3d"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitSam.imageset/Sam.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "ccf0a037fb89dc2b7e98507ed26ab8357db2cf5ca5a3223b6e85137d10c67d72"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitSandy.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "fb4995e3b7ea908a9b189986cb5d49d2554d9b1b1a3970c98ddcbbd40646ccb7"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitSandy.imageset/Sandy.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "ac244039169a7cb41533e2f400d74010149a1464e85ca2b6c0626ec9d2ccc66f"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitSebastian.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "ef9fd9b160436e738d78da5ec27b34371501e95c191b96701c242b6128c79ed3"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitSebastian.imageset/Sebastian.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "c4f0a14845396250933d3296d61a4fef2558b05387914efa119af683a2fe32d0"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitShane.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "2bc798a122d86bbabbdb99a2668445d512d96f15d8a5f43979e550cac2ad4c96"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitShane.imageset/Shane.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "3a013d098295fad2d80ef8090d3d1ca3061413a84637d0762f290312d2d167fb"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitVincent.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "36912dc7249e559090de1496bd5449ed11a6445bd907dec61f6d8df95be2c337"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitVincent.imageset/Vincent.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "08cd0ffb49bea282c5521f6099fd18b9d4680c1b387744cb2ed87d835064678a"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitWilly.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "ec1fe2066cbc4a7e1f3ae5f5ffd1d018af4670d55bb2d17de788575f8cf122de"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitWilly.imageset/Willy.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "93b6a76b092193e72bff4d2a7fd4aaf8e1a0889fe6ee313aa090f6ac9ce5f7f4"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitWizard.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "b82aca57850957f377cf28eae92b9d026d26258d431e6fb4d9ee9ffea44d02af"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitWizard.imageset/Wizard.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "79c330e77845eab11e45778068c993e4c35253f24ffec2124cfa29f6aac581ad"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameTools.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "40f4e8feffda0bf93f7233bbe059f0b061c3e0b5f87cbdecf4122ea755eeaf39"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameTools.imageset/tools.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "44f109091a9c35986d49b58ac0d8c1e8698a3741a65b72c115a0b41fe6dbfca2"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameWallsAndFloors.imageset/Contents.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "af5daa25e256553f138f4f970b1c0a8ff7996d37f36c8d73509e4f5d144e2023"
+    },
+    {
+      "file": "PelicanSaveEditor/Assets.xcassets/GameWallsAndFloors.imageset/walls_and_floors.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "db4610a7e272393a191b82e97cf2e4e8f46b1149a0647298453aa4d96b029ec1"
+    },
+    {
+      "file": "PelicanSaveEditor/Core/Files/BackupStore.swift",
+      "change": "modified",
+      "original_sha256": "a9c7fc19258db9c0b044fd2855de732c398668470edf99786055f620ae37bce1",
+      "delivery_sha256": "610c558f0ba681ef994d2eed9afb42248c9b709bcba70bda5014b3a59e86200c"
+    },
+    {
+      "file": "PelicanSaveEditor/Core/Files/CoordinatedFileAccess.swift",
+      "change": "modified",
+      "original_sha256": "5997674165ba105b78901038f7d249905031f985a2123839f5e4bcf7d74e871e",
+      "delivery_sha256": "a7b66315d7f993b12f0a3a9ba49576e71f8058f9ffa7af2b6f1ca0e890d6ab5e"
+    },
+    {
+      "file": "PelicanSaveEditor/Core/Files/SaveSource.swift",
+      "change": "modified",
+      "original_sha256": "05cea4a80ca912c60ca812e98d77bae84f982b11003f7539f08a4a73d6c3b31b",
+      "delivery_sha256": "aa2fe9a57888989cb5d5fd1370eb6ea31e55695ac411df61668582e9911707c8"
+    },
+    {
+      "file": "PelicanSaveEditor/Core/Files/SaveTransactionService.swift",
+      "change": "modified",
+      "original_sha256": "ee0ddf7d897dbe5fafd9245f5a35d7cd10f742c9bdfa0bc4abccaec3bdeea33f",
+      "delivery_sha256": "4033a3ff101d61405a91cb0e626fd24528bd76966e93250cf856eef8f6ed73f7"
+    },
+    {
+      "file": "PelicanSaveEditor/Core/Save/SaveCodec.swift",
+      "change": "modified",
+      "original_sha256": "48e8d2f4171c0f5be659bce20a93cd2967ab6fe50e30634edd612530ef8775b8",
+      "delivery_sha256": "e39e1507990534aadf75cf256c0fc60276a07d1b673c312e3d9989b826ca5715"
+    },
+    {
+      "file": "PelicanSaveEditor/Core/Save/SaveDiffBuilder.swift",
+      "change": "modified",
+      "original_sha256": "7a50bda0f38155325263763be6fafc79365a2b7ac6ab8ec21f0f0568c2a909ae",
+      "delivery_sha256": "b212c20ea9d43285daaba5d75824cb11e5393d6879005e180202be1329ee2dee"
+    },
+    {
+      "file": "PelicanSaveEditor/Core/Save/SaveMutator.swift",
+      "change": "modified",
+      "original_sha256": "1f279a4ee44458c9c3fb34e607447f1979562023fa6d03e88ffd34c018cff941",
+      "delivery_sha256": "dd9f3a8e8618fe9cd4ce3e7caf5778c6b51726044f716c2df35eba4499ed1161"
+    },
+    {
+      "file": "PelicanSaveEditor/Core/Save/SaveParser.swift",
+      "change": "modified",
+      "original_sha256": "a5c43c8e6ce514d8d92ac18ae04d57b4f4f4bb808889fc496f9965b31767ef39",
+      "delivery_sha256": "e973e5c10f6b97611cd88c376476f4d07f7aa7b0df1bc7a02b3f20e17bb187b7"
+    },
+    {
+      "file": "PelicanSaveEditor/Models/FarmSnapshot.swift",
+      "change": "modified",
+      "original_sha256": "cc2c9beac7388545e3f9622097a7edabf289c0798bff2a7aacdc7c7c29464b78",
+      "delivery_sha256": "4e316be0c65e83d3d156626cd1e0f097d64c5fcd4b7c7c869ef89b8bb394b87e"
+    },
+    {
+      "file": "PelicanSaveEditor/Models/ItemCatalog.swift",
+      "change": "modified",
+      "original_sha256": "6d02174885bc82628bb232d1dcf924aad40d5e912c86a8f0b72a4e83edb19942",
+      "delivery_sha256": "4ac85bc4b8da6b741c32115f510b149067d8ccec29ae7cf3e5bf1f91f79b6744"
+    },
+    {
+      "file": "PelicanSaveEditor/Models/SaveModels.swift",
+      "change": "modified",
+      "original_sha256": "e7cc140d9d76703eb151a04323c79de1d6edeeaa763acda9a68fa3549f97f4df",
+      "delivery_sha256": "57b53f2c5525d5af84f10fe3390ff3032cffd481d24bbfe06214e1339a322aa0"
+    },
+    {
+      "file": "PelicanSaveEditor/Resources/itemnames_zh.json",
+      "change": "modified",
+      "original_sha256": "61a05056d19c0152d2013bdabcb8b5fd0a4cc1fca4490f8ae8037186d24a5408",
+      "delivery_sha256": "271222f47f8cfb324f29c7ce856928b82ab9590618ddb54c9d16eef7579dabbc"
+    },
+    {
+      "file": "PelicanSaveEditor/Views/Components/DocumentPickers.swift",
+      "change": "modified",
+      "original_sha256": "42b4a6ae1098608343c5cad9d5380b92db8074a920c6cef0513bfba0ea8a74e3",
+      "delivery_sha256": "02dd7c0ef5575d9e57f57b9f736d54baf2f12efd560ba911768aa68371214368"
+    },
+    {
+      "file": "PelicanSaveEditor/Views/Components/GameArtwork.swift",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "db83bdc7ff0fb5660ef85f362280aa0881fec52b51ccb2f6b1ecaac7b5fb7808"
+    },
+    {
+      "file": "PelicanSaveEditor/Views/Components/OperationFeedback.swift",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "26b80b16aaf8a543933820e8cb60cac15ac51e2f835626905115d42e70e7671c"
+    },
+    {
+      "file": "PelicanSaveEditor/Views/Editor/AnimalsEditorView.swift",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "637a3b1d55a75e319c0ff31ae01edb11520d7ffd8c14075c4e4f510bc74b589b"
+    },
+    {
+      "file": "PelicanSaveEditor/Views/Editor/AppearanceEditorView.swift",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "7e1a5d87b0070ca704b6ef539da723a8dbbe34398c1379a571fd0bb312811e5d"
+    },
+    {
+      "file": "PelicanSaveEditor/Views/Editor/BackupManagerView.swift",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "e1be246b8acfd86cad944e7249e8ee2a6be26974a27c25a3d8ad19a8db13fb8b"
+    },
+    {
+      "file": "PelicanSaveEditor/Views/Editor/CatalogPickerView.swift",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "33900d911eca6dda9bdcdd8d32beda568ec7aa9c061a139583660c7fa364b2fb"
+    },
+    {
+      "file": "PelicanSaveEditor/Views/Editor/CharacterEditorView.swift",
+      "change": "modified",
+      "original_sha256": "a276c1aa5aa7a5179efe5a8299a78cafa3cc7303daef02070cbff649c470ea07",
+      "delivery_sha256": "d2b0b5fc6133e1582f3bd14a17a37350f64504a93e41c6e5343dae1d495b6be8"
+    },
+    {
+      "file": "PelicanSaveEditor/Views/Editor/EditorShellView.swift",
+      "change": "modified",
+      "original_sha256": "75e9ad14dcaa9097758e319976ebef5aab70a897b5bf5b8ee07bfa566e211174",
+      "delivery_sha256": "e00ddcf4bb1be2991bd9f950606518a020be0c1d6095483d5d4f3bc3c1d75577"
+    },
+    {
+      "file": "PelicanSaveEditor/Views/Editor/FarmhouseEditorView.swift",
+      "change": "modified",
+      "original_sha256": "0fa395c8b1fcdf67b1db28333a040efaf0266cd682a931ed00e81737fa64a5d8",
+      "delivery_sha256": "a2bb40b4afec26792081cb421a1e57a90ce3b765f927e74ffdb4b48d0841e607"
+    },
+    {
+      "file": "PelicanSaveEditor/Views/Editor/InventoryEditorView.swift",
+      "change": "modified",
+      "original_sha256": "09bce7e827ca02042c5ce00674ea2470a58dcaf65e7c90498a0e6d03e8d386c1",
+      "delivery_sha256": "a83ca4f61e2987869467395acd261dea62add090091285d87b9ca08b6bdfbe3c"
+    },
+    {
+      "file": "PelicanSaveEditor/Views/Editor/ProgressEditorView.swift",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "cc74cf08f4cad01a45d837d224ce643e538fe90b9b5e272f272e6ab1389aed4b"
+    },
+    {
+      "file": "PelicanSaveEditor/Views/Editor/RecipesEditorView.swift",
+      "change": "modified",
+      "original_sha256": "e2ad178e0744b3e63ecab20fc271a14edb9ec85038730ddda11a315a28d98a7d",
+      "delivery_sha256": "51f223c28725df110aacc2cbd1999887fce29a459381905a33a217292fff9224"
+    },
+    {
+      "file": "PelicanSaveEditor/Views/Editor/RelationshipsEditorView.swift",
+      "change": "modified",
+      "original_sha256": "cec8bd248648a4c4a63182b13056a1d032c2a3844948437f88b9720767c9026b",
+      "delivery_sha256": "6ef322fb943c13c2df197a419af28c5e350fb0cf8eccec0c04917ca4255542a4"
+    },
+    {
+      "file": "PelicanSaveEditor/Views/Editor/ReviewChangesView.swift",
+      "change": "modified",
+      "original_sha256": "976f6e93e4b5c38dbf6cc149ff7711fa3a57d05cbca11053e3dfd7f80a1b8b61",
+      "delivery_sha256": "ef78a2f6d9cdbe7182fd17463426f525dd88a8c1772af947d44cfbd68b8d91c0"
+    },
+    {
+      "file": "PelicanSaveEditor/Views/Editor/SavePresentation.swift",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "8ff5deb9992134d501b14668bb1594b42ae04c5c5614e268effb227b001a3148"
+    },
+    {
+      "file": "PelicanSaveEditor/Views/Editor/SkillsEditorView.swift",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "6a31b8ee706e4be17fff0285ab31e85cf80217a9a7fd22f79928c43bbd18e995"
+    },
+    {
+      "file": "PelicanSaveEditor/Views/Editor/WalletEditorView.swift",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "f3e0122435275cff9d135243cff84eae08d68aeb304870fb009025ea69fc57b2"
+    },
+    {
+      "file": "PelicanSaveEditor/Views/Home/HomeComponents.swift",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "9f4ed495fe61a73e4cd4d2ab1c5b2232e3ba30e446e69c4a9dfd11a26fc1d4cb"
+    },
+    {
+      "file": "PelicanSaveEditor/Views/Home/HomeView.swift",
+      "change": "modified",
+      "original_sha256": "4c63dd5059f0b3263fd00d8d2b568c8649a4fe993f50434caa599f387f1217b5",
+      "delivery_sha256": "f1fe7e7a52690a2b474bcfd42d248a11a45cfed96a1788bb75d3221aa8035d19"
+    },
+    {
+      "file": "PelicanSaveEditor/Views/Home/SettingsView.swift",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "f6e1160a33140f5cf6b9138968b52cf170c0a4c88d84d7e5ac7ca2ce784d155f"
+    },
+    {
+      "file": "PelicanSaveEditor/Views/Home/ToolsView.swift",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "7e796bcc9d2ae0267b68fabb99f4bfad5bdfb7d2272ddd9cb6ff6fa16b0408c2"
+    },
+    {
+      "file": "PelicanSaveEditor/Views/Home/TrackerView.swift",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "e185370c605e1aa219b253e4bfc7900ba003598e362beda6b63d65c36ea3ca79"
+    },
+    {
+      "file": "PelicanSaveEditor/Views/Tools/CropCalculatorView.swift",
+      "change": "modified",
+      "original_sha256": "4c3a04746a94175d00ff70f946826ed5236a4d783fe93d25f1a72726da82fe8f",
+      "delivery_sha256": "6e2e4bf02f9bbc738cba00f906c89e4cbfd5c14e335a4df99f8e9261289438de"
+    },
+    {
+      "file": "PelicanSaveEditor/Views/Tools/FarmEntityListView.swift",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "e9c62c3be7dc040893a90ca6134740835d600ca947d877cbd4762f9780289540"
+    },
+    {
+      "file": "PelicanSaveEditor/Views/Tools/FarmMapAnalysisView.swift",
+      "change": "modified",
+      "original_sha256": "b7bef1e2b24a6e188ad44c0997d959a507f51fc44dd91fce283a923d56a04cd1",
+      "delivery_sha256": "e8a020c0ccf5069027262efdb44d31ec83f80f7128aa48a17b35fe782dd3f80c"
+    },
+    {
+      "file": "PelicanSaveEditorTests/GameLogicRegressionTests.swift",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "9c7cb3844052302fdc7ca451f343839690a896c491bbe3a22e90f2281de9dd72"
+    },
+    {
+      "file": "PelicanSaveEditorTests/SaveCoreTests.swift",
+      "change": "modified",
+      "original_sha256": "a9b7c9290e4991573eea5eac60f80657f9693182de509602bb8592b7743c916e",
+      "delivery_sha256": "30da2a054c5363f4d065538263165cab48c9736745420a0122b8a4c0d4ebdefa"
+    },
+    {
+      "file": "PelicanSaveEditorTests/TransactionRegressionTests.swift",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "3e9a3a720b5c7899196d6f872b7c9369d313343fae9a435f10dd426f0bc8dac7"
+    },
+    {
+      "file": "README.md",
+      "change": "modified",
+      "original_sha256": "4612b808db84a6c3db540d0c411673f765b8ac36e04ca078e09ea141c74b7f0b",
+      "delivery_sha256": "f709b0aa894f48d6c0a35bd6531d53e992c8ee6cf06fffca95b6c8d013abcd55"
+    },
+    {
+      "file": "THIRD_PARTY_NOTICES.md",
+      "change": "modified",
+      "original_sha256": "a3e47476334ce36029a3be5bdb0adf5179126e3ba37066162767070421adcfbf",
+      "delivery_sha256": "7dfdf115ca70bff1dfebc07d9b5c8d38f53b7d8214e667f0b62dfce21a51e907"
+    },
+    {
+      "file": "VALIDATION.md",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "0213a014a55f6796ad1a60ffe5380bf053560590ead97b3ba0dac23ad532ca06"
+    },
+    {
+      "file": "project.yml",
+      "change": "modified",
+      "original_sha256": "fd1f55e192c069bbbb3a45837c2c1d37900ecf50e92f092f392b73f68858e2e2",
+      "delivery_sha256": "8d6d1ef90b489f2c960a52d45bd3f73e191b125794dd03dbfd0c3333a695cebe"
+    },
+    {
+      "file": "scripts/check_swift_syntax.py",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "b691423cbc189349957cd64ccccb6d0e8cc6d6547944aae0ae09f4f875b7e9df"
+    },
+    {
+      "file": "scripts/make_asset_preview.py",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "466ef94f0ae2b52adcede845773d1fc102de3e9cc86de46453893cea76c82bed"
+    },
+    {
+      "file": "scripts/validate-on-macos.sh",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "96d4bd362945551646a2b18709e9ffb74040f63b05aa164f106d900f1a7a8100"
+    },
+    {
+      "file": "scripts/verify_release.py",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "9eb5ce0ce462aae3ff3fb328ef8e2a8c7bf42a4c1db7fe70ea847ebf143437cb"
+    },
+    {
+      "file": "validation/static-release-results.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "5159643d5adbf44833c350868be1c4e68e333697b1caa2d8ed865a99b34ffd69"
+    },
+    {
+      "file": "validation/swift-syntax-results.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "5122bfeaa2129f4996dc6c213033cc542c9d6f2d20516db267bf52970aa5b54e"
+    },
+    {
+      "file": "游戏素材预览.png",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "9120643ab684c6af60d88ce15c6fee679f32695793ed194ca3b18b74b806ae9c"
+    }
+  ]
+}
