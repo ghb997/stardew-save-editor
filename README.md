@@ -38,6 +38,10 @@
 
 ## 运行
 
+### GitHub 云端生成 IPA
+
+已加入 `.github/workflows/build-ipa.yml`。推送后通过 GitHub 的 macOS 构建机生成未签名的 iPhoneOS arm64 IPA，产物需自行签名后安装。详细操作见 [GITHUB_BUILD.md](GITHUB_BUILD.md)。
+
 ### Xcode 安装（推荐）
 
 需要 macOS、Xcode 16 或更新版本（Swift 6）和 iOS 17 或更新版本。
