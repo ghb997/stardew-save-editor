@@ -5,7 +5,7 @@
   "release": "SheaflightAmberVault-source-v0.3.3-build7",
   "note": "Source/resource differences only; this report excludes itself and is not a build or test result.",
   "summary": {
-    "added": 251,
+    "added": 252,
     "modified": 31,
     "removed": 0
   },
@@ -32,7 +32,7 @@
       "file": "CHANGELOG.md",
       "change": "added",
       "original_sha256": null,
-      "delivery_sha256": "9acb13b66b11c69261ad60ac3ed7ef33d5705c001dda64716c72b9d5deb6a2f5"
+      "delivery_sha256": "547cfbef5f056a47a184a4f2130cb3ce8a199372569f69cc21faaceb4512d3e9"
     },
     {
       "file": "GAME_ASSETS_MANIFEST.json",
@@ -1622,7 +1622,7 @@
       "file": "README.md",
       "change": "modified",
       "original_sha256": "4612b808db84a6c3db540d0c411673f765b8ac36e04ca078e09ea141c74b7f0b",
-      "delivery_sha256": "4bb81f0e625658719fb56c9a01c9c833e9974286180d2d6287369d46eb31eab4"
+      "delivery_sha256": "6d97fc442eb1e0fbed26bc9afa2f273df7efe95e1ba22aa9c804512fe8557a5a"
     },
     {
       "file": "THIRD_PARTY_NOTICES.md",
@@ -1640,7 +1640,7 @@
       "file": "VALIDATION.md",
       "change": "added",
       "original_sha256": null,
-      "delivery_sha256": "b08a143563a3b18ac6d5e6d90a18fc4f433875ea6853b77022ba429b842253de"
+      "delivery_sha256": "78aa9f6b14da46e6fb3c3cc026c248eafc305a1251c13c88c5af31d9fdf40c76"
     },
     {
       "file": "project.yml",
@@ -1683,6 +1683,12 @@
       "change": "added",
       "original_sha256": null,
       "delivery_sha256": "b95c0d974c6dac1ec125afc2c6f5a2a8bd6d62c65e64b29d48fedee94e87a2d4"
+    },
+    {
+      "file": "validation/github-actions-build.json",
+      "change": "added",
+      "original_sha256": null,
+      "delivery_sha256": "63afc20e979f22fbf9e9d2f6754f45a3dc9627b3733e36b057c9d1eb27977ec2"
     },
     {
       "file": "validation/static-release-results.json",

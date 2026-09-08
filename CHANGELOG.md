@@ -16,7 +16,7 @@
 
 ## 版本与构建
 
-- 版本更新到 0.3.3 build 7。GitHub Actions 继续生成 Release、arm64、iPhoneOS 未签名 IPA；签名后方可安装。
+- 版本更新到 0.3.3 build 7。[GitHub Actions run 34190220247](https://github.com/ghb997/stardew-save-editor/actions/runs/34190220247) 已使用 Xcode 16.4 与 iOS SDK 18.5 成功生成 Release、arm64、iPhoneOS 未签名 IPA；SHA-256 为 `96621789da9f3a1e6bf7030851cef22ad34b60b98c4f996bb0008ffaf2ef5d4c`，签名后方可安装。
 
 ---
 

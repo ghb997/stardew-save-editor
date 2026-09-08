@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "githubRunId": "34190220247",
+  "runUrl": "https://github.com/ghb997/stardew-save-editor/actions/runs/34190220247",
+  "sourceCommit": "517e654fa6242611edb57ee040a90a884b9347f3",
+  "sourceRef": "refs/heads/codex/ipa-build",
+  "configuration": "Release",
+  "target": "PelicanSaveEditor",
+  "xcodeVersion": "16.4",
+  "xcodeBuildVersion": "16F6",
+  "sdkVersion": "18.5",
+  "platform": "iOS",
+  "supportedPlatforms": [
+    "iPhoneOS"
+  ],
+  "architectures": [
+    "arm64"
+  ],
+  "version": "0.3.3",
+  "buildNumber": "7",
+  "minimumOSVersion": "17.0",
+  "artifact": "SheaflightAmberVault-v0.3.3-build7-unsigned.ipa",
+  "artifactBytes": 2806764,
+  "artifactSha256": "96621789da9f3a1e6bf7030851cef22ad34b60b98c4f996bb0008ffaf2ef5d4c",
+  "checks": {
+    "zipIntegrity": "passed",
+    "infoPlist": "passed",
+    "assetsCarPresent": true,
+    "machoArchitecture": "arm64",
+    "machoPlatform": "iOS",
+    "codeSignatureDirectoryPresent": false,
+    "embeddedMobileProvisionPresent": false,
+    "lcCodeSignaturePresent": false
+  },
+  "testsRun": false,
+  "completedAtUTC": "2026-09-08T05:21:35.132046+00:00"
+}
