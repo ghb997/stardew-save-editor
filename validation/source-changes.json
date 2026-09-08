@@ -2,7 +2,7 @@
   "baseline": "SheaflightAmberVault-source-v0.3.1-build5",
   "baseline_archive": "SheaflightAmberVault-source-delivery-v0.3.1-build5-clean-20260830.zip",
   "baseline_archive_sha256": "352c590180da036fb208780517674112ad8097c19c911a47ce17e2f334ef4c58",
-  "release": "SheaflightAmberVault-source-v0.3.3-build7",
+  "release": "SheaflightAmberVault-source-v0.3.3-build8",
   "note": "Source/resource differences only; this report excludes itself and is not a build or test result.",
   "summary": {
     "added": 252,
@@ -32,7 +32,7 @@
       "file": "CHANGELOG.md",
       "change": "added",
       "original_sha256": null,
-      "delivery_sha256": "547cfbef5f056a47a184a4f2130cb3ce8a199372569f69cc21faaceb4512d3e9"
+      "delivery_sha256": "531fe81b27c03cda7e3ce73f53387e92dc6c885461b92d0f3439c92153e3a964"
     },
     {
       "file": "GAME_ASSETS_MANIFEST.json",
@@ -44,7 +44,7 @@
       "file": "GAME_ASSET_PROVENANCE.md",
       "change": "modified",
       "original_sha256": "dd8eccc2176071166042eb782ee0e22d793042d652b17215685077ae61888f73",
-      "delivery_sha256": "569fff084c310b7062e48b3b48bcc94ecc9d6285f26153c8a29e248d41549022"
+      "delivery_sha256": "44ee8549b9c9a0bb490c5ed0ca7cec928fdb3cc82ee6dcc07a8526cdef3e05b1"
     },
     {
       "file": "GITHUB_BUILD.md",
@@ -56,7 +56,7 @@
       "file": "PelicanSaveEditor.xcodeproj/project.pbxproj",
       "change": "modified",
       "original_sha256": "1159531da7d99ed62ef9b63dccc5699281081cff379abcd07161f0963f99be26",
-      "delivery_sha256": "71d450e9cf12abb68e671e5d7586d9eb26b225d910026399314e1f9a4efba21d"
+      "delivery_sha256": "875ac05404ec16bb77c5d8ad8d5091d321a18e440bbfb4d50001483a93255afa"
     },
     {
       "file": "PelicanSaveEditor/App/EditorStore.swift",
@@ -68,7 +68,7 @@
       "file": "PelicanSaveEditor/App/RootView.swift",
       "change": "modified",
       "original_sha256": "3ea1542b042c2fab494829304f0797c7da9c6b8837b331bba5fcd3a584b7ce43",
-      "delivery_sha256": "96191029b9544febfe1c7efb1e8c7885462ac481a9f64c16e55e01fc3e5af4a6"
+      "delivery_sha256": "bd40f06cfc4d0db0a6fa3eb6fa6e498fb56ef62a672ec558467e5b6263d7a594"
     },
     {
       "file": "PelicanSaveEditor/App/SaveWorkService.swift",
@@ -1568,7 +1568,7 @@
       "file": "PelicanSaveEditor/Views/Home/SettingsView.swift",
       "change": "added",
       "original_sha256": null,
-      "delivery_sha256": "b57168ed3997058faf94ec9cb4f586a6c80953b4029c127092e9ab0b13d0cdf3"
+      "delivery_sha256": "d303d45f5f328e093a2c62f0534381a042b766e720be6402b462c0610ac8a000"
     },
     {
       "file": "PelicanSaveEditor/Views/Home/ToolsView.swift",
@@ -1622,7 +1622,7 @@
       "file": "README.md",
       "change": "modified",
       "original_sha256": "4612b808db84a6c3db540d0c411673f765b8ac36e04ca078e09ea141c74b7f0b",
-      "delivery_sha256": "6d97fc442eb1e0fbed26bc9afa2f273df7efe95e1ba22aa9c804512fe8557a5a"
+      "delivery_sha256": "1b13f91062371213b6059298befdd049c7e755f314529fcd5926d0d4dddd56b8"
     },
     {
       "file": "THIRD_PARTY_NOTICES.md",
@@ -1640,13 +1640,13 @@
       "file": "VALIDATION.md",
       "change": "added",
       "original_sha256": null,
-      "delivery_sha256": "78aa9f6b14da46e6fb3c3cc026c248eafc305a1251c13c88c5af31d9fdf40c76"
+      "delivery_sha256": "56db9187e0afc4ab42f7cf40d75d9d8ca68e183c99ce3307e8de0bd9b7eb07ca"
     },
     {
       "file": "project.yml",
       "change": "modified",
       "original_sha256": "fd1f55e192c069bbbb3a45837c2c1d37900ecf50e92f092f392b73f68858e2e2",
-      "delivery_sha256": "f45fc2cb23f1dc764c4ded61135b9f62ff248ac9ec7d52135236293aa98504aa"
+      "delivery_sha256": "945e3ecb923fccbd53f2c66d053f7b1fec4833b10b4194e6a9f3e0989b011715"
     },
     {
       "file": "scripts/build-unsigned-ipa.sh",
@@ -1664,13 +1664,13 @@
       "file": "scripts/make_asset_preview.py",
       "change": "added",
       "original_sha256": null,
-      "delivery_sha256": "e7fa8bfd7706ae7f0dc8a52dc2ba7d78512ad16224dd1f850f0c28a07a9026ea"
+      "delivery_sha256": "729245c43166ee02ad4182549e2b896bca83fb550e06f78ee8ee937d29231a43"
     },
     {
       "file": "scripts/make_source_changes.py",
       "change": "added",
       "original_sha256": null,
-      "delivery_sha256": "9f1175a0ed8cfc58c76796023a9a332fed1cf6a41502e730d440ac649c8b103a"
+      "delivery_sha256": "fb8c41d84ba25a548d7112b7497e21a7abf25b55b5568142fe5278b398f571d4"
     },
     {
       "file": "scripts/validate-on-macos.sh",
@@ -1682,7 +1682,7 @@
       "file": "scripts/verify_release.py",
       "change": "added",
       "original_sha256": null,
-      "delivery_sha256": "b95c0d974c6dac1ec125afc2c6f5a2a8bd6d62c65e64b29d48fedee94e87a2d4"
+      "delivery_sha256": "f8e5ca511a6d1151b005e255ca0b0f6e68ddaa56544e92f922d55608663fd1b8"
     },
     {
       "file": "validation/github-actions-build.json",
@@ -1694,7 +1694,7 @@
       "file": "validation/static-release-results.json",
       "change": "added",
       "original_sha256": null,
-      "delivery_sha256": "e0f816845a5b1f3025a6a5d27bf47a44bd2618d3a4d523d787209f984b01eda7"
+      "delivery_sha256": "69f5454eb8887e1219eb0f73ed99a85a681cf8f3ea09a6f7b447303fdde27562"
     },
     {
       "file": "validation/swift-syntax-results.json",
@@ -1706,7 +1706,7 @@
       "file": "游戏素材预览.png",
       "change": "added",
       "original_sha256": null,
-      "delivery_sha256": "b8cd8e3af8c8e41c8e835a518551e44518c6f1725896ef5efbdc08fe92295d61"
+      "delivery_sha256": "895fe7b29fdbc6264009a948e8204b320e4371f1c60c1e19e65ab40ff8f3a936"
     }
   ]
 }

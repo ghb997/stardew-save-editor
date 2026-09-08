@@ -1,6 +1,6 @@
 # 交付验证说明
 
-版本：0.3.3（7）。环境：Windows 与 GitHub Actions，2026-09-08。
+版本：0.3.3（8）。环境：Windows 与 GitHub Actions，2026-09-08。
 
 ## 已执行的检查
 

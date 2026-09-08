@@ -67,7 +67,7 @@ def main() -> int:
     parser.add_argument("--baseline", type=Path, required=True, help="Original source ZIP")
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument("--baseline-name", default="SheaflightAmberVault-source-v0.3.1-build5")
-    parser.add_argument("--release", default="SheaflightAmberVault-source-v0.3.3-build7")
+    parser.add_argument("--release", default="SheaflightAmberVault-source-v0.3.3-build8")
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
 

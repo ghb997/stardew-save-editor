@@ -2,7 +2,7 @@
 
 一款个人使用的原生 iOS 17+《星露谷物语》1.6 存档编辑器。所有处理均在设备本地完成。
 
-源码版本：`0.3.3`（构建 `7`）
+源码版本：`0.3.3`（构建 `8`）
 
 本版完成存档安全、兼容性、编辑流程与游戏素材接入修改。详细变化见 [CHANGELOG.md](CHANGELOG.md)，素材来源见 [GAME_ASSET_PROVENANCE.md](GAME_ASSET_PROVENANCE.md)，验证范围与 Mac 验收步骤见 [VALIDATION.md](VALIDATION.md)。0.3.3 build 7 已由 [GitHub Actions](https://github.com/ghb997/stardew-save-editor/actions/runs/34190220247) 使用 Xcode 16.4 完成 Release、arm64、iPhoneOS 编译；尚未运行 XCTest、模拟器或真实游戏读档验证。
 

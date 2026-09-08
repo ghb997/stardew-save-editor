@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-09-08T05:28:52.987498+00:00",
+  "generated_at_utc": "2026-09-08T05:48:32.827972+00:00",
   "release_root": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\SheaflightAmberVault-source-v0.3.2-build6",
   "validation_type": "offline_static_release_checks",
   "compiled_swift": false,
@@ -23,7 +23,7 @@
       "status": "passed",
       "detail": {
         "objects": 156,
-        "sha256": "71d450e9cf12abb68e671e5d7586d9eb26b225d910026399314e1f9a4efba21d",
+        "sha256": "875ac05404ec16bb77c5d8ad8d5091d321a18e440bbfb4d50001483a93255afa",
         "duplicate_object_keys": 0
       }
     },
@@ -77,13 +77,13 @@
       "status": "passed",
       "detail": {
         "expected_version": "0.3.3",
-        "expected_build": "7",
+        "expected_build": "8",
         "pbxproj_values": {
           "MARKETING_VERSION": [
             "0.3.3"
           ],
           "CURRENT_PROJECT_VERSION": [
-            "7"
+            "8"
           ]
         },
         "errors": []
@@ -151,7 +151,7 @@
       "PelicanSaveEditor/App/DebugDemoSave.swift": "e5ea3fe5ad3fed0376799540920726009e51bbe187b0d2a7dbc15530ad62eebf",
       "PelicanSaveEditor/App/EditorStore.swift": "6c585fdcf46154757df5a148d8c6e7185445790adda3ee82f67152c58d74631f",
       "PelicanSaveEditor/App/PelicanSaveEditorApp.swift": "23ef71938e380d48bd8eefae5ceb211fe6b5825b5e9f6d288a802e4cc672d841",
-      "PelicanSaveEditor/App/RootView.swift": "96191029b9544febfe1c7efb1e8c7885462ac481a9f64c16e55e01fc3e5af4a6",
+      "PelicanSaveEditor/App/RootView.swift": "bd40f06cfc4d0db0a6fa3eb6fa6e498fb56ef62a672ec558467e5b6263d7a594",
       "PelicanSaveEditor/App/SaveWorkService.swift": "3b2343447a1c56dd2622fb5b28d07fb267c43b396ba8c5db1895f8db5556cbe4",
       "PelicanSaveEditor/Core/Files/BackupStore.swift": "610c558f0ba681ef994d2eed9afb42248c9b709bcba70bda5014b3a59e86200c",
       "PelicanSaveEditor/Core/Files/CoordinatedFileAccess.swift": "a7b66315d7f993b12f0a3a9ba49576e71f8058f9ffa7af2b6f1ca0e890d6ab5e",
@@ -189,7 +189,7 @@
       "PelicanSaveEditor/Views/Editor/WalletEditorView.swift": "46b5e3e581e57406dd15643ce79b8806f6ac248f83789c9fb1e7d2bc892fbd44",
       "PelicanSaveEditor/Views/Home/HomeComponents.swift": "22b044edf7334c7877a1bdde527b2509a8d1405100a45b73a5eda62e6c113f02",
       "PelicanSaveEditor/Views/Home/HomeView.swift": "7c9284cf6c7fd5c73ee4189a3cb03e5a4da5d98dc1ad6ef3c58c365ae1a50114",
-      "PelicanSaveEditor/Views/Home/SettingsView.swift": "b57168ed3997058faf94ec9cb4f586a6c80953b4029c127092e9ab0b13d0cdf3",
+      "PelicanSaveEditor/Views/Home/SettingsView.swift": "d303d45f5f328e093a2c62f0534381a042b766e720be6402b462c0610ac8a000",
       "PelicanSaveEditor/Views/Home/ToolsView.swift": "b21f3185e417677f34724d9b30acfb7ac50e2b72eb1c6d8cc15b13a3fec53658",
       "PelicanSaveEditor/Views/Home/TrackerView.swift": "e218ccf9a97d68a88049336b70938321e979c608a5087adf1e0a6b87ed83aaaa",
       "PelicanSaveEditor/Views/Tools/CropCalculatorView.swift": "1fa2f54cc5b6889ba054a736134add0d02ff050804cb594ec7f4949e63354186",

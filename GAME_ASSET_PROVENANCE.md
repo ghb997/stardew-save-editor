@@ -1,6 +1,6 @@
 # 游戏素材与开源实现参考
 
-版本 0.3.3 build 7。工程打包的 113 张位图来自《星露谷物语》素材、用户提供的素材库及以下项目镜像；应用图标由游戏图像进行最近邻缩放，不使用图像生成模型。普通勾选、箭头、加减号等仍是文字或系统控件。素材接入参考：
+版本 0.3.3 build 8。工程打包的 113 张位图来自《星露谷物语》素材、用户提供的素材库及以下项目镜像；应用图标由游戏图像进行最近邻缩放，不使用图像生成模型。底部系统标签栏使用系统规定尺寸的导航符号；页面题头、入口、字段和实体继续使用游戏像素素材。素材接入参考：
 
 - [`colecrouter/stardew-save-editor`](https://github.com/colecrouter/stardew-save-editor/tree/1ae326c685f46c1b8c603864ad796fac3c648ce2)：物品贴图表导出、按 `spriteIndex` 裁切与保存编辑器页面组织。
 - [`adiquet/stardew-companion-save-editor`](https://github.com/adiquet/stardew-companion-save-editor/tree/fbfa33abcb470c1e289764171518e82bfe0ce97c)：从游戏 `Content` 读取贴图并按 16×16 单元格显示。

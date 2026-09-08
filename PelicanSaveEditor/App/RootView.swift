@@ -126,28 +126,31 @@ struct RootView: View {
             HomeView(selectedTab: $selectedTab)
                 .tag(MainTab.home)
                 .tabItem {
-                    GameLabel("主页", systemImage: "house.fill")
+                    Label("主页", systemImage: "house.fill")
                 }
 
             TrackerView(selectedTab: $selectedTab)
                 .tag(MainTab.tracker)
                 .tabItem {
-                    GameLabel("追踪", systemImage: "trophy.fill")
+                    Label("追踪", systemImage: "trophy.fill")
                 }
 
             ToolsView()
                 .tag(MainTab.tools)
                 .badge(store.session?.diffs.count ?? 0)
                 .tabItem {
-                    GameLabel("工具", systemImage: "gamecontroller.fill")
+                    Label("工具", systemImage: "hammer.fill")
                 }
 
             SettingsView(selectedTab: $selectedTab)
                 .tag(MainTab.settings)
                 .tabItem {
-                    GameLabel("设置", systemImage: "gearshape.fill")
+                    Label("设置", systemImage: "gearshape.fill")
                 }
         }
+        // UITabBar reads an icon's intrinsic UIImage size and does not honor
+        // layout frames inside a custom SwiftUI label. Native tab symbols keep
+        // every item inside the system-managed bar on iPhone and iPad.
         .tint(AppTheme.accent)
         .toolbarBackground(.visible, for: .tabBar)
         .toolbarBackground(Color(.systemBackground), for: .tabBar)
