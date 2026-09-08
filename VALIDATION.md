@@ -7,8 +7,8 @@
 - 使用 tree-sitter-swift 解析全部 50 个 Swift 文件，无语法解析错误。该语法库尚未支持两个 `sending` 返回限定符，脚本以等字节空格跳过限定符后解析其余内容，并在 JSON 中明确列出位置。这不等同于 Swift 编译器类型检查或并发隔离验证。
 - 静态工程检查：源码引用与 target、版本设置、JSON/plist/XML、素材文件、SHA-256 与图片尺寸。可重复运行 `python3 scripts/verify_release.py`，结果写入 `validation/static-release-results.json`。
 - 113 张打包位图均核对清单；其中 58 张来自用户素材库，已对完整 859 张库进行路径、解码、格式、尺寸、动画帧与 SHA-256 审计，并人工检查选中图像。素材预览联系表不作为 iOS 实机截图。
-- [GitHub Actions run 34190220247](https://github.com/ghb997/stardew-save-editor/actions/runs/34190220247) 在提交 `517e654fa6242611edb57ee040a90a884b9347f3` 上成功完成 Xcode 16.4（16F6）、iOS SDK 18.5、Release、iPhoneOS、arm64 编译及未签名 IPA 打包。
-- 下载工作流产物后再次检查 ZIP 完整性、Info.plist 版本 0.3.3（7）、最低 iOS 17.0、iPhoneOS 平台、arm64 Mach-O、`Assets.car`，并确认不存在 `_CodeSignature`、`embedded.mobileprovision` 或 `LC_CODE_SIGNATURE`。IPA 为 2,806,764 字节，SHA-256 为 `96621789da9f3a1e6bf7030851cef22ad34b60b98c4f996bb0008ffaf2ef5d4c`。
+- [GitHub Actions run 34192090963](https://github.com/ghb997/stardew-save-editor/actions/runs/34192090963) 在提交 `2f063c90afbfb8d257f4291de2cfaa56842196c0` 上成功完成 Xcode 16.4（16F6）、iOS SDK 18.5、Release、iPhoneOS、arm64 编译及未签名 IPA 打包。
+- 下载工作流产物后再次检查 ZIP 完整性、Info.plist 版本 0.3.3（8）、最低 iOS 17.0、iPhoneOS 平台、arm64 Mach-O、`Assets.car`，并确认不存在 `_CodeSignature`、`embedded.mobileprovision` 或 `LC_CODE_SIGNATURE`。IPA 为 2,806,678 字节，SHA-256 为 `3cc1b58e4a94905b2004ae163b1afd5035fc662215b5b684c1026d83fdd1a441`。
 - 最终源码 ZIP 按每个文件的 SHA-256 与交付源目录比较；ZIP 的 SHA-256 另附在同目录校验文件中。
 
 机器可读语法检查结果：`validation/swift-syntax-results.json`；云端构建证据：`validation/github-actions-build.json`。检查脚本：`scripts/check_swift_syntax.py`；重跑需要 Python、tree-sitter 0.26.0 和 tree-sitter-swift 0.7.3。

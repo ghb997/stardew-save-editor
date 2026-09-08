@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "status": "passed",
-  "githubRunId": "34190220247",
-  "runUrl": "https://github.com/ghb997/stardew-save-editor/actions/runs/34190220247",
-  "sourceCommit": "517e654fa6242611edb57ee040a90a884b9347f3",
+  "githubRunId": "34192090963",
+  "runUrl": "https://github.com/ghb997/stardew-save-editor/actions/runs/34192090963",
+  "sourceCommit": "2f063c90afbfb8d257f4291de2cfaa56842196c0",
   "sourceRef": "refs/heads/codex/ipa-build",
   "configuration": "Release",
   "target": "PelicanSaveEditor",
@@ -18,11 +18,11 @@
     "arm64"
   ],
   "version": "0.3.3",
-  "buildNumber": "7",
+  "buildNumber": "8",
   "minimumOSVersion": "17.0",
-  "artifact": "SheaflightAmberVault-v0.3.3-build7-unsigned.ipa",
-  "artifactBytes": 2806764,
-  "artifactSha256": "96621789da9f3a1e6bf7030851cef22ad34b60b98c4f996bb0008ffaf2ef5d4c",
+  "artifact": "SheaflightAmberVault-v0.3.3-build8-unsigned.ipa",
+  "artifactBytes": 2806678,
+  "artifactSha256": "3cc1b58e4a94905b2004ae163b1afd5035fc662215b5b684c1026d83fdd1a441",
   "checks": {
     "zipIntegrity": "passed",
     "infoPlist": "passed",
@@ -34,5 +34,5 @@
     "lcCodeSignaturePresent": false
   },
   "testsRun": false,
-  "completedAtUTC": "2026-09-08T05:21:35.132046+00:00"
+  "completedAtUTC": "2026-09-08T05:51:18.736786+00:00"
 }

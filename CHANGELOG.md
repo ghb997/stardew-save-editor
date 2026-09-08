@@ -7,6 +7,7 @@
 - 主页标签原先通过自定义 `GameLabel` 提供 160×144 农舍图。系统 `UITabBar` 会读取图片固有尺寸并忽略自定义 SwiftUI frame，导致农舍从左下角放大并遮挡追踪、工具和设置入口。
 - 四个底部标签改为系统管理尺寸的 `Label` 与导航符号，保持统一的选中颜色、安全区和可访问性；页面题头、工具入口、编辑板块、字段行与实体预览继续显示游戏素材。
 - 构建号提高到 8，便于覆盖安装 build 7。
+- [GitHub Actions run 34192090963](https://github.com/ghb997/stardew-save-editor/actions/runs/34192090963) 已使用 Xcode 16.4 与 iOS SDK 18.5 成功生成 Release、arm64、iPhoneOS 未签名 IPA；SHA-256 为 `3cc1b58e4a94905b2004ae163b1afd5035fc662215b5b684c1026d83fdd1a441`，签名后方可安装。
 
 ---
 

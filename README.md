@@ -4,7 +4,7 @@
 
 源码版本：`0.3.3`（构建 `8`）
 
-本版完成存档安全、兼容性、编辑流程与游戏素材接入修改。详细变化见 [CHANGELOG.md](CHANGELOG.md)，素材来源见 [GAME_ASSET_PROVENANCE.md](GAME_ASSET_PROVENANCE.md)，验证范围与 Mac 验收步骤见 [VALIDATION.md](VALIDATION.md)。0.3.3 build 7 已由 [GitHub Actions](https://github.com/ghb997/stardew-save-editor/actions/runs/34190220247) 使用 Xcode 16.4 完成 Release、arm64、iPhoneOS 编译；尚未运行 XCTest、模拟器或真实游戏读档验证。
+本版完成存档安全、兼容性、编辑流程、游戏素材接入与底部标签栏尺寸修复。详细变化见 [CHANGELOG.md](CHANGELOG.md)，素材来源见 [GAME_ASSET_PROVENANCE.md](GAME_ASSET_PROVENANCE.md)，验证范围与 Mac 验收步骤见 [VALIDATION.md](VALIDATION.md)。0.3.3 build 8 已由 [GitHub Actions](https://github.com/ghb997/stardew-save-editor/actions/runs/34192090963) 使用 Xcode 16.4 完成 Release、arm64、iPhoneOS 编译；尚未运行 XCTest、模拟器或真实游戏读档验证。
 
 ## 当前功能
 
@@ -40,7 +40,7 @@
 
 ### GitHub 云端生成 IPA
 
-已加入 `.github/workflows/build-ipa.yml`。本版成功构建记录为 [run 34190220247](https://github.com/ghb997/stardew-save-editor/actions/runs/34190220247)，生成 SHA-256 为 `96621789da9f3a1e6bf7030851cef22ad34b60b98c4f996bb0008ffaf2ef5d4c` 的未签名 iPhoneOS arm64 IPA。产物需自行签名后安装，详细操作见 [GITHUB_BUILD.md](GITHUB_BUILD.md)。
+已加入 `.github/workflows/build-ipa.yml`。本版成功构建记录为 [run 34192090963](https://github.com/ghb997/stardew-save-editor/actions/runs/34192090963)，生成 SHA-256 为 `3cc1b58e4a94905b2004ae163b1afd5035fc662215b5b684c1026d83fdd1a441` 的未签名 iPhoneOS arm64 IPA。产物需自行签名后安装，详细操作见 [GITHUB_BUILD.md](GITHUB_BUILD.md)。
 
 ### Xcode 安装（推荐）
 

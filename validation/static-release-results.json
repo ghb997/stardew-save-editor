@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-09-08T05:48:32.827972+00:00",
+  "generated_at_utc": "2026-09-08T06:05:38.850800+00:00",
   "release_root": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\SheaflightAmberVault-source-v0.3.2-build6",
   "validation_type": "offline_static_release_checks",
   "compiled_swift": false,
@@ -55,8 +55,8 @@
       "status": "passed",
       "detail": {
         "counts": {
-          "json": 125,
-          "plist_and_privacy_manifest": 3,
+          "json": 124,
+          "plist_and_privacy_manifest": 2,
           "xcode_xml": 2
         },
         "errors": []

@@ -299,7 +299,7 @@ class Validator:
     def documents(self):
         errors, counts = [], Counter()
         for path in sorted(self.root.rglob("*")):
-            if not path.is_file() or path.resolve() == self.output or any(part in (".git", "DerivedData", "build", "__pycache__") for part in path.parts):
+            if not path.is_file() or path.resolve() == self.output or any(part in (".git", "DerivedData", "build", "artifacts", "__pycache__") for part in path.parts):
                 continue
             try:
                 if path.suffix == ".json":
