@@ -1694,7 +1694,7 @@
       "file": "validation/static-release-results.json",
       "change": "added",
       "original_sha256": null,
-      "delivery_sha256": "8b9345f295e1a872f8876fdc837603e65aa12e36ca51b00a353685d57aff1be9"
+      "delivery_sha256": "e0f816845a5b1f3025a6a5d27bf47a44bd2618d3a4d523d787209f984b01eda7"
     },
     {
       "file": "validation/swift-syntax-results.json",
