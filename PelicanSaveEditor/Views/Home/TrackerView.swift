@@ -7,7 +7,7 @@ struct TrackerView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            LargePageHeader(title: "追踪")
+            LargePageHeader(title: "追踪", artworkName: "GameUITrophy")
 
             ScrollView {
                 VStack(alignment: .leading, spacing: 18) {
@@ -45,7 +45,7 @@ struct TrackerView: View {
             if let session = store.session {
                 TrackerDetailView(session: session, section: section)
             } else {
-                ContentUnavailableView("农场已卸载", systemImage: "externaldrive.badge.xmark")
+                GameEmptyState(title: "农场已卸载", systemImage: "externaldrive.badge.xmark")
             }
         }
     }
@@ -139,6 +139,13 @@ private struct TrackerDetailView: View {
                 .navigationTitle(section.trackerTitle)
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        HStack(spacing: 8) {
+                            SaveSectionArtwork(section: section, size: 26)
+                            Text(section.trackerTitle)
+                                .font(.headline)
+                        }
+                    }
                     ToolbarItem(placement: .topBarTrailing) {
                         Button("关闭", systemImage: "xmark") { dismiss() }
                             .labelStyle(.iconOnly)
@@ -189,9 +196,9 @@ private struct TrackerDetailView: View {
             Section("游戏数据") {
                 LabeledContent("游玩时间", value: formattedPlayTime(session.metadata.playTimeMilliseconds))
                 LabeledContent("游戏日期", value: "第 \(session.draft.year) 年 · \(session.draft.season.displayName)季 \(session.draft.day) 日")
-                LabeledContent("金钱", value: session.draft.money.formatted())
-                LabeledContent("最大生命", value: "\(session.draft.maxHealth)")
-                LabeledContent("最大体力", value: "\(session.draft.maxStamina)")
+                artworkTrackerValue("金钱", value: session.draft.money.formatted(), assetName: "GameUIGoldBar")
+                artworkTrackerValue("最大生命", value: "\(session.draft.maxHealth)", assetName: "GameUIProgress")
+                artworkTrackerValue("最大体力", value: "\(session.draft.maxStamina)", assetName: "GameUIProgress")
             }
 
         }
@@ -346,17 +353,17 @@ private struct TrackerDetailView: View {
             draftNotice
 
             Section("财富与资源") {
-                LabeledContent("金币", value: session.draft.money.formatted())
-                optionalTrackerValue("累计收入", session.draft.progress.totalMoneyEarned)
-                optionalTrackerValue("齐钻", session.draft.progress.qiGems)
-                optionalTrackerValue("齐币", session.draft.progress.clubCoins)
-                optionalTrackerValue("金色核桃", session.draft.progress.goldenWalnuts)
+                artworkTrackerValue("金币", value: session.draft.money.formatted(), assetName: "GameUIGoldBar")
+                optionalTrackerValue("累计收入", session.draft.progress.totalMoneyEarned, assetName: "GameUIGoldBar")
+                optionalTrackerValue("齐钻", session.draft.progress.qiGems, assetName: "GameUIDiamond")
+                optionalTrackerValue("齐币", session.draft.progress.clubCoins, assetName: "GameUIGoldBar")
+                optionalTrackerValue("金色核桃", session.draft.progress.goldenWalnuts, assetName: "GameUIGoldenWalnut")
                 optionalTrackerValue("干草", session.draft.progress.piecesOfHay)
             }
 
             Section("矿洞与世界") {
-                optionalTrackerValue("个人到达最深层", session.draft.progress.deepestMineLevel)
-                optionalTrackerValue("世界矿井解锁层", session.draft.progress.mineLowestLevelReached)
+                optionalTrackerValue("个人到达最深层", session.draft.progress.deepestMineLevel, assetName: "GameUIStone")
+                optionalTrackerValue("世界矿井解锁层", session.draft.progress.mineLowestLevelReached, assetName: "GameUIStone")
                 LabeledContent("明日天气", value: session.draft.progress.insights.weatherForTomorrow ?? "未提供")
                 LabeledContent(
                     "每日运气",
@@ -367,22 +374,22 @@ private struct TrackerDetailView: View {
             }
 
             Section("收藏统计") {
-                LabeledContent("已出货种类", value: "\(session.draft.progress.insights.shippedItemKinds)")
-                LabeledContent("已捕获鱼类", value: "\(session.draft.progress.insights.caughtFishKinds)")
-                LabeledContent("已发现矿物", value: "\(session.draft.progress.insights.mineralKinds)")
-                LabeledContent("已发现古物", value: "\(session.draft.progress.insights.artifactKinds)")
-                LabeledContent("秘密纸条", value: "\(session.draft.progress.insights.secretNoteCount)")
-                LabeledContent("已观看事件", value: "\(session.draft.progress.insights.eventCount)")
-                LabeledContent("已完成成就", value: "\(session.draft.progress.insights.achievementCount)")
+                artworkTrackerValue("已出货种类", value: "\(session.draft.progress.insights.shippedItemKinds)", assetName: "GameUIReview")
+                artworkTrackerValue("已捕获鱼类", value: "\(session.draft.progress.insights.caughtFishKinds)", assetName: "GameUIFish")
+                artworkTrackerValue("已发现矿物", value: "\(session.draft.progress.insights.mineralKinds)", assetName: "GameUIDiamond")
+                artworkTrackerValue("已发现古物", value: "\(session.draft.progress.insights.artifactKinds)", assetName: "GameUIArtifact")
+                artworkTrackerValue("秘密纸条", value: "\(session.draft.progress.insights.secretNoteCount)", assetName: "GameUIDwarfGuide")
+                artworkTrackerValue("已观看事件", value: "\(session.draft.progress.insights.eventCount)", assetName: "GameUITrophy")
+                artworkTrackerValue("已完成成就", value: "\(session.draft.progress.insights.achievementCount)", assetName: "GameUITrophy")
                 LabeledContent("进行中任务", value: "\(session.draft.progress.insights.activeQuestCount)")
             }
 
             Section("累计记录") {
                 optionalTrackerValue("游玩天数", session.draft.progress.insights.daysPlayed)
                 optionalTrackerValue("完成任务", session.draft.progress.insights.questsCompleted)
-                optionalTrackerValue("击败怪物", session.draft.progress.insights.monstersKilled)
-                optionalTrackerValue("出货物品", session.draft.progress.insights.itemsShipped)
-                optionalTrackerValue("捕获鱼数", session.draft.progress.insights.fishCaught)
+                optionalTrackerValue("击败怪物", session.draft.progress.insights.monstersKilled, assetName: "GameUIMonster")
+                optionalTrackerValue("出货物品", session.draft.progress.insights.itemsShipped, assetName: "GameUIReview")
+                optionalTrackerValue("捕获鱼数", session.draft.progress.insights.fishCaught, assetName: "GameUIFish")
             }
         }
     }
@@ -395,7 +402,11 @@ private struct TrackerDetailView: View {
                 ForEach(session.draft.skills) { skill in
                     VStack(alignment: .leading, spacing: 7) {
                         HStack {
-                            Text(skill.key.displayName)
+                            GameAssetLabel(
+                                skill.key.displayName,
+                                assetName: GameArtwork.skillAsset(skill.key),
+                                iconSize: 26
+                            )
                             Spacer()
                             Text("Lv. \(skill.level) · \(skill.targetExperience) XP")
                                 .font(.caption.monospacedDigit())
@@ -437,8 +448,13 @@ private struct TrackerDetailView: View {
                                 .foregroundStyle(unlock.isUnlocked ? .green : .secondary)
                         }
                     } icon: {
-                        GameIcon(systemName: unlock.key.systemImage)
-                            .foregroundStyle(unlock.isUnlocked ? .teal : .secondary)
+                        if let assetName = GameArtwork.walletAsset(unlock.key) {
+                            GameAssetIcon(assetName: assetName, size: 24)
+                                .opacity(unlock.isUnlocked ? 1 : 0.45)
+                        } else {
+                            GameIcon(systemName: unlock.key.systemImage)
+                                .foregroundStyle(unlock.isUnlocked ? .teal : .secondary)
+                        }
                     }
                 }
             }
@@ -461,6 +477,7 @@ private struct TrackerDetailView: View {
                     ForEach(session.draft.animals) { animal in
                         VStack(alignment: .leading, spacing: 7) {
                             HStack {
+                                GameAnimalPortrait(type: animal.type, size: 42)
                                 Text(animal.name)
                                     .font(.headline)
                                 Spacer()
@@ -488,9 +505,21 @@ private struct TrackerDetailView: View {
     }
 
     @ViewBuilder
-    private func optionalTrackerValue(_ title: String, _ value: Int?) -> some View {
+    private func optionalTrackerValue(_ title: String, _ value: Int?, assetName: String? = nil) -> some View {
         if let value {
-            LabeledContent(title, value: value.formatted())
+            if let assetName {
+                artworkTrackerValue(title, value: value.formatted(), assetName: assetName)
+            } else {
+                LabeledContent(title, value: value.formatted())
+            }
+        }
+    }
+
+    private func artworkTrackerValue(_ title: String, value: String, assetName: String) -> some View {
+        LabeledContent {
+            Text(value)
+        } label: {
+            GameAssetLabel(title, assetName: assetName, iconSize: 24)
         }
     }
 

@@ -35,7 +35,7 @@ struct AppearanceEditorView: View {
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 6)
                 } header: {
-                    Text("原始与草稿")
+                    GameLabel("原始与草稿", systemImage: "person.crop.square.fill")
                 } footer: {
                     Text("数值直接对应存档中的 Gender、hair、skin 与 accessory 字段。")
                 }
@@ -64,7 +64,7 @@ struct AppearanceEditorView: View {
                         in: appearanceCategory.range
                     )
                 } header: {
-                    Text("发型、肤色与饰品")
+                    GameLabel("发型、肤色与饰品", systemImage: "person.crop.square.fill")
                 } footer: {
                     Text("可以点选标准编号，也可以用步进器精确调整。")
                 }

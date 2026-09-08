@@ -8,7 +8,7 @@ struct SkillsEditorView: View {
             Form {
                 Section {
                     HStack(spacing: 14) {
-                        GameIcon(systemName: "star.circle.fill", size: 40)
+                        GameAssetIcon(assetName: "GameUISkillFarming", size: 40)
                             .font(.largeTitle)
                             .foregroundStyle(.purple)
                         VStack(alignment: .leading, spacing: 4) {
@@ -57,7 +57,11 @@ struct SkillsEditorView: View {
                         }
                         .disabled(skill.level < 10 || selectedPrimary(for: skill.key) == nil)
                     } header: {
-                        GameLabel(skill.key.displayName, systemImage: skillIcon(skill.key))
+                        GameAssetLabel(
+                            skill.key.displayName,
+                            assetName: GameArtwork.skillAsset(skill.key),
+                            iconSize: 24
+                        )
                     } footer: {
                         if skill.level < 5 {
                             Text("达到 5 级后可选择职业。")
@@ -131,16 +135,6 @@ struct SkillsEditorView: View {
             get: { selectedSecondary(for: skill) },
             set: { session.draft.setSecondaryProfession($0, for: skill) }
         )
-    }
-
-    private func skillIcon(_ skill: SkillKey) -> String {
-        switch skill {
-        case .farming: "carrot.fill"
-        case .fishing: "fish.fill"
-        case .foraging: "tree.fill"
-        case .mining: "hammer.fill"
-        case .combat: "shield.lefthalf.filled"
-        }
     }
 
     private func skillColor(_ skill: SkillKey) -> Color {

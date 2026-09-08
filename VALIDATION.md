@@ -1,19 +1,19 @@
 # 交付验证说明
 
-版本：0.3.2（6）。环境：Windows，2026-09-07。
+版本：0.3.3（7）。环境：Windows 与 GitHub Actions，2026-09-08。
 
 ## 已执行的检查
 
 - 使用 tree-sitter-swift 解析全部 50 个 Swift 文件，无语法解析错误。该语法库尚未支持两个 `sending` 返回限定符，脚本以等字节空格跳过限定符后解析其余内容，并在 JSON 中明确列出位置。这不等同于 Swift 编译器类型检查或并发隔离验证。
 - 静态工程检查：源码引用与 target、版本设置、JSON/plist/XML、素材文件、SHA-256 与图片尺寸。可重复运行 `python3 scripts/verify_release.py`，结果写入 `validation/static-release-results.json`。
-- 55 张打包位图均核对清单，使用 Pillow 解码校验；新增 50 张来源固定。另生成游戏素材联系表并人工查看，不把联系表称作 iOS 实机截图。
+- 113 张打包位图均核对清单；其中 58 张来自用户素材库，已对完整 859 张库进行路径、解码、格式、尺寸、动画帧与 SHA-256 审计，并人工检查选中图像。素材预览联系表不作为 iOS 实机截图。
 - 最终 ZIP 将按每个文件的 SHA-256 与交付源目录比较；ZIP 的 SHA-256 另附在同目录校验文件中。
 
 机器可读语法检查结果：`validation/swift-syntax-results.json`。检查脚本：`scripts/check_swift_syntax.py`；重跑需要 Python、tree-sitter 0.26.0 和 tree-sitter-swift 0.7.3。
 
 ## 尚未执行的验证
 
-当前机器没有 Xcode、Swift iOS SDK、iOS 模拟器，未执行构建、51 个 XCTest 测试方法、iPhone/iPad UI 检查或《星露谷物语》真实读档。因此本包是待 Mac 验证的源码，不是可安装 IPA，也不附带“测试通过”的结论。
+当前 Windows 机器没有 Xcode、Swift iOS SDK或 iOS 模拟器。上一版 0.3.2 build 6 已在 GitHub Actions 使用 Xcode 16.4 成功完成设备 Release 编译；本版 0.3.3 build 7 的云端结果以对应构建记录为准。51 个 XCTest、iPhone/iPad UI 检查和《星露谷物语》真实读档仍需单独执行。
 
 ## Mac 上执行
 
@@ -38,6 +38,6 @@
 | 正在编辑时取消或打开损坏的新农场 | 原会话保留；正在工作时草稿不再变化 |
 | 大存档与慢文件提供器 | 读取/保存期间 UI 有反馈，操作结束后再展示结果 |
 | iPhone/iPad 大字体与 VoiceOver | 检查按钮可达，地图对象可通过列表选中 |
-| 素材与游戏对照 | NPC、工具、发型、饰品、墙纸/地板编号正确；缺图显示无预览 |
+| 素材与游戏对照 | 板块入口可区分；NPC、动物、果树、技能、进度字段、地图操作、工具、发型、饰品、墙纸/地板编号正确；缺图显示无预览 |
 
 真实游戏验收请使用独立测试副本：载入修改结果、检查字段、睡到下一天并再次加载。文件提供器权限、云盘同步竞争、完整角色显示和复杂多人/模组存档需要样本覆盖，静态脚本无法证明这些行为。

@@ -340,7 +340,14 @@ class Validator:
                 size = png_dimensions(data) if path.suffix.lower() == ".png" else jpeg_dimensions(data)
                 if size != (entry["width"], entry["height"]):
                     raise ValueError(f"Dimension mismatch: actual {size}")
-                if not re.match(r"https://", entry["source_url"]):
+                if entry.get("source_kind") == "user_provided_archive":
+                    if not entry.get("source_archive") or not re.fullmatch(r"[0-9a-fA-F]{64}", entry.get("source_archive_sha256", "")):
+                        raise ValueError("Missing user archive name or SHA-256 provenance")
+                    archive_entry = entry.get("source_archive_entry", "")
+                    archive_path = Path(archive_entry)
+                    if not archive_entry or archive_path.is_absolute() or ".." in archive_path.parts or "\\" in archive_entry:
+                        raise ValueError("Unsafe or missing user archive entry provenance")
+                elif not re.match(r"https://", entry.get("source_url", "")):
                     raise ValueError("Missing HTTPS source URL")
                 contents = read_json(path.parent / "Contents.json")
                 filenames = [item.get("filename") for item in contents.get("images", []) if item.get("filename")]
@@ -437,8 +444,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument("--output", type=Path)
-    parser.add_argument("--version", default="0.3.2")
-    parser.add_argument("--build", default="6")
+    parser.add_argument("--version", default="0.3.3")
+    parser.add_argument("--build", default="7")
     args = parser.parse_args()
     output = args.output or args.root / "validation/static-release-results.json"
     return Validator(args.root, args.version, args.build, output).run()

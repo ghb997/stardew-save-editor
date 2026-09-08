@@ -7,7 +7,7 @@ struct SettingsView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            LargePageHeader(title: "设置")
+            LargePageHeader(title: "设置", systemImage: "gearshape.fill")
 
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
@@ -26,8 +26,7 @@ struct SettingsView: View {
                         SettingsRow(title: "语言", value: "简体中文", systemImage: "character.bubble")
                         Divider().padding(.leading, 54)
                         HStack(spacing: 14) {
-                            GameIcon(systemName: "circle.lefthalf.filled")
-                                .foregroundStyle(.secondary)
+                            GameAssetIcon(assetName: "GameUIProgress", size: 26)
                                 .frame(width: 30)
                             Text("外观")
                             Spacer()
@@ -48,9 +47,19 @@ struct SettingsView: View {
                         .foregroundStyle(.secondary)
 
                     VStack(spacing: 0) {
-                        SettingsRow(title: "版本", value: appVersion, systemImage: "info.circle")
+                        SettingsRow(
+                            title: "版本",
+                            value: appVersion,
+                            systemImage: "info.circle",
+                            artworkName: "GameUITrophy"
+                        )
                         Divider().padding(.leading, 54)
-                        SettingsRow(title: "存档处理", value: "仅在设备本地", systemImage: "lock.shield")
+                        SettingsRow(
+                            title: "存档处理",
+                            value: "仅在设备本地",
+                            systemImage: "lock.shield",
+                            artworkName: "GameUIBackup"
+                        )
                     }
                     .appCard()
 
@@ -72,6 +81,7 @@ struct SettingsView: View {
     private func farmCard(_ session: SaveSession) -> some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack {
+                GameIcon(systemName: "person.crop.circle.fill", size: 44)
                 VStack(alignment: .leading, spacing: 5) {
                     Text(session.draft.playerName.isEmpty ? "未命名农夫" : session.draft.playerName)
                         .font(.title3.bold())
@@ -102,8 +112,8 @@ struct SettingsView: View {
     }
 
     private var appVersion: String {
-        let version = (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String) ?? "0.3.2"
-        let build = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String) ?? "6"
+        let version = (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String) ?? "0.3.3"
+        let build = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String) ?? "7"
         return "\(version) (\(build))"
     }
 }
@@ -112,12 +122,19 @@ private struct SettingsRow: View {
     let title: String
     let value: String
     let systemImage: String
+    var artworkName: String? = nil
 
     var body: some View {
         HStack(spacing: 14) {
-            GameIcon(systemName: systemImage)
-                .foregroundStyle(.secondary)
-                .frame(width: 30)
+            Group {
+                if let artworkName {
+                    GameAssetIcon(assetName: artworkName, size: 26)
+                } else {
+                    GameIcon(systemName: systemImage)
+                        .foregroundStyle(.secondary)
+                }
+            }
+            .frame(width: 30)
             Text(title)
             Spacer()
             Text(value)

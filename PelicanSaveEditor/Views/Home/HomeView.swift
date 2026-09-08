@@ -39,7 +39,7 @@ struct HomeView: View {
             if let session = store.session {
                 FarmMapAnalysisView(session: session, cropCatalog: store.cropCatalog)
             } else {
-                ContentUnavailableView("请先加载农场", systemImage: "externaldrive.badge.plus")
+                GameEmptyState(title: "请先加载农场", systemImage: "externaldrive.badge.plus")
             }
         }
     }
@@ -63,15 +63,25 @@ struct HomeView: View {
                 columns: [GridItem(.flexible()), GridItem(.flexible())],
                 spacing: 16
             ) {
-                MetricView(value: session.draft.money.formatted(), label: "金币")
-                MetricView(value: "\(session.draft.maxHealth)", label: "生命")
+                MetricView(
+                    value: session.draft.money.formatted(),
+                    label: "金币",
+                    artworkName: "GameUIGoldBar"
+                )
+                MetricView(
+                    value: "\(session.draft.maxHealth)",
+                    label: "生命",
+                    artworkName: "GameUIProgress"
+                )
                 MetricView(
                     value: "\(session.draft.inventory.filter { $0.item != nil }.count)",
-                    label: "背包物品"
+                    label: "背包物品",
+                    artworkName: "GameUIBackpack"
                 )
                 MetricView(
                     value: formattedPlayTime(session.metadata.playTimeMilliseconds),
-                    label: "游玩时间"
+                    label: "游玩时间",
+                    artworkName: "GameUITrophy"
                 )
             }
 
@@ -383,9 +393,13 @@ private struct FarmDateHeader: View {
 private struct MetricView: View {
     let value: String
     let label: String
+    var artworkName: String? = nil
 
     var body: some View {
-        VStack(spacing: 4) {
+        VStack(spacing: 6) {
+            if let artworkName {
+                GameAssetIcon(assetName: artworkName, size: 30)
+            }
             Text(value)
                 .font(.title2.bold())
                 .lineLimit(1)

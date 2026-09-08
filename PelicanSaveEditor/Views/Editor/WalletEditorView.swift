@@ -7,17 +7,19 @@ struct WalletEditorView: View {
         NavigationStack {
             Form {
                 Section {
-                    HStack(spacing: 14) {
-                        GameIcon(systemName: "wallet.pass.fill", size: 40)
-                            .font(.largeTitle)
-                            .foregroundStyle(.teal)
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text("钱包特殊物品与能力")
-                                .font(.headline)
-                            Text("兼容星露谷物语 1.6 的存档标记")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                        }
+                    VStack(alignment: .leading, spacing: 12) {
+                        Image("GameUIWalletStrip")
+                            .resizable()
+                            .interpolation(.none)
+                            .scaledToFit()
+                            .frame(maxWidth: 380, maxHeight: 84)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .accessibilityHidden(true)
+                        Text("钱包特殊物品与能力")
+                            .font(.headline)
+                        Text("兼容星露谷物语 1.6 的存档标记")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
                     }
                 } footer: {
                     Text("未知邮件与剧情标记会原样保留；这里只处理下列已知钱包能力。")
@@ -26,10 +28,7 @@ struct WalletEditorView: View {
                 Section("特殊物品与能力") {
                     ForEach(session.draft.progress.walletUnlocks.indices, id: \.self) { index in
                         Toggle(isOn: walletBinding(index)) {
-                            GameLabel(
-                                session.draft.progress.walletUnlocks[index].key.displayName,
-                                systemImage: session.draft.progress.walletUnlocks[index].key.systemImage
-                            )
+                            walletLabel(session.draft.progress.walletUnlocks[index].key)
                         }
                     }
                 }
@@ -56,5 +55,14 @@ struct WalletEditorView: View {
             get: { session.draft.progress.walletUnlocks[index].isUnlocked },
             set: { session.draft.progress.walletUnlocks[index].isUnlocked = $0 }
         )
+    }
+
+    @ViewBuilder
+    private func walletLabel(_ key: WalletUnlockKey) -> some View {
+        if let assetName = GameArtwork.walletAsset(key) {
+            GameAssetLabel(key.displayName, assetName: assetName, iconSize: 24)
+        } else {
+            GameLabel(key.displayName, systemImage: key.systemImage)
+        }
     }
 }

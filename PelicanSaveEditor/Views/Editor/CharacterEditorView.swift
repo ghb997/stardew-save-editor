@@ -29,12 +29,12 @@ struct CharacterEditorView: View {
                     )
                     LabeledContent("游戏版本", value: session.metadata.gameVersion)
                 } header: {
-                    Text("当前游戏存档")
+                    GameLabel("当前游戏存档", systemImage: "person.crop.circle.fill")
                 } footer: {
                     Text("先修改草稿，检查全部变化后再保存到存档。")
                 }
 
-                Section("身份") {
+                Section {
                     TextField("玩家名称", text: $session.draft.playerName)
                         .submitLabel(.done)
                         .onSubmit { KeyboardReturnAction.dismiss() }
@@ -44,6 +44,8 @@ struct CharacterEditorView: View {
                     TextField("最喜欢的东西", text: $session.draft.favoriteThing)
                         .submitLabel(.done)
                         .onSubmit { KeyboardReturnAction.dismiss() }
+                } header: {
+                    GameLabel("身份", systemImage: "person.crop.circle.fill")
                 }
 
                 Section {
@@ -63,7 +65,7 @@ struct CharacterEditorView: View {
                             .multilineTextAlignment(.trailing)
                     }
                 } header: {
-                    Text("数值")
+                    GameAssetLabel("数值", assetName: "GameUIGoldBar", iconSize: 24)
                 } footer: {
                     Text("安全范围：金钱 0…2147483647，生命 1…999，体力 1…9999。")
                 }
@@ -77,7 +79,7 @@ struct CharacterEditorView: View {
                     }
                     Stepper("第 \(session.draft.day) 日", value: $session.draft.day, in: 1...28)
                 } header: {
-                    Text("游戏日期")
+                    GameAssetLabel("游戏日期", assetName: "GameUICropPlanner", iconSize: 24)
                 } footer: {
                     Text("只修改日期字段，不自动结算作物、任务或剧情。进游戏后建议立即睡觉保存一次。")
                 }

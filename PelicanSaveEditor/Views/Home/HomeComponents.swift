@@ -24,9 +24,7 @@ struct ToolRowButton: View {
             HStack(spacing: 16) {
                 Group {
                     if let artworkName {
-                        Image(artworkName)
-                            .resizable()
-                            .scaledToFill()
+                        GameAssetIcon(assetName: artworkName, size: 48)
                     } else {
                         GameIcon(systemName: systemImage, size: 28)
                             .font(.system(size: 28, weight: .medium))
@@ -72,10 +70,19 @@ struct ToolRowButton: View {
 
 struct LargePageHeader: View {
     let title: String
+    var artworkName: String? = nil
+    var systemImage: String? = nil
 
     var body: some View {
-        Text(title)
-            .font(.largeTitle.bold())
+        HStack(spacing: 14) {
+            if let artworkName {
+                GameAssetIcon(assetName: artworkName, size: 46)
+            } else if let systemImage {
+                GameIcon(systemName: systemImage, size: 42)
+            }
+            Text(title)
+                .font(.largeTitle.bold())
+        }
             .foregroundStyle(AppTheme.title)
             .padding(.horizontal, 24)
             .padding(.vertical, 24)

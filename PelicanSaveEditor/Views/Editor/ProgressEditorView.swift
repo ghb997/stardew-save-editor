@@ -8,7 +8,7 @@ struct ProgressEditorView: View {
             Form {
                 Section {
                     HStack(spacing: 14) {
-                        GameIcon(systemName: "chart.bar.xaxis", size: 40)
+                        GameAssetIcon(assetName: "GameUIProgress", size: 40)
                             .font(.largeTitle)
                             .foregroundStyle(.blue)
                         VStack(alignment: .leading, spacing: 4) {
@@ -23,10 +23,10 @@ struct ProgressEditorView: View {
 
                 if hasCurrencyFields {
                     Section("货币与资源") {
-                        optionalNumberRow("齐钻", keyPath: \.qiGems)
-                        optionalNumberRow("齐币", keyPath: \.clubCoins)
-                        optionalNumberRow("累计收入", keyPath: \.totalMoneyEarned)
-                        optionalNumberRow("金色核桃", keyPath: \.goldenWalnuts)
+                        optionalNumberRow("齐钻", keyPath: \.qiGems, assetName: "GameUIDiamond")
+                        optionalNumberRow("齐币", keyPath: \.clubCoins, assetName: "GameUIGoldBar")
+                        optionalNumberRow("累计收入", keyPath: \.totalMoneyEarned, assetName: "GameUIGoldBar")
+                        optionalNumberRow("金色核桃", keyPath: \.goldenWalnuts, assetName: "GameUIGoldenWalnut")
                         optionalNumberRow("干草", keyPath: \.piecesOfHay)
                     }
                 }
@@ -34,8 +34,8 @@ struct ProgressEditorView: View {
                 if session.draft.progress.deepestMineLevel != nil
                     || session.draft.progress.mineLowestLevelReached != nil {
                     Section {
-                        optionalNumberRow("个人到达最深层", keyPath: \.deepestMineLevel)
-                        optionalNumberRow("世界矿井解锁层", keyPath: \.mineLowestLevelReached)
+                        optionalNumberRow("个人到达最深层", keyPath: \.deepestMineLevel, assetName: "GameUIStone")
+                        optionalNumberRow("世界矿井解锁层", keyPath: \.mineLowestLevelReached, assetName: "GameUIStone")
                     } header: {
                         Text("矿洞进度")
                     } footer: {
@@ -56,12 +56,12 @@ struct ProgressEditorView: View {
                 }
 
                 Section("收藏进度（只读）") {
-                    insightRow("已出货种类", value: session.draft.progress.insights.shippedItemKinds, icon: "shippingbox.fill")
-                    insightRow("已捕获鱼类", value: session.draft.progress.insights.caughtFishKinds, icon: "fish.fill")
-                    insightRow("已发现矿物", value: session.draft.progress.insights.mineralKinds, icon: "diamond.fill")
-                    insightRow("已发现古物", value: session.draft.progress.insights.artifactKinds, icon: "building.columns.fill")
-                    insightRow("秘密纸条", value: session.draft.progress.insights.secretNoteCount, icon: "note.text")
-                    insightRow("已观看事件", value: session.draft.progress.insights.eventCount, icon: "film.fill")
+                    insightRow("已出货种类", value: session.draft.progress.insights.shippedItemKinds, assetName: "GameUIReview")
+                    insightRow("已捕获鱼类", value: session.draft.progress.insights.caughtFishKinds, assetName: "GameUIFish")
+                    insightRow("已发现矿物", value: session.draft.progress.insights.mineralKinds, assetName: "GameUIDiamond")
+                    insightRow("已发现古物", value: session.draft.progress.insights.artifactKinds, assetName: "GameUIArtifact")
+                    insightRow("秘密纸条", value: session.draft.progress.insights.secretNoteCount, assetName: "GameUIDwarfGuide")
+                    insightRow("已观看事件", value: session.draft.progress.insights.eventCount, assetName: "GameUITrophy")
                 }
 
                 if progressHasChanges {
@@ -86,13 +86,20 @@ struct ProgressEditorView: View {
     @ViewBuilder
     private func optionalNumberRow(
         _ title: String,
-        keyPath: WritableKeyPath<ProgressDraft, Int?>
+        keyPath: WritableKeyPath<ProgressDraft, Int?>,
+        assetName: String? = nil
     ) -> some View {
         if session.draft.progress[keyPath: keyPath] != nil {
-            LabeledContent(title) {
+            LabeledContent {
                 TextField("0", value: optionalIntBinding(keyPath), format: .number)
                     .keyboardType(.numberPad)
                     .multilineTextAlignment(.trailing)
+            } label: {
+                if let assetName {
+                    GameAssetLabel(title, assetName: assetName, iconSize: 24)
+                } else {
+                    Text(title)
+                }
             }
         }
     }
@@ -104,9 +111,9 @@ struct ProgressEditorView: View {
         )
     }
 
-    private func insightRow(_ title: String, value: Int, icon: String) -> some View {
+    private func insightRow(_ title: String, value: Int, assetName: String) -> some View {
         HStack {
-            GameLabel(title, systemImage: icon)
+            GameAssetLabel(title, assetName: assetName, iconSize: 24)
             Spacer()
             Text(value.formatted())
                 .foregroundStyle(.secondary)

@@ -43,7 +43,7 @@ struct FarmMapAnalysisView: View {
                         warningCard
                     }
 
-                    Text("实体坐标来自当前农场，底图为坐标参考网格。作物以产物图标标识种类，生长阶段请看文字；无法确认具体外观的对象显示问号，可在对象列表核对名称与坐标。操作加入草稿后需检查并保存。")
+                    Text("实体坐标来自当前农场，底图为坐标参考网格。作物以产物图标标识种类，果树和动物使用物种示意图；年龄、生长阶段与动作请看文字。无法确认具体外观的对象显示问号，可在对象列表核对名称与坐标。操作加入草稿后需检查并保存。")
                         .font(.footnote)
                         .foregroundStyle(.secondary)
                         .padding(.horizontal, 4)
@@ -120,18 +120,14 @@ struct FarmMapAnalysisView: View {
                         .foregroundStyle(.secondary)
                 }
                 Spacer()
-                Image("GameSaveSummary")
-                    .resizable()
-                    .interpolation(.none)
-                    .scaledToFit()
-                    .frame(width: 64, height: 64)
+                GameAssetIcon(assetName: "GameUIFarmComputer", size: 64)
             }
 
             LazyVGrid(columns: magicActionColumns, spacing: 12) {
                 MagicActionButton(
                     title: "给作物浇水",
                     countText: actionCountText(snapshot.unwateredCropCount, unit: "格待浇"),
-                    systemImage: "drop.fill",
+                    assetName: "GameUIWateringCan",
                     tint: .blue,
                     isSelected: session.draft.farmActions.waterAllCrops,
                     isEnabled: snapshot.unwateredCropCount > 0 || session.draft.farmActions.waterAllCrops
@@ -141,7 +137,7 @@ struct FarmMapAnalysisView: View {
                 MagicActionButton(
                     title: "清除散落石块",
                     countText: actionCountText(snapshot.stoneCount, unit: "块"),
-                    systemImage: "circle.hexagongrid.fill",
+                    assetName: "GameUIStone",
                     tint: .gray,
                     isSelected: session.draft.farmActions.clearStones,
                     isEnabled: snapshot.stoneCount > 0 || session.draft.farmActions.clearStones
@@ -151,7 +147,7 @@ struct FarmMapAnalysisView: View {
                 MagicActionButton(
                     title: "清除杂草",
                     countText: actionCountText(snapshot.weedCount, unit: "处"),
-                    systemImage: "leaf.fill",
+                    assetName: "GameUIWeeds",
                     tint: .green,
                     isSelected: session.draft.farmActions.clearWeeds,
                     isEnabled: snapshot.weedCount > 0 || session.draft.farmActions.clearWeeds
@@ -161,7 +157,7 @@ struct FarmMapAnalysisView: View {
                 MagicActionButton(
                     title: "清除树枝",
                     countText: actionCountText(snapshot.twigCount, unit: "根"),
-                    systemImage: "arrow.up.right",
+                    assetName: "GameUITwig",
                     tint: .brown,
                     isSelected: session.draft.farmActions.clearTwigs,
                     isEnabled: snapshot.twigCount > 0 || session.draft.farmActions.clearTwigs
@@ -227,19 +223,19 @@ struct FarmMapAnalysisView: View {
 
     private var summaryGrid: some View {
         LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
-            FarmMetricCard(title: "作物", value: snapshot.count(for: .crop), systemImage: "leaf.fill", color: .green)
-            FarmMetricCard(title: "耕地", value: snapshot.tilledSoilCount, systemImage: "square.grid.3x3.fill", color: .brown)
+            FarmMetricCard(title: "作物", value: snapshot.count(for: .crop), assetName: "GameUICropPlanner", color: .green)
+            FarmMetricCard(title: "耕地", value: snapshot.tilledSoilCount, assetName: "GameUISkillFarming", color: .brown)
             FarmMetricCard(
                 title: "树木",
                 value: snapshot.count(for: .tree) + snapshot.count(for: .fruitTree),
-                systemImage: "tree.fill",
+                assetName: "GameOakTree",
                 color: .green
             )
-            FarmMetricCard(title: "放置物", value: snapshot.count(for: .object), systemImage: "shippingbox.fill", color: .blue)
-            FarmMetricCard(title: "建筑", value: snapshot.count(for: .building), systemImage: "house.fill", color: .orange)
-            FarmMetricCard(title: "户外动物", value: snapshot.count(for: .animal), systemImage: "pawprint.fill", color: .pink)
-            FarmMetricCard(title: "草地", value: snapshot.grassCount, systemImage: "camera.macro", color: .mint)
-            FarmMetricCard(title: "大型资源/地形", value: snapshot.count(for: .resource), systemImage: "mountain.2.fill", color: .gray)
+            FarmMetricCard(title: "放置物", value: snapshot.count(for: .object), assetName: "GameUIReview", color: .blue)
+            FarmMetricCard(title: "建筑", value: snapshot.count(for: .building), assetName: "GameUIFarmhouse", color: .orange)
+            FarmMetricCard(title: "户外动物", value: snapshot.count(for: .animal), assetName: "GameAnimalWhiteChicken", color: .pink)
+            FarmMetricCard(title: "草地", value: snapshot.grassCount, assetName: "GameUIWeeds", color: .mint)
+            FarmMetricCard(title: "大型资源/地形", value: snapshot.count(for: .resource), assetName: "GameUIStone", color: .gray)
         }
     }
 
@@ -575,7 +571,7 @@ struct FarmMapAnalysisView: View {
 private struct MagicActionButton: View {
     let title: String
     let countText: String
-    let systemImage: String
+    let assetName: String
     let tint: Color
     let isSelected: Bool
     let isEnabled: Bool
@@ -585,8 +581,7 @@ private struct MagicActionButton: View {
         Button(action: action) {
             VStack(alignment: .leading, spacing: 9) {
                 HStack {
-                    GameIcon(systemName: systemImage)
-                        .font(.title3.bold())
+                    GameAssetIcon(assetName: assetName, size: 28)
                     Spacer()
                     GameIcon(systemName: isSelected ? "checkmark.circle.fill" : "plus.circle", size: 20)
                         .font(.headline)
@@ -979,12 +974,12 @@ struct ExpandedFarmMapView: View {
 private struct FarmMetricCard: View {
     let title: String
     let value: Int
-    let systemImage: String
+    let assetName: String
     let color: Color
 
     var body: some View {
         HStack(spacing: 12) {
-            GameIcon(systemName: systemImage)
+            GameAssetIcon(assetName: assetName, size: 30)
                 .foregroundStyle(color)
                 .frame(width: 30, height: 30)
             VStack(alignment: .leading, spacing: 2) {

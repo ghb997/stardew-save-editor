@@ -74,15 +74,33 @@ enum SaveEditorSection: String, CaseIterable, Identifiable {
 
     var artworkName: String? {
         switch self {
-        case .character, .appearance, .relationships: nil
-        case .farmhouse: "GameFarmBackdrop"
-        case .inventory: "GameSaveSummary"
-        case .progress: "GameFarmBackdrop"
-        case .skills: "GameSaveSummary"
-        case .wallet: "GameSaveSummary"
-        case .animals: "GameFarmBackdrop"
-        default: nil
+        case .character, .appearance: nil
+        case .farmhouse: "GameUIFarmhouse"
+        case .inventory: "GameUIBackpack"
+        case .progress: "GameUIProgress"
+        case .relationships: "GameUIRelationships"
+        case .skills: "GameUISkillFarming"
+        case .wallet: "GameUIWallet"
+        case .animals: "GameAnimalWhiteChicken"
+        case .recipes: "GameUIRecipes"
+        case .review: "GameUIReview"
         }
+    }
+}
+
+struct SaveSectionArtwork: View {
+    let section: SaveEditorSection
+    var size: CGFloat = 40
+
+    var body: some View {
+        Group {
+            if let artworkName = section.artworkName {
+                GameAssetIcon(assetName: artworkName, size: size)
+            } else {
+                GameIcon(systemName: section.systemImage, size: size)
+            }
+        }
+        .accessibilityLabel(section.title)
     }
 }
 
@@ -96,11 +114,12 @@ struct EditorShellView: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack(spacing: 12) {
+                SaveSectionArtwork(section: section, size: 42)
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(session.draft.farmName.isEmpty ? session.source.farmIdentifier : session.draft.farmName)
+                    Text(section.title)
                         .font(.headline)
                         .lineLimit(1)
-                    Text("\(session.draft.playerName) · 游戏 \(session.metadata.gameVersion)")
+                    Text("\(session.draft.farmName.isEmpty ? session.source.farmIdentifier : session.draft.farmName) · \(session.draft.playerName)")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }

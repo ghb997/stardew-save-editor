@@ -18,7 +18,7 @@ struct InventoryEditorView: View {
         NavigationStack {
             ScrollView {
                 if session.draft.inventory.isEmpty {
-                    ContentUnavailableView("没有背包数据", systemImage: "shippingbox")
+                    GameEmptyState(title: "没有背包数据", systemImage: "shippingbox")
                         .padding(.top, 80)
                 } else {
                     LazyVGrid(columns: columns, spacing: 10) {

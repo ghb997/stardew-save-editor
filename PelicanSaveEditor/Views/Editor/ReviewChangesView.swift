@@ -19,7 +19,7 @@ struct ReviewChangesView: View {
     var body: some View {
         NavigationStack {
             List {
-                Section("当前来源") {
+                Section {
                     LabeledContent("农场", value: session.source.farmIdentifier)
                     LabeledContent("游戏版本", value: session.metadata.gameVersion)
                     LabeledContent("主存档", value: session.metadata.mainEncoding.displayName)
@@ -31,9 +31,11 @@ struct ReviewChangesView: View {
                         GameLabel("这是应用内副本，不会直接覆盖游戏存档", systemImage: "exclamationmark.triangle.fill")
                             .foregroundStyle(.orange)
                     }
+                } header: {
+                    GameAssetLabel("当前来源", assetName: "GameUIBackpack", iconSize: 24)
                 }
 
-                Section("兼容性与写入范围") {
+                Section {
                     Text(session.source.mode.saveExplanation)
                         .font(.subheadline)
                     if session.metadata.warnings.isEmpty {
@@ -49,6 +51,8 @@ struct ReviewChangesView: View {
                             .font(.footnote)
                             .foregroundStyle(.orange)
                     }
+                } header: {
+                    GameAssetLabel("兼容性与写入范围", assetName: "GameUIReview", iconSize: 24)
                 }
 
                 if let exportNotice {
@@ -158,7 +162,7 @@ struct ReviewChangesView: View {
                         }
                     }
                 } header: {
-                    Text("操作")
+                    GameAssetLabel("操作", assetName: "GameUIReview", iconSize: 24)
                 } footer: {
                     Text(
                         session.source.mode == .importedCopy

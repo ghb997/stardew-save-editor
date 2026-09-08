@@ -74,17 +74,29 @@ enum GameArtwork {
         return image(sprite)
     }
     static func npcPortrait(name: String) -> UIImage? {
-        crop(asset: "GamePortrait" + assetSuffix(name), rect: CGRect(x: 0, y: 0, width: 64, height: 64))
+        let suffix = assetSuffix(name)
+        let asset = "GamePortrait" + suffix
+        let singleFrameExports: Set<String> = [
+            "Gunther", "Governor", "Morris", "ProfessorSnail", "Leo", "Marlon", "MrQi"
+        ]
+        if singleFrameExports.contains(suffix) {
+            // These user-library files are already one complete 2× portrait.
+            return UIImage(named: asset)
+        }
+        // Existing portrait files are 64×64 expression grids. Use the first
+        // expression instead of shrinking the entire sheet into one avatar.
+        return crop(asset: asset, rect: CGRect(x: 0, y: 0, width: 64, height: 64))
     }
     static func buildingImage(type: String) -> UIImage? {
-        switch type {
-        case "Greenhouse", "温室":
+        switch type.lowercased() {
+        case "greenhouse", "温室":
             return crop(asset: "GameBuildingGreenhouse", rect: CGRect(x: 0, y: 160, width: 112, height: 160))
-        case "FarmHouse", "农舍":
+        case "farmhouse", "农舍":
             return crop(asset: "GameBuildinghouses", rect: CGRect(x: 0, y: 0, width: 160, height: 144))
-        case "Barn", "谷仓", "畜棚": return UIImage(named: "GameBuildingBarn")
-        case "Coop", "鸡舍": return UIImage(named: "GameBuildingCoop")
-        case "Silo", "筒仓": return UIImage(named: "GameBuildingSilo")
+        case "barn", "谷仓", "畜棚": return UIImage(named: "GameBuildingBarn")
+        case "coop", "鸡舍": return UIImage(named: "GameBuildingCoop")
+        case "silo", "筒仓": return UIImage(named: "GameBuildingSilo")
+        case "fish pond", "fishpond", "鱼塘": return UIImage(named: "GameBuildingFishPond")
         default: return nil
         }
     }
@@ -108,11 +120,57 @@ enum GameArtwork {
         case "ostrich", "鸵鸟": asset = "Ostrich"
         default: return nil
         }
-        guard let sheet = UIImage(named: "GameAnimal" + asset)?.cgImage else { return nil }
-        // Game animal sheets have four animation columns and four facing rows.
-        let width = sheet.width / 4
-        let height = sheet.height / 4
-        return crop(asset: "GameAnimal" + asset, rect: CGRect(x: 0, y: 0, width: width, height: height))
+        // The user-provided library contains transparent single-frame exports,
+        // not animation sheets. The full image is the verified preview frame.
+        return UIImage(named: "GameAnimal" + asset)
+    }
+
+    static func fruitTreeImage(type: String) -> UIImage? {
+        let normalized = type
+            .replacingOccurrences(of: "(O)", with: "", options: .caseInsensitive)
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .lowercased()
+        let asset: String
+        switch normalized {
+        case "628", "638", "cherry", "cherry sapling", "樱桃", "樱桃树": asset = "Cherry"
+        case "629", "634", "apricot", "apricot sapling", "杏", "杏树": asset = "Apricot"
+        case "630", "635", "orange", "orange sapling", "橙子", "橙子树": asset = "Orange"
+        case "631", "636", "peach", "peach sapling", "桃子", "桃树": asset = "Peach"
+        case "632", "637", "pomegranate", "pomegranate sapling", "石榴", "石榴树": asset = "Pomegranate"
+        case "633", "613", "apple", "apple sapling", "苹果", "苹果树": asset = "Apple"
+        case "835", "834", "mango", "mango sapling", "芒果", "芒果树": asset = "Mango"
+        case "69", "91", "banana", "banana sapling", "香蕉", "香蕉树": asset = "Banana"
+        default: return nil
+        }
+        return UIImage(named: "GameFruitTree" + asset)
+    }
+
+    static func treeImage(type: String) -> UIImage? {
+        let normalized = type.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        return switch normalized {
+        case "1", "oak", "oak tree", "橡树": UIImage(named: "GameOakTree")
+        default: nil
+        }
+    }
+
+    static func skillAsset(_ skill: SkillKey) -> String {
+        switch skill {
+        case .farming: "GameUISkillFarming"
+        case .fishing: "GameUISkillFishing"
+        case .foraging: "GameUISkillForaging"
+        case .mining: "GameUISkillMining"
+        case .combat: "GameUISkillCombat"
+        }
+    }
+
+    static func walletAsset(_ key: WalletUnlockKey) -> String? {
+        switch key {
+        case .dwarvishGuide: "GameUIDwarfGuide"
+        case .specialCharm: "GameUIWallet"
+        case .darkTalisman: "GameUIDarkTalisman"
+        case .magicInk: "GameUIMagicInk"
+        default: nil
+        }
     }
 
     static func surfaceImage(style: Int, isFlooring: Bool) -> UIImage? {
@@ -174,6 +232,12 @@ enum GameArtwork {
                   let definition = crops.first(where: { $0.seedID == String(seedPart.dropFirst(3)) }) else { return nil }
             // The product icon identifies the crop; it is not its growth-stage sprite.
             return itemImage(id: definition.id)
+        case .tree:
+            guard let typePart = parts.first(where: { $0.hasPrefix("类型 ") }) else { return nil }
+            return treeImage(type: String(typePart.dropFirst(3)))
+        case .fruitTree:
+            guard let typePart = parts.first(where: { $0.hasPrefix("类型 ") }) else { return nil }
+            return fruitTreeImage(type: String(typePart.dropFirst(3)))
         case .building:
             return buildingImage(type: parts.first ?? entity.label)
         default:
@@ -183,34 +247,48 @@ enum GameArtwork {
 
     static func uiImage(systemName: String) -> UIImage? {
         let name = systemName.lowercased()
+        if name.contains("person.crop.square") {
+            return appearanceImage(category: "hair", index: 9)
+        }
         if name.contains("house") { return buildingImage(type: "FarmHouse") }
         if name.contains("person") { return crop(asset: "GameFarmerBase", rect: CGRect(x: 0, y: 0, width: 16, height: 32)) }
         if name.contains("paw") { return animalImage(type: "White Chicken") }
-        if name.contains("drop") { return namedItemImage("Watering Can") }
+        if name.contains("wallet") { return UIImage(named: "GameUIWallet") }
+        if name.contains("chart") { return UIImage(named: "GameUIProgress") }
+        if name.contains("trophy") { return UIImage(named: "GameUITrophy") }
+        if name.contains("heart") { return UIImage(named: "GameUIRelationships") }
+        if name.contains("trash") { return UIImage(named: "GameUITrash") }
+        if name.contains("calendar") { return UIImage(named: "GameUICropPlanner") }
+        if name.contains("drop") { return UIImage(named: "GameUIWateringCan") }
         if name.contains("hammer") || name.contains("pickaxe") { return namedItemImage("Pickaxe") }
         if name.contains("wrench") || name.contains("gamecontroller") { return namedItemImage("Hoe") }
         if name.contains("scissors") { return namedItemImage("Axe") }
-        if name.contains("fish") { return itemImage(id: "128") }
-        if name.contains("carrot") || name.contains("leaf") { return itemImage(id: "Carrot") }
-        if name.contains("tree") { return itemImage(id: "309") }
-        if name.contains("heart") { return itemImage(id: "787") }
-        if name.contains("diamond") || name.contains("sparkles") { return itemImage(id: "72") }
-        if name.contains("trophy") || name.contains("star") { return itemImage(id: "434") }
+        if name.contains("fish") { return UIImage(named: "GameUIFish") }
+        if name.contains("carrot") || name.contains("leaf") { return UIImage(named: "GameUICropPlanner") }
+        if name.contains("tree") { return UIImage(named: "GameOakTree") }
+        if name.contains("diamond") { return UIImage(named: "GameUIDiamond") }
+        if name.contains("wand") { return UIImage(named: "GameUIMagicInk") }
+        if name.contains("sparkles") || name.contains("star") { return UIImage(named: "GameUIProgress") }
         if name.contains("sun") { return itemImage(id: "421") }
         if name.contains("snow") { return itemImage(id: "414") }
         if name.contains("flame") { return itemImage(id: "382") }
         if name.contains("fork") { return itemImage(id: "194") }
         if name.contains("cup") { return itemImage(id: "395") }
-        if name.contains("book") || name.contains("list") { return itemImage(id: "102") }
-        if name.contains("dollar") || name.contains("banknote") || name.contains("creditcard") { return itemImage(id: "336") }
-        if name.contains("mountain") { return itemImage(id: "390") }
-        if name.contains("map") { return UIImage(named: "GameSaveSummary") }
-        if name.contains("shippingbox") || name.contains("externaldrive") || name.contains("tray") { return namedItemImage("Chest") }
+        if name.contains("book") { return UIImage(named: "GameUIRecipes") }
+        if name.contains("list") || name.contains("note") { return UIImage(named: "GameUIDwarfGuide") }
+        if name.contains("info") { return UIImage(named: "GameUIDwarfGuide") }
+        if name.contains("doc") { return UIImage(named: "GameUIBackup") }
+        if name.contains("clock") { return UIImage(named: "GameUITrophy") }
+        if name.contains("dollar") || name.contains("banknote") || name.contains("creditcard") { return UIImage(named: "GameUIGoldBar") }
+        if name.contains("mountain") || name == "circle.fill" { return UIImage(named: "GameUIStone") }
+        if name.contains("map") { return UIImage(named: "GameUIFarmComputer") }
+        if name.contains("shippingbox") || name.contains("externaldrive") || name.contains("tray") { return UIImage(named: "GameUIBackpack") }
         if name.contains("lock") || name.contains("shield") { return itemImage(id: "74") }
-        if name.contains("eyeglasses") || name.contains("eye") { return appearanceImage(category: "accessory", index: 6) }
-        if name.contains("paint") { return itemImage(id: "454") }
+        if name.contains("eyeglasses") { return appearanceImage(category: "accessory", index: 6) }
+        if name.contains("eye") { return UIImage(named: "GameUIReview") }
+        if name.contains("paint") { return surfaceImage(style: 0, isFlooring: false) }
         if name.contains("gear") { return namedItemImage("Furnace") }
-        return itemImage(id: "MysteryBox")
+        return namedItemImage("Mystery Box") ?? UIImage(named: "GameUIReview")
     }
 
     private static func assetSuffix(_ value: String) -> String {
@@ -253,6 +331,83 @@ struct GameLabel: View {
     let systemImage: String
     init(_ title: String, systemImage: String) { self.title = title; self.systemImage = systemImage }
     var body: some View { Label { Text(title) } icon: { GameIcon(systemName: systemImage, size: 20) } }
+}
+
+struct GameAssetIcon: View {
+    let assetName: String
+    var size: CGFloat = 24
+
+    var body: some View {
+        Image(assetName)
+            .resizable()
+            .interpolation(.none)
+            .scaledToFit()
+            .frame(width: size, height: size)
+            .accessibilityHidden(true)
+    }
+}
+
+struct GameAssetLabel: View {
+    let title: String
+    let assetName: String
+    var iconSize: CGFloat = 20
+
+    init(_ title: String, assetName: String, iconSize: CGFloat = 20) {
+        self.title = title
+        self.assetName = assetName
+        self.iconSize = iconSize
+    }
+
+    var body: some View {
+        Label {
+            Text(title)
+        } icon: {
+            GameAssetIcon(assetName: assetName, size: iconSize)
+        }
+    }
+}
+
+struct GameItemIcon: View {
+    let id: String
+    var type: String = "Object"
+    var size: CGFloat = 40
+
+    var body: some View {
+        Group {
+            if let image = GameArtwork.itemImage(id: id, type: type) {
+                Image(uiImage: image)
+                    .resizable()
+                    .interpolation(.none)
+                    .scaledToFit()
+                    .padding(size * 0.08)
+            } else {
+                GameIcon(systemName: "questionmark", size: size * 0.62)
+            }
+        }
+        .frame(width: size, height: size)
+        .background(Color(.secondarySystemBackground), in: RoundedRectangle(cornerRadius: size * 0.22))
+        .accessibilityHidden(true)
+    }
+}
+
+struct GameEmptyState: View {
+    let title: String
+    let systemImage: String
+    var message: String? = nil
+
+    var body: some View {
+        ContentUnavailableView {
+            VStack(spacing: 12) {
+                GameIcon(systemName: systemImage, size: 52)
+                Text(title)
+                    .font(.title3.bold())
+            }
+        } description: {
+            if let message {
+                Text(message)
+            }
+        }
+    }
 }
 
 struct GameAnimalPortrait: View {

@@ -17,13 +17,15 @@ struct RelationshipsEditorView: View {
         NavigationStack {
             Group {
                 if session.draft.friendships.isEmpty {
-                    ContentUnavailableView("没有关系数据", systemImage: "heart.slash")
+                    GameEmptyState(title: "没有关系数据", systemImage: "heart.slash")
                 } else {
                     List {
                         Section {
                             ForEach(filteredIndices, id: \.self) { index in
                                 RelationshipRow(session: session, index: index)
                             }
+                        } header: {
+                            GameAssetLabel("人物关系", assetName: "GameUIRelationships", iconSize: 24)
                         } footer: {
                             Text("订婚、婚姻和离婚涉及配偶、日期、住宅及剧情字段，因此状态保持只读；好感点数仍可调整。")
                         }

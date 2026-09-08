@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-09-07T14:15:35.080023+00:00",
+  "generated_at_utc": "2026-09-08T05:15:33.896993+00:00",
   "release_root": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\SheaflightAmberVault-source-v0.3.2-build6",
   "validation_type": "offline_static_release_checks",
   "compiled_swift": false,
@@ -23,7 +23,7 @@
       "status": "passed",
       "detail": {
         "objects": 156,
-        "sha256": "0158d05da49c25178ec7d9a4a56edbe814aec608095dcff7146fa39096dce7e8",
+        "sha256": "71d450e9cf12abb68e671e5d7586d9eb26b225d910026399314e1f9a4efba21d",
         "duplicate_object_keys": 0
       }
     },
@@ -55,7 +55,7 @@
       "status": "passed",
       "detail": {
         "counts": {
-          "json": 64,
+          "json": 123,
           "plist_and_privacy_manifest": 2,
           "xcode_xml": 2
         },
@@ -66,8 +66,8 @@
       "check": "asset_manifest_hash_dimensions_and_catalog_coverage",
       "status": "passed",
       "detail": {
-        "manifest_entries": 55,
-        "verified_bitmaps": 55,
+        "manifest_entries": 113,
+        "verified_bitmaps": 113,
         "png_crc_validation": true,
         "errors": []
       }
@@ -76,14 +76,14 @@
       "check": "release_versions_consistent",
       "status": "passed",
       "detail": {
-        "expected_version": "0.3.2",
-        "expected_build": "6",
+        "expected_version": "0.3.3",
+        "expected_build": "7",
         "pbxproj_values": {
           "MARKETING_VERSION": [
-            "0.3.2"
+            "0.3.3"
           ],
           "CURRENT_PROJECT_VERSION": [
-            "6"
+            "7"
           ]
         },
         "errors": []
@@ -170,31 +170,31 @@
       "PelicanSaveEditor/Models/RecipeCatalog.swift": "6578f003bf63c5f5d587d85aa02c96d276795a1669f40db87989e5a37d349efd",
       "PelicanSaveEditor/Models/SaveModels.swift": "57b53f2c5525d5af84f10fe3390ff3032cffd481d24bbfe06214e1339a322aa0",
       "PelicanSaveEditor/Views/Components/DocumentPickers.swift": "02dd7c0ef5575d9e57f57b9f736d54baf2f12efd560ba911768aa68371214368",
-      "PelicanSaveEditor/Views/Components/GameArtwork.swift": "db83bdc7ff0fb5660ef85f362280aa0881fec52b51ccb2f6b1ecaac7b5fb7808",
+      "PelicanSaveEditor/Views/Components/GameArtwork.swift": "ddf50f4a638dc16f28b8e9f6ab9eae934b21e9ecd517811c788e5cf2bcd5a08d",
       "PelicanSaveEditor/Views/Components/OperationFeedback.swift": "26b80b16aaf8a543933820e8cb60cac15ac51e2f835626905115d42e70e7671c",
-      "PelicanSaveEditor/Views/Editor/AnimalsEditorView.swift": "637a3b1d55a75e319c0ff31ae01edb11520d7ffd8c14075c4e4f510bc74b589b",
-      "PelicanSaveEditor/Views/Editor/AppearanceEditorView.swift": "7e1a5d87b0070ca704b6ef539da723a8dbbe34398c1379a571fd0bb312811e5d",
-      "PelicanSaveEditor/Views/Editor/BackupManagerView.swift": "e1be246b8acfd86cad944e7249e8ee2a6be26974a27c25a3d8ad19a8db13fb8b",
-      "PelicanSaveEditor/Views/Editor/CatalogPickerView.swift": "33900d911eca6dda9bdcdd8d32beda568ec7aa9c061a139583660c7fa364b2fb",
-      "PelicanSaveEditor/Views/Editor/CharacterEditorView.swift": "d2b0b5fc6133e1582f3bd14a17a37350f64504a93e41c6e5343dae1d495b6be8",
-      "PelicanSaveEditor/Views/Editor/EditorShellView.swift": "e00ddcf4bb1be2991bd9f950606518a020be0c1d6095483d5d4f3bc3c1d75577",
+      "PelicanSaveEditor/Views/Editor/AnimalsEditorView.swift": "29cd1bd69cad708834e5333919e1e4dbbf771875e8a3d041b0c596eb2ac8e458",
+      "PelicanSaveEditor/Views/Editor/AppearanceEditorView.swift": "25a7ac90e4e1bd181689b72029e21d84a65ff1a3ac516f3ffde2991bb450aa0e",
+      "PelicanSaveEditor/Views/Editor/BackupManagerView.swift": "1fac9a9726c570181b2bedc62e26807898982dc74c816e22afd88d920d91cd6d",
+      "PelicanSaveEditor/Views/Editor/CatalogPickerView.swift": "46b2425c236b3aff9df4409f56a163016283d30b0b6e690f9ca222578e819f75",
+      "PelicanSaveEditor/Views/Editor/CharacterEditorView.swift": "a798f3b46c98ca4fe5ee44da946a9535310b07d98777410bad0e192660061d79",
+      "PelicanSaveEditor/Views/Editor/EditorShellView.swift": "ed2f9c330309a7e2018dd417ca1c0c400fe2f286efe7730b3f5439924582f17c",
       "PelicanSaveEditor/Views/Editor/FarmhouseEditorView.swift": "a2bb40b4afec26792081cb421a1e57a90ce3b765f927e74ffdb4b48d0841e607",
-      "PelicanSaveEditor/Views/Editor/InventoryEditorView.swift": "a83ca4f61e2987869467395acd261dea62add090091285d87b9ca08b6bdfbe3c",
-      "PelicanSaveEditor/Views/Editor/ProgressEditorView.swift": "cc74cf08f4cad01a45d837d224ce643e538fe90b9b5e272f272e6ab1389aed4b",
-      "PelicanSaveEditor/Views/Editor/RecipesEditorView.swift": "51f223c28725df110aacc2cbd1999887fce29a459381905a33a217292fff9224",
-      "PelicanSaveEditor/Views/Editor/RelationshipsEditorView.swift": "6ef322fb943c13c2df197a419af28c5e350fb0cf8eccec0c04917ca4255542a4",
-      "PelicanSaveEditor/Views/Editor/ReviewChangesView.swift": "ef78a2f6d9cdbe7182fd17463426f525dd88a8c1772af947d44cfbd68b8d91c0",
+      "PelicanSaveEditor/Views/Editor/InventoryEditorView.swift": "aefe1f9e51f3d2076a9c42bf4b3b08dd2e151f477fef738bf709ea57d6cb0662",
+      "PelicanSaveEditor/Views/Editor/ProgressEditorView.swift": "5cb8691eac365d71a4cd0769d6ff7cc9ea19d12c0a0f9ebf926d21da3744630e",
+      "PelicanSaveEditor/Views/Editor/RecipesEditorView.swift": "46f1e6f9a14860e276b718d83dcb4000b6740b527ce9fd72ac44ca86f28acb1e",
+      "PelicanSaveEditor/Views/Editor/RelationshipsEditorView.swift": "7e6453a6fd0a58589cf98f99031ae2cefccc04e15ac3690c9a3c453582d42ec5",
+      "PelicanSaveEditor/Views/Editor/ReviewChangesView.swift": "86ae65eea3bee5d0811a9b7b5333790fb40a5801b0545bae9cbf011c879c510e",
       "PelicanSaveEditor/Views/Editor/SavePresentation.swift": "8ff5deb9992134d501b14668bb1594b42ae04c5c5614e268effb227b001a3148",
-      "PelicanSaveEditor/Views/Editor/SkillsEditorView.swift": "6a31b8ee706e4be17fff0285ab31e85cf80217a9a7fd22f79928c43bbd18e995",
-      "PelicanSaveEditor/Views/Editor/WalletEditorView.swift": "f3e0122435275cff9d135243cff84eae08d68aeb304870fb009025ea69fc57b2",
-      "PelicanSaveEditor/Views/Home/HomeComponents.swift": "9f4ed495fe61a73e4cd4d2ab1c5b2232e3ba30e446e69c4a9dfd11a26fc1d4cb",
-      "PelicanSaveEditor/Views/Home/HomeView.swift": "f1fe7e7a52690a2b474bcfd42d248a11a45cfed96a1788bb75d3221aa8035d19",
-      "PelicanSaveEditor/Views/Home/SettingsView.swift": "f6e1160a33140f5cf6b9138968b52cf170c0a4c88d84d7e5ac7ca2ce784d155f",
-      "PelicanSaveEditor/Views/Home/ToolsView.swift": "7e796bcc9d2ae0267b68fabb99f4bfad5bdfb7d2272ddd9cb6ff6fa16b0408c2",
-      "PelicanSaveEditor/Views/Home/TrackerView.swift": "e185370c605e1aa219b253e4bfc7900ba003598e362beda6b63d65c36ea3ca79",
-      "PelicanSaveEditor/Views/Tools/CropCalculatorView.swift": "6e2e4bf02f9bbc738cba00f906c89e4cbfd5c14e335a4df99f8e9261289438de",
-      "PelicanSaveEditor/Views/Tools/FarmEntityListView.swift": "e9c62c3be7dc040893a90ca6134740835d600ca947d877cbd4762f9780289540",
-      "PelicanSaveEditor/Views/Tools/FarmMapAnalysisView.swift": "e8a020c0ccf5069027262efdb44d31ec83f80f7128aa48a17b35fe782dd3f80c",
+      "PelicanSaveEditor/Views/Editor/SkillsEditorView.swift": "c1d7ae558bc0ddef27ba15a309345b9c657cffecc1e75e54894db63fb9363ee1",
+      "PelicanSaveEditor/Views/Editor/WalletEditorView.swift": "46b5e3e581e57406dd15643ce79b8806f6ac248f83789c9fb1e7d2bc892fbd44",
+      "PelicanSaveEditor/Views/Home/HomeComponents.swift": "22b044edf7334c7877a1bdde527b2509a8d1405100a45b73a5eda62e6c113f02",
+      "PelicanSaveEditor/Views/Home/HomeView.swift": "7c9284cf6c7fd5c73ee4189a3cb03e5a4da5d98dc1ad6ef3c58c365ae1a50114",
+      "PelicanSaveEditor/Views/Home/SettingsView.swift": "b57168ed3997058faf94ec9cb4f586a6c80953b4029c127092e9ab0b13d0cdf3",
+      "PelicanSaveEditor/Views/Home/ToolsView.swift": "b21f3185e417677f34724d9b30acfb7ac50e2b72eb1c6d8cc15b13a3fec53658",
+      "PelicanSaveEditor/Views/Home/TrackerView.swift": "e218ccf9a97d68a88049336b70938321e979c608a5087adf1e0a6b87ed83aaaa",
+      "PelicanSaveEditor/Views/Tools/CropCalculatorView.swift": "1fa2f54cc5b6889ba054a736134add0d02ff050804cb594ec7f4949e63354186",
+      "PelicanSaveEditor/Views/Tools/FarmEntityListView.swift": "b4b41ac27ba3485a92c5f9db8bcaeb8d63527fb63f7b56b763417a9eac2d3b35",
+      "PelicanSaveEditor/Views/Tools/FarmMapAnalysisView.swift": "69284e18e16cb5bbcc7f364770865b4d99f70e2866e26362f2f77beb3da1b2f4",
       "PelicanSaveEditorTests/GameLogicRegressionTests.swift": "9c7cb3844052302fdc7ca451f343839690a896c491bbe3a22e90f2281de9dd72",
       "PelicanSaveEditorTests/SaveCoreTests.swift": "30da2a054c5363f4d065538263165cab48c9736745420a0122b8a4c0d4ebdefa",
       "PelicanSaveEditorTests/TransactionRegressionTests.swift": "3e9a3a720b5c7899196d6f872b7c9369d313343fae9a435f10dd426f0bc8dac7"
@@ -594,6 +594,412 @@
         "width": 1024,
         "height": 1024,
         "sha256": "dc36e3b97d44059d81c574d2f22bad0ea1e3c13a49e8f8924b8a93946475ea94"
+      },
+      {
+        "asset": "GameAnimalWhiteChicken",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameAnimalWhiteChicken.imageset/GameAnimalWhiteChicken.png",
+        "width": 48,
+        "height": 48,
+        "sha256": "4442b07f643c894f1b69966ee481f43212eea091cae7b029c4f88360b02b07cf"
+      },
+      {
+        "asset": "GameAnimalBrownChicken",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameAnimalBrownChicken.imageset/GameAnimalBrownChicken.png",
+        "width": 48,
+        "height": 48,
+        "sha256": "164bbf541fcf9eb9692c0b8291f02f898c057fb4085e409d5207a9c984f98d76"
+      },
+      {
+        "asset": "GameAnimalBlueChicken",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameAnimalBlueChicken.imageset/GameAnimalBlueChicken.png",
+        "width": 48,
+        "height": 48,
+        "sha256": "4a118938bbc54e64edad7648bbee69d325828325002c3ca0e98c32787396debe"
+      },
+      {
+        "asset": "GameAnimalWhiteCow",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameAnimalWhiteCow.imageset/GameAnimalWhiteCow.png",
+        "width": 90,
+        "height": 69,
+        "sha256": "a73ee920a9deaa7d2fbe2916151b0dcf72b37bbb1f2e3ebf7fc81039b1a049cd"
+      },
+      {
+        "asset": "GameAnimalBrownCow",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameAnimalBrownCow.imageset/GameAnimalBrownCow.png",
+        "width": 90,
+        "height": 69,
+        "sha256": "866e6adc8046013e4a4d1244c1d57211b2f6bf73d250ea3e3a202ef265c59f40"
+      },
+      {
+        "asset": "GameAnimalDuck",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameAnimalDuck.imageset/GameAnimalDuck.png",
+        "width": 48,
+        "height": 45,
+        "sha256": "c2e4c4ff0af0ae79705c33d93d6b379ead39ab54826cb1ddd88e86b1c4e2a602"
+      },
+      {
+        "asset": "GameAnimalGoat",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameAnimalGoat.imageset/GameAnimalGoat.png",
+        "width": 84,
+        "height": 75,
+        "sha256": "caff6800caf22145f83210190ee11be1fce4b6de485047cb66b6e34dc63658a0"
+      },
+      {
+        "asset": "GameAnimalSheep",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameAnimalSheep.imageset/GameAnimalSheep.png",
+        "width": 81,
+        "height": 69,
+        "sha256": "ece0881faf40bd37ea21acd3a2451b50dbe9c066e71413d483e3bec970db62cf"
+      },
+      {
+        "asset": "GameAnimalPig",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameAnimalPig.imageset/GameAnimalPig.png",
+        "width": 93,
+        "height": 66,
+        "sha256": "db1a618394cbb21818e117b9b30da638b612ea85d53b8ff57bc60544f5159c93"
+      },
+      {
+        "asset": "GameAnimalRabbit",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameAnimalRabbit.imageset/GameAnimalRabbit.png",
+        "width": 48,
+        "height": 48,
+        "sha256": "178b20d8d55f862e22d89fcb0b2dd733ffff9ee76a8d8ecf1603aff89aa6425d"
+      },
+      {
+        "asset": "GameAnimalOstrich",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameAnimalOstrich.imageset/GameAnimalOstrich.png",
+        "width": 93,
+        "height": 96,
+        "sha256": "402fed56cde330cbaf77de78c49650e7cbbed45cef87ad5555ae4444e1a10ed6"
+      },
+      {
+        "asset": "GameBuildingFishPond",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameBuildingFishPond.imageset/GameBuildingFishPond.png",
+        "width": 300,
+        "height": 391,
+        "sha256": "e1ddbadc1e680b9830a19b6d0e582f76087718ca05dd600f92158a1f4b1baacb"
+      },
+      {
+        "asset": "GamePortraitGunther",
+        "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitGunther.imageset/GamePortraitGunther.png",
+        "width": 128,
+        "height": 128,
+        "sha256": "28ee27fc1d84d6e0f08d979395d1e6c79a50fd6ce21dd4006508f0a2b12aa5a9"
+      },
+      {
+        "asset": "GamePortraitGovernor",
+        "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitGovernor.imageset/GamePortraitGovernor.png",
+        "width": 128,
+        "height": 128,
+        "sha256": "2b8cda771d73a6d0740ed2925214e37c4c286ba09be8ed3c2b80547b80ecc2c1"
+      },
+      {
+        "asset": "GamePortraitMorris",
+        "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitMorris.imageset/GamePortraitMorris.png",
+        "width": 128,
+        "height": 128,
+        "sha256": "81ccf9d6c93c317f725e1db6928fda37e9107d1176836b0c58f99c39a88fc00d"
+      },
+      {
+        "asset": "GamePortraitProfessorSnail",
+        "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitProfessorSnail.imageset/GamePortraitProfessorSnail.png",
+        "width": 128,
+        "height": 128,
+        "sha256": "15094d2f29b0cdce4caffb1def235e9656908541810fdba89e28d904a58d346b"
+      },
+      {
+        "asset": "GamePortraitLeo",
+        "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitLeo.imageset/GamePortraitLeo.png",
+        "width": 128,
+        "height": 128,
+        "sha256": "269b58883bd3198327fd1b1daea027a7fd212f3633563db825c515af4844ab62"
+      },
+      {
+        "asset": "GamePortraitMarlon",
+        "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitMarlon.imageset/GamePortraitMarlon.png",
+        "width": 128,
+        "height": 128,
+        "sha256": "318f8d5281cf27cfd10a55f1e2c454e7f3a4689574425ed54c9e0ae3dfb8fd4b"
+      },
+      {
+        "asset": "GamePortraitMrQi",
+        "file": "PelicanSaveEditor/Assets.xcassets/GamePortraitMrQi.imageset/GamePortraitMrQi.png",
+        "width": 128,
+        "height": 128,
+        "sha256": "a4358ed320c27a9a966289ebcd1e3e530525aeb1129b4a97362833ae61baab05"
+      },
+      {
+        "asset": "GameFruitTreeCherry",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameFruitTreeCherry.imageset/GameFruitTreeCherry.png",
+        "width": 96,
+        "height": 160,
+        "sha256": "58ab053e1d12aef7cfa314959fd92731e0451c7943ab47e6c0946759e5127e6e"
+      },
+      {
+        "asset": "GameFruitTreeApricot",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameFruitTreeApricot.imageset/GameFruitTreeApricot.png",
+        "width": 96,
+        "height": 160,
+        "sha256": "1c34795d65b422ad6680e50c6590b1ad8c8583cd43e52c797417f3d516765196"
+      },
+      {
+        "asset": "GameFruitTreeOrange",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameFruitTreeOrange.imageset/GameFruitTreeOrange.png",
+        "width": 96,
+        "height": 160,
+        "sha256": "708c5c0a5a70aa64a05bd9fe57b952f1f2f26aa697a54e431314424e7f955ce2"
+      },
+      {
+        "asset": "GameFruitTreePeach",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameFruitTreePeach.imageset/GameFruitTreePeach.png",
+        "width": 96,
+        "height": 160,
+        "sha256": "9670682124f2512a19c74d115568a91beb800a6b1945b35208932b37f2b7297f"
+      },
+      {
+        "asset": "GameFruitTreePomegranate",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameFruitTreePomegranate.imageset/GameFruitTreePomegranate.png",
+        "width": 96,
+        "height": 160,
+        "sha256": "06fe27fa5f63aeef005c9fe9f592d2c5c5a203c20058527cebc9ccb08fce2534"
+      },
+      {
+        "asset": "GameFruitTreeApple",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameFruitTreeApple.imageset/GameFruitTreeApple.png",
+        "width": 96,
+        "height": 160,
+        "sha256": "b654d42ef1bd7116caddea7ee407b49e7ca8b5174cd1715dd94fae0369932d6a"
+      },
+      {
+        "asset": "GameFruitTreeMango",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameFruitTreeMango.imageset/GameFruitTreeMango.png",
+        "width": 96,
+        "height": 160,
+        "sha256": "992c42e1571dd9420c6945d131996aec70d77a248b03ca0c39c9a0532084f772"
+      },
+      {
+        "asset": "GameFruitTreeBanana",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameFruitTreeBanana.imageset/GameFruitTreeBanana.png",
+        "width": 96,
+        "height": 160,
+        "sha256": "1b3cb956f0a06a73d285cdecfbbc58ad5dd0d8efd6102d354ab6d1b2aa2ea144"
+      },
+      {
+        "asset": "GameUIFarmhouse",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameUIFarmhouse.imageset/GameUIFarmhouse.png",
+        "width": 144,
+        "height": 144,
+        "sha256": "6fab5239821f380ae8960f50f6ac82b996105df7940dbdd50a910b745e67eccf"
+      },
+      {
+        "asset": "GameUIBackpack",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameUIBackpack.imageset/GameUIBackpack.png",
+        "width": 52,
+        "height": 52,
+        "sha256": "75901fa03134dcd6779ef53d4e99106f2ff4ee303cc18f7e87f107c356199ccb"
+      },
+      {
+        "asset": "GameUIProgress",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameUIProgress.imageset/GameUIProgress.png",
+        "width": 48,
+        "height": 48,
+        "sha256": "71c9b05d6adbc6f7dc27de22068e0a7fc6d36712b23fa27b34b3f72216f9e735"
+      },
+      {
+        "asset": "GameUIRelationships",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameUIRelationships.imageset/GameUIRelationships.png",
+        "width": 64,
+        "height": 64,
+        "sha256": "e8563b3a22f19d3cf774e6df2f89e7cc72fb32c7401768680d3588a8d015987f"
+      },
+      {
+        "asset": "GameUIWallet",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameUIWallet.imageset/GameUIWallet.png",
+        "width": 48,
+        "height": 48,
+        "sha256": "9f9a2ee5f07b88b464d24ba91c8dcdb8693a8eea91ab4f02f1fe02d7e123c070"
+      },
+      {
+        "asset": "GameUIRecipes",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameUIRecipes.imageset/GameUIRecipes.png",
+        "width": 48,
+        "height": 48,
+        "sha256": "0945a1992d12828a9c0b80343fab9f639997c47f314cce95405ec6b04ea7eef4"
+      },
+      {
+        "asset": "GameUIReview",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameUIReview.imageset/GameUIReview.png",
+        "width": 48,
+        "height": 48,
+        "sha256": "fcb7c8c7481efa6ec9359af4e0e3b7ff03de7fe1a1f4d1140045a954f2539aaa"
+      },
+      {
+        "asset": "GameUIBackup",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameUIBackup.imageset/GameUIBackup.png",
+        "width": 48,
+        "height": 96,
+        "sha256": "652b1f59f15a77ffc3da0aceefdc64a67f5fd5616c544218f8e60b5b969ae6d9"
+      },
+      {
+        "asset": "GameUIFarmComputer",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameUIFarmComputer.imageset/GameUIFarmComputer.png",
+        "width": 48,
+        "height": 96,
+        "sha256": "b221c23d5d58b2a45232da46411b3e514be908851364fdbca001a46c3a5e111f"
+      },
+      {
+        "asset": "GameUICropPlanner",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameUICropPlanner.imageset/GameUICropPlanner.png",
+        "width": 48,
+        "height": 48,
+        "sha256": "69a9a4ca1294162f225dfd4f2a3d32f3305ad9d605f5406f21d6c68f6a4f3c00"
+      },
+      {
+        "asset": "GameUITrophy",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameUITrophy.imageset/GameUITrophy.png",
+        "width": 64,
+        "height": 120,
+        "sha256": "28f5c4ec8843b2416028a3e646c79c87ca47fce681a4bf78ed3cd523591ad16b"
+      },
+      {
+        "asset": "GameUISkillFarming",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameUISkillFarming.imageset/GameUISkillFarming.png",
+        "width": 48,
+        "height": 48,
+        "sha256": "372e8b6dae94e9ce6152378800fe1bc3910e1344ea9a6b1ebfa1cc20f2d582a5"
+      },
+      {
+        "asset": "GameUISkillFishing",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameUISkillFishing.imageset/GameUISkillFishing.png",
+        "width": 48,
+        "height": 48,
+        "sha256": "1f543818eb4ac7801ccf06f0443da4b233f4e369df9f311427890dbc19396f9c"
+      },
+      {
+        "asset": "GameUISkillForaging",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameUISkillForaging.imageset/GameUISkillForaging.png",
+        "width": 48,
+        "height": 48,
+        "sha256": "49c8a55c96b7bfd39e9005ab562c75b9311ab3b984f1d88236f1c39c59f8eed4"
+      },
+      {
+        "asset": "GameUISkillMining",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameUISkillMining.imageset/GameUISkillMining.png",
+        "width": 48,
+        "height": 48,
+        "sha256": "35e8f4101dff332fbde7f4a685350e007838f755fb4920c2a52490d7cd8f525e"
+      },
+      {
+        "asset": "GameUISkillCombat",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameUISkillCombat.imageset/GameUISkillCombat.png",
+        "width": 48,
+        "height": 48,
+        "sha256": "f9ae672093421102a4081fee93696d40fae524a5fa088d1557a20406417513e9"
+      },
+      {
+        "asset": "GameUIGoldBar",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameUIGoldBar.imageset/GameUIGoldBar.png",
+        "width": 48,
+        "height": 48,
+        "sha256": "c05d1f97cedbd0f05498adcbb6913d6c99a510283cbe58fd559df24bc8ced67c"
+      },
+      {
+        "asset": "GameUIDiamond",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameUIDiamond.imageset/GameUIDiamond.png",
+        "width": 48,
+        "height": 48,
+        "sha256": "63d430e98e1ee110589fe1c2c7ed271dc4c09bf2aadde781d9886d0d4ce4ca44"
+      },
+      {
+        "asset": "GameUIStone",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameUIStone.imageset/GameUIStone.png",
+        "width": 48,
+        "height": 48,
+        "sha256": "e91435e3753d1af0a90c50705b4082941230a8abb8b57fc6808c79370621dcaf"
+      },
+      {
+        "asset": "GameUIGoldenWalnut",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameUIGoldenWalnut.imageset/GameUIGoldenWalnut.png",
+        "width": 48,
+        "height": 48,
+        "sha256": "8fa7e5bac89b0046f8a8f8d97ccdb2f20a8a49cb227911c435c27f5ed3892a20"
+      },
+      {
+        "asset": "GameUIArtifact",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameUIArtifact.imageset/GameUIArtifact.png",
+        "width": 48,
+        "height": 48,
+        "sha256": "728fb7dc67e09f7a7b17c37b11cc6241b82bc0d5622a62924a737a68de75594f"
+      },
+      {
+        "asset": "GameUIFish",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameUIFish.imageset/GameUIFish.png",
+        "width": 48,
+        "height": 48,
+        "sha256": "de2389efda7fba410969c3df9cca0fdc8b9d20b29021d4df7a7572cd5d671d4c"
+      },
+      {
+        "asset": "GameUIMonster",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameUIMonster.imageset/GameUIMonster.png",
+        "width": 48,
+        "height": 48,
+        "sha256": "633eeda41a2168c7c47b8baa1f05da9ef96c624cfb96a23cb5bcf1049a892996"
+      },
+      {
+        "asset": "GameUIDwarfGuide",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameUIDwarfGuide.imageset/GameUIDwarfGuide.png",
+        "width": 48,
+        "height": 48,
+        "sha256": "9cbcdf64a3b2f705f4f46b7eb454d0e65d0b4441013a5eaa93cf85ee68cf1930"
+      },
+      {
+        "asset": "GameUIMagicInk",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameUIMagicInk.imageset/GameUIMagicInk.png",
+        "width": 48,
+        "height": 48,
+        "sha256": "9e2e97fa15039f90ca74785304952f0dcc6bbd4edf04ca0f35f14d48f7458d22"
+      },
+      {
+        "asset": "GameUIDarkTalisman",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameUIDarkTalisman.imageset/GameUIDarkTalisman.png",
+        "width": 48,
+        "height": 48,
+        "sha256": "8ad881324618a3bcd3baab8a75f9b806112007edf8c984be9a637b4c753e3963"
+      },
+      {
+        "asset": "GameUITrash",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameUITrash.imageset/GameUITrash.png",
+        "width": 66,
+        "height": 66,
+        "sha256": "ef79b3df269d2ee71e75f8c2ddfb39b536bb15e662cbda3de0a450541816e1b2"
+      },
+      {
+        "asset": "GameUIWalletStrip",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameUIWalletStrip.imageset/GameUIWalletStrip.png",
+        "width": 565,
+        "height": 125,
+        "sha256": "87612830e91c99f3c854bb90a36a160a20f56e053f01ecdbdd55644ed966f542"
+      },
+      {
+        "asset": "GameUIWateringCan",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameUIWateringCan.imageset/GameUIWateringCan.png",
+        "width": 48,
+        "height": 48,
+        "sha256": "a79059654d8b8fbf7eed68a95e22b6d887e1b0e64632cc07da79b61f74b95041"
+      },
+      {
+        "asset": "GameUIWeeds",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameUIWeeds.imageset/GameUIWeeds.png",
+        "width": 48,
+        "height": 48,
+        "sha256": "06cf0af7c49590b82974408e74a89fe5ed6fb5c569337d4c8608d76dba0332bf"
+      },
+      {
+        "asset": "GameUITwig",
+        "file": "PelicanSaveEditor/Assets.xcassets/GameUITwig.imageset/GameUITwig.png",
+        "width": 48,
+        "height": 48,
+        "sha256": "ad98c7b8160361c4925a332ab000364f00d2b962a8704c0d2f4f62b8b2349989"
       }
     ]
   }

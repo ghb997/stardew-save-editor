@@ -33,9 +33,13 @@ struct FarmEntityListView: View {
                             Text(kind.displayName).tag(kind as FarmEntityKind?)
                         }
                     }
-                    Toggle("仅显示可清理对象", isOn: $onlyCleanable)
+                    Toggle(isOn: $onlyCleanable) {
+                        GameAssetLabel("仅显示可清理对象", assetName: "GameUITrash", iconSize: 24)
+                    }
                     Text("共 \(entities.count) 个对象。清理会先加入草稿，确认保存后才执行。")
                         .font(.caption).foregroundStyle(.secondary)
+                } header: {
+                    GameAssetLabel("对象筛选", assetName: "GameUIFarmComputer", iconSize: 24)
                 }
                 ForEach(entities) { entity in
                     VStack(alignment: .leading, spacing: 8) {
@@ -69,7 +73,15 @@ struct FarmEntityListView: View {
                     .padding(.vertical, 4)
                     .accessibilityElement(children: .contain)
                 }
-                if entities.isEmpty { ContentUnavailableView.search(text: searchText) }
+                if entities.isEmpty {
+                    GameEmptyState(
+                        title: "没有匹配的地图对象",
+                        systemImage: "map.fill",
+                        message: searchText.isEmpty
+                            ? "请调整对象类型或可清理筛选。"
+                            : "请调整搜索词或筛选条件。"
+                    )
+                }
             }
             .searchable(text: $searchText, prompt: "搜索名称或坐标")
             .navigationTitle("地图对象")

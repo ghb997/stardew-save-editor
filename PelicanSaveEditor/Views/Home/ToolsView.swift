@@ -21,7 +21,7 @@ struct ToolsView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            LargePageHeader(title: "工具")
+            LargePageHeader(title: "工具", artworkName: "GameUISkillMining")
 
             ScrollView {
                 VStack(alignment: .leading, spacing: 14) {
@@ -58,7 +58,8 @@ struct ToolsView: View {
                             title: "加载农场",
                             subtitle: "授权 Stardew Valley 文件夹并自动查找存档",
                             systemImage: "externaldrive.badge.plus",
-                            iconColor: .green
+                            iconColor: .green,
+                            artworkName: "GameUIBackpack"
                         ) {
                             showingSourceOptions = true
                         }
@@ -70,7 +71,8 @@ struct ToolsView: View {
                         title: "备份管理",
                         subtitle: "手动备份、完整性校验、导出与恢复",
                         systemImage: "book.closed.fill",
-                        iconColor: .brown
+                        iconColor: .brown,
+                        artworkName: "GameUIBackup"
                     ) {
                         showingBackups = true
                     }
@@ -80,6 +82,7 @@ struct ToolsView: View {
                         subtitle: store.session == nil ? "加载农场后可用" : "重新读取两份文件并检查兼容性",
                         systemImage: "checkmark.shield.fill",
                         iconColor: .blue,
+                        artworkName: "GameUIReview",
                         disabled: store.session == nil
                     ) {
                         if store.session?.hasChanges == true {
@@ -95,7 +98,8 @@ struct ToolsView: View {
                         title: "农作物计算器",
                         subtitle: "按 1.6 作物数据计算成熟日、收获次数、产量与基础收益",
                         systemImage: "calendar",
-                        iconColor: .purple
+                        iconColor: .purple,
+                        artworkName: "GameUICropPlanner"
                     ) {
                         selectedUtilityTool = .cropCalculator
                     }
@@ -107,7 +111,7 @@ struct ToolsView: View {
                             : "坐标地图、一键浇水、清除石块、杂草与树枝",
                         systemImage: "map.fill",
                         iconColor: .orange,
-                        artworkName: "GameSaveSummary",
+                        artworkName: "GameUIFarmComputer",
                         disabled: store.session == nil
                     ) {
                         selectedUtilityTool = .farmMapAnalysis
@@ -201,7 +205,7 @@ struct ToolsView: View {
             if let session = store.session {
                 EditorShellView(session: session, section: section)
             } else {
-                ContentUnavailableView("农场已卸载", systemImage: "externaldrive.badge.xmark")
+                GameEmptyState(title: "农场已卸载", systemImage: "externaldrive.badge.xmark")
             }
         }
         .fullScreenCover(item: $selectedUtilityTool) { tool in
@@ -212,7 +216,7 @@ struct ToolsView: View {
                 if let session = store.session {
                     FarmMapAnalysisView(session: session, cropCatalog: store.cropCatalog)
                 } else {
-                    ContentUnavailableView("请先加载农场", systemImage: "externaldrive.badge.plus")
+                    GameEmptyState(title: "请先加载农场", systemImage: "externaldrive.badge.plus")
                 }
             }
         }

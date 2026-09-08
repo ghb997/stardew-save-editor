@@ -37,25 +37,30 @@ struct BackupListView: View {
                         GameLabel(warning, systemImage: "exclamationmark.triangle.fill")
                             .font(.footnote).foregroundStyle(.orange)
                     }
+                } header: {
+                    GameAssetLabel("备份管理", assetName: "GameUIBackup", iconSize: 26)
                 }
 
                 if visibleBackups.isEmpty {
-                    ContentUnavailableView(
-                        searchText.isEmpty ? "尚无应用备份" : "未找到这个农场的备份",
+                    GameEmptyState(
+                        title: searchText.isEmpty ? "尚无应用备份" : "未找到这个农场的备份",
                         systemImage: "externaldrive"
                     )
                 } else {
                     ForEach(visibleBackups) { backup in
                         Section {
-                            VStack(alignment: .leading, spacing: 5) {
-                                Text(backup.farmIdentifier).font(.headline)
-                                Text(backup.savedAt, format: .dateTime.year().month().day().hour().minute().second())
-                                    .font(.subheadline)
-                                Text(backup.reason).font(.caption).foregroundStyle(.secondary)
-                                Text(verificationResults[backup.id] ??
-                                     (store.verifiedBackupIDs.contains(backup.id) ? "完整性校验通过" : "尚未在本次会话校验"))
-                                    .font(.caption)
-                                    .foregroundStyle(store.verifiedBackupIDs.contains(backup.id) ? Color.green : Color.secondary)
+                            HStack(alignment: .top, spacing: 12) {
+                                GameAssetIcon(assetName: "GameUIBackup", size: 38)
+                                VStack(alignment: .leading, spacing: 5) {
+                                    Text(backup.farmIdentifier).font(.headline)
+                                    Text(backup.savedAt, format: .dateTime.year().month().day().hour().minute().second())
+                                        .font(.subheadline)
+                                    Text(backup.reason).font(.caption).foregroundStyle(.secondary)
+                                    Text(verificationResults[backup.id] ??
+                                         (store.verifiedBackupIDs.contains(backup.id) ? "完整性校验通过" : "尚未在本次会话校验"))
+                                        .font(.caption)
+                                        .foregroundStyle(store.verifiedBackupIDs.contains(backup.id) ? Color.green : Color.secondary)
+                                }
                             }
                             .accessibilityElement(children: .combine)
                             if let sourceMode = backup.sourceMode {

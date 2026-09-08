@@ -51,10 +51,10 @@ struct CropCalculatorView: View {
         NavigationStack {
             Group {
                 if catalog.isEmpty {
-                    ContentUnavailableView(
-                        "作物目录不可用",
+                    GameEmptyState(
+                        title: "作物目录不可用",
                         systemImage: "leaf.fill",
-                        description: Text("内置作物数据没有成功载入。")
+                        message: "内置作物数据没有成功载入。"
                     )
                 } else {
                     Form {
@@ -78,7 +78,7 @@ struct CropCalculatorView: View {
     }
 
     private var cropSection: some View {
-        Section("作物") {
+        Section {
             Picker("作物", selection: $selectedCropID) {
                 ForEach(catalog) { crop in
                     Text(crop.displayName).tag(crop.id)
@@ -86,6 +86,16 @@ struct CropCalculatorView: View {
             }
 
             if let crop = selectedCrop {
+                HStack(spacing: 14) {
+                    GameItemIcon(id: crop.id, size: 52)
+                    VStack(alignment: .leading, spacing: 3) {
+                        Text(crop.displayName)
+                            .font(.headline)
+                        Text("收获物 ID \(crop.id)")
+                            .font(.caption.monospacedDigit())
+                            .foregroundStyle(.secondary)
+                    }
+                }
                 LabeledContent("适宜季节", value: cropSeasonText(crop))
                 LabeledContent("基础成熟时间", value: crop.isTeaBush ? "20 天（茶树规则）" : "\(crop.growDays) 天")
                 if let regrow = crop.regrowDays, !crop.isTeaBush {
@@ -100,6 +110,8 @@ struct CropCalculatorView: View {
                     LabeledContent("种子购入价", value: "无固定商店价格")
                 }
             }
+        } header: {
+            GameAssetLabel("作物", assetName: "GameUICropPlanner", iconSize: 24)
         }
     }
 

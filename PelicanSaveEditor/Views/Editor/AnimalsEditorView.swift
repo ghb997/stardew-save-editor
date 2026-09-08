@@ -8,10 +8,10 @@ struct AnimalsEditorView: View {
         NavigationStack {
             Group {
                 if session.draft.animals.isEmpty {
-                    ContentUnavailableView(
-                        "没有找到可编辑动物",
+                    GameEmptyState(
+                        title: "没有找到可编辑动物",
                         systemImage: "pawprint",
-                        description: Text("动物仍可能存在于模组自定义结构中；应用不会猜测未知节点。")
+                        message: "动物仍可能存在于模组自定义结构中；应用不会猜测未知节点。"
                     )
                 } else {
                     List {
@@ -20,8 +20,10 @@ struct AnimalsEditorView: View {
                                 showingMaxConfirmation = true
                             }
                             .foregroundStyle(.orange)
+                        } header: {
+                            GameAssetLabel("动物批量状态", assetName: "GameAnimalWhiteChicken", iconSize: 26)
                         } footer: {
-                            Text("会将亲密度设为 1000，心情与饱食度设为 255；名称和饲养天数保持不变。")
+                            Text("会将亲密度设为 1000，心情与饱食度设为 255；名称和饲养天数保持不变。动物图用于识别物种和颜色，不表示当前年龄、朝向或动作；三种鸡使用游戏内幼年示意图。")
                         }
 
                         ForEach(session.draft.animals.indices, id: \.self) { index in
@@ -203,7 +205,7 @@ private struct AnimalDetailEditorView: View {
     }
 }
 
-/// An animal is shown only when its own game texture is available.
+/// An animal is shown only when its own verified game preview is available.
 private struct AnimalPreview: View {
     let type: String
     let size: CGFloat

@@ -88,10 +88,10 @@ struct CatalogPickerView: View {
                     }
                 }
                 if filtered.isEmpty {
-                    ContentUnavailableView(
-                        selectedCollection == .favorites ? "还没有匹配的收藏" : "没有匹配的物品",
+                    GameEmptyState(
+                        title: selectedCollection == .favorites ? "还没有匹配的收藏" : "没有匹配的物品",
                         systemImage: "magnifyingglass",
-                        description: Text("可切换到“全部”，或调整分类与搜索条件。")
+                        message: "可切换到“全部”，或调整分类与搜索条件。"
                     )
                 }
             }

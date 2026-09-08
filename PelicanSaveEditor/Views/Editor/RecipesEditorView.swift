@@ -51,6 +51,8 @@ struct RecipesEditorView: View {
                     Button("解锁全部烹饪与制作配方", systemImage: "books.vertical.fill") {
                         showingUnlockAllConfirmation = true
                     }
+                } header: {
+                    GameAssetLabel("配方范围", assetName: "GameUIRecipes", iconSize: 24)
                 }
 
                 Section {
@@ -79,7 +81,7 @@ struct RecipesEditorView: View {
                         .padding(.vertical, 2)
                     }
                 } header: {
-                    Text(selectedKind.displayName)
+                    GameAssetLabel(selectedKind.displayName, assetName: "GameUIRecipes", iconSize: 24)
                 } footer: {
                     Text("新解锁的配方会写入制作次数 0；已有配方的次数保持不变。")
                 }

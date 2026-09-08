@@ -17,6 +17,10 @@ from the pinned sources documented in `GAME_ASSET_PROVENANCE.md` and
 `GAME_ASSETS_MANIFEST.json`. Additional texture sources are
 AzimMuradov/stardew-valley-designer and hpeinar/stardewplanner at the exact commits
 listed there. No generative image model is used for the bundled artwork.
+Version 0.3.3 also includes 58 selected PNG exports from the user-provided
+`星露谷素材800+.zip`; their archive hash, entry names and individual hashes are
+recorded in `GAME_ASSETS_MANIFEST.json`. The archive supplied no source URL or
+separate license file, so no third-party code license is asserted for those images.
 Stardew Valley artwork belongs to ConcernedApe and the applicable rights holders;
 open-source code licenses do not transfer ownership of the game's artwork.
 Crop growth phases and mechanics are factual compatibility data cross-checked
