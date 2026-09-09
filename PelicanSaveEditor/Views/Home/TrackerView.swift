@@ -18,6 +18,7 @@ struct TrackerView: View {
 
             if store.session != nil {
                 trackerFilterStrip
+                    .fixedSize(horizontal: false, vertical: true)
                     .padding(.horizontal, 16)
                     .padding(.vertical, 10)
                     .background(AppTheme.canvas)
