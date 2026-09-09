@@ -2,6 +2,12 @@ name: Verify Tracker native UI
 
 on:
   workflow_dispatch:
+    inputs:
+      capture_screenshots:
+        description: 'Capture the 16 native Tracker screenshots after tests'
+        required: false
+        type: boolean
+        default: true
   push:
     branches:
       - 'codex/tracker-ui-*'
@@ -112,10 +118,28 @@ jobs:
             printf 'export_status=exported-%s-result-bundles\n' "$attachment_result_count" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Preserve early native test diagnostics before screenshot capture
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: Tracker-native-tests-${{ github.run_number }}-${{ github.run_attempt }}
+          path: |
+            artifacts/tracker-verification/*.log
+            artifacts/tracker-verification/tests/**/*.log
+            artifacts/tracker-verification/tests/**/selected-simulator.json
+            artifacts/tracker-verification/test-attachments/**
+            !artifacts/tracker-verification/tests/**/DerivedData/**
+            !artifacts/tracker-verification/test-attachments/**/*.mp4
+          if-no-files-found: warn
+          retention-days: 14
+          compression-level: 6
+
       - name: Capture Tracker overview, detail, appearance, and accessibility states
         id: screenshots
         # A failed test step remains a job failure but does not hide UI evidence.
-        if: ${{ !cancelled() && steps.xcode.outcome == 'success' }}
+        # Only an explicit false on a manual dispatch skips screenshots; pushes
+        # always retain their capture attempt. The final artifact keeps videos.
+        if: ${{ !cancelled() && steps.xcode.outcome == 'success' && (github.event_name != 'workflow_dispatch' || github.event.inputs.capture_screenshots != 'false') }}
         timeout-minutes: 20
         shell: bash
         env:
@@ -179,8 +203,12 @@ jobs:
           TEST_OUTCOME: ${{ steps.tests.outcome }}
           ATTACHMENT_STATUS: ${{ steps.test_attachments.outputs.export_status || steps.test_attachments.outcome }}
           CAPTURE_OUTCOME: ${{ steps.screenshots.outcome }}
+          CAPTURE_SKIP_REQUESTED: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.capture_screenshots == 'false' }}
           SOURCE_COMMIT: ${{ github.sha }}
         run: |
+          if [[ "$CAPTURE_SKIP_REQUESTED" == 'true' ]]; then
+            CAPTURE_OUTCOME='skipped-requested (manual capture_screenshots=false; no screenshots captured)'
+          fi
           printf '%s\n' \
             '### Tracker native verification' \
             "Source commit: $SOURCE_COMMIT" \

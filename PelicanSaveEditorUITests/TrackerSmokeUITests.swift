@@ -154,7 +154,8 @@ final class TrackerSmokeUITests: XCTestCase {
             }
         }
         try check(isFullyVisible(target, within: strip, app: app),
-                  "Chip \(prefix + name) must be fully inside its visible filter strip before tapping", app: app)
+                  "Chip \(prefix + name) must be visible within its 0.5pt border outset before tapping; "
+                    + "button=\(target.frame), strip=\(strip.frame), app=\(app.frame)", app: app)
         try tap(target, app: app)
         try wait(target, predicate: NSPredicate(format: "selected == true"), app: app)
     }
@@ -165,7 +166,16 @@ final class TrackerSmokeUITests: XCTestCase {
         guard element.exists && scrollView.exists else { return false }
         let elementFrame = element.frame
         let viewport = scrollView.frame.intersection(app.frame)
-        return !elementFrame.isEmpty && !viewport.isEmpty && viewport.contains(elementFrame)
+        // The chips' centered 1pt capsule stroke extends their accessibility
+        // frames by 0.5pt. Native failure attachments show the first/last chip
+        // at x=15.5 / maxX=359.5 in a strip spanning x=16...359, even at rest.
+        // Permit only that border outset, not a partially hidden chip. Keep
+        // the center inside the real viewport and verify hittability afterward.
+        let borderOutset: CGFloat = 0.5
+        let center = CGPoint(x: elementFrame.midX, y: elementFrame.midY)
+        return !elementFrame.isEmpty && !viewport.isEmpty
+            && viewport.contains(center)
+            && viewport.insetBy(dx: -borderOutset, dy: -borderOutset).contains(elementFrame)
     }
 
     @MainActor

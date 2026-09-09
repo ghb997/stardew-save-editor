@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-09-09T08:48:10.598746+00:00",
+  "generated_at_utc": "2026-09-09T09:41:47.850809+00:00",
   "release_root": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\tracker-cloud-validation",
   "validation_type": "offline_static_release_checks",
   "compiled_swift": false,
@@ -211,7 +211,7 @@
       "PelicanSaveEditorTests/SaveCoreTests.swift": "30da2a054c5363f4d065538263165cab48c9736745420a0122b8a4c0d4ebdefa",
       "PelicanSaveEditorTests/TrackerMetricsTests.swift": "6abcad5fb03e171d40abb910e7d6338455097f1435d46c7ba9704bfc7f917862",
       "PelicanSaveEditorTests/TransactionRegressionTests.swift": "3e9a3a720b5c7899196d6f872b7c9369d313343fae9a435f10dd426f0bc8dac7",
-      "PelicanSaveEditorUITests/TrackerSmokeUITests.swift": "95f7fa34a512121303447b6d2c34ae6b1904a08c287248e2ecaa8183615b2eb9"
+      "PelicanSaveEditorUITests/TrackerSmokeUITests.swift": "f409bea1b79ab53c894279d5b211bb3c6294ff8e30858845b5104fafb576a091"
     },
     "source_counts": {
       "swift_files": 55,
