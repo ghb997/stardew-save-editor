@@ -143,7 +143,8 @@ final class WorldEditorTests: XCTestCase {
     }
 
     func testRoomEditPreservesUntouchedLexicalValuesAndFurniture() throws {
-        let parsed = try parse(house: houseFields() + "<furniture><Furniture opaque=\"yes\"><heldObject>keep</heldObject></Furniture></furniture>")
+        let house = houseFields().replacingOccurrences(of: "<string>Kitchen</string>", with: "<string> Kitchen </string>")
+        let parsed = try parse(house: house + "<furniture><Furniture opaque=\"yes\"><heldObject>keep</heldObject></Furniture></furniture>")
         var draft = parsed.draft
         let index = try XCTUnwrap(draft.farmhouse.decorations.firstIndex { $0.roomKey == "Kitchen" && $0.kind == .flooring })
         draft.farmhouse.decorations[index].styleIndex = 5
@@ -153,6 +154,9 @@ final class WorldEditorTests: XCTestCase {
         XCTAssertEqual(before.child(named: "furniture")?.xmlString(), after.child(named: "furniture")?.xmlString())
         let bedroom = after.child(named: "appliedFloor")?.firstDescendant(named: "item")
         XCTAssertEqual(bedroom?.child(named: "value")?.value(named: "string"), "0018")
+        let kitchen = after.child(named: "appliedFloor")?.firstDescendant(named: "SerializableDictionaryOfStringString")?.children.last
+        XCTAssertEqual(kitchen?.child(named: "key")?.value(named: "string"), " Kitchen ")
+        XCTAssertEqual(kitchen?.child(named: "value")?.value(named: "string"), "5")
     }
 
     func testNilUnknownAndAmbiguousRoomFieldsStayReadOnly() throws {

@@ -655,7 +655,7 @@ enum SaveMutator {
                 guard let container = farmhouse.child(named: containerName) else { continue }
                 for item in descendants(of: container) where item.name == "item" {
                     guard let keyNode = item.child(named: "key"),
-                          dictionaryText(in: keyNode) == key,
+                          dictionaryText(in: keyNode)?.trimmingCharacters(in: .whitespacesAndNewlines) == key,
                           let valueNode = item.child(named: "value") else { continue }
                     setDictionaryText(String(decoration.styleIndex), in: valueNode)
                     break

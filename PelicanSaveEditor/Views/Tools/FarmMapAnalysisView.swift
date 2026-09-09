@@ -761,9 +761,12 @@ private struct FarmCoordinateTransform {
         let ySpan = max(1, maxY - minY)
         let drawWidth = max(1, size.width - inset * 2)
         let drawHeight = max(1, size.height - inset * 2)
+        let x = (tileX - minX) / xSpan
+        let y = (tileY - minY) / ySpan
+        guard x.isFinite, y.isFinite else { return nil }
         return CGPoint(
-            x: inset + CGFloat((tileX - minX) / xSpan) * drawWidth,
-            y: inset + CGFloat((tileY - minY) / ySpan) * drawHeight
+            x: inset + CGFloat(x) * drawWidth,
+            y: inset + CGFloat(y) * drawHeight
         )
     }
 }

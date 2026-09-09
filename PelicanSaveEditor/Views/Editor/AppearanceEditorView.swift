@@ -70,7 +70,7 @@ struct AppearanceEditorView: View {
                             .accessibilityIdentifier("editor.appearance.number")
                     }
 
-                    Button("恢复此项") { setAppearanceValue(originalAppearanceValue) }
+                    Button("恢复此项") { setAppearanceValue(originalAppearanceValue, clamped: false) }
                         .disabled(selectedAppearanceValue == originalAppearanceValue)
                         .accessibilityIdentifier("editor.appearance.restoreSelected")
 
@@ -181,8 +181,8 @@ struct AppearanceEditorView: View {
             || session.draft.appearanceColors != session.originalDraft.appearanceColors
     }
 
-    private func setAppearanceValue(_ value: Int) {
-        let value = min(appearanceCategory.range.upperBound, max(appearanceCategory.range.lowerBound, value))
+    private func setAppearanceValue(_ value: Int, clamped: Bool = true) {
+        let value = clamped ? min(appearanceCategory.range.upperBound, max(appearanceCategory.range.lowerBound, value)) : value
         switch appearanceCategory {
         case .hair: session.draft.hair = value
         case .skin: session.draft.skin = value
