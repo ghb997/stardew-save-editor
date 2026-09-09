@@ -314,22 +314,31 @@ final class TrackerSmokeUITests: XCTestCase {
 
     @MainActor
     private func revealEditorControl(_ element: XCUIElement, app: XCUIApplication) throws {
-        let lists = app.collectionViews.containing(element.elementType, identifier: element.identifier)
-        let scrolls = app.scrollViews.containing(element.elementType, identifier: element.identifier)
-        let container = lists.firstMatch.exists ? lists.firstMatch : scrolls.firstMatch
-        try require(container, app: app)
+        // A lazy Form row may not exist in the AX tree yet, so querying its
+        // elementType or identifier here can throw before any scrolling occurs.
+        // Select the foreground vertical viewport independently of the target.
+        let lists = app.collectionViews.allElementsBoundByIndex.filter { $0.isHittable }
+        let scrolls = app.scrollViews.allElementsBoundByIndex.filter {
+            $0.frame.height > 150 && $0.isHittable
+        }
+        guard let container = lists.last ?? scrolls.last else {
+            try check(false, "No foreground editor scroll viewport", app: app)
+            return
+        }
         for attempt in 0..<18 {
             var viewport = container.frame.intersection(app.frame)
             // A scroll view can extend behind the navigation and tab bars.
             // Clip those areas before deciding whether a control is visible.
-            for bar in app.navigationBars.allElementsBoundByIndex {
+            for bar in app.navigationBars.allElementsBoundByIndex where bar.isHittable {
                 let frame = bar.frame
                 if !frame.isEmpty && frame.intersects(viewport) && frame.minY < viewport.midY {
                     viewport = CGRect(x: viewport.minX, y: frame.maxY, width: viewport.width,
                                       height: max(0, viewport.maxY - frame.maxY))
                 }
             }
-            for bar in app.tabBars.allElementsBoundByIndex {
+            // Background tab bars remain in snapshots under full-screen
+            // editors and sheets, but must not clip the foreground viewport.
+            for bar in app.tabBars.allElementsBoundByIndex where bar.isHittable {
                 let frame = bar.frame
                 if !frame.isEmpty && frame.intersects(viewport) && frame.minY > viewport.midY {
                     viewport.size.height = max(0, frame.minY - viewport.minY)

@@ -107,8 +107,12 @@ struct FarmEntity: Identifiable, Hashable, Sendable {
 
 enum FarmCropRules {
     static func state(in feature: XMLNode) -> FarmEntityState? {
-        let type = feature.attributes["xsi:type"] ?? feature.attributes["type"] ?? feature.name
-        guard type == "HoeDirt", feature.children(named: "crop").count == 1,
+        let serializedType = feature.attributes["xsi:type"] ?? feature.attributes["type"]
+        // Older saves can omit xsi:type on the standard TerrainFeature wrapper.
+        // Explicit custom types remain read-only even if they contain a crop.
+        let knownType = serializedType.map { $0 == "HoeDirt" }
+            ?? ["HoeDirt", "TerrainFeature"].contains(feature.name)
+        guard knownType, feature.children(named: "crop").count == 1,
               !["true", "1"].contains(feature.attributes["xsi:nil"] ?? feature.attributes["nil"] ?? ""),
               let crop = feature.child(named: "crop"), !crop.children.isEmpty,
               !["true", "1"].contains(crop.attributes["xsi:nil"] ?? crop.attributes["nil"] ?? "") else { return nil }

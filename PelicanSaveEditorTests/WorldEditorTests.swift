@@ -226,13 +226,16 @@ final class WorldEditorTests: XCTestCase {
             + crop(x: 5, state: "") + crop(x: 6, state: "<state xsi:nil=\"1\">0</state>")
             + crop(x: 7, type: "ModHoeDirt") + crop(x: 8, state: "<netState>0</netState>")
             + crop(x: 9, state: "<state>0</state><state>1</state>")
+            + crop(x: 10).replacingOccurrences(of: " xsi:type=\"HoeDirt\"", with: "")
         let parsed = try parse(terrain: terrain, extraLocations: "<GameLocation xsi:type=\"Greenhouse\"><name>Greenhouse</name><terrainFeatures>\(crop(x: 1))</terrainFeatures></GameLocation>")
         let snapshot = FarmSnapshotExtractor.extract(from: parsed.mainRoot, cropCatalog: [])
-        XCTAssertEqual(snapshot.unwateredCropCount, 2)
+        XCTAssertEqual(snapshot.unwateredCropCount, 3)
         var draft = parsed.draft
         draft.farmActions.waterAllCrops = true
         let after = try renderedRoot(parsed, draft)
         XCTAssertEqual(feature(x: 1, in: after)?.value(named: "state"), "1")
+        XCTAssertEqual(feature(x: 10, in: after)?.value(named: "state"), "1")
+        XCTAssertNil(feature(x: 10, in: after)?.attributes["xsi:type"])
         XCTAssertEqual(feature(x: 8, in: after)?.value(named: "netState"), "1")
         XCTAssertNil(feature(x: 8, in: after)?.child(named: "state"))
         for x in [2, 3, 4, 5, 6, 7, 9] {
