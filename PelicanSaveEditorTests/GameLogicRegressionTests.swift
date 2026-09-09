@@ -200,7 +200,9 @@ final class GameLogicRegressionTests: XCTestCase {
         let added = catalog.filter { ItemCatalog.supportedStringIDs.contains($0.id) }
         XCTAssertEqual(Set(added.map(\.id)), ItemCatalog.supportedStringIDs)
         XCTAssertTrue(added.allSatisfy { $0.chineseName?.contains(where: { $0.unicodeScalars.contains(where: { $0.value >= 0x4E00 && $0.value <= 0x9FFF }) }) == true })
-        let parsed = try parse()
+        // Exercise item round-tripping in existing slots. A save without a
+        // standard capacity field must not gain slots as a side effect.
+        let parsed = try parse(items: String(repeating: "<Item xsi:nil=\"true\"/>", count: added.count))
         var draft = parsed.draft
         draft.inventory = added.enumerated().map { InventorySlotDraft(id: $0.offset, item: $0.element.makeInventoryItem(stack: 2)) }
         let rendered = try SaveMutator.render(parsed: parsed, draft: draft)
@@ -209,7 +211,8 @@ final class GameLogicRegressionTests: XCTestCase {
         XCTAssertTrue(reread.draft.inventory.allSatisfy { $0.item?.stack == 2 && $0.item?.isEditable == true })
     }
 
-    private func parse(player: String = "", world: String = "", info: String? = nil) throws -> ParsedSaveDocument {
+    private func parse(player: String = "", world: String = "", info: String? = nil,
+                       items: String = "<Item xsi:nil=\"true\"/>") throws -> ParsedSaveDocument {
         let main = """
         <SaveGame xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><player>
         <name>Test</name><farmName>Farm</farmName><favoriteThing>Tea</favoriteThing><uniqueMultiplayerID>123</uniqueMultiplayerID>
@@ -217,7 +220,7 @@ final class GameLogicRegressionTests: XCTestCase {
         <farmingLevel>10</farmingLevel><fishingLevel>0</fishingLevel><foragingLevel>0</foragingLevel><miningLevel>0</miningLevel><combatLevel>0</combatLevel>
         <experiencePoints><int>15000</int><int>0</int><int>0</int><int>0</int><int>0</int></experiencePoints>
         <professions><int>1</int><int>4</int><int>999</int></professions>
-        <items><Item xsi:nil="true"/></items><cookingRecipes/><craftingRecipes/>
+        <items>\(items)</items><cookingRecipes/><craftingRecipes/>
         \(player)</player><year>1</year><currentSeason>spring</currentSeason><dayOfMonth>1</dayOfMonth><gameVersion>1.6.8</gameVersion>\(world)</SaveGame>
         """
         return try SaveParser.parse(mainData: Data(main.utf8), infoData: info.map { Data($0.utf8) }, catalog: [], recipeCatalog: [.cooking: ["Fried Egg"]])

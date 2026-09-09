@@ -149,17 +149,18 @@ final class TrackerSmokeUITests: XCTestCase {
         try tap(search, app: app)
         search.typeText("Abigail\n")
         let batch = app.buttons["editor.relationships.batch.fillHearts"]
-        try revealVertically(batch, app: app)
+        try revealEditorControl(batch, app: app)
         try tap(batch, app: app)
         try require(app.staticTexts["将修改 1 位角色"], app: app)
         attachScreenshot("editor-relationship-batch-preview", app: app)
         try tap(app.navigationBars["补满好感"].buttons["取消"], app: app)
         try tap(batch, app: app)
         let apply = app.buttons["editor.relationships.batch.apply"]
-        try revealVertically(apply, app: app)
+        try revealEditorControl(apply, app: app)
         try tap(apply, app: app)
+        try wait(apply, predicate: NSPredicate(format: "exists == false"), app: app)
         let points = app.textFields["editor.relationship.Abigail.points"]
-        try revealVertically(points, app: app)
+        try revealEditorControl(points, app: app)
         try wait(points, predicate: NSPredicate(format: "value == %@ OR value == %@", "2,000", "2000"), app: app)
         attachScreenshot("editor-relationship-applied", app: app)
     }
@@ -169,18 +170,19 @@ final class TrackerSmokeUITests: XCTestCase {
         let app = try launchEditor("relationships")
         defer { app.terminate() }
         let batch = app.buttons["editor.relationships.batch.resetGifts"]
-        try revealVertically(batch, app: app)
+        try revealEditorControl(batch, app: app)
         try tap(batch, app: app)
         try require(app.staticTexts["将修改 1 位角色"], app: app)
         attachScreenshot("editor-gift-reset-preview", app: app)
         let apply = app.buttons["editor.relationships.batch.apply"]
-        try revealVertically(apply, app: app)
+        try revealEditorControl(apply, app: app)
         try tap(apply, app: app)
+        try wait(apply, predicate: NSPredicate(format: "exists == false"), app: app)
         let points = app.textFields["editor.relationship.Abigail.points"]
-        try revealVertically(points, app: app)
+        try revealEditorControl(points, app: app)
         try wait(points, predicate: NSPredicate(format: "value == %@ OR value == %@", "1,750", "1750"), app: app)
         let reset = app.buttons["editor.relationship.Abigail.resetGifts"]
-        try revealVertically(reset, app: app)
+        try revealEditorControl(reset, app: app)
         try check(!reset.isEnabled, "No gifts should remain to reset", app: app)
         attachScreenshot("editor-gift-reset-applied", app: app)
     }
@@ -193,9 +195,54 @@ final class TrackerSmokeUITests: XCTestCase {
         let tool = app.buttons["editor.tool.\(section)"]
         try require(app.tabBars.buttons["工具"], app: app, timeout: 30)
         try require(tool, app: app, timeout: 30)
-        try revealVertically(tool, app: app)
+        try revealEditorControl(tool, app: app)
         try tap(tool, app: app)
         return app
+    }
+
+    @MainActor
+    private func revealEditorControl(_ element: XCUIElement, app: XCUIApplication) throws {
+        let lists = app.collectionViews.containing(element.elementType, identifier: element.identifier)
+        let scrolls = app.scrollViews.containing(element.elementType, identifier: element.identifier)
+        let container = lists.firstMatch.exists ? lists.firstMatch : scrolls.firstMatch
+        try require(container, app: app)
+        for attempt in 0..<18 {
+            var viewport = container.frame.intersection(app.frame)
+            // A scroll view can extend behind the navigation and tab bars.
+            // Clip those areas before deciding whether a control is visible.
+            for bar in app.navigationBars.allElementsBoundByIndex {
+                let frame = bar.frame
+                if !frame.isEmpty && frame.intersects(viewport) && frame.minY < viewport.midY {
+                    viewport = CGRect(x: viewport.minX, y: frame.maxY, width: viewport.width,
+                                      height: max(0, viewport.maxY - frame.maxY))
+                }
+            }
+            for bar in app.tabBars.allElementsBoundByIndex {
+                let frame = bar.frame
+                if !frame.isEmpty && frame.intersects(viewport) && frame.minY > viewport.midY {
+                    viewport.size.height = max(0, frame.minY - viewport.minY)
+                }
+            }
+            try check(!viewport.isEmpty && viewport.minY.isFinite && viewport.maxY.isFinite,
+                      "Editor scroll viewport must be visible: \(container.frame)", app: app)
+            let frame = element.exists ? element.frame : .null
+            let hasFrame = !frame.isEmpty && frame.minY.isFinite && frame.maxY.isFinite
+            let visibleArea = viewport.insetBy(dx: -0.5, dy: 4)
+            // Offscreen SwiftUI List fields may have an infinite, empty AX
+            // frame. Never ask XCTest to compute their activation points.
+            if hasFrame && visibleArea.contains(frame) { return }
+            let moveTowardBottom = hasFrame ? frame.midY > viewport.midY : attempt < 9
+            let distance = min(hasFrame ? max(abs(frame.midY - viewport.midY), 44) : 140,
+                               viewport.height * 0.35)
+            let direction: CGFloat = moveTowardBottom ? 1 : -1
+            let origin = app.coordinate(withNormalizedOffset: .zero)
+            let start = origin.withOffset(CGVector(dx: viewport.midX - app.frame.minX,
+                dy: viewport.midY - app.frame.minY + direction * distance / 2))
+            let end = origin.withOffset(CGVector(dx: viewport.midX - app.frame.minX,
+                dy: viewport.midY - app.frame.minY - direction * distance / 2))
+            start.press(forDuration: 0.05, thenDragTo: end)
+        }
+        try check(false, "Editor control could not be revealed: \(element)", app: app)
     }
 
     @MainActor
