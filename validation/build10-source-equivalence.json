@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "releaseCommit": "a9c21c5db79380ca1601e785659562845d951292",
+  "nativeTestCommit": "20e4fc24e7e7d9e726e14b2c2d8928303531377b",
+  "applicationAndBuildInputsIdentical": true,
+  "comparedPaths": [
+    {
+      "path": "PelicanSaveEditor",
+      "releaseObject": "1ec104549f485a70116b4c10d0e84e768f5d90ed",
+      "nativeTestObject": "1ec104549f485a70116b4c10d0e84e768f5d90ed",
+      "identical": true
+    },
+    {
+      "path": "PelicanSaveEditor.xcodeproj",
+      "releaseObject": "07402593a0c202c10d045c88ca856d4edb450fbd",
+      "nativeTestObject": "07402593a0c202c10d045c88ca856d4edb450fbd",
+      "identical": true
+    },
+    {
+      "path": "project.yml",
+      "releaseObject": "bed68ab34a9b45b3f230460b1e1e6856d3569ae8",
+      "nativeTestObject": "bed68ab34a9b45b3f230460b1e1e6856d3569ae8",
+      "identical": true
+    },
+    {
+      "path": "scripts",
+      "releaseObject": "36019e202fecb6a15cd0d33c971cfac235b3c94b",
+      "nativeTestObject": "36019e202fecb6a15cd0d33c971cfac235b3c94b",
+      "identical": true
+    },
+    {
+      "path": ".github",
+      "releaseObject": "d18a08101a54b5e3a7cda5b33d88377e47501a6d",
+      "nativeTestObject": "d18a08101a54b5e3a7cda5b33d88377e47501a6d",
+      "identical": true
+    }
+  ],
+  "explanation": "The native rerun changes only test fixtures and UI test scrolling; the app, project, scripts, and workflows match the successful device build."
+}

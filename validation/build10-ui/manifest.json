@@ -1,0 +1,47 @@
+{
+  "githubRunId": "34363052838",
+  "images": [
+    {
+      "file": "editor-backpack-search.png",
+      "testIdentifier": "TrackerSmokeUITests/testEditorCapacityAndInventorySearchUseDraft()",
+      "exportedFileName": "4A4DCD7C-E51C-4827-BB94-8A2DC7301A9F.png",
+      "sha256": "497cf922f82fcc511617b5477c41c793d191db43a7aa31d3231a2752052010f2",
+      "timestamp": 1788964305.807
+    },
+    {
+      "file": "editor-backpack-expanded.png",
+      "testIdentifier": "TrackerSmokeUITests/testEditorCapacityAndInventorySearchUseDraft()",
+      "exportedFileName": "3A33742A-17A2-4105-8563-CA16569DD1D9.png",
+      "sha256": "772e6b720b35f6bd07a81ed35f2bad6126fc2bf248ca547ba4d15410fa56b964",
+      "timestamp": 1788964298.304
+    },
+    {
+      "file": "editor-gift-reset-applied.png",
+      "testIdentifier": "TrackerSmokeUITests/testGiftBatchResetShowsChangedCountersWithoutChangingHearts()",
+      "exportedFileName": "43C95E92-68DB-4134-B40A-4D01C96AD89E.png",
+      "sha256": "33854a24767e985e97a4ef372ce8185817a50b4dd1e3b4e34b98b6b7e0810746",
+      "timestamp": 1788964371.067
+    },
+    {
+      "file": "editor-gift-reset-preview.png",
+      "testIdentifier": "TrackerSmokeUITests/testGiftBatchResetShowsChangedCountersWithoutChangingHearts()",
+      "exportedFileName": "B905B315-4022-4ADC-AAA2-64715B1E15D6.png",
+      "sha256": "865245a60319722dd9c1f662a2f0cfb97f73b24f0a4cb6a7a24cbf83a6092990",
+      "timestamp": 1788964348.612
+    },
+    {
+      "file": "editor-relationship-applied.png",
+      "testIdentifier": "TrackerSmokeUITests/testRelationshipBatchPreviewCanCancelAndApplyOnlySearchedCharacter()",
+      "exportedFileName": "8BD8C325-9654-4300-A901-0AF6D64CAA4B.png",
+      "sha256": "d477ba957084e2eed40e8fb696aac47e9229190220054cc6cf92539245c7d7a8",
+      "timestamp": 1788964480.89
+    },
+    {
+      "file": "editor-relationship-batch-preview.png",
+      "testIdentifier": "TrackerSmokeUITests/testRelationshipBatchPreviewCanCancelAndApplyOnlySearchedCharacter()",
+      "exportedFileName": "87F65FA8-A25C-4217-8DE3-2B8BF5DDA892.png",
+      "sha256": "551e5885adb89f6bb2cb1f4d365be5c088adf316b3aa6a08a446a41ec3846b90",
+      "timestamp": 1788964464.498
+    }
+  ]
+}

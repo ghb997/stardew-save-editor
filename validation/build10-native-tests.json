@@ -1,0 +1,520 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "testLogSha256": "dc18fe7fb31ff1d40a9356d2863133c543d44b980b77b8b88d3408af65876741",
+  "executed": 79,
+  "outcomes": {
+    "passed": 79
+  },
+  "suites": {
+    "PelicanSaveEditorUITests.TrackerSmokeUITests": {
+      "passed": 7
+    },
+    "PelicanSaveEditorTests.GameLogicRegressionTests": {
+      "passed": 10
+    },
+    "PelicanSaveEditorTests.ReferenceFeatureTests": {
+      "passed": 14
+    },
+    "PelicanSaveEditorTests.SaveCoreTests": {
+      "passed": 32
+    },
+    "PelicanSaveEditorTests.TrackerMetricsTests": {
+      "passed": 7
+    },
+    "PelicanSaveEditorTests.TransactionRegressionTests": {
+      "passed": 9
+    }
+  },
+  "missingDeclaredTests": [],
+  "unexpectedResults": [],
+  "results": [
+    {
+      "suite": "PelicanSaveEditorUITests.TrackerSmokeUITests",
+      "method": "testAllElevenModulesOpenAndClose",
+      "outcome": "passed",
+      "seconds": 131.607
+    },
+    {
+      "suite": "PelicanSaveEditorUITests.TrackerSmokeUITests",
+      "method": "testDetailSwitchingRecipeFiltersAndSearchEmptyState",
+      "outcome": "passed",
+      "seconds": 44.697
+    },
+    {
+      "suite": "PelicanSaveEditorUITests.TrackerSmokeUITests",
+      "method": "testEditorCapacityAndInventorySearchUseDraft",
+      "outcome": "passed",
+      "seconds": 28.943
+    },
+    {
+      "suite": "PelicanSaveEditorUITests.TrackerSmokeUITests",
+      "method": "testEmptyTrackerOpensToolsWithoutImportingFiles",
+      "outcome": "passed",
+      "seconds": 12.728
+    },
+    {
+      "suite": "PelicanSaveEditorUITests.TrackerSmokeUITests",
+      "method": "testGiftBatchResetShowsChangedCountersWithoutChangingHearts",
+      "outcome": "passed",
+      "seconds": 52.579
+    },
+    {
+      "suite": "PelicanSaveEditorUITests.TrackerSmokeUITests",
+      "method": "testOverviewFiltersAndGroupExpansion",
+      "outcome": "passed",
+      "seconds": 62.935
+    },
+    {
+      "suite": "PelicanSaveEditorUITests.TrackerSmokeUITests",
+      "method": "testRelationshipBatchPreviewCanCancelAndApplyOnlySearchedCharacter",
+      "outcome": "passed",
+      "seconds": 46.876
+    },
+    {
+      "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+      "method": "testCodecAcceptsUTF8CharacterAcrossOldPrefixBoundary",
+      "outcome": "passed",
+      "seconds": 0.01
+    },
+    {
+      "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+      "method": "testDebrisCleanupPreservesTypeNamespacesContainersAndModObjects",
+      "outcome": "passed",
+      "seconds": 0.006
+    },
+    {
+      "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+      "method": "testEightStringIDObjectsHaveChineseNamesAndRoundTrip",
+      "outcome": "passed",
+      "seconds": 0.036
+    },
+    {
+      "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+      "method": "testEveryDiffIsGroupedAndEachEditCanBeUndone",
+      "outcome": "passed",
+      "seconds": 0.003
+    },
+    {
+      "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+      "method": "testPairingRejectsWrongRootAndDifferentFarmerButAllowsRenamedSameID",
+      "outcome": "passed",
+      "seconds": 0.005
+    },
+    {
+      "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+      "method": "testProfessionValidationRejectsConflictsButPreservesUnrelatedExistingExtensions",
+      "outcome": "passed",
+      "seconds": 0.003
+    },
+    {
+      "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+      "method": "testRenamingOneAnimalPreservesOtherAnimalsAndIndependentAges",
+      "outcome": "passed",
+      "seconds": 0.003
+    },
+    {
+      "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+      "method": "testSingleDebrisUndoDoesNotUndoNeighborAndEqualCountSelectionIsVisible",
+      "outcome": "passed",
+      "seconds": 0.001
+    },
+    {
+      "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+      "method": "testSkillLevelAndExperienceUseSameProfessionRules",
+      "outcome": "passed",
+      "seconds": 0.002
+    },
+    {
+      "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+      "method": "testWalletFalseIsFalseAndOnlyEditedLegacyKeyIsMigrated",
+      "outcome": "passed",
+      "seconds": 0.005
+    },
+    {
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "method": "testCapacityExpansionRoundTripsBothFilesAndPreservesOpaqueItems",
+      "outcome": "passed",
+      "seconds": 0.003
+    },
+    {
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "method": "testCapacityUndoRemovesNewSlotEditsAndKeepsOldSlotEdits",
+      "outcome": "passed",
+      "seconds": 0.002
+    },
+    {
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "method": "testGiftResetChangesOnlyExistingCountersAndEachDiffCanBeUndone",
+      "outcome": "passed",
+      "seconds": 0.002
+    },
+    {
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "method": "testMissingGiftFieldsAreNotCreatedAndMalformedValuesArePreserved",
+      "outcome": "passed",
+      "seconds": 0.002
+    },
+    {
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "method": "testMissingMalformedAndModdedCapacitiesRemainUnchanged",
+      "outcome": "passed",
+      "seconds": 0.004
+    },
+    {
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "method": "testMissingPointsAndStatusStayReadOnly",
+      "outcome": "passed",
+      "seconds": 0.001
+    },
+    {
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "method": "testOriginalSerializedSlotsSurviveShrinkAndCannotReceiveNewHiddenItems",
+      "outcome": "passed",
+      "seconds": 0.002
+    },
+    {
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "method": "testRelationshipFiltersReflectGiftResetAndUndo",
+      "outcome": "passed",
+      "seconds": 0.001
+    },
+    {
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "method": "testRelationshipWriteBoundaryRejectsUnsupportedStatusAndFriendshipLimits",
+      "outcome": "passed",
+      "seconds": 0.002
+    },
+    {
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "method": "testScopedFullHeartsRespectsRelationshipsAndPreservesHigherAndUnknownPoints",
+      "outcome": "passed",
+      "seconds": 0.002
+    },
+    {
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "method": "testShrinkWithOccupiedTailFailsWithoutChangingDraft",
+      "outcome": "passed",
+      "seconds": 0.002
+    },
+    {
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "method": "testUneditedFriendshipXMLIsNotNormalizedWhenAnotherFriendChanges",
+      "outcome": "passed",
+      "seconds": 0.02
+    },
+    {
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "method": "testUnrelatedEditDoesNotSerializeSyntheticEmptySlotsOrInventSummaryCapacity",
+      "outcome": "passed",
+      "seconds": 0.002
+    },
+    {
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "method": "testWriteBoundaryRejectsInvalidCapacityAndSlotLayout",
+      "outcome": "passed",
+      "seconds": 0.001
+    },
+    {
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "method": "testBackupManifestDetectsTamperedData",
+      "outcome": "passed",
+      "seconds": 0.057
+    },
+    {
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "method": "testBundledCatalogHasFullUpstreamData",
+      "outcome": "passed",
+      "seconds": 0.027
+    },
+    {
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "method": "testBundledCropCatalogIsCompleteAndInternallyConsistent",
+      "outcome": "passed",
+      "seconds": 0.021
+    },
+    {
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "method": "testBundledRecipeCatalogHasCompleteChineseNames",
+      "outcome": "passed",
+      "seconds": 0.001
+    },
+    {
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "method": "testCatalogAndBackupInitializationSurviveUnavailableTransactionDirectory",
+      "outcome": "passed",
+      "seconds": 0.062
+    },
+    {
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "method": "testCodecReadsStandardZlibFixture",
+      "outcome": "passed",
+      "seconds": 0.002
+    },
+    {
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "method": "testCoordinatedWriteUpdatesSelectedFileWithoutReplacingIt",
+      "outcome": "passed",
+      "seconds": 0.013
+    },
+    {
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "method": "testCopyImportCreatesIndependentAppOwnedPair",
+      "outcome": "passed",
+      "seconds": 0.023
+    },
+    {
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "method": "testCropGrowthSpeedMirrorsGamePhaseRules",
+      "outcome": "passed",
+      "seconds": 0.008
+    },
+    {
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "method": "testCropPlannerChargesInitialSeedsBeforeFirstHarvest",
+      "outcome": "passed",
+      "seconds": 0.003
+    },
+    {
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "method": "testCropPlannerSchedulesCrossSeasonRegrowthAndProfit",
+      "outcome": "passed",
+      "seconds": 0.003
+    },
+    {
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "method": "testDiscoversSaveFoldersFromAuthorizedStardewRoot",
+      "outcome": "passed",
+      "seconds": 0.016
+    },
+    {
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "method": "testFarmhouseAndMagicFarmActionsRoundTripWithoutRemovingNormalObjects",
+      "outcome": "passed",
+      "seconds": 0.09
+    },
+    {
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "method": "testFarmSnapshotExtractsActualEntitiesCountsAndCoordinates",
+      "outcome": "passed",
+      "seconds": 0.003
+    },
+    {
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "method": "testGlobalKeyboardReturnAccessoryInstallsOnEveryUIKitTextInputKind",
+      "outcome": "passed",
+      "seconds": 0.027
+    },
+    {
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "method": "testInterruptedMixedPairIsRecoveredFromBackup",
+      "outcome": "passed",
+      "seconds": 0.031
+    },
+    {
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "method": "testLegacyBackupManifestWithoutHashesRemainsReadable",
+      "outcome": "passed",
+      "seconds": 0.012
+    },
+    {
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "method": "testMagicMapCanRemoveOneSelectedDebrisWithoutTouchingNeighbors",
+      "outcome": "passed",
+      "seconds": 0.004
+    },
+    {
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "method": "testModern16HouseProgressWalletProfessionsAndAnimalsRoundTrip",
+      "outcome": "passed",
+      "seconds": 0.003
+    },
+    {
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "method": "testMovingEquivalentItemsStillProducesInventoryDiffs",
+      "outcome": "passed",
+      "seconds": 0.001
+    },
+    {
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "method": "testParseEditRenderAndReparsePair",
+      "outcome": "passed",
+      "seconds": 0.003
+    },
+    {
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "method": "testPlainAndZlibCodecRoundTrips",
+      "outcome": "passed",
+      "seconds": 0.001
+    },
+    {
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "method": "testSaveDiscoveryReportsRootWithoutValidSaves",
+      "outcome": "passed",
+      "seconds": 0.005
+    },
+    {
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "method": "testSessionEditingFreezeRejectsLateBindingsButCanInstallCommittedSnapshot",
+      "outcome": "passed",
+      "seconds": 0.014
+    },
+    {
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "method": "testTeaBushGrowsAcrossOutdoorWinterButOnlyHarvestsInProducingSeasons",
+      "outcome": "passed",
+      "seconds": 0.004
+    },
+    {
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "method": "testTransactionWritesPairAndCreatesRestorableBackup",
+      "outcome": "passed",
+      "seconds": 0.028
+    },
+    {
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "method": "testUnchangedExtendedValuesSurviveAnUnrelatedEdit",
+      "outcome": "passed",
+      "seconds": 0.002
+    },
+    {
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "method": "testValidationRejectsUnsafeValues",
+      "outcome": "passed",
+      "seconds": 0.001
+    },
+    {
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "method": "testWorkerPreservesInventoryBaselineWhenReparsingForUnrelatedEdit",
+      "outcome": "passed",
+      "seconds": 0.004
+    },
+    {
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "method": "testWorkerRejectsInvalidTargetBeforeCreatingBackupOrWritingSource",
+      "outcome": "passed",
+      "seconds": 0.023
+    },
+    {
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "method": "testWorkerTransfersOnlyFreshParsedTreesAndReturnsVerifiedPair",
+      "outcome": "passed",
+      "seconds": 0.034
+    },
+    {
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "method": "testXMLTreePreservesUnknownElementsAndEscapesText",
+      "outcome": "passed",
+      "seconds": 0.001
+    },
+    {
+      "suite": "PelicanSaveEditorTests.TrackerMetricsTests",
+      "method": "testCollectionFootprintIsAnObservedCountNotPerfection",
+      "outcome": "passed",
+      "seconds": 0.001
+    },
+    {
+      "suite": "PelicanSaveEditorTests.TrackerMetricsTests",
+      "method": "testDraftsAndClearStateHaveDistinctStatus",
+      "outcome": "passed",
+      "seconds": 0.001
+    },
+    {
+      "suite": "PelicanSaveEditorTests.TrackerMetricsTests",
+      "method": "testEmptySkillsHaveNoArtificialMaximumOrCompletedProgress",
+      "outcome": "passed",
+      "seconds": 0.174
+    },
+    {
+      "suite": "PelicanSaveEditorTests.TrackerMetricsTests",
+      "method": "testProgressDoesNotInventCompletionForMissingTotals",
+      "outcome": "passed",
+      "seconds": 0.0
+    },
+    {
+      "suite": "PelicanSaveEditorTests.TrackerMetricsTests",
+      "method": "testProgressStaysWithinItsDisplayRange",
+      "outcome": "passed",
+      "seconds": 0.001
+    },
+    {
+      "suite": "PelicanSaveEditorTests.TrackerMetricsTests",
+      "method": "testSkillSummaryUsesAvailableSkillsAndClampsExtendedLevels",
+      "outcome": "passed",
+      "seconds": 0.001
+    },
+    {
+      "suite": "PelicanSaveEditorTests.TrackerMetricsTests",
+      "method": "testWarningsRemainVisibleEvenWithoutDraftsOrAlongsideDrafts",
+      "outcome": "passed",
+      "seconds": 0.001
+    },
+    {
+      "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+      "method": "testBackupExportsWithoutOriginalFilesOrEditingSession",
+      "outcome": "passed",
+      "seconds": 0.011
+    },
+    {
+      "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+      "method": "testBoundKnownMixedPairRestoresOriginal",
+      "outcome": "passed",
+      "seconds": 0.037
+    },
+    {
+      "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+      "method": "testFailureDuringSecondWriteRestoresBothOriginalFiles",
+      "outcome": "passed",
+      "seconds": 0.03
+    },
+    {
+      "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+      "method": "testInvalidRenderedInfoIsRejectedBeforeSourceWrites",
+      "outcome": "passed",
+      "seconds": 0.014
+    },
+    {
+      "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+      "method": "testProtectedRecoveryPointSurvivesAutomaticRetention",
+      "outcome": "passed",
+      "seconds": 0.039
+    },
+    {
+      "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+      "method": "testRollbackFailureRetainsJournalAndExportableProtectedBackup",
+      "outcome": "passed",
+      "seconds": 0.017
+    },
+    {
+      "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+      "method": "testSameFarmNameAtDifferentSourcesDoesNotShareJournal",
+      "outcome": "passed",
+      "seconds": 0.029
+    },
+    {
+      "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+      "method": "testUnboundLegacyJournalNeverGuessesSourceFromFarmName",
+      "outcome": "passed",
+      "seconds": 0.024
+    },
+    {
+      "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+      "method": "testUnknownNewProgressIsPreservedAndNeedsExplicitChoice",
+      "outcome": "passed",
+      "seconds": 0.054
+    }
+  ],
+  "githubRunId": "34363052838",
+  "runUrl": "https://github.com/ghb997/stardew-save-editor/actions/runs/34363052838",
+  "sourceCommit": "20e4fc24e7e7d9e726e14b2c2d8928303531377b",
+  "configuration": "Debug",
+  "xcodeVersion": "16.4",
+  "xcodeBuildVersion": "16F6",
+  "deviceName": "iPhone SE (3rd generation)",
+  "iOSVersion": "26.2",
+  "unitTestsExecuted": 72,
+  "uiTestsExecuted": 7,
+  "screenshotCapture": "XCUITest attachments; separate 16-screen Tracker capture was skipped",
+  "physicalDeviceTested": false,
+  "realGameSaveRoundTripTested": false
+}

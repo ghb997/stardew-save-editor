@@ -6,7 +6,7 @@
 
 本次参考用户提供的 Stardew Editor 3.0.3，补齐背包容量调整、物品搜索、人物筛选、批量好感预览和送礼次数重置。保留原有四栏导航与统一检查、撤销、备份和保存流程。具体范围和依据见 [REFERENCE_EDITOR_UPDATE.md](REFERENCE_EDITOR_UPDATE.md)。
 
-当前验证：Windows Swift 语法扫描与工程静态检查；新增 14 个存档回归测试和 3 个界面测试，当前共 79 个测试方法声明。**原生编译、79 项 XCTest、真机与真实游戏存档往返尚未执行；历史 build 9 的通过结果不代表本次版本。**
+当前验证：Xcode 16.4 原生 Release 设备编译成功；iPhone SE（第 3 代）/ iOS 26.2 模拟器实际执行 **79 项测试，全部通过**（72 项单元测试、7 项界面测试）。新增的 14 项存档回归和 3 项界面测试均包含在内。已复核 6 张新增编辑流程的原生截图；真机安装、真实游戏存档往返与完整 iPad/辅助功能验收仍未执行。证据见 [本次验证记录](validation/BUILD10_VERIFICATION.md)。
 
 ## 当前功能
 
@@ -47,7 +47,7 @@
 - 原生编译及全部测试：`bash scripts/validate-on-macos.sh`
 - 未签名 IPA：`bash scripts/build-unsigned-ipa.sh`
 
-静态检查不等同 Swift 编译、XCTest 或设备验收。既有历史记录保留在 `validation/` 与 `VALIDATION.md` 中；本次验证范围以 `REFERENCE_EDITOR_UPDATE.md` 为准。
+静态检查不等同 Swift 编译、XCTest 或设备验收。既有历史记录保留在 `validation/` 与 `VALIDATION.md` 中；本次验证范围以 [BUILD10_VERIFICATION.md](validation/BUILD10_VERIFICATION.md) 为准。
 
 ## 新增编辑规则
 
