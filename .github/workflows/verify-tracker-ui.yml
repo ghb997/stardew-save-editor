@@ -11,7 +11,7 @@ permissions:
 
 concurrency:
   group: tracker-ui-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   verify-tracker:
@@ -72,14 +72,80 @@ jobs:
           set -euo pipefail
           bash scripts/validate-on-macos.sh 2>&1 | tee artifacts/tracker-verification/test-command.log
 
+      - name: Export native test attachments from available result bundles
+        id: test_attachments
+        if: ${{ !cancelled() && steps.xcode.outcome == 'success' }}
+        timeout-minutes: 5
+        shell: bash
+        run: |
+          set -euo pipefail
+          attachment_result_count=0
+          attachments_base='artifacts/tracker-verification/test-attachments'
+          help_log='artifacts/tracker-verification/xcresult-attachments-help.log'
+          shopt -s nullglob
+          for test_result in "$VALIDATION_OUTPUT_DIR"/*/tests.xcresult; do
+            [[ -d "$test_result" ]] || continue
+            if (( attachment_result_count == 0 )); then
+              # Confirm the selected Xcode 16 tool's official option spelling
+              # on the macOS runner before attempting any attachment export.
+              xcrun xcresulttool export attachments --help 2>&1 | tee "$help_log"
+              grep -F -q -- '--path' "$help_log"
+              grep -F -q -- '--output-path' "$help_log"
+              mkdir -p "$attachments_base"
+            fi
+            attachment_result_count=$((attachment_result_count + 1))
+            result_name="${test_result%/tests.xcresult}"
+            result_name="${result_name##*/}"
+            attachment_output="$(mktemp -d "$attachments_base/$result_name-XXXXXX")"
+            printf 'Result bundle: %s\nExport directory: %s\n' "$test_result" "$attachment_output" | tee "$attachment_output/export.log"
+            # No --only-failures: retain successful XCUITest screenshot
+            # attachments and their manifest as well as failure evidence.
+            xcrun xcresulttool export attachments \
+              --path "$test_result" \
+              --output-path "$attachment_output" 2>&1 | tee -a "$attachment_output/export.log"
+          done
+          shopt -u nullglob
+          if (( attachment_result_count == 0 )); then
+            printf 'SKIPPED: No tests.xcresult exists for this run; no test attachments were exported.\n' | tee artifacts/tracker-verification/test-attachments-export.log
+            printf 'export_status=skipped-no-test-results\n' >> "$GITHUB_OUTPUT"
+          else
+            printf 'export_status=exported-%s-result-bundles\n' "$attachment_result_count" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Capture Tracker overview, detail, appearance, and accessibility states
         id: screenshots
         # A failed test step remains a job failure but does not hide UI evidence.
         if: ${{ !cancelled() && steps.xcode.outcome == 'success' }}
         timeout-minutes: 20
         shell: bash
+        env:
+          TEST_OUTCOME: ${{ steps.tests.outcome }}
         run: |
           set -euo pipefail
+          # Reuse only this job's unique app after successful native tests.
+          # The capture script still validates platform and all Debug hooks,
+          # and always creates its own clean simulator for screenshots.
+          unset APPPATH APP_PATH
+          if [[ "$TEST_OUTCOME" == 'success' ]]; then
+            tested_app_count=0
+            tested_app_path=''
+            shopt -s nullglob
+            for candidate in "$VALIDATION_OUTPUT_DIR"/*/DerivedData/Build/Products/Debug-iphonesimulator/SheaflightAmberVault.app; do
+              if [[ -d "$candidate" ]]; then
+                tested_app_count=$((tested_app_count + 1))
+                tested_app_path="$candidate"
+              fi
+            done
+            shopt -u nullglob
+            if (( tested_app_count == 1 )); then
+              export APPPATH="$tested_app_path"
+              printf 'Reusing this run\047s tested Debug app: %s\n' "$APPPATH"
+            else
+              printf 'No unique tested Debug app found; capture will build independently.\n'
+            fi
+          else
+            printf 'Native tests did not succeed; capture will build independently.\n'
+          fi
           bash scripts/capture-tracker-ui.sh 2>&1 | tee artifacts/tracker-verification/capture-command.log
 
       - name: Preserve compact native validation evidence
@@ -105,11 +171,12 @@ jobs:
           retention-days: 14
           compression-level: 6
 
-      - name: Report the two independent verification outcomes
+      - name: Report native verification outcomes
         if: always()
         shell: bash
         env:
           TEST_OUTCOME: ${{ steps.tests.outcome }}
+          ATTACHMENT_STATUS: ${{ steps.test_attachments.outputs.export_status || steps.test_attachments.outcome }}
           CAPTURE_OUTCOME: ${{ steps.screenshots.outcome }}
           SOURCE_COMMIT: ${{ github.sha }}
         run: |
@@ -117,6 +184,7 @@ jobs:
             '### Tracker native verification' \
             "Source commit: $SOURCE_COMMIT" \
             "Native build and test step: $TEST_OUTCOME" \
+            "Test attachment export: $ATTACHMENT_STATUS" \
             "Native screenshot capture step: $CAPTURE_OUTCOME" \
             'A successful screenshot step means PNG files were captured, not that the UI passed visual review.' \
             'Review the screenshot artifact against validation/TRACKER_UI_CHECKLIST.md.' \

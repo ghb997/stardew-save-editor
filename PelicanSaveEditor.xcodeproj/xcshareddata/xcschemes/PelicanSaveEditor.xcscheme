@@ -37,6 +37,15 @@
          </BuildableReference>
       </MacroExpansion>
       <Testables>
+         <TestableReference skipped = "NO" parallelizable = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "26115F3A720144889AA40001"
+               BuildableName = "PelicanSaveEditorUITests.xctest"
+               BlueprintName = "PelicanSaveEditorUITests"
+               ReferencedContainer = "container:PelicanSaveEditor.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
          <TestableReference
             skipped = "NO"
             parallelizable = "NO">

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26115F3A720144889AA40002 /* TrackerSmokeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26115F3A720144889AA40003 /* TrackerSmokeUITests.swift */; };
 		26115F3A720144889AA30005 /* TrackerComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26115F3A720144889AA30006 /* TrackerComponents.swift */; };
 		26115F3A720144889AA30007 /* TrackerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26115F3A720144889AA30008 /* TrackerDetailView.swift */; };
 		26115F3A720144889AA30001 /* TrackerMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26115F3A720144889AA30002 /* TrackerMetrics.swift */; };
@@ -84,6 +85,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		26115F3A720144889AA40003 /* TrackerSmokeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerSmokeUITests.swift; sourceTree = "<group>"; };
+		26115F3A720144889AA40004 /* PelicanSaveEditorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PelicanSaveEditorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		26115F3A720144889AA30006 /* TrackerComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerComponents.swift; sourceTree = "<group>"; };
 		26115F3A720144889AA30008 /* TrackerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerDetailView.swift; sourceTree = "<group>"; };
 		26115F3A720144889AA30002 /* TrackerMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerMetrics.swift; sourceTree = "<group>"; };
@@ -154,6 +157,12 @@
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		26115F3A720144889AA40005 /* PelicanSaveEditorUITests */ = {
+			isa = PBXGroup;
+			children = (26115F3A720144889AA40003 /* TrackerSmokeUITests.swift */,);
+			path = PelicanSaveEditorUITests;
+			sourceTree = "<group>";
+		};
 		0BC0EB7CEC41FBB5929A9CF6 = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +186,7 @@
 				F666C112F70FABC42B14F171 /* TransactionRegressionTests.swift */,
 				52A33A42251270FA0061402D /* PelicanSaveEditor */,
 				D5CA3286FD20ABA40A3A831D /* PelicanSaveEditorTests */,
+				26115F3A720144889AA40005 /* PelicanSaveEditorUITests */,
 				8CD10E84706A114D0FD96933 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -265,6 +275,7 @@
 			children = (
 				EEA72E1938B639DBE05ED5A5 /* SheaflightAmberVault.app */,
 				F3D1AD39187DFB981932A877 /* PelicanSaveEditorTests.xctest */,
+				26115F3A720144889AA40004 /* PelicanSaveEditorUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -350,6 +361,17 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		26115F3A720144889AA40001 /* PelicanSaveEditorUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 26115F3A720144889AA40006 /* Build configuration list for PBXNativeTarget "PelicanSaveEditorUITests" */;
+			buildPhases = (26115F3A720144889AA40007 /* Sources */,);
+			buildRules = ();
+			dependencies = (26115F3A720144889AA40008 /* PBXTargetDependency */,);
+			name = PelicanSaveEditorUITests;
+			productName = PelicanSaveEditorUITests;
+			productReference = 26115F3A720144889AA40004 /* PelicanSaveEditorUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		312F2C056E344BD05A5B3BB9 /* PelicanSaveEditor */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 862C1DDCCCEC0B5A19AC3D6B /* Build configuration list for PBXNativeTarget "PelicanSaveEditor" */;
@@ -395,6 +417,10 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					26115F3A720144889AA40001 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 312F2C056E344BD05A5B3BB9;
+					};
 					312F2C056E344BD05A5B3BB9 = {
 						ProvisioningStyle = Automatic;
 					};
@@ -420,6 +446,7 @@
 			targets = (
 				312F2C056E344BD05A5B3BB9 /* PelicanSaveEditor */,
 				B28024D7B768F52FA2F4623D /* PelicanSaveEditorTests */,
+				26115F3A720144889AA40001 /* PelicanSaveEditorUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -445,6 +472,12 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		26115F3A720144889AA40007 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (26115F3A720144889AA40002 /* TrackerSmokeUITests.swift in Sources */,);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6C1A9F6C5EE331BFAEB38906 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -516,6 +549,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		26115F3A720144889AA40008 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 312F2C056E344BD05A5B3BB9 /* PelicanSaveEditor */;
+			targetProxy = 645194EBFCBF9473ED7A9E7B /* PBXContainerItemProxy */;
+		};
 		5F1BA4BAC1628B2FF049E63A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 312F2C056E344BD05A5B3BB9 /* PelicanSaveEditor */;
@@ -739,9 +777,38 @@
 			};
 			name = Debug;
 		};
+		26115F3A720144889AA40009 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks", "@loader_path/Frameworks",);
+				PRODUCT_BUNDLE_IDENTIFIER = com.personal.sheaflightambervault.v20260816f4c9.uitests;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				TEST_TARGET_NAME = PelicanSaveEditor;
+			};
+			name = Debug;
+		};
+		26115F3A720144889AA4000A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks", "@loader_path/Frameworks",);
+				PRODUCT_BUNDLE_IDENTIFIER = com.personal.sheaflightambervault.v20260816f4c9.uitests;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				TEST_TARGET_NAME = PelicanSaveEditor;
+			};
+			name = Release;
+		};
+
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		26115F3A720144889AA40006 /* Build configuration list for PBXNativeTarget "PelicanSaveEditorUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (26115F3A720144889AA40009 /* Debug */, 26115F3A720144889AA4000A /* Release */,);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		862C1DDCCCEC0B5A19AC3D6B /* Build configuration list for PBXNativeTarget "PelicanSaveEditor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

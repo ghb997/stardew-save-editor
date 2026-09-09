@@ -274,10 +274,12 @@ class Validator:
                         relative = self.relative(path)
                         memberships[relative].append(name)
                         target_sources[name].append(relative)
-        disk_sources = sorted(self.root.glob("PelicanSaveEditor/**/*.swift")) + sorted(self.root.glob("PelicanSaveEditorTests/**/*.swift"))
+        source_roots = ("PelicanSaveEditor", "PelicanSaveEditorTests", "PelicanSaveEditorUITests")
+        disk_sources = sorted(path for source_root in source_roots
+                              for path in self.root.glob(f"{source_root}/**/*.swift"))
         disk_names = {self.relative(path) for path in disk_sources}
         for path in sorted(disk_names):
-            expected = "PelicanSaveEditorTests" if path.startswith("PelicanSaveEditorTests/") else "PelicanSaveEditor"
+            expected = path.split("/", 1)[0]
             if memberships.get(path) != [expected]:
                 build_errors.append(f"{path}: expected exactly [{expected}], got {memberships.get(path, [])}")
             references = [identifier for identifier, value in resolved.items() if value == self.root / path]
@@ -291,7 +293,7 @@ class Validator:
         self.facts["swift_source_sha256"] = {self.relative(path): sha256(path) for path in disk_sources}
         test_counts = {}
         for path in disk_sources:
-            if path.parent.name == "PelicanSaveEditorTests":
+            if self.relative(path).split("/", 1)[0] in ("PelicanSaveEditorTests", "PelicanSaveEditorUITests"):
                 test_counts[self.relative(path)] = len(re.findall(r"(?m)^\s*func\s+test\w*\s*\(", path.read_text(encoding="utf-8-sig")))
         self.facts["source_counts"] = {"swift_files": len(disk_sources), "test_files": len(test_counts),
                                        "declared_test_methods": sum(test_counts.values()), "test_methods_by_file": test_counts}

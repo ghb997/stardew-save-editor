@@ -33,6 +33,8 @@ targets:
     scheme:
       testTargets:
         - PelicanSaveEditorTests
+        - name: PelicanSaveEditorUITests
+          parallelizable: false
   PelicanSaveEditorTests:
     type: bundle.unit-test
     platform: iOS
@@ -46,3 +48,16 @@ targets:
         GENERATE_INFOPLIST_FILE: true
         TEST_HOST: "$(BUILT_PRODUCTS_DIR)/SheaflightAmberVault.app/SheaflightAmberVault"
         BUNDLE_LOADER: "$(TEST_HOST)"
+  PelicanSaveEditorUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: PelicanSaveEditorUITests
+    dependencies:
+      - target: PelicanSaveEditor
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.personal.sheaflightambervault.v20260816f4c9.uitests
+        GENERATE_INFOPLIST_FILE: true
+        TEST_TARGET_NAME: PelicanSaveEditor
+        SUPPORTED_PLATFORMS: "iphoneos iphonesimulator"
