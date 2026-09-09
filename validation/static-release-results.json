@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-09-09T08:20:32.451317+00:00",
+  "generated_at_utc": "2026-09-09T08:48:10.598746+00:00",
   "release_root": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\tracker-cloud-validation",
   "validation_type": "offline_static_release_checks",
   "compiled_swift": false,
@@ -203,7 +203,7 @@
       "PelicanSaveEditor/Views/Home/ToolsView.swift": "b21f3185e417677f34724d9b30acfb7ac50e2b72eb1c6d8cc15b13a3fec53658",
       "PelicanSaveEditor/Views/Home/TrackerComponents.swift": "b3d279979ceca5797a1e9dac310514ce8c29b81d4990c32d3acd614fd5dc81e2",
       "PelicanSaveEditor/Views/Home/TrackerDetailView.swift": "262da81186b73a8b73c6cd20ffb1cef9329a87ce31fefb1766c13093902ae31b",
-      "PelicanSaveEditor/Views/Home/TrackerView.swift": "3f8cfa9fdd7643ccc068e92be4a04491d02868513c40870fbbace76f1b17da8a",
+      "PelicanSaveEditor/Views/Home/TrackerView.swift": "3f4867a95b455ac93856631d8fdcc28947a1fb389de70163094bb68135086532",
       "PelicanSaveEditor/Views/Tools/CropCalculatorView.swift": "1fa2f54cc5b6889ba054a736134add0d02ff050804cb594ec7f4949e63354186",
       "PelicanSaveEditor/Views/Tools/FarmEntityListView.swift": "b4b41ac27ba3485a92c5f9db8bcaeb8d63527fb63f7b56b763417a9eac2d3b35",
       "PelicanSaveEditor/Views/Tools/FarmMapAnalysisView.swift": "69284e18e16cb5bbcc7f364770865b4d99f70e2866e26362f2f77beb3da1b2f4",
@@ -211,7 +211,7 @@
       "PelicanSaveEditorTests/SaveCoreTests.swift": "30da2a054c5363f4d065538263165cab48c9736745420a0122b8a4c0d4ebdefa",
       "PelicanSaveEditorTests/TrackerMetricsTests.swift": "6abcad5fb03e171d40abb910e7d6338455097f1435d46c7ba9704bfc7f917862",
       "PelicanSaveEditorTests/TransactionRegressionTests.swift": "3e9a3a720b5c7899196d6f872b7c9369d313343fae9a435f10dd426f0bc8dac7",
-      "PelicanSaveEditorUITests/TrackerSmokeUITests.swift": "b7e49d48e0b313725ed566e74c5347574fd7d5438713fe422cbac439b8bd4b13"
+      "PelicanSaveEditorUITests/TrackerSmokeUITests.swift": "95f7fa34a512121303447b6d2c34ae6b1904a08c287248e2ecaa8183615b2eb9"
     },
     "source_counts": {
       "swift_files": 55,

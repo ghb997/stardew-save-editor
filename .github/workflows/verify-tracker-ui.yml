@@ -154,6 +154,7 @@ jobs:
         with:
           name: Tracker-native-ui-${{ github.run_number }}-${{ github.run_attempt }}
           path: |
+            artifacts/tracker-verification/test-attachments/**
             artifacts/tracker-verification/**/*.png
             artifacts/tracker-verification/**/*.log
             artifacts/tracker-verification/**/*.json

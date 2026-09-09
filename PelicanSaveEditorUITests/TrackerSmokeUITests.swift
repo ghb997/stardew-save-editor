@@ -141,18 +141,31 @@ final class TrackerSmokeUITests: XCTestCase {
         let strips = app.scrollViews.containing(.button, identifier: prefix + anchor)
         let strip = strips.element(boundBy: max(0, strips.count - 1))
         try require(strip, app: app)
-        for _ in 0..<7 {
-            if target.exists && target.isHittable { break }
-            strip.swipeLeft()
-        }
-        if !target.isHittable {
-            for _ in 0..<7 {
-                if target.exists && target.isHittable { break }
+        // XCTest may throw while computing an offscreen chip's activation
+        // point. Inspect geometry first; only ask for hittability once the
+        // entire chip is inside the visible horizontal scroll viewport.
+        for _ in 0..<14 {
+            if isFullyVisible(target, within: strip, app: app) { break }
+            let viewport = strip.frame.intersection(app.frame)
+            if target.exists && target.frame.minX < viewport.minX {
                 strip.swipeRight()
+            } else {
+                strip.swipeLeft()
             }
         }
+        try check(isFullyVisible(target, within: strip, app: app),
+                  "Chip \(prefix + name) must be fully inside its visible filter strip before tapping", app: app)
         try tap(target, app: app)
         try wait(target, predicate: NSPredicate(format: "selected == true"), app: app)
+    }
+
+    @MainActor
+    private func isFullyVisible(_ element: XCUIElement, within scrollView: XCUIElement,
+                                app: XCUIApplication) -> Bool {
+        guard element.exists && scrollView.exists else { return false }
+        let elementFrame = element.frame
+        let viewport = scrollView.frame.intersection(app.frame)
+        return !elementFrame.isEmpty && !viewport.isEmpty && viewport.contains(elementFrame)
     }
 
     @MainActor
