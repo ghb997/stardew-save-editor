@@ -117,6 +117,7 @@ struct ToolsView: View {
                     ) {
                         selectedUtilityTool = .farmMapAnalysis
                     }
+                    .accessibilityIdentifier("editor.tool.map")
                 }
                 .padding(.horizontal, 20)
                 .padding(.vertical, 24)

@@ -146,7 +146,10 @@ enum SaveParser {
             animals: animals,
             farmActions: FarmActionDraft(),
             backpackCapacity: backpackCapacity,
-            inventorySlotFloor: inventorySlotFloor
+            inventorySlotFloor: inventorySlotFloor,
+            appearanceColors: Dictionary(uniqueKeysWithValues: FarmerColorField.allCases.compactMap { field in
+                AppearanceColorCodec.read(field, from: player).map { (field, $0) }
+            })
         )
 
         return ParsedSaveDocument(
@@ -426,7 +429,8 @@ enum SaveParser {
     }
 
     private static func extractFarmhouse(root: XMLNode, player: XMLNode) -> FarmhouseDraft {
-        let upgradeLevel = player.int(named: "houseUpgradeLevel")
+        let upgradeLevel = player.children(named: "houseUpgradeLevel").count == 1
+            ? editableScalar(player.child(named: "houseUpgradeLevel")).flatMap(Int.init) : nil
         guard let farmhouse = farmhouseLocation(in: root) else {
             return FarmhouseDraft(upgradeLevel: upgradeLevel, decorations: [])
         }
@@ -439,10 +443,12 @@ enum SaveParser {
 
         for (kind, candidateNames) in fields {
             guard let fieldName = candidateNames.first(where: { farmhouse.child(named: $0) != nil }),
-                  let container = farmhouse.child(named: fieldName) else { continue }
+                  farmhouse.children(named: fieldName).count == 1,
+                  let container = farmhouse.child(named: fieldName),
+                  !["true", "1"].contains(container.attributes["xsi:nil"] ?? container.attributes["nil"] ?? "") else { continue }
 
             let trimmed = container.text.trimmingCharacters(in: .whitespacesAndNewlines)
-            if let value = Int(trimmed) {
+            if container.children.isEmpty, let value = Int(trimmed) {
                 decorations.append(RoomDecorationDraft(
                     id: "\(kind.rawValue).scalar.\(fieldName)",
                     kind: kind,
@@ -453,12 +459,16 @@ enum SaveParser {
                 continue
             }
 
-            for item in dictionaryItems(in: container) {
+            let items = dictionaryItems(in: container)
+            let roomKeys = items.compactMap { $0.child(named: "key").flatMap(roomDecorationText) }
+            for item in items {
                 guard let keyNode = item.child(named: "key"),
                       let valueNode = item.child(named: "value"),
-                      let key = dictionaryText(in: keyNode),
-                      let valueText = dictionaryText(in: valueNode),
-                      let value = Int(valueText) else { continue }
+                      !["true", "1"].contains(item.attributes["xsi:nil"] ?? item.attributes["nil"] ?? ""),
+                      item.children(named: "key").count == 1, item.children(named: "value").count == 1,
+                      let key = roomDecorationText(keyNode), !key.isEmpty,
+                      roomKeys.filter({ $0 == key }).count == 1,
+                      let valueText = roomDecorationText(valueNode), let value = Int(valueText) else { continue }
                 decorations.append(RoomDecorationDraft(
                     id: "\(kind.rawValue).dictionary.\(fieldName).\(key)",
                     kind: kind,
@@ -471,7 +481,9 @@ enum SaveParser {
 
         return FarmhouseDraft(
             upgradeLevel: upgradeLevel,
-            decorations: decorations.sorted {
+            decorations: decorations.filter { candidate in
+                decorations.filter { $0.id == candidate.id }.count == 1
+            }.sorted {
                 if $0.kind.rawValue != $1.kind.rawValue {
                     return $0.kind.rawValue < $1.kind.rawValue
                 }
@@ -492,6 +504,14 @@ enum SaveParser {
 
     private static func descendants(of node: XMLNode) -> [XMLNode] {
         node.children.flatMap { child in [child] + descendants(of: child) }
+    }
+
+    private static func roomDecorationText(_ node: XMLNode) -> String? {
+        guard !["true", "1"].contains(node.attributes["xsi:nil"] ?? node.attributes["nil"] ?? "") else { return nil }
+        if node.children.isEmpty { return editableScalar(node) }
+        guard node.children.count == 1, node.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+              let child = node.children.first, ["string", "int", "unsignedInt", "long"].contains(child.name) else { return nil }
+        return editableScalar(child)
     }
 
     private static func dictionaryItems(in container: XMLNode) -> [XMLNode] {

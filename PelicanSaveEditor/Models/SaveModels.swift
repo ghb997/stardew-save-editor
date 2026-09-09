@@ -432,9 +432,10 @@ struct FarmActionDraft: Equatable, Sendable {
     var clearWeeds = false
     var clearTwigs = false
     var debrisRemovalKeys: Set<String> = []
+    var cropWateringKeys: Set<String> = []
 
     var hasChanges: Bool {
-        waterAllCrops || clearStones || clearWeeds || clearTwigs || !debrisRemovalKeys.isEmpty
+        waterAllCrops || clearStones || clearWeeds || clearTwigs || !debrisRemovalKeys.isEmpty || !cropWateringKeys.isEmpty
     }
 }
 
@@ -465,6 +466,7 @@ struct SaveDraft: Equatable, Sendable {
     var backpackCapacity: Int? = nil
     /// Keep originally serialized slots, including empty or extended slots.
     var inventorySlotFloor: Int = 0
+    var appearanceColors: [FarmerColorField: FarmerColor] = [:]
 }
 
 extension SaveDraft {

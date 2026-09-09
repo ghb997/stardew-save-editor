@@ -18,6 +18,13 @@ struct RenderedSavePair: Sendable {
 enum SaveMutator {
     static func render(parsed: ParsedSaveDocument, draft: SaveDraft) throws -> RenderedSavePair {
         try validate(draft, comparedTo: parsed.draft)
+        if !draft.farmActions.cropWateringKeys.isEmpty || !draft.farmActions.debrisRemovalKeys.isEmpty {
+            let snapshot = FarmSnapshotExtractor.extract(from: parsed.mainRoot, cropCatalog: [])
+            guard draft.farmActions.cropWateringKeys.isSubset(of: Set(snapshot.entities.compactMap(\.wateringKey))),
+                  draft.farmActions.debrisRemovalKeys.isSubset(of: Set(snapshot.entities.compactMap(\.actionKey))) else {
+                throw SaveValidationError.invalid("地图操作包含不存在或不可操作的坐标，请重新选择对象。")
+            }
+        }
 
         let main = parsed.mainRoot.deepCopy()
         guard let player = main.child(named: "player") else {
@@ -45,7 +52,7 @@ enum SaveMutator {
             applyAnimals(draft.animals, original: parsed.draft.animals, to: main)
         }
         if draft.farmhouse.decorations != parsed.draft.farmhouse.decorations {
-            applyFarmhouseDecorations(draft.farmhouse.decorations, to: main)
+            applyFarmhouseDecorations(draft.farmhouse.decorations, original: parsed.draft.farmhouse.decorations, to: main)
         }
         if draft.farmActions.hasChanges {
             applyFarmActions(draft.farmActions, to: main)
@@ -133,6 +140,26 @@ enum SaveMutator {
         if shouldValidate(draft.accessory, originalValue: original?.accessory),
            !(-1...29).contains(draft.accessory) {
             throw SaveValidationError.invalid("饰品编号必须在 -1 到 29 之间。")
+        }
+        if let original {
+            guard Set(draft.appearanceColors.keys) == Set(original.appearanceColors.keys) else {
+                throw SaveValidationError.invalid("不能添加或删除存档中未提供的外观颜色字段。")
+            }
+            guard draft.farmhouse.decorations.count == original.farmhouse.decorations.count,
+                  Set(draft.farmhouse.decorations.map(\.id)).count == draft.farmhouse.decorations.count,
+                  draft.farmhouse.decorations.allSatisfy({ value in
+                      original.farmhouse.decorations.contains {
+                          $0.id == value.id && $0.roomKey == value.roomKey && $0.kind == value.kind && $0.storage == value.storage
+                      }
+                  }), (draft.farmhouse.upgradeLevel == nil) == (original.farmhouse.upgradeLevel == nil) else {
+                throw SaveValidationError.invalid("房屋编辑只能修改存档已有的等级和房间表面。")
+            }
+        }
+        for (field, color) in draft.appearanceColors {
+            let originalAlpha = original?.appearanceColors[field]?.alpha ?? color.alpha
+            guard color.isValid, originalAlpha == color.alpha else {
+                throw SaveValidationError.invalid("\(field.title)的 RGB 必须为 0 到 255，透明度需保持原值。")
+            }
         }
         if let upgradeLevel = draft.farmhouse.upgradeLevel,
            shouldValidate(upgradeLevel, originalValue: original?.farmhouse.upgradeLevel),
@@ -315,6 +342,7 @@ enum SaveMutator {
     }
 
     private static func applyPlayerScalars(_ draft: SaveDraft, original: SaveDraft, to player: XMLNode) {
+        AppearanceColorCodec.apply(draft.appearanceColors, original: original.appearanceColors, to: player)
         if draft.backpackCapacity != original.backpackCapacity, let capacity = draft.backpackCapacity {
             player.setValue(String(capacity), named: "maxItems")
         }
@@ -611,6 +639,7 @@ enum SaveMutator {
 
     private static func applyFarmhouseDecorations(
         _ decorations: [RoomDecorationDraft],
+        original: [RoomDecorationDraft],
         to root: XMLNode
     ) {
         guard let farmhouse = location(in: root, named: "FarmHouse", typeContaining: "farmhouse") else {
@@ -618,6 +647,7 @@ enum SaveMutator {
         }
 
         for decoration in decorations {
+            guard original.first(where: { $0.id == decoration.id })?.styleIndex != decoration.styleIndex else { continue }
             switch decoration.storage {
             case let .scalar(fieldName):
                 farmhouse.setValue(String(decoration.styleIndex), named: fieldName)
@@ -637,18 +667,13 @@ enum SaveMutator {
     private static func applyFarmActions(_ actions: FarmActionDraft, to root: XMLNode) {
         guard let farm = location(in: root, named: "Farm", typeContaining: "farm") else { return }
 
-        if actions.waterAllCrops, let terrain = farm.child(named: "terrainFeatures") {
+        if actions.waterAllCrops || !actions.cropWateringKeys.isEmpty, let terrain = farm.child(named: "terrainFeatures") {
             for item in terrain.children(named: "item") {
                 let value = item.child(named: "value") ?? item
                 let feature = value.children.first ?? value
-                guard let crop = feature.child(named: "crop"),
-                      !isNilNode(crop),
-                      crop.value(named: "dead") != "true",
-                      crop.value(named: "netDead") != "true" else { continue }
-                if !feature.setValue("1", named: "state"),
-                   !feature.setValue("1", named: "netState") {
-                    feature.setValue("1", named: "state", createIfMissing: true)
-                }
+                guard FarmCropRules.state(in: feature) == .dry,
+                      actions.waterAllCrops || cropWateringKey(in: item).map(actions.cropWateringKeys.contains) == true else { continue }
+                if !feature.setValue("1", named: "state") { feature.setValue("1", named: "netState") }
             }
         }
 
@@ -673,6 +698,13 @@ enum SaveMutator {
         let value = item.child(named: "value") ?? item
         let object = value.children.first ?? value
         return FarmDebrisClassifier.kind(in: object)
+    }
+
+    private static func cropWateringKey(in item: XMLNode) -> String? {
+        guard let vector = item.child(named: "key")?.firstDescendant(named: "Vector2"),
+              let x = vector.value(named: "X").flatMap(Double.init), x.isFinite,
+              let y = vector.value(named: "Y").flatMap(Double.init), y.isFinite else { return nil }
+        return FarmActionKey.crop(x: x, y: y)
     }
 
     private static func debrisActionKey(in item: XMLNode, kind: FarmDebrisKind) -> String? {

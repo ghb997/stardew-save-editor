@@ -33,6 +33,11 @@ enum SaveDiffBuilder {
         add("appearance.hair", section: "外观", label: "发型", old: String(original.hair), new: String(draft.hair))
         add("appearance.skin", section: "外观", label: "肤色", old: String(original.skin), new: String(draft.skin))
         add("appearance.accessory", section: "外观", label: "饰品", old: String(original.accessory), new: String(draft.accessory))
+        for field in FarmerColorField.allCases {
+            if let old = original.appearanceColors[field], let value = draft.appearanceColors[field] {
+                add("appearance.color.\(field.rawValue)", section: "外观", label: field.title, old: old.hex, new: value.hex)
+            }
+        }
         add(
             "farmhouse.upgrade",
             section: "房屋",
@@ -148,6 +153,13 @@ enum SaveDiffBuilder {
             into: &result
         )
         let debrisKeys = original.farmActions.debrisRemovalKeys.union(draft.farmActions.debrisRemovalKeys)
+        for key in original.farmActions.cropWateringKeys.union(draft.farmActions.cropWateringKeys).sorted() {
+            let parts = key.split(separator: ":")
+            let coordinate = parts.count == 3 ? "X \(parts[1]) · Y \(parts[2])" : key
+            add("farm.crop.\(key)", section: "农场", label: "作物浇水 · \(coordinate)",
+                old: original.farmActions.cropWateringKeys.contains(key) ? "保存时浇水" : "保持原样",
+                new: draft.farmActions.cropWateringKeys.contains(key) ? "保存时浇水" : "保持原样", syncInfo: false)
+        }
         for key in debrisKeys.sorted() {
             let old = original.farmActions.debrisRemovalKeys.contains(key)
             let new = draft.farmActions.debrisRemovalKeys.contains(key)
@@ -292,6 +304,14 @@ enum SaveDiffBuilder {
         case "appearance.hair": draft.hair = original.hair
         case "appearance.skin": draft.skin = original.skin
         case "appearance.accessory": draft.accessory = original.accessory
+        case let id where id.hasPrefix("appearance.color."):
+            if let field = FarmerColorField(rawValue: String(id.dropFirst("appearance.color.".count))) {
+                draft.appearanceColors[field] = original.appearanceColors[field]
+            }
+        case let id where id.hasPrefix("farm.crop."):
+            let key = String(id.dropFirst("farm.crop.".count))
+            if original.farmActions.cropWateringKeys.contains(key) { draft.farmActions.cropWateringKeys.insert(key) }
+            else { draft.farmActions.cropWateringKeys.remove(key) }
         case "inventory.capacity": draft.restoreBackpackCapacity(from: original)
         case "farmhouse.upgrade": draft.farmhouse.upgradeLevel = original.farmhouse.upgradeLevel
         case "date.year": draft.year = original.year

@@ -3,6 +3,8 @@ import SwiftUI
 struct FarmhouseEditorView: View {
     @Bindable var session: SaveSession
     @State private var selectedDecorationID: String?
+    @State private var roomQuery = ""
+    @State private var batchRequest: RoomStyleBatchRequest?
 
     var body: some View {
         NavigationStack {
@@ -25,7 +27,7 @@ struct FarmhouseEditorView: View {
                         VStack(alignment: .leading, spacing: 3) {
                             Text("农舍与房间")
                                 .font(.title3.bold())
-                            Text("点选蓝图房间，再选择墙纸或地板")
+                            Text("选择房间，对照墙纸与地板的变化")
                                 .font(.caption)
                         }
                         .foregroundStyle(.white)
@@ -40,6 +42,9 @@ struct FarmhouseEditorView: View {
                 if session.draft.farmhouse.upgradeLevel != nil {
                     Section {
                         Picker("农舍等级", selection: upgradeLevelBinding) {
+                            if !(0...3).contains(upgradeLevelBinding.wrappedValue) {
+                                Text("现有等级 \(upgradeLevelBinding.wrappedValue)").tag(upgradeLevelBinding.wrappedValue)
+                            }
                             ForEach(0...3, id: \.self) { level in
                                 Text(levelName(level)).tag(level)
                             }
@@ -78,17 +83,21 @@ struct FarmhouseEditorView: View {
                     }
                 } else {
                     Section {
+                        TextField("搜索房间名称或键", text: $roomQuery)
+                            .autocorrectionDisabled()
+                            .accessibilityIdentifier("editor.house.roomSearch")
+                        Text("\(Set(visibleDecorations.map(\.roomKey)).count) 个房间 · \(visibleDecorations.count) 个表面")
+                            .font(.caption).foregroundStyle(.secondary)
                         FarmhouseBlueprint(
-                            decorations: session.draft.farmhouse.decorations,
+                            decorations: visibleDecorations,
                             selectedDecorationID: $selectedDecorationID
                         )
-                        .frame(height: blueprintHeight)
                         .listRowInsets(EdgeInsets())
                         .listRowBackground(Color.clear)
                     } header: {
-                        Text("互动房间蓝图")
+                        Text("房间与表面")
                     } footer: {
-                        Text("蓝图按存档中的房间键生成；点任一房间即可编辑该房间已有的表面字段。")
+                        Text("按存档中的房间分类展示；点选后编辑已有的墙纸或地板。")
                     }
 
                     if let index = selectedDecorationIndex {
@@ -96,9 +105,35 @@ struct FarmhouseEditorView: View {
                         Section {
                             roomSurfaceSelector(for: decoration)
 
-                            RoomSurfacePreview(decoration: decoration)
+                            HStack(alignment: .top) {
+                                if let old = session.originalDraft.farmhouse.decorations.first(where: { $0.id == decoration.id }) {
+                                    VStack { Text("原始").font(.caption); RoomSurfacePreview(decoration: old) }
+                                }
+                                VStack { Text("当前草稿").font(.caption); RoomSurfacePreview(decoration: decoration) }
+                            }
+
+                            LabeledContent("直接输入编号") {
+                                TextField("样式编号", value: decorationBinding(index), format: .number.grouping(.never))
+                                    .keyboardType(.numberPad)
+                                    .multilineTextAlignment(.trailing)
+                                    .accessibilityIdentifier("editor.house.style.number")
+                            }
 
                             standardStylePicker(for: index)
+
+                            Button("套用到当前筛选房间", systemImage: "square.on.square") {
+                                let rooms = Set(visibleDecorations.map(\.roomKey))
+                                batchRequest = RoomStyleBatchRequest(source: decoration,
+                                    targets: RoomStyleRules.targets(in: session.draft.farmhouse, source: decoration, rooms: rooms))
+                            }
+                            .disabled(RoomStyleRules.targets(in: session.draft.farmhouse, source: decoration,
+                                rooms: Set(visibleDecorations.map(\.roomKey))).isEmpty)
+                            .accessibilityIdentifier("editor.house.style.batch")
+
+                            Button("恢复本房间的墙纸与地板") {
+                                session.draft.farmhouse.restoreRoom(decoration.roomKey, from: session.originalDraft.farmhouse)
+                            }
+                            .accessibilityIdentifier("editor.house.restoreRoom")
 
                             Stepper(
                                 "精确样式编号：\(decoration.styleIndex)",
@@ -122,7 +157,7 @@ struct FarmhouseEditorView: View {
                         } header: {
                             Text("\(decoration.localizedRoomName) · \(decoration.kind.displayName)")
                         } footer: {
-                            Text("标准色板用于快速选编号；高编号模组样式仍可用精确编号调整。示意颜色不替代游戏实际贴图。")
+                            Text("样式库使用已有游戏贴图；扩展样式可直接输入编号。批量套用会先展示房间和变化值。")
                         }
                     }
                 }
@@ -134,6 +169,7 @@ struct FarmhouseEditorView: View {
                         Button("撤销全部房屋修改", systemImage: "arrow.uturn.backward") {
                             session.draft.farmhouse = session.originalDraft.farmhouse
                         }
+                        .accessibilityIdentifier("editor.house.restoreAll")
                     }
                 }
 
@@ -144,15 +180,17 @@ struct FarmhouseEditorView: View {
             }
             .navigationTitle("房屋与房间")
             .onAppear(perform: ensureSelection)
+            .onChange(of: roomQuery) { _, _ in ensureSelection() }
             .onChange(of: session.draft.farmhouse.decorations.map(\.id)) { _, _ in
                 ensureSelection()
             }
         }
+        .sheet(item: $batchRequest) { request in RoomStyleBatchPreview(session: session, request: request) }
     }
 
-    private var blueprintHeight: CGFloat {
-        let rooms = Set(session.draft.farmhouse.decorations.map(\.roomKey)).count
-        return CGFloat(max(1, (rooms + 1) / 2)) * 116 + 18
+    private var visibleDecorations: [RoomDecorationDraft] {
+        let keys = Set(RoomStyleRules.matchingRooms(in: session.draft.farmhouse, query: roomQuery))
+        return session.draft.farmhouse.decorations.filter { keys.contains($0.roomKey) }
     }
 
     private var selectedDecorationIndex: Int? {
@@ -161,8 +199,8 @@ struct FarmhouseEditorView: View {
     }
 
     private func ensureSelection() {
-        if selectedDecorationIndex == nil {
-            selectedDecorationID = session.draft.farmhouse.decorations.first?.id
+        if !visibleDecorations.contains(where: { $0.id == selectedDecorationID }) {
+            selectedDecorationID = visibleDecorations.first?.id
         }
     }
 
@@ -176,6 +214,7 @@ struct FarmhouseEditorView: View {
                 }
             }
             .pickerStyle(.segmented)
+            .accessibilityIdentifier("editor.house.surface")
         } else {
             GameLabel(
                 decoration.kind.displayName,
@@ -192,41 +231,12 @@ struct FarmhouseEditorView: View {
     }
 
     private func standardStylePicker(for index: Int) -> some View {
-        let decoration = session.draft.farmhouse.decorations[index]
-        let styles = decoration.kind == .wallpaper ? Array(0...111) : Array(0...55)
-        let rows = Array(repeating: GridItem(.fixed(46), spacing: 8), count: 4)
-
-        return VStack(alignment: .leading, spacing: 9) {
-            HStack {
-                Text("标准样式库")
-                    .font(.subheadline.bold())
-                Spacer()
-                Text("\(styles.count) 款")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
-
-            ScrollView(.horizontal) {
-                LazyHGrid(rows: rows, spacing: 8) {
-                    ForEach(styles, id: \.self) { style in
-                        Button {
-                            session.draft.farmhouse.decorations[index].styleIndex = style
-                        } label: {
-                            RoomStyleSwatch(
-                                style: style,
-                                kind: decoration.kind,
-                                isSelected: decoration.styleIndex == style
-                            )
-                        }
-                        .buttonStyle(.plain)
-                        .accessibilityLabel("\(decoration.kind.displayName)样式 \(style)")
-                    }
-                }
-                .padding(.vertical, 3)
-            }
-            .scrollIndicators(.visible)
-            .frame(height: 208)
+        NavigationLink {
+            RoomStyleLibrary(session: session, decorationID: session.draft.farmhouse.decorations[index].id)
+        } label: {
+            Label("浏览标准样式库", systemImage: "square.grid.3x3")
         }
+        .accessibilityIdentifier("editor.house.styles")
     }
 
     private var upgradeLevelBinding: Binding<Int> {
@@ -239,7 +249,7 @@ struct FarmhouseEditorView: View {
     private func decorationBinding(_ index: Int) -> Binding<Int> {
         Binding(
             get: { session.draft.farmhouse.decorations[index].styleIndex },
-            set: { session.draft.farmhouse.decorations[index].styleIndex = $0 }
+            set: { session.draft.farmhouse.decorations[index].styleIndex = max(0, min(9_999, $0)) }
         )
     }
 
@@ -258,7 +268,8 @@ struct FarmhouseEditorView: View {
         case 0: "0 级·基础农舍"
         case 1: "1 级·厨房"
         case 2: "2 级·额外房间"
-        default: "3 级·地窖"
+        case 3: "3 级·地窖"
+        default: "现有等级 \(level)"
         }
     }
 
@@ -267,7 +278,8 @@ struct FarmhouseEditorView: View {
         case 0: "单间基础布局"
         case 1: "增加厨房"
         case 2: "增加额外房间"
-        default: "解锁地窖区域"
+        case 3: "解锁地窖区域"
+        default: "扩展等级，布局由游戏或模组决定"
         }
     }
 }
@@ -316,7 +328,7 @@ private struct FarmhouseBlueprint: View {
     }
 }
 
-private struct RoomStyleSwatch: View {
+struct RoomStyleSwatch: View {
     let style: Int
     let kind: RoomDecorationKind
     let isSelected: Bool

@@ -40,12 +40,13 @@ enum FarmDebrisKind: String, Hashable, Sendable {
 }
 
 enum FarmActionKey {
+    static func crop(x: Double, y: Double) -> String { "crop:\(coordinate(x)):\(coordinate(y))" }
     static func debris(kind: FarmDebrisKind, x: Double, y: Double) -> String {
         "debris:\(kind.rawValue):\(coordinate(x)):\(coordinate(y))"
     }
 
     private static func coordinate(_ value: Double) -> String {
-        value.rounded() == value ? String(Int(value)) : String(value)
+        value.rounded() == value ? String(format: "%.0f", value) : String(value)
     }
 }
 
@@ -97,6 +98,26 @@ struct FarmEntity: Identifiable, Hashable, Sendable {
     let tileY: Double?
     let state: FarmEntityState?
     let actionKey: String?
+
+    var wateringKey: String? {
+        guard kind == .crop, state == .dry, let tileX, let tileY, tileX.isFinite, tileY.isFinite else { return nil }
+        return FarmActionKey.crop(x: tileX, y: tileY)
+    }
+}
+
+enum FarmCropRules {
+    static func state(in feature: XMLNode) -> FarmEntityState? {
+        let type = feature.attributes["xsi:type"] ?? feature.attributes["type"] ?? feature.name
+        guard type == "HoeDirt", feature.children(named: "crop").count == 1,
+              !["true", "1"].contains(feature.attributes["xsi:nil"] ?? feature.attributes["nil"] ?? ""),
+              let crop = feature.child(named: "crop"), !crop.children.isEmpty,
+              !["true", "1"].contains(crop.attributes["xsi:nil"] ?? crop.attributes["nil"] ?? "") else { return nil }
+        if ["dead", "netDead"].contains(where: { ["true", "1"].contains(crop.value(named: $0) ?? "") }) { return .dead }
+        let field = feature.child(named: "state") ?? feature.child(named: "netState")
+        guard let field, feature.children(named: field.name).count == 1 else { return nil }
+        guard let raw = AppearanceColorCodec.scalar(field), let state = Int(raw), state >= 0 else { return nil }
+        return state == 0 ? .dry : .watered
+    }
 }
 
 struct FarmSnapshot: Sendable {
@@ -140,6 +161,7 @@ struct FarmSnapshot: Sendable {
 
     func affectedEntities(by actions: FarmActionDraft) -> [FarmEntity] {
         entities.filter { entity in
+            if let key = entity.wateringKey, actions.cropWateringKeys.contains(key) { return true }
             if let key = entity.actionKey, actions.debrisRemovalKeys.contains(key) { return true }
             return switch entity.state {
             case .dry: actions.waterAllCrops
@@ -266,21 +288,20 @@ enum FarmSnapshotExtractor {
                     let definition = cropsBySeedID[seedID]
                     let label = definition?.chineseName ?? "作物种子 \(seedID)"
                     let phase = firstDirectValue(in: crop, names: ["currentPhase", "phaseToShow"])
-                    let isDead = crop.value(named: "dead") == "true"
-                        || crop.value(named: "netDead") == "true"
-                    let soilState = feature.int(named: "state") ?? feature.int(named: "netState") ?? 0
+                    let state = FarmCropRules.state(in: feature)
                     let detail = [
                         "种子 \(seedID)",
                         phase.map { "阶段 \($0)" },
-                        soilState > 0 ? "已浇水" : "未浇水",
-                        isDead ? "已枯萎" : nil
+                        state == .watered ? "已浇水" : (state == .dry ? "未浇水" : nil),
+                        state == .dead ? "已枯萎" : nil,
+                        state == nil ? "未知浇水状态，只读" : nil
                     ].compactMap { $0 }.joined(separator: " · ")
                     append(
                         kind: .crop,
                         label: label,
                         detail: detail,
                         coordinate: coordinate,
-                        state: isDead ? .dead : (soilState > 0 ? .watered : .dry)
+                        state: state
                     )
                 } else if type.contains("FruitTree") {
                     let treeID = firstDirectValue(in: feature, names: ["treeId", "indexOfFruit"])
@@ -440,7 +461,7 @@ enum FarmSnapshotExtractor {
     ) -> (Double, Double)? {
         let x = xNames.lazy.compactMap { node.value(named: $0).flatMap(Double.init) }.first
         let y = yNames.lazy.compactMap { node.value(named: $0).flatMap(Double.init) }.first
-        guard let x, let y else { return nil }
+        guard let x, let y, x.isFinite, y.isFinite else { return nil }
         return (x, y)
     }
 

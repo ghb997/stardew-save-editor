@@ -188,6 +188,118 @@ final class TrackerSmokeUITests: XCTestCase {
     }
 
     @MainActor
+    func testAppearanceColorsSupportPresetHexAndRestore() throws {
+        let app = try launchEditor("appearance")
+        defer { app.terminate() }
+        let colors = app.buttons["editor.appearance.colors"]
+        try revealEditorControl(colors, app: app)
+        try tap(colors, app: app)
+        let preset = app.buttons["editor.appearance.color.preset.604020"]
+        try revealEditorControl(preset, app: app)
+        try tap(preset, app: app)
+        let current = app.staticTexts["editor.appearance.color.current"]
+        try wait(current, predicate: NSPredicate(format: "label == %@", "#604020"), app: app)
+        let hex = app.textFields["editor.appearance.color.hex"]
+        try revealEditorControl(hex, app: app)
+        try replaceText(hex, with: "123456\n", app: app)
+        try wait(current, predicate: NSPredicate(format: "label == %@", "#123456"), app: app)
+        attachScreenshot("editor-appearance-color-hex", app: app)
+        let restore = app.buttons["editor.appearance.color.restore"]
+        try revealEditorControl(restore, app: app)
+        try tap(restore, app: app)
+        try wait(current, predicate: NSPredicate(format: "label == %@", "#B77C43"), app: app)
+        try check(!restore.isEnabled, "Restored hair color must have no remaining color change", app: app)
+    }
+
+    @MainActor
+    func testRoomStyleLibraryBatchPreviewAndRoomRestore() throws {
+        let app = try launchEditor("farmhouse")
+        defer { app.terminate() }
+        let number = app.textFields["editor.house.style.number"]
+        try revealEditorControl(number, app: app)
+        let initialStyle = try XCTUnwrap(number.value as? String)
+        let library = app.buttons["editor.house.styles"]
+        try revealEditorControl(library, app: app)
+        try tap(library, app: app)
+        let search = app.searchFields.firstMatch
+        try tap(search, app: app)
+        search.typeText("5\n")
+        let style = app.buttons["editor.house.style.5"]
+        try revealEditorControl(style, app: app)
+        try tap(style, app: app)
+        try wait(app.staticTexts["editor.house.style.current"],
+                 predicate: NSPredicate(format: "label ENDSWITH %@", "#5"), app: app)
+        attachScreenshot("editor-room-style-library", app: app)
+        try tap(app.navigationBars["样式库"].buttons["完成"], app: app)
+        let batch = app.buttons["editor.house.style.batch"]
+        try revealEditorControl(batch, app: app)
+        try tap(batch, app: app)
+        try wait(app.staticTexts["editor.house.batch.count"],
+                 predicate: NSPredicate(format: "label == %@", "将修改 4 个房间"), app: app)
+        attachScreenshot("editor-room-style-batch-preview", app: app)
+        try tap(app.navigationBars["批量套用样式"].buttons["取消"], app: app)
+        try tap(batch, app: app)
+        let apply = app.buttons["editor.house.batch.apply"]
+        try revealEditorControl(apply, app: app)
+        try tap(apply, app: app)
+        try wait(apply, predicate: NSPredicate(format: "exists == false"), app: app)
+        let restore = app.buttons["editor.house.restoreRoom"]
+        try revealEditorControl(restore, app: app)
+        try tap(restore, app: app)
+        try revealEditorControl(number, app: app)
+        try wait(number, predicate: NSPredicate(format: "value == %@", initialStyle), app: app)
+        attachScreenshot("editor-room-restored-with-other-drafts", app: app)
+        let restoreAll = app.buttons["editor.house.restoreAll"]
+        try revealEditorControl(restoreAll, app: app)
+        try tap(restoreAll, app: app)
+        try wait(restoreAll, predicate: NSPredicate(format: "exists == false"), app: app)
+    }
+
+    @MainActor
+    func testMapScopedWaterPreviewPendingLocateAndUndo() throws {
+        let app = try launchEditor("map")
+        defer { app.terminate() }
+        try tap(app.buttons["editor.map.objects"], app: app)
+        let search = app.searchFields.firstMatch
+        try tap(search, app: app)
+        search.typeText("X 14\n")
+        let water = app.buttons["editor.map.batch.water"]
+        try revealEditorControl(water, app: app)
+        try tap(water, app: app)
+        try wait(app.staticTexts["editor.map.preview.count"],
+                 predicate: NSPredicate(format: "label == %@", "将浇水 1 个对象"), app: app)
+        attachScreenshot("editor-map-scoped-water-preview", app: app)
+        try tap(app.navigationBars["浇水预览"].buttons["取消"], app: app)
+        try tap(water, app: app)
+        let apply = app.buttons["editor.map.preview.apply"]
+        try tap(apply, app: app)
+        try wait(apply, predicate: NSPredicate(format: "exists == false"), app: app)
+        let scope = app.segmentedControls["editor.map.scope"]
+        try revealEditorControl(scope, app: app)
+        try tap(scope.buttons["待处理"], app: app)
+        try wait(app.staticTexts["editor.map.matchCount"],
+                 predicate: NSPredicate(format: "label == %@", "匹配 1 个 · 全图待处理 1 个"), app: app)
+        attachScreenshot("editor-map-pending-search", app: app)
+        let locate = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", "editor.map.locate.")).firstMatch
+        try revealEditorControl(locate, app: app)
+        try tap(locate, app: app)
+        try wait(app.navigationBars["地图对象"], predicate: NSPredicate(format: "exists == false"), app: app)
+        let action = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", "editor.map.entity.action.")).firstMatch
+        try revealEditorControl(action, app: app)
+        try check(action.label.contains("撤销"), "Located pending crop must offer undo on the map", app: app)
+        attachScreenshot("editor-map-located-crop", app: app)
+        try tap(action, app: app)
+        try wait(action, predicate: NSPredicate(format: "label CONTAINS %@", "给此作物浇水"), app: app)
+    }
+
+    @MainActor
+    private func replaceText(_ element: XCUIElement, with text: String, app: XCUIApplication) throws {
+        try tap(element, app: app)
+        let old = element.value as? String ?? ""
+        element.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: old.count) + text)
+    }
+
+    @MainActor
     private func launchEditor(_ section: String) throws -> XCUIApplication {
         let app = XCUIApplication()
         app.launchArguments = ["--ui-tab", "tools", "--ui-demo", "-AppleLanguages", "(zh-Hans)", "-AppleLocale", "zh_CN"]

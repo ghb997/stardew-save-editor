@@ -46,6 +46,12 @@ struct AppearanceEditorView: View {
                             Text(gender.displayName).tag(gender)
                         }
                     }
+                    NavigationLink {
+                        AppearanceColorsEditor(session: session)
+                    } label: {
+                        Label("发色、眼睛与裤子颜色", systemImage: "paintpalette")
+                    }
+                    .accessibilityIdentifier("editor.appearance.colors")
                 }
 
                 Section {
@@ -55,6 +61,18 @@ struct AppearanceEditorView: View {
                         }
                     }
                     .pickerStyle(.segmented)
+                    .accessibilityIdentifier("editor.appearance.category")
+
+                    LabeledContent("直接输入编号") {
+                        TextField("编号", value: selectedAppearanceBinding, format: .number.grouping(.never))
+                            .keyboardType(.numberPad)
+                            .multilineTextAlignment(.trailing)
+                            .accessibilityIdentifier("editor.appearance.number")
+                    }
+
+                    Button("恢复此项") { setAppearanceValue(originalAppearanceValue) }
+                        .disabled(selectedAppearanceValue == originalAppearanceValue)
+                        .accessibilityIdentifier("editor.appearance.restoreSelected")
 
                     appearanceChoiceGrid
 
@@ -76,6 +94,7 @@ struct AppearanceEditorView: View {
                             session.draft.hair = session.originalDraft.hair
                             session.draft.skin = session.originalDraft.skin
                             session.draft.accessory = session.originalDraft.accessory
+                            session.draft.appearanceColors = session.originalDraft.appearanceColors
                         }
                     }
                 }
@@ -101,6 +120,14 @@ struct AppearanceEditorView: View {
             get: { selectedAppearanceValue },
             set: { setAppearanceValue($0) }
         )
+    }
+
+    private var originalAppearanceValue: Int {
+        switch appearanceCategory {
+        case .hair: session.originalDraft.hair
+        case .skin: session.originalDraft.skin
+        case .accessory: session.originalDraft.accessory
+        }
     }
 
     private var appearanceChoiceGrid: some View {
@@ -151,9 +178,11 @@ struct AppearanceEditorView: View {
             || session.draft.hair != session.originalDraft.hair
             || session.draft.skin != session.originalDraft.skin
             || session.draft.accessory != session.originalDraft.accessory
+            || session.draft.appearanceColors != session.originalDraft.appearanceColors
     }
 
     private func setAppearanceValue(_ value: Int) {
+        let value = min(appearanceCategory.range.upperBound, max(appearanceCategory.range.lowerBound, value))
         switch appearanceCategory {
         case .hair: session.draft.hair = value
         case .skin: session.draft.skin = value

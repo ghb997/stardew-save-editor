@@ -32,6 +32,9 @@ enum DebugDemoSave {
         <name>小麦</name><farmName>春风农场</farmName><favoriteThing>桂花茶</favoriteThing>
         <money>28640</money><maxHealth>115</maxHealth><maxStamina>338</maxStamina>
         <Gender>Female</Gender><gender>Female</gender><hair>18</hair><skin>2</skin><accessory>4</accessory>
+        <hairstyleColor><R>183</R><G>124</G><B>67</B><A>255</A></hairstyleColor>
+        <eyeColor><R>66</R><G>132</G><B>123</B><A>255</A></eyeColor>
+        <pantsColor><R>83</R><G>100</G><B>163</B><A>255</A></pantsColor>
         <houseUpgradeLevel>2</houseUpgradeLevel>
         <qiGems>18</qiGems><clubCoins>760</clubCoins><totalMoneyEarned>428500</totalMoneyEarned>
         <deepestMineLevel>96</deepestMineLevel>

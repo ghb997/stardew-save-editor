@@ -21,11 +21,13 @@ struct FarmMapAnalysisView: View {
 
     var body: some View {
         NavigationStack {
+            ScrollViewReader { scrollProxy in
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
                     heroCard
                     magicActionsCard
                     coordinateCard
+                        .id("map.coordinate")
                     Button("按坐标查看与选择全部对象", systemImage: "list.bullet.rectangle") {
                         showingEntityList = true
                     }
@@ -52,10 +54,20 @@ struct FarmMapAnalysisView: View {
                 .frame(maxWidth: 760)
                 .frame(maxWidth: .infinity)
             }
+            .onChange(of: selectedEntityID) { _, selected in
+                if selected != nil {
+                    withAnimation { scrollProxy.scrollTo("map.coordinate", anchor: .top) }
+                }
+            }
+            }
             .background(Color(.systemGroupedBackground))
             .navigationTitle("魔法地图")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("搜索与范围", systemImage: "magnifyingglass") { showingEntityList = true }
+                        .accessibilityIdentifier("editor.map.objects")
+                }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("完成") { dismiss() }
                 }
@@ -65,7 +77,10 @@ struct FarmMapAnalysisView: View {
             ExpandedFarmMapView(snapshot: snapshot, actions: $session.draft.farmActions)
         }
         .sheet(isPresented: $showingEntityList) {
-            FarmEntityListView(snapshot: snapshot, actions: $session.draft.farmActions)
+            FarmEntityListView(snapshot: snapshot, actions: $session.draft.farmActions) { entity in
+                visibleKinds.insert(entity.kind)
+                selectedEntityID = entity.id
+            }
         }
         .safeAreaInset(edge: .bottom) {
             DraftReviewBar(session: session) { showingReview = true }
@@ -376,7 +391,7 @@ struct FarmMapAnalysisView: View {
     }
 
     private func coordinateComponent(_ value: Double) -> String {
-        if value.rounded() == value { return Int(value).formatted() }
+        if value.rounded() == value { return String(format: "%.0f", value) }
         return value.formatted(.number.precision(.fractionLength(0...2)))
     }
 
@@ -391,7 +406,7 @@ struct FarmMapAnalysisView: View {
         let bulkCount = [actions.waterAllCrops, actions.clearStones, actions.clearWeeds, actions.clearTwigs]
             .filter { $0 }
             .count
-        return bulkCount + (actions.debrisRemovalKeys.isEmpty ? 0 : 1)
+        return bulkCount + (actions.debrisRemovalKeys.isEmpty ? 0 : 1) + (actions.cropWateringKeys.isEmpty ? 0 : 1)
     }
 
     private var selectedActionSummary: some View {
@@ -510,44 +525,10 @@ struct FarmMapAnalysisView: View {
                     .foregroundStyle(.secondary)
             }
 
-            if let key = entity.actionKey {
-                let selected = session.draft.farmActions.debrisRemovalKeys.contains(key)
-                Button {
-                    if selected {
-                        session.draft.farmActions.debrisRemovalKeys.remove(key)
-                    } else {
-                        session.draft.farmActions.debrisRemovalKeys.insert(key)
-                    }
-                } label: {
-                    GameLabel(selected ? "取消单项清理" : "标记清理这个对象", systemImage: selected ? "arrow.uturn.backward" : "trash")
-                        .frame(maxWidth: .infinity)
-                }
-                .buttonStyle(.borderedProminent)
-                .tint(selected ? .gray : .red)
-                .disabled(isCoveredByBulkAction(entity))
-
-                if isCoveredByBulkAction(entity) {
-                    Text("这个对象已包含在当前批量清理草稿中。")
-                        .font(.caption2)
-                        .foregroundStyle(.orange)
-                }
-            } else {
-                GameLabel("此对象仅供查看，不提供单项删除", systemImage: "lock.shield")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
+            FarmEntityActionButton(entity: entity, actions: $session.draft.farmActions)
         }
         .padding(14)
         .background(Color.primary.opacity(0.045), in: RoundedRectangle(cornerRadius: 15))
-    }
-
-    private func isCoveredByBulkAction(_ entity: FarmEntity) -> Bool {
-        switch entity.state {
-        case .stone: session.draft.farmActions.clearStones
-        case .weed: session.draft.farmActions.clearWeeds
-        case .twig: session.draft.farmActions.clearTwigs
-        default: false
-        }
     }
 
     private func actionCountText(_ count: Int, unit: String) -> String {
@@ -619,6 +600,15 @@ struct FarmCoordinateCanvas: View {
     let selectedEntityID: String?
     let onSelect: ((FarmEntity) -> Void)?
 
+    private var displayedEntities: [FarmEntity] {
+        var entities = snapshot.visiblePositionedEntities(after: actions)
+        if let selected = snapshot.positionedEntities.first(where: { $0.id == selectedEntityID }),
+           !entities.contains(where: { $0.id == selected.id }) {
+            entities.append(selected)
+        }
+        return entities.filter { visibleKinds.contains($0.kind) }
+    }
+
     init(
         snapshot: FarmSnapshot,
         actions: FarmActionDraft = FarmActionDraft(),
@@ -656,7 +646,8 @@ struct FarmCoordinateCanvas: View {
         }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("农场坐标分布图")
-        .accessibilityValue("显示 \(snapshot.visiblePositionedEntities(after: actions).count) 个实体")
+        .accessibilityValue("显示 \(displayedEntities.count) 个实体")
+        .accessibilityIdentifier("editor.map.canvas")
     }
 
     private func drawTerrain(context: GraphicsContext, size: CGSize) {
@@ -682,8 +673,7 @@ struct FarmCoordinateCanvas: View {
 
     private func drawEntities(context: GraphicsContext, size: CGSize) {
         let allPoints = snapshot.positionedEntities
-        let points = snapshot.visiblePositionedEntities(after: actions)
-            .filter { visibleKinds.contains($0.kind) }
+        let points = displayedEntities
         guard !points.isEmpty else {
             let text = Text("没有可绘制的实体坐标").font(.callout).foregroundStyle(.secondary)
             context.draw(text, at: CGPoint(x: size.width / 2, y: size.height / 2))
@@ -705,7 +695,7 @@ struct FarmCoordinateCanvas: View {
             if let sprite = GameArtwork.farmEntityImage(entity) ?? GameArtwork.uiImage(systemName: "questionmark") {
                 context.draw(Image(uiImage: sprite).interpolation(.none), in: pointRect)
             }
-            if entity.kind == .crop, entity.state == .dry, actions.waterAllCrops {
+            if entity.wateringKey != nil, actions.affects(entity) {
                 context.stroke(Path(pointRect.insetBy(dx: -1, dy: -1)), with: .color(.blue), lineWidth: 1)
             }
             if entity.id == selectedEntityID {
@@ -721,8 +711,7 @@ struct FarmCoordinateCanvas: View {
 
     private func nearestEntity(to location: CGPoint, size: CGSize) -> FarmEntity? {
         guard onSelect != nil, let transform = coordinateTransform(size: size) else { return nil }
-        let points = snapshot.visiblePositionedEntities(after: actions)
-            .filter { visibleKinds.contains($0.kind) }
+        let points = displayedEntities
             .compactMap { entity -> (FarmEntity, CGFloat)? in
                 guard let point = transform.point(for: entity) else { return nil }
                 return (entity, hypot(point.x - location.x, point.y - location.y))
@@ -801,6 +790,7 @@ struct ExpandedFarmMapView: View {
     @Binding var actions: FarmActionDraft
     @Environment(\.dismiss) private var dismiss
     @State private var zoom: CGFloat = 1
+    @GestureState private var pinch: CGFloat = 1
     @State private var selectedEntityID: String?
     @State private var visibleKinds = Set(FarmEntityKind.allCases)
     @State private var showingEntityList = false
@@ -819,6 +809,7 @@ struct ExpandedFarmMapView: View {
         NavigationStack {
             GeometryReader { proxy in
                 let baseWidth = max(320, proxy.size.width - 32)
+                let effectiveZoom = min(4, max(1, zoom * pinch))
 
                 ScrollView([.horizontal, .vertical]) {
                     FarmCoordinateCanvas(
@@ -829,9 +820,14 @@ struct ExpandedFarmMapView: View {
                     ) { entity in
                         selectedEntityID = entity.id
                     }
-                        .frame(width: baseWidth * zoom, height: baseWidth * zoom / 1.28)
+                        .frame(width: baseWidth * effectiveZoom, height: baseWidth * effectiveZoom / 1.28)
                         .padding(16)
                 }
+                .simultaneousGesture(
+                    MagnifyGesture()
+                        .updating($pinch) { value, state, _ in state = value.magnification }
+                        .onEnded { value in zoom = min(4, max(1, zoom * value.magnification)) }
+                )
                 .background(Color(.systemGroupedBackground))
             }
             .navigationTitle("农场坐标大图")
@@ -854,12 +850,14 @@ struct ExpandedFarmMapView: View {
 
                     HStack(spacing: 14) {
                         GameIcon(systemName: "minus.magnifyingglass")
-                        Slider(value: $zoom, in: 1...3, step: 0.25)
+                        Slider(value: $zoom, in: 1...4, step: 0.25)
                             .accessibilityLabel("地图缩放")
                         GameIcon(systemName: "plus.magnifyingglass")
                         Text("\(zoom, format: .number.precision(.fractionLength(0...2)))×")
                             .font(.caption.monospacedDigit())
                             .frame(width: 38, alignment: .trailing)
+                        Button("复位") { zoom = 1 }
+                            .font(.caption)
                     }
                 }
                 .padding(.horizontal, 18)
@@ -868,7 +866,11 @@ struct ExpandedFarmMapView: View {
             }
         }
         .sheet(isPresented: $showingEntityList) {
-            FarmEntityListView(snapshot: snapshot, actions: $actions)
+            FarmEntityListView(snapshot: snapshot, actions: $actions) { entity in
+                visibleKinds.insert(entity.kind)
+                zoom = 1
+                selectedEntityID = entity.id
+            }
         }
     }
 
@@ -920,24 +922,7 @@ struct ExpandedFarmMapView: View {
             }
             Spacer(minLength: 4)
 
-            if let key = entity.actionKey {
-                let selected = actions.debrisRemovalKeys.contains(key)
-                Button(selected ? "撤销" : "清理", systemImage: selected ? "arrow.uturn.backward" : "trash") {
-                    if selected {
-                        actions.debrisRemovalKeys.remove(key)
-                    } else {
-                        actions.debrisRemovalKeys.insert(key)
-                    }
-                }
-                .font(.caption.bold())
-                .buttonStyle(.borderedProminent)
-                .tint(selected ? .gray : .red)
-                .disabled(isCoveredByBulkAction(entity))
-            } else {
-                GameLabel("只读", systemImage: "lock.fill")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
+            FarmEntityActionButton(entity: entity, actions: $actions)
 
             Button("关闭", systemImage: "xmark") {
                 selectedEntityID = nil
@@ -957,18 +942,10 @@ struct ExpandedFarmMapView: View {
 
     private func coordinateComponent(_ value: Double) -> String {
         value.rounded() == value
-            ? Int(value).formatted()
+            ? String(format: "%.0f", value)
             : value.formatted(.number.precision(.fractionLength(0...2)))
     }
 
-    private func isCoveredByBulkAction(_ entity: FarmEntity) -> Bool {
-        switch entity.state {
-        case .stone: actions.clearStones
-        case .weed: actions.clearWeeds
-        case .twig: actions.clearTwigs
-        default: false
-        }
-    }
 }
 
 private struct FarmMetricCard: View {

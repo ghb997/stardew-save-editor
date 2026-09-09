@@ -74,6 +74,12 @@
 		AE16FF0007954354FC96EF9A /* TransactionRegressionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F666C112F70FABC42B14F171 /* TransactionRegressionTests.swift */; };
 		B4619351F3B7502410BD540B /* EditorConveniences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5C48017EAC6B37BA8D427A /* EditorConveniences.swift */; };
 		791D7F8EBA45F74FC4D58BC1 /* ReferenceFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9F1264F6A269E988381643 /* ReferenceFeatureTests.swift */; };
+		BFA1743F18C01A6EBCFFD4BA /* AppearanceColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9F5F8D6A5D9676EB730347 /* AppearanceColors.swift */; };
+		3ECECBBE2CA655FC16AA3860 /* FarmMapQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F67F6AC3AF0D3456EC1B66 /* FarmMapQuery.swift */; };
+		EBC51F209A5E90D12EAA4A7C /* RoomStyleRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6641F46CF9F8FAEBF69CA0CE /* RoomStyleRules.swift */; };
+		7972FB87BD9182D5E2E20A3D /* AppearanceColorsEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90FBA48978CA9E4644E6D89 /* AppearanceColorsEditor.swift */; };
+		5148E2BBD54CA70C7D9DCA53 /* RoomStyleLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E63ABA291E62258E7496D /* RoomStyleLibrary.swift */; };
+		2CF618BAE0F9C28AFD0E45B6 /* WorldEditorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1851F82E98C48376EB796F3B /* WorldEditorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +164,12 @@
 		F666C112F70FABC42B14F171 /* TransactionRegressionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditorTests/TransactionRegressionTests.swift"; sourceTree = SOURCE_ROOT; };
 		3A5C48017EAC6B37BA8D427A /* EditorConveniences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Models/EditorConveniences.swift"; sourceTree = SOURCE_ROOT; };
 		DD9F1264F6A269E988381643 /* ReferenceFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditorTests/ReferenceFeatureTests.swift"; sourceTree = SOURCE_ROOT; };
+		4C9F5F8D6A5D9676EB730347 /* AppearanceColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceColors.swift; sourceTree = "<group>"; };
+		E8F67F6AC3AF0D3456EC1B66 /* FarmMapQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmMapQuery.swift; sourceTree = "<group>"; };
+		6641F46CF9F8FAEBF69CA0CE /* RoomStyleRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomStyleRules.swift; sourceTree = "<group>"; };
+		E90FBA48978CA9E4644E6D89 /* AppearanceColorsEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceColorsEditor.swift; sourceTree = "<group>"; };
+		2B5E63ABA291E62258E7496D /* RoomStyleLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomStyleLibrary.swift; sourceTree = "<group>"; };
+		1851F82E98C48376EB796F3B /* WorldEditorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldEditorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -200,6 +212,9 @@
 		0F2A22C2DA08531523DCBB36 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				6641F46CF9F8FAEBF69CA0CE /* RoomStyleRules.swift */,
+				E8F67F6AC3AF0D3456EC1B66 /* FarmMapQuery.swift */,
+				4C9F5F8D6A5D9676EB730347 /* AppearanceColors.swift */,
 				3D1B1BC924769B7D6D5BF902 /* CropPlanner.swift */,
 				B9E2999DB2EB5BBFB70EDA11 /* FarmSnapshot.swift */,
 				3D0C40486BDC5B03981B0A66 /* ItemCatalog.swift */,
@@ -265,6 +280,8 @@
 		6BAC5EFBD4EE3877A08DB185 /* Editor */ = {
 			isa = PBXGroup;
 			children = (
+				2B5E63ABA291E62258E7496D /* RoomStyleLibrary.swift */,
+				E90FBA48978CA9E4644E6D89 /* AppearanceColorsEditor.swift */,
 				7A0A8CF57F67082225B7B955 /* CharacterEditorView.swift */,
 				6385B28689BB1D7925A16D7A /* EditorShellView.swift */,
 				E44D3BDA2BD2C5A1B33AFC58 /* FarmhouseEditorView.swift */,
@@ -318,6 +335,7 @@
 		D5CA3286FD20ABA40A3A831D /* PelicanSaveEditorTests */ = {
 			isa = PBXGroup;
 			children = (
+				1851F82E98C48376EB796F3B /* WorldEditorTests.swift */,
 				2DD401330E4ABE133875B7E3 /* SaveCoreTests.swift */,
 				26115F3A720144889AA30004 /* TrackerMetricsTests.swift */,
 			);
@@ -488,6 +506,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CF618BAE0F9C28AFD0E45B6 /* WorldEditorTests.swift in Sources */,
 				791D7F8EBA45F74FC4D58BC1 /* ReferenceFeatureTests.swift in Sources */,
 				AE16FF0007954354FC96EF9A /* TransactionRegressionTests.swift in Sources */,
 				8741A72CECCFE68FB7B16EEF /* GameLogicRegressionTests.swift in Sources */,
@@ -500,6 +519,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFA1743F18C01A6EBCFFD4BA /* AppearanceColors.swift in Sources */,
+				3ECECBBE2CA655FC16AA3860 /* FarmMapQuery.swift in Sources */,
+				EBC51F209A5E90D12EAA4A7C /* RoomStyleRules.swift in Sources */,
+				7972FB87BD9182D5E2E20A3D /* AppearanceColorsEditor.swift in Sources */,
+				5148E2BBD54CA70C7D9DCA53 /* RoomStyleLibrary.swift in Sources */,
 				B4619351F3B7502410BD540B /* EditorConveniences.swift in Sources */,
 				9AD7B1CE77A286F689D2556F /* FarmEntityListView.swift in Sources */,
 				34D0DAD272AEF1BC30A7645C /* TrackerView.swift in Sources */,
@@ -606,7 +630,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -627,7 +651,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.4.0;
+				MARKETING_VERSION = 0.5.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -676,7 +700,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -691,7 +715,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.4.0;
+				MARKETING_VERSION = 0.5.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
