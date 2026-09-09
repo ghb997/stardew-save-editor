@@ -1,0 +1,126 @@
+name: Verify Tracker native UI
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'codex/tracker-ui-*'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tracker-ui-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify-tracker:
+    name: Debug simulator tests and Tracker screenshots
+    runs-on: macos-15
+    timeout-minutes: 50
+    env:
+      VALIDATION_OUTPUT_DIR: ${{ github.workspace }}/artifacts/tracker-verification/tests
+      TRACKER_UI_OUTPUT_DIR: ${{ github.workspace }}/artifacts/tracker-verification/screenshots
+      CAPTURE_WAIT_SECONDS: '8'
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Select installed Xcode 16.4 or another installed 16.x
+        id: xcode
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/tracker-verification
+          python3 - <<'PY' | tee artifacts/tracker-verification/xcode-selection.log
+          import glob
+          import os
+          import re
+          import subprocess
+
+          candidates = []
+          for app in sorted(glob.glob('/Applications/Xcode*.app')):
+              developer = app + '/Contents/Developer'
+              executable = developer + '/usr/bin/xcodebuild'
+              if not os.path.isfile(executable):
+                  continue
+              result = subprocess.run([executable, '-version'], text=True, capture_output=True,
+                                      env={**os.environ, 'DEVELOPER_DIR': developer})
+              match = re.search(r'^Xcode (\d+(?:\.\d+)*)', result.stdout, re.MULTILINE)
+              if result.returncode != 0 or not match:
+                  continue
+              version = tuple(int(part) for part in match.group(1).split('.'))
+              print(f'Installed: {app}: {match.group(1)}', flush=True)
+              if version[0] == 16:
+                  candidates.append((version[:2] == (16, 4), version, developer, match.group(1)))
+          if not candidates:
+              raise SystemExit('ERROR: No usable installed Xcode 16.x. No toolchain was installed automatically.')
+          _, _, developer, version = sorted(candidates, reverse=True)[0]
+          with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as stream:
+              stream.write(f'DEVELOPER_DIR={developer}\n')
+              stream.write(f'EXPECTED_XCODE_VERSION={version}\n')
+          print(f'Selected Xcode {version}: {developer}', flush=True)
+          PY
+
+      - name: Build and run the native simulator test suite
+        id: tests
+        timeout-minutes: 25
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash scripts/validate-on-macos.sh 2>&1 | tee artifacts/tracker-verification/test-command.log
+
+      - name: Capture Tracker overview, detail, appearance, and accessibility states
+        id: screenshots
+        # A failed test step remains a job failure but does not hide UI evidence.
+        if: ${{ !cancelled() && steps.xcode.outcome == 'success' }}
+        timeout-minutes: 20
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash scripts/capture-tracker-ui.sh 2>&1 | tee artifacts/tracker-verification/capture-command.log
+
+      - name: Preserve compact native validation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Tracker-native-ui-${{ github.run_number }}-${{ github.run_attempt }}
+          path: |
+            artifacts/tracker-verification/**/*.png
+            artifacts/tracker-verification/**/*.log
+            artifacts/tracker-verification/**/*.json
+            artifacts/tracker-verification/**/*.tsv
+            artifacts/tracker-verification/**/*.sha256
+            artifacts/tracker-verification/**/xcode-version.txt
+            artifacts/tracker-verification/**/bundle-id.txt
+            artifacts/tracker-verification/**/app-path.txt
+            artifacts/tracker-verification/**/temporary-simulator-udid.txt
+            artifacts/tracker-verification/**/REVIEW_STATUS.txt
+            artifacts/tracker-verification/**/*.xcresult/**
+            !artifacts/tracker-verification/**/DerivedData/**
+            !artifacts/tracker-verification/**/app-strings.txt
+          if-no-files-found: warn
+          retention-days: 14
+          compression-level: 6
+
+      - name: Report the two independent verification outcomes
+        if: always()
+        shell: bash
+        env:
+          TEST_OUTCOME: ${{ steps.tests.outcome }}
+          CAPTURE_OUTCOME: ${{ steps.screenshots.outcome }}
+          SOURCE_COMMIT: ${{ github.sha }}
+        run: |
+          printf '%s\n' \
+            '### Tracker native verification' \
+            "Source commit: $SOURCE_COMMIT" \
+            "Native build and test step: $TEST_OUTCOME" \
+            "Native screenshot capture step: $CAPTURE_OUTCOME" \
+            'A successful screenshot step means PNG files were captured, not that the UI passed visual review.' \
+            'Review the screenshot artifact against validation/TRACKER_UI_CHECKLIST.md.' \
+            'Failed tests remain a job failure even if screenshots are captured successfully.' \
+            'Only synthetic Debug demo data is used by the capture script; no real game save is imported or written.' \
+            'This workflow does not merge branches or publish a Release.' \
+            >> "$GITHUB_STEP_SUMMARY"

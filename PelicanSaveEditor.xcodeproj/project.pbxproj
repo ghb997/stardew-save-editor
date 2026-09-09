@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26115F3A720144889AA30005 /* TrackerComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26115F3A720144889AA30006 /* TrackerComponents.swift */; };
+		26115F3A720144889AA30007 /* TrackerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26115F3A720144889AA30008 /* TrackerDetailView.swift */; };
+		26115F3A720144889AA30001 /* TrackerMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26115F3A720144889AA30002 /* TrackerMetrics.swift */; };
+		26115F3A720144889AA30003 /* TrackerMetricsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26115F3A720144889AA30004 /* TrackerMetricsTests.swift */; };
 		09ADD2C9CAFA11E93CF663D3 /* RecentSaveSourceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAA452061AC7A52E05A6823 /* RecentSaveSourceStore.swift */; };
 		0E77236A593F88715FE4FE6C /* BackupStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD5AC26EFEE11C104C441C8 /* BackupStore.swift */; };
 		11C9D8668E35C800D95C216B /* SaveModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B43A9F6A6878EB13719B6B7 /* SaveModels.swift */; };
@@ -80,6 +84,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		26115F3A720144889AA30006 /* TrackerComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerComponents.swift; sourceTree = "<group>"; };
+		26115F3A720144889AA30008 /* TrackerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerDetailView.swift; sourceTree = "<group>"; };
+		26115F3A720144889AA30002 /* TrackerMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerMetrics.swift; sourceTree = "<group>"; };
+		26115F3A720144889AA30004 /* TrackerMetricsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerMetricsTests.swift; sourceTree = "<group>"; };
 		056B08299E1A29AD2B2F3A52 /* ReviewChangesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewChangesView.swift; sourceTree = "<group>"; };
 		05AD1C94D1E496BC8D9424C7 /* CoordinatedFileAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatedFileAccess.swift; sourceTree = "<group>"; };
 		09438F88862D126C81279564 /* CropCalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropCalculatorView.swift; sourceTree = "<group>"; };
@@ -181,6 +189,7 @@
 				3D0C40486BDC5B03981B0A66 /* ItemCatalog.swift */,
 				F6564519524639C718468354 /* RecipeCatalog.swift */,
 				8B43A9F6A6878EB13719B6B7 /* SaveModels.swift */,
+				26115F3A720144889AA30002 /* TrackerMetrics.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -264,6 +273,8 @@
 			isa = PBXGroup;
 			children = (
 				876C45EFC08DFAE42A9AE1F4 /* HomeView.swift */,
+				26115F3A720144889AA30006 /* TrackerComponents.swift */,
+				26115F3A720144889AA30008 /* TrackerDetailView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -291,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				2DD401330E4ABE133875B7E3 /* SaveCoreTests.swift */,
+				26115F3A720144889AA30004 /* TrackerMetricsTests.swift */,
 			);
 			path = PelicanSaveEditorTests;
 			sourceTree = "<group>";
@@ -440,6 +452,7 @@
 				AE16FF0007954354FC96EF9A /* TransactionRegressionTests.swift in Sources */,
 				8741A72CECCFE68FB7B16EEF /* GameLogicRegressionTests.swift in Sources */,
 				8487C2C4A47A01D6C0B33860 /* SaveCoreTests.swift in Sources */,
+				26115F3A720144889AA30003 /* TrackerMetricsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,6 +462,9 @@
 			files = (
 				9AD7B1CE77A286F689D2556F /* FarmEntityListView.swift in Sources */,
 				34D0DAD272AEF1BC30A7645C /* TrackerView.swift in Sources */,
+				26115F3A720144889AA30005 /* TrackerComponents.swift in Sources */,
+				26115F3A720144889AA30007 /* TrackerDetailView.swift in Sources */,
+				26115F3A720144889AA30001 /* TrackerMetrics.swift in Sources */,
 				09D5E13C74765D692D92560D /* ToolsView.swift in Sources */,
 				A3E30AB8157B5D86A88CF8FB /* SettingsView.swift in Sources */,
 				A3866EB7593617C7CC3ADC78 /* HomeComponents.swift in Sources */,
@@ -544,7 +560,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -614,7 +630,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;

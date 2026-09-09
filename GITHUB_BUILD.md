@@ -1,5 +1,7 @@
 # GitHub Actions 生成 IPA
 
+> 当前目录为 2026-09-09 追踪器 UI 源码预览，尚无对应的新 IPA。文中的 build 8 成功记录为历史基线，不能作为当前改动已编译的证据。当前验证源码已提高到 0.3.3（9）；已获用户授权在独立分支运行验证，结果待更新。详见 TRACKER_UI_UPDATE.md。
+
 仓库的 Actions 工作流使用 GitHub 托管的 macOS 构建机、Xcode 和 iPhoneOS SDK 编译 Release 应用，然后以 `Payload/SheaflightAmberVault.app` 结构打包 IPA。
 
 此流程产出供后续签名使用的 unsigned IPA。它不包含 Apple 开发者证书或 provisioning profile，不能仅靠下载文件直接安装到普通 iPhone；安装前需要通过自己的签名/侧载工具签名。不要把 Apple 密码、证书或私钥提交到仓库。

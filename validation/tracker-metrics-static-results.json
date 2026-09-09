@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-09-09T07:44:31.952272+00:00",
-  "release_root": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\tracker-cloud-validation",
+  "generated_at_utc": "2026-09-09T05:48:16.907287+00:00",
+  "release_root": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\SheaflightAmberVault-source-v0.3.3-build8",
   "validation_type": "offline_static_release_checks",
   "compiled_swift": false,
   "executed_xctest": false,
@@ -23,7 +23,7 @@
       "status": "passed",
       "detail": {
         "objects": 164,
-        "sha256": "c2f8ad0b51e818810c0f39caf4e7047a721d0deb32930dcd91df4e63c400410f",
+        "sha256": "00a451d42a2ff7479bf936e16ec9c145a3aec804bdce7cb53f9d0ce6d2d8d7ba",
         "duplicate_object_keys": 0
       }
     },
@@ -55,7 +55,7 @@
       "status": "passed",
       "detail": {
         "counts": {
-          "json": 126,
+          "json": 125,
           "plist_and_privacy_manifest": 2,
           "xcode_xml": 2
         },
@@ -77,13 +77,13 @@
       "status": "passed",
       "detail": {
         "expected_version": "0.3.3",
-        "expected_build": "9",
+        "expected_build": "8",
         "pbxproj_values": {
           "MARKETING_VERSION": [
             "0.3.3"
           ],
           "CURRENT_PROJECT_VERSION": [
-            "9"
+            "8"
           ]
         },
         "errors": []
@@ -194,11 +194,11 @@
       "PelicanSaveEditor/Views/Editor/WalletEditorView.swift": "46b5e3e581e57406dd15643ce79b8806f6ac248f83789c9fb1e7d2bc892fbd44",
       "PelicanSaveEditor/Views/Home/HomeComponents.swift": "b9e89a619678cd7f739878e2c25155023ea2af450746f4f127dc11581f522c2f",
       "PelicanSaveEditor/Views/Home/HomeView.swift": "7c9284cf6c7fd5c73ee4189a3cb03e5a4da5d98dc1ad6ef3c58c365ae1a50114",
-      "PelicanSaveEditor/Views/Home/SettingsView.swift": "65f66462ac0734bf5619c60d01e5196d667973356e3d532352edbed96796e9d4",
+      "PelicanSaveEditor/Views/Home/SettingsView.swift": "d303d45f5f328e093a2c62f0534381a042b766e720be6402b462c0610ac8a000",
       "PelicanSaveEditor/Views/Home/ToolsView.swift": "b21f3185e417677f34724d9b30acfb7ac50e2b72eb1c6d8cc15b13a3fec53658",
-      "PelicanSaveEditor/Views/Home/TrackerComponents.swift": "c8a85e9fcdaee7fe99eb82e7c37860763d113776c33178c6ef9187b652aac0c5",
-      "PelicanSaveEditor/Views/Home/TrackerDetailView.swift": "da9ad4d97b4bcdb8592cf8e1844b99951c4ed7f4438cd13d9bc4d23c7ab15df0",
-      "PelicanSaveEditor/Views/Home/TrackerView.swift": "65049235c20abb36ca1d09a82a5c44d306621835f4a9c7bb469e176b5235025a",
+      "PelicanSaveEditor/Views/Home/TrackerComponents.swift": "cd5f3fed0ba277a1a5db644bc63b41a611815b83df5a26e5e405a0e552a74636",
+      "PelicanSaveEditor/Views/Home/TrackerDetailView.swift": "9ccd62387fd6010ae3ce72db3a350a0292d9f201cc5a2fc6990d5f7ca1f4996d",
+      "PelicanSaveEditor/Views/Home/TrackerView.swift": "d7f2f20ecb82eb726a8ddef13b24c1d2759e807e11ca2f32b444a2cba2082261",
       "PelicanSaveEditor/Views/Tools/CropCalculatorView.swift": "1fa2f54cc5b6889ba054a736134add0d02ff050804cb594ec7f4949e63354186",
       "PelicanSaveEditor/Views/Tools/FarmEntityListView.swift": "b4b41ac27ba3485a92c5f9db8bcaeb8d63527fb63f7b56b763417a9eac2d3b35",
       "PelicanSaveEditor/Views/Tools/FarmMapAnalysisView.swift": "69284e18e16cb5bbcc7f364770865b4d99f70e2866e26362f2f77beb3da1b2f4",

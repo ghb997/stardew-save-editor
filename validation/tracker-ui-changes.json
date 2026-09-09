@@ -1,0 +1,116 @@
+{
+  "baseline_archive": "SheaflightAmberVault-source-delivery-v0.3.3-build8.zip",
+  "baseline_sha256": "2bb98f8c1eeb780700fd536c7803ef1ba145a7ccac3fe6ecbbe30eb668179e78",
+  "revision": "2026-09-09 tracker UI source preview; not native-built",
+  "note": "Hash comparison only; excludes this manifest. Historical build 8 IPA is not current-source evidence.",
+  "changes": [
+    {
+      "file": "CHANGELOG.md",
+      "change": "modified",
+      "original_sha256": "f3a3fe1b1f28c941181781070628b0f3847490869190fadf2d03a2ca53239f0e",
+      "current_sha256": "11ef60bf3071dbc05b6d8a0d2061ce5e4d6c1dd39caac74acb5eb3e3623152e3"
+    },
+    {
+      "file": "validation/swift-syntax-results.json",
+      "change": "modified",
+      "original_sha256": "5122bfeaa2129f4996dc6c213033cc542c9d6f2d20516db267bf52970aa5b54e",
+      "current_sha256": "507070ecf1b014108c90e98dd43e61cf2f6d602254748b051574d9728133715c"
+    },
+    {
+      "file": "validation/static-release-results.json",
+      "change": "modified",
+      "original_sha256": "b0e6c1ad4e7300ad0de81f28f4f4ea11151198308ed4ba01c762cc728b05f5fd",
+      "current_sha256": "1eb5c63ba229cc4b3293f8483bbf8f4528c916227e901b709ef01cbf793e2bdc"
+    },
+    {
+      "file": "scripts/capture-tracker-ui.sh",
+      "change": "added",
+      "original_sha256": null,
+      "current_sha256": "6581ad5a1fa2d6357adbcb15a52a20ab22deba43c8187b423d8342b7b02be217"
+    },
+    {
+      "file": "PelicanSaveEditorTests/TrackerMetricsTests.swift",
+      "change": "added",
+      "original_sha256": null,
+      "current_sha256": "6abcad5fb03e171d40abb910e7d6338455097f1435d46c7ba9704bfc7f917862"
+    },
+    {
+      "file": "PelicanSaveEditor.xcodeproj/project.pbxproj",
+      "change": "modified",
+      "original_sha256": "875ac05404ec16bb77c5d8ad8d5091d321a18e440bbfb4d50001483a93255afa",
+      "current_sha256": "00a451d42a2ff7479bf936e16ec9c145a3aec804bdce7cb53f9d0ce6d2d8d7ba"
+    },
+    {
+      "file": "PelicanSaveEditor/Views/Home/TrackerView.swift",
+      "change": "modified",
+      "original_sha256": "e218ccf9a97d68a88049336b70938321e979c608a5087adf1e0a6b87ed83aaaa",
+      "current_sha256": "65049235c20abb36ca1d09a82a5c44d306621835f4a9c7bb469e176b5235025a"
+    },
+    {
+      "file": "PelicanSaveEditor/Views/Home/TrackerDetailView.swift",
+      "change": "added",
+      "original_sha256": null,
+      "current_sha256": "da9ad4d97b4bcdb8592cf8e1844b99951c4ed7f4438cd13d9bc4d23c7ab15df0"
+    },
+    {
+      "file": "PelicanSaveEditor/Views/Home/TrackerComponents.swift",
+      "change": "added",
+      "original_sha256": null,
+      "current_sha256": "c8a85e9fcdaee7fe99eb82e7c37860763d113776c33178c6ef9187b652aac0c5"
+    },
+    {
+      "file": "PelicanSaveEditor/Views/Home/HomeComponents.swift",
+      "change": "modified",
+      "original_sha256": "22b044edf7334c7877a1bdde527b2509a8d1405100a45b73a5eda62e6c113f02",
+      "current_sha256": "b9e89a619678cd7f739878e2c25155023ea2af450746f4f127dc11581f522c2f"
+    },
+    {
+      "file": "PelicanSaveEditor/Models/TrackerMetrics.swift",
+      "change": "added",
+      "original_sha256": null,
+      "current_sha256": "74103a241f441b3ea3c458e5ad7c43476e8e79da6a8098c1b54b99bd77007f46"
+    },
+    {
+      "file": "VALIDATION.md",
+      "change": "modified",
+      "original_sha256": "c777a58d831a229dd81bfa5557418d81ddc429b89f234a98999493626d81ac15",
+      "current_sha256": "ce07c9106e0c4128640b2a51ba6bf97fc3079818f981416f45c21e3e2b54bee6"
+    },
+    {
+      "file": "TRACKER_UI_UPDATE.md",
+      "change": "added",
+      "original_sha256": null,
+      "current_sha256": "7a86ac73ef6503a177ef97d88310b879a32b454ac3de3ad165cc241834c342d5"
+    },
+    {
+      "file": "README.md",
+      "change": "modified",
+      "original_sha256": "6f6171c54ae849a079035110bbf2a7f972efe3e01cee5fcab4418baa738d2b71",
+      "current_sha256": "3db7c283bf670b99f1360bec4b2b1640fd04a3cb338062a99fabe262f412582f"
+    },
+    {
+      "file": "GITHUB_BUILD.md",
+      "change": "modified",
+      "original_sha256": "b1d093282883ae872dea03b870ee83489b8cc999d7ccd41edce54c74676322f8",
+      "current_sha256": "956fe03cb9802aa294e26aeeaa2585118654181d6ff4c95825d9c0e7cb4b5a0d"
+    },
+    {
+      "file": "design-qa.md",
+      "change": "added",
+      "original_sha256": null,
+      "current_sha256": "0da806b4544d16da941aaa742ebabbbfb8b8cc49286777353f3b9c766e40cbcf"
+    },
+    {
+      "file": "validation/TRACKER_UI_CHECKLIST.md",
+      "change": "added",
+      "original_sha256": null,
+      "current_sha256": "e52cc270e615607c469e9e8139307556573501fd38379d713818d7bd2b2bb20d"
+    },
+    {
+      "file": "validation/tracker-metrics-static-results.json",
+      "change": "added",
+      "original_sha256": null,
+      "current_sha256": "0302c23b974da2e6d33b2141e866a4cc7da009a29697246c62bd41d8cd2b3fb3"
+    }
+  ]
+}

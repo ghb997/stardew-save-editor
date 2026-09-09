@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 enum AppTheme {
     static let header = Color(red: 1.00, green: 0.79, blue: 0.47)
@@ -8,6 +9,30 @@ enum AppTheme {
     static let canvas = Color(.systemGroupedBackground)
     static let card = Color(.secondarySystemGroupedBackground)
     static let muted = Color(red: 0.72, green: 0.66, blue: 0.58)
+    // Tracker colors are kept separate so editor controls retain their existing tint.
+    static let trackerHeader = adaptive(light: (1, 0.79, 0.47), dark: (0.18, 0.17, 0.15))
+    static let trackerHeaderSoft = adaptive(light: (1, 0.88, 0.69), dark: (0.23, 0.21, 0.17))
+    static let trackerSelection = adaptive(light: (1, 0.79, 0.47), dark: (0.40, 0.28, 0.12))
+    static let trackerTitle = adaptive(light: (0.24, 0.07, 0.03), dark: (0.99, 0.91, 0.78))
+    static let trackerAccent = adaptive(light: (0.56, 0.15, 0.05), dark: (1, 0.77, 0.43))
+    static let trackerRow = adaptive(light: (0.93, 0.96, 0.91), dark: (0.13, 0.20, 0.15))
+    static let progress = adaptive(light: (0.12, 0.43, 0.22), dark: (0.49, 0.82, 0.54))
+    static let trackerWarning = adaptive(light: (0.53, 0.26, 0.02), dark: (1, 0.77, 0.43))
+
+    private static func adaptive(
+        light: (Double, Double, Double),
+        dark: (Double, Double, Double)
+    ) -> Color {
+        Color(uiColor: UIColor { traits in
+            let components = traits.userInterfaceStyle == .dark ? dark : light
+            return UIColor(
+                red: CGFloat(components.0),
+                green: CGFloat(components.1),
+                blue: CGFloat(components.2),
+                alpha: 1
+            )
+        })
+    }
 }
 
 struct ToolRowButton: View {
@@ -72,6 +97,8 @@ struct LargePageHeader: View {
     let title: String
     var artworkName: String? = nil
     var systemImage: String? = nil
+    var headerColor: Color = AppTheme.header
+    var titleColor: Color = AppTheme.title
 
     var body: some View {
         HStack(spacing: 14) {
@@ -83,11 +110,11 @@ struct LargePageHeader: View {
             Text(title)
                 .font(.largeTitle.bold())
         }
-            .foregroundStyle(AppTheme.title)
+            .foregroundStyle(titleColor)
             .padding(.horizontal, 24)
             .padding(.vertical, 24)
             .frame(maxWidth: .infinity, minHeight: 110, alignment: .bottomLeading)
-            .background(AppTheme.header.ignoresSafeArea(edges: .top))
+            .background(headerColor.ignoresSafeArea(edges: .top))
     }
 }
 

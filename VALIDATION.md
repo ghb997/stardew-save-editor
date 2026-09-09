@@ -1,5 +1,18 @@
 # 交付验证说明
 
+## 2026-09-09 追踪器 UI 工作版本
+
+本目录包含尚未经过原生构建的新界面改动，与历史 build 8 IPA 不一致。当前检查结果：
+
+- 使用本目录 scripts/check_swift_syntax.py 扫描 54 个 Swift 文件：0 个语法错误；2 处既有 sending 限定符仍需 Swift 6 类型检查。
+- scripts/verify_release.py：6 项检查通过，54 个 Swift 文件、113 项位图、58 个 XCTest 方法声明。新增 7 个追踪指标测试**尚未执行**。
+- scripts/capture-tracker-ui.sh 的 Bash 语法、内嵌 Python AST 和 Windows 平台阻止执行检查通过；macOS 截图尚未执行。
+- 没有当前改动的 Xcode 编译、XCTest、模拟器或真机截图证据。design-qa.md 保持 blocked。
+
+当前机器可读报告为 validation/swift-syntax-results.json 与 validation/static-release-results.json。界面截图脚本和验收清单见 [validation/TRACKER_UI_CHECKLIST.md](validation/TRACKER_UI_CHECKLIST.md)。
+
+## 以下为历史 build 8 验证，不适用于本次 UI 改动
+
 版本：0.3.3（8）。环境：Windows 与 GitHub Actions，2026-09-08。
 
 ## 已执行的检查

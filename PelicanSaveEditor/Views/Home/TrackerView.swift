@@ -2,32 +2,28 @@ import SwiftUI
 
 struct TrackerView: View {
     @Environment(EditorStore.self) private var store
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Binding var selectedTab: MainTab
     @State private var selectedSection: SaveEditorSection?
+    @State private var selectedFilter: TrackerFilter = .overview
+    @State private var expandedGroups: Set<TrackerGroup> = Set(TrackerGroup.allCases)
 
     var body: some View {
         VStack(spacing: 0) {
-            LargePageHeader(title: "追踪", artworkName: "GameUITrophy")
+            LargePageHeader(
+                title: "农场追踪", artworkName: "GameUITrophy",
+                headerColor: AppTheme.trackerHeader, titleColor: AppTheme.trackerTitle
+            )
 
             ScrollView {
-                VStack(alignment: .leading, spacing: 18) {
+                LazyVStack(alignment: .leading, spacing: 18) {
                     if let session = store.session {
                         trackerFarmCard(session)
 
-                        Text("查看板块")
-                            .font(.headline)
-                            .foregroundStyle(.secondary)
+                        trackerFilterStrip
 
-                        ForEach(SaveEditorSection.allCases) { section in
-                            ToolRowButton(
-                                title: section.trackerTitle,
-                                subtitle: trackerSubtitle(for: section, session: session),
-                                systemImage: section.systemImage,
-                                iconColor: section.tint,
-                                artworkName: section.artworkName
-                            ) {
-                                selectedSection = section
-                            }
+                        ForEach(TrackerGroup.allCases.filter { selectedFilter.includes($0) }) { group in
+                            trackerGroupPanel(group, session: session)
                         }
                     } else {
                         unloadedTracker
@@ -48,29 +44,310 @@ struct TrackerView: View {
                 GameEmptyState(title: "农场已卸载", systemImage: "externaldrive.badge.xmark")
             }
         }
+#if DEBUG
+        .onChange(of: store.session != nil, initial: true) { _, loaded in
+            let arguments = ProcessInfo.processInfo.arguments
+            guard loaded, arguments.contains("--ui-demo"),
+                  let index = arguments.firstIndex(of: "--ui-tracker-section"),
+                  arguments.indices.contains(index + 1),
+                  let section = SaveEditorSection(rawValue: arguments[index + 1]) else { return }
+            selectedSection = section
+        }
+#endif
     }
 
     private func trackerFarmCard(_ session: SaveSession) -> some View {
-        HStack(spacing: 14) {
-            GameIcon(systemName: "eye.fill", size: 28)
-                .font(.title2)
-                .foregroundStyle(AppTheme.accent)
-            VStack(alignment: .leading, spacing: 3) {
-                Text(session.draft.farmName.isEmpty ? session.source.farmIdentifier : session.draft.farmName)
-                    .font(.headline)
-                Text("主玩家 · 只读查看")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
+        VStack(alignment: .leading, spacing: 18) {
+            farmHeaderLayout {
+                GameIcon(systemName: "person.crop.circle.fill", size: 58)
+                    .padding(7)
+                    .background(Color(.tertiarySystemBackground), in: RoundedRectangle(cornerRadius: 16))
+
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(session.draft.farmName.isEmpty ? session.source.farmIdentifier : session.draft.farmName)
+                        .font(.title2.bold())
+                        .fixedSize(horizontal: false, vertical: true)
+                    Text(session.draft.playerName.isEmpty ? "未命名农夫" : session.draft.playerName)
+                        .font(.subheadline)
+                        .foregroundStyle(AppTheme.trackerTitle.opacity(0.80))
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+
+                Label("只读", systemImage: "eye.fill")
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(AppTheme.trackerAccent)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 7)
+                    .background(Color(.systemBackground).opacity(0.72), in: Capsule())
             }
-            Spacer()
+
+            Divider()
+                .overlay(AppTheme.trackerTitle.opacity(0.16))
+
+            LazyVGrid(columns: summaryColumns, spacing: 16) {
+                TrackerSummaryMetric(
+                    value: "\(session.draft.season.displayName) \(session.draft.day)日",
+                    label: "第 \(session.draft.year) 年",
+                    artworkName: "GameUITrophy"
+                )
+                TrackerSummaryMetric(
+                    value: trackerCollectionFootprint(session).formatted(),
+                    label: "四类收藏合计",
+                    artworkName: "GameUIReview"
+                )
+                TrackerSummaryMetric(
+                    value: "\(session.draft.recipes.filter(\.unlocked).count)/\(session.draft.recipes.count)",
+                    label: "配方解锁",
+                    artworkName: "GameUIRecipes"
+                )
+            }
+
             if session.hasChanges {
-                Text("预览 \(session.diffs.count) 项草稿")
-                    .font(.caption.bold())
-                    .foregroundStyle(.orange)
+                Label("正在预览 \(session.diffs.count) 项未保存草稿", systemImage: "exclamationmark.triangle.fill")
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(AppTheme.trackerWarning)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(12)
+                    .background(Color.orange.opacity(0.12), in: RoundedRectangle(cornerRadius: 12))
             }
         }
-        .padding(18)
-        .background(AppTheme.headerSoft, in: RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .foregroundStyle(AppTheme.trackerTitle)
+        .padding(20)
+        .background(AppTheme.trackerHeaderSoft, in: RoundedRectangle(cornerRadius: 24, style: .continuous))
+        .overlay {
+            RoundedRectangle(cornerRadius: 24, style: .continuous)
+                .stroke(AppTheme.trackerAccent.opacity(0.14), lineWidth: 1)
+        }
+        .accessibilityIdentifier("tracker.farmSummary")
+    }
+
+    private var farmHeaderLayout: AnyLayout {
+        dynamicTypeSize.isAccessibilitySize
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: 12))
+            : AnyLayout(HStackLayout(alignment: .top, spacing: 14))
+    }
+
+    private var summaryColumns: [GridItem] {
+        Array(repeating: GridItem(.flexible()), count: dynamicTypeSize.isAccessibilitySize ? 1 : 3)
+    }
+
+    private var trackerFilterStrip: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 10) {
+                ForEach(TrackerFilter.allCases) { filter in
+                    Button {
+                        withAnimation(.easeInOut(duration: 0.2)) {
+                            selectedFilter = filter
+                            if let group = filter.group {
+                                expandedGroups.insert(group)
+                            }
+                        }
+                    } label: {
+                        Text(filter.title)
+                            .font(.subheadline.weight(.semibold))
+                            .foregroundStyle(selectedFilter == filter ? AppTheme.trackerTitle : Color.primary)
+                            .padding(.horizontal, 17)
+                            .frame(minHeight: 44)
+                            .background(
+                                selectedFilter == filter ? AppTheme.trackerSelection : Color(.tertiarySystemFill),
+                                in: Capsule()
+                            )
+                            .overlay {
+                                Capsule()
+                                    .stroke(
+                                        selectedFilter == filter ? AppTheme.trackerAccent.opacity(0.12) : Color(.separator).opacity(0.42),
+                                        lineWidth: 1
+                                    )
+                            }
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityAddTraits(selectedFilter == filter ? .isSelected : [])
+                    .accessibilityIdentifier("tracker.filter.\(filter.rawValue)")
+                }
+            }
+            .padding(.vertical, 1)
+        }
+    }
+
+    private func trackerGroupPanel(_ group: TrackerGroup, session: SaveSession) -> some View {
+        VStack(spacing: 0) {
+            Button {
+                withAnimation(.easeInOut(duration: 0.22)) {
+                    if expandedGroups.contains(group) {
+                        expandedGroups.remove(group)
+                    } else {
+                        expandedGroups.insert(group)
+                    }
+                }
+            } label: {
+                HStack(spacing: 12) {
+                    GameAssetIcon(assetName: group.artworkName, size: 34)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(group.title)
+                            .font(.headline)
+                        Text(group.subtitle)
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    Spacer()
+                    Text("\(group.sections.count)")
+                        .font(.caption.monospacedDigit().weight(.semibold))
+                        .foregroundStyle(.secondary)
+                    Image(systemName: expandedGroups.contains(group) ? "chevron.up" : "chevron.down")
+                        .font(.caption.bold())
+                        .foregroundStyle(.secondary)
+                }
+                .foregroundStyle(.primary)
+                .padding(.horizontal, 18)
+                .padding(.vertical, 16)
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+            .accessibilityValue(expandedGroups.contains(group) ? "已展开" : "已折叠")
+            .accessibilityHint("双击展开或折叠\(group.title)")
+            .accessibilityIdentifier("tracker.group.\(group.rawValue)")
+
+            if expandedGroups.contains(group) {
+                Divider()
+
+                VStack(spacing: 11) {
+                    ForEach(group.sections) { section in
+                        trackerSectionRow(section, session: session)
+                    }
+                }
+                .padding(14)
+                .transition(.opacity.combined(with: .move(edge: .top)))
+            }
+        }
+        .background(AppTheme.card, in: RoundedRectangle(cornerRadius: 22, style: .continuous))
+        .overlay {
+            RoundedRectangle(cornerRadius: 22, style: .continuous)
+                .stroke(Color(.separator).opacity(0.38), lineWidth: 1)
+        }
+        .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
+    }
+
+    private func trackerSectionRow(_ section: SaveEditorSection, session: SaveSession) -> some View {
+        Button {
+            selectedSection = section
+        } label: {
+            HStack(alignment: .top, spacing: 12) {
+                SaveSectionArtwork(section: section, size: 44)
+                    .frame(width: 52, height: 52)
+                    .background(Color(.systemBackground).opacity(0.78), in: RoundedRectangle(cornerRadius: 13))
+
+                VStack(alignment: .leading, spacing: 7) {
+                    Text(section.trackerTitle)
+                        .font(.headline)
+                        .fixedSize(horizontal: false, vertical: true)
+                    Text(trackerSubtitle(for: section, session: session))
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                    ViewThatFits(in: .horizontal) {
+                        HStack(spacing: 10) {
+                            trackerRowMetric(section, session: session)
+                            trackerRowProgress(section, session: session)
+                        }
+                        VStack(alignment: .leading, spacing: 6) {
+                            trackerRowMetric(section, session: session)
+                            trackerRowProgress(section, session: session)
+                        }
+                    }
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                Image(systemName: "chevron.right")
+                    .font(.caption.bold())
+                    .foregroundStyle(.tertiary)
+                    .padding(.top, 18)
+            }
+            .foregroundStyle(.primary)
+            .padding(13)
+            .background(AppTheme.trackerRow, in: RoundedRectangle(cornerRadius: 17, style: .continuous))
+            .overlay {
+                RoundedRectangle(cornerRadius: 17, style: .continuous)
+                    .stroke(Color(.separator).opacity(0.24), lineWidth: 1)
+            }
+            .contentShape(RoundedRectangle(cornerRadius: 17, style: .continuous))
+        }
+        .buttonStyle(.plain)
+        .accessibilityElement(children: .combine)
+        .accessibilityHint("打开只读详情")
+        .accessibilityIdentifier("tracker.section.\(section.rawValue)")
+    }
+
+    private func trackerRowMetric(_ section: SaveEditorSection, session: SaveSession) -> some View {
+        Text(trackerMetric(for: section, session: session))
+            .font(.caption.monospacedDigit().weight(.semibold))
+            .foregroundStyle(section == .review && !session.metadata.warnings.isEmpty
+                ? AppTheme.trackerWarning : AppTheme.progress)
+            .fixedSize(horizontal: false, vertical: true)
+    }
+
+    @ViewBuilder
+    private func trackerRowProgress(_ section: SaveEditorSection, session: SaveSession) -> some View {
+        if let progress = trackerProgress(for: section, session: session) {
+            ProgressView(value: progress)
+                .progressViewStyle(.linear)
+                .tint(AppTheme.progress)
+                .frame(width: 72)
+                .accessibilityHidden(true)
+        }
+    }
+
+    private func trackerMetric(for section: SaveEditorSection, session: SaveSession) -> String {
+        switch section {
+        case .character:
+            return "第 \(session.draft.year) 年"
+        case .appearance:
+            return "4 项"
+        case .farmhouse:
+            return "\(session.draft.farmhouse.decorations.count) 项"
+        case .inventory:
+            return "\(session.draft.inventory.filter { $0.item != nil }.count)/\(session.draft.inventory.count)"
+        case .progress:
+            return "\(trackerCollectionFootprint(session)) 项"
+        case .relationships:
+            return "\(session.draft.friendships.count) 人"
+        case .skills:
+            let levels = TrackerMetrics.skillLevelSummary(session.draft.skills)
+            return "\(levels.current)/\(levels.total) 级"
+        case .wallet:
+            return "\(session.draft.progress.walletUnlocks.filter(\.isUnlocked).count)/\(WalletUnlockKey.allCases.count)"
+        case .animals:
+            return "\(session.draft.animals.count) 只"
+        case .recipes:
+            return "\(session.draft.recipes.filter(\.unlocked).count)/\(session.draft.recipes.count)"
+        case .review:
+            return TrackerMetrics.statusText(warnings: session.metadata.warnings, diffCount: session.diffs.count)
+        }
+    }
+
+    private func trackerProgress(for section: SaveEditorSection, session: SaveSession) -> Double? {
+        switch section {
+        case .skills:
+            let levels = TrackerMetrics.skillLevelSummary(session.draft.skills)
+            return TrackerMetrics.fraction(completed: levels.current, total: levels.total)
+        case .wallet:
+            return TrackerMetrics.fraction(
+                completed: session.draft.progress.walletUnlocks.filter(\.isUnlocked).count,
+                total: WalletUnlockKey.allCases.count
+            )
+        case .recipes:
+            return TrackerMetrics.fraction(
+                completed: session.draft.recipes.filter(\.unlocked).count,
+                total: session.draft.recipes.count
+            )
+        case .review:
+            return nil // Compatibility is a status, not game completion.
+        default:
+            return nil
+        }
+    }
+
+    private func trackerCollectionFootprint(_ session: SaveSession) -> Int {
+        TrackerMetrics.collectionKindCount(session.draft.progress.insights)
     }
 
     private func trackerSubtitle(for section: SaveEditorSection, session: SaveSession) -> String {
@@ -90,9 +367,8 @@ struct TrackerView: View {
         case .relationships:
             return "\(session.draft.friendships.count) 位角色 · 好感与状态"
         case .skills:
-            let totalLevel = session.draft.skills.reduce(0) { $0 + $1.level }
             let professions = session.draft.progress.professionIDs.intersection(ProfessionCatalog.knownIDs).count
-            return "技能总等级 \(totalLevel) · 已选 \(professions) 个职业"
+            return "已选 \(professions) 个职业 · 按已识别技能的 0–10 级统计"
         case .wallet:
             let unlocked = session.draft.progress.walletUnlocks.filter(\.isUnlocked).count
             return "已获得 \(unlocked) / \(WalletUnlockKey.allCases.count) 项钱包能力"
@@ -107,550 +383,33 @@ struct TrackerView: View {
     }
 
     private var unloadedTracker: some View {
-        VStack(spacing: 18) {
-            GameIcon(systemName: "trophy", size: 48)
-                .font(.system(size: 48, weight: .light))
-                .foregroundStyle(AppTheme.muted)
-            Text("加载农场后查看追踪数据")
-                .font(.title3.bold())
-            Button("前往工具页") {
+        VStack(spacing: 20) {
+            GameAssetIcon(assetName: "GameUITrophy", size: 72)
+                .padding(16)
+                .background(AppTheme.trackerHeaderSoft, in: RoundedRectangle(cornerRadius: 22))
+            VStack(spacing: 7) {
+                Text("载入农场，开始追踪")
+                    .font(.title2.bold())
+                Text("集中查看角色、收藏、技能、关系与农场生活进度。")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+            }
+            Button {
                 selectedTab = .tools
+            } label: {
+                Label("前往工具页加载", systemImage: "folder.badge.plus")
+                    .font(.headline)
+                    .frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)
+            .controlSize(.large)
             .tint(AppTheme.accent)
+            .accessibilityIdentifier("tracker.loadFarm")
         }
-        .padding(30)
+        .padding(26)
         .frame(maxWidth: .infinity)
         .appCard()
     }
 
-}
-
-private struct TrackerDetailView: View {
-    let session: SaveSession
-    let section: SaveEditorSection
-    @Environment(\.dismiss) private var dismiss
-    @State private var searchText = ""
-    @State private var recipeKind: RecipeKind = .cooking
-
-    var body: some View {
-        NavigationStack {
-            detailContent
-                .navigationTitle(section.trackerTitle)
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .principal) {
-                        HStack(spacing: 8) {
-                            SaveSectionArtwork(section: section, size: 26)
-                            Text(section.trackerTitle)
-                                .font(.headline)
-                        }
-                    }
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button("关闭", systemImage: "xmark") { dismiss() }
-                            .labelStyle(.iconOnly)
-                    }
-                }
-        }
-    }
-
-    @ViewBuilder
-    private var detailContent: some View {
-        switch section {
-        case .character:
-            characterList
-        case .appearance:
-            appearanceList
-        case .farmhouse:
-            farmhouseList
-        case .inventory:
-            inventoryList
-        case .progress:
-            progressList
-        case .relationships:
-            relationshipsList
-        case .skills:
-            skillsList
-        case .wallet:
-            walletList
-        case .animals:
-            animalsList
-        case .recipes:
-            recipesList
-        case .review:
-            statusList
-        }
-    }
-
-    private var characterList: some View {
-        List {
-            draftNotice
-
-            Section("基本信息") {
-                LabeledContent("农民名称", value: session.draft.playerName.isEmpty ? "—" : session.draft.playerName)
-                LabeledContent("农场名字", value: session.draft.farmName.isEmpty ? "—" : session.draft.farmName)
-                LabeledContent("农场类型", value: farmTypeName(session.metadata.farmType))
-                LabeledContent("游戏版本", value: session.metadata.gameVersion)
-            }
-
-            Section("游戏数据") {
-                LabeledContent("游玩时间", value: formattedPlayTime(session.metadata.playTimeMilliseconds))
-                LabeledContent("游戏日期", value: "第 \(session.draft.year) 年 · \(session.draft.season.displayName)季 \(session.draft.day) 日")
-                artworkTrackerValue("金钱", value: session.draft.money.formatted(), assetName: "GameUIGoldBar")
-                artworkTrackerValue("最大生命", value: "\(session.draft.maxHealth)", assetName: "GameUIProgress")
-                artworkTrackerValue("最大体力", value: "\(session.draft.maxStamina)", assetName: "GameUIProgress")
-            }
-
-        }
-    }
-
-    private var appearanceList: some View {
-        List {
-            draftNotice
-
-            Section("存档角色") {
-                LabeledContent(
-                    "玩家名称",
-                    value: session.draft.playerName.isEmpty ? "未命名农夫" : session.draft.playerName
-                )
-                LabeledContent("原始字段来源", value: "主存档 / player")
-            }
-
-            Section {
-                LabeledContent("性别", value: session.draft.gender.displayName)
-                LabeledContent("发型编号", value: "\(session.draft.hair)")
-                LabeledContent("肤色编号", value: "\(session.draft.skin)")
-                LabeledContent("饰品编号", value: "\(session.draft.accessory)")
-            } header: {
-                Text("外观参数")
-            } footer: {
-                Text("此处展示存档中的实际 Gender、hair、skin 与 accessory 值；修改请前往工具页。")
-            }
-        }
-    }
-
-    private var farmhouseList: some View {
-        List {
-            draftNotice
-
-            Section {
-                Image("GameFarmBackdrop")
-                    .resizable()
-                    .interpolation(.none)
-                    .scaledToFill()
-                    .frame(height: 180)
-                    .clipped()
-                    .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-                    .listRowInsets(EdgeInsets())
-                    .listRowBackground(Color.clear)
-            }
-
-            Section("农舍") {
-                if let level = session.draft.farmhouse.upgradeLevel {
-                    LabeledContent("扩建等级", value: "\(level) 级")
-                } else {
-                    LabeledContent("扩建等级", value: "存档未提供")
-                }
-            }
-
-            Section("房间表面") {
-                if session.draft.farmhouse.decorations.isEmpty {
-                    Text("没有可读取的墙纸或地板条目")
-                        .foregroundStyle(.secondary)
-                } else {
-                    ForEach(session.draft.farmhouse.decorations) { decoration in
-                        LabeledContent(
-                            "\(decoration.localizedRoomName)·\(decoration.kind.displayName)",
-                            value: "样式 \(decoration.styleIndex)"
-                        )
-                    }
-                }
-            }
-        }
-    }
-
-    private var inventoryList: some View {
-        List {
-            draftNotice
-
-            Section("统计") {
-                LabeledContent("总格数", value: "\(session.draft.inventory.count)")
-                LabeledContent("已占用", value: "\(occupiedInventory.count)")
-                LabeledContent("空格", value: "\(session.draft.inventory.count - occupiedInventory.count)")
-            }
-
-            Section("背包槽位") {
-                if occupiedInventory.isEmpty {
-                    Text("背包为空")
-                        .foregroundStyle(.secondary)
-                } else {
-                    ForEach(occupiedInventory) { slot in
-                        if let item = slot.item {
-                            HStack(spacing: 12) {
-                                ItemArtworkView(item: item, size: 44)
-                                VStack(alignment: .leading, spacing: 3) {
-                                    Text(item.displayName)
-                                    Text("槽位 \(slot.id + 1) · 品质 \(item.quality) · \(item.objectType)")
-                                        .font(.caption)
-                                        .foregroundStyle(.secondary)
-                                }
-                                Spacer()
-                                Text("×\(item.stack)")
-                                    .font(.headline.monospacedDigit())
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    private var relationshipsList: some View {
-        List {
-            draftNotice
-
-            Section {
-                if filteredFriendships.isEmpty {
-                    Text("没有匹配的角色")
-                        .foregroundStyle(.secondary)
-                } else {
-                    ForEach(filteredFriendships) { friend in
-                        VStack(alignment: .leading, spacing: 8) {
-                            HStack {
-                                GameNPCPortrait(name: friend.name, size: 48)
-                                VStack(alignment: .leading, spacing: 2) {
-                                    Text(friend.localizedName)
-                                        .font(.headline)
-                                    if npcChineseNames[friend.name] != nil {
-                                        Text(friend.name)
-                                            .font(.caption)
-                                            .foregroundStyle(.secondary)
-                                    }
-                                }
-                                Spacer()
-                                GameLabel("\(friend.hearts)", systemImage: "heart.fill")
-                                    .foregroundStyle(.pink)
-                            }
-                            LabeledContent("好感", value: "\(friend.points) 点")
-                            LabeledContent("状态", value: friend.status.displayName)
-                                .foregroundStyle(.secondary)
-                        }
-                        .padding(.vertical, 4)
-                    }
-                }
-            } header: {
-                Text("人物关系")
-            } footer: {
-                Text("此页仅展示好感与关系状态；修改请前往工具页。")
-            }
-        }
-        .searchable(text: $searchText, prompt: "搜索角色名称")
-        .onSubmit(of: .search) { KeyboardReturnAction.dismiss() }
-    }
-
-    private var progressList: some View {
-        List {
-            draftNotice
-
-            Section("财富与资源") {
-                artworkTrackerValue("金币", value: session.draft.money.formatted(), assetName: "GameUIGoldBar")
-                optionalTrackerValue("累计收入", session.draft.progress.totalMoneyEarned, assetName: "GameUIGoldBar")
-                optionalTrackerValue("齐钻", session.draft.progress.qiGems, assetName: "GameUIDiamond")
-                optionalTrackerValue("齐币", session.draft.progress.clubCoins, assetName: "GameUIGoldBar")
-                optionalTrackerValue("金色核桃", session.draft.progress.goldenWalnuts, assetName: "GameUIGoldenWalnut")
-                optionalTrackerValue("干草", session.draft.progress.piecesOfHay)
-            }
-
-            Section("矿洞与世界") {
-                optionalTrackerValue("个人到达最深层", session.draft.progress.deepestMineLevel, assetName: "GameUIStone")
-                optionalTrackerValue("世界矿井解锁层", session.draft.progress.mineLowestLevelReached, assetName: "GameUIStone")
-                LabeledContent("明日天气", value: session.draft.progress.insights.weatherForTomorrow ?? "未提供")
-                LabeledContent(
-                    "每日运气",
-                    value: session.draft.progress.insights.dailyLuck.map {
-                        $0.formatted(.number.precision(.fractionLength(0...3)))
-                    } ?? "未提供"
-                )
-            }
-
-            Section("收藏统计") {
-                artworkTrackerValue("已出货种类", value: "\(session.draft.progress.insights.shippedItemKinds)", assetName: "GameUIReview")
-                artworkTrackerValue("已捕获鱼类", value: "\(session.draft.progress.insights.caughtFishKinds)", assetName: "GameUIFish")
-                artworkTrackerValue("已发现矿物", value: "\(session.draft.progress.insights.mineralKinds)", assetName: "GameUIDiamond")
-                artworkTrackerValue("已发现古物", value: "\(session.draft.progress.insights.artifactKinds)", assetName: "GameUIArtifact")
-                artworkTrackerValue("秘密纸条", value: "\(session.draft.progress.insights.secretNoteCount)", assetName: "GameUIDwarfGuide")
-                artworkTrackerValue("已观看事件", value: "\(session.draft.progress.insights.eventCount)", assetName: "GameUITrophy")
-                artworkTrackerValue("已完成成就", value: "\(session.draft.progress.insights.achievementCount)", assetName: "GameUITrophy")
-                LabeledContent("进行中任务", value: "\(session.draft.progress.insights.activeQuestCount)")
-            }
-
-            Section("累计记录") {
-                optionalTrackerValue("游玩天数", session.draft.progress.insights.daysPlayed)
-                optionalTrackerValue("完成任务", session.draft.progress.insights.questsCompleted)
-                optionalTrackerValue("击败怪物", session.draft.progress.insights.monstersKilled, assetName: "GameUIMonster")
-                optionalTrackerValue("出货物品", session.draft.progress.insights.itemsShipped, assetName: "GameUIReview")
-                optionalTrackerValue("捕获鱼数", session.draft.progress.insights.fishCaught, assetName: "GameUIFish")
-            }
-        }
-    }
-
-    private var skillsList: some View {
-        List {
-            draftNotice
-
-            Section("技能") {
-                ForEach(session.draft.skills) { skill in
-                    VStack(alignment: .leading, spacing: 7) {
-                        HStack {
-                            GameAssetLabel(
-                                skill.key.displayName,
-                                assetName: GameArtwork.skillAsset(skill.key),
-                                iconSize: 26
-                            )
-                            Spacer()
-                            Text("Lv. \(skill.level) · \(skill.targetExperience) XP")
-                                .font(.caption.monospacedDigit())
-                                .foregroundStyle(.secondary)
-                        }
-                        ProgressView(value: Double(skill.targetExperience), total: 15_000)
-                            .tint(AppTheme.accent)
-                    }
-                }
-            }
-
-            Section("职业") {
-                let selected = session.draft.progress.professionIDs
-                    .intersection(ProfessionCatalog.knownIDs)
-                    .sorted()
-                if selected.isEmpty {
-                    Text("尚未选择职业")
-                        .foregroundStyle(.secondary)
-                } else {
-                    ForEach(selected, id: \.self) { id in
-                        LabeledContent(ProfessionCatalog.name(for: id), value: "编号 \(id)")
-                    }
-                }
-            }
-        }
-    }
-
-    private var walletList: some View {
-        List {
-            draftNotice
-
-            Section("钱包能力") {
-                ForEach(session.draft.progress.walletUnlocks) { unlock in
-                    Label {
-                        HStack {
-                            Text(unlock.key.displayName)
-                            Spacer()
-                            Text(unlock.isUnlocked ? "已获得" : "未获得")
-                                .foregroundStyle(unlock.isUnlocked ? .green : .secondary)
-                        }
-                    } icon: {
-                        if let assetName = GameArtwork.walletAsset(unlock.key) {
-                            GameAssetIcon(assetName: assetName, size: 24)
-                                .opacity(unlock.isUnlocked ? 1 : 0.45)
-                        } else {
-                            GameIcon(systemName: unlock.key.systemImage)
-                                .foregroundStyle(unlock.isUnlocked ? .teal : .secondary)
-                        }
-                    }
-                }
-            }
-
-            Section("标记统计") {
-                LabeledContent("全部邮件/剧情标记", value: "\(session.draft.progress.insights.mailFlagCount)")
-            }
-        }
-    }
-
-    private var animalsList: some View {
-        List {
-            draftNotice
-
-            Section("动物") {
-                if session.draft.animals.isEmpty {
-                    Text("没有找到标准存档结构中的动物")
-                        .foregroundStyle(.secondary)
-                } else {
-                    ForEach(session.draft.animals) { animal in
-                        VStack(alignment: .leading, spacing: 7) {
-                            HStack {
-                                GameAnimalPortrait(type: animal.type, size: 42)
-                                Text(animal.name)
-                                    .font(.headline)
-                                Spacer()
-                                GameLabel("\(animal.hearts)", systemImage: "heart.fill")
-                                    .foregroundStyle(.pink)
-                            }
-                            Text("\(animal.localizedType) · \(animal.home)")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                            HStack {
-                                Text("亲密 \(animal.friendship)")
-                                Spacer()
-                                Text("心情 \(animal.happiness)")
-                                Spacer()
-                                Text("饱食 \(animal.fullness)")
-                            }
-                            .font(.caption.monospacedDigit())
-                            .foregroundStyle(.secondary)
-                        }
-                        .padding(.vertical, 3)
-                    }
-                }
-            }
-        }
-    }
-
-    @ViewBuilder
-    private func optionalTrackerValue(_ title: String, _ value: Int?, assetName: String? = nil) -> some View {
-        if let value {
-            if let assetName {
-                artworkTrackerValue(title, value: value.formatted(), assetName: assetName)
-            } else {
-                LabeledContent(title, value: value.formatted())
-            }
-        }
-    }
-
-    private func artworkTrackerValue(_ title: String, value: String, assetName: String) -> some View {
-        LabeledContent {
-            Text(value)
-        } label: {
-            GameAssetLabel(title, assetName: assetName, iconSize: 24)
-        }
-    }
-
-    private var recipesList: some View {
-        List {
-            draftNotice
-
-            Section {
-                Picker("分类", selection: $recipeKind) {
-                    ForEach(RecipeKind.allCases) { kind in
-                        Text(kind.displayName).tag(kind)
-                    }
-                }
-                .pickerStyle(.segmented)
-
-                LabeledContent("已解锁", value: "\(unlockedRecipes.count) / \(recipesOfSelectedKind.count)")
-            }
-
-            Section("已解锁配方") {
-                if filteredRecipes.isEmpty {
-                    Text("没有匹配的已解锁配方")
-                        .foregroundStyle(.secondary)
-                } else {
-                    ForEach(filteredRecipes) { recipe in
-                        HStack(spacing: 12) {
-                            RecipeArtworkView(key: recipe.key, kind: recipe.kind, size: 40)
-                            VStack(alignment: .leading, spacing: 2) {
-                                Text(RecipeCatalog.localizedName(for: recipe.key))
-                                if RecipeCatalog.hasChineseName(for: recipe.key) {
-                                    Text(recipe.key)
-                                        .font(.caption)
-                                        .foregroundStyle(.secondary)
-                                }
-                            }
-                            Spacer()
-                            Text("制作 \(recipe.timesMade) 次")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                        }
-                    }
-                }
-            }
-        }
-        .searchable(text: $searchText, prompt: "搜索已解锁配方")
-        .onSubmit(of: .search) { KeyboardReturnAction.dismiss() }
-    }
-
-    private var statusList: some View {
-        List {
-            draftNotice
-
-            Section("当前来源") {
-                LabeledContent("农场", value: session.source.farmIdentifier)
-                LabeledContent("访问模式", value: session.source.mode.displayName)
-                LabeledContent("主存档格式", value: session.metadata.mainEncoding.displayName)
-                if let infoEncoding = session.metadata.infoEncoding {
-                    LabeledContent("SaveGameInfo", value: infoEncoding.displayName)
-                }
-            }
-
-            Section("兼容性") {
-                if session.metadata.warnings.isEmpty {
-                    GameLabel("未发现兼容性警告", systemImage: "checkmark.seal.fill")
-                        .foregroundStyle(.green)
-                } else {
-                    ForEach(session.metadata.warnings, id: \.self) { warning in
-                        GameLabel(warning, systemImage: "exclamationmark.triangle.fill")
-                            .foregroundStyle(.orange)
-                    }
-                }
-            }
-
-            Section {
-                if session.diffs.isEmpty {
-                    GameLabel("没有待保存的更改", systemImage: "checkmark.circle.fill")
-                        .foregroundStyle(.green)
-                } else {
-                    ForEach(session.diffs) { diff in
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text("\(diff.section) · \(diff.label)")
-                                .font(.headline)
-                            Text("\(diff.oldValue) → \(diff.newValue)")
-                                .font(.subheadline)
-                                .foregroundStyle(.secondary)
-                        }
-                    }
-                }
-            } header: {
-                Text("待保存草稿")
-            } footer: {
-                Text("保存、放弃或恢复备份请前往工具页的“检查与保存”。")
-            }
-        }
-    }
-
-    @ViewBuilder
-    private var draftNotice: some View {
-        if session.hasChanges {
-            Section {
-                GameLabel("正在预览 \(session.diffs.count) 项未保存草稿", systemImage: "eye.fill")
-                    .foregroundStyle(.orange)
-            }
-        }
-    }
-
-    private var occupiedInventory: [InventorySlotDraft] {
-        session.draft.inventory.filter { $0.item != nil }
-    }
-
-    private var filteredFriendships: [FriendshipDraft] {
-        session.draft.friendships.filter { friend in
-            searchText.isEmpty
-                || friend.name.localizedCaseInsensitiveContains(searchText)
-                || npcChineseNames[friend.name]?.localizedCaseInsensitiveContains(searchText) == true
-        }
-    }
-
-    private var recipesOfSelectedKind: [RecipeDraft] {
-        session.draft.recipes.filter { $0.kind == recipeKind }
-    }
-
-    private var unlockedRecipes: [RecipeDraft] {
-        recipesOfSelectedKind.filter(\.unlocked)
-    }
-
-    private var filteredRecipes: [RecipeDraft] {
-        unlockedRecipes.filter { recipe in
-            searchText.isEmpty
-                || recipe.key.localizedCaseInsensitiveContains(searchText)
-                || RecipeCatalog.localizedName(for: recipe.key)
-                    .localizedCaseInsensitiveContains(searchText)
-        }
-    }
 }

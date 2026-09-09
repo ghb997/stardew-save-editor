@@ -1,8 +1,10 @@
 # 穗光琥珀存档匣
 
+> 2026-09-09 追踪器 UI 工作版本：此目录已在 build 8 源码基础上修改，**不再与原 build 8 IPA 对应**。项目版本为 0.3.3（9），已获用户授权进行独立分支云端验证。当前原生构建与视觉验收结果待更新。改动见 [TRACKER_UI_UPDATE.md](TRACKER_UI_UPDATE.md)，验收状态见 [design-qa.md](design-qa.md)。下方 build 8 云端成功记录只证明历史基线。
+
 一款个人使用的原生 iOS 17+《星露谷物语》1.6 存档编辑器。所有处理均在设备本地完成。
 
-源码版本：`0.3.3`（构建 `8`）
+源码版本：`0.3.3`（构建 `9`）
 
 本版完成存档安全、兼容性、编辑流程、游戏素材接入与底部标签栏尺寸修复。详细变化见 [CHANGELOG.md](CHANGELOG.md)，素材来源见 [GAME_ASSET_PROVENANCE.md](GAME_ASSET_PROVENANCE.md)，验证范围与 Mac 验收步骤见 [VALIDATION.md](VALIDATION.md)。0.3.3 build 8 已由 [GitHub Actions](https://github.com/ghb997/stardew-save-editor/actions/runs/34192090963) 使用 Xcode 16.4 完成 Release、arm64、iPhoneOS 编译；尚未运行 XCTest、模拟器或真实游戏读档验证。
 
@@ -38,7 +40,7 @@
 
 ## 运行
 
-### GitHub 云端生成 IPA
+### GitHub 云端生成 IPA（下述成功记录为历史 build 8）
 
 已加入 `.github/workflows/build-ipa.yml`。本版成功构建记录为 [run 34192090963](https://github.com/ghb997/stardew-save-editor/actions/runs/34192090963)，生成 SHA-256 为 `3cc1b58e4a94905b2004ae163b1afd5035fc662215b5b684c1026d83fdd1a441` 的未签名 iPhoneOS arm64 IPA。产物需自行签名后安装，详细操作见 [GITHUB_BUILD.md](GITHUB_BUILD.md)。
 
