@@ -1,50 +1,45 @@
 # Tracker design QA
 
-final result: blocked
+Final result: pending post-fix native recapture.
 
-Date: 2026-09-09.
+Date: 2026-09-09. Reference-inspired improvement to the existing native SwiftUI product, not a pixel-identical clone. Existing editor functionality and native navigation are preserved.
 
-## Evidence and blocker
+## Reference and measured native evidence
 
-- Source visual truth: ../design-reference/09-basic-editor.png (Basic / Farm Dashboard), 07-collections.png, 02-bundles.png, 06-dark-mode.png, 08-villagers.png. Public source: https://apps.apple.com/us/app/stardew-guide-tracker/id6748267484. Source images were opened for inspection.
-- Source pixel dimensions: 1284 × 2778 each, promotional image including purple marketing area and phone frame.
-- Implementation: native SwiftUI in PelicanSaveEditor/Views/Home/TrackerView.swift, TrackerComponents.swift, TrackerDetailView.swift.
-- Implementation screenshot path: unavailable — no current-source iOS rendered capture exists.
-- Viewport / implementation pixel dimensions: not measured. This is a native app; CSS viewport and browser deviceScaleFactor are not applicable.
-- Density/crop normalization: not performed. Once native captures exist, crop reference to app content, match logical widths and theme, and place source and implementation in the same comparison input.
-- Target states: loaded overview, collection details, recipes/wallet, light/dark, largest Dynamic Type, empty farm, unsaved draft, compatibility warning.
-- Full-view comparison evidence: unavailable, not passed.
-- Focused comparison evidence: unavailable, not passed. Typography, chips, row counts and progress bars require focused comparison after full views.
+- Source: public App Store screenshots under ../design-reference: 09-basic-editor.png (Basic / Farm Dashboard), 07-collections.png, 06-dark-mode.png, 02-bundles.png, 08-villagers.png. https://apps.apple.com/us/app/stardew-guide-tracker/id6748267484
+- Source dimensions: 1284 × 2778, including marketing surround and phone frame. No private code or artwork was copied from the IPA.
+- First verified source commit: 0845fb70e2f45b7460ecd895ff305f8bb5c94874.
+- Native run: https://github.com/ghb997/stardew-save-editor/actions/runs/34325582959 — succeeded; 58 XCTest tests executed, zero failures.
+- Xcode 16.4 (16F6), SDK 18.5; iPhone SE (3rd generation), iOS 26.2. Native screenshots: 750 × 1334 pixels, 375 × 667 logical points, @2x. CSS viewport/deviceScaleFactor are not applicable.
+- Screenshots: artifacts/tracker-ui-first/Tracker-native-ui-1-1/screenshots/20260909-075443-11297/01–16 PNG files. All opened for visual inspection by the review team.
+- Shared comparison inputs: artifacts/tracker-ui-first/comparison-overview.png and comparison-dark.png. Both opened. Reference content crop (155,1090,973,1688), native crop (0,70,750,1264), each proportionally normalized to 420 pixels wide; no stretching or fabricated screenshot content.
+- Dark comparison uses different semantic pages (reference villagers / implementation overview); it supports palette and contrast review, not identical-state pixel fidelity.
 
-Windows has no Xcode/iOS Simulator; the available simulator tool also returned spawn xcrun ENOENT. The user authorized dedicated-branch upload and cloud validation on 2026-09-09. Branch codex/tracker-ui-validation-20260909 is prepared for native build/test/capture. Current version: 0.3.3 (9). No merge or Release publication is authorized. Native results are pending.
+## Observed issues and implemented corrections
 
-## Required fidelity surfaces
+| Priority | Actual rendered evidence | Correction | Retest |
+| --- | --- | --- | --- |
+| P2 | 01 overview / 03 large type: large header and farm summary push category navigation and first module down on SE | Compact tracker-only header and summary; keep category chips immediately below header; category-specific screens omit overview summary and reset vertical scroll | Pending |
+| P2 | 02 dark overview: selected bottom Tracker tab has dark red foreground against dark background | Use adaptive tracker accent only while Tracker is selected | Pending |
+| P2 | 11 wallet / 12 status light: secondary text approx. RGB 138,138,142 on white, 3.44:1; 10 recipes approx. 127,127,127, 4.00:1 | Tracker-only opaque adaptive secondary color plus custom LabeledContent style; accessible sizes stack labels and values | Pending |
+| P2 | Overview uses an unfinished body sprite as if it were a complete avatar | Farmhouse asset for farm summary; native SF profile symbol for character entry | Pending |
 
-| Surface | Source intent / implemented approach | Visual verdict |
-| --- | --- | --- |
-| Fonts / typography | Native system type with large title, headline rows, monospaced numbers, wrapping and Dynamic Type layouts | Blocked: no native rendered evidence |
-| Spacing / layout | Farm summary, horizontal chips, bordered collapsible groups, row metrics below descriptions | Blocked: small-screen and iPad proportions unmeasured |
-| Colors / tokens | Warm light palette; tracker-only dark colors; semantic warning and progress colors | Blocked: native contrast/state appearance not inspected |
-| Image quality / assets | Reuse existing game pixel assets with their native rendering helpers; no new app-private art | Blocked: asset crops and rendered scaling not compared |
-| Copy / content | Chinese labels, four-category count explicitly not perfection, walnut balance, warning-first status | Source-reviewed; rendered wrapping still blocked |
+No other definite overlaps, missing images or loading failures were found in the 16 first-run captures. Offscreen scroll content alone is not classified as inaccessible. Source-specific content is intentionally not copied: collection counts explicitly are not perfection percentages; walnuts are held balance; compatibility warnings take precedence over draft status.
 
-## Findings and history
+## Verification scope
 
-No source-to-render visual mismatch is claimed because the implementation could not be captured.
+- Static scan: 55 Swift files, six project/resource checks, 113 assets; passed. Static scanning is not typechecking.
+- First native suite: 58 executed unit tests passed, including seven tracker-metric tests.
+- Interaction suite added: four UI tests cover five category filters, four group toggles, all 11 detail entries/close, selected detail chips, recipe filters/search-empty state, and empty-to-tools navigation. Current run at commit 8856991: https://github.com/ghb997/stardew-save-editor/actions/runs/34327382290 (pending).
+- Capture matrix: overview light/dark, maximum Dynamic Type light/dark, draft, empty light/dark/large, progress, recipes, wallet, draft status, dark relationship detail, large progress and recipes.
+- Not claimed: physical-device validation, interactive VoiceOver audit, iPad screenshots, or real user save roundtrip for these UI-only changes.
 
-Separate code review found and fixed malformed string interpolation, warning status hidden by “no drafts”, offscreen selected detail chips, skill ratio bounds/inconsistent subtitle, and light-card dark-mode foregrounds. Seven metric test methods were added. These are code fixes, **not completed visual-QA iterations**. There has been no post-fix native comparison.
+## Completion gate
 
-Static syntax scanning passed for 54 Swift files, and six project/resource checks passed. Two existing Swift 6 sending return qualifiers are not typechecked by that parser. XCTest has not run. Historic build 8 CI success does not validate this revision.
+- [x] Compare actual source and native implementation together.
+- [x] Fix definite P2 findings in source.
+- [ ] Build and run tests on the post-fix source.
+- [ ] Recapture post-fix native states and inspect combined comparisons.
+- [ ] Verify the final unsigned IPA and tie its hash to the tested source.
 
-## Implementation checklist
-
-- [x] Implement read-only tracker changes and register split source/test files.
-- [x] Run current-source syntax and static project checks.
-- [x] Prepare scripts/capture-tracker-ui.sh and validation/TRACKER_UI_CHECKLIST.md.
-- [ ] Build this exact source with Xcode and run the 58 declared tests.
-- [ ] Capture intended native states and verify the app has finished loading.
-- [ ] Compare reference and implementation in a normalized, shared image input.
-- [ ] Exercise all 11 entries, filters, collapse, search, close, large text and VoiceOver.
-- [ ] Fix observed P0/P1/P2 issues and repeat capture/comparison before marking passed.
-
-No visual completion, matching-design claim, or new installable IPA is asserted.
+The dedicated branch is user-authorized. No main merge or Release publication is performed. Windows cannot run Xcode; native verification is on the authorized GitHub macOS runner. Original IPAs, archived source and real saves remain untouched.

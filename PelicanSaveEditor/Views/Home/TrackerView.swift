@@ -12,30 +12,43 @@ struct TrackerView: View {
         VStack(spacing: 0) {
             LargePageHeader(
                 title: "农场追踪", artworkName: "GameUITrophy",
-                headerColor: AppTheme.trackerHeader, titleColor: AppTheme.trackerTitle
+                headerColor: AppTheme.trackerHeader, titleColor: AppTheme.trackerTitle,
+                verticalPadding: 12, minimumHeight: 82
             )
 
-            ScrollView {
-                LazyVStack(alignment: .leading, spacing: 18) {
-                    if let session = store.session {
-                        trackerFarmCard(session)
-
-                        trackerFilterStrip
-
-                        ForEach(TrackerGroup.allCases.filter { selectedFilter.includes($0) }) { group in
-                            trackerGroupPanel(group, session: session)
-                        }
-                    } else {
-                        unloadedTracker
-                    }
-                }
-                .padding(.horizontal, 20)
-                .padding(.vertical, 24)
-                .padding(.bottom, 20)
-                .frame(maxWidth: 720)
-                .frame(maxWidth: .infinity)
+            if store.session != nil {
+                trackerFilterStrip
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 10)
+                    .background(AppTheme.canvas)
             }
-            .background(AppTheme.canvas)
+
+            ScrollViewReader { proxy in
+                ScrollView {
+                    LazyVStack(alignment: .leading, spacing: 14) {
+                        if let session = store.session {
+                            if selectedFilter == .overview {
+                                trackerFarmCard(session)
+                            }
+                            ForEach(TrackerGroup.allCases.filter { selectedFilter.includes($0) }) { group in
+                                trackerGroupPanel(group, session: session)
+                            }
+                        } else {
+                            unloadedTracker
+                        }
+                    }
+                    .id("tracker.top")
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 16)
+                    .padding(.bottom, 20)
+                    .frame(maxWidth: 720)
+                    .frame(maxWidth: .infinity)
+                }
+                .background(AppTheme.canvas)
+                .onChange(of: selectedFilter) { _, _ in
+                    proxy.scrollTo("tracker.top", anchor: .top)
+                }
+            }
         }
         .fullScreenCover(item: $selectedSection) { section in
             if let session = store.session {
@@ -57,10 +70,10 @@ struct TrackerView: View {
     }
 
     private func trackerFarmCard(_ session: SaveSession) -> some View {
-        VStack(alignment: .leading, spacing: 18) {
+        VStack(alignment: .leading, spacing: 12) {
             farmHeaderLayout {
-                GameIcon(systemName: "person.crop.circle.fill", size: 58)
-                    .padding(7)
+                GameAssetIcon(assetName: "GameUIFarmhouse", size: 42)
+                    .padding(5)
                     .background(Color(.tertiarySystemBackground), in: RoundedRectangle(cornerRadius: 16))
 
                 VStack(alignment: .leading, spacing: 4) {
@@ -112,7 +125,7 @@ struct TrackerView: View {
             }
         }
         .foregroundStyle(AppTheme.trackerTitle)
-        .padding(20)
+        .padding(16)
         .background(AppTheme.trackerHeaderSoft, in: RoundedRectangle(cornerRadius: 24, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: 24, style: .continuous)
@@ -187,16 +200,16 @@ struct TrackerView: View {
                             .font(.headline)
                         Text(group.subtitle)
                             .font(.caption)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(AppTheme.trackerSecondary)
                             .fixedSize(horizontal: false, vertical: true)
                     }
                     Spacer()
                     Text("\(group.sections.count)")
                         .font(.caption.monospacedDigit().weight(.semibold))
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.trackerSecondary)
                     Image(systemName: expandedGroups.contains(group) ? "chevron.up" : "chevron.down")
                         .font(.caption.bold())
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.trackerSecondary)
                 }
                 .foregroundStyle(.primary)
                 .padding(.horizontal, 18)
@@ -233,7 +246,7 @@ struct TrackerView: View {
             selectedSection = section
         } label: {
             HStack(alignment: .top, spacing: 12) {
-                SaveSectionArtwork(section: section, size: 44)
+                TrackerSectionArtwork(section: section, size: 44)
                     .frame(width: 52, height: 52)
                     .background(Color(.systemBackground).opacity(0.78), in: RoundedRectangle(cornerRadius: 13))
 
@@ -243,7 +256,7 @@ struct TrackerView: View {
                         .fixedSize(horizontal: false, vertical: true)
                     Text(trackerSubtitle(for: section, session: session))
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.trackerSecondary)
                         .fixedSize(horizontal: false, vertical: true)
                     ViewThatFits(in: .horizontal) {
                         HStack(spacing: 10) {
@@ -392,7 +405,7 @@ struct TrackerView: View {
                     .font(.title2.bold())
                 Text("集中查看角色、收藏、技能、关系与农场生活进度。")
                     .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.trackerSecondary)
                     .multilineTextAlignment(.center)
             }
             Button {

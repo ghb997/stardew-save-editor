@@ -151,7 +151,7 @@ struct RootView: View {
         // UITabBar reads an icon's intrinsic UIImage size and does not honor
         // layout frames inside a custom SwiftUI label. Native tab symbols keep
         // every item inside the system-managed bar on iPhone and iPad.
-        .tint(AppTheme.accent)
+        .tint(selectedTab == .tracker ? AppTheme.trackerAccent : AppTheme.accent)
         .toolbarBackground(.visible, for: .tabBar)
         .toolbarBackground(Color(.systemBackground), for: .tabBar)
     }

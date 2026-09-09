@@ -18,6 +18,7 @@ enum AppTheme {
     static let trackerRow = adaptive(light: (0.93, 0.96, 0.91), dark: (0.13, 0.20, 0.15))
     static let progress = adaptive(light: (0.12, 0.43, 0.22), dark: (0.49, 0.82, 0.54))
     static let trackerWarning = adaptive(light: (0.53, 0.26, 0.02), dark: (1, 0.77, 0.43))
+    static let trackerSecondary = adaptive(light: (0.37, 0.37, 0.39), dark: (0.72, 0.72, 0.75))
 
     private static func adaptive(
         light: (Double, Double, Double),
@@ -99,6 +100,8 @@ struct LargePageHeader: View {
     var systemImage: String? = nil
     var headerColor: Color = AppTheme.header
     var titleColor: Color = AppTheme.title
+    var verticalPadding: CGFloat = 24
+    var minimumHeight: CGFloat = 110
 
     var body: some View {
         HStack(spacing: 14) {
@@ -112,8 +115,8 @@ struct LargePageHeader: View {
         }
             .foregroundStyle(titleColor)
             .padding(.horizontal, 24)
-            .padding(.vertical, 24)
-            .frame(maxWidth: .infinity, minHeight: 110, alignment: .bottomLeading)
+            .padding(.vertical, verticalPadding)
+            .frame(maxWidth: .infinity, minHeight: minimumHeight, alignment: .bottomLeading)
             .background(headerColor.ignoresSafeArea(edges: .top))
     }
 }

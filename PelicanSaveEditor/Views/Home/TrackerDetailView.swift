@@ -20,6 +20,7 @@ struct TrackerDetailView: View {
                 .scrollContentBackground(.hidden)
                 .background(AppTheme.canvas.ignoresSafeArea())
                 .listStyle(.insetGrouped)
+                .labeledContentStyle(TrackerLabeledContentStyle())
                 .safeAreaInset(edge: .top, spacing: 0) {
                     detailFilterStrip
                 }
@@ -28,7 +29,7 @@ struct TrackerDetailView: View {
                 .toolbar {
                     ToolbarItem(placement: .principal) {
                         HStack(spacing: 8) {
-                            SaveSectionArtwork(section: section, size: 26)
+                            TrackerSectionArtwork(section: section, size: 26)
                             Text(section.trackerTitle)
                                 .font(.headline)
                                 .foregroundStyle(AppTheme.trackerTitle)
@@ -190,7 +191,7 @@ struct TrackerDetailView: View {
             Section("房间表面") {
                 if session.draft.farmhouse.decorations.isEmpty {
                     Text("没有可读取的墙纸或地板条目")
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.trackerSecondary)
                 } else {
                     ForEach(session.draft.farmhouse.decorations) { decoration in
                         LabeledContent(
@@ -216,7 +217,7 @@ struct TrackerDetailView: View {
             Section("背包槽位") {
                 if occupiedInventory.isEmpty {
                     Text("背包为空")
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.trackerSecondary)
                 } else {
                     ForEach(occupiedInventory) { slot in
                         if let item = slot.item {
@@ -226,7 +227,7 @@ struct TrackerDetailView: View {
                                     Text(item.displayName)
                                     Text("槽位 \(slot.id + 1) · 品质 \(item.quality) · \(item.objectType)")
                                         .font(.caption)
-                                        .foregroundStyle(.secondary)
+                                        .foregroundStyle(AppTheme.trackerSecondary)
                                 }
                                 Spacer()
                                 Text("×\(item.stack)")
@@ -246,7 +247,7 @@ struct TrackerDetailView: View {
             Section {
                 if filteredFriendships.isEmpty {
                     Text("没有匹配的角色")
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.trackerSecondary)
                 } else {
                     ForEach(filteredFriendships) { friend in
                         VStack(alignment: .leading, spacing: 8) {
@@ -258,7 +259,7 @@ struct TrackerDetailView: View {
                                     if npcChineseNames[friend.name] != nil {
                                         Text(friend.name)
                                             .font(.caption)
-                                            .foregroundStyle(.secondary)
+                                            .foregroundStyle(AppTheme.trackerSecondary)
                                     }
                                 }
                                 Spacer()
@@ -267,7 +268,7 @@ struct TrackerDetailView: View {
                             }
                             LabeledContent("好感", value: "\(friend.points) 点")
                             LabeledContent("状态", value: friend.status.displayName)
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(AppTheme.trackerSecondary)
                         }
                         .padding(.vertical, 4)
                     }
@@ -406,7 +407,7 @@ struct TrackerDetailView: View {
                         .font(.headline)
                         Text("Lv. \(skill.level) · \(skill.targetExperience) XP")
                             .font(.subheadline.monospacedDigit())
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(AppTheme.trackerSecondary)
                         ProgressView(value: TrackerMetrics.fraction(completed: skill.targetExperience, total: 15_000) ?? 0)
                             .tint(AppTheme.progress)
                             .accessibilityLabel("\(skill.key.displayName)经验进度")
@@ -422,7 +423,7 @@ struct TrackerDetailView: View {
                     .sorted()
                 if selected.isEmpty {
                     Text("尚未选择职业")
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.trackerSecondary)
                 } else {
                     ForEach(selected, id: \.self) { id in
                         LabeledContent(ProfessionCatalog.name(for: id), value: "编号 \(id)")
@@ -448,7 +449,7 @@ struct TrackerDetailView: View {
                     .accessibilityLabel("钱包能力解锁进度")
                     Text("只读查看特殊物品与能力；不会改变剧情标记。")
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.trackerSecondary)
                 }
                 .padding(.vertical, 6)
             }
@@ -462,7 +463,7 @@ struct TrackerDetailView: View {
                         } else {
                             Image(systemName: unlock.key.systemImage)
                                 .frame(width: 36)
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(AppTheme.trackerSecondary)
                         }
                         VStack(alignment: .leading, spacing: 5) {
                             Text(unlock.key.displayName)
@@ -470,7 +471,7 @@ struct TrackerDetailView: View {
                             Label(unlock.isUnlocked ? "已获得" : "未获得",
                                   systemImage: unlock.isUnlocked ? "checkmark.circle.fill" : "lock")
                                 .font(.caption)
-                                .foregroundStyle(unlock.isUnlocked ? AppTheme.progress : Color.secondary)
+                                .foregroundStyle(unlock.isUnlocked ? AppTheme.progress : AppTheme.trackerSecondary)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                     }
@@ -493,7 +494,7 @@ struct TrackerDetailView: View {
             Section("动物") {
                 if session.draft.animals.isEmpty {
                     Text("没有找到标准存档结构中的动物")
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.trackerSecondary)
                 } else {
                     ForEach(session.draft.animals) { animal in
                         VStack(alignment: .leading, spacing: 7) {
@@ -507,7 +508,7 @@ struct TrackerDetailView: View {
                             }
                             Text("\(animal.localizedType) · \(animal.home)")
                                 .font(.caption)
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(AppTheme.trackerSecondary)
                             HStack {
                                 Text("亲密 \(animal.friendship)")
                                 Spacer()
@@ -516,7 +517,7 @@ struct TrackerDetailView: View {
                                 Text("饱食 \(animal.fullness)")
                             }
                             .font(.caption.monospacedDigit())
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(AppTheme.trackerSecondary)
                         }
                         .padding(.vertical, 3)
                     }
@@ -561,7 +562,7 @@ struct TrackerDetailView: View {
             Section("\(recipeStatus.rawValue) · \(filteredRecipes.count) 项") {
                 if filteredRecipes.isEmpty {
                     Text(searchText.isEmpty ? "当前分类没有符合条件的配方" : "没有匹配的配方，请试试其他名称或筛选")
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.trackerSecondary)
                 } else {
                     ForEach(filteredRecipes) { recipe in
                         HStack(spacing: 12) {
@@ -573,12 +574,12 @@ struct TrackerDetailView: View {
                                 if RecipeCatalog.hasChineseName(for: recipe.key) {
                                     Text(recipe.key)
                                         .font(.caption)
-                                        .foregroundStyle(.secondary)
+                                        .foregroundStyle(AppTheme.trackerSecondary)
                                 }
                                 Label(recipe.unlocked ? "已解锁 · 制作 \(recipe.timesMade) 次" : "未解锁",
                                       systemImage: recipe.unlocked ? "checkmark.circle.fill" : "lock")
                                     .font(.caption)
-                                    .foregroundStyle(recipe.unlocked ? AppTheme.progress : Color.secondary)
+                                    .foregroundStyle(recipe.unlocked ? AppTheme.progress : AppTheme.trackerSecondary)
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
                         }
@@ -628,7 +629,7 @@ struct TrackerDetailView: View {
                                 .font(.headline)
                             Text("\(diff.oldValue) → \(diff.newValue)")
                                 .font(.subheadline)
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(AppTheme.trackerSecondary)
                         }
                     }
                 }
@@ -692,7 +693,7 @@ struct TrackerDetailView: View {
             }
             Text("按当前已识别配方统计；解锁不代表已经制作。")
                 .font(.caption)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.trackerSecondary)
         }
         .padding(.vertical, 6)
     }

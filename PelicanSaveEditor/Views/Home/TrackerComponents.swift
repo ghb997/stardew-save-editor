@@ -1,5 +1,46 @@
 import SwiftUI
 
+struct TrackerLabeledContentStyle: LabeledContentStyle {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    func makeBody(configuration: Configuration) -> some View {
+        if dynamicTypeSize.isAccessibilitySize {
+            VStack(alignment: .leading, spacing: 5) {
+                configuration.label
+                configuration.content.foregroundStyle(AppTheme.trackerSecondary)
+            }
+        } else {
+            HStack(alignment: .firstTextBaseline, spacing: 12) {
+                configuration.label
+                Spacer(minLength: 8)
+                configuration.content
+                    .foregroundStyle(AppTheme.trackerSecondary)
+                    .multilineTextAlignment(.trailing)
+            }
+        }
+    }
+}
+
+/// A profile symbol identifies the character section without presenting an
+/// undressed sprite layer as if it were the player's rendered appearance.
+struct TrackerSectionArtwork: View {
+    let section: SaveEditorSection
+    let size: CGFloat
+
+    var body: some View {
+        if section == .character {
+            Image(systemName: "person.crop.circle.fill")
+                .resizable()
+                .scaledToFit()
+                .foregroundStyle(AppTheme.trackerAccent)
+                .frame(width: size, height: size)
+                .accessibilityHidden(true)
+        } else {
+            SaveSectionArtwork(section: section, size: size)
+        }
+    }
+}
+
 enum TrackerFilter: String, CaseIterable, Identifiable {
     case overview
     case basic
@@ -127,7 +168,7 @@ struct TrackerDetailCard<Content: View>: View {
                     Spacer()
                     Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
                         .font(.caption.bold())
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.trackerSecondary)
                 }
                 .foregroundStyle(.primary)
                 .padding(.horizontal, 18)
@@ -182,7 +223,7 @@ struct TrackerDetailDataRow: View {
                     Text(title).font(.subheadline.weight(.medium))
                     Text(value)
                         .font(.subheadline.monospacedDigit().weight(.semibold))
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.trackerSecondary)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
             } else {
@@ -190,7 +231,7 @@ struct TrackerDetailDataRow: View {
                 Spacer(minLength: 8)
                 Text(value)
                     .font(.subheadline.monospacedDigit().weight(.semibold))
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.trackerSecondary)
                     .multilineTextAlignment(.trailing)
             }
         }
