@@ -319,7 +319,7 @@ struct TrackerView: View {
         case .farmhouse:
             return "\(session.draft.farmhouse.decorations.count) 项"
         case .inventory:
-            return "\(session.draft.inventory.filter { $0.item != nil }.count)/\(session.draft.inventory.count)"
+            return "\(session.draft.inventory.prefix(session.draft.usableInventoryCount).filter { $0.item != nil }.count)/\(session.draft.usableInventoryCount)"
         case .progress:
             return "\(trackerCollectionFootprint(session)) 项"
         case .relationships:

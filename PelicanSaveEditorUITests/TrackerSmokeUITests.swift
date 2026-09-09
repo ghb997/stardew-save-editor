@@ -123,6 +123,82 @@ final class TrackerSmokeUITests: XCTestCase {
     }
 
     @MainActor
+    func testEditorCapacityAndInventorySearchUseDraft() throws {
+        let app = try launchEditor("inventory")
+        defer { app.terminate() }
+        let capacity = app.segmentedControls["editor.inventory.capacity"]
+        try require(capacity, app: app)
+        try tap(capacity.buttons["36 格"], app: app)
+        try wait(app.staticTexts["editor.inventory.capacitySummary"],
+                 predicate: NSPredicate(format: "label CONTAINS %@", "/ 36"), app: app)
+        attachScreenshot("editor-backpack-expanded", app: app)
+        let search = app.searchFields.firstMatch
+        try require(search, app: app)
+        try tap(search, app: app)
+        search.typeText("Diamond")
+        try require(app.buttons["editor.inventory.slot.2"], app: app)
+        try check(!app.buttons["editor.inventory.slot.0"].exists, "Search must hide other item slots", app: app)
+        attachScreenshot("editor-backpack-search", app: app)
+    }
+
+    @MainActor
+    func testRelationshipBatchPreviewCanCancelAndApplyOnlySearchedCharacter() throws {
+        let app = try launchEditor("relationships")
+        defer { app.terminate() }
+        let search = app.searchFields.firstMatch
+        try tap(search, app: app)
+        search.typeText("Abigail\n")
+        let batch = app.buttons["editor.relationships.batch.fillHearts"]
+        try revealVertically(batch, app: app)
+        try tap(batch, app: app)
+        try require(app.staticTexts["将修改 1 位角色"], app: app)
+        attachScreenshot("editor-relationship-batch-preview", app: app)
+        try tap(app.navigationBars["补满好感"].buttons["取消"], app: app)
+        try tap(batch, app: app)
+        let apply = app.buttons["editor.relationships.batch.apply"]
+        try revealVertically(apply, app: app)
+        try tap(apply, app: app)
+        let points = app.textFields["editor.relationship.Abigail.points"]
+        try revealVertically(points, app: app)
+        try wait(points, predicate: NSPredicate(format: "value == %@ OR value == %@", "2,000", "2000"), app: app)
+        attachScreenshot("editor-relationship-applied", app: app)
+    }
+
+    @MainActor
+    func testGiftBatchResetShowsChangedCountersWithoutChangingHearts() throws {
+        let app = try launchEditor("relationships")
+        defer { app.terminate() }
+        let batch = app.buttons["editor.relationships.batch.resetGifts"]
+        try revealVertically(batch, app: app)
+        try tap(batch, app: app)
+        try require(app.staticTexts["将修改 1 位角色"], app: app)
+        attachScreenshot("editor-gift-reset-preview", app: app)
+        let apply = app.buttons["editor.relationships.batch.apply"]
+        try revealVertically(apply, app: app)
+        try tap(apply, app: app)
+        let points = app.textFields["editor.relationship.Abigail.points"]
+        try revealVertically(points, app: app)
+        try wait(points, predicate: NSPredicate(format: "value == %@ OR value == %@", "1,750", "1750"), app: app)
+        let reset = app.buttons["editor.relationship.Abigail.resetGifts"]
+        try revealVertically(reset, app: app)
+        try check(!reset.isEnabled, "No gifts should remain to reset", app: app)
+        attachScreenshot("editor-gift-reset-applied", app: app)
+    }
+
+    @MainActor
+    private func launchEditor(_ section: String) throws -> XCUIApplication {
+        let app = XCUIApplication()
+        app.launchArguments = ["--ui-tab", "tools", "--ui-demo", "-AppleLanguages", "(zh-Hans)", "-AppleLocale", "zh_CN"]
+        app.launch()
+        let tool = app.buttons["editor.tool.\(section)"]
+        try require(app.tabBars.buttons["工具"], app: app, timeout: 30)
+        try require(tool, app: app, timeout: 30)
+        try revealVertically(tool, app: app)
+        try tap(tool, app: app)
+        return app
+    }
+
+    @MainActor
     private func selectHomeFilter(_ filter: String, app: XCUIApplication) throws {
         let strips = app.scrollViews.containing(.button, identifier: "tracker.filter.overview")
         let strip = strips.element(boundBy: max(0, strips.count - 1))

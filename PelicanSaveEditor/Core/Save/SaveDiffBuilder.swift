@@ -157,6 +157,9 @@ enum SaveDiffBuilder {
             )
         }
 
+        add("inventory.capacity", section: "背包", label: "背包容量（撤销时同时恢复新解锁槽位）",
+            old: original.backpackCapacity.map { "\($0) 格" } ?? "未提供",
+            new: draft.backpackCapacity.map { "\($0) 格" } ?? "未提供")
         let slotCount = max(original.inventory.count, draft.inventory.count)
         for index in 0..<slotCount {
             let old = original.inventory.indices.contains(index) ? original.inventory[index].item : nil
@@ -194,6 +197,15 @@ enum SaveDiffBuilder {
                 new: friend.status.displayName,
                 syncInfo: false
             )
+            for (key, label, previous, value) in [
+                ("giftsToday", "今日送礼", old.giftsToday, friend.giftsToday),
+                ("giftsThisWeek", "本周送礼", old.giftsThisWeek, friend.giftsThisWeek)
+            ] {
+                add("friendship.\(friend.name).\(key)", section: "关系",
+                    label: "\(friend.localizedName) \(label)",
+                    old: previous.map { "\($0) 次" } ?? "未提供",
+                    new: value.map { "\($0) 次" } ?? "未提供", syncInfo: false)
+            }
         }
 
         let oldAnimals = Dictionary(original.animals.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
@@ -280,6 +292,7 @@ enum SaveDiffBuilder {
         case "appearance.hair": draft.hair = original.hair
         case "appearance.skin": draft.skin = original.skin
         case "appearance.accessory": draft.accessory = original.accessory
+        case "inventory.capacity": draft.restoreBackpackCapacity(from: original)
         case "farmhouse.upgrade": draft.farmhouse.upgradeLevel = original.farmhouse.upgradeLevel
         case "date.year": draft.year = original.year
         case "date.season": draft.season = original.season
@@ -341,6 +354,8 @@ enum SaveDiffBuilder {
                 guard let old = original.friendships.first(where: { $0.name == name }) else { continue }
                 if diff.id == "friendship.\(name).points" { draft.friendships[index].points = old.points }
                 if diff.id == "friendship.\(name).status" { draft.friendships[index].status = old.status }
+                if diff.id == "friendship.\(name).giftsToday" { draft.friendships[index].giftsToday = old.giftsToday }
+                if diff.id == "friendship.\(name).giftsThisWeek" { draft.friendships[index].giftsThisWeek = old.giftsThisWeek }
             }
             for index in draft.animals.indices {
                 let id = draft.animals[index].id

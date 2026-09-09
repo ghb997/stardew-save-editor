@@ -26,10 +26,10 @@ enum SaveMutator {
         applyPlayerScalars(draft, original: parsed.draft, to: player)
         applyDate(draft, original: parsed.draft, root: main, player: player)
         if draft.inventory != parsed.draft.inventory {
-            try applyInventory(draft.inventory, to: player)
+            try applyInventory(draft.inventory, original: parsed.draft.inventory, to: player)
         }
         if draft.friendships != parsed.draft.friendships {
-            applyFriendships(draft.friendships, to: player)
+            applyFriendships(draft.friendships, original: parsed.draft.friendships, to: player)
         }
         if draft.recipes != parsed.draft.recipes {
             applyRecipes(draft.recipes, to: player)
@@ -236,6 +236,35 @@ enum SaveMutator {
             }
         }
 
+        if let original {
+            guard draft.inventorySlotFloor == original.inventorySlotFloor else {
+                throw SaveValidationError.invalid("背包原始槽位记录已改变，请重新读取存档。")
+            }
+            let capacityChanged = draft.backpackCapacity != original.backpackCapacity
+            if capacityChanged {
+                guard original.canResizeBackpack, let capacity = draft.backpackCapacity,
+                      BackpackRules.capacities.contains(capacity),
+                      !draft.inventory.dropFirst(capacity).contains(where: { $0.item != nil }) else {
+                    throw SaveValidationError.invalid("背包容量无效或容量外仍有物品。")
+                }
+            }
+            if draft.inventory != original.inventory || capacityChanged {
+                let expectedCount = capacityChanged
+                    ? max(draft.backpackCapacity ?? 0, original.inventorySlotFloor)
+                    : original.inventory.count
+                guard draft.inventory.count == expectedCount,
+                      draft.inventory.enumerated().allSatisfy({ $0.offset == $0.element.id }) else {
+                    throw SaveValidationError.invalid("背包槽位数量或顺序不正确。")
+                }
+                for slot in draft.inventory where !draft.canUseInventorySlot(slot.id) {
+                    let old = original.inventory.indices.contains(slot.id) ? original.inventory[slot.id].item : nil
+                    guard slot.item == old else {
+                        throw SaveValidationError.invalid("请先扩容，再修改未解锁的背包槽位。")
+                    }
+                }
+            }
+        }
+
         for slot in draft.inventory {
             if let original,
                original.inventory.first(where: { $0.id == slot.id })?.item == slot.item {
@@ -254,16 +283,41 @@ enum SaveMutator {
             }
         }
         for friendship in draft.friendships {
-            let originalPoints = original?.friendships
-                .first(where: { $0.name == friendship.name })?.points
-            if shouldValidate(friendship.points, originalValue: originalPoints),
-               !(0...3_749).contains(friendship.points) {
-                throw SaveValidationError.invalid("\(friendship.name) 的好感度必须在 0 到 3749 之间。")
+            let old = original?.friendships.first(where: { $0.name == friendship.name })
+            if shouldValidate(friendship.points, originalValue: old?.points) {
+                let limit = FriendshipRules.maximumEditablePoints(for: friendship)
+                guard old?.hasEditablePoints != false, (0...limit).contains(friendship.points) else {
+                    throw SaveValidationError.invalid("\(friendship.localizedName) 的好感度必须在 0 到 \(limit) 之间，且存档须有有效好感字段。")
+                }
+            }
+            if let old, friendship.status != old.status {
+                guard old.canEditStatus, FriendshipRules.dateableCharacters.contains(old.name),
+                      friendship.status.safelyEditable,
+                      friendship.points <= FriendshipRules.maximumEditablePoints(for: friendship) else {
+                    throw SaveValidationError.invalid("该角色不能安全切换到所选关系状态。")
+                }
+            }
+            if original != nil {
+                for (value, previous) in [(friendship.giftsToday, old?.giftsToday),
+                                          (friendship.giftsThisWeek, old?.giftsThisWeek)] where value != previous {
+                    guard previous != nil, value == 0 else {
+                        throw SaveValidationError.invalid("只能重置存档中已有的有效送礼次数。")
+                    }
+                }
+            } else {
+                for value in [friendship.giftsToday, friendship.giftsThisWeek].compactMap({ $0 }) {
+                    guard (0...Int(Int32.max)).contains(value) else {
+                        throw SaveValidationError.invalid("送礼次数无效。")
+                    }
+                }
             }
         }
     }
 
     private static func applyPlayerScalars(_ draft: SaveDraft, original: SaveDraft, to player: XMLNode) {
+        if draft.backpackCapacity != original.backpackCapacity, let capacity = draft.backpackCapacity {
+            player.setValue(String(capacity), named: "maxItems")
+        }
         if draft.playerName != original.playerName {
             player.setValue(draft.playerName, named: "name")
         }
@@ -466,9 +520,14 @@ enum SaveMutator {
         }
     }
 
-    private static func applyInventory(_ slots: [InventorySlotDraft], to player: XMLNode) throws {
+    private static func applyInventory(_ slots: [InventorySlotDraft], original: [InventorySlotDraft], to player: XMLNode) throws {
         guard let items = player.child(named: "items") else { return }
-        items.children = try slots.map { slot in
+        let originalNodes = items.children(named: "Item")
+        let updated = try slots.map { slot in
+            if original.indices.contains(slot.id), originalNodes.indices.contains(slot.id),
+               slot.item == original[slot.id].item {
+                return originalNodes[slot.id]
+            }
             guard let item = slot.item else {
                 return XMLNode(name: "Item", attributes: ["xsi:nil": "true"])
             }
@@ -481,18 +540,35 @@ enum SaveMutator {
             node.setValue(String(item.quality), named: "quality")
             return node.deepCopy()
         }
+        var next = 0
+        var children: [XMLNode] = []
+        for node in items.children {
+            if node.name == "Item" {
+                if updated.indices.contains(next) { children.append(updated[next]) }
+                next += 1
+            } else { children.append(node) }
+        }
+        children.append(contentsOf: updated.dropFirst(next))
+        items.children = children
     }
 
-    private static func applyFriendships(_ friendships: [FriendshipDraft], to player: XMLNode) {
+    private static func applyFriendships(_ friendships: [FriendshipDraft], original: [FriendshipDraft], to player: XMLNode) {
         guard let container = player.child(named: "friendshipData") else { return }
         let byName = Dictionary(friendships.map { ($0.name, $0) }, uniquingKeysWith: { first, _ in first })
+        let oldByName = Dictionary(original.map { ($0.name, $0) }, uniquingKeysWith: { first, _ in first })
         for item in container.children(named: "item") {
             guard let name = item.child(named: "key")?.value(named: "string"),
-                  let draft = byName[name],
+                  let draft = byName[name], let old = oldByName[name], draft != old,
                   let friendship = item.child(named: "value")?.child(named: "Friendship") else { continue }
-            friendship.setValue(String(draft.points), named: "Points")
-            if draft.canEditStatus, draft.status.safelyEditable {
+            if draft.points != old.points { friendship.setValue(String(draft.points), named: "Points") }
+            if draft.status != old.status, draft.canEditStatus, draft.status.safelyEditable {
                 friendship.setValue(draft.status.rawValue, named: "Status")
+            }
+            if draft.giftsToday != old.giftsToday, let value = draft.giftsToday {
+                friendship.setValue(String(value), named: "GiftsToday")
+            }
+            if draft.giftsThisWeek != old.giftsThisWeek, let value = draft.giftsThisWeek {
+                friendship.setValue(String(value), named: "GiftsThisWeek")
             }
         }
     }

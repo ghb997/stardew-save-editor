@@ -52,6 +52,7 @@ struct ToolsView: View {
                             ) {
                                 selectedEditorSection = section
                             }
+                            .accessibilityIdentifier("editor.tool.\(section.rawValue)")
                         }
                     } else {
                         ToolRowButton(
@@ -273,11 +274,11 @@ struct ToolsView: View {
                 ? "农舍等级与 \(session.draft.farmhouse.decorations.count) 项房间装饰"
                 : "检查农舍等级与可编辑的房间字段"
         case .inventory:
-            return "逐格编辑 \(session.draft.inventory.count) 个背包槽位"
+            return "\(session.draft.usableInventoryCount) 格背包 · 容量、物品搜索与槽位编辑"
         case .progress:
             return "齐钻、齐币、核桃、干草与矿洞进度"
         case .relationships:
-            return "调整 \(session.draft.friendships.count) 位角色的好感与安全状态"
+            return "\(session.draft.friendships.count) 位角色 · 批量好感、送礼次数与关系"
         case .skills:
             return "精确经验、等级与 5/10 级职业分支"
         case .wallet:

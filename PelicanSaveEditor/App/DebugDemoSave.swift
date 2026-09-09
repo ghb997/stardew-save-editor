@@ -35,6 +35,7 @@ enum DebugDemoSave {
         <houseUpgradeLevel>2</houseUpgradeLevel>
         <qiGems>18</qiGems><clubCoins>760</clubCoins><totalMoneyEarned>428500</totalMoneyEarned>
         <deepestMineLevel>96</deepestMineLevel>
+        <maxItems>12</maxItems>
         <yearForSaveGame>2</yearForSaveGame><seasonForSaveGame>0</seasonForSaveGame><dayOfMonthForSaveGame>12</dayOfMonthForSaveGame>
         <farmingLevel>8</farmingLevel><fishingLevel>6</fishingLevel><foragingLevel>7</foragingLevel><miningLevel>5</miningLevel><combatLevel>4</combatLevel>
         <experiencePoints><int>6900</int><int>3300</int><int>4800</int><int>2150</int><int>1300</int></experiencePoints>
@@ -65,7 +66,7 @@ enum DebugDemoSave {
           <Item xsi:nil="true"/><Item xsi:nil="true"/><Item xsi:nil="true"/>
         </items>
         <friendshipData>
-          <item><key><string>Abigail</string></key><value><Friendship><Points>1750</Points><Status>Friendly</Status></Friendship></value></item>
+          <item><key><string>Abigail</string></key><value><Friendship><Points>1750</Points><Status>Friendly</Status><GiftsToday>1</GiftsToday><GiftsThisWeek>2</GiftsThisWeek><TalkedToToday>true</TalkedToToday></Friendship></value></item>
           <item><key><string>Robin</string></key><value><Friendship><Points>1250</Points><Status>Friendly</Status></Friendship></value></item>
           <item><key><string>Linus</string></key><value><Friendship><Points>1000</Points><Status>Friendly</Status></Friendship></value></item>
         </friendshipData>

@@ -72,6 +72,8 @@
 		9AD7B1CE77A286F689D2556F /* FarmEntityListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40220DCA19D0A670C3700DE3 /* FarmEntityListView.swift */; };
 		8741A72CECCFE68FB7B16EEF /* GameLogicRegressionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877951E35F7D4E30B7D28218 /* GameLogicRegressionTests.swift */; };
 		AE16FF0007954354FC96EF9A /* TransactionRegressionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F666C112F70FABC42B14F171 /* TransactionRegressionTests.swift */; };
+		B4619351F3B7502410BD540B /* EditorConveniences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5C48017EAC6B37BA8D427A /* EditorConveniences.swift */; };
+		791D7F8EBA45F74FC4D58BC1 /* ReferenceFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9F1264F6A269E988381643 /* ReferenceFeatureTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,6 +156,8 @@
 		40220DCA19D0A670C3700DE3 /* FarmEntityListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Tools/FarmEntityListView.swift"; sourceTree = SOURCE_ROOT; };
 		877951E35F7D4E30B7D28218 /* GameLogicRegressionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditorTests/GameLogicRegressionTests.swift"; sourceTree = SOURCE_ROOT; };
 		F666C112F70FABC42B14F171 /* TransactionRegressionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditorTests/TransactionRegressionTests.swift"; sourceTree = SOURCE_ROOT; };
+		3A5C48017EAC6B37BA8D427A /* EditorConveniences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Models/EditorConveniences.swift"; sourceTree = SOURCE_ROOT; };
+		DD9F1264F6A269E988381643 /* ReferenceFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditorTests/ReferenceFeatureTests.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -184,6 +188,8 @@
 				40220DCA19D0A670C3700DE3 /* FarmEntityListView.swift */,
 				877951E35F7D4E30B7D28218 /* GameLogicRegressionTests.swift */,
 				F666C112F70FABC42B14F171 /* TransactionRegressionTests.swift */,
+				3A5C48017EAC6B37BA8D427A /* EditorConveniences.swift */,
+				DD9F1264F6A269E988381643 /* ReferenceFeatureTests.swift */,
 				52A33A42251270FA0061402D /* PelicanSaveEditor */,
 				D5CA3286FD20ABA40A3A831D /* PelicanSaveEditorTests */,
 				26115F3A720144889AA40005 /* PelicanSaveEditorUITests */,
@@ -482,6 +488,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				791D7F8EBA45F74FC4D58BC1 /* ReferenceFeatureTests.swift in Sources */,
 				AE16FF0007954354FC96EF9A /* TransactionRegressionTests.swift in Sources */,
 				8741A72CECCFE68FB7B16EEF /* GameLogicRegressionTests.swift in Sources */,
 				8487C2C4A47A01D6C0B33860 /* SaveCoreTests.swift in Sources */,
@@ -493,6 +500,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4619351F3B7502410BD540B /* EditorConveniences.swift in Sources */,
 				9AD7B1CE77A286F689D2556F /* FarmEntityListView.swift in Sources */,
 				34D0DAD272AEF1BC30A7645C /* TrackerView.swift in Sources */,
 				26115F3A720144889AA30005 /* TrackerComponents.swift in Sources */,
@@ -598,7 +606,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -619,7 +627,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.3.3;
+				MARKETING_VERSION = 0.4.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -668,7 +676,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -683,7 +691,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.3.3;
+				MARKETING_VERSION = 0.4.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";

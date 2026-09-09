@@ -209,9 +209,12 @@ struct TrackerDetailView: View {
             draftNotice
 
             Section("统计") {
-                LabeledContent("总格数", value: "\(session.draft.inventory.count)")
-                LabeledContent("已占用", value: "\(occupiedInventory.count)")
-                LabeledContent("空格", value: "\(session.draft.inventory.count - occupiedInventory.count)")
+                LabeledContent("可用容量", value: "\(session.draft.usableInventoryCount) 格")
+                LabeledContent("已占用", value: "\(session.draft.inventory.prefix(session.draft.usableInventoryCount).filter { $0.item != nil }.count)")
+                LabeledContent("空格", value: "\(session.draft.inventory.prefix(session.draft.usableInventoryCount).filter { $0.item == nil }.count)")
+                if let capacity = session.draft.backpackCapacity {
+                    LabeledContent("存档容量字段", value: "\(capacity)")
+                }
             }
 
             Section("背包槽位") {
@@ -269,6 +272,8 @@ struct TrackerDetailView: View {
                             LabeledContent("好感", value: "\(friend.points) 点")
                             LabeledContent("状态", value: friend.status.displayName)
                                 .foregroundStyle(AppTheme.trackerSecondary)
+                            if let today = friend.giftsToday { LabeledContent("今日送礼", value: "\(today) 次") }
+                            if let week = friend.giftsThisWeek { LabeledContent("本周送礼", value: "\(week) 次") }
                         }
                         .padding(.vertical, 4)
                     }
@@ -276,7 +281,7 @@ struct TrackerDetailView: View {
             } header: {
                 Text("人物关系")
             } footer: {
-                Text("此页仅展示好感与关系状态；修改请前往工具页。")
+                Text("此页展示好感、关系与存档中已有的送礼次数；修改请前往工具页。")
             }
         }
         .searchable(text: $searchText, prompt: "搜索角色名称")

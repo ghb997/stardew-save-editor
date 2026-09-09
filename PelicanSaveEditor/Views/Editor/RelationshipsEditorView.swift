@@ -3,13 +3,17 @@ import SwiftUI
 struct RelationshipsEditorView: View {
     @Bindable var session: SaveSession
     @State private var searchText = ""
+    @State private var filter: RelationshipFilter = .all
+    @State private var batchRequest: RelationshipBatchRequest?
 
     private var filteredIndices: [Int] {
         session.draft.friendships.indices.filter { index in
             let friend = session.draft.friendships[index]
-            return searchText.isEmpty
-                || friend.name.localizedCaseInsensitiveContains(searchText)
-                || npcChineseNames[friend.name]?.localizedCaseInsensitiveContains(searchText) == true
+            let original = session.originalDraft.friendships.first { $0.name == friend.name }
+            guard filter.includes(friend, original: original) else { return false }
+            let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+            return query.isEmpty || friend.name.localizedCaseInsensitiveContains(query)
+                || friend.localizedName.localizedCaseInsensitiveContains(query)
         }
     }
 
@@ -21,6 +25,31 @@ struct RelationshipsEditorView: View {
                 } else {
                     List {
                         Section {
+                            Picker("人物筛选", selection: $filter) {
+                                ForEach(RelationshipFilter.allCases) { value in
+                                    Text(value.title).tag(value)
+                                }
+                            }
+                            .accessibilityIdentifier("editor.relationships.filter")
+                            LabeledContent("当前结果", value: "\(filteredIndices.count) / \(session.draft.friendships.count) 人")
+                            ForEach(RelationshipBatchAction.allCases) { action in
+                                let candidates = filteredIndices.map { session.draft.friendships[$0] }.filter(action.willChange)
+                                Button("\(action.title) · \(candidates.count) 人", systemImage: action == .fillHearts ? "heart.fill" : "gift") {
+                                    batchRequest = RelationshipBatchRequest(action: action, friends: candidates)
+                                }
+                                .disabled(candidates.isEmpty)
+                                .accessibilityIdentifier("editor.relationships.batch.\(action.rawValue)")
+                            }
+                        } header: {
+                            Text("筛选与批量操作")
+                        } footer: {
+                            Text("批量操作只包含当前搜索与筛选结果，先预览，再加入待保存草稿。")
+                        }
+                        Section {
+                            if filteredIndices.isEmpty {
+                                ContentUnavailableView("没有匹配角色", systemImage: "person.crop.circle.badge.questionmark",
+                                    description: Text("试试其他名字，或切换人物筛选。"))
+                            }
                             ForEach(filteredIndices, id: \.self) { index in
                                 RelationshipRow(session: session, index: index)
                             }
@@ -36,6 +65,66 @@ struct RelationshipsEditorView: View {
             }
             .navigationTitle("人物关系")
         }
+        .sheet(item: $batchRequest) { request in
+            RelationshipBatchPreview(session: session, request: request)
+        }
+    }
+}
+
+private struct RelationshipBatchRequest: Identifiable {
+    let id = UUID()
+    let action: RelationshipBatchAction
+    let friends: [FriendshipDraft]
+}
+
+private struct RelationshipBatchPreview: View {
+    @Bindable var session: SaveSession
+    let request: RelationshipBatchRequest
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        NavigationStack {
+            List {
+                Section {
+                    Text("将修改 \(request.friends.count) 位角色")
+                        .font(.headline)
+                    Text(request.action == .fillHearts
+                        ? "按当前关系补到 8、10 或 14 心。已有更高好感会保留；关系状态不会改变。"
+                        : "将已有的今日、本周送礼次数清零。好感、婚姻和上次送礼日期会保留。")
+                        .font(.subheadline).foregroundStyle(.secondary)
+                }
+                Section("本次范围") {
+                    ForEach(request.friends) { friend in
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(friend.localizedName).font(.headline)
+                            if request.action == .fillHearts, let target = FriendshipRules.fullHeartPoints(for: friend) {
+                                Text("\(friend.points) → \(target) 点")
+                            } else {
+                                if let count = friend.giftsToday { Text("今日：\(count) → 0 次") }
+                                if let count = friend.giftsThisWeek { Text("本周：\(count) → 0 次") }
+                            }
+                        }
+                    }
+                }
+                Section {
+                    Button("加入草稿", systemImage: "checkmark") {
+                        session.draft.applyRelationshipBatch(request.action, names: Set(request.friends.map(\.name)))
+                        dismiss()
+                    }
+                    .accessibilityIdentifier("editor.relationships.batch.apply")
+                    .disabled(session.isEditingLocked)
+                } footer: {
+                    Text("可在“检查与保存”中逐项撤销；最终保存时才会写入存档。")
+                }
+            }
+            .navigationTitle(request.action.title)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("取消") { dismiss() }
+                }
+            }
+        }
     }
 }
 
@@ -44,11 +133,9 @@ private struct RelationshipRow: View {
     let index: Int
 
     private var friend: FriendshipDraft { session.draft.friendships[index] }
-    private var isDateable: Bool { dateableCharacters.contains(friend.name) }
+    private var isDateable: Bool { FriendshipRules.dateableCharacters.contains(friend.name) }
     private var maximumPoints: Int {
-        if friend.status == .married { return 3_749 }
-        if isDateable, friend.status == .friendly { return 2_249 }
-        return 2_749
+        FriendshipRules.maximumEditablePoints(for: friend)
     }
 
     var body: some View {
@@ -67,20 +154,32 @@ private struct RelationshipRow: View {
                     .foregroundStyle(.pink)
             }
 
+            LabeledContent("直接输入好感") {
+                TextField("好感点数", value: pointsBinding, format: .number)
+                    .keyboardType(.numberPad)
+                    .multilineTextAlignment(.trailing)
+                    .accessibilityLabel("\(friend.localizedName) 好感点数")
+                    .accessibilityIdentifier("editor.relationship.\(friend.name).points")
+                    .disabled(!friend.hasEditablePoints)
+            }
             Stepper(
                 "好感：\(friend.points) 点",
                 value: pointsBinding,
                 in: 0...maximumPoints,
                 step: 10
             )
+            .disabled(!friend.hasEditablePoints)
 
             HStack {
                 Button("0") { session.draft.friendships[index].points = 0 }
                 Button("8 心") { session.draft.friendships[index].points = min(2_000, maximumPoints) }
-                Button("满心") { session.draft.friendships[index].points = maximumPoints }
+                if let target = FriendshipRules.fullHeartPoints(for: friend) {
+                    Button("满心") { session.draft.friendships[index].points = max(friend.points, target) }
+                }
             }
             .buttonStyle(.bordered)
             .font(.caption)
+            .disabled(!friend.hasEditablePoints)
 
             if friend.canEditStatus, isDateable {
                 Picker("关系状态", selection: statusBinding) {
@@ -92,6 +191,18 @@ private struct RelationshipRow: View {
                 LabeledContent("状态", value: friend.status.displayName)
                     .foregroundStyle(.secondary)
             }
+            if friend.giftsToday != nil || friend.giftsThisWeek != nil {
+                VStack(alignment: .leading, spacing: 5) {
+                    if let today = friend.giftsToday { LabeledContent("今日送礼", value: "\(today) 次") }
+                    if let week = friend.giftsThisWeek { LabeledContent("本周送礼", value: "\(week) 次") }
+                    Button("重置送礼次数", systemImage: "gift") {
+                        session.draft.applyRelationshipBatch(.resetGifts, names: [friend.name])
+                    }
+                    .disabled(!RelationshipBatchAction.resetGifts.willChange(friend))
+                    .accessibilityIdentifier("editor.relationship.\(friend.name).resetGifts")
+                }
+                .font(.subheadline)
+            }
         }
         .padding(.vertical, 5)
     }
@@ -99,7 +210,7 @@ private struct RelationshipRow: View {
     private var pointsBinding: Binding<Int> {
         Binding(
             get: { session.draft.friendships[index].points },
-            set: { session.draft.friendships[index].points = min($0, maximumPoints) }
+            set: { session.draft.friendships[index].points = max(0, min($0, maximumPoints)) }
         )
     }
 
@@ -117,11 +228,6 @@ private struct RelationshipRow: View {
         )
     }
 }
-
-private let dateableCharacters: Set<String> = [
-    "Abigail", "Alex", "Elliott", "Emily", "Haley", "Harvey",
-    "Leah", "Maru", "Penny", "Sam", "Sebastian", "Shane"
-]
 
 let npcChineseNames: [String: String] = [
     "Abigail": "阿比盖尔", "Alex": "亚历克斯", "Caroline": "卡洛琳",

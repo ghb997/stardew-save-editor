@@ -9,6 +9,18 @@ struct InventoryEditorView: View {
     @Bindable var session: SaveSession
     let catalog: [CatalogItem]
     @State private var selection: SlotSelection?
+    @State private var searchText = ""
+    @State private var filter: InventoryFilter = .all
+
+    private var visibleSlots: [InventorySlotDraft] {
+        let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        return session.draft.inventory.filter { slot in
+            guard session.draft.canUseInventorySlot(slot.id) || slot.item != nil else { return false }
+            guard filter.includes(slot) else { return false }
+            return query.isEmpty || "\(slot.id + 1)" == query
+                || slot.item.map { "\($0.localizedName) \($0.name) \($0.itemID)".localizedCaseInsensitiveContains(query) } == true
+        }
+    }
 
     private let columns = [
         GridItem(.adaptive(minimum: 104, maximum: 150), spacing: 10)
@@ -17,25 +29,41 @@ struct InventoryEditorView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
+                InventoryCapacityCard(session: session)
+                    .padding([.horizontal, .top])
+                Picker("槽位筛选", selection: $filter) {
+                    ForEach(InventoryFilter.allCases) { value in
+                        Text(value.title).tag(value)
+                    }
+                }
+                .pickerStyle(.segmented)
+                .padding(.horizontal)
+                .accessibilityIdentifier("editor.inventory.filter")
                 if session.draft.inventory.isEmpty {
                     GameEmptyState(title: "没有背包数据", systemImage: "shippingbox")
                         .padding(.top, 80)
                 } else {
                     LazyVGrid(columns: columns, spacing: 10) {
-                        ForEach(session.draft.inventory) { slot in
+                        ForEach(visibleSlots) { slot in
                             Button {
                                 selection = SlotSelection(id: slot.id)
                             } label: {
                                 InventorySlotCard(slot: slot)
                             }
                             .buttonStyle(.plain)
+                            .accessibilityIdentifier("editor.inventory.slot.\(slot.id)")
                         }
                     }
                     .padding()
+                    if visibleSlots.isEmpty {
+                        ContentUnavailableView.search(text: searchText)
+                    }
                 }
             }
             .background(Color(.systemGroupedBackground))
             .navigationTitle("背包")
+            .searchable(text: $searchText, prompt: "搜索物品名称、ID 或槽位编号")
+            .onSubmit(of: .search) { KeyboardReturnAction.dismiss() }
             .safeAreaInset(edge: .bottom) {
                 Text("点按槽位编辑。工具、装备和未知特殊物品保持只读。")
                     .font(.caption)
@@ -50,6 +78,74 @@ struct InventoryEditorView: View {
                 InventorySlotEditorView(session: session, slotIndex: selected.id, catalog: catalog)
             }
         }
+    }
+}
+
+private enum InventoryFilter: String, CaseIterable, Identifiable {
+    case all, occupied, empty
+    var id: String { rawValue }
+    var title: String {
+        switch self {
+        case .all: "全部"
+        case .occupied: "有物品"
+        case .empty: "空槽位"
+        }
+    }
+    func includes(_ slot: InventorySlotDraft) -> Bool {
+        switch self {
+        case .all: true
+        case .occupied: slot.item != nil
+        case .empty: slot.item == nil
+        }
+    }
+}
+
+private struct InventoryCapacityCard: View {
+    @Bindable var session: SaveSession
+    @State private var errorMessage: String?
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                GameAssetLabel("背包容量", assetName: "GameUIBackpack", iconSize: 26)
+                    .font(.headline)
+                Spacer()
+                Text("\(session.draft.inventory.prefix(session.draft.usableInventoryCount).filter { $0.item != nil }.count) / \(session.draft.usableInventoryCount) 格")
+                    .font(.subheadline.monospacedDigit())
+                    .accessibilityIdentifier("editor.inventory.capacitySummary")
+            }
+            if session.draft.canResizeBackpack {
+                Picker("背包容量", selection: Binding(
+                    get: { session.draft.backpackCapacity ?? 12 },
+                    set: { value in
+                        do {
+                            var draft = session.draft
+                            try draft.setBackpackCapacity(value)
+                            session.draft = draft
+                            errorMessage = nil
+                        } catch { errorMessage = error.localizedDescription }
+                    }
+                )) {
+                    ForEach(BackpackRules.capacities, id: \.self) { capacity in
+                        Text("\(capacity) 格").tag(capacity)
+                    }
+                }
+                .pickerStyle(.segmented)
+                .accessibilityIdentifier("editor.inventory.capacity")
+                Text("扩容后可编辑新槽位；缩容前请移走末尾物品。撤销扩容会同时恢复新解锁槽位。")
+                    .font(.caption).foregroundStyle(.secondary)
+            } else {
+                Text("存档未提供标准容量，保留现有槽位。")
+                    .font(.caption).foregroundStyle(.secondary)
+            }
+            if let errorMessage {
+                Label(errorMessage, systemImage: "exclamationmark.circle")
+                    .font(.footnote).foregroundStyle(.orange)
+                    .accessibilityIdentifier("editor.inventory.capacityError")
+            }
+        }
+        .padding()
+        .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 14))
     }
 }
 
@@ -241,7 +337,7 @@ private struct InventorySlotEditorView: View {
 
     private var emptyTargets: [Int] {
         session.draft.inventory.indices.filter {
-            $0 != slotIndex && session.draft.inventory[$0].item == nil
+            $0 != slotIndex && session.draft.canUseInventorySlot($0) && session.draft.inventory[$0].item == nil
         }
     }
 
@@ -259,7 +355,7 @@ private struct InventorySlotEditorView: View {
                         LabeledContent("类型", value: item.objectType)
                     }
 
-                    if item.isEditable {
+                    if item.isEditable, session.draft.canUseInventorySlot(slotIndex) {
                         Section("数量与品质") {
                             LabeledContent("直接输入数量") {
                                 TextField("1…999", value: stackBinding, format: .number)
@@ -313,11 +409,13 @@ private struct InventorySlotEditorView: View {
                         }
                     } else {
                         Section {
-                            GameLabel("特殊或未知物品保持只读，避免丢失工具升级、附件或专属字段。", systemImage: "lock.shield")
+                            GameLabel(session.draft.canUseInventorySlot(slotIndex)
+                                ? "特殊或未知物品保持只读，避免丢失工具升级、附件或专属字段。"
+                                : "此槽位超出当前容量，物品已保留。请先扩容后再编辑。", systemImage: "lock.shield")
                                 .font(.footnote)
                         }
                     }
-                } else {
+                } else if session.draft.canUseInventorySlot(slotIndex) {
                     Section {
                         Button {
                             showingCatalog = true

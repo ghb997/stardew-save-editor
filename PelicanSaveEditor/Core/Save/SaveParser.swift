@@ -71,7 +71,19 @@ enum SaveParser {
         }
 
         let catalogByID = Dictionary(catalog.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
-        let inventory = extractInventory(player: player, catalogByID: catalogByID, warnings: &warnings)
+        var inventory = extractInventory(player: player, catalogByID: catalogByID, warnings: &warnings)
+        let inventorySlotFloor = inventory.count
+        let backpackCapacity = editableScalar(player.child(named: "maxItems")).flatMap(Int.init)
+        if let capacity = backpackCapacity, BackpackRules.capacities.contains(capacity),
+           player.child(named: "items") != nil, inventory.count < capacity {
+            inventory.append(contentsOf: (inventory.count..<capacity).map {
+                InventorySlotDraft(id: $0, item: nil)
+            })
+        }
+        if let capacity = backpackCapacity, BackpackRules.capacities.contains(capacity),
+           inventory.dropFirst(capacity).contains(where: { $0.item != nil }) {
+            warnings.append("背包容量外仍有物品，已保留这些槽位；请在背包页检查后再调整容量。")
+        }
         let friendships = extractFriendships(player: player)
         let recipes = extractRecipes(player: player, recipeCatalog: recipeCatalog)
         let farmhouse = extractFarmhouse(root: mainRoot, player: player)
@@ -132,7 +144,9 @@ enum SaveParser {
             farmhouse: farmhouse,
             progress: progress,
             animals: animals,
-            farmActions: FarmActionDraft()
+            farmActions: FarmActionDraft(),
+            backpackCapacity: backpackCapacity,
+            inventorySlotFloor: inventorySlotFloor
         )
 
         return ParsedSaveDocument(
@@ -234,19 +248,34 @@ enum SaveParser {
                   let friendship = item.child(named: "value")?.child(named: "Friendship") else {
                 return nil
             }
-            let points = friendship.int(named: "Points") ?? 0
-            let status = RelationshipStatus(rawValue: friendship.value(named: "Status") ?? "Friendly") ?? .unknown
+            let pointsValue = editableScalar(friendship.child(named: "Points")).flatMap(Int.init)
+            let statusValue = editableScalar(friendship.child(named: "Status")).flatMap(RelationshipStatus.init(rawValue:))
+            let points = pointsValue ?? 0
+            let status = statusValue ?? .unknown
             return FriendshipDraft(
                 name: name,
                 points: points,
                 status: status,
                 originalPoints: points,
-                originalStatus: status
+                originalStatus: status,
+                giftsToday: editableScalar(friendship.child(named: "GiftsToday")).flatMap(Int.init).flatMap { $0 >= 0 ? $0 : nil },
+                giftsThisWeek: editableScalar(friendship.child(named: "GiftsThisWeek")).flatMap(Int.init).flatMap { $0 >= 0 ? $0 : nil },
+                hasEditablePoints: pointsValue != nil,
+                hasEditableStatus: statusValue != nil
             )
         }.sorted {
             if $0.points != $1.points { return $0.points > $1.points }
             return $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending
         }
+    }
+
+    /// Nullable or structured values are not editable scalar fields. Keep their
+    /// original XML instead of silently interpreting a missing value as zero.
+    private static func editableScalar(_ node: XMLNode?) -> String? {
+        guard let node, node.children.isEmpty else { return nil }
+        let nilValue = node.attributes["xsi:nil"] ?? node.attributes["nil"] ?? "false"
+        guard !["true", "1"].contains(nilValue.lowercased()) else { return nil }
+        return node.text.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
     private static func extractRecipes(

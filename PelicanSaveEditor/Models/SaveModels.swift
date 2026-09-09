@@ -305,9 +305,13 @@ struct FriendshipDraft: Identifiable, Equatable, Sendable {
     var status: RelationshipStatus
     let originalPoints: Int
     let originalStatus: RelationshipStatus
+    var giftsToday: Int? = nil
+    var giftsThisWeek: Int? = nil
+    var hasEditablePoints = true
+    var hasEditableStatus = true
 
     var canEditStatus: Bool {
-        originalStatus == .friendly || originalStatus == .dating
+        hasEditableStatus && (originalStatus == .friendly || originalStatus == .dating)
     }
 
     var hearts: Int { max(0, points) / 250 }
@@ -457,6 +461,10 @@ struct SaveDraft: Equatable, Sendable {
     var progress: ProgressDraft
     var animals: [FarmAnimalDraft]
     var farmActions: FarmActionDraft
+    /// Nil means the save does not expose a valid capacity field.
+    var backpackCapacity: Int? = nil
+    /// Keep originally serialized slots, including empty or extended slots.
+    var inventorySlotFloor: Int = 0
 }
 
 extension SaveDraft {
