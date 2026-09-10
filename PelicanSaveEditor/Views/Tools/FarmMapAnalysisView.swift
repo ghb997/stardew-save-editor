@@ -21,6 +21,7 @@ struct FarmMapAnalysisView: View {
 
     var body: some View {
         NavigationStack {
+            VStack(spacing: 0) {
             ScrollViewReader { scrollProxy in
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
@@ -61,6 +62,8 @@ struct FarmMapAnalysisView: View {
                 }
             }
             }
+            DraftReviewBar(session: session) { showingReview = true }
+            }
             .background(Color(.systemGroupedBackground))
             .navigationTitle("魔法地图")
             .navigationBarTitleDisplayMode(.inline)
@@ -82,9 +85,6 @@ struct FarmMapAnalysisView: View {
                 visibleKinds.insert(entity.kind)
                 selectedEntityID = entity.id
             }
-        }
-        .safeAreaInset(edge: .bottom) {
-            DraftReviewBar(session: session) { showingReview = true }
         }
         .fullScreenCover(isPresented: $showingReview) {
             EditorShellView(session: session, section: .review)

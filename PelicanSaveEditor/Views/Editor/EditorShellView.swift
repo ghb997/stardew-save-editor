@@ -140,8 +140,10 @@ struct EditorShellView: View {
             .background(.bar)
 
             editorContent
-        }
-        .safeAreaInset(edge: .bottom) {
+
+            // Reserve layout space outside each editor's NavigationStack.
+            // An outer safe-area inset can be lost at that boundary, leaving
+            // the final Form row behind the review bar even at scroll end.
             if section != .review {
                 DraftReviewBar(session: session) { showingReview = true }
             }
