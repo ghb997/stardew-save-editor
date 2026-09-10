@@ -149,18 +149,19 @@ final class TrackerSmokeUITests: XCTestCase {
         try tap(search, app: app)
         search.typeText("Abigail\n")
         let batch = app.buttons["editor.relationships.batch.fillHearts"]
-        try revealEditorControl(batch, app: app)
+        try revealEditorControl(batch, app: app, viewportID: "editor.relationships.list")
         try tap(batch, app: app)
         try require(app.staticTexts["将修改 1 位角色"], app: app)
         attachScreenshot("editor-relationship-batch-preview", app: app)
         try tap(app.navigationBars["补满好感"].buttons["取消"], app: app)
+        try wait(app.navigationBars["补满好感"], predicate: NSPredicate(format: "exists == false"), app: app)
         try tap(batch, app: app)
         let apply = app.buttons["editor.relationships.batch.apply"]
-        try revealEditorControl(apply, app: app)
+        try revealEditorControl(apply, app: app, viewportID: "editor.relationships.preview.list")
         try tap(apply, app: app)
         try wait(apply, predicate: NSPredicate(format: "exists == false"), app: app)
         let points = app.textFields["editor.relationship.Abigail.points"]
-        try revealEditorControl(points, app: app)
+        try revealEditorControl(points, app: app, viewportID: "editor.relationships.list")
         try wait(points, predicate: NSPredicate(format: "value == %@ OR value == %@", "2,000", "2000"), app: app)
         attachScreenshot("editor-relationship-applied", app: app)
     }
@@ -170,19 +171,19 @@ final class TrackerSmokeUITests: XCTestCase {
         let app = try launchEditor("relationships")
         defer { app.terminate() }
         let batch = app.buttons["editor.relationships.batch.resetGifts"]
-        try revealEditorControl(batch, app: app)
+        try revealEditorControl(batch, app: app, viewportID: "editor.relationships.list")
         try tap(batch, app: app)
         try require(app.staticTexts["将修改 1 位角色"], app: app)
         attachScreenshot("editor-gift-reset-preview", app: app)
         let apply = app.buttons["editor.relationships.batch.apply"]
-        try revealEditorControl(apply, app: app)
+        try revealEditorControl(apply, app: app, viewportID: "editor.relationships.preview.list")
         try tap(apply, app: app)
         try wait(apply, predicate: NSPredicate(format: "exists == false"), app: app)
         let points = app.textFields["editor.relationship.Abigail.points"]
-        try revealEditorControl(points, app: app)
+        try revealEditorControl(points, app: app, viewportID: "editor.relationships.list")
         try wait(points, predicate: NSPredicate(format: "value == %@ OR value == %@", "1,750", "1750"), app: app)
         let reset = app.buttons["editor.relationship.Abigail.resetGifts"]
-        try revealEditorControl(reset, app: app)
+        try revealEditorControl(reset, app: app, viewportID: "editor.relationships.list")
         try check(!reset.isEnabled, "No gifts should remain to reset", app: app)
         attachScreenshot("editor-gift-reset-applied", app: app)
     }
@@ -202,8 +203,15 @@ final class TrackerSmokeUITests: XCTestCase {
         try revealEditorControl(current, app: app, viewportID: "editor.appearance.colorForm")
         try wait(current, predicate: NSPredicate(format: "label == %@", "#604020"), app: app)
         let hex = app.textFields["editor.appearance.color.hex"]
+        let clearHex = app.buttons["editor.appearance.color.clearHex"]
+        try revealEditorControl(clearHex, app: app, viewportID: "editor.appearance.colorForm")
+        try tap(clearHex, app: app)
+        try wait(hex, predicate: NSPredicate(format: "value == %@ OR value == %@", "", "#RRGGBB"), app: app)
+        try check(!clearHex.isEnabled, "Cleared input must offer no further clearing", app: app)
+        try wait(current, predicate: NSPredicate(format: "label == %@", "#604020"), app: app)
         try revealEditorControl(hex, app: app, viewportID: "editor.appearance.colorForm")
-        try replaceText(hex, with: "123456", app: app)
+        try tap(hex, app: app)
+        hex.typeText("123456")
         try wait(hex, predicate: NSPredicate(format: "value == %@", "123456"), app: app)
         try tap(app.buttons["global.keyboardReturn.button"], app: app)
         let applyHex = app.buttons["editor.appearance.color.applyHex"]
@@ -308,17 +316,6 @@ final class TrackerSmokeUITests: XCTestCase {
     }
 
     @MainActor
-    private func replaceText(_ element: XCUIElement, with text: String, app: XCUIApplication) throws {
-        try tap(element, app: app)
-        let old = element.value as? String ?? ""
-        // LabeledContent exposes the whole row as the field's frame. Its
-        // center may put the caret near the start of right-aligned text.
-        // Focus first, then place the caret after the last visible character.
-        element.coordinate(withNormalizedOffset: CGVector(dx: 0.99, dy: 0.5)).tap()
-        element.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: old.count) + text)
-    }
-
-    @MainActor
     private func launchEditor(_ section: String) throws -> XCUIApplication {
         let app = XCUIApplication()
         app.launchArguments = ["--ui-tab", "tools", "--ui-demo", "-AppleLanguages", "(zh-Hans)", "-AppleLocale", "zh_CN"]
@@ -326,38 +323,21 @@ final class TrackerSmokeUITests: XCTestCase {
         let tool = app.buttons["editor.tool.\(section)"]
         try require(app.tabBars.buttons["工具"], app: app, timeout: 30)
         try require(tool, app: app, timeout: 30)
-        try revealEditorControl(tool, app: app)
+        try revealEditorControl(tool, app: app, viewportID: "editor.tools.list")
         try tap(tool, app: app)
         return app
     }
 
     @MainActor
     private func revealEditorControl(_ element: XCUIElement, app: XCUIApplication,
-                                     viewportID: String? = nil) throws {
+                                     viewportID: String) throws {
         // A lazy Form row may not exist in the AX tree yet, so querying its
         // elementType or identifier here can throw before any scrolling occurs.
-        // Select the foreground vertical viewport independently of the target.
-        // Scroll containers themselves can be non-hittable even when their
-        // children are visible and interactive. The last vertical container
-        // in the hierarchy belongs to the foreground presentation.
-        if let viewportID {
-            try require(app.descendants(matching: .any).matching(identifier: viewportID).firstMatch, app: app)
-        }
+        // Select the viewport by stable identity, independent of lazy rows
+        // and of temporary background lists during navigation/search.
+        let container = app.descendants(matching: .any).matching(identifier: viewportID).firstMatch
+        try require(container, app: app)
         for attempt in 0..<18 {
-            let container: XCUIElement
-            if let viewportID {
-                // Resolve by identity after navigation/search transitions;
-                // array indices can point to a disappeared background Form.
-                container = app.descendants(matching: .any).matching(identifier: viewportID).firstMatch
-            } else {
-                let lists = app.collectionViews.allElementsBoundByIndex
-                let scrolls = app.scrollViews.allElementsBoundByIndex.filter { $0.exists && $0.frame.height > 150 }
-                guard let candidate = lists.last ?? scrolls.last else {
-                    try check(false, "No foreground editor scroll viewport", app: app)
-                    return
-                }
-                container = candidate
-            }
             var viewport = container.frame.intersection(app.frame)
             // A scroll view can extend behind the navigation and tab bars.
             // Clip those areas before deciding whether a control is visible.
@@ -376,7 +356,8 @@ final class TrackerSmokeUITests: XCTestCase {
                     viewport.size.height = max(0, frame.minY - viewport.minY)
                 }
             }
-            let standaloneSheets = ["editor.map.list", "editor.map.preview.list", "editor.house.batch.list"]
+            let standaloneSheets = ["editor.map.list", "editor.map.preview.list", "editor.house.batch.list",
+                                    "editor.relationships.preview.list"]
             if !standaloneSheets.contains(container.identifier),
                let reviewBar = app.otherElements.matching(identifier: "editor.review.bar").allElementsBoundByIndex.last
                     ?? app.buttons.matching(identifier: "editor.review.open").allElementsBoundByIndex.last {

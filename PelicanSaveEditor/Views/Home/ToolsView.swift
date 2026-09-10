@@ -124,6 +124,7 @@ struct ToolsView: View {
                 .frame(maxWidth: 720)
                 .frame(maxWidth: .infinity)
             }
+            .accessibilityIdentifier("editor.tools.list")
             .background(AppTheme.canvas)
         }
         .confirmationDialog("加载农场", isPresented: $showingSourceOptions, titleVisibility: .visible) {

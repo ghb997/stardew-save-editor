@@ -56,6 +56,7 @@ private struct AppearanceColorControls: View {
         Section {
             ColorPicker("选择颜色", selection: colorBinding, supportsOpacity: false)
             LabeledContent("十六进制色值") {
+                HStack(spacing: 8) {
                 TextField("#RRGGBB", text: $hexInput)
                     .textInputAutocapitalization(.characters)
                     .autocorrectionDisabled()
@@ -63,6 +64,18 @@ private struct AppearanceColorControls: View {
                     .font(.body.monospaced())
                     .accessibilityIdentifier("editor.appearance.color.hex")
                     .onSubmit { applyHex(); KeyboardReturnAction.dismiss() }
+                Button {
+                    hexInput = ""
+                } label: {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundStyle(.secondary)
+                        .frame(width: 32, height: 32)
+                }
+                .buttonStyle(.borderless)
+                .disabled(hexInput.isEmpty)
+                .accessibilityLabel("清空色值输入")
+                .accessibilityIdentifier("editor.appearance.color.clearHex")
+                }
             }
             Button("应用色值") { applyHex(); KeyboardReturnAction.dismiss() }
                 .disabled(FarmerColor(hex: hexInput, alpha: current.alpha) == nil)

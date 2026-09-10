@@ -59,6 +59,7 @@ struct RelationshipsEditorView: View {
                             Text("订婚、婚姻和离婚涉及配偶、日期、住宅及剧情字段，因此状态保持只读；好感点数仍可调整。")
                         }
                     }
+                    .accessibilityIdentifier("editor.relationships.list")
                     .searchable(text: $searchText, prompt: "搜索角色名称")
                     .onSubmit(of: .search) { KeyboardReturnAction.dismiss() }
                 }
@@ -117,6 +118,7 @@ private struct RelationshipBatchPreview: View {
                     Text("可在“检查与保存”中逐项撤销；最终保存时才会写入存档。")
                 }
             }
+            .accessibilityIdentifier("editor.relationships.preview.list")
             .navigationTitle(request.action.title)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
