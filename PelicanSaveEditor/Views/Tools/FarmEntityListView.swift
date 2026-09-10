@@ -81,6 +81,7 @@ struct FarmEntityListView: View {
                     )
                 }
             }
+            .accessibilityIdentifier("editor.map.list")
             .searchable(text: $query.text, prompt: "搜索名称、种子 ID 或坐标")
             .onSubmit(of: .search) { KeyboardReturnAction.dismiss() }
             .scrollDismissesKeyboard(.interactively)
@@ -207,6 +208,7 @@ private struct FarmActionPreview: View {
                     }
                 }
             }
+            .accessibilityIdentifier("editor.map.preview.list")
             .navigationTitle("\(request.action.title)预览")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

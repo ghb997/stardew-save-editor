@@ -194,10 +194,12 @@ final class TrackerSmokeUITests: XCTestCase {
         let colors = app.buttons["editor.appearance.colors"]
         try revealEditorControl(colors, app: app)
         try tap(colors, app: app)
+        try require(app.navigationBars["外观颜色"], app: app)
         let preset = app.buttons["editor.appearance.color.preset.604020"]
         try revealEditorControl(preset, app: app)
         try tap(preset, app: app)
         let current = app.staticTexts["editor.appearance.color.current"]
+        try revealEditorControl(current, app: app)
         try wait(current, predicate: NSPredicate(format: "label == %@", "#604020"), app: app)
         let hex = app.textFields["editor.appearance.color.hex"]
         try revealEditorControl(hex, app: app)
@@ -207,8 +209,9 @@ final class TrackerSmokeUITests: XCTestCase {
         let restore = app.buttons["editor.appearance.color.restore"]
         try revealEditorControl(restore, app: app)
         try tap(restore, app: app)
-        try wait(current, predicate: NSPredicate(format: "label == %@", "#B77C43"), app: app)
         try check(!restore.isEnabled, "Restored hair color must have no remaining color change", app: app)
+        try revealEditorControl(current, app: app)
+        try wait(current, predicate: NSPredicate(format: "label == %@", "#B77C43"), app: app)
     }
 
     @MainActor
@@ -221,7 +224,8 @@ final class TrackerSmokeUITests: XCTestCase {
         let library = app.buttons["editor.house.styles"]
         try revealEditorControl(library, app: app)
         try tap(library, app: app)
-        let search = app.searchFields.firstMatch
+        let search = app.textFields["editor.house.style.search"]
+        try revealEditorControl(search, app: app)
         try tap(search, app: app)
         search.typeText("5\n")
         let style = app.buttons["editor.house.style.5"]
@@ -317,9 +321,12 @@ final class TrackerSmokeUITests: XCTestCase {
         // A lazy Form row may not exist in the AX tree yet, so querying its
         // elementType or identifier here can throw before any scrolling occurs.
         // Select the foreground vertical viewport independently of the target.
-        let lists = app.collectionViews.allElementsBoundByIndex.filter { $0.isHittable }
+        // Scroll containers themselves can be non-hittable even when their
+        // children are visible and interactive. The last vertical container
+        // in the hierarchy belongs to the foreground presentation.
+        let lists = app.collectionViews.allElementsBoundByIndex
         let scrolls = app.scrollViews.allElementsBoundByIndex.filter {
-            $0.frame.height > 150 && $0.isHittable
+            $0.frame.height > 150
         }
         guard let container = lists.last ?? scrolls.last else {
             try check(false, "No foreground editor scroll viewport", app: app)
@@ -329,7 +336,7 @@ final class TrackerSmokeUITests: XCTestCase {
             var viewport = container.frame.intersection(app.frame)
             // A scroll view can extend behind the navigation and tab bars.
             // Clip those areas before deciding whether a control is visible.
-            for bar in app.navigationBars.allElementsBoundByIndex where bar.isHittable {
+            if let bar = app.navigationBars.allElementsBoundByIndex.last {
                 let frame = bar.frame
                 if !frame.isEmpty && frame.intersects(viewport) && frame.minY < viewport.midY {
                     viewport = CGRect(x: viewport.minX, y: frame.maxY, width: viewport.width,
@@ -338,8 +345,17 @@ final class TrackerSmokeUITests: XCTestCase {
             }
             // Background tab bars remain in snapshots under full-screen
             // editors and sheets, but must not clip the foreground viewport.
-            for bar in app.tabBars.allElementsBoundByIndex where bar.isHittable {
+            for bar in app.tabBars.allElementsBoundByIndex where app.navigationBars.count == 0 {
                 let frame = bar.frame
+                if !frame.isEmpty && frame.intersects(viewport) && frame.minY > viewport.midY {
+                    viewport.size.height = max(0, frame.minY - viewport.minY)
+                }
+            }
+            let standaloneSheets = ["editor.map.list", "editor.map.preview.list", "editor.house.batch.list"]
+            if !standaloneSheets.contains(container.identifier),
+               let reviewBar = app.otherElements.matching(identifier: "editor.review.bar").allElementsBoundByIndex.last
+                    ?? app.buttons.matching(identifier: "editor.review.open").allElementsBoundByIndex.last {
+                let frame = reviewBar.frame.insetBy(dx: 0, dy: -10)
                 if !frame.isEmpty && frame.intersects(viewport) && frame.minY > viewport.midY {
                     viewport.size.height = max(0, frame.minY - viewport.minY)
                 }

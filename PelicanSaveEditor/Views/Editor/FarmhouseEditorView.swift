@@ -178,6 +178,7 @@ struct FarmhouseEditorView: View {
                         .foregroundStyle(.green)
                 }
             }
+            .accessibilityIdentifier("editor.house.form")
             .navigationTitle("房屋与房间")
             .onAppear(perform: ensureSelection)
             .onChange(of: roomQuery) { _, _ in ensureSelection() }

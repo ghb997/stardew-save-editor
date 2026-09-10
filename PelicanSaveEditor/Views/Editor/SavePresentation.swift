@@ -58,9 +58,12 @@ struct DraftReviewBar: View {
             }
             .buttonStyle(.borderedProminent)
             .tint(AppTheme.accent)
+            .accessibilityIdentifier("editor.review.open")
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 10)
         .background(.bar)
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("editor.review.bar")
     }
 }

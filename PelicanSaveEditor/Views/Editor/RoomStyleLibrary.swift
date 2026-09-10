@@ -16,6 +16,13 @@ struct RoomStyleLibrary: View {
                         .accessibilityIdentifier("editor.house.style.current")
                     Text("点选样式后立即更新草稿，可继续比较或返回房间页。")
                         .font(.caption).foregroundStyle(.secondary)
+                    TextField("搜索样式编号", text: $searchText)
+                        .textFieldStyle(.roundedBorder)
+                        .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
+                        .submitLabel(.search)
+                        .onSubmit { KeyboardReturnAction.dismiss() }
+                        .accessibilityIdentifier("editor.house.style.search")
                     let styles = RoomStyleRules.standardStyles(for: surface.kind, query: searchText)
                     if styles.isEmpty { ContentUnavailableView.search(text: searchText) }
                     LazyVGrid(columns: [GridItem(.adaptive(minimum: 70))], spacing: 14) {
@@ -34,9 +41,8 @@ struct RoomStyleLibrary: View {
                 .padding()
             }
         }
+        .accessibilityIdentifier("editor.house.style.library")
         .background(Color(.systemGroupedBackground))
-        .searchable(text: $searchText, prompt: "搜索样式编号")
-        .onSubmit(of: .search) { KeyboardReturnAction.dismiss() }
         .navigationTitle("样式库")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar { ToolbarItem(placement: .confirmationAction) { Button("完成") { dismiss() } } }
@@ -97,6 +103,7 @@ struct RoomStyleBatchPreview: View {
                     Text("只修改勾选房间的\(request.source.kind.displayName)，可在检查页逐项撤销。")
                 }
             }
+            .accessibilityIdentifier("editor.house.batch.list")
             .navigationTitle("批量套用样式")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { ToolbarItem(placement: .cancellationAction) { Button("取消") { dismiss() } } }

@@ -54,6 +54,7 @@ struct FarmMapAnalysisView: View {
                 .frame(maxWidth: 760)
                 .frame(maxWidth: .infinity)
             }
+            .accessibilityIdentifier("editor.map.main")
             .onChange(of: selectedEntityID) { _, selected in
                 if selected != nil {
                     withAnimation { scrollProxy.scrollTo("map.coordinate", anchor: .top) }

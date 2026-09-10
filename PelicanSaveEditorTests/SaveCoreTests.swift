@@ -425,7 +425,7 @@ final class SaveCoreTests: XCTestCase {
         XCTAssertEqual(snapshot.tilledSoilCount, 3)
         XCTAssertEqual(snapshot.grassCount, 1)
         XCTAssertEqual(snapshot.count(for: .crop), 2)
-        XCTAssertEqual(snapshot.unwateredCropCount, 1)
+        XCTAssertEqual(snapshot.unwateredCropCount, 0)
         XCTAssertEqual(snapshot.deadCropCount, 1)
         XCTAssertEqual(snapshot.count(for: .tree), 1)
         XCTAssertEqual(snapshot.count(for: .fruitTree), 1)
@@ -438,6 +438,11 @@ final class SaveCoreTests: XCTestCase {
         XCTAssertEqual(crop.label, "防风草")
         XCTAssertEqual(crop.tileX, 2)
         XCTAssertEqual(crop.tileY, 3)
+        // This fixture omits the serialized watering state. Keep the crop
+        // visible, but never infer that it is dry or create a writable key.
+        XCTAssertNil(crop.state)
+        XCTAssertNil(crop.wateringKey)
+        XCTAssertTrue(crop.detail?.contains("未知浇水状态，只读") == true)
         let animal = try XCTUnwrap(snapshot.entities.first { $0.kind == .animal })
         XCTAssertEqual(animal.tileX, 10)
         XCTAssertEqual(animal.tileY, 12)

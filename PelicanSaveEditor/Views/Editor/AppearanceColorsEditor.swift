@@ -25,6 +25,7 @@ struct AppearanceColorsEditor: View {
                 }
             }
         }
+        .accessibilityIdentifier("editor.appearance.colorForm")
         .navigationTitle("外观颜色")
         .navigationBarTitleDisplayMode(.inline)
     }

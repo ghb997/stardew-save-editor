@@ -99,6 +99,7 @@ struct AppearanceEditorView: View {
                     }
                 }
             }
+            .accessibilityIdentifier("editor.appearance.form")
             .navigationTitle("人物外观")
         }
     }
