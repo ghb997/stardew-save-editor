@@ -1,8 +1,14 @@
 # 交付验证说明
 
-## 当前版本：0.4.0（10）
+## 当前版本：0.5.0（11）
 
-2026-09-09 已完成原生设备 Release 编译和模拟器 Debug 编译。iPhone SE（第 3 代）/ iOS 26.2 实际执行 79 项 XCTest，全部通过。详细结果、工作流、截图和未覆盖范围见 [本次验证记录](validation/BUILD10_VERIFICATION.md)。下文保留早期版本的原始记录，其“尚未执行”等描述仅对应当时版本。
+2026-09-10，已完成 Xcode 16.4 / iOS SDK 18.5 的设备 Release 编译，并复核下载 IPA 的 ZIP CRC、版本、arm64 架构和无签名状态。设备构建来自提交 02c080cd9d5decbd5152f0b10290aae4702917aa，[构建记录](https://github.com/ghb997/stardew-save-editor/actions/runs/34432584841)。
+
+本轮在 iPhone SE 第 3 代 / iOS 26.2 模拟器实际执行 100 项测试，全部通过，包括 90 项单元测试与 10 项界面测试。[测试记录](https://github.com/ghb997/stardew-save-editor/actions/runs/34432594494)已与全部测试名称核对，七张最新原生截图已检查。具体结果、源码对应关系和未覆盖范围见 [构建 11 验证记录](validation/BUILD11_VERIFICATION.md)。
+
+## 历史版本：0.4.0（10）
+
+2026-09-09 已完成原生设备 Release 编译和模拟器 Debug 编译。iPhone SE（第 3 代）/ iOS 26.2 实际执行 79 项 XCTest，全部通过。详细结果、工作流、截图和未覆盖范围见 [构建 10 验证记录](validation/BUILD10_VERIFICATION.md)。下文保留早期版本的原始记录，其“尚未执行”等描述仅对应当时版本。
 
 ## 历史记录：2026-09-09 追踪器 UI 工作版本
 

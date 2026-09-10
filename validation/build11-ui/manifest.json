@@ -1,0 +1,55 @@
+{
+  "sourceCommit": "02c080cd9d5decbd5152f0b10290aae4702917aa",
+  "run": "https://github.com/ghb997/stardew-save-editor/actions/runs/34432594494",
+  "screenshots": [
+    {
+      "name": "editor-appearance-color-hex",
+      "file": "editor-appearance-color-hex.png",
+      "test": "TrackerSmokeUITests/testAppearanceColorsSupportPresetHexAndRestore()",
+      "originalAttachment": "F5591ABA-0918-4895-9941-82C5AB1F7DD1.png",
+      "sha256": "c3c146a6f29d1d740f4b1494c6061a008ac3c4a6431b8d45273c1a24638a4986"
+    },
+    {
+      "name": "editor-map-located-crop",
+      "file": "editor-map-located-crop.png",
+      "test": "TrackerSmokeUITests/testMapScopedWaterPreviewPendingLocateAndUndo()",
+      "originalAttachment": "123BD035-C462-4AF8-9DA7-35AA7CED6DC3.png",
+      "sha256": "84ff7379e4b298afaa998e5041fe71f1df563a6a07672ed94302b24c371cfdf0"
+    },
+    {
+      "name": "editor-map-pending-search",
+      "file": "editor-map-pending-search.png",
+      "test": "TrackerSmokeUITests/testMapScopedWaterPreviewPendingLocateAndUndo()",
+      "originalAttachment": "F0E18276-A047-4D86-A9F4-D15BBB8F45EF.png",
+      "sha256": "1ca4f9fa55f6caaa7db96913d0899e6d69ed0124e66d73810f81cb5ebc8ff546"
+    },
+    {
+      "name": "editor-map-scoped-water-preview",
+      "file": "editor-map-scoped-water-preview.png",
+      "test": "TrackerSmokeUITests/testMapScopedWaterPreviewPendingLocateAndUndo()",
+      "originalAttachment": "67ADBE6F-9149-4BE7-A468-4F1CAF72F702.png",
+      "sha256": "551aa53debdb0a45d0848a7c0b3134d2cf012461c01ecea1b493f25d57a9a3dc"
+    },
+    {
+      "name": "editor-room-restored-with-other-drafts",
+      "file": "editor-room-restored-with-other-drafts.png",
+      "test": "TrackerSmokeUITests/testRoomStyleLibraryBatchPreviewAndRoomRestore()",
+      "originalAttachment": "08DBB18A-6215-46E0-9535-B6519680E587.png",
+      "sha256": "ce0964712819ea214561f4e0245c132fff7ec9445786f4b62259fb5f8f9cbc19"
+    },
+    {
+      "name": "editor-room-style-batch-preview",
+      "file": "editor-room-style-batch-preview.png",
+      "test": "TrackerSmokeUITests/testRoomStyleLibraryBatchPreviewAndRoomRestore()",
+      "originalAttachment": "EECFAD9E-1993-4795-AC9A-F56D4DE73B49.png",
+      "sha256": "89ac76ee0e5832a736d7733f2b78791cfc5ee4eae6ad7701c048c48d7ed45312"
+    },
+    {
+      "name": "editor-room-style-library",
+      "file": "editor-room-style-library.png",
+      "test": "TrackerSmokeUITests/testRoomStyleLibraryBatchPreviewAndRoomRestore()",
+      "originalAttachment": "0E547C8C-F118-4A73-A282-400CA09E5B82.png",
+      "sha256": "6d9cb944123900c7fd6f675ab0e39af25ec990915eadfc491526759433fb4f6f"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "releaseCommit": "02c080cd9d5decbd5152f0b10290aae4702917aa",
+  "nativeTestCommit": "02c080cd9d5decbd5152f0b10290aae4702917aa",
+  "applicationAndBuildInputsIdentical": true,
+  "comparedPaths": [
+    {
+      "path": "PelicanSaveEditor",
+      "releaseObject": "b64d9a565dcf76fa3fb35e5f868d7bd7fc25b5be",
+      "nativeTestObject": "b64d9a565dcf76fa3fb35e5f868d7bd7fc25b5be",
+      "identical": true
+    },
+    {
+      "path": "PelicanSaveEditor.xcodeproj",
+      "releaseObject": "701e0f00c669167ba9e0d4928437af1cc173b771",
+      "nativeTestObject": "701e0f00c669167ba9e0d4928437af1cc173b771",
+      "identical": true
+    },
+    {
+      "path": "project.yml",
+      "releaseObject": "4e18bb0f4063257fa7686e8998f1bab0403913bf",
+      "nativeTestObject": "4e18bb0f4063257fa7686e8998f1bab0403913bf",
+      "identical": true
+    },
+    {
+      "path": "scripts",
+      "releaseObject": "02ad56b58043731f12cd88ae1345434884ea0767",
+      "nativeTestObject": "02ad56b58043731f12cd88ae1345434884ea0767",
+      "identical": true
+    },
+    {
+      "path": ".github",
+      "releaseObject": "d18a08101a54b5e3a7cda5b33d88377e47501a6d",
+      "nativeTestObject": "d18a08101a54b5e3a7cda5b33d88377e47501a6d",
+      "identical": true
+    }
+  ]
+}
