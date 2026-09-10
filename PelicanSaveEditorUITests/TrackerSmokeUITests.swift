@@ -192,25 +192,31 @@ final class TrackerSmokeUITests: XCTestCase {
         let app = try launchEditor("appearance")
         defer { app.terminate() }
         let colors = app.buttons["editor.appearance.colors"]
-        try revealEditorControl(colors, app: app)
+        try revealEditorControl(colors, app: app, viewportID: "editor.appearance.form")
         try tap(colors, app: app)
         try require(app.navigationBars["外观颜色"], app: app)
         let preset = app.buttons["editor.appearance.color.preset.604020"]
-        try revealEditorControl(preset, app: app)
+        try revealEditorControl(preset, app: app, viewportID: "editor.appearance.colorForm")
         try tap(preset, app: app)
         let current = app.staticTexts["editor.appearance.color.current"]
-        try revealEditorControl(current, app: app)
+        try revealEditorControl(current, app: app, viewportID: "editor.appearance.colorForm")
         try wait(current, predicate: NSPredicate(format: "label == %@", "#604020"), app: app)
         let hex = app.textFields["editor.appearance.color.hex"]
-        try revealEditorControl(hex, app: app)
-        try replaceText(hex, with: "123456\n", app: app)
+        try revealEditorControl(hex, app: app, viewportID: "editor.appearance.colorForm")
+        try replaceText(hex, with: "123456", app: app)
+        try wait(hex, predicate: NSPredicate(format: "value == %@", "123456"), app: app)
+        try tap(app.buttons["global.keyboardReturn.button"], app: app)
+        let applyHex = app.buttons["editor.appearance.color.applyHex"]
+        try revealEditorControl(applyHex, app: app, viewportID: "editor.appearance.colorForm")
+        try tap(applyHex, app: app)
+        try revealEditorControl(current, app: app, viewportID: "editor.appearance.colorForm")
         try wait(current, predicate: NSPredicate(format: "label == %@", "#123456"), app: app)
         attachScreenshot("editor-appearance-color-hex", app: app)
         let restore = app.buttons["editor.appearance.color.restore"]
-        try revealEditorControl(restore, app: app)
+        try revealEditorControl(restore, app: app, viewportID: "editor.appearance.colorForm")
         try tap(restore, app: app)
         try check(!restore.isEnabled, "Restored hair color must have no remaining color change", app: app)
-        try revealEditorControl(current, app: app)
+        try revealEditorControl(current, app: app, viewportID: "editor.appearance.colorForm")
         try wait(current, predicate: NSPredicate(format: "label == %@", "#B77C43"), app: app)
     }
 
@@ -219,42 +225,44 @@ final class TrackerSmokeUITests: XCTestCase {
         let app = try launchEditor("farmhouse")
         defer { app.terminate() }
         let number = app.textFields["editor.house.style.number"]
-        try revealEditorControl(number, app: app)
+        try revealEditorControl(number, app: app, viewportID: "editor.house.form")
         let initialStyle = try XCTUnwrap(number.value as? String)
         let library = app.buttons["editor.house.styles"]
-        try revealEditorControl(library, app: app)
+        try revealEditorControl(library, app: app, viewportID: "editor.house.form")
         try tap(library, app: app)
+        try require(app.navigationBars["样式库"], app: app)
         let search = app.textFields["editor.house.style.search"]
-        try revealEditorControl(search, app: app)
+        try revealEditorControl(search, app: app, viewportID: "editor.house.style.library")
         try tap(search, app: app)
         search.typeText("5\n")
         let style = app.buttons["editor.house.style.5"]
-        try revealEditorControl(style, app: app)
+        try revealEditorControl(style, app: app, viewportID: "editor.house.style.library")
         try tap(style, app: app)
         try wait(app.staticTexts["editor.house.style.current"],
                  predicate: NSPredicate(format: "label ENDSWITH %@", "#5"), app: app)
         attachScreenshot("editor-room-style-library", app: app)
         try tap(app.navigationBars["样式库"].buttons["完成"], app: app)
         let batch = app.buttons["editor.house.style.batch"]
-        try revealEditorControl(batch, app: app)
+        try revealEditorControl(batch, app: app, viewportID: "editor.house.form")
         try tap(batch, app: app)
         try wait(app.staticTexts["editor.house.batch.count"],
                  predicate: NSPredicate(format: "label == %@", "将修改 4 个房间"), app: app)
         attachScreenshot("editor-room-style-batch-preview", app: app)
         try tap(app.navigationBars["批量套用样式"].buttons["取消"], app: app)
+        try wait(app.navigationBars["批量套用样式"], predicate: NSPredicate(format: "exists == false"), app: app)
         try tap(batch, app: app)
         let apply = app.buttons["editor.house.batch.apply"]
-        try revealEditorControl(apply, app: app)
+        try revealEditorControl(apply, app: app, viewportID: "editor.house.batch.list")
         try tap(apply, app: app)
         try wait(apply, predicate: NSPredicate(format: "exists == false"), app: app)
         let restore = app.buttons["editor.house.restoreRoom"]
-        try revealEditorControl(restore, app: app)
+        try revealEditorControl(restore, app: app, viewportID: "editor.house.form")
         try tap(restore, app: app)
-        try revealEditorControl(number, app: app)
+        try revealEditorControl(number, app: app, viewportID: "editor.house.form")
         try wait(number, predicate: NSPredicate(format: "value == %@", initialStyle), app: app)
         attachScreenshot("editor-room-restored-with-other-drafts", app: app)
         let restoreAll = app.buttons["editor.house.restoreAll"]
-        try revealEditorControl(restoreAll, app: app)
+        try revealEditorControl(restoreAll, app: app, viewportID: "editor.house.form")
         try tap(restoreAll, app: app)
         try wait(restoreAll, predicate: NSPredicate(format: "exists == false"), app: app)
     }
@@ -264,32 +272,35 @@ final class TrackerSmokeUITests: XCTestCase {
         let app = try launchEditor("map")
         defer { app.terminate() }
         try tap(app.buttons["editor.map.objects"], app: app)
+        try require(app.collectionViews["editor.map.list"], app: app)
         let search = app.searchFields.firstMatch
         try tap(search, app: app)
         search.typeText("X 14\n")
         let water = app.buttons["editor.map.batch.water"]
-        try revealEditorControl(water, app: app)
+        try revealEditorControl(water, app: app, viewportID: "editor.map.list")
         try tap(water, app: app)
         try wait(app.staticTexts["editor.map.preview.count"],
                  predicate: NSPredicate(format: "label == %@", "将浇水 1 个对象"), app: app)
         attachScreenshot("editor-map-scoped-water-preview", app: app)
         try tap(app.navigationBars["浇水预览"].buttons["取消"], app: app)
+        try wait(app.navigationBars["浇水预览"], predicate: NSPredicate(format: "exists == false"), app: app)
         try tap(water, app: app)
         let apply = app.buttons["editor.map.preview.apply"]
+        try revealEditorControl(apply, app: app, viewportID: "editor.map.preview.list")
         try tap(apply, app: app)
         try wait(apply, predicate: NSPredicate(format: "exists == false"), app: app)
         let scope = app.segmentedControls["editor.map.scope"]
-        try revealEditorControl(scope, app: app)
+        try revealEditorControl(scope, app: app, viewportID: "editor.map.list")
         try tap(scope.buttons["待处理"], app: app)
         try wait(app.staticTexts["editor.map.matchCount"],
                  predicate: NSPredicate(format: "label == %@", "匹配 1 个 · 全图待处理 1 个"), app: app)
         attachScreenshot("editor-map-pending-search", app: app)
         let locate = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", "editor.map.locate.")).firstMatch
-        try revealEditorControl(locate, app: app)
+        try revealEditorControl(locate, app: app, viewportID: "editor.map.list")
         try tap(locate, app: app)
         try wait(app.navigationBars["地图对象"], predicate: NSPredicate(format: "exists == false"), app: app)
         let action = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", "editor.map.entity.action.")).firstMatch
-        try revealEditorControl(action, app: app)
+        try revealEditorControl(action, app: app, viewportID: "editor.map.main")
         try check(action.label.contains("撤销"), "Located pending crop must offer undo on the map", app: app)
         attachScreenshot("editor-map-located-crop", app: app)
         try tap(action, app: app)
@@ -300,6 +311,10 @@ final class TrackerSmokeUITests: XCTestCase {
     private func replaceText(_ element: XCUIElement, with text: String, app: XCUIApplication) throws {
         try tap(element, app: app)
         let old = element.value as? String ?? ""
+        // LabeledContent exposes the whole row as the field's frame. Its
+        // center may put the caret near the start of right-aligned text.
+        // Focus first, then place the caret after the last visible character.
+        element.coordinate(withNormalizedOffset: CGVector(dx: 0.99, dy: 0.5)).tap()
         element.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: old.count) + text)
     }
 
@@ -317,22 +332,32 @@ final class TrackerSmokeUITests: XCTestCase {
     }
 
     @MainActor
-    private func revealEditorControl(_ element: XCUIElement, app: XCUIApplication) throws {
+    private func revealEditorControl(_ element: XCUIElement, app: XCUIApplication,
+                                     viewportID: String? = nil) throws {
         // A lazy Form row may not exist in the AX tree yet, so querying its
         // elementType or identifier here can throw before any scrolling occurs.
         // Select the foreground vertical viewport independently of the target.
         // Scroll containers themselves can be non-hittable even when their
         // children are visible and interactive. The last vertical container
         // in the hierarchy belongs to the foreground presentation.
-        let lists = app.collectionViews.allElementsBoundByIndex
-        let scrolls = app.scrollViews.allElementsBoundByIndex.filter {
-            $0.frame.height > 150
-        }
-        guard let container = lists.last ?? scrolls.last else {
-            try check(false, "No foreground editor scroll viewport", app: app)
-            return
+        if let viewportID {
+            try require(app.descendants(matching: .any).matching(identifier: viewportID).firstMatch, app: app)
         }
         for attempt in 0..<18 {
+            let container: XCUIElement
+            if let viewportID {
+                // Resolve by identity after navigation/search transitions;
+                // array indices can point to a disappeared background Form.
+                container = app.descendants(matching: .any).matching(identifier: viewportID).firstMatch
+            } else {
+                let lists = app.collectionViews.allElementsBoundByIndex
+                let scrolls = app.scrollViews.allElementsBoundByIndex.filter { $0.exists && $0.frame.height > 150 }
+                guard let candidate = lists.last ?? scrolls.last else {
+                    try check(false, "No foreground editor scroll viewport", app: app)
+                    return
+                }
+                container = candidate
+            }
             var viewport = container.frame.intersection(app.frame)
             // A scroll view can extend behind the navigation and tab bars.
             // Clip those areas before deciding whether a control is visible.
