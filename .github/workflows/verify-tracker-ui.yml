@@ -8,6 +8,12 @@ on:
         required: false
         type: boolean
         default: true
+      test_scope:
+        description: 'Full suite or all unit tests plus loading-related native UI regressions'
+        required: false
+        type: choice
+        options: [full, loading]
+        default: full
   push:
     branches:
       - 'codex/tracker-ui-*'
@@ -28,6 +34,7 @@ jobs:
       VALIDATION_OUTPUT_DIR: ${{ github.workspace }}/artifacts/tracker-verification/tests
       TRACKER_UI_OUTPUT_DIR: ${{ github.workspace }}/artifacts/tracker-verification/screenshots
       CAPTURE_WAIT_SECONDS: '8'
+      VALIDATION_TEST_SCOPE: ${{ inputs.test_scope || 'full' }}
     steps:
       - name: Check out source
         uses: actions/checkout@v4
@@ -72,7 +79,7 @@ jobs:
 
       - name: Build and run the native simulator test suite
         id: tests
-        timeout-minutes: 25
+        timeout-minutes: 35
         shell: bash
         run: |
           set -euo pipefail

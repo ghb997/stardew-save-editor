@@ -2,6 +2,7 @@
 # Run with: bash scripts/validate-on-macos.sh
 # Optional: SIMULATOR_UDID=<installed iPhone UUID>
 # Optional: VALIDATION_OUTPUT_DIR=<directory for per-run logs and xcresult bundles>
+# Optional: VALIDATION_TEST_SCOPE=loading for all unit tests and three relevant UI flows.
 set -Eeuo pipefail
 
 fail() {
@@ -112,7 +113,22 @@ else
 fi
 
 printf '\nRunning the shared scheme test suite…\n'
+TEST_SELECTION=()
+case "${VALIDATION_TEST_SCOPE:-full}" in
+    full) ;;
+    loading)
+        TEST_SELECTION=(
+            -only-testing:PelicanSaveEditorTests
+            -only-testing:PelicanSaveEditorUITests/AdaptiveLayoutUITests/testEachDocumentPickerCanOpenCancelAndReopen
+            -only-testing:PelicanSaveEditorUITests/TrackerSmokeUITests/testOverviewFiltersAndGroupExpansion
+            -only-testing:PelicanSaveEditorUITests/TrackerSmokeUITests/testMapScopedWaterPreviewPendingLocateAndUndo
+        )
+        ;;
+    *) fail "Unknown VALIDATION_TEST_SCOPE; use full or loading." ;;
+esac
+printf 'Test scope: %s\n' "${VALIDATION_TEST_SCOPE:-full}" | tee "$RUN_DIR/test-scope.txt"
 if xcodebuild "${BUILD_ARGUMENTS[@]}" \
+    "${TEST_SELECTION[@]}" \
     -resultBundlePath "$RUN_DIR/tests.xcresult" \
     -parallel-testing-enabled NO \
     test-without-building 2>&1 | tee "$RUN_DIR/tests.log"; then
