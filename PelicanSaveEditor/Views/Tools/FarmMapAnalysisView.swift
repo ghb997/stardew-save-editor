@@ -2,7 +2,7 @@ import SwiftUI
 
 struct FarmMapAnalysisView: View {
     @Bindable var session: SaveSession
-    let snapshot: FarmSnapshot
+    private var snapshot: FarmSnapshot { session.farmSnapshot }
     @Environment(\.dismiss) private var dismiss
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var showingExpandedMap = false
@@ -13,10 +13,6 @@ struct FarmMapAnalysisView: View {
 
     init(session: SaveSession, cropCatalog: [CropDefinition]) {
         self.session = session
-        snapshot = FarmSnapshotExtractor.extract(
-            from: session.parsed.mainRoot,
-            cropCatalog: cropCatalog
-        )
     }
 
     var body: some View {

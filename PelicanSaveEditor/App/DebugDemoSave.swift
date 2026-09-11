@@ -22,7 +22,8 @@ enum DebugDemoSave {
             infoURL: nil,
             accessURLs: []
         )
-        return SaveSession(source: source, parsed: parsed, pair: pair)
+        return SaveSession(source: source, parsed: parsed, pair: pair,
+                           snapshot: FarmSnapshotExtractor.extract(from: parsed.mainRoot, cropCatalog: try CropCatalog.load()))
     }
 
     private static let xml = """

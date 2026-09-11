@@ -10,7 +10,7 @@ struct ReviewChangesView: View {
     @State private var showingBackups = false
     @State private var showingExportPicker = false
     @State private var exportNotice: String?
-    @State private var farmSnapshot: FarmSnapshot?
+    private var farmSnapshot: FarmSnapshot? { session.farmSnapshot }
 
     private var groupedDiffs: [SaveDiffGroup] {
         SaveDiffBuilder.grouped(session.diffs)
@@ -223,9 +223,6 @@ struct ReviewChangesView: View {
                     exportNotice = "已保存应用内副本，尚未完成导出。可点“再次导出已保存副本”继续。"
                 }
             )
-        }
-        .onChange(of: session.mainHash, initial: true) { _, _ in
-            farmSnapshot = FarmSnapshotExtractor.extract(from: session.parsed.mainRoot, cropCatalog: store.cropCatalog)
         }
         .disabled(store.isBusy)
         .interactiveDismissDisabled(store.isBusy)

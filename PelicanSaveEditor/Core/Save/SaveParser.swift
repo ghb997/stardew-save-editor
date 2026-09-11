@@ -410,9 +410,9 @@ enum SaveParser {
 
     private static func dictionaryEntryCount(_ container: XMLNode?) -> Int {
         guard let container else { return 0 }
-        return descendants(of: container).filter {
-            $0.name == "item" && $0.child(named: "key") != nil && $0.child(named: "value") != nil
-        }.count
+        return descendants(of: container).reduce(0) { count, node in
+            count + (node.name == "item" && node.child(named: "key") != nil && node.child(named: "value") != nil ? 1 : 0)
+        }
     }
 
     private static func statsValue(named name: String, in stats: XMLNode?) -> Int? {
@@ -495,15 +495,16 @@ enum SaveParser {
     private static func farmhouseLocation(in root: XMLNode) -> XMLNode? {
         guard let locations = root.child(named: "locations") else { return nil }
         let topLevelLocations = locations.children(named: "GameLocation")
-        return (topLevelLocations + descendants(of: locations)).first { node in
+        let matches: (XMLNode) -> Bool = { node in
             if node.value(named: "name")?.lowercased() == "farmhouse" { return true }
             let type = node.attributes["xsi:type"] ?? node.attributes["type"] ?? node.name
             return type.lowercased().contains("farmhouse")
         }
+        return topLevelLocations.first(where: matches) ?? locations.descendants.first(where: matches)
     }
 
-    private static func descendants(of node: XMLNode) -> [XMLNode] {
-        node.children.flatMap { child in [child] + descendants(of: child) }
+    private static func descendants(of node: XMLNode) -> XMLNode.Descendants {
+        node.descendants
     }
 
     private static func roomDecorationText(_ node: XMLNode) -> String? {
@@ -526,16 +527,18 @@ enum SaveParser {
         typeContaining typeFragment: String
     ) -> XMLNode? {
         guard let locations = root.child(named: "locations") else { return nil }
-        let nodes = locations.children(named: "GameLocation") + descendants(of: locations)
+        let direct = locations.children(named: "GameLocation")
         let wantedName = locationName.lowercased()
-        if let named = nodes.first(where: { $0.value(named: "name")?.lowercased() == wantedName }) {
+        let matchesName: (XMLNode) -> Bool = { $0.value(named: "name")?.lowercased() == wantedName }
+        if let named = direct.first(where: matchesName) ?? locations.descendants.first(where: matchesName) {
             return named
         }
         let wantedType = typeFragment.lowercased()
-        return nodes.first { node in
+        let matchesType: (XMLNode) -> Bool = { node in
             let raw = node.attributes["xsi:type"] ?? node.attributes["type"] ?? node.name
             return raw.lowercased().contains(wantedType)
         }
+        return direct.first(where: matchesType) ?? locations.descendants.first(where: matchesType)
     }
 
     private static func dictionaryText(in node: XMLNode) -> String? {

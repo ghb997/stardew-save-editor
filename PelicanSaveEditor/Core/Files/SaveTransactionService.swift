@@ -5,8 +5,17 @@ struct SavePairData: Sendable {
     let main: Data
     let info: Data?
 
-    var mainHash: String { Self.hash(main) }
-    var infoHash: String? { info.map(Self.hash) }
+    let mainHash: String
+    let infoHash: String?
+
+    init(main: Data, info: Data?) {
+        self.main = main
+        self.info = info
+        // These bytes are immutable. Hash once on the file worker, rather than
+        // re-hashing the whole save from view observation and transaction checks.
+        mainHash = Self.hash(main)
+        infoHash = info.map(Self.hash)
+    }
 
     private static func hash(_ data: Data) -> String {
         SHA256.hash(data: data).map { String(format: "%02x", $0) }.joined()

@@ -82,10 +82,7 @@ struct RootView: View {
                 FarmMapAnalysisView(session: session, cropCatalog: store.cropCatalog)
             case "expanded-map":
                 ExpandedFarmMapView(
-                    snapshot: FarmSnapshotExtractor.extract(
-                        from: session.parsed.mainRoot,
-                        cropCatalog: store.cropCatalog
-                    ),
+                    snapshot: session.farmSnapshot,
                     actions: session.draft.farmActions
                 )
             case "house":

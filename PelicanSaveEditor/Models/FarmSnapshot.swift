@@ -202,7 +202,7 @@ enum FarmSnapshotExtractor {
             )
         }
 
-        let locationNodes = descendants(of: locations).filter { node in
+        let locationNodes = locations.descendants.lazy.filter { node in
             node.name == "GameLocation" || node.attributes["xsi:type"] != nil
         }
         guard let farm = locationNodes.first(where: { $0.value(named: "name") == "Farm" })
@@ -419,10 +419,6 @@ enum FarmSnapshotExtractor {
             grassCount: grassCount,
             warnings: warnings
         )
-    }
-
-    private static func descendants(of node: XMLNode) -> [XMLNode] {
-        node.children.flatMap { child in [child] + descendants(of: child) }
     }
 
     private static func normalizedType(of node: XMLNode) -> String {

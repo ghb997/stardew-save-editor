@@ -16,11 +16,13 @@ final class SaveSession {
         }
     }
     private(set) var pair: SavePairData
+    private(set) var farmSnapshot: FarmSnapshot
     var mainHash: String { pair.mainHash }
     var infoHash: String? { pair.infoHash }
 
-    init(source: SaveSource, parsed: ParsedSaveDocument, pair: SavePairData) {
+    init(source: SaveSource, parsed: ParsedSaveDocument, pair: SavePairData, snapshot: FarmSnapshot) {
         self.source = source; self.parsed = parsed; self.pair = pair
+        farmSnapshot = snapshot
         originalDraft = parsed.draft; editableDraft = parsed.draft
     }
     var metadata: LoadedSaveMetadata {
@@ -36,8 +38,9 @@ final class SaveSession {
         SaveDiffBuilder.undo(diff, original: originalDraft, draft: &editableDraft)
     }
     func setEditingLocked(_ locked: Bool) { isEditingLocked = locked }
-    func replaceParsed(_ newParsed: ParsedSaveDocument, pair: SavePairData) {
+    func replaceParsed(_ newParsed: ParsedSaveDocument, pair: SavePairData, snapshot: FarmSnapshot) {
         parsed = newParsed; originalDraft = newParsed.draft; editableDraft = newParsed.draft; self.pair = pair
+        farmSnapshot = snapshot
     }
 }
 
@@ -59,6 +62,8 @@ final class EditorStore {
     var recoveryConflictMessage: String?
     private var recoverySource: SaveSource?
     private let worker = SaveWorkService()
+    private var loadFollowUpTask: Task<Void, Never>?
+    private(set) var lastLoadTimings: SaveLoadTimings?
 
     init() {
         perform("正在载入离线目录…") {
@@ -131,8 +136,8 @@ final class EditorStore {
             }
             self.busyMessage = "正在备份、写入并校验存档…"
             let written = try await self.worker.write(source: session.source, expected: original, target: target,
-                reason: "保存前自动备份", items: self.itemCatalog, recipes: self.recipeCatalog)
-            session.replaceParsed(written.parsed, pair: written.pair)
+                reason: "保存前自动备份", items: self.itemCatalog, recipes: self.recipeCatalog, crops: self.cropCatalog)
+            session.replaceParsed(written.parsed, pair: written.pair, snapshot: written.snapshot)
             if showSuccess {
                 self.successMessage = session.source.mode == .importedCopy
                     ? "副本已保存并校验。请导出两份文件到游戏农场目录。"
@@ -153,8 +158,8 @@ final class EditorStore {
             }
             self.busyMessage = "正在备份当前文件并恢复…"
             let result = try await self.worker.write(source: session.source, expected: session.pair, target: pair,
-                reason: "恢复备份前的当前状态", items: self.itemCatalog, recipes: self.recipeCatalog)
-            session.replaceParsed(result.parsed, pair: result.pair)
+                reason: "恢复备份前的当前状态", items: self.itemCatalog, recipes: self.recipeCatalog, crops: self.cropCatalog)
+            session.replaceParsed(result.parsed, pair: result.pair, snapshot: result.snapshot)
             self.verifiedBackupIDs.insert(backup.id)
             self.successMessage = session.source.mode == .importedCopy
                 ? "备份已恢复到应用副本；如需用于游戏，请导出两份文件。"
@@ -198,15 +203,21 @@ final class EditorStore {
     func clearMessages() { errorMessage = nil; successMessage = nil }
 
     private func load(source: SaveSource, remember: Bool) async throws {
-        busyMessage = "正在读取、恢复检查与解析…"
+        loadFollowUpTask?.cancel()
         let result: LoadedSaveWork
-        do { result = try await worker.load(source: source, items: itemCatalog, recipes: recipeCatalog) }
+        do {
+            result = try await worker.load(source: source, items: itemCatalog, recipes: recipeCatalog,
+                                          crops: cropCatalog) { [weak self] stage in
+                self?.busyMessage = stage
+            }
+        }
         catch SaveTransactionError.recoveryConflict(let message) {
             recoverySource = source; recoveryConflictMessage = message
             await updateBackups(); return
         }
         // Failed or cancelled selections leave the current session and draft intact.
-        let loadedSession = SaveSession(source: source, parsed: result.parsed, pair: result.pair)
+        let loadedSession = SaveSession(source: source, parsed: result.parsed, pair: result.pair, snapshot: result.snapshot)
+        lastLoadTimings = result.loadTimings
         loadedSession.setEditingLocked(isBusy)
         session = loadedSession
         recoverySource = nil
@@ -218,11 +229,22 @@ final class EditorStore {
         case .none:
             if source.mode == .importedCopy { successMessage = "已复制导入。保存后可导出副本用于游戏。" }
         }
-        if remember {
-            do { try await worker.remember(source) }
-            catch { successMessage = "存档已打开，本次文件授权无法保存为最近访问。" }
+        // The farm is usable now. File-provider bookmarks and the backup index
+        // are housekeeping, and must not extend the modal loading lock.
+        loadFollowUpTask = Task { @MainActor [weak self, weak loadedSession] in
+            guard let self, let loadedSession, !Task.isCancelled,
+                  self.session === loadedSession else { return }
+            if remember {
+                do { try await self.worker.remember(source) }
+                catch {
+                    if !Task.isCancelled, self.session === loadedSession, !self.isBusy {
+                        self.successMessage = "存档已打开，本次文件授权无法保存为最近访问。"
+                    }
+                }
+            }
+            guard !Task.isCancelled, self.session === loadedSession else { return }
+            await self.updateBackups()
         }
-        await updateBackups()
     }
     func refreshBackups() {
         perform("正在读取备份列表…") { await self.updateBackups(reportFailure: true) }

@@ -18,7 +18,7 @@ struct HomeView: View {
                     if let session = store.session {
                         loadedFarmCard(session)
                         FarmerPortraitCard(session: session)
-                        FarmMapCard(session: session, cropCatalog: store.cropCatalog) {
+                        FarmMapCard(session: session) {
                             showingMagicMap = true
                         }
                         quickActions
@@ -256,17 +256,8 @@ private struct AppearanceMetric: View {
 private struct FarmMapCard: View {
     @Environment(\.dynamicTypeSize) private var typeSize
     let session: SaveSession
-    let snapshot: FarmSnapshot
+    private var snapshot: FarmSnapshot { session.farmSnapshot }
     let onOpen: () -> Void
-
-    init(session: SaveSession, cropCatalog: [CropDefinition], onOpen: @escaping () -> Void) {
-        self.session = session
-        self.onOpen = onOpen
-        snapshot = FarmSnapshotExtractor.extract(
-            from: session.parsed.mainRoot,
-            cropCatalog: cropCatalog
-        )
-    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {

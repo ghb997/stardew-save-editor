@@ -7,6 +7,19 @@ struct LoadedSaveWork {
     let parsed: ParsedSaveDocument
     let pair: SavePairData
     let recovery: SaveTransactionRecovery
+    let snapshot: FarmSnapshot
+    let loadTimings: SaveLoadTimings?
+}
+
+/// Durations and sizes only; no farm names, paths or save contents are logged.
+struct SaveLoadTimings: Sendable {
+    let recovery: TimeInterval
+    let read: TimeInterval
+    let parse: TimeInterval
+    let snapshot: TimeInterval
+    let byteCount: Int
+
+    var total: TimeInterval { recovery + read + parse + snapshot }
 }
 
 struct CatalogLoadResult: Sendable {
@@ -66,12 +79,27 @@ actor SaveWorkService {
     func recent() throws -> SaveSource { try RecentSaveSourceStore.load() }
     func remember(_ source: SaveSource) throws { try RecentSaveSourceStore.save(source) }
 
-    func load(source: SaveSource, items: [CatalogItem], recipes: [RecipeKind: [String]]) throws -> sending LoadedSaveWork {
+    func load(source: SaveSource, items: [CatalogItem], recipes: [RecipeKind: [String]],
+              crops: [CropDefinition] = [],
+              onStage: @MainActor @Sendable (String) -> Void = { _ in }) async throws -> sending LoadedSaveWork {
+        await onStage("正在检查上次保存状态…")
+        let started = ProcessInfo.processInfo.systemUptime
         let transactions = try transactionsService()
         let recovery = try transactions.recoverInterruptedTransactionIfNeeded(source: source)
+        let recovered = ProcessInfo.processInfo.systemUptime
+        await onStage("正在读取存档文件…")
         let pair = try transactions.read(source: source)
+        let read = ProcessInfo.processInfo.systemUptime
+        await onStage("正在解析人物与存档数据…")
         let parsed = try SaveParser.parse(mainData: pair.main, infoData: pair.info, catalog: items, recipeCatalog: recipes)
-        return LoadedSaveWork(source: source, parsed: parsed, pair: pair, recovery: recovery)
+        let parsedAt = ProcessInfo.processInfo.systemUptime
+        await onStage("正在整理农场概览…")
+        let snapshot = FarmSnapshotExtractor.extract(from: parsed.mainRoot, cropCatalog: crops)
+        let finished = ProcessInfo.processInfo.systemUptime
+        let timings = SaveLoadTimings(recovery: recovered - started, read: read - recovered,
+            parse: parsedAt - read, snapshot: finished - parsedAt, byteCount: pair.main.count + (pair.info?.count ?? 0))
+        return LoadedSaveWork(source: source, parsed: parsed, pair: pair, recovery: recovery,
+                              snapshot: snapshot, loadTimings: timings)
     }
 
     func render(original: SavePairData, originalDraft: SaveDraft, draft: SaveDraft,
@@ -91,15 +119,17 @@ actor SaveWorkService {
     }
 
     func write(source: SaveSource, expected: SavePairData, target: SavePairData, reason: String,
-               items: [CatalogItem], recipes: [RecipeKind: [String]]) throws -> sending LoadedSaveWork {
+               items: [CatalogItem], recipes: [RecipeKind: [String]], crops: [CropDefinition] = []) throws -> sending LoadedSaveWork {
         // Finish every throwing parse before committing. The transaction verifies
         // the written bytes against target hashes; this fresh, unshared tree is
         // therefore the tree for the committed pair and can be transferred once.
         let parsed = try SaveParser.parse(mainData: target.main, infoData: target.info, catalog: items, recipeCatalog: recipes)
+        let snapshot = FarmSnapshotExtractor.extract(from: parsed.mainRoot, cropCatalog: crops)
         let transactions = try transactionsService()
         let result = try transactions.replace(source: source, expectedMainHash: expected.mainHash,
             expectedInfoHash: expected.infoHash, newData: target, reason: reason)
-        return LoadedSaveWork(source: source, parsed: parsed, pair: result.written, recovery: .none)
+        return LoadedSaveWork(source: source, parsed: parsed, pair: result.written, recovery: .none,
+                              snapshot: snapshot, loadTimings: nil)
     }
 
     func backupPair(_ manifest: BackupManifest) throws -> SavePairData {

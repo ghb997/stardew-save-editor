@@ -999,7 +999,8 @@ final class SaveCoreTests: XCTestCase {
         defer { try? FileManager.default.removeItem(at: harness.root) }
         let pair = try harness.service.read(source: harness.source)
         let parsed = try SaveParser.parse(mainData: pair.main, infoData: pair.info, catalog: [], recipeCatalog: [:])
-        let session = SaveSession(source: harness.source, parsed: parsed, pair: pair)
+        let session = SaveSession(source: harness.source, parsed: parsed, pair: pair,
+                                  snapshot: FarmSnapshotExtractor.extract(from: parsed.mainRoot, cropCatalog: []))
         session.draft.money += 10
         let submitted = session.draft
         let diff = try XCTUnwrap(session.diffs.first)
@@ -1012,7 +1013,8 @@ final class SaveCoreTests: XCTestCase {
         let rendered = try SaveMutator.render(parsed: parsed, draft: submitted)
         let committedPair = SavePairData(main: rendered.mainData, info: rendered.infoData)
         let committed = try SaveParser.parse(mainData: committedPair.main, infoData: committedPair.info, catalog: [], recipeCatalog: [:])
-        session.replaceParsed(committed, pair: committedPair)
+        session.replaceParsed(committed, pair: committedPair,
+                              snapshot: FarmSnapshotExtractor.extract(from: committed.mainRoot, cropCatalog: []))
         XCTAssertEqual(session.draft.money, submitted.money)
         XCTAssertFalse(session.hasChanges)
         XCTAssertTrue(session.isEditingLocked)
@@ -1028,14 +1030,14 @@ final class SaveCoreTests: XCTestCase {
         let worker = SaveWorkService(backupRootURL: harness.root.appendingPathComponent("Backups"),
                                      transactionDirectoryURL: harness.journalDirectory)
         let loaded = try await worker.load(source: harness.source, items: [], recipes: [:])
-        let session = SaveSession(source: loaded.source, parsed: loaded.parsed, pair: loaded.pair)
+        let session = SaveSession(source: loaded.source, parsed: loaded.parsed, pair: loaded.pair, snapshot: loaded.snapshot)
         session.draft.money = 777
         let original = session.pair
         let submitted = session.draft
         let target = try await worker.render(original: original, originalDraft: session.originalDraft, draft: submitted, items: [], recipes: [:])
         let committed = try await worker.write(source: harness.source, expected: original, target: target,
                                                 reason: "worker transfer test", items: [], recipes: [:])
-        session.replaceParsed(committed.parsed, pair: committed.pair)
+        session.replaceParsed(committed.parsed, pair: committed.pair, snapshot: committed.snapshot)
         XCTAssertEqual(session.draft.money, 777)
         XCTAssertFalse(session.hasChanges)
         XCTAssertEqual(session.mainHash, target.mainHash)
@@ -1102,6 +1104,99 @@ final class SaveCoreTests: XCTestCase {
         XCTAssertTrue(degraded.warnings.contains { $0.contains("本地备份暂不可用") })
     }
 
+    func testLazyXMLTraversalPreservesOrderAndStopsAtFirstMatch() throws {
+        let tree = try XMLTreeParser().parse(Data("<root><a><b/><c><d/></c></a><e/></root>".utf8))
+        XCTAssertEqual(tree.descendants.map(\.name), ["a", "b", "c", "d", "e"])
+        XCTAssertEqual(tree.descendants.map(\.name), ["a", "b", "c", "d", "e"], "Each iteration starts fresh")
+        var visited: [String] = []
+        let match = tree.descendants.first { node in
+            visited.append(node.name)
+            return node.name == "c"
+        }
+        XCTAssertEqual(match?.name, "c")
+        XCTAssertEqual(visited, ["a", "b", "c"])
+        XCTAssertTrue(XMLNode(name: "empty").descendants.map(\.name).isEmpty)
+    }
+
+    func testSnapshotStillPrefersNamedFarmInsideWrappedLocations() throws {
+        let root = try XMLTreeParser().parse(Data("""
+        <SaveGame xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><locations>
+          <GameLocation xsi:type="Farm"><name>OtherFarm</name><objects/></GameLocation>
+          <wrapper>\(loadingFarmXML)</wrapper>
+        </locations></SaveGame>
+        """.utf8))
+        let snapshot = FarmSnapshotExtractor.extract(from: root, cropCatalog: [])
+        XCTAssertEqual(snapshot.farmLocationName, "Farm")
+        XCTAssertEqual(snapshot.unwateredCropCount, 1)
+    }
+
+    @MainActor
+    func testWorkerPreparesSnapshotAndRefreshesItAfterCommittedMapChanges() async throws {
+        let harness = try makeTransactionHarness()
+        defer { try? FileManager.default.removeItem(at: harness.root) }
+        let main = sampleMain.replacingOccurrences(of: "</SaveGame>", with: "<locations>\(loadingFarmXML)</locations></SaveGame>")
+        try Data(main.utf8).write(to: harness.source.mainURL)
+        let worker = SaveWorkService(backupRootURL: harness.root.appendingPathComponent("Backups"),
+                                     transactionDirectoryURL: harness.journalDirectory)
+        let recorder = LoadingStageRecorder()
+        let loaded = try await worker.load(source: harness.source, items: [], recipes: [:]) {
+            recorder.stages.append($0)
+        }
+        XCTAssertEqual(recorder.stages, ["正在检查上次保存状态…", "正在读取存档文件…", "正在解析人物与存档数据…", "正在整理农场概览…"])
+        XCTAssertEqual(loaded.snapshot.unwateredCropCount, 1)
+        XCTAssertNotNil(loaded.loadTimings)
+        let session = SaveSession(source: loaded.source, parsed: loaded.parsed, pair: loaded.pair, snapshot: loaded.snapshot)
+        session.draft.farmActions.waterAllCrops = true
+        let target = try await worker.render(original: session.pair, originalDraft: session.originalDraft,
+                                            draft: session.draft, items: [], recipes: [:])
+        let committed = try await worker.write(source: session.source, expected: session.pair, target: target,
+                                                reason: "snapshot refresh", items: [], recipes: [:])
+        session.replaceParsed(committed.parsed, pair: committed.pair, snapshot: committed.snapshot)
+        XCTAssertEqual(session.farmSnapshot.unwateredCropCount, 0)
+        XCTAssertEqual(loaded.snapshot.unwateredCropCount, 1, "Original snapshot remains immutable")
+        XCTAssertFalse(session.hasChanges)
+        XCTAssertEqual(session.mainHash, target.mainHash)
+    }
+
+    @MainActor
+    func testLargeLocalSaveLoadingDiagnostics() async throws {
+        let harness = try makeTransactionHarness()
+        defer { try? FileManager.default.removeItem(at: harness.root) }
+        // A sizeable unrelated location exercises the old eager location scan;
+        // all of these unknown fields must still remain in the parsed save.
+        let record = "<item><key><string>extension</string></key><value><data>\(String(repeating: "x", count: 160))</data><nested><keep>true</keep></nested></value></item>"
+        let records = String(repeating: record, count: 30000)
+        let locations = "<locations>\(loadingFarmXML)<GameLocation><name>Town</name><modData>\(records)</modData></GameLocation></locations>"
+        let main = sampleMain.replacingOccurrences(of: "</SaveGame>", with: locations + "</SaveGame>")
+        let bytes = Data(main.utf8)
+        try bytes.write(to: harness.source.mainURL)
+        let worker = SaveWorkService(backupRootURL: harness.root.appendingPathComponent("Backups"),
+                                     transactionDirectoryURL: harness.journalDirectory)
+        let loaded = try await worker.load(source: harness.source, items: [], recipes: [:])
+        let timings = try XCTUnwrap(loaded.loadTimings)
+        XCTAssertGreaterThan(timings.byteCount, 5_000_000)
+        XCTAssertEqual(loaded.snapshot.unwateredCropCount, 1)
+        let town = try XCTUnwrap(loaded.parsed.mainRoot.child(named: "locations")?.children.last)
+        XCTAssertEqual(town.child(named: "modData")?.children.count, 30000)
+        XCTAssertEqual(try Data(contentsOf: harness.source.mainURL), bytes)
+
+        // Reproduce build 12's eager location discovery on the same parsed tree.
+        func legacyDescendants(_ node: XMLNode) -> [XMLNode] {
+            node.children.flatMap { [$0] + legacyDescendants($0) }
+        }
+        let locationRoot = try XCTUnwrap(loaded.parsed.mainRoot.child(named: "locations"))
+        let oldStarted = ProcessInfo.processInfo.systemUptime
+        let eager = legacyDescendants(locationRoot).filter { $0.name == "GameLocation" || $0.attributes["xsi:type"] != nil }
+        let oldFarm = eager.first { $0.value(named: "name") == "Farm" }
+        let oldTime = ProcessInfo.processInfo.systemUptime - oldStarted
+        let newStarted = ProcessInfo.processInfo.systemUptime
+        let newFarm = locationRoot.descendants.lazy.filter { $0.name == "GameLocation" || $0.attributes["xsi:type"] != nil }
+            .first { $0.value(named: "name") == "Farm" }
+        let newTime = ProcessInfo.processInfo.systemUptime - newStarted
+        XCTAssertTrue(oldFarm === newFarm)
+        print("LOAD_DIAGNOSTICS bytes=\(timings.byteCount) recovery_ms=\(timings.recovery * 1000) read_ms=\(timings.read * 1000) parse_ms=\(timings.parse * 1000) snapshot_ms=\(timings.snapshot * 1000) total_ms=\(timings.total * 1000) eager_lookup_ms=\(oldTime * 1000) lazy_lookup_ms=\(newTime * 1000)")
+    }
+
     private func makeTransactionHarness() throws -> (
         root: URL,
         source: SaveSource,
@@ -1133,6 +1228,18 @@ final class SaveCoreTests: XCTestCase {
         )
     }
 }
+
+@MainActor
+private final class LoadingStageRecorder {
+    var stages: [String] = []
+}
+
+private let loadingFarmXML = """
+<GameLocation xsi:type="Farm"><name>Farm</name><terrainFeatures><item>
+<key><Vector2><X>14</X><Y>29</Y></Vector2></key>
+<value><TerrainFeature xsi:type="HoeDirt"><state>0</state><crop><netSeedIndex>472</netSeedIndex><dead>false</dead><currentPhase>1</currentPhase></crop></TerrainFeature></value>
+</item></terrainFeatures><objects/></GameLocation>
+"""
 
 private let sampleMain = """
 <?xml version="1.0" encoding="utf-8"?>

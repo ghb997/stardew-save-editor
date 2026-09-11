@@ -57,6 +57,26 @@ final class XMLNode {
         )
     }
 
+    /// Preorder traversal excluding self, without constructing a flattened copy
+    /// of every subtree. Callers may stop as soon as the required node is found.
+    var descendants: Descendants { Descendants(children: children) }
+
+    struct Descendants: Sequence {
+        let children: [XMLNode]
+
+        func makeIterator() -> Iterator { Iterator(pending: Array(children.reversed())) }
+
+        struct Iterator: IteratorProtocol {
+            var pending: [XMLNode]
+
+            mutating func next() -> XMLNode? {
+                guard let node = pending.popLast() else { return nil }
+                pending.append(contentsOf: node.children.reversed())
+                return node
+            }
+        }
+    }
+
     func firstDescendant(named name: String) -> XMLNode? {
         if self.name == name { return self }
         for child in children {
@@ -120,4 +140,3 @@ final class XMLNode {
             .replacingOccurrences(of: "\t", with: "&#9;")
     }
 }
-

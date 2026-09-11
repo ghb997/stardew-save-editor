@@ -446,8 +446,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument("--output", type=Path)
-    parser.add_argument("--version", default="0.5.1")
-    parser.add_argument("--build", default="12")
+    parser.add_argument("--version", default="0.5.2")
+    parser.add_argument("--build", default="13")
     args = parser.parse_args()
     output = args.output or args.root / "validation/static-release-results.json"
     return Validator(args.root, args.version, args.build, output).run()
