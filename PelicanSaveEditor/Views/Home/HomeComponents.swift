@@ -96,6 +96,7 @@ struct ToolRowButton: View {
 }
 
 struct LargePageHeader: View {
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
     let title: String
     var artworkName: String? = nil
     var systemImage: String? = nil
@@ -107,21 +108,23 @@ struct LargePageHeader: View {
     var body: some View {
         HStack(spacing: 14) {
             if let artworkName {
-                GameAssetIcon(assetName: artworkName, size: 46)
+                GameAssetIcon(assetName: artworkName, size: isShortWindow ? 32 : 46)
             } else if let systemImage {
-                GameIcon(systemName: systemImage, size: 42)
+                GameIcon(systemName: systemImage, size: isShortWindow ? 30 : 42)
             }
             Text(title)
-                .font(.largeTitle.bold())
+                .font(isShortWindow ? .title2.bold() : .largeTitle.bold())
                 .fixedSize(horizontal: false, vertical: true)
         }
             .foregroundStyle(titleColor)
             .padding(.horizontal, 24)
-            .padding(.vertical, verticalPadding)
-            .frame(maxWidth: AppLayout.pageWidth, minHeight: minimumHeight, alignment: .bottomLeading)
+            .padding(.vertical, isShortWindow ? 8 : verticalPadding)
+            .frame(maxWidth: AppLayout.pageWidth, minHeight: isShortWindow ? 60 : minimumHeight, alignment: .bottomLeading)
             .frame(maxWidth: .infinity)
             .background(headerColor.ignoresSafeArea(edges: .top))
     }
+
+    private var isShortWindow: Bool { verticalSizeClass == .compact }
 }
 
 extension View {

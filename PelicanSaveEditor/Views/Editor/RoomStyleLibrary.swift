@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct RoomStyleLibrary: View {
+    @ScaledMetric(relativeTo: .caption2) private var columnWidth: CGFloat = 70
     @Bindable var session: SaveSession
     let decorationID: String
     @State private var searchText = ""
@@ -25,7 +26,7 @@ struct RoomStyleLibrary: View {
                         .accessibilityIdentifier("editor.house.style.search")
                     let styles = RoomStyleRules.standardStyles(for: surface.kind, query: searchText)
                     if styles.isEmpty { ContentUnavailableView.search(text: searchText) }
-                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 70))], spacing: 14) {
+                    LazyVGrid(columns: [GridItem(.adaptive(minimum: columnWidth))], spacing: 14) {
                         ForEach(styles, id: \.self) { style in
                             Button { session.draft.farmhouse.decorations[index].styleIndex = style } label: {
                                 RoomStyleSwatch(style: style, kind: surface.kind, isSelected: style == surface.styleIndex)

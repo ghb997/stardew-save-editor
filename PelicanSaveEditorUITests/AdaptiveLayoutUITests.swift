@@ -206,12 +206,22 @@ final class AdaptiveLayoutUITests: XCTestCase {
                 try visible(target, app: app)
                 return
             }
-            let moveUp = frame.minY.isFinite && !frame.isEmpty ? frame.midY > bounds.midY : upward
-            let start = viewport.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: moveUp ? 0.75 : 0.25))
-            let end = viewport.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: moveUp ? 0.25 : 0.75))
+            let hasFrame = frame.minY.isFinite && !frame.isEmpty
+            let moveUp = hasFrame ? frame.midY > bounds.midY : upward
+            // Reduce travel as the row approaches the viewport. A fixed half-
+            // screen swipe can keep jumping over a row in a short window.
+            let distance = min(hasFrame ? max(abs(frame.midY - bounds.midY), 24) : 140,
+                               max(1, bounds.height * 0.35))
+            let direction: CGFloat = moveUp ? 1 : -1
+            let origin = app.coordinate(withNormalizedOffset: .zero)
+            let start = origin.withOffset(CGVector(dx: bounds.midX - app.frame.minX,
+                dy: bounds.midY - app.frame.minY + direction * distance / 2))
+            let end = origin.withOffset(CGVector(dx: bounds.midX - app.frame.minX,
+                dy: bounds.midY - app.frame.minY - direction * distance / 2))
             start.press(forDuration: 0.05, thenDragTo: end)
         }
-        try fail("Control was clipped or unreachable: \(target)", app: app)
+        try fail("Control was clipped or unreachable: \(target); control=\(target.frame), "
+                 + "viewport=\(viewport.frame), window=\(app.frame)", app: app)
     }
 
     @MainActor

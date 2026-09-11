@@ -331,13 +331,14 @@ private struct FarmhouseBlueprint: View {
 }
 
 struct RoomStyleSwatch: View {
+    @ScaledMetric(relativeTo: .caption2) private var tileSize: CGFloat = 58
     let style: Int
     let kind: RoomDecorationKind
     let isSelected: Bool
 
     var body: some View {
         RoomTexturePreview(style: style, kind: kind)
-            .frame(width: 58, height: 58)
+            .frame(width: tileSize, height: tileSize)
             .clipped()
             .overlay(alignment: .bottom) {
                 Text("\(style)")
@@ -358,17 +359,15 @@ private struct RoomSurfacePreview: View {
     let decoration: RoomDecorationDraft
 
     var body: some View {
-        RoomTexturePreview(style: decoration.styleIndex, kind: decoration.kind)
-            .frame(height: 96)
-            .clipped()
-            .clipShape(RoundedRectangle(cornerRadius: 12))
-            .overlay(alignment: .bottomLeading) {
-                Text("\(decoration.kind.displayName) \(decoration.styleIndex) · \(hasTexture ? "游戏原版贴图" : "无贴图预览")")
-                    .font(.caption2.weight(.medium))
-                    .padding(6)
-                    .background(.regularMaterial, in: Capsule())
-                    .padding(6)
-            }
+        VStack(alignment: .leading, spacing: 8) {
+            RoomTexturePreview(style: decoration.styleIndex, kind: decoration.kind)
+                .frame(height: 96)
+                .clipped()
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+            Text("\(decoration.kind.displayName) \(decoration.styleIndex) · \(hasTexture ? "游戏原版贴图" : "无贴图预览")")
+                .font(.caption2.weight(.medium))
+                .fixedSize(horizontal: false, vertical: true)
+        }
             .accessibilityElement(children: .ignore)
             .accessibilityLabel("\(decoration.localizedRoomName)\(decoration.kind.displayName)原版贴图")
             .accessibilityValue("编号 \(decoration.styleIndex)")

@@ -254,6 +254,7 @@ private struct AppearanceMetric: View {
 }
 
 private struct FarmMapCard: View {
+    @Environment(\.dynamicTypeSize) private var typeSize
     let session: SaveSession
     let snapshot: FarmSnapshot
     let onOpen: () -> Void
@@ -297,17 +298,21 @@ private struct FarmMapCard: View {
                     endPoint: .bottom
                 )
 
-                HStack(spacing: 12) {
-                    GameLabel("\(snapshot.count(for: .crop)) 作物", systemImage: "leaf.fill")
-                    GameLabel("\(snapshot.count(for: .building)) 建筑", systemImage: "house.fill")
-                    GameLabel("\(snapshot.stoneCount) 石块", systemImage: "circle.fill")
+                if !typeSize.isAccessibilitySize {
+                    HStack(spacing: 12) { mapCounts }
+                        .font(.caption.bold())
+                        .foregroundStyle(.white)
+                        .padding(14)
                 }
-                .font(.caption.bold())
-                .foregroundStyle(.white)
-                .padding(14)
             }
             .frame(height: 184)
             .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+
+            if typeSize.isAccessibilitySize {
+                VStack(alignment: .leading, spacing: 8) { mapCounts }
+                    .font(.caption.bold())
+                    .fixedSize(horizontal: false, vertical: true)
+            }
 
             GameLabel(
                 "从 Farm 节点读取 \(snapshot.entities.count) 个实体，其中 \(snapshot.positionedEntities.count) 个包含真实坐标",
@@ -333,6 +338,13 @@ private struct FarmMapCard: View {
         .padding(20)
         .appCard()
     }
+
+    @ViewBuilder
+    private var mapCounts: some View {
+        GameLabel("\(snapshot.count(for: .crop)) 作物", systemImage: "leaf.fill")
+        GameLabel("\(snapshot.count(for: .building)) 建筑", systemImage: "house.fill")
+        GameLabel("\(snapshot.stoneCount) 石块", systemImage: "circle.fill")
+    }
 }
 
 func formattedPlayTime(_ milliseconds: Int64?) -> String {
@@ -357,19 +369,20 @@ func farmTypeName(_ farmType: Int?) -> String {
 }
 
 private struct FarmDateHeader: View {
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
     let session: SaveSession?
 
     var body: some View {
         VStack(spacing: 5) {
             if let session {
                 Text("\(session.draft.season.displayName)季第 \(session.draft.day) 天")
-                    .font(.largeTitle.weight(.bold))
+                    .font(headerFont)
                 Text("第 \(session.draft.year) 年 · \(weekday(for: session.draft))")
                     .font(.title3)
                     .foregroundStyle(AppTheme.title.opacity(0.72))
             } else {
                 Text("穗光琥珀存档匣")
-                    .font(.largeTitle.weight(.bold))
+                    .font(headerFont)
                 Text("农场助手")
                     .font(.title3)
                     .foregroundStyle(AppTheme.title.opacity(0.72))
@@ -378,11 +391,15 @@ private struct FarmDateHeader: View {
         .multilineTextAlignment(.center)
         .fixedSize(horizontal: false, vertical: true)
         .padding(.horizontal, 20)
-        .padding(.vertical, 24)
+        .padding(.vertical, verticalSizeClass == .compact ? 8 : 24)
         .foregroundStyle(AppTheme.title)
         .frame(maxWidth: .infinity)
-        .frame(minHeight: 130)
+        .frame(minHeight: verticalSizeClass == .compact ? 64 : 130)
         .background(AppTheme.header.ignoresSafeArea(edges: .top))
+    }
+
+    private var headerFont: Font {
+        verticalSizeClass == .compact ? .title2.bold() : .largeTitle.bold()
     }
 
     private func weekday(for draft: SaveDraft) -> String {
