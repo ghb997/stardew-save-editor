@@ -37,6 +37,7 @@ enum AppTheme {
 }
 
 struct ToolRowButton: View {
+    @Environment(\.dynamicTypeSize) private var typeSize
     let title: String
     let subtitle: String
     let systemImage: String
@@ -47,40 +48,29 @@ struct ToolRowButton: View {
 
     var body: some View {
         Button(action: action) {
-            HStack(spacing: 16) {
-                Group {
-                    if let artworkName {
-                        GameAssetIcon(assetName: artworkName, size: 48)
-                    } else {
-                        GameIcon(systemName: systemImage, size: 28)
-                            .font(.system(size: 28, weight: .medium))
-                            .foregroundStyle(disabled ? Color.secondary : iconColor)
+            Group {
+                if typeSize.isAccessibilitySize {
+                    VStack(alignment: .leading, spacing: 12) {
+                        HStack(spacing: 16) {
+                            icon
+                            rowTitle.frame(maxWidth: .infinity, alignment: .leading)
+                            accessory
+                        }
+                        detail
+                    }
+                } else {
+                    HStack(spacing: 16) {
+                        icon
+                        VStack(alignment: .leading, spacing: 5) {
+                            rowTitle
+                            detail
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        accessory
                     }
                 }
-                .frame(width: 58, height: 58)
-                .background(Color(.tertiarySystemBackground), in: RoundedRectangle(cornerRadius: 16))
-                .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-                .overlay {
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color(.separator).opacity(0.35), lineWidth: 1)
-                }
-
-                VStack(alignment: .leading, spacing: 5) {
-                    Text(title)
-                        .font(.title3.bold())
-                        .fixedSize(horizontal: false, vertical: true)
-                    Text(subtitle)
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                        .multilineTextAlignment(.leading)
-                        .fixedSize(horizontal: false, vertical: true)
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-
-                GameIcon(systemName: disabled ? "lock.fill" : "chevron.right", size: 20)
-                    .font(.headline)
-                    .foregroundStyle(.secondary)
             }
+            .multilineTextAlignment(.leading)
             .foregroundStyle(.primary)
             .padding(18)
             .background(AppTheme.card, in: RoundedRectangle(cornerRadius: 22, style: .continuous))
@@ -92,6 +82,45 @@ struct ToolRowButton: View {
         }
         .buttonStyle(.plain)
         .disabled(disabled)
+    }
+
+    private var rowTitle: some View {
+        Text(title)
+            .font(.title3.bold())
+            .fixedSize(horizontal: false, vertical: true)
+    }
+
+    private var detail: some View {
+        Text(subtitle)
+            .font(.subheadline)
+            .foregroundStyle(.secondary)
+            .fixedSize(horizontal: false, vertical: true)
+            .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private var accessory: some View {
+        GameIcon(systemName: disabled ? "lock.fill" : "chevron.right", size: 20)
+            .font(.headline)
+            .foregroundStyle(.secondary)
+    }
+
+    private var icon: some View {
+        Group {
+            if let artworkName {
+                GameAssetIcon(assetName: artworkName, size: 48)
+            } else {
+                GameIcon(systemName: systemImage, size: 28)
+                    .font(.system(size: 28, weight: .medium))
+                    .foregroundStyle(disabled ? Color.secondary : iconColor)
+            }
+        }
+        .frame(width: 58, height: 58)
+        .background(Color(.tertiarySystemBackground), in: RoundedRectangle(cornerRadius: 16))
+        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+        .overlay {
+            RoundedRectangle(cornerRadius: 16)
+                .stroke(Color(.separator).opacity(0.35), lineWidth: 1)
+        }
     }
 }
 

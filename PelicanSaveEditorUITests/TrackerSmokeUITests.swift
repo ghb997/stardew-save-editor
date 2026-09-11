@@ -383,7 +383,8 @@ final class TrackerSmokeUITests: XCTestCase {
                 dy: viewport.midY - app.frame.minY + direction * distance / 2))
             let end = origin.withOffset(CGVector(dx: viewport.midX - app.frame.minX,
                 dy: viewport.midY - app.frame.minY - direction * distance / 2))
-            start.press(forDuration: 0.05, thenDragTo: end)
+            start.press(forDuration: 0.05, thenDragTo: end,
+                        withVelocity: .slow, thenHoldForDuration: 0.2)
         }
         try check(false, "Editor control could not be revealed: \(element)", app: app)
     }
@@ -413,11 +414,23 @@ final class TrackerSmokeUITests: XCTestCase {
         for _ in 0..<14 {
             if isFullyVisible(target, within: strip, app: app) { break }
             let viewport = strip.frame.intersection(app.frame)
-            if target.exists && target.frame.minX < viewport.minX {
-                strip.swipeRight()
-            } else {
-                strip.swipeLeft()
-            }
+            // The safe-area inset's AX scroll frame includes the navigation
+            // bar on iPadOS 26. Swiping its midpoint drags the system window.
+            // Keep the gesture on the actual chip row, below that bar.
+            let row = app.buttons[prefix + anchor].frame
+            try check(!viewport.isEmpty && row.midY.isFinite
+                && row.midY > viewport.minY && row.midY < viewport.maxY,
+                "The horizontal chip row must be inside its viewport", app: app)
+            let frame = target.exists ? target.frame : .null
+            let direction: CGFloat = frame.minX < viewport.minX ? -1 : 1
+            let distance = min(max(abs(frame.midX - viewport.midX), 44), viewport.width * 0.55)
+            let origin = app.coordinate(withNormalizedOffset: .zero)
+            let start = origin.withOffset(CGVector(dx: viewport.midX - app.frame.minX + direction * distance / 2,
+                dy: row.midY - app.frame.minY))
+            let end = origin.withOffset(CGVector(dx: viewport.midX - app.frame.minX - direction * distance / 2,
+                dy: row.midY - app.frame.minY))
+            start.press(forDuration: 0.05, thenDragTo: end,
+                        withVelocity: .slow, thenHoldForDuration: 0.2)
         }
         try check(isFullyVisible(target, within: strip, app: app),
                   "Chip \(prefix + name) must be visible within its 0.5pt border outset before tapping; "
@@ -473,7 +486,7 @@ final class TrackerSmokeUITests: XCTestCase {
 
     @MainActor
     private func attachScreenshot(_ name: String, app: XCUIApplication) {
-        let attachment = XCTAttachment(screenshot: app.screenshot())
+        let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
         attachment.name = name
         attachment.lifetime = .keepAlways
         add(attachment)
@@ -483,7 +496,7 @@ final class TrackerSmokeUITests: XCTestCase {
     private func check(_ passed: Bool, _ message: String, app: XCUIApplication,
                        file: StaticString = #filePath, line: UInt = #line) throws {
         guard passed else {
-            let screenshot = XCTAttachment(screenshot: app.screenshot())
+            let screenshot = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
             screenshot.name = "Tracker smoke failure"
             screenshot.lifetime = .keepAlways
             add(screenshot)

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-09-11T06:15:08.769388+00:00",
+  "generated_at_utc": "2026-09-11T06:49:45.881651+00:00",
   "release_root": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\reference-build10-cloud",
   "validation_type": "offline_static_release_checks",
   "compiled_swift": false,
@@ -216,7 +216,7 @@
       "PelicanSaveEditor/Views/Editor/SavePresentation.swift": "298227ce05c9b61484c3fffa939796b69a259f0dfed1eeda9404f01e8bae3326",
       "PelicanSaveEditor/Views/Editor/SkillsEditorView.swift": "f3aaef250a2a094b98fc232ff7763fd0b5608b94f93656aac6080b4ff772ded4",
       "PelicanSaveEditor/Views/Editor/WalletEditorView.swift": "75ef36c70d5613fe7d63e8bb30b4e2f68ca9d36fa3b3432da825f29fabc806f0",
-      "PelicanSaveEditor/Views/Home/HomeComponents.swift": "0c0ec153cf13a25b4c868bfc54ceb842a582e1c473ea374579b33ee28cdda2fc",
+      "PelicanSaveEditor/Views/Home/HomeComponents.swift": "e3239a03df44be5f64ac050f02495130d3a1361b6eacd8c7ae28a8e85d3aaa9e",
       "PelicanSaveEditor/Views/Home/HomeView.swift": "e8b9753256d4cb79db3c537bb89f071aedfff0a4f6a11140c2f7323b8cd9bce5",
       "PelicanSaveEditor/Views/Home/SettingsView.swift": "ef57cce37b7f5bbdc50c3c6c3b1801f69f4f4e182bcbfe6a8ad6a04a33a77768",
       "PelicanSaveEditor/Views/Home/ToolsView.swift": "a38e4e997f555d9ecb8e90d30d9f2a786c77a17374323f6d94c07c7dc1267b78",
@@ -232,8 +232,8 @@
       "PelicanSaveEditorTests/TrackerMetricsTests.swift": "6abcad5fb03e171d40abb910e7d6338455097f1435d46c7ba9704bfc7f917862",
       "PelicanSaveEditorTests/TransactionRegressionTests.swift": "3e9a3a720b5c7899196d6f872b7c9369d313343fae9a435f10dd426f0bc8dac7",
       "PelicanSaveEditorTests/WorldEditorTests.swift": "d95d44eec914e78d93da6ad227b27fb5ceaed75545060b304991d55b3893c96e",
-      "PelicanSaveEditorUITests/AdaptiveLayoutUITests.swift": "09dd8c3e419843c927e896d55e01fc162d496a5d05b73bf1a3e921bcb639428e",
-      "PelicanSaveEditorUITests/TrackerSmokeUITests.swift": "7d00ddc37e8eba4f1e914ac0ea4e025b3b4f66115c612d7341bc8b79f506fcbb"
+      "PelicanSaveEditorUITests/AdaptiveLayoutUITests.swift": "bc34204dcacfb19387fd027a7cd92adc745a2da7b67158bc27a0680b232bec3a",
+      "PelicanSaveEditorUITests/TrackerSmokeUITests.swift": "cabcb123f38ee2a33d7a9ecafadad86dd996529e89bd3beb07b74bb91df5ff7d"
     },
     "source_counts": {
       "swift_files": 66,

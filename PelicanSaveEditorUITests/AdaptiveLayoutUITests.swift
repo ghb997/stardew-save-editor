@@ -83,7 +83,6 @@ final class AdaptiveLayoutUITests: XCTestCase {
     @MainActor
     func testNarrowWindowAndAccessibilityText() throws {
         defer { XCUIDevice.shared.orientation = .portrait; XCUIApplication().terminate() }
-        XCUIDevice.shared.orientation = .landscapeLeft
         XCUIDevice.shared.orientation = UIDevice.current.userInterfaceIdiom == .pad ? .landscapeLeft : .portrait
         let app = launch(extra: ["--ui-layout-width", "375",
             "-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"])
@@ -218,7 +217,10 @@ final class AdaptiveLayoutUITests: XCTestCase {
                 dy: bounds.midY - app.frame.minY + direction * distance / 2))
             let end = origin.withOffset(CGVector(dx: bounds.midX - app.frame.minX,
                 dy: bounds.midY - app.frame.minY - direction * distance / 2))
-            start.press(forDuration: 0.05, thenDragTo: end)
+            // Hold at the end to stop inertial scrolling from jumping past
+            // the target again in a short landscape viewport.
+            start.press(forDuration: 0.05, thenDragTo: end,
+                        withVelocity: .slow, thenHoldForDuration: 0.2)
         }
         try fail("Control was clipped or unreachable: \(target); control=\(target.frame), "
                  + "viewport=\(viewport.frame), window=\(app.frame)", app: app)
@@ -243,7 +245,9 @@ final class AdaptiveLayoutUITests: XCTestCase {
 
     @MainActor
     private func capture(_ name: String, _ app: XCUIApplication) {
-        let image = XCTAttachment(screenshot: app.screenshot())
+        // Capture the display so iPadOS window coordinates cannot crop a
+        // landscape app into a portrait-sized attachment.
+        let image = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
         image.name = name
         image.lifetime = .keepAlways
         add(image)
