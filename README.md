@@ -4,7 +4,7 @@
 
 源码版本：`0.5.1`（构建 `12`）
 
-构建 12 改善 iPad 导入面板、确认弹窗、横竖屏地图、编辑布局与较大字体；本轮验证进度见 [iPad 适配记录](validation/IPAD_LAYOUT.md)。下面的构建 11 测试数字仅为历史基线。
+构建 12 完成 iPad 导入面板、确认弹窗、横竖屏地图、编辑布局与较大字体优化。iPad mini、13 英寸 iPad Pro 和 iPhone SE 合计 307 次原生测试执行全部通过，iOS Release 安装包已构建并校验，详见 [iPad 适配与验证记录](validation/IPAD_LAYOUT.md)。下面的构建 11 测试数字仅为历史基线。
 
 本次完善魔法地图、人物外观、房屋与房间：增加地图搜索与坐标范围操作、单株浇水、外观颜色编辑，以及可搜索的房间样式库和批量套用预览。具体规则见 [WORLD_EDITOR_UPDATE.md](WORLD_EDITOR_UPDATE.md)。此前背包与人物关系的增强记录保留在 [REFERENCE_EDITOR_UPDATE.md](REFERENCE_EDITOR_UPDATE.md)。
 
