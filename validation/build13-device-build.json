@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "ipa": "SheaflightAmberVault-v0.5.2-build13-unsigned.ipa",
+  "sha256": "e936baa5bc794c6da7afdd7bd5ab558166d803c021c8fcf6da8e9c9ed6c624fd",
+  "bytes": 3291819,
+  "crc_verified": true,
+  "version": "0.5.2",
+  "build": "13",
+  "platform": "iOS device",
+  "architecture": "arm64",
+  "minimumOS": "17.0",
+  "configuration": "Release",
+  "build_run": 34613406226,
+  "source_commit": "da55ce79903d0d751c9fd7fcc93d62bb35a2651b",
+  "run_url": "https://github.com/ghb997/stardew-save-editor/actions/runs/34613406226",
+  "xcode": "16.4",
+  "sdk": "18.5",
+  "signing": "unsigned",
+  "noCodeSignature": true,
+  "noProvisioningProfile": true,
+  "inGameLoadTest": false
+}

@@ -128,7 +128,7 @@ case "${VALIDATION_TEST_SCOPE:-full}" in
 esac
 printf 'Test scope: %s\n' "${VALIDATION_TEST_SCOPE:-full}" | tee "$RUN_DIR/test-scope.txt"
 if xcodebuild "${BUILD_ARGUMENTS[@]}" \
-    "${TEST_SELECTION[@]}" \
+    ${TEST_SELECTION[@]+"${TEST_SELECTION[@]}"} \
     -resultBundlePath "$RUN_DIR/tests.xcresult" \
     -parallel-testing-enabled NO \
     test-without-building 2>&1 | tee "$RUN_DIR/tests.log"; then
