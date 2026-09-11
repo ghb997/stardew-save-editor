@@ -160,7 +160,10 @@ final class AdaptiveLayoutUITests: XCTestCase {
                         "skills", "wallet", "animals", "recipes", "review"] {
             let entry = app.buttons["editor.tool.\(section)"]
             try reveal(entry, in: "editor.tools.list", app: app)
-            try tap(entry, app: app)
+            // Wide cards contain blank space between their text and chevron.
+            // The entire card, including its center, must open the editor.
+            try visible(entry, app: app)
+            entry.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
             let close = app.buttons["editor.shell.close"]
             try visible(close, app: app)
             if section != "review" {

@@ -79,6 +79,7 @@ struct ToolRowButton: View {
                     .stroke(Color(.separator).opacity(0.35), lineWidth: 1)
             }
             .opacity(disabled ? 0.58 : 1)
+            .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
         .disabled(disabled)
