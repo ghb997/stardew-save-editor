@@ -394,6 +394,7 @@ private struct FarmDateHeader: View {
 }
 
 private struct MetricView: View {
+    @Environment(\.dynamicTypeSize) private var typeSize
     let value: String
     let label: String
     var artworkName: String? = nil
@@ -405,7 +406,7 @@ private struct MetricView: View {
             }
             Text(value)
                 .font(.title2.bold())
-                .lineLimit(1)
+                .lineLimit(typeSize.isAccessibilitySize ? nil : 1)
                 .minimumScaleFactor(0.7)
             Text(label)
                 .font(.caption)

@@ -87,6 +87,7 @@ struct TrackerDetailView: View {
                 }
             }
         }
+        .readablePageWidth(AppLayout.editorWidth)
         .background(.bar)
         .overlay(alignment: .bottom) { Divider() }
     }

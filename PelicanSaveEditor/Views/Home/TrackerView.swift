@@ -21,6 +21,7 @@ struct TrackerView: View {
                     .fixedSize(horizontal: false, vertical: true)
                     .padding(.horizontal, 16)
                     .padding(.vertical, 10)
+                    .readablePageWidth()
                     .background(AppTheme.canvas)
             }
 

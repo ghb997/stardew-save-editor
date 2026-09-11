@@ -12,6 +12,7 @@ struct ToolsView: View {
     @Environment(\.dynamicTypeSize) private var typeSize
     @State private var showingSourceOptions = false
     @State private var sourceMethod: FarmLoadMethod?
+    @State private var pickedSource: PickedFarmSource?
     @State private var showingDirectoryPicker = false
     @State private var showingFilePicker = false
     @State private var showingCopyImportPicker = false
@@ -152,32 +153,35 @@ struct ToolsView: View {
         } message: {
             Text("当前未保存的更改会被放弃，并从磁盘重新读取两份存档文件。")
         }
-        .sheet(isPresented: $showingDirectoryPicker) {
+        .sheet(isPresented: $showingDirectoryPicker, onDismiss: openPickedSource) {
             DirectoryPicker(
                 onPick: { url in
+                    pickedSource = .directory(url)
                     showingDirectoryPicker = false
-                    store.openDirectory(url)
                 },
                 onCancel: { showingDirectoryPicker = false }
             )
+            .presentationDetents([.large])
         }
-        .sheet(isPresented: $showingFilePicker) {
+        .sheet(isPresented: $showingFilePicker, onDismiss: openPickedSource) {
             TwoFilePicker(
                 onPick: { urls in
+                    pickedSource = .files(urls)
                     showingFilePicker = false
-                    store.openFiles(urls)
                 },
                 onCancel: { showingFilePicker = false }
             )
+            .presentationDetents([.large])
         }
-        .sheet(isPresented: $showingCopyImportPicker) {
+        .sheet(isPresented: $showingCopyImportPicker, onDismiss: openPickedSource) {
             CopyImportTwoFilePicker(
                 onPick: { urls in
+                    pickedSource = .copy(urls)
                     showingCopyImportPicker = false
-                    store.openCopiedFiles(urls)
                 },
                 onCancel: { showingCopyImportPicker = false }
             )
+            .presentationDetents([.large])
         }
         .sheet(
             isPresented: Binding(
@@ -212,6 +216,19 @@ struct ToolsView: View {
                     GameEmptyState(title: "请先加载农场", systemImage: "externaldrive.badge.plus")
                 }
             }
+        }
+    }
+
+    private func openPickedSource() {
+        let source = pickedSource
+        pickedSource = nil
+        // Loading may immediately present discovered farms or an error.
+        // Start only after the system picker has left the presentation stack.
+        switch source {
+        case .directory(let url): store.openDirectory(url)
+        case .files(let urls): store.openFiles(urls)
+        case .copy(let urls): store.openCopiedFiles(urls)
+        case nil: break
         }
     }
 

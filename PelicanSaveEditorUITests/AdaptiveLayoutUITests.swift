@@ -96,6 +96,7 @@ final class AdaptiveLayoutUITests: XCTestCase {
         try tap(character, app: app)
         try visible(app.buttons["editor.shell.close"], app: app)
         try visible(app.buttons["editor.review.open"], app: app)
+        XCTAssertLessThanOrEqual(app.navigationBars.firstMatch.frame.width, 375.5)
         capture("narrow-accessibility-editor", app)
         try tap(app.buttons["editor.shell.close"], app: app)
         let switchFarm = app.buttons["farm.load.switch"]

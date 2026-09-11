@@ -160,6 +160,9 @@ struct EditorShellView: View {
         .disabled(store.isBusy)
         .interactiveDismissDisabled(store.isBusy)
         .operationFeedback()
+#if DEBUG
+        .modifier(DebugLayoutViewport())
+#endif
     }
 
     @ViewBuilder

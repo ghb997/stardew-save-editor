@@ -38,5 +38,8 @@ args=(
 )
 if [[ "${LAYOUT_DEVICE:-mini}" != iphone ]]; then
     args+=(-only-testing:PelicanSaveEditorTests -only-testing:PelicanSaveEditorUITests/AdaptiveLayoutUITests)
+    args+=(-only-testing:PelicanSaveEditorUITests/TrackerSmokeUITests/testAllElevenModulesOpenAndClose)
+    args+=(-only-testing:PelicanSaveEditorUITests/TrackerSmokeUITests/testOverviewFiltersAndGroupExpansion)
+    args+=(-only-testing:PelicanSaveEditorUITests/TrackerSmokeUITests/testDetailSwitchingRecipeFiltersAndSearchEmptyState)
 fi
 xcodebuild "${args[@]}" test 2>&1 | tee artifacts/ipad-layout/tests.log

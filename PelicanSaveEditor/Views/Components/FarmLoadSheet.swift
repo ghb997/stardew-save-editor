@@ -5,6 +5,12 @@ enum FarmLoadMethod: String, Identifiable {
     var id: String { rawValue }
 }
 
+enum PickedFarmSource {
+    case directory(URL)
+    case files([URL])
+    case copy([URL])
+}
+
 /// A scrollable sheet avoids anchoring an iPad action popover to the whole
 /// Tools tab. The caller opens the selected picker only after this sheet ends.
 struct FarmLoadSheet: View {
@@ -27,14 +33,14 @@ struct FarmLoadSheet: View {
                         option(.recent, title: "打开上次农场",
                                subtitle: "继续使用上次授权的存档位置", icon: "clock.arrow.circlepath")
                     }
-                    option(.files, title: "选择主存档与 SaveGameInfo",
-                           subtitle: "自签推荐 · 同时选择这两个文件，保存时写回原位置。",
+                    option(.files, title: "选择两个存档文件",
+                           subtitle: "自签推荐 · 同时选择主存档与 SaveGameInfo，保存时写回原文件。",
                            icon: "doc.badge.plus")
-                    option(.directory, title: "选择 Stardew Valley 或存档文件夹",
-                           subtitle: "授权文件夹后，自动查找其中的农场存档。",
+                    option(.directory, title: "选择存档文件夹",
+                           subtitle: "选择 Stardew Valley 或农场文件夹，自动查找存档。",
                            icon: "folder")
                     option(.copy, title: "复制导入两个文件",
-                           subtitle: "备用方式 · 无法获得写入授权时使用；保存后需要导出并替换游戏文件。",
+                           subtitle: "备用 · 编辑的是副本，保存后需导出到游戏文件夹并替换原文件。",
                            icon: "doc.on.doc")
                 }
                 .padding(20)
@@ -53,6 +59,9 @@ struct FarmLoadSheet: View {
         }
         .presentationDetents([.large])
         .presentationDragIndicator(.visible)
+#if DEBUG
+        .modifier(DebugLayoutViewport())
+#endif
     }
 
     private func option(_ method: FarmLoadMethod, title: String,
