@@ -68,14 +68,15 @@ struct ToolRowButton: View {
                 VStack(alignment: .leading, spacing: 5) {
                     Text(title)
                         .font(.title3.bold())
+                        .fixedSize(horizontal: false, vertical: true)
                     Text(subtitle)
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                         .multilineTextAlignment(.leading)
-                        .lineLimit(2)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
 
-                Spacer(minLength: 8)
                 GameIcon(systemName: disabled ? "lock.fill" : "chevron.right", size: 20)
                     .font(.headline)
                     .foregroundStyle(.secondary)
@@ -112,11 +113,13 @@ struct LargePageHeader: View {
             }
             Text(title)
                 .font(.largeTitle.bold())
+                .fixedSize(horizontal: false, vertical: true)
         }
             .foregroundStyle(titleColor)
             .padding(.horizontal, 24)
             .padding(.vertical, verticalPadding)
-            .frame(maxWidth: .infinity, minHeight: minimumHeight, alignment: .bottomLeading)
+            .frame(maxWidth: AppLayout.pageWidth, minHeight: minimumHeight, alignment: .bottomLeading)
+            .frame(maxWidth: .infinity)
             .background(headerColor.ignoresSafeArea(edges: .top))
     }
 }

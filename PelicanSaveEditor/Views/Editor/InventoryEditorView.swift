@@ -6,6 +6,7 @@ private struct SlotSelection: Identifiable {
 }
 
 struct InventoryEditorView: View {
+    @Environment(\.dynamicTypeSize) private var typeSize
     @Bindable var session: SaveSession
     let catalog: [CatalogItem]
     @State private var selection: SlotSelection?
@@ -22,9 +23,9 @@ struct InventoryEditorView: View {
         }
     }
 
-    private let columns = [
-        GridItem(.adaptive(minimum: 104, maximum: 150), spacing: 10)
-    ]
+    private var columns: [GridItem] {
+        [GridItem(.adaptive(minimum: typeSize.isAccessibilitySize ? 240 : 104), spacing: 10)]
+    }
 
     var body: some View {
         NavigationStack {
@@ -36,7 +37,7 @@ struct InventoryEditorView: View {
                         Text(value.title).tag(value)
                     }
                 }
-                .pickerStyle(.segmented)
+                .adaptiveSegmentedPicker()
                 .padding(.horizontal)
                 .accessibilityIdentifier("editor.inventory.filter")
                 if session.draft.inventory.isEmpty {
@@ -62,6 +63,7 @@ struct InventoryEditorView: View {
             }
             .background(Color(.systemGroupedBackground))
             .navigationTitle("背包")
+            .navigationBarTitleDisplayMode(.inline)
             .searchable(text: $searchText, prompt: "搜索物品名称、ID 或槽位编号")
             .onSubmit(of: .search) { KeyboardReturnAction.dismiss() }
             .safeAreaInset(edge: .bottom) {
@@ -130,7 +132,7 @@ private struct InventoryCapacityCard: View {
                         Text("\(capacity) 格").tag(capacity)
                     }
                 }
-                .pickerStyle(.segmented)
+                .adaptiveSegmentedPicker()
                 .accessibilityIdentifier("editor.inventory.capacity")
                 Text("扩容后可编辑新槽位；缩容前请移走末尾物品。撤销扩容会同时恢复新解锁槽位。")
                     .font(.caption).foregroundStyle(.secondary)
@@ -169,7 +171,7 @@ private struct InventorySlotCard: View {
                 ItemArtworkView(item: item, size: 46)
                 Text(item.chineseName ?? item.name)
                     .font(.subheadline.weight(.semibold))
-                    .lineLimit(2)
+                    .fixedSize(horizontal: false, vertical: true)
                 HStack {
                     Text("×\(item.stack)")
                     Spacer()
@@ -441,7 +443,7 @@ private struct InventorySlotEditorView: View {
                 showingCatalog = false
             }
         }
-        .confirmationDialog("清空槽位？", isPresented: $showingClearConfirmation) {
+        .alert("清空槽位？", isPresented: $showingClearConfirmation) {
             Button("清空", role: .destructive) {
                 session.draft.inventory[slotIndex].item = nil
             }

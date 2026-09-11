@@ -1,0 +1,62 @@
+name: Verify iPad adaptive layouts
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ['codex/ipad-layout-*']
+
+permissions:
+  contents: read
+
+jobs:
+  layout:
+    name: Layout tests (${{ matrix.device }})
+    runs-on: macos-15
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        device: [mini, large, iphone]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Choose newest installed Xcode
+        run: |
+          python3 - <<'PY'
+          import glob, os, re, subprocess
+          choices = []
+          for app in glob.glob('/Applications/Xcode*.app'):
+              developer = app + '/Contents/Developer'
+              result = subprocess.run([developer + '/usr/bin/xcodebuild', '-version'],
+                  capture_output=True, text=True, env={**os.environ, 'DEVELOPER_DIR': developer})
+              match = re.search(r'Xcode (\d+(?:\.\d+)*)', result.stdout)
+              if result.returncode == 0 and match:
+                  version = tuple(map(int, match[1].split('.')))
+                  if version >= (16,): choices.append((version, developer))
+          version, developer = max(choices)
+          with open(os.environ['GITHUB_ENV'], 'a') as stream:
+              stream.write('DEVELOPER_DIR=' + developer + '\n')
+          print('Selected', version, developer)
+          PY
+      - name: Build and test layouts
+        env:
+          LAYOUT_DEVICE: ${{ matrix.device }}
+        run: bash scripts/validate-layout-on-macos.sh
+      - name: Export screenshots and test summary
+        if: always()
+        run: |
+          if [[ -d artifacts/ipad-layout/tests.xcresult ]]; then
+            xcrun xcresulttool get test-results summary --path artifacts/ipad-layout/tests.xcresult > artifacts/ipad-layout/summary.json
+            xcrun xcresulttool export attachments --path artifacts/ipad-layout/tests.xcresult --output-path artifacts/ipad-layout/attachments
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ipad-layout-${{ matrix.device }}-${{ github.run_attempt }}
+          path: |
+            artifacts/ipad-layout/*.log
+            artifacts/ipad-layout/*.json
+            artifacts/ipad-layout/attachments/**
+            !artifacts/ipad-layout/attachments/**/*.mp4
+          retention-days: 14

@@ -82,6 +82,7 @@ struct SkillsEditorView: View {
                 }
             }
             .navigationTitle("技能与职业")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 

@@ -65,6 +65,7 @@ struct RelationshipsEditorView: View {
                 }
             }
             .navigationTitle("人物关系")
+            .navigationBarTitleDisplayMode(.inline)
         }
         .sheet(item: $batchRequest) { request in
             RelationshipBatchPreview(session: session, request: request)
@@ -188,7 +189,7 @@ private struct RelationshipRow: View {
                     Text(RelationshipStatus.friendly.displayName).tag(RelationshipStatus.friendly)
                     Text(RelationshipStatus.dating.displayName).tag(RelationshipStatus.dating)
                 }
-                .pickerStyle(.segmented)
+                .adaptiveSegmentedPicker()
             } else {
                 LabeledContent("状态", value: friend.status.displayName)
                     .foregroundStyle(.secondary)

@@ -13,7 +13,7 @@ struct AppearanceColorsEditor: View {
                         Text(field.title).tag(field)
                     }
                 }
-                .pickerStyle(.segmented)
+                .adaptiveSegmentedPicker()
                 .accessibilityIdentifier("editor.appearance.colorField")
             }
             if session.draft.appearanceColors[field] != nil {
@@ -32,6 +32,7 @@ struct AppearanceColorsEditor: View {
 }
 
 private struct AppearanceColorControls: View {
+    @Environment(\.dynamicTypeSize) private var typeSize
     @Bindable var session: SaveSession
     let field: FarmerColorField
     @State private var hexInput = ""
@@ -43,9 +44,9 @@ private struct AppearanceColorControls: View {
     var body: some View {
         Group {
         Section("原始与当前") {
-            HStack(spacing: 20) {
+            comparisonLayout {
                 colorSample(original, title: "原始")
-                Image(systemName: "arrow.right").foregroundStyle(.secondary)
+                Image(systemName: typeSize.isAccessibilitySize ? "arrow.down" : "arrow.right").foregroundStyle(.secondary)
                 colorSample(current, title: "当前草稿")
             }
             .frame(maxWidth: .infinity)
@@ -69,7 +70,7 @@ private struct AppearanceColorControls: View {
                 } label: {
                     Image(systemName: "xmark.circle.fill")
                         .foregroundStyle(.secondary)
-                        .frame(width: 32, height: 32)
+                        .frame(width: 44, height: 44)
                 }
                 .buttonStyle(.borderless)
                 .disabled(hexInput.isEmpty)
@@ -111,6 +112,11 @@ private struct AppearanceColorControls: View {
         }
         .onAppear { hexInput = current.hex }
         .onChange(of: current) { _, value in hexInput = value.hex }
+    }
+
+    private var comparisonLayout: AnyLayout {
+        typeSize.isAccessibilitySize ? AnyLayout(VStackLayout(spacing: 20))
+            : AnyLayout(HStackLayout(spacing: 20))
     }
 
     private func colorSample(_ color: FarmerColor, title: String) -> some View {

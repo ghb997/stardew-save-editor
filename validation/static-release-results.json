@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-09-09T09:41:47.850809+00:00",
-  "release_root": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\tracker-cloud-validation",
+  "generated_at_utc": "2026-09-11T05:46:43.671539+00:00",
+  "release_root": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\reference-build10-cloud",
   "validation_type": "offline_static_release_checks",
   "compiled_swift": false,
   "executed_xctest": false,
@@ -22,8 +22,8 @@
       "check": "pbxproj_structure",
       "status": "passed",
       "detail": {
-        "objects": 174,
-        "sha256": "88737f70530257d019916af338e36959c9684245ea00a87f00e41114a97f4867",
+        "objects": 196,
+        "sha256": "1ebc8e58b8db944bd7316681cc0018604c450a0199ebbeb5f185622dde7d44ab",
         "duplicate_object_keys": 0
       }
     },
@@ -31,7 +31,7 @@
       "check": "xcode_file_references_exist",
       "status": "passed",
       "detail": {
-        "checked": 66,
+        "checked": 77,
         "build_products_or_sdk_skipped": [
           "PelicanSaveEditorUITests.xctest",
           "SheaflightAmberVault.app",
@@ -45,9 +45,9 @@
       "status": "passed",
       "detail": {
         "target_source_counts": {
-          "PelicanSaveEditorUITests": 1,
-          "PelicanSaveEditor": 50,
-          "PelicanSaveEditorTests": 4
+          "PelicanSaveEditorUITests": 2,
+          "PelicanSaveEditor": 58,
+          "PelicanSaveEditorTests": 6
         },
         "errors": []
       }
@@ -57,7 +57,7 @@
       "status": "passed",
       "detail": {
         "counts": {
-          "json": 126,
+          "json": 136,
           "plist_and_privacy_manifest": 2,
           "xcode_xml": 2
         },
@@ -78,14 +78,14 @@
       "check": "release_versions_consistent",
       "status": "passed",
       "detail": {
-        "expected_version": "0.3.3",
-        "expected_build": "9",
+        "expected_version": "0.5.1",
+        "expected_build": "12",
         "pbxproj_values": {
           "MARKETING_VERSION": [
-            "0.3.3"
+            "0.5.1"
           ],
           "CURRENT_PROJECT_VERSION": [
-            "9"
+            "12"
           ]
         },
         "errors": []
@@ -95,9 +95,18 @@
   "facts": {
     "target_sources": {
       "PelicanSaveEditorUITests": [
+        "PelicanSaveEditorUITests/AdaptiveLayoutUITests.swift",
         "PelicanSaveEditorUITests/TrackerSmokeUITests.swift"
       ],
       "PelicanSaveEditor": [
+        "PelicanSaveEditor/Views/Components/FarmLoadSheet.swift",
+        "PelicanSaveEditor/Views/Components/AdaptiveLayout.swift",
+        "PelicanSaveEditor/Models/AppearanceColors.swift",
+        "PelicanSaveEditor/Models/FarmMapQuery.swift",
+        "PelicanSaveEditor/Models/RoomStyleRules.swift",
+        "PelicanSaveEditor/Views/Editor/AppearanceColorsEditor.swift",
+        "PelicanSaveEditor/Views/Editor/RoomStyleLibrary.swift",
+        "PelicanSaveEditor/Models/EditorConveniences.swift",
         "PelicanSaveEditor/Views/Tools/FarmEntityListView.swift",
         "PelicanSaveEditor/Views/Home/TrackerView.swift",
         "PelicanSaveEditor/Views/Home/TrackerComponents.swift",
@@ -150,6 +159,8 @@
         "PelicanSaveEditor/Core/XML/XMLTreeParser.swift"
       ],
       "PelicanSaveEditorTests": [
+        "PelicanSaveEditorTests/WorldEditorTests.swift",
+        "PelicanSaveEditorTests/ReferenceFeatureTests.swift",
         "PelicanSaveEditorTests/TransactionRegressionTests.swift",
         "PelicanSaveEditorTests/GameLogicRegressionTests.swift",
         "PelicanSaveEditorTests/SaveCoreTests.swift",
@@ -157,72 +168,86 @@
       ]
     },
     "swift_source_sha256": {
-      "PelicanSaveEditor/App/DebugDemoSave.swift": "e5ea3fe5ad3fed0376799540920726009e51bbe187b0d2a7dbc15530ad62eebf",
-      "PelicanSaveEditor/App/EditorStore.swift": "6c585fdcf46154757df5a148d8c6e7185445790adda3ee82f67152c58d74631f",
-      "PelicanSaveEditor/App/PelicanSaveEditorApp.swift": "23ef71938e380d48bd8eefae5ceb211fe6b5825b5e9f6d288a802e4cc672d841",
+      "PelicanSaveEditor/App/DebugDemoSave.swift": "acd088379a722853e6d4d78f8e1893ed8f854b11166e93c3c517db471f08b07c",
+      "PelicanSaveEditor/App/EditorStore.swift": "411f7b5f9b04eb341fd7baf197e089f31c47d3b19ef541661e68806e68bb9870",
+      "PelicanSaveEditor/App/PelicanSaveEditorApp.swift": "927bbd5cac77f8ce23f3b29407e950a3eb4aaf3ae0b7c50e1e55d23aac9e1440",
       "PelicanSaveEditor/App/RootView.swift": "6e0955e6c8c85c1d194dd55f648cbbfd67476d2358a6b2b85bc4c97fe0483894",
-      "PelicanSaveEditor/App/SaveWorkService.swift": "3b2343447a1c56dd2622fb5b28d07fb267c43b396ba8c5db1895f8db5556cbe4",
+      "PelicanSaveEditor/App/SaveWorkService.swift": "28967615f48d5264e1ddac990ea21e6b3c1dbd60a6c1f773a9313560058bbe3e",
       "PelicanSaveEditor/Core/Files/BackupStore.swift": "610c558f0ba681ef994d2eed9afb42248c9b709bcba70bda5014b3a59e86200c",
       "PelicanSaveEditor/Core/Files/CoordinatedFileAccess.swift": "a7b66315d7f993b12f0a3a9ba49576e71f8058f9ffa7af2b6f1ca0e890d6ab5e",
       "PelicanSaveEditor/Core/Files/RecentSaveSourceStore.swift": "51039711023f160bb01353efd7c59caeb4324b77eff75078c8685ff08b3b0d3e",
       "PelicanSaveEditor/Core/Files/SaveSource.swift": "aa2fe9a57888989cb5d5fd1370eb6ea31e55695ac411df61668582e9911707c8",
       "PelicanSaveEditor/Core/Files/SaveTransactionService.swift": "4033a3ff101d61405a91cb0e626fd24528bd76966e93250cf856eef8f6ed73f7",
-      "PelicanSaveEditor/Core/Save/SaveCodec.swift": "e39e1507990534aadf75cf256c0fc60276a07d1b673c312e3d9989b826ca5715",
-      "PelicanSaveEditor/Core/Save/SaveDiffBuilder.swift": "b212c20ea9d43285daaba5d75824cb11e5393d6879005e180202be1329ee2dee",
-      "PelicanSaveEditor/Core/Save/SaveMutator.swift": "dd9f3a8e8618fe9cd4ce3e7caf5778c6b51726044f716c2df35eba4499ed1161",
-      "PelicanSaveEditor/Core/Save/SaveParser.swift": "e973e5c10f6b97611cd88c376476f4d07f7aa7b0df1bc7a02b3f20e17bb187b7",
+      "PelicanSaveEditor/Core/Save/SaveCodec.swift": "f42ada4ff5d9c6666841804a8ea3091fed41f38dfb959536fa4de8c5aaf1f54e",
+      "PelicanSaveEditor/Core/Save/SaveDiffBuilder.swift": "26f0c8be24b4e6dc24becebcbdcc7923175541077aca0103541a4ceaba045065",
+      "PelicanSaveEditor/Core/Save/SaveMutator.swift": "c19110774f791128646eafe6923e2604447752fcf941f69a4d04fe549b7ff065",
+      "PelicanSaveEditor/Core/Save/SaveParser.swift": "90f18a8b9bc5b455709bf40a08004d97e099f94808bc9a2b24e93386bf5fd304",
       "PelicanSaveEditor/Core/XML/XMLNode.swift": "5245434a8d0f46364615948d8b06bfd25d6383c300066196ac0f90a5857e27b0",
       "PelicanSaveEditor/Core/XML/XMLTreeParser.swift": "e6a3f7d0e85ff360a8f28dcf44cf3c4984fb0fce9d757cbaa78e7906a607d2d8",
+      "PelicanSaveEditor/Models/AppearanceColors.swift": "90b0cccd9ea00f5509daa1ab896566016a0adad4d29a173fc17dd43e806f3dc0",
       "PelicanSaveEditor/Models/CropPlanner.swift": "a69f001f30a0a1b98267bfc2bb891298fac7bcc1f41cd30608e008cccaee4f3c",
-      "PelicanSaveEditor/Models/FarmSnapshot.swift": "4e316be0c65e83d3d156626cd1e0f097d64c5fcd4b7c7c869ef89b8bb394b87e",
-      "PelicanSaveEditor/Models/ItemCatalog.swift": "4ac85bc4b8da6b741c32115f510b149067d8ccec29ae7cf3e5bf1f91f79b6744",
+      "PelicanSaveEditor/Models/EditorConveniences.swift": "d6c2545fdab6ece6aa4f9e59a3cd02f5660249e6926904fe0dcf3216963f1669",
+      "PelicanSaveEditor/Models/FarmMapQuery.swift": "0972cba1e663d28603f83de7275bb53d854ccc8303004227f4bcd6b1dd75fdac",
+      "PelicanSaveEditor/Models/FarmSnapshot.swift": "547450e552e6fa9b73eb17705766867fa7ed432f97c7fd5d8f84f745b7bf39c2",
+      "PelicanSaveEditor/Models/ItemCatalog.swift": "0371a764b35f21f124c64ecdc14bbc0582933cdc79edb17387f4724a04f512e5",
       "PelicanSaveEditor/Models/RecipeCatalog.swift": "6578f003bf63c5f5d587d85aa02c96d276795a1669f40db87989e5a37d349efd",
-      "PelicanSaveEditor/Models/SaveModels.swift": "57b53f2c5525d5af84f10fe3390ff3032cffd481d24bbfe06214e1339a322aa0",
+      "PelicanSaveEditor/Models/RoomStyleRules.swift": "4934105e841848f7a4189ff2d26ed7cecb4551e47b0b8c890ae22100b6047a12",
+      "PelicanSaveEditor/Models/SaveModels.swift": "b759033726cca1b8fdd9ca6755c17c0825e0b90f73e1a2ec56662f5eab45c757",
       "PelicanSaveEditor/Models/TrackerMetrics.swift": "74103a241f441b3ea3c458e5ad7c43476e8e79da6a8098c1b54b99bd77007f46",
-      "PelicanSaveEditor/Views/Components/DocumentPickers.swift": "02dd7c0ef5575d9e57f57b9f736d54baf2f12efd560ba911768aa68371214368",
+      "PelicanSaveEditor/Views/Components/AdaptiveLayout.swift": "8a21b37db567426b9189397a31678f465b4d37325be0e63f0ac0fc62759163b7",
+      "PelicanSaveEditor/Views/Components/DocumentPickers.swift": "d3a6094997deed1ddb793358b6a5caa7f8c4bbc83794d1ce4712ebaa9de499f8",
+      "PelicanSaveEditor/Views/Components/FarmLoadSheet.swift": "ee8e633cda601f2b895f48c030213fc4418aee43ae17aedb4fc0c56870aa5fb5",
       "PelicanSaveEditor/Views/Components/GameArtwork.swift": "ddf50f4a638dc16f28b8e9f6ab9eae934b21e9ecd517811c788e5cf2bcd5a08d",
       "PelicanSaveEditor/Views/Components/OperationFeedback.swift": "26b80b16aaf8a543933820e8cb60cac15ac51e2f835626905115d42e70e7671c",
-      "PelicanSaveEditor/Views/Editor/AnimalsEditorView.swift": "29cd1bd69cad708834e5333919e1e4dbbf771875e8a3d041b0c596eb2ac8e458",
-      "PelicanSaveEditor/Views/Editor/AppearanceEditorView.swift": "25a7ac90e4e1bd181689b72029e21d84a65ff1a3ac516f3ffde2991bb450aa0e",
-      "PelicanSaveEditor/Views/Editor/BackupManagerView.swift": "1fac9a9726c570181b2bedc62e26807898982dc74c816e22afd88d920d91cd6d",
-      "PelicanSaveEditor/Views/Editor/CatalogPickerView.swift": "46b2425c236b3aff9df4409f56a163016283d30b0b6e690f9ca222578e819f75",
-      "PelicanSaveEditor/Views/Editor/CharacterEditorView.swift": "a798f3b46c98ca4fe5ee44da946a9535310b07d98777410bad0e192660061d79",
-      "PelicanSaveEditor/Views/Editor/EditorShellView.swift": "ed2f9c330309a7e2018dd417ca1c0c400fe2f286efe7730b3f5439924582f17c",
-      "PelicanSaveEditor/Views/Editor/FarmhouseEditorView.swift": "a2bb40b4afec26792081cb421a1e57a90ce3b765f927e74ffdb4b48d0841e607",
-      "PelicanSaveEditor/Views/Editor/InventoryEditorView.swift": "aefe1f9e51f3d2076a9c42bf4b3b08dd2e151f477fef738bf709ea57d6cb0662",
-      "PelicanSaveEditor/Views/Editor/ProgressEditorView.swift": "5cb8691eac365d71a4cd0769d6ff7cc9ea19d12c0a0f9ebf926d21da3744630e",
-      "PelicanSaveEditor/Views/Editor/RecipesEditorView.swift": "46f1e6f9a14860e276b718d83dcb4000b6740b527ce9fd72ac44ca86f28acb1e",
-      "PelicanSaveEditor/Views/Editor/RelationshipsEditorView.swift": "7e6453a6fd0a58589cf98f99031ae2cefccc04e15ac3690c9a3c453582d42ec5",
-      "PelicanSaveEditor/Views/Editor/ReviewChangesView.swift": "86ae65eea3bee5d0811a9b7b5333790fb40a5801b0545bae9cbf011c879c510e",
-      "PelicanSaveEditor/Views/Editor/SavePresentation.swift": "8ff5deb9992134d501b14668bb1594b42ae04c5c5614e268effb227b001a3148",
-      "PelicanSaveEditor/Views/Editor/SkillsEditorView.swift": "c1d7ae558bc0ddef27ba15a309345b9c657cffecc1e75e54894db63fb9363ee1",
-      "PelicanSaveEditor/Views/Editor/WalletEditorView.swift": "46b5e3e581e57406dd15643ce79b8806f6ac248f83789c9fb1e7d2bc892fbd44",
-      "PelicanSaveEditor/Views/Home/HomeComponents.swift": "531c3b937949f7a09a129ca4855be7145adcb2cd6cb8fc73491be17e5c88d679",
-      "PelicanSaveEditor/Views/Home/HomeView.swift": "7c9284cf6c7fd5c73ee4189a3cb03e5a4da5d98dc1ad6ef3c58c365ae1a50114",
-      "PelicanSaveEditor/Views/Home/SettingsView.swift": "65f66462ac0734bf5619c60d01e5196d667973356e3d532352edbed96796e9d4",
-      "PelicanSaveEditor/Views/Home/ToolsView.swift": "b21f3185e417677f34724d9b30acfb7ac50e2b72eb1c6d8cc15b13a3fec53658",
+      "PelicanSaveEditor/Views/Editor/AnimalsEditorView.swift": "af96dbd88ee40f21bac09121cbd94fdc29ec8fb5522cee35b45a630c204699fb",
+      "PelicanSaveEditor/Views/Editor/AppearanceColorsEditor.swift": "22d4e02dd4bfe96a26acf5a1d64d36f52c1464c11219e0b03942976261db1c08",
+      "PelicanSaveEditor/Views/Editor/AppearanceEditorView.swift": "c16f483a568a576a5a0c2622e0adf38c66ba29e3d9628f5d0d3376c9ee0d2712",
+      "PelicanSaveEditor/Views/Editor/BackupManagerView.swift": "58fb9aeaa04ebe4b4f1df5a451a69cbb7b38922a26269424dc03c2c77cf72d0e",
+      "PelicanSaveEditor/Views/Editor/CatalogPickerView.swift": "ef18aa97297d860b2e264e54b40250b20d7b52d5ff65c807786e841eb0e110c1",
+      "PelicanSaveEditor/Views/Editor/CharacterEditorView.swift": "89f2b25cee74ca5d63e4d98ed8a47ddf2b6043a470c701f0107db489f9afb159",
+      "PelicanSaveEditor/Views/Editor/EditorShellView.swift": "9ece119f490b5596122a1bed0848c015ba28ffcbc5d0a9863ab0250fae7c03bb",
+      "PelicanSaveEditor/Views/Editor/FarmhouseEditorView.swift": "ff794843c78305912d4750c226e63d6cd0b5e82d6ca33264bb08adb19d1428f2",
+      "PelicanSaveEditor/Views/Editor/InventoryEditorView.swift": "5c1e546ec67c7f60c075a2e442ad082d7553ed5614892ada2830460625fbaf22",
+      "PelicanSaveEditor/Views/Editor/ProgressEditorView.swift": "e7e4c293c1cc579a4e4f07c7013fbd3b5999756e2f474a3cc7b59d8f64e2218e",
+      "PelicanSaveEditor/Views/Editor/RecipesEditorView.swift": "57b3297f51d02895b892d35af3c61f5769913debc6ec92754151d144b7636744",
+      "PelicanSaveEditor/Views/Editor/RelationshipsEditorView.swift": "9a3af4620c2f70c1c513d90931f20fbf61e999510507df9e8c1234787b232200",
+      "PelicanSaveEditor/Views/Editor/ReviewChangesView.swift": "e29b2ddee163994a048915cf99530debc4fd157c3acb1ba3ae4bf578bd4ebd24",
+      "PelicanSaveEditor/Views/Editor/RoomStyleLibrary.swift": "e3502b984cf966e86617f69f4cf9a48cbb50db5cf551404d50117b53d9424462",
+      "PelicanSaveEditor/Views/Editor/SavePresentation.swift": "298227ce05c9b61484c3fffa939796b69a259f0dfed1eeda9404f01e8bae3326",
+      "PelicanSaveEditor/Views/Editor/SkillsEditorView.swift": "f3aaef250a2a094b98fc232ff7763fd0b5608b94f93656aac6080b4ff772ded4",
+      "PelicanSaveEditor/Views/Editor/WalletEditorView.swift": "75ef36c70d5613fe7d63e8bb30b4e2f68ca9d36fa3b3432da825f29fabc806f0",
+      "PelicanSaveEditor/Views/Home/HomeComponents.swift": "d6a3b34fb582c10432b10467b7dc9e62d28ce8235f9af334f52156de3e28ed43",
+      "PelicanSaveEditor/Views/Home/HomeView.swift": "025ebaf5a6ca996491054f2185d449a5d1f36e8fce87961eecbdff6563d0bb1d",
+      "PelicanSaveEditor/Views/Home/SettingsView.swift": "ef57cce37b7f5bbdc50c3c6c3b1801f69f4f4e182bcbfe6a8ad6a04a33a77768",
+      "PelicanSaveEditor/Views/Home/ToolsView.swift": "e8ee0020af1687fdc71946a4a3234d7d52ad1652abe6a236e2464a037e18655d",
       "PelicanSaveEditor/Views/Home/TrackerComponents.swift": "b3d279979ceca5797a1e9dac310514ce8c29b81d4990c32d3acd614fd5dc81e2",
-      "PelicanSaveEditor/Views/Home/TrackerDetailView.swift": "262da81186b73a8b73c6cd20ffb1cef9329a87ce31fefb1766c13093902ae31b",
-      "PelicanSaveEditor/Views/Home/TrackerView.swift": "3f4867a95b455ac93856631d8fdcc28947a1fb389de70163094bb68135086532",
-      "PelicanSaveEditor/Views/Tools/CropCalculatorView.swift": "1fa2f54cc5b6889ba054a736134add0d02ff050804cb594ec7f4949e63354186",
-      "PelicanSaveEditor/Views/Tools/FarmEntityListView.swift": "b4b41ac27ba3485a92c5f9db8bcaeb8d63527fb63f7b56b763417a9eac2d3b35",
-      "PelicanSaveEditor/Views/Tools/FarmMapAnalysisView.swift": "69284e18e16cb5bbcc7f364770865b4d99f70e2866e26362f2f77beb3da1b2f4",
-      "PelicanSaveEditorTests/GameLogicRegressionTests.swift": "9c7cb3844052302fdc7ca451f343839690a896c491bbe3a22e90f2281de9dd72",
-      "PelicanSaveEditorTests/SaveCoreTests.swift": "30da2a054c5363f4d065538263165cab48c9736745420a0122b8a4c0d4ebdefa",
+      "PelicanSaveEditor/Views/Home/TrackerDetailView.swift": "97dad1513784c7a88a862624d453af3ffa45e04b962515f280890d6c2643a394",
+      "PelicanSaveEditor/Views/Home/TrackerView.swift": "d87a0d02e4c8c6c2a97455ab14e988028895de8cb12306a074faed9ba8520e47",
+      "PelicanSaveEditor/Views/Tools/CropCalculatorView.swift": "e56c9e1d9e777069134f161e320fe744fdf19069d7298db290c8c2311432e0b3",
+      "PelicanSaveEditor/Views/Tools/FarmEntityListView.swift": "610c380b65eb45ba6de8b521d1149ad2f7d8671729f44265b3771dffb8196aec",
+      "PelicanSaveEditor/Views/Tools/FarmMapAnalysisView.swift": "e6cea13433ddfba4584dd9e22b629e4be90be03b681cf6119e298e257e5c3e50",
+      "PelicanSaveEditorTests/GameLogicRegressionTests.swift": "8393a12cf57c540cd2f004e36f0463d12b4f10ebe566d320a0ab5e977431090e",
+      "PelicanSaveEditorTests/ReferenceFeatureTests.swift": "96729a8ff284579b83520953cc49881b54be79a9bed2a9ac137ac50660b96496",
+      "PelicanSaveEditorTests/SaveCoreTests.swift": "1e6a9496fe308020c082ca29555960e660321288825b23e96fd742ac7e7ce98b",
       "PelicanSaveEditorTests/TrackerMetricsTests.swift": "6abcad5fb03e171d40abb910e7d6338455097f1435d46c7ba9704bfc7f917862",
       "PelicanSaveEditorTests/TransactionRegressionTests.swift": "3e9a3a720b5c7899196d6f872b7c9369d313343fae9a435f10dd426f0bc8dac7",
-      "PelicanSaveEditorUITests/TrackerSmokeUITests.swift": "f409bea1b79ab53c894279d5b211bb3c6294ff8e30858845b5104fafb576a091"
+      "PelicanSaveEditorTests/WorldEditorTests.swift": "d95d44eec914e78d93da6ad227b27fb5ceaed75545060b304991d55b3893c96e",
+      "PelicanSaveEditorUITests/AdaptiveLayoutUITests.swift": "48341d228d81a1069f974ca30b6d2b9cc07e12f2006aa5f16bfa45c3c1aa62fc",
+      "PelicanSaveEditorUITests/TrackerSmokeUITests.swift": "7d00ddc37e8eba4f1e914ac0ea4e025b3b4f66115c612d7341bc8b79f506fcbb"
     },
     "source_counts": {
-      "swift_files": 55,
-      "test_files": 5,
-      "declared_test_methods": 62,
+      "swift_files": 66,
+      "test_files": 8,
+      "declared_test_methods": 107,
       "test_methods_by_file": {
         "PelicanSaveEditorTests/GameLogicRegressionTests.swift": 10,
+        "PelicanSaveEditorTests/ReferenceFeatureTests.swift": 14,
         "PelicanSaveEditorTests/SaveCoreTests.swift": 32,
         "PelicanSaveEditorTests/TrackerMetricsTests.swift": 7,
         "PelicanSaveEditorTests/TransactionRegressionTests.swift": 9,
-        "PelicanSaveEditorUITests/TrackerSmokeUITests.swift": 4
+        "PelicanSaveEditorTests/WorldEditorTests.swift": 18,
+        "PelicanSaveEditorUITests/AdaptiveLayoutUITests.swift": 7,
+        "PelicanSaveEditorUITests/TrackerSmokeUITests.swift": 10
       }
     },
     "assets": [

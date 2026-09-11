@@ -80,6 +80,7 @@ struct ProgressEditorView: View {
                 }
             }
             .navigationTitle("财富与进度")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 

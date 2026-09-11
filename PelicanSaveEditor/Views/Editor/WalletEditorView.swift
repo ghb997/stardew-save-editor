@@ -47,6 +47,7 @@ struct WalletEditorView: View {
                 }
             }
             .navigationTitle("特殊物品与能力")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 

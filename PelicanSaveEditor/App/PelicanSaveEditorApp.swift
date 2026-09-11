@@ -15,6 +15,9 @@ struct PelicanSaveEditorApp: App {
             RootView()
                 .environment(store)
                 .tint(Color(red: 0.20, green: 0.56, blue: 0.31))
+#if DEBUG
+                .modifier(DebugLayoutViewport())
+#endif
         }
     }
 }

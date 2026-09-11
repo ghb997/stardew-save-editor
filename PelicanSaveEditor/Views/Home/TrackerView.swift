@@ -42,8 +42,7 @@ struct TrackerView: View {
                     .padding(.horizontal, 16)
                     .padding(.vertical, 16)
                     .padding(.bottom, 20)
-                    .frame(maxWidth: 720)
-                    .frame(maxWidth: .infinity)
+                    .readablePageWidth()
                 }
                 .background(AppTheme.canvas)
                 .onChange(of: selectedFilter) { _, _ in

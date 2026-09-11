@@ -180,6 +180,7 @@ struct FarmhouseEditorView: View {
             }
             .accessibilityIdentifier("editor.house.form")
             .navigationTitle("房屋与房间")
+            .navigationBarTitleDisplayMode(.inline)
             .onAppear(perform: ensureSelection)
             .onChange(of: roomQuery) { _, _ in ensureSelection() }
             .onChange(of: session.draft.farmhouse.decorations.map(\.id)) { _, _ in
@@ -214,7 +215,7 @@ struct FarmhouseEditorView: View {
                     Text(item.kind.displayName).tag(Optional(item.id))
                 }
             }
-            .pickerStyle(.segmented)
+            .adaptiveSegmentedPicker()
             .accessibilityIdentifier("editor.house.surface")
         } else {
             GameLabel(

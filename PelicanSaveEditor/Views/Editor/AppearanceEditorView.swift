@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct AppearanceEditorView: View {
+    @Environment(\.dynamicTypeSize) private var typeSize
+    @ScaledMetric(relativeTo: .caption2) private var choiceRowHeight: CGFloat = 74
     @Bindable var session: SaveSession
     @State private var appearanceCategory: AppearanceCategory = .hair
 
@@ -8,7 +10,7 @@ struct AppearanceEditorView: View {
         NavigationStack {
             Form {
                 Section {
-                    HStack(spacing: 12) {
+                    comparisonLayout {
                         AppearanceDataSnapshot(
                             title: "原始",
                             gender: session.originalDraft.gender,
@@ -18,7 +20,7 @@ struct AppearanceEditorView: View {
                             isCurrent: false
                         )
 
-                        GameIcon(systemName: "arrow.right", size: 20)
+                        GameIcon(systemName: typeSize.isAccessibilitySize ? "arrow.down" : "arrow.right", size: 20)
                             .font(.headline)
                             .foregroundStyle(.secondary)
                             .accessibilityHidden(true)
@@ -60,7 +62,7 @@ struct AppearanceEditorView: View {
                             Text(category.title).tag(category)
                         }
                     }
-                    .pickerStyle(.segmented)
+                    .adaptiveSegmentedPicker()
                     .accessibilityIdentifier("editor.appearance.category")
 
                     LabeledContent("直接输入编号") {
@@ -101,7 +103,13 @@ struct AppearanceEditorView: View {
             }
             .accessibilityIdentifier("editor.appearance.form")
             .navigationTitle("人物外观")
+            .navigationBarTitleDisplayMode(.inline)
         }
+    }
+
+    private var comparisonLayout: AnyLayout {
+        typeSize.isAccessibilitySize ? AnyLayout(VStackLayout(spacing: 12))
+            : AnyLayout(HStackLayout(spacing: 12))
     }
 
     private var appearanceValues: [Int] {
@@ -132,7 +140,8 @@ struct AppearanceEditorView: View {
     }
 
     private var appearanceChoiceGrid: some View {
-        let rows = Array(repeating: GridItem(.fixed(74), spacing: 8), count: 3)
+        let rowCount = typeSize.isAccessibilitySize ? 1 : 3
+        let rows = Array(repeating: GridItem(.fixed(choiceRowHeight), spacing: 8), count: rowCount)
         return VStack(alignment: .leading, spacing: 8) {
             HStack {
                 GameLabel(appearanceCategory.helpText, systemImage: appearanceCategory.icon)
@@ -170,7 +179,7 @@ struct AppearanceEditorView: View {
                 .padding(.vertical, 3)
             }
             .scrollIndicators(.visible)
-            .frame(height: 250)
+            .frame(height: choiceRowHeight * CGFloat(rowCount) + CGFloat(rowCount - 1) * 8 + 12)
         }
     }
 
@@ -301,6 +310,8 @@ private struct AppearanceDataSnapshot: View {
 }
 
 private struct AppearanceChoiceButton: View {
+    @ScaledMetric(relativeTo: .caption2) private var tileWidth: CGFloat = 62
+    @ScaledMetric(relativeTo: .caption2) private var tileHeight: CGFloat = 70
     let value: Int
     let category: AppearanceCategory
     let isSelected: Bool
@@ -325,7 +336,7 @@ private struct AppearanceChoiceButton: View {
                 .font(.caption.bold())
                 .monospacedDigit()
         }
-        .frame(width: 62, height: 70)
+        .frame(width: tileWidth, height: tileHeight)
         .background(isSelected ? Color.accentColor.opacity(0.16) : Color.secondary.opacity(0.06))
         .overlay {
             RoundedRectangle(cornerRadius: 9, style: .continuous)

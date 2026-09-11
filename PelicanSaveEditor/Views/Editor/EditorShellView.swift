@@ -118,28 +118,33 @@ struct EditorShellView: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(section.title)
                         .font(.headline)
-                        .lineLimit(1)
+                        .fixedSize(horizontal: false, vertical: true)
                     Text("\(session.draft.farmName.isEmpty ? session.source.farmIdentifier : session.draft.farmName) · \(session.draft.playerName)")
                         .font(.caption)
                         .foregroundStyle(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                    if session.hasChanges {
+                        Text("\(session.diffs.count) 项待保存")
+                            .font(.caption.weight(.semibold))
+                            .foregroundStyle(.orange)
+                    }
                 }
                 Spacer()
-                if session.hasChanges {
-                    Text("\(session.diffs.count) 项待保存")
-                        .font(.caption.weight(.semibold))
-                        .foregroundStyle(.orange)
-                }
                 Button("返回工具", systemImage: "xmark") {
                     dismiss()
                 }
                 .labelStyle(.iconOnly)
                 .buttonStyle(.bordered)
+                .frame(minWidth: 44, minHeight: 44)
+                .accessibilityIdentifier("editor.shell.close")
             }
             .padding(.horizontal)
             .padding(.vertical, 10)
+            .readablePageWidth(AppLayout.editorWidth)
             .background(.bar)
 
             editorContent
+                .readablePageWidth(AppLayout.editorWidth)
 
             // Reserve layout space outside each editor's NavigationStack.
             // An outer safe-area inset can be lost at that boundary, leaving
@@ -148,6 +153,7 @@ struct EditorShellView: View {
                 DraftReviewBar(session: session) { showingReview = true }
             }
         }
+        .background(AppTheme.canvas)
         .fullScreenCover(isPresented: $showingReview) {
             EditorShellView(session: session, section: .review)
         }

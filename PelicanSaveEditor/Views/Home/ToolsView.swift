@@ -9,7 +9,9 @@ private enum SaveUtilityTool: String, Identifiable {
 
 struct ToolsView: View {
     @Environment(EditorStore.self) private var store
+    @Environment(\.dynamicTypeSize) private var typeSize
     @State private var showingSourceOptions = false
+    @State private var sourceMethod: FarmLoadMethod?
     @State private var showingDirectoryPicker = false
     @State private var showingFilePicker = false
     @State private var showingCopyImportPicker = false
@@ -42,17 +44,19 @@ struct ToolsView: View {
                                 .padding(.horizontal, 4)
                         }
 
-                        ForEach(SaveEditorSection.allCases) { section in
-                            ToolRowButton(
-                                title: section.title,
-                                subtitle: editorSubtitle(for: section, session: session),
-                                systemImage: section.systemImage,
-                                iconColor: section.tint,
-                                artworkName: section.artworkName
-                            ) {
-                                selectedEditorSection = section
+                        LazyVGrid(columns: toolColumns, alignment: .leading, spacing: 14) {
+                            ForEach(SaveEditorSection.allCases) { section in
+                                ToolRowButton(
+                                    title: section.title,
+                                    subtitle: editorSubtitle(for: section, session: session),
+                                    systemImage: section.systemImage,
+                                    iconColor: section.tint,
+                                    artworkName: section.artworkName
+                                ) {
+                                    selectedEditorSection = section
+                                }
+                                .accessibilityIdentifier("editor.tool.\(section.rawValue)")
                             }
-                            .accessibilityIdentifier("editor.tool.\(section.rawValue)")
                         }
                     } else {
                         ToolRowButton(
@@ -64,6 +68,7 @@ struct ToolsView: View {
                         ) {
                             showingSourceOptions = true
                         }
+                        .accessibilityIdentifier("farm.load.open")
                     }
 
                     toolSectionTitle("存档管理")
@@ -77,6 +82,7 @@ struct ToolsView: View {
                     ) {
                         showingBackups = true
                     }
+                    .accessibilityIdentifier("tools.backups")
 
                     ToolRowButton(
                         title: "重新读取与校验",
@@ -104,6 +110,7 @@ struct ToolsView: View {
                     ) {
                         selectedUtilityTool = .cropCalculator
                     }
+                    .accessibilityIdentifier("tools.calculator")
 
                     ToolRowButton(
                         title: "魔法地图",
@@ -121,32 +128,15 @@ struct ToolsView: View {
                 }
                 .padding(.horizontal, 20)
                 .padding(.vertical, 24)
-                .frame(maxWidth: 720)
-                .frame(maxWidth: .infinity)
+                .readablePageWidth()
             }
             .accessibilityIdentifier("editor.tools.list")
             .background(AppTheme.canvas)
         }
-        .confirmationDialog("加载农场", isPresented: $showingSourceOptions, titleVisibility: .visible) {
-            if store.hasRecentSource {
-                Button("打开上次农场") {
-                    store.openRecent()
-                }
-            }
-            Button("选择 Stardew Valley 或存档文件夹") {
-                showingDirectoryPicker = true
-            }
-            Button("选择主存档与 SaveGameInfo（自签推荐）") {
-                showingFilePicker = true
-            }
-            Button("复制导入两个文件（备用）") {
-                showingCopyImportPicker = true
-            }
-            Button("取消", role: .cancel) {}
-        } message: {
-            Text("自签环境请优先选择主存档与 SaveGameInfo 原位写回；只有系统无法返回文件写入授权时，才使用复制导入并在保存后导出替换。")
+        .sheet(isPresented: $showingSourceOptions, onDismiss: openSelectedSourceMethod) {
+            FarmLoadSheet(hasRecentSource: store.hasRecentSource, selection: $sourceMethod)
         }
-        .confirmationDialog("切换农场？", isPresented: $showingSwitchConfirmation, titleVisibility: .visible) {
+        .alert("切换农场？", isPresented: $showingSwitchConfirmation) {
             Button("选择新农场", role: .destructive) {
                 showingSourceOptions = true
             }
@@ -154,7 +144,7 @@ struct ToolsView: View {
         } message: {
             Text("选择并成功加载新农场后才会替换当前会话。取消选择或加载失败会保留当前草稿。")
         }
-        .confirmationDialog("重新读取存档？", isPresented: $showingReloadConfirmation, titleVisibility: .visible) {
+        .alert("重新读取存档？", isPresented: $showingReloadConfirmation) {
             Button("放弃草稿并重新读取", role: .destructive) {
                 store.reload()
             }
@@ -225,6 +215,25 @@ struct ToolsView: View {
         }
     }
 
+    private var toolColumns: [GridItem] {
+        typeSize.isAccessibilitySize ? [GridItem(.flexible())]
+            : [GridItem(.adaptive(minimum: 340), alignment: .top)]
+    }
+
+    private func openSelectedSourceMethod() {
+        let method = sourceMethod
+        sourceMethod = nil
+        // Wait for the options sheet's actual dismissal, including on iPad,
+        // rather than presenting a document picker during that transition.
+        switch method {
+        case .recent: store.openRecent()
+        case .directory: showingDirectoryPicker = true
+        case .files: showingFilePicker = true
+        case .copy: showingCopyImportPicker = true
+        case nil: break
+        }
+    }
+
     private func connectedFarmCard(_ session: SaveSession) -> some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
@@ -260,6 +269,7 @@ struct ToolsView: View {
                 }
             }
             .font(.subheadline.weight(.semibold))
+            .accessibilityIdentifier("farm.load.switch")
         }
         .padding(18)
         .background(AppTheme.headerSoft, in: RoundedRectangle(cornerRadius: 20, style: .continuous))
@@ -349,6 +359,6 @@ private struct DiscoveredSaveSelectionView: View {
                 }
             }
         }
-        .presentationDetents([.medium, .large])
+        .presentationDetents([.large])
     }
 }

@@ -2,6 +2,7 @@ import SwiftUI
 
 struct HomeView: View {
     @Environment(EditorStore.self) private var store
+    @Environment(\.dynamicTypeSize) private var typeSize
     @Binding var selectedTab: MainTab
     @State private var showingMagicMap = false
 
@@ -30,8 +31,7 @@ struct HomeView: View {
                 .padding(.horizontal, 20)
                 .padding(.top, 22)
                 .padding(.bottom, 34)
-                .frame(maxWidth: 720)
-                .frame(maxWidth: .infinity)
+                .readablePageWidth()
             }
             .background(AppTheme.canvas)
         }
@@ -60,7 +60,7 @@ struct HomeView: View {
             }
 
             LazyVGrid(
-                columns: [GridItem(.flexible()), GridItem(.flexible())],
+                columns: AppLayout.pairedColumns(for: typeSize),
                 spacing: 16
             ) {
                 MetricView(
@@ -106,7 +106,7 @@ struct HomeView: View {
             Text("快捷入口")
                 .font(.title2.bold())
 
-            HStack(spacing: 14) {
+            LazyVGrid(columns: AppLayout.pairedColumns(for: typeSize), spacing: 14) {
                 HomeShortcut(
                     title: "数据追踪",
                     subtitle: "查看农场概览",
@@ -168,6 +168,7 @@ struct HomeView: View {
 }
 
 private struct FarmerPortraitCard: View {
+    @Environment(\.dynamicTypeSize) private var typeSize
     let session: SaveSession
 
     var body: some View {
@@ -190,7 +191,7 @@ private struct FarmerPortraitCard: View {
             }
 
             LazyVGrid(
-                columns: [GridItem(.flexible()), GridItem(.flexible())],
+                columns: AppLayout.pairedColumns(for: typeSize),
                 spacing: 12
             ) {
                 AppearanceMetric(
@@ -360,25 +361,27 @@ private struct FarmDateHeader: View {
 
     var body: some View {
         VStack(spacing: 5) {
-            Spacer()
             if let session {
                 Text("\(session.draft.season.displayName)季第 \(session.draft.day) 天")
-                    .font(.system(size: 30, weight: .bold, design: .rounded))
+                    .font(.largeTitle.weight(.bold))
                 Text("第 \(session.draft.year) 年 · \(weekday(for: session.draft))")
                     .font(.title3)
                     .foregroundStyle(AppTheme.title.opacity(0.72))
             } else {
                 Text("穗光琥珀存档匣")
-                    .font(.system(size: 30, weight: .bold, design: .rounded))
+                    .font(.largeTitle.weight(.bold))
                 Text("农场助手")
                     .font(.title3)
                     .foregroundStyle(AppTheme.title.opacity(0.72))
             }
-            Spacer().frame(height: 20)
         }
+        .multilineTextAlignment(.center)
+        .fixedSize(horizontal: false, vertical: true)
+        .padding(.horizontal, 20)
+        .padding(.vertical, 24)
         .foregroundStyle(AppTheme.title)
         .frame(maxWidth: .infinity)
-        .frame(height: 174)
+        .frame(minHeight: 130)
         .background(AppTheme.header.ignoresSafeArea(edges: .top))
     }
 

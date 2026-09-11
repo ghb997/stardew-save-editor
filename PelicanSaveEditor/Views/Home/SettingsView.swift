@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @Environment(\.dynamicTypeSize) private var typeSize
     @Environment(EditorStore.self) private var store
     @Binding var selectedTab: MainTab
     @AppStorage("appearanceMode") private var appearanceMode = "system"
@@ -71,8 +72,7 @@ struct SettingsView: View {
                 .padding(.horizontal, 20)
                 .padding(.vertical, 24)
                 .padding(.bottom, 20)
-                .frame(maxWidth: 720)
-                .frame(maxWidth: .infinity)
+                .readablePageWidth()
             }
             .background(AppTheme.canvas)
         }
@@ -80,7 +80,7 @@ struct SettingsView: View {
 
     private func farmCard(_ session: SaveSession) -> some View {
         VStack(alignment: .leading, spacing: 16) {
-            HStack {
+            farmHeaderLayout {
                 GameIcon(systemName: "person.crop.circle.fill", size: 44)
                 VStack(alignment: .leading, spacing: 5) {
                     Text(session.draft.playerName.isEmpty ? "未命名农夫" : session.draft.playerName)
@@ -88,7 +88,6 @@ struct SettingsView: View {
                     Text("农场信息：\(session.draft.farmName.isEmpty ? session.source.farmIdentifier : session.draft.farmName)")
                     Text("第 \(session.draft.year) 年 · \(session.draft.season.displayName)季 \(session.draft.day) 日")
                 }
-                Spacer()
                 VStack(alignment: .trailing, spacing: 5) {
                     Text("游戏版本：\(session.metadata.gameVersion)")
                     Text("\(session.diffs.count) 项待保存")
@@ -112,9 +111,14 @@ struct SettingsView: View {
     }
 
     private var appVersion: String {
-        let version = (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String) ?? "0.5.0"
-        let build = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String) ?? "11"
+        let version = (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String) ?? "0.5.1"
+        let build = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String) ?? "12"
         return "\(version) (\(build))"
+    }
+
+    private var farmHeaderLayout: AnyLayout {
+        typeSize.isAccessibilitySize ? AnyLayout(VStackLayout(alignment: .leading, spacing: 12))
+            : AnyLayout(HStackLayout(spacing: 12))
     }
 }
 
@@ -125,7 +129,11 @@ private struct SettingsRow: View {
     var artworkName: String? = nil
 
     var body: some View {
-        HStack(spacing: 14) {
+        LabeledContent {
+            Text(value).foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
+        } label: {
+            HStack(spacing: 14) {
             Group {
                 if let artworkName {
                     GameAssetIcon(assetName: artworkName, size: 26)
@@ -136,9 +144,8 @@ private struct SettingsRow: View {
             }
             .frame(width: 30)
             Text(title)
-            Spacer()
-            Text(value)
-                .foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
+            }
         }
         .padding(18)
     }

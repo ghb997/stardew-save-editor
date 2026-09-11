@@ -45,7 +45,7 @@ struct FarmEntityListView: View {
                     Picker("操作状态", selection: $query.scope) {
                         ForEach(FarmMapScope.allCases) { scope in Text(scope.title).tag(scope) }
                     }
-                    .pickerStyle(.segmented)
+                    .adaptiveSegmentedPicker()
                     .accessibilityIdentifier("editor.map.scope")
                     Toggle("限定坐标范围", isOn: $useRegion)
                         .accessibilityIdentifier("editor.map.region.enabled")

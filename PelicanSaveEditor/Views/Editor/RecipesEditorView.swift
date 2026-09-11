@@ -38,7 +38,7 @@ struct RecipesEditorView: View {
                             Text(kind.displayName).tag(kind)
                         }
                     }
-                    .pickerStyle(.segmented)
+                    .adaptiveSegmentedPicker()
 
                     LabeledContent("已解锁", value: "\(unlockedCount) 项")
                     LabeledContent(
@@ -89,8 +89,9 @@ struct RecipesEditorView: View {
             .searchable(text: $searchText, prompt: "搜索中文或英文配方名")
             .onSubmit(of: .search) { KeyboardReturnAction.dismiss() }
             .navigationTitle("配方")
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .confirmationDialog("解锁全部配方？", isPresented: $showingUnlockAllConfirmation) {
+        .alert("解锁全部配方？", isPresented: $showingUnlockAllConfirmation) {
             Button("全部解锁") {
                 for index in session.draft.recipes.indices {
                     session.draft.recipes[index].unlocked = true

@@ -86,6 +86,7 @@ struct CharacterEditorView: View {
 
             }
             .navigationTitle("角色与农场")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

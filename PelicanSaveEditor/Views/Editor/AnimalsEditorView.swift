@@ -62,7 +62,8 @@ struct AnimalsEditorView: View {
                 }
             }
             .navigationTitle("农场动物")
-            .confirmationDialog("将全部动物恢复最佳状态？", isPresented: $showingMaxConfirmation) {
+            .navigationBarTitleDisplayMode(.inline)
+            .alert("将全部动物恢复最佳状态？", isPresented: $showingMaxConfirmation) {
                 Button("恢复最佳状态") {
                     for index in session.draft.animals.indices {
                         session.draft.animals[index].friendship = 1_000

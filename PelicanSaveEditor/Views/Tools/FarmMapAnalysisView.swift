@@ -52,8 +52,7 @@ struct FarmMapAnalysisView: View {
                         .padding(.horizontal, 4)
                 }
                 .padding(20)
-                .frame(maxWidth: 760)
-                .frame(maxWidth: .infinity)
+                .readablePageWidth()
             }
             .accessibilityIdentifier("editor.map.main")
             .onChange(of: selectedEntityID) { _, selected in
@@ -238,7 +237,7 @@ struct FarmMapAnalysisView: View {
     }
 
     private var summaryGrid: some View {
-        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
+        LazyVGrid(columns: AppLayout.pairedColumns(for: dynamicTypeSize), spacing: 12) {
             FarmMetricCard(title: "作物", value: snapshot.count(for: .crop), assetName: "GameUICropPlanner", color: .green)
             FarmMetricCard(title: "耕地", value: snapshot.tilledSoilCount, assetName: "GameUISkillFarming", color: .brown)
             FarmMetricCard(
@@ -812,8 +811,8 @@ struct ExpandedFarmMapView: View {
     var body: some View {
         NavigationStack {
             GeometryReader { proxy in
-                let baseWidth = max(320, proxy.size.width - 32)
                 let effectiveZoom = min(4, max(1, zoom * pinch))
+                let mapSize = AppLayout.mapSize(in: proxy.size, zoom: effectiveZoom)
 
                 ScrollView([.horizontal, .vertical]) {
                     FarmCoordinateCanvas(
@@ -824,9 +823,12 @@ struct ExpandedFarmMapView: View {
                     ) { entity in
                         selectedEntityID = entity.id
                     }
-                        .frame(width: baseWidth * effectiveZoom, height: baseWidth * effectiveZoom / 1.28)
+                        .frame(width: mapSize.width, height: mapSize.height)
+                        .accessibilityIdentifier("map.expanded.canvas")
                         .padding(16)
+                        .frame(minWidth: proxy.size.width, minHeight: proxy.size.height)
                 }
+                .accessibilityIdentifier("map.expanded.viewport")
                 .simultaneousGesture(
                     MagnifyGesture()
                         .updating($pinch) { value, state, _ in state = value.magnification }
@@ -862,10 +864,13 @@ struct ExpandedFarmMapView: View {
                             .frame(width: 38, alignment: .trailing)
                         Button("复位") { zoom = 1 }
                             .font(.caption)
+                            .frame(minWidth: 44, minHeight: 44)
+                            .accessibilityIdentifier("map.expanded.reset")
                     }
                 }
                 .padding(.horizontal, 18)
                 .padding(.vertical, 12)
+                .readablePageWidth()
                 .background(.bar)
             }
         }

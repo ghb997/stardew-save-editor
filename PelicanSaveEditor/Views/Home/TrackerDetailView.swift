@@ -17,6 +17,7 @@ struct TrackerDetailView: View {
     var body: some View {
         NavigationStack {
             detailContent
+                .readablePageWidth(AppLayout.editorWidth)
                 .scrollContentBackground(.hidden)
                 .background(AppTheme.canvas.ignoresSafeArea())
                 .listStyle(.insetGrouped)
@@ -38,6 +39,7 @@ struct TrackerDetailView: View {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button("关闭", systemImage: "xmark") { dismiss() }
                             .labelStyle(.iconOnly)
+                            .frame(minWidth: 44, minHeight: 44)
                             .accessibilityIdentifier("tracker.detail.close")
                     }
                 }
@@ -549,7 +551,7 @@ struct TrackerDetailView: View {
                         Text(kind.displayName).tag(kind)
                     }
                 }
-                .pickerStyle(.segmented)
+                .adaptiveSegmentedPicker()
 
                 recipeProgressCard
             }

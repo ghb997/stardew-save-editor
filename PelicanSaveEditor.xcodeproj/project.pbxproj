@@ -80,6 +80,9 @@
 		7972FB87BD9182D5E2E20A3D /* AppearanceColorsEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90FBA48978CA9E4644E6D89 /* AppearanceColorsEditor.swift */; };
 		5148E2BBD54CA70C7D9DCA53 /* RoomStyleLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E63ABA291E62258E7496D /* RoomStyleLibrary.swift */; };
 		2CF618BAE0F9C28AFD0E45B6 /* WorldEditorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1851F82E98C48376EB796F3B /* WorldEditorTests.swift */; };
+		7F9A4496C4E322E63A0DBAF0 /* AdaptiveLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A64E6E0CBA064AB7760B79 /* AdaptiveLayout.swift */; };
+		BB18E8C1BE3BDE69CB73868E /* FarmLoadSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7987E5434DD3443300DA14 /* FarmLoadSheet.swift */; };
+		EF1A190B9B8D101BDDEB997D /* AdaptiveLayoutUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C6325B893003F657DE85C /* AdaptiveLayoutUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +173,9 @@
 		E90FBA48978CA9E4644E6D89 /* AppearanceColorsEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceColorsEditor.swift; sourceTree = "<group>"; };
 		2B5E63ABA291E62258E7496D /* RoomStyleLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomStyleLibrary.swift; sourceTree = "<group>"; };
 		1851F82E98C48376EB796F3B /* WorldEditorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldEditorTests.swift; sourceTree = "<group>"; };
+		D9A64E6E0CBA064AB7760B79 /* AdaptiveLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Components/AdaptiveLayout.swift"; sourceTree = SOURCE_ROOT; };
+		8F7987E5434DD3443300DA14 /* FarmLoadSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Components/FarmLoadSheet.swift"; sourceTree = SOURCE_ROOT; };
+		BA3C6325B893003F657DE85C /* AdaptiveLayoutUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditorUITests/AdaptiveLayoutUITests.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -202,6 +208,9 @@
 				F666C112F70FABC42B14F171 /* TransactionRegressionTests.swift */,
 				3A5C48017EAC6B37BA8D427A /* EditorConveniences.swift */,
 				DD9F1264F6A269E988381643 /* ReferenceFeatureTests.swift */,
+				D9A64E6E0CBA064AB7760B79 /* AdaptiveLayout.swift */,
+				8F7987E5434DD3443300DA14 /* FarmLoadSheet.swift */,
+				BA3C6325B893003F657DE85C /* AdaptiveLayoutUITests.swift */,
 				52A33A42251270FA0061402D /* PelicanSaveEditor */,
 				D5CA3286FD20ABA40A3A831D /* PelicanSaveEditorTests */,
 				26115F3A720144889AA40005 /* PelicanSaveEditorUITests */,
@@ -499,7 +508,8 @@
 		26115F3A720144889AA40007 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
-			files = (26115F3A720144889AA40002 /* TrackerSmokeUITests.swift in Sources */,);
+			files = (
+				EF1A190B9B8D101BDDEB997D /* AdaptiveLayoutUITests.swift in Sources */,26115F3A720144889AA40002 /* TrackerSmokeUITests.swift in Sources */,);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		6C1A9F6C5EE331BFAEB38906 /* Sources */ = {
@@ -519,6 +529,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB18E8C1BE3BDE69CB73868E /* FarmLoadSheet.swift in Sources */,
+				7F9A4496C4E322E63A0DBAF0 /* AdaptiveLayout.swift in Sources */,
 				BFA1743F18C01A6EBCFFD4BA /* AppearanceColors.swift in Sources */,
 				3ECECBBE2CA655FC16AA3860 /* FarmMapQuery.swift in Sources */,
 				EBC51F209A5E90D12EAA4A7C /* RoomStyleRules.swift in Sources */,
@@ -630,7 +642,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -651,7 +663,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.5.0;
+				MARKETING_VERSION = 0.5.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -700,7 +712,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -715,7 +727,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.5.0;
+				MARKETING_VERSION = 0.5.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";

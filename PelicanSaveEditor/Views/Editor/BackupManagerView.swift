@@ -102,6 +102,7 @@ struct BackupListView: View {
                 }
             }
             .navigationTitle("备份管理")
+            .navigationBarTitleDisplayMode(.inline)
             .searchable(text: $searchText, prompt: "按农场名称筛选备份")
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
@@ -123,7 +124,7 @@ struct BackupListView: View {
                 exportNotice = "已取消导出，应用内备份仍保留。"
             })
         }
-        .confirmationDialog("恢复这份备份？", isPresented: Binding(
+        .alert("恢复这份备份？", isPresented: Binding(
             get: { selectedBackup != nil },
             set: { if !$0 { selectedBackup = nil } }
         )) {

@@ -172,8 +172,9 @@ struct ReviewChangesView: View {
                 }
             }
             .navigationTitle("检查更改")
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .confirmationDialog(
+        .alert(
             session.source.mode == .importedCopy ? "保存副本并导出？" : "确认写回存档？",
             isPresented: $showingSaveConfirmation
         ) {
@@ -193,11 +194,11 @@ struct ReviewChangesView: View {
         } message: {
             Text(saveConfirmationMessage)
         }
-        .confirmationDialog("放弃全部更改？", isPresented: $showingDiscardConfirmation) {
+        .alert("放弃全部更改？", isPresented: $showingDiscardConfirmation) {
             Button("放弃", role: .destructive) { session.discardChanges() }
             Button("取消", role: .cancel) {}
         }
-        .confirmationDialog("重新载入存档？", isPresented: $showingReloadConfirmation) {
+        .alert("重新载入存档？", isPresented: $showingReloadConfirmation) {
             Button("放弃草稿并重新载入", role: .destructive) { store.reload() }
             Button("取消", role: .cancel) {}
         } message: {

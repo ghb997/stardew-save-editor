@@ -45,7 +45,7 @@ struct CatalogPickerView: View {
                             Text(collection.rawValue).tag(collection)
                         }
                     }
-                    .pickerStyle(.segmented)
+                    .adaptiveSegmentedPicker()
                     Picker("物品分类", selection: $selectedCategory) {
                         ForEach(categories, id: \.self) { category in Text(category).tag(category) }
                     }
@@ -98,6 +98,7 @@ struct CatalogPickerView: View {
             .searchable(text: $searchText, prompt: "搜索中文、英文或 ID")
             .onSubmit(of: .search) { KeyboardReturnAction.dismiss() }
             .navigationTitle("安全物品目录")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("取消") { dismiss() }

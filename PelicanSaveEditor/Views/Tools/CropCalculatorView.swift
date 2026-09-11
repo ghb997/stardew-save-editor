@@ -130,7 +130,7 @@ struct CropCalculatorView: View {
                     Text(value.displayName).tag(value)
                 }
             }
-            .pickerStyle(.segmented)
+            .adaptiveSegmentedPicker()
         } header: {
             Text("日期与地点")
         } footer: {

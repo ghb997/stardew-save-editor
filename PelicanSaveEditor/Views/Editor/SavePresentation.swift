@@ -47,6 +47,7 @@ struct DraftReviewBar: View {
             if let message = session.draftValidationMessage {
                 Text(message).font(.caption).foregroundStyle(.red)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .fixedSize(horizontal: false, vertical: true)
             }
             Button(action: onReview) {
                 GameLabel(
@@ -54,6 +55,8 @@ struct DraftReviewBar: View {
                     systemImage: "checkmark.circle.fill"
                 )
                 .font(.headline)
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
                 .frame(maxWidth: .infinity, minHeight: 44)
             }
             .buttonStyle(.borderedProminent)
@@ -62,6 +65,7 @@ struct DraftReviewBar: View {
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 10)
+        .readablePageWidth(AppLayout.editorWidth)
         .background(.bar)
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("editor.review.bar")
