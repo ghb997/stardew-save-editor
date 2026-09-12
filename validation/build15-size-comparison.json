@@ -1,0 +1,269 @@
+{
+  "method": "Read-only ZIP directory and file hashes; categories inferred from paths, not feature parity.",
+  "unit": "bytes; MiB = bytes / 1048576",
+  "apps": [
+    {
+      "name": "StardewEditor.ipa",
+      "sha256": "f872da346f86eaf853d1017d4dfa39606cc4f983a3359ef2a2ba08ded72961d4",
+      "ipa_bytes": 108068566,
+      "members": 1064,
+      "uncompressed_bytes": 107749934,
+      "compressed_member_bytes": 107749934,
+      "categories": {
+        "other_app_contents": {
+          "members": 53,
+          "uncompressed_bytes": 12572860,
+          "compressed_bytes": 12572860
+        },
+        "images_fonts_media": {
+          "members": 3,
+          "uncompressed_bytes": 362332,
+          "compressed_bytes": 362332
+        },
+        "embedded_frameworks": {
+          "members": 1008,
+          "uncompressed_bytes": 94814742,
+          "compressed_bytes": 94814742
+        }
+      },
+      "largest_members": [
+        {
+          "path": "Payload/Runner.app/Frameworks/App.framework/App",
+          "bytes": 14832176,
+          "compressed_bytes": 14832176
+        },
+        {
+          "path": "Payload/Runner.app/Runner",
+          "bytes": 12089408,
+          "compressed_bytes": 12089408
+        },
+        {
+          "path": "Payload/Runner.app/Frameworks/Flutter.framework/Flutter",
+          "bytes": 8777968,
+          "compressed_bytes": 8777968
+        },
+        {
+          "path": "Payload/Runner.app/Frameworks/PostHog.framework/PostHog",
+          "bytes": 3882128,
+          "compressed_bytes": 3882128
+        },
+        {
+          "path": "Payload/Runner.app/Frameworks/App.framework/flutter_assets/assets/images/locations/Town.png",
+          "bytes": 3519393,
+          "compressed_bytes": 3519393
+        },
+        {
+          "path": "Payload/Runner.app/Frameworks/App.framework/flutter_assets/assets/images/locations/Forest.png",
+          "bytes": 2842411,
+          "compressed_bytes": 2842411
+        },
+        {
+          "path": "Payload/Runner.app/Frameworks/FirebaseAuth.framework/FirebaseAuth",
+          "bytes": 2656336,
+          "compressed_bytes": 2656336
+        },
+        {
+          "path": "Payload/Runner.app/Frameworks/App.framework/flutter_assets/assets/images/locations/QuarryMine.png",
+          "bytes": 2018157,
+          "compressed_bytes": 2018157
+        }
+      ]
+    },
+    {
+      "name": "StardewGuide&Tracker.ipa",
+      "sha256": "3aff35d6026544d8f54980fd92400700266c96cb834dc6a6f27199957ccc36c1",
+      "ipa_bytes": 61650933,
+      "members": 3658,
+      "uncompressed_bytes": 60983913,
+      "compressed_member_bytes": 60983913,
+      "categories": {
+        "images_fonts_media": {
+          "members": 2991,
+          "uncompressed_bytes": 11916746,
+          "compressed_bytes": 11916746
+        },
+        "other_app_contents": {
+          "members": 661,
+          "uncompressed_bytes": 48989312,
+          "compressed_bytes": 48989312
+        },
+        "embedded_frameworks": {
+          "members": 6,
+          "uncompressed_bytes": 77855,
+          "compressed_bytes": 77855
+        }
+      },
+      "largest_members": [
+        {
+          "path": "Payload/Stardew Progress Tracker.app/Stardew Progress Tracker",
+          "bytes": 26152592,
+          "compressed_bytes": 26152592
+        },
+        {
+          "path": "Payload/Stardew Progress Tracker.app/best.mlmodelc/weights/weight.bin",
+          "bytes": 4613536,
+          "compressed_bytes": 4613536
+        },
+        {
+          "path": "Payload/Stardew Progress Tracker.app/Town_map.png",
+          "bytes": 1891698,
+          "compressed_bytes": 1891698
+        },
+        {
+          "path": "Payload/Stardew Progress Tracker.app/Forest_map.png",
+          "bytes": 1468577,
+          "compressed_bytes": 1468577
+        },
+        {
+          "path": "Payload/Stardew Progress Tracker.app/map_card.png",
+          "bytes": 1309292,
+          "compressed_bytes": 1309292
+        },
+        {
+          "path": "Payload/Stardew Progress Tracker.app/_CodeSignature/CodeResources",
+          "bytes": 1052400,
+          "compressed_bytes": 1052400
+        },
+        {
+          "path": "Payload/Stardew Progress Tracker.app/objects-items.json",
+          "bytes": 911925,
+          "compressed_bytes": 911925
+        },
+        {
+          "path": "Payload/Stardew Progress Tracker.app/craft.gif",
+          "bytes": 910166,
+          "compressed_bytes": 910166
+        }
+      ]
+    },
+    {
+      "name": "StardewSaveEditor.ipa",
+      "sha256": "f4f4b348b605fe9b58a6c24c980dd5c672a381c4c78870962cb978b3f397634e",
+      "ipa_bytes": 42065018,
+      "members": 390,
+      "uncompressed_bytes": 41976546,
+      "compressed_member_bytes": 41976546,
+      "categories": {
+        "images_fonts_media": {
+          "members": 373,
+          "uncompressed_bytes": 24777860,
+          "compressed_bytes": 24777860
+        },
+        "other_app_contents": {
+          "members": 14,
+          "uncompressed_bytes": 13899342,
+          "compressed_bytes": 13899342
+        },
+        "embedded_frameworks": {
+          "members": 3,
+          "uncompressed_bytes": 3299344,
+          "compressed_bytes": 3299344
+        }
+      },
+      "largest_members": [
+        {
+          "path": "Payload/StardewSaveEditor.app/main.jsbundle",
+          "bytes": 7965184,
+          "compressed_bytes": 7965184
+        },
+        {
+          "path": "Payload/StardewSaveEditor.app/StardewSaveEditor",
+          "bytes": 5793184,
+          "compressed_bytes": 5793184
+        },
+        {
+          "path": "Payload/StardewSaveEditor.app/Frameworks/hermes.framework/hermes",
+          "bytes": 3296736,
+          "compressed_bytes": 3296736
+        },
+        {
+          "path": "Payload/StardewSaveEditor.app/MaterialCommunityIcons.ttf",
+          "bytes": 1147844,
+          "compressed_bytes": 1147844
+        },
+        {
+          "path": "Payload/StardewSaveEditor.app/assets/vendor/img/Sprites/Cursors.ru.png",
+          "bytes": 455588,
+          "compressed_bytes": 455588
+        },
+        {
+          "path": "Payload/StardewSaveEditor.app/assets/vendor/img/Sprites/Cursors.it.png",
+          "bytes": 455141,
+          "compressed_bytes": 455141
+        },
+        {
+          "path": "Payload/StardewSaveEditor.app/assets/vendor/img/Sprites/Cursors.tr.png",
+          "bytes": 455049,
+          "compressed_bytes": 455049
+        },
+        {
+          "path": "Payload/StardewSaveEditor.app/assets/vendor/img/Sprites/Cursors.fr.png",
+          "bytes": 454503,
+          "compressed_bytes": 454503
+        }
+      ]
+    },
+    {
+      "name": "SheaflightAmberVault-v0.7.0-build15-unsigned.ipa",
+      "sha256": "4228234536f0b2d454c794244dd6e87041083c4264eece275d847e6d540bb736",
+      "ipa_bytes": 3699789,
+      "members": 15,
+      "uncompressed_bytes": 12716347,
+      "compressed_member_bytes": 3696131,
+      "categories": {
+        "other_app_contents": {
+          "members": 12,
+          "uncompressed_bytes": 11298399,
+          "compressed_bytes": 2478477
+        },
+        "images_fonts_media": {
+          "members": 3,
+          "uncompressed_bytes": 1417948,
+          "compressed_bytes": 1217654
+        }
+      },
+      "largest_members": [
+        {
+          "path": "Payload/SheaflightAmberVault.app/SheaflightAmberVault",
+          "bytes": 10293744,
+          "compressed_bytes": 2391486
+        },
+        {
+          "path": "Payload/SheaflightAmberVault.app/Assets.car",
+          "bytes": 1384552,
+          "compressed_bytes": 1184375
+        },
+        {
+          "path": "Payload/SheaflightAmberVault.app/iteminfo.json",
+          "bytes": 949559,
+          "compressed_bytes": 74897
+        },
+        {
+          "path": "Payload/SheaflightAmberVault.app/cropinfo.json",
+          "bytes": 32034,
+          "compressed_bytes": 2291
+        },
+        {
+          "path": "Payload/SheaflightAmberVault.app/AppIcon76x76@2x~ipad.png",
+          "bytes": 18035,
+          "compressed_bytes": 17971
+        },
+        {
+          "path": "Payload/SheaflightAmberVault.app/AppIcon60x60@2x.png",
+          "bytes": 15361,
+          "compressed_bytes": 15308
+        },
+        {
+          "path": "Payload/SheaflightAmberVault.app/itemnames_zh.json",
+          "bytes": 14083,
+          "compressed_bytes": 5155
+        },
+        {
+          "path": "Payload/SheaflightAmberVault.app/craftingrecipes.json",
+          "bytes": 2591,
+          "compressed_bytes": 1007
+        }
+      ]
+    }
+  ]
+}

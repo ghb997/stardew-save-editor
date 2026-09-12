@@ -1,0 +1,58 @@
+{
+  "sourceCommit": "cd325fa4e86f456481d2e03cf463fc861ee2937c",
+  "run": "https://github.com/ghb997/stardew-save-editor/actions/runs/34686632117",
+  "screenshots": [
+    {
+      "name": "build15-collection-review",
+      "file": "build15-collection-review.png",
+      "test": "RepairEditorUITests/testCollectionSupplyCreatesInventoryDraftWithoutMarkingDonation()",
+      "device": "iPad Pro 13-inch (M5)",
+      "originalAttachment": "8806F3CE-78C3-4C2B-BE75-F311D6039330.png",
+      "sha256": "eb60faf4a47c96b00e724553c1c6c9515b15db46325a54473fe0cc1869d8c8c3",
+      "visualReview": "passed",
+      "reviewNotes": "已审阅原图：检查页显示槽位 3 从空变为矮人卷轴 II ×1（普通），未显示捐赠改动。"
+    },
+    {
+      "name": "build15-collection-supply",
+      "file": "build15-collection-supply.png",
+      "test": "RepairEditorUITests/testCollectionSupplyCreatesInventoryDraftWithoutMarkingDonation()",
+      "device": "iPad Pro 13-inch (M5)",
+      "originalAttachment": "CCA6AFFE-A90F-4DE9-B354-642618F4CEA9.png",
+      "sha256": "18ed1c93f785bc6fccbe76e0656fb900db1f9286eb41202b25814c12f780f56b",
+      "visualReview": "passed",
+      "reviewNotes": "已审阅原图：矮人卷轴 II 的缺少记录状态和已加入背包草稿反馈可读，补给与完成操作可达。"
+    },
+    {
+      "name": "build15-equipment-cancel",
+      "file": "build15-equipment-cancel.png",
+      "test": "RepairEditorUITests/testEquipmentCancelLeavesDraftUnchanged()",
+      "device": "iPad Pro 13-inch (M5)",
+      "originalAttachment": "B746BFD3-5E8F-4CF1-95DA-7E0BBA678AC6.png",
+      "sha256": "5791b582f659c0b4677d9a7b5feb581c753fafd94e76deb677063ec8505bfa76",
+      "visualReview": "passed",
+      "reviewNotes": "已审阅原图：取消后检查页显示没有待保存的更改，操作列表正常显示。"
+    },
+    {
+      "name": "build15-equipment-invalid-damage",
+      "file": "build15-equipment-invalid-damage.png",
+      "test": "RepairEditorUITests/testWeaponInvalidInputAndRestore()",
+      "device": "iPad Pro 13-inch (M5)",
+      "originalAttachment": "5664E133-ED06-4784-875A-0623E4EB8E17.png",
+      "sha256": "d741e6b6b17d71829b405a360485083d1a372da30349b0d1908a906426867432",
+      "visualReview": "passed",
+      "reviewNotes": "已审阅原图：最低伤害 90、最高伤害 80 的错误提示可读，输入和恢复操作可达。"
+    },
+    {
+      "name": "build15-equipment-review",
+      "file": "build15-equipment-review.png",
+      "test": "RepairEditorUITests/testToolUpgradeCreatesReviewDiff()",
+      "device": "iPad Pro 13-inch (M5)",
+      "originalAttachment": "6BF3BBEA-1BE4-413B-9F66-DE63E61E34CD.png",
+      "sha256": "b73bb53b98fa8d52bd7c08ff756fb1387d5ea65a5d4e5f2a1ced24502800490c",
+      "visualReview": "passed",
+      "reviewNotes": "已审阅原图：检查页显示背包第 1 格装备升级等级 1 → 4，撤销操作可见。"
+    }
+  ],
+  "reviewer": "Codex visual review of original XCTest screenshot attachments",
+  "reviewedAtUTC": "2026-09-12T09:55:39.763315+00:00"
+}

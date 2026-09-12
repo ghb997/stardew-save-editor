@@ -1,0 +1,109 @@
+{
+  "apps": [
+    {
+      "archive_path": "Payload/SheaflightAmberVault.app",
+      "code_resources": {
+        "present": false
+      },
+      "embedded_libraries": [],
+      "extensions": [],
+      "info_plist": {
+        "CFBundleDisplayName": "穗光琥珀存档匣",
+        "CFBundleExecutable": "SheaflightAmberVault",
+        "CFBundleIdentifier": "com.personal.sheaflightambervault.v20260816f4c9",
+        "CFBundleName": "SheaflightAmberVault",
+        "CFBundleShortVersionString": "0.7.0",
+        "CFBundleVersion": "15",
+        "LSRequiresIPhoneOS": true,
+        "MinimumOSVersion": "17.0",
+        "UIDeviceFamily": [
+          1,
+          2
+        ],
+        "UIRequiredDeviceCapabilities": [
+          "arm64"
+        ],
+        "privacy_usage_descriptions": {},
+        "queried_url_schemes": [],
+        "url_schemes": []
+      },
+      "mach_o": [
+        {
+          "archive_path": "Payload/SheaflightAmberVault.app/SheaflightAmberVault",
+          "kind": "thin",
+          "slices": [
+            {
+              "architecture": "arm64",
+              "cpu_subtype": 0,
+              "encrypted": false,
+              "encryption": [
+                {
+                  "cryptid": 0,
+                  "cryptoff": 16384,
+                  "cryptsize": 3375104
+                }
+              ],
+              "file_type": 2,
+              "flags": 2097285,
+              "has_lc_code_signature": false,
+              "is_64_bit": true,
+              "linked_dylibs": [
+                "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation",
+                "/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics",
+                "/System/Library/Frameworks/CryptoKit.framework/CryptoKit",
+                "/System/Library/Frameworks/Foundation.framework/Foundation",
+                "/System/Library/Frameworks/SwiftUI.framework/SwiftUI",
+                "/System/Library/Frameworks/UIKit.framework/UIKit",
+                "/usr/lib/libSystem.B.dylib",
+                "/usr/lib/libobjc.A.dylib",
+                "/usr/lib/libz.1.dylib",
+                "/usr/lib/swift/libswiftCore.dylib",
+                "/usr/lib/swift/libswiftCoreFoundation.dylib",
+                "/usr/lib/swift/libswiftCoreImage.dylib",
+                "/usr/lib/swift/libswiftDarwin.dylib",
+                "/usr/lib/swift/libswiftDataDetection.dylib",
+                "/usr/lib/swift/libswiftDispatch.dylib",
+                "/usr/lib/swift/libswiftMetal.dylib",
+                "/usr/lib/swift/libswiftOSLog.dylib",
+                "/usr/lib/swift/libswiftObjectiveC.dylib",
+                "/usr/lib/swift/libswiftObservation.dylib",
+                "/usr/lib/swift/libswiftQuartzCore.dylib",
+                "/usr/lib/swift/libswiftSpatial.dylib",
+                "/usr/lib/swift/libswiftUniformTypeIdentifiers.dylib",
+                "/usr/lib/swift/libswiftXPC.dylib",
+                "/usr/lib/swift/libswift_Concurrency.dylib",
+                "/usr/lib/swift/libswiftos.dylib",
+                "/usr/lib/swift/libswiftsimd.dylib"
+              ],
+              "load_commands_declared": 44,
+              "load_commands_parsed": 44,
+              "offset": 0,
+              "rpaths": [
+                "@executable_path/Frameworks"
+              ]
+            }
+          ]
+        }
+      ],
+      "provisioning_profile": {
+        "present": false
+      }
+    }
+  ],
+  "archive": {
+    "compressed_bytes": 3696131,
+    "compression_ratio": 3.44,
+    "duplicate_members": [],
+    "member_count": 17,
+    "suspicious_paths": [],
+    "symbolic_links": [],
+    "uncompressed_bytes": 12716347
+  },
+  "artifact": {
+    "path": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\complete-repair-build15-validation\\device-cd325fa\\SheaflightAmberVault-unsigned-ipa-33\\run-20260912T095047Z-1473\\SheaflightAmberVault-v0.7.0-build15-unsigned.ipa",
+    "sha256": "4228234536f0b2d454c794244dd6e87041083c4264eece275d847e6d540bb736",
+    "size": 3699789
+  },
+  "schema_version": 1,
+  "warnings": []
+}

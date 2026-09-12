@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "status": "succeeded",
+  "artifactKind": "unsigned-ios-ipa",
+  "codeSigningAllowed": false,
+  "requiresSigningBeforeInstallation": true,
+  "configuration": "Release",
+  "target": "PelicanSaveEditor",
+  "testsRun": false,
+  "sourceCommit": "cd325fa4e86f456481d2e03cf463fc861ee2937c",
+  "sourceRef": "refs/heads/codex/complete-repair-build15",
+  "githubRunId": "34686632136",
+  "startedAtUTC": "2026-09-12T09:50:48.005591+00:00",
+  "xcodeVersion": "16.4",
+  "sdkVersion": "18.5",
+  "appName": "SheaflightAmberVault.app",
+  "bundleIdentifier": "com.personal.sheaflightambervault.v20260816f4c9",
+  "executable": "SheaflightAmberVault",
+  "version": "0.7.0",
+  "buildNumber": "15",
+  "minimumOSVersion": "17.0",
+  "ipaFile": "SheaflightAmberVault-v0.7.0-build15-unsigned.ipa",
+  "architectures": [
+    "arm64"
+  ],
+  "platform": "iOS",
+  "sha256": "4228234536f0b2d454c794244dd6e87041083c4264eece275d847e6d540bb736",
+  "ipaBytes": 3699789,
+  "completedAtUTC": "2026-09-12T09:52:28.839652+00:00"
+}

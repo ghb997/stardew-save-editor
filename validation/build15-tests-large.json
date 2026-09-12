@@ -1,0 +1,81 @@
+{
+  "status": "passed",
+  "source_commit": "cd325fa4e86f456481d2e03cf463fc861ee2937c",
+  "run_url": "https://github.com/ghb997/stardew-save-editor/actions/runs/34686632117",
+  "job_name": "Layout tests (large)",
+  "job_id": 103534639511,
+  "scope": "repair",
+  "device": {
+    "name": "iPad Pro 13-inch (M5)",
+    "udid": "0DE52589-6E0B-47D4-B4A7-7E4E3D9C1049",
+    "runtime": "com.apple.CoreSimulator.SimRuntime.iOS-26-2",
+    "family": "large"
+  },
+  "total_tests": 8,
+  "declared_tests_in_scope": 8,
+  "counts_by_class": {
+    "ExpandedEditorUITests": 4,
+    "RepairEditorUITests": 4
+  },
+  "outcomes": {
+    "passed": 8
+  },
+  "test_log_sha256": "85bb4e2c9c3ae21093c6be87489bac57a4c796ca02f342aa6aa01e3d2ed08b6f",
+  "missing": [],
+  "unexpected": [],
+  "duplicates": [],
+  "failures": [],
+  "tests": [
+    {
+      "class": "ExpandedEditorUITests",
+      "method": "testBundleSupplyPreviewAddsInventoryDiffWithoutCompletingBundle",
+      "result": "passed",
+      "seconds": 25.287
+    },
+    {
+      "class": "ExpandedEditorUITests",
+      "method": "testChestQuantityDraftAndReview",
+      "result": "passed",
+      "seconds": 33.655
+    },
+    {
+      "class": "ExpandedEditorUITests",
+      "method": "testMachineSelectionPreviewApplyAndUndo",
+      "result": "passed",
+      "seconds": 16.887
+    },
+    {
+      "class": "ExpandedEditorUITests",
+      "method": "testWeatherLuckPresetRestoreAndWeatherReview",
+      "result": "passed",
+      "seconds": 20.33
+    },
+    {
+      "class": "RepairEditorUITests",
+      "method": "testCollectionSupplyCreatesInventoryDraftWithoutMarkingDonation",
+      "result": "passed",
+      "seconds": 38.89
+    },
+    {
+      "class": "RepairEditorUITests",
+      "method": "testEquipmentCancelLeavesDraftUnchanged",
+      "result": "passed",
+      "seconds": 16.165
+    },
+    {
+      "class": "RepairEditorUITests",
+      "method": "testToolUpgradeCreatesReviewDiff",
+      "result": "passed",
+      "seconds": 16.838
+    },
+    {
+      "class": "RepairEditorUITests",
+      "method": "testWeaponInvalidInputAndRestore",
+      "result": "passed",
+      "seconds": 23.557
+    }
+  ],
+  "limitations": [
+    "Synthetic saves on simulators; no signed-device installation or real game round trip."
+  ]
+}

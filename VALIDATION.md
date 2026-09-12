@@ -2,7 +2,7 @@
 
 ## 当前源码候选版本：0.7.0（15）
 
-本轮仅完成静态工程/资源检查和 Swift 语法扫描，尚未完成原生编译或测试，也没有构建 15 IPA。Windows 本机无 Xcode；GitHub CLI 返回 401，GitHub 连接器未登录，阻挡了既有 macOS 云端构建路径。新增测试是待执行用例，不能当作通过结果。详情见 [构建 15 验证记录](validation/BUILD15_VERIFICATION.md)。
+本轮 Release arm64 IPA 已构建并校验，iPad mini 和 13 英寸 iPad Pro 各 8 条 UI 流程已通过，10 张原生截图已审阅。完整 iPhone suite（148 项单元、25 项 UI）仍在执行。GitHub 授权已恢复；结果见 [构建 15 验证记录](validation/BUILD15_VERIFICATION.md)。IPA 未签名，真机安装与真实游戏往返尚未验证。
 
 ## 历史版本：0.5.0（11）
 

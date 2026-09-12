@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-09-12T08:37:32.727378+00:00",
+  "generated_at_utc": "2026-09-12T09:47:54.184252+00:00",
   "release_root": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\complete-repair-build15",
   "validation_type": "offline_static_release_checks",
   "compiled_swift": false,
@@ -57,7 +57,7 @@
       "status": "passed",
       "detail": {
         "counts": {
-          "json": 150,
+          "json": 154,
           "plist_and_privacy_manifest": 2,
           "xcode_xml": 2
         },
@@ -240,7 +240,7 @@
       "PelicanSaveEditor/Views/Editor/CharacterEditorView.swift": "89f2b25cee74ca5d63e4d98ed8a47ddf2b6043a470c701f0107db489f9afb159",
       "PelicanSaveEditor/Views/Editor/CommunityCenterView.swift": "e32e727b1b62ac790e6274540f5ac20391c9c8fe1d81e37792140a7fb17efb45",
       "PelicanSaveEditor/Views/Editor/EditorShellView.swift": "4cd52f5d3405f17539929f685416068b7014e8b18a328a6f4adc402420b6d29d",
-      "PelicanSaveEditor/Views/Editor/EquipmentEditorView.swift": "01959036a06625f7720df6d42d47ebe0280b778107c167526d888ef05a620841",
+      "PelicanSaveEditor/Views/Editor/EquipmentEditorView.swift": "8ea581e9b32e748dbd0cb1355d88f3a814c6e570a75583f38411a2011689c485",
       "PelicanSaveEditor/Views/Editor/ExpandedEditorShell.swift": "7dfd072a006f4ed3c8eb9bb46e460bda698d325690158d0fabed4714ef183ca8",
       "PelicanSaveEditor/Views/Editor/FarmhouseEditorView.swift": "5751d68f21a39b651c19cc054fc3c59406be95795c5107c8df7bbb09b085758b",
       "PelicanSaveEditor/Views/Editor/InventoryEditorView.swift": "061b0445e40f347a72861e9eac523783dedfeb8b006cc69f99f473d724bc25ee",
@@ -262,7 +262,7 @@
       "PelicanSaveEditor/Views/Home/TrackerComponents.swift": "b3d279979ceca5797a1e9dac310514ce8c29b81d4990c32d3acd614fd5dc81e2",
       "PelicanSaveEditor/Views/Home/TrackerDetailView.swift": "ce9b8724f845a78dcdcf9994f42fb7fac9c812c40514b1b227bff9a3ef04d3af",
       "PelicanSaveEditor/Views/Home/TrackerView.swift": "6c16da6efed836630b1d7db5f16bd3c9d62c47e61039a8c94e580e28112c7363",
-      "PelicanSaveEditor/Views/Tools/CollectionLibraryView.swift": "cf2bc7667e68e8615972517ece822f749e7ab272f69bf06a7bc87d806647f6e9",
+      "PelicanSaveEditor/Views/Tools/CollectionLibraryView.swift": "7d4f4f4386e4be8ab67408d943de9348339e1d220531fa5fa5daebdeae3e5219",
       "PelicanSaveEditor/Views/Tools/CropCalculatorView.swift": "e56c9e1d9e777069134f161e320fe744fdf19069d7298db290c8c2311432e0b3",
       "PelicanSaveEditor/Views/Tools/FarmEntityListView.swift": "610c380b65eb45ba6de8b521d1149ad2f7d8671729f44265b3771dffb8196aec",
       "PelicanSaveEditor/Views/Tools/FarmMapAnalysisView.swift": "f7029fed6ac0ec390059ca400ecc9fce2e48b4a32e4c58c43bcc976ded07a1b0",
@@ -276,7 +276,7 @@
       "PelicanSaveEditorTests/WorldEditorTests.swift": "d95d44eec914e78d93da6ad227b27fb5ceaed75545060b304991d55b3893c96e",
       "PelicanSaveEditorUITests/AdaptiveLayoutUITests.swift": "9269f594634f5babb40b9d51e3a4bd70b920d24a42ee72cf23fe41899b7f5158",
       "PelicanSaveEditorUITests/ExpandedEditorUITests.swift": "cf5ec031eac5597d32474457561f5ea1caae9548286caaf17c8e421aae6f31a2",
-      "PelicanSaveEditorUITests/RepairEditorUITests.swift": "c2ae4fd26297dc56d03380d487a995e5b0dd046a593539d214cf96057b640c91",
+      "PelicanSaveEditorUITests/RepairEditorUITests.swift": "05be50982cd21feea6ad2d203d9deab05730f36615f373a385876160d5082f42",
       "PelicanSaveEditorUITests/TrackerSmokeUITests.swift": "cabcb123f38ee2a33d7a9ecafadad86dd996529e89bd3beb07b74bb91df5ff7d"
     },
     "source_counts": {

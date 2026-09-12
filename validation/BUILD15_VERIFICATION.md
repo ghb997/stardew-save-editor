@@ -10,16 +10,22 @@
 | Swift 语法扫描 | 88 个文件无语法错误；tree-sitter 0.26.0 / tree-sitter-swift 0.7.3，结果见 `swift-syntax-results.json` |
 | 配置和目录数据检查 | project.yml 及 3 个 workflow YAML 解析通过；博物馆候选数据确认为 95 项，见 `build15-supporting-checks.json` |
 | Shell 语法检查 | Git Bash 对 3 个 macOS 验证/构建脚本执行 `bash -n` 通过；未运行脚本中的 Xcode 命令 |
-| Swift 编译和类型检查 | 未执行；本机 Windows 没有 Xcode，`xcrun` 不可用 |
-| XCTest / XCUITest | 未执行；新增 31 个单元方法、4 个 UI 方法仅为待运行用例 |
-| 构建 15 IPA | 未生成 |
+| Swift 编译和类型检查 | Xcode 16.4 / SDK 18.5 的 Release 设备构建与 Debug 模拟器构建通过 |
+| XCTest / XCUITest | 两种 iPad 各 8 项 UI 已通过；iPhone 完整 173 项正在执行 |
+| 原生截图 | iPad mini 与 13 英寸 iPad Pro 共 10 张已审阅；见 build15-ui 下各设备清单 |
+| 构建 15 IPA | 已生成并校验，3,699,789 字节，未签名 |
 | 签名真机安装与游戏往返 | 未执行 |
 
 静态结果文件由本轮命令重新生成。语法扫描工具不支持 Swift 6 的 `sending` 返回限定词，扫描时保留位置并跳过这两个限定词，在结果中单独披露；不将其作为已通过类型检查的证据。
 
-## 云端构建阻挡
+## 云端构建与当前结果
 
-既有工程通过 GitHub Actions 的 macOS runner 构建。当前 `gh api user --jq .login` 返回 HTTP 401，Codex GitHub 连接器也处于未登录状态，因此本轮尚未推送或运行云端任务。恢复 GitHub 登录后，需要在当前修复分支运行完整测试与构建；旧版通过记录不能替代这一步。
+GitHub 授权已恢复，原生构建与测试对应提交 `cd325fa4e86f456481d2e03cf463fc861ee2937c`。此后的文档/validation 提交不修改应用和测试代码。
+
+- [Release 设备构建通过](https://github.com/ghb997/stardew-save-editor/actions/runs/34686632136)，元数据见 build15-device-build.json。
+- [两种 iPad 各 8 项 UI 通过](https://github.com/ghb997/stardew-save-editor/actions/runs/34686632117)，逐项结果见 build15-tests-mini.json 与 build15-tests-large.json。
+- [iPhone 完整测试正在执行](https://github.com/ghb997/stardew-save-editor/actions/runs/34686632113)，尚未发布通过结论。
+- 最终 IPA SHA-256：`4228234536f0b2d454c794244dd6e87041083c4264eece275d847e6d540bb736`。与三个参考应用的体积差异见 [大小对照](BUILD15_SIZE_COMPARISON.md)。
 
 ## 可重复验证
 
