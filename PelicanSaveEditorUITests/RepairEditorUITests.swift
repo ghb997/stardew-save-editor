@@ -40,7 +40,7 @@ final class RepairEditorUITests: XCTestCase {
         try reveal(error, app)
         XCTAssertTrue(error.label.contains("有效"), app.debugDescription)
         let field = app.textFields["equipment.field.minDamage"]
-        try tap(field, app)
+        try tap(field, app, downFirst: true)
         field.typeText("90")
         try tap(app.buttons["equipment.apply"], app)
         try reveal(error, app)
