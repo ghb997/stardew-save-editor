@@ -12,7 +12,7 @@ on:
         description: 'Full suite or all unit tests plus loading-related native UI regressions'
         required: false
         type: choice
-        options: [full, loading]
+        options: [full, loading, comprehensive]
         default: full
   push:
     branches:
@@ -29,7 +29,7 @@ jobs:
   verify-tracker:
     name: Debug simulator tests and Tracker screenshots
     runs-on: macos-15
-    timeout-minutes: 50
+    timeout-minutes: 80
     env:
       VALIDATION_OUTPUT_DIR: ${{ github.workspace }}/artifacts/tracker-verification/tests
       TRACKER_UI_OUTPUT_DIR: ${{ github.workspace }}/artifacts/tracker-verification/screenshots
@@ -79,7 +79,7 @@ jobs:
 
       - name: Build and run the native simulator test suite
         id: tests
-        timeout-minutes: 35
+        timeout-minutes: 60
         shell: bash
         run: |
           set -euo pipefail

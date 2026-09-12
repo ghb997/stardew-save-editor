@@ -21,6 +21,7 @@ struct ToolsView: View {
     @State private var showingSwitchConfirmation = false
     @State private var showingReloadConfirmation = false
     @State private var selectedUtilityTool: SaveUtilityTool?
+    @State private var selectedExpansion: ExpandedEditorTool?
 
     var body: some View {
         VStack(spacing: 0) {
@@ -57,6 +58,11 @@ struct ToolsView: View {
                                     selectedEditorSection = section
                                 }
                                 .accessibilityIdentifier("editor.tool.\(section.rawValue)")
+                            }
+                            ForEach(ExpandedEditorTool.allCases) { tool in
+                                ToolRowButton(title: tool.title, subtitle: tool.subtitle, systemImage: tool.symbol,
+                                              iconColor: .teal) { selectedExpansion = tool }
+                                    .accessibilityIdentifier("editor.tool.\(tool.rawValue)")
                             }
                         }
                     } else {
@@ -216,6 +222,10 @@ struct ToolsView: View {
                     GameEmptyState(title: "请先加载农场", systemImage: "externaldrive.badge.plus")
                 }
             }
+        }
+        .fullScreenCover(item: $selectedExpansion) { tool in
+            if let session = store.session { ExpandedEditorShell(session: session, tool: tool) }
+            else { GameEmptyState(title: "请先加载农场", systemImage: "externaldrive.badge.plus") }
         }
     }
 

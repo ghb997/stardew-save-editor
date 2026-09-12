@@ -7,7 +7,7 @@ enum DebugDemoSave {
         itemCatalog: [CatalogItem],
         recipeCatalog: [RecipeKind: [String]]
     ) throws -> SaveSession {
-        let data = Data(xml.utf8)
+        let data = Data((ProcessInfo.processInfo.arguments.contains("--ui-expanded") ? ExpandedEditorFixture.xml : xml).utf8)
         let pair = SavePairData(main: data, info: nil)
         let parsed = try SaveParser.parse(
             mainData: data,

@@ -116,6 +116,12 @@ printf '\nRunning the shared scheme test suite…\n'
 TEST_SELECTION=()
 case "${VALIDATION_TEST_SCOPE:-full}" in
     full) ;;
+    comprehensive)
+        TEST_SELECTION=(
+            -only-testing:PelicanSaveEditorTests
+            -only-testing:PelicanSaveEditorUITests/ExpandedEditorUITests
+        )
+        ;;
     loading)
         TEST_SELECTION=(
             -only-testing:PelicanSaveEditorTests
@@ -124,7 +130,7 @@ case "${VALIDATION_TEST_SCOPE:-full}" in
             -only-testing:PelicanSaveEditorUITests/TrackerSmokeUITests/testMapScopedWaterPreviewPendingLocateAndUndo
         )
         ;;
-    *) fail "Unknown VALIDATION_TEST_SCOPE; use full or loading." ;;
+    *) fail "Unknown VALIDATION_TEST_SCOPE; use full, comprehensive or loading." ;;
 esac
 printf 'Test scope: %s\n' "${VALIDATION_TEST_SCOPE:-full}" | tee "$RUN_DIR/test-scope.txt"
 if xcodebuild "${BUILD_ARGUMENTS[@]}" \

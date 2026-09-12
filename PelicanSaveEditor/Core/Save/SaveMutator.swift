@@ -32,6 +32,7 @@ enum SaveMutator {
         }
         applyPlayerScalars(draft, original: parsed.draft, to: player)
         applyDate(draft, original: parsed.draft, root: main, player: player)
+        try ExpandedEditorChanges.apply(draft, original: parsed.draft, to: main)
         if draft.inventory != parsed.draft.inventory {
             try applyInventory(draft.inventory, original: parsed.draft.inventory, to: player)
         }
@@ -90,6 +91,7 @@ enum SaveMutator {
     }
 
     static func validate(_ draft: SaveDraft, comparedTo original: SaveDraft? = nil) throws {
+        if let original { try ExpandedEditorChanges.validate(draft, original: original) }
         func shouldValidate<T: Equatable>(_ value: T, originalValue: T?) -> Bool {
             guard let originalValue else { return true }
             return value != originalValue

@@ -83,6 +83,18 @@
 		7F9A4496C4E322E63A0DBAF0 /* AdaptiveLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A64E6E0CBA064AB7760B79 /* AdaptiveLayout.swift */; };
 		BB18E8C1BE3BDE69CB73868E /* FarmLoadSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7987E5434DD3443300DA14 /* FarmLoadSheet.swift */; };
 		EF1A190B9B8D101BDDEB997D /* AdaptiveLayoutUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3C6325B893003F657DE85C /* AdaptiveLayoutUITests.swift */; };
+		90E6FFBA4F3EA5D06D6E084E /* ExpandedEditorFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D2F1FEC469C9C584F3702 /* ExpandedEditorFixture.swift */; };
+		7606E92290582537F48984AF /* ExpandedEditorChanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66471167A509671E039080F /* ExpandedEditorChanges.swift */; };
+		559808312E64E76CEA5A4F28 /* CommunityBundles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39026008516F9DA2795DFFD1 /* CommunityBundles.swift */; };
+		0CD04555FD41E14E379C6ABA /* StorageEditorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66EF4C8FAA61D4CE793947B /* StorageEditorData.swift */; };
+		90B9FBBCB138703EBD6FF22D /* WorldEditorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9830AB49E67037FF4C5EA93 /* WorldEditorData.swift */; };
+		DADD058F5FD411284E1A96F5 /* CommunityCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C38424B7DA62B56DBA042E /* CommunityCenterView.swift */; };
+		4EFF96F38EF47EDF0873F2D4 /* ExpandedEditorShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335CF887CD17B063F1EEFA6D /* ExpandedEditorShell.swift */; };
+		03208CF12172D41FB3C0C07A /* MachinesEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3D8A735B1D0B95E6C20816 /* MachinesEditorView.swift */; };
+		AB46A44038B6B7FE414D58BC /* StorageEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5208611BDE78685A94D1128A /* StorageEditorView.swift */; };
+		6065999ABB94A6C0645E9146 /* WeatherEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F6E2AACB69ECA6113547BD /* WeatherEditorView.swift */; };
+		6261AE855FA9F726231A6BAF /* ExpandedEditorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7FFA038641E80A3A7330A1 /* ExpandedEditorTests.swift */; };
+		B29900D610AC94C4762C3962 /* ExpandedEditorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E731A96492DF8A89BDB21557 /* ExpandedEditorUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -176,6 +188,18 @@
 		D9A64E6E0CBA064AB7760B79 /* AdaptiveLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Components/AdaptiveLayout.swift"; sourceTree = SOURCE_ROOT; };
 		8F7987E5434DD3443300DA14 /* FarmLoadSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Components/FarmLoadSheet.swift"; sourceTree = SOURCE_ROOT; };
 		BA3C6325B893003F657DE85C /* AdaptiveLayoutUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditorUITests/AdaptiveLayoutUITests.swift"; sourceTree = SOURCE_ROOT; };
+		4F7D2F1FEC469C9C584F3702 /* ExpandedEditorFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/App/ExpandedEditorFixture.swift"; sourceTree = SOURCE_ROOT; };
+		F66471167A509671E039080F /* ExpandedEditorChanges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Core/Save/ExpandedEditorChanges.swift"; sourceTree = SOURCE_ROOT; };
+		39026008516F9DA2795DFFD1 /* CommunityBundles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Models/CommunityBundles.swift"; sourceTree = SOURCE_ROOT; };
+		B66EF4C8FAA61D4CE793947B /* StorageEditorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Models/StorageEditorData.swift"; sourceTree = SOURCE_ROOT; };
+		E9830AB49E67037FF4C5EA93 /* WorldEditorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Models/WorldEditorData.swift"; sourceTree = SOURCE_ROOT; };
+		53C38424B7DA62B56DBA042E /* CommunityCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Editor/CommunityCenterView.swift"; sourceTree = SOURCE_ROOT; };
+		335CF887CD17B063F1EEFA6D /* ExpandedEditorShell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Editor/ExpandedEditorShell.swift"; sourceTree = SOURCE_ROOT; };
+		6A3D8A735B1D0B95E6C20816 /* MachinesEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Editor/MachinesEditorView.swift"; sourceTree = SOURCE_ROOT; };
+		5208611BDE78685A94D1128A /* StorageEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Editor/StorageEditorView.swift"; sourceTree = SOURCE_ROOT; };
+		D0F6E2AACB69ECA6113547BD /* WeatherEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Editor/WeatherEditorView.swift"; sourceTree = SOURCE_ROOT; };
+		CD7FFA038641E80A3A7330A1 /* ExpandedEditorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditorTests/ExpandedEditorTests.swift"; sourceTree = SOURCE_ROOT; };
+		E731A96492DF8A89BDB21557 /* ExpandedEditorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditorUITests/ExpandedEditorUITests.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -211,6 +235,18 @@
 				D9A64E6E0CBA064AB7760B79 /* AdaptiveLayout.swift */,
 				8F7987E5434DD3443300DA14 /* FarmLoadSheet.swift */,
 				BA3C6325B893003F657DE85C /* AdaptiveLayoutUITests.swift */,
+				4F7D2F1FEC469C9C584F3702 /* ExpandedEditorFixture.swift */,
+				F66471167A509671E039080F /* ExpandedEditorChanges.swift */,
+				39026008516F9DA2795DFFD1 /* CommunityBundles.swift */,
+				B66EF4C8FAA61D4CE793947B /* StorageEditorData.swift */,
+				E9830AB49E67037FF4C5EA93 /* WorldEditorData.swift */,
+				53C38424B7DA62B56DBA042E /* CommunityCenterView.swift */,
+				335CF887CD17B063F1EEFA6D /* ExpandedEditorShell.swift */,
+				6A3D8A735B1D0B95E6C20816 /* MachinesEditorView.swift */,
+				5208611BDE78685A94D1128A /* StorageEditorView.swift */,
+				D0F6E2AACB69ECA6113547BD /* WeatherEditorView.swift */,
+				CD7FFA038641E80A3A7330A1 /* ExpandedEditorTests.swift */,
+				E731A96492DF8A89BDB21557 /* ExpandedEditorUITests.swift */,
 				52A33A42251270FA0061402D /* PelicanSaveEditor */,
 				D5CA3286FD20ABA40A3A831D /* PelicanSaveEditorTests */,
 				26115F3A720144889AA40005 /* PelicanSaveEditorUITests */,
@@ -509,6 +545,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B29900D610AC94C4762C3962 /* ExpandedEditorUITests.swift in Sources */,
 				EF1A190B9B8D101BDDEB997D /* AdaptiveLayoutUITests.swift in Sources */,26115F3A720144889AA40002 /* TrackerSmokeUITests.swift in Sources */,);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,6 +553,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6261AE855FA9F726231A6BAF /* ExpandedEditorTests.swift in Sources */,
 				2CF618BAE0F9C28AFD0E45B6 /* WorldEditorTests.swift in Sources */,
 				791D7F8EBA45F74FC4D58BC1 /* ReferenceFeatureTests.swift in Sources */,
 				AE16FF0007954354FC96EF9A /* TransactionRegressionTests.swift in Sources */,
@@ -529,6 +567,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6065999ABB94A6C0645E9146 /* WeatherEditorView.swift in Sources */,
+				AB46A44038B6B7FE414D58BC /* StorageEditorView.swift in Sources */,
+				03208CF12172D41FB3C0C07A /* MachinesEditorView.swift in Sources */,
+				4EFF96F38EF47EDF0873F2D4 /* ExpandedEditorShell.swift in Sources */,
+				DADD058F5FD411284E1A96F5 /* CommunityCenterView.swift in Sources */,
+				90B9FBBCB138703EBD6FF22D /* WorldEditorData.swift in Sources */,
+				0CD04555FD41E14E379C6ABA /* StorageEditorData.swift in Sources */,
+				559808312E64E76CEA5A4F28 /* CommunityBundles.swift in Sources */,
+				7606E92290582537F48984AF /* ExpandedEditorChanges.swift in Sources */,
+				90E6FFBA4F3EA5D06D6E084E /* ExpandedEditorFixture.swift in Sources */,
 				BB18E8C1BE3BDE69CB73868E /* FarmLoadSheet.swift in Sources */,
 				7F9A4496C4E322E63A0DBAF0 /* AdaptiveLayout.swift in Sources */,
 				BFA1743F18C01A6EBCFFD4BA /* AppearanceColors.swift in Sources */,
@@ -642,7 +690,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -663,7 +711,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.5.2;
+				MARKETING_VERSION = 0.6.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -712,7 +760,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -727,7 +775,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.5.2;
+				MARKETING_VERSION = 0.6.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";

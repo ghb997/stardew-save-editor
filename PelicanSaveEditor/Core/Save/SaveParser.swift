@@ -123,7 +123,7 @@ enum SaveParser {
             )
         }
 
-        let draft = SaveDraft(
+        var draft = SaveDraft(
             playerName: player.value(named: "name") ?? "",
             farmName: player.value(named: "farmName") ?? "",
             favoriteThing: player.value(named: "favoriteThing") ?? "",
@@ -151,6 +151,12 @@ enum SaveParser {
                 AppearanceColorCodec.read(field, from: player).map { (field, $0) }
             })
         )
+
+        let worldObjects = WorldObjectIndex.collect(mainRoot)
+        draft.storages = StorageEditorRules.extract(worldObjects, catalog: catalogByID)
+        draft.machines = MachineEditorRules.extract(worldObjects, catalog: catalogByID)
+        draft.weatherAndLuck = WeatherAndLuckDraft.extract(mainRoot)
+        draft.communityCenter = CommunityCenterData.extract(mainRoot)
 
         return ParsedSaveDocument(
             mainRoot: mainRoot,

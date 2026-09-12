@@ -467,6 +467,10 @@ struct SaveDraft: Equatable, Sendable {
     /// Keep originally serialized slots, including empty or extended slots.
     var inventorySlotFloor: Int = 0
     var appearanceColors: [FarmerColorField: FarmerColor] = [:]
+    var storages: [StorageDraft] = []
+    var machines: [MachineDraft] = []
+    var weatherAndLuck = WeatherAndLuckDraft()
+    var communityCenter = CommunityCenterData()
 }
 
 extension SaveDraft {

@@ -278,6 +278,7 @@ enum SaveDiffBuilder {
             )
         }
 
+        result.append(contentsOf: ExpandedEditorChanges.diffs(original: original, draft: draft))
         return result
     }
 
@@ -293,6 +294,10 @@ enum SaveDiffBuilder {
     /// Undo one displayed change using the immutable baseline. Coupled skill
     /// level/XP/profession values are restored together to remain consistent.
     static func undo(_ diff: SaveDiff, original: SaveDraft, draft: inout SaveDraft) {
+        if diff.id.hasPrefix("storage:") || diff.id.hasPrefix("machine:") || diff.id.hasPrefix("weather:") {
+            ExpandedEditorChanges.undo(diff.id, original: original, draft: &draft)
+            return
+        }
         switch diff.id {
         case "player.name": draft.playerName = original.playerName
         case "player.farm": draft.farmName = original.farmName
