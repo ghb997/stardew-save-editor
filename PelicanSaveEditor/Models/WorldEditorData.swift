@@ -201,7 +201,7 @@ struct WeatherAndLuckDraft: Equatable, Sendable {
 }
 
 struct MachineDraft: Identifiable, Equatable, Sendable {
-    var id: String { path.id }
+    var id: String { "\(path.id)|\(location)|\(coordinate)" }
     let path: SaveNodePath
     let name: String
     let location: String

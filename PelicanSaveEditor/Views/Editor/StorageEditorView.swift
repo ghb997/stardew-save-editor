@@ -98,6 +98,9 @@ private struct StorageContentsView: View {
                         .accessibilityIdentifier("storage.restore")
                     }
                 }
+            } else {
+                ContentUnavailableView("容器列表已更新", systemImage: "arrow.clockwise",
+                    description: Text("保存后地点记录可能重新排序，请返回容器列表重新选择。"))
             }
         }
         .navigationTitle(storage?.title ?? "容器").navigationBarTitleDisplayMode(.inline)

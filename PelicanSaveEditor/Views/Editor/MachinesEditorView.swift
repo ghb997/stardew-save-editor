@@ -58,7 +58,9 @@ struct MachinesEditorView: View {
             .onChange(of: search) { _, _ in selected = selected.intersection(selectable) }
             .onChange(of: filter) { _, _ in selected = selected.intersection(selectable) }
         }
-        .sheet(item: $preview) { selection in MachineFinishPreview(session: session, ids: selection.ids) }
+        .sheet(item: $preview) { selection in
+            MachineFinishPreview(session: session, ids: selection.ids) { selected = [] }
+        }
     }
 }
 
@@ -66,6 +68,7 @@ private struct MachineFinishPreview: View {
     @Environment(\.dismiss) private var dismiss
     @Bindable var session: SaveSession
     let ids: Set<String>
+    let onApplied: () -> Void
     private var targets: [MachineDraft] { session.draft.machines.filter { ids.contains($0.id) && $0.canFinish && !$0.finish } }
     var body: some View {
         NavigationStack {
@@ -89,7 +92,7 @@ private struct MachineFinishPreview: View {
                     Button("加入草稿") {
                         let current = Set(targets.map(\.id))
                         for i in session.draft.machines.indices where current.contains(session.draft.machines[i].id) { session.draft.machines[i].finish = true }
-                        dismiss()
+                        onApplied(); dismiss()
                     }.disabled(targets.isEmpty).accessibilityIdentifier("machines.apply")
                 }
             }

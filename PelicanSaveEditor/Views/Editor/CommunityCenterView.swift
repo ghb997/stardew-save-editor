@@ -69,7 +69,9 @@ struct CommunityCenterView: View {
             .onChange(of: area) { _, _ in selected = selected.intersection(visibleIDs) }
             .onChange(of: incompleteOnly) { _, _ in selected = selected.intersection(visibleIDs) }
         }
-        .sheet(item: $preview) { selection in BundleSupplyPreview(session: session, catalog: catalog, ids: selection.ids) }
+        .sheet(item: $preview) { selection in
+            BundleSupplyPreview(session: session, catalog: catalog, ids: selection.ids) { selected = []; error = nil }
+        }
     }
     private func prepare() {
         do {
@@ -121,6 +123,7 @@ private struct BundleSupplyPreview: View {
     @Bindable var session: SaveSession
     let catalog: [CatalogItem]
     let ids: Set<String>
+    let onApplied: () -> Void
     @State private var error: String?
     private var lines: [BundleSupplyLine] { (try? BundleSupplyRules.plan(ids: ids, draft: session.draft, catalog: catalog)) ?? [] }
     var body: some View {
@@ -152,7 +155,7 @@ private struct BundleSupplyPreview: View {
                         do {
                             var draft = session.draft
                             try BundleSupplyRules.apply(ids: ids, to: &draft, catalog: catalog)
-                            session.draft = draft; dismiss()
+                            session.draft = draft; onApplied(); dismiss()
                         } catch { self.error = error.localizedDescription }
                     }.disabled(lines.isEmpty).accessibilityIdentifier("bundles.apply")
                 }

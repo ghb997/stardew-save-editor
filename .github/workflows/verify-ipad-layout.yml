@@ -2,6 +2,12 @@ name: Verify iPad adaptive layouts
 
 on:
   workflow_dispatch:
+    inputs:
+      test_scope:
+        description: 'Existing layout suite, or the four new editor flows on both iPad sizes'
+        type: choice
+        options: [layout, expanded]
+        default: layout
   push:
     branches: ['codex/ipad-layout-*']
 
@@ -16,7 +22,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        device: [mini, large, iphone]
+        device: ${{ fromJSON(inputs.test_scope == 'expanded' && '["mini", "large"]' || '["mini", "large", "iphone"]') }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -43,6 +49,7 @@ jobs:
       - name: Build and test layouts
         env:
           LAYOUT_DEVICE: ${{ matrix.device }}
+          LAYOUT_SCOPE: ${{ inputs.test_scope || 'layout' }}
         run: bash scripts/validate-layout-on-macos.sh
       - name: Export screenshots and test summary
         if: always()

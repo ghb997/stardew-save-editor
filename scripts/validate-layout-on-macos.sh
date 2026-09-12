@@ -36,7 +36,9 @@ args=(
     -derivedDataPath artifacts/ipad-layout/DerivedData -parallel-testing-enabled NO
     -resultBundlePath artifacts/ipad-layout/tests.xcresult CODE_SIGNING_ALLOWED=NO
 )
-if [[ "${LAYOUT_DEVICE:-mini}" != iphone ]]; then
+if [[ "${LAYOUT_SCOPE:-layout}" == expanded ]]; then
+    args+=(-only-testing:PelicanSaveEditorUITests/ExpandedEditorUITests)
+elif [[ "${LAYOUT_DEVICE:-mini}" != iphone ]]; then
     args+=(-only-testing:PelicanSaveEditorTests -only-testing:PelicanSaveEditorUITests/AdaptiveLayoutUITests)
     args+=(-only-testing:PelicanSaveEditorUITests/TrackerSmokeUITests/testAllElevenModulesOpenAndClose)
     args+=(-only-testing:PelicanSaveEditorUITests/TrackerSmokeUITests/testOverviewFiltersAndGroupExpansion)
