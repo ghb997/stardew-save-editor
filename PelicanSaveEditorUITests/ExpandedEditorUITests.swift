@@ -33,7 +33,7 @@ final class ExpandedEditorUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["0.1000"].waitForExistence(timeout: 10))
         screenshot("build14-weather-luck", app)
         try tap(app.buttons["weather.luck.restore"], app)
-        XCTAssertTrue(app.staticTexts["0.0250"].exists)
+        XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label == %@", "0.0250")).firstMatch.exists)
         try tap(app.buttons["weather.region.Default"], app)
         try tap(app.buttons["雷雨"], app)
         XCTAssertTrue(app.staticTexts["原始：雨天 → 草稿：雷雨"].waitForExistence(timeout: 10))

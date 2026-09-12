@@ -160,7 +160,9 @@ final class ExpandedEditorTests: XCTestCase {
         for xml in [
             ExpandedEditorFixture.xml.replacingOccurrences(of: ">Rain<", with: ">GreenRain<"),
             ExpandedEditorFixture.xml.replacingOccurrences(of: "<weatherForTomorrow>Rain</weatherForTomorrow><dailyLuck>", with: "<weatherForTomorrow>Sun</weatherForTomorrow><dailyLuck>"),
-            ExpandedEditorFixture.xml.replacingOccurrences(of: "<weatherForTomorrow>Rain</weatherForTomorrow><dailyLuck>", with: "<weatherForTomorrow>Rain</weatherForTomorrow><weatherForTomorrow>Rain</weatherForTomorrow><dailyLuck>")
+            ExpandedEditorFixture.xml.replacingOccurrences(of: "<weatherForTomorrow>Rain</weatherForTomorrow><dailyLuck>", with: "<weatherForTomorrow>Rain</weatherForTomorrow><weatherForTomorrow>Rain</weatherForTomorrow><dailyLuck>"),
+            ExpandedEditorFixture.xml.replacingOccurrences(of: "<LocationWeather><weatherForTomorrow>Rain</weatherForTomorrow>", with: "<LocationWeather>"),
+            ExpandedEditorFixture.xml.replacingOccurrences(of: "<locationWeather>", with: "<locationWeather><item><key><string>Default</string></key><value><LocationWeather><weatherForTomorrow>Rain</weatherForTomorrow></LocationWeather></value></item>")
         ] {
             let parsed = try parse(xml)
             XCTAssertFalse(parsed.draft.weatherAndLuck.regions.contains { $0.id == "Default" })

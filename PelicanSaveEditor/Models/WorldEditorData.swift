@@ -60,7 +60,8 @@ struct LocatedWorldObject {
 enum WorldObjectIndex {
     /// One traversal confined to world locations; never visits player inventories.
     static func collect(_ root: XMLNode) -> [LocatedWorldObject] {
-        guard let index = root.children.firstIndex(where: { $0.name == "locations" }) else { return [] }
+        guard root.children(named: "locations").count == 1,
+              let index = root.children.firstIndex(where: { $0.name == "locations" }) else { return [] }
         var result: [LocatedWorldObject] = []
         func walk(_ node: XMLNode, path: SaveNodePath, location: String) {
             let location = ExistingSaveValue.field("name", in: node).flatMap { name in
@@ -144,9 +145,9 @@ struct WeatherAndLuckDraft: Equatable, Sendable {
     static func extract(_ root: XMLNode) -> Self {
         var result = Self()
         var fields: [String: [WeatherField]] = [:]
-        func record(_ parent: XMLNode, path: SaveNodePath, region: String) {
+        func record(_ parent: XMLNode, path: SaveNodePath, region: String, required: Bool = false) {
             let matches = parent.children(named: "weatherForTomorrow")
-            guard !matches.isEmpty else { return }
+            if matches.isEmpty && !required { return }
             guard matches.count == 1,
                   let i = parent.children.firstIndex(where: { $0.name == "weatherForTomorrow" }) else {
                 fields[region, default: []].append(WeatherField(path: path, raw: "重复字段")); return
@@ -163,14 +164,22 @@ struct WeatherAndLuckDraft: Equatable, Sendable {
             let wrapped = container.children.count == 1 && container.children[0].name.hasPrefix("SerializableDictionary")
             let dictionary = wrapped ? container.children[0] : container
             let base = wrapped ? SaveNodePath(indices: [i, 0]) : SaveNodePath(indices: [i])
+            let keys = dictionary.children.compactMap { $0.child(named: "key")?.value(named: "string") }
+            let keyCounts = Dictionary(keys.map { ($0, 1) }, uniquingKeysWith: +)
             for (j, entry) in dictionary.children.enumerated() where entry.name == "item" {
                 guard let key = entry.child(named: "key")?.value(named: "string"),
-                      ["Default", "Island"].contains(key),
+                      ["Default", "Island"].contains(key) else { continue }
+                guard keyCounts[key] == 1, entry.children(named: "key").count == 1,
+                      entry.children(named: "value").count == 1,
                       let v = entry.children.firstIndex(where: { $0.name == "value" }),
-                      entry.children[v].children.count == 1 else { continue }
+                      entry.children[v].children.count == 1 else {
+                    fields[key, default: []].append(WeatherField(path: base.child(j), raw: "天气上下文结构不明")); continue
+                }
                 let weather = entry.children[v].children[0]
-                guard weather.name == "LocationWeather" else { continue }
-                record(weather, path: base.child(j).child(v).child(0), region: key)
+                guard weather.name == "LocationWeather", ExistingSaveValue.bool(weather.attributes["xsi:nil"] ?? weather.attributes["nil"]) != true else {
+                    fields[key, default: []].append(WeatherField(path: base.child(j), raw: "未知天气上下文")); continue
+                }
+                record(weather, path: base.child(j).child(v).child(0), region: key, required: true)
             }
         }
         for key in fields.keys.sorted() {

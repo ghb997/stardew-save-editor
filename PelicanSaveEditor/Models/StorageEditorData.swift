@@ -20,7 +20,7 @@ enum StorageEditorRules {
     static func extract(_ objects: [LocatedWorldObject], catalog: [String: CatalogItem]) -> [StorageDraft] {
         objects.compactMap { object in
             let node = object.node
-            guard ExistingSaveValue.type(node) == "Chest" || object.isFridge,
+            guard ExistingSaveValue.type(node) == "Chest" || (object.isFridge && ExistingSaveValue.type(node) == "fridge"),
                   node.children(named: "items").count == 1, let items = node.child(named: "items") else { return nil }
             let itemID = ExistingSaveValue.field("itemId", in: node) ?? ExistingSaveValue.field("parentSheetIndex", in: node) ?? ""
             let big = ["BigChest", "BigStoneChest"].contains(itemID)
@@ -33,7 +33,8 @@ enum StorageEditorRules {
             let supportedID = object.isFridge || ["130", "232", "216", "BigChest", "BigStoneChest"].contains(itemID)
             let supportedSpecial = special == nil && node.child(named: "specialChestType") == nil
                 || ["None", "0"].contains(special ?? "") || (big && special == "BigChest")
-            let known = supportedID && supportedSpecial && !isShared
+            let known = supportedID && supportedSpecial && !isShared && node.children(named: "globalInventoryId").count <= 1
+                && ExistingSaveValue.bool(node.attributes["xsi:nil"] ?? node.attributes["nil"]) != true
                 && (object.isFridge || ExistingSaveValue.bool(ExistingSaveValue.field("playerChest", in: node)) == true)
             let itemNodes = items.children(named: "Item")
             let structurallyValid = ExistingSaveValue.bool(items.attributes["xsi:nil"] ?? items.attributes["nil"]) != true
@@ -117,7 +118,8 @@ enum StorageEditorRules {
             guard let item = slot.item else {
                 updated.append(XMLNode(name: "Item", attributes: ["xsi:nil": "true"])); continue
             }
-            let fragment = try XMLTreeParser().parseFragment(item.templateXML)
+            let wrapper = "<Fragment xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\(item.templateXML)</Fragment>"
+            let fragment = try XMLTreeParser().parse(Data(wrapper.utf8))
             guard let itemNode = fragment.children.first, itemNode.name == "Item" else {
                 throw SaveValidationError.invalid("容器物品模板无法解析。")
             }
