@@ -12,7 +12,10 @@ final class RepairEditorUITests: XCTestCase {
         try tap(app.buttons["铱"], app)
         try tap(app.buttons["equipment.apply"], app)
         try tap(app.buttons["editor.review.open"], app)
-        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: "label CONTAINS %@", "升级等级")).firstMatch.waitForExistence(timeout: 10))
+        let diff = app.cells.containing(.staticText, identifier: "背包第 1 格 · Axe · 升级等级").firstMatch
+        try reveal(diff, app, fullyVisible: true)
+        XCTAssertTrue(diff.staticTexts["1"].exists)
+        XCTAssertTrue(diff.staticTexts["4"].exists)
         screenshot("build15-equipment-review", app)
     }
 
@@ -25,6 +28,7 @@ final class RepairEditorUITests: XCTestCase {
         try tap(app.buttons["铱"], app)
         try tap(app.buttons["取消"], app)
         try tap(app.buttons["editor.review.open"], app)
+        try reveal(app.staticTexts["没有待保存的更改"], app, fullyVisible: true)
         XCTAssertTrue(app.staticTexts["没有待保存的更改"].waitForExistence(timeout: 10))
         screenshot("build15-equipment-cancel", app)
     }
@@ -70,9 +74,10 @@ final class RepairEditorUITests: XCTestCase {
         try tap(app.buttons["完成"], app)
         try tap(app.buttons["editor.review.open"], app)
         // The compatibility warnings precede the lazy diff rows on compact phones.
-        try reveal(app.staticTexts["槽位 3"], app)
-        try reveal(app.staticTexts["矮人卷轴 II ×1（普通）"], app)
-        XCTAssertTrue(app.staticTexts["槽位 3"].exists)
+        let diff = app.cells.containing(.staticText, identifier: "槽位 3").firstMatch
+        try reveal(diff, app, fullyVisible: true)
+        XCTAssertTrue(diff.staticTexts["空"].exists)
+        XCTAssertTrue(diff.staticTexts["矮人卷轴 II ×1（普通）"].exists)
         screenshot("build15-collection-review", app)
     }
 
@@ -98,9 +103,17 @@ final class RepairEditorUITests: XCTestCase {
     }
 
     @MainActor
-    private func reveal(_ element: XCUIElement, _ app: XCUIApplication, attempts: Int = 12, downFirst: Bool = false) throws {
+    private func reveal(_ element: XCUIElement, _ app: XCUIApplication, attempts: Int = 12,
+                        downFirst: Bool = false, fullyVisible: Bool = false) throws {
         for _ in 0..<attempts {
-            if element.exists && element.isHittable { return }
+            if element.exists && element.isHittable {
+                if !fullyVisible { return }
+                let navigationBar = app.navigationBars["检查更改"]
+                let top = navigationBar.exists ? navigationBar.frame.maxY : app.frame.minY
+                let viewport = CGRect(x: app.frame.minX, y: top + 4, width: app.frame.width,
+                                      height: max(0, app.frame.maxY - top - 12))
+                if viewport.contains(element.frame) { return }
+            }
             let keyboardReturn = app.buttons["global.keyboardReturn.button"]
             if keyboardReturn.exists && keyboardReturn.isHittable {
                 keyboardReturn.tap()

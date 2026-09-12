@@ -9,10 +9,10 @@ on:
         type: boolean
         default: true
       test_scope:
-        description: 'Full suite or all unit tests plus loading-related native UI regressions'
+        description: 'Full suite, focused loading/expanded regressions, or the four repair UI flows'
         required: false
         type: choice
-        options: [full, loading, comprehensive]
+        options: [full, loading, comprehensive, repair]
         default: full
   push:
     branches:
