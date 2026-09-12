@@ -28,4 +28,4 @@
 
 最终交付目录中包含 IPA、源码 ZIP、从构建 14 到构建 15 的补丁、文件摘要及验证记录。`BUILD15-DELIVERY.json` 记录源码与编译测试提交的对应关系，`SHA256SUMS.txt` 可用于核对文件完整性。完整修复范围见源码中的 `COMPLETE_REPAIR.md`；安装包体积原因见 `validation/BUILD15_SIZE_COMPARISON.md`。
 
-交付目录的 `validation/native-logs/` 保留三台模拟器的原始测试日志，其 SHA-256 与逐项测试报告相互对应。
+交付目录的 `validation/native-logs/` 保留 iPhone 全量、iPhone 修复 UI 复验和两种 iPad 共四份原始测试日志，其 SHA-256 与逐项报告相互对应。原 iPhone 全量中的三项导航失败完整保留，最终覆盖由未变的 169 项和后续整组通过的 4 项组合核对。

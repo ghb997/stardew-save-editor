@@ -1,0 +1,1326 @@
+{
+  "status": "passed_by_split_coverage",
+  "compiled_source_commit": "a0a0a7e0422adfd5d5e15dd1cc122a4f8cab0b34",
+  "repair_test_source_commit": "7453365bdb06f95676ae788b54742e0808c0cf2c",
+  "device": {
+    "udid": "48B2DA2E-AF18-4E36-BB25-B25969A4EBCF",
+    "name": "iPhone SE (3rd generation)",
+    "state": "Shutdown",
+    "runtime": "com.apple.CoreSimulator.SimRuntime.iOS-26-2",
+    "iOSVersion": "26.2"
+  },
+  "single_full_iphone_suite_passed": false,
+  "full_run_status": "failed",
+  "full_run_outcomes": {
+    "passed": 170,
+    "failed": 3
+  },
+  "total_unique_tests": 173,
+  "counts_by_class": {
+    "AdaptiveLayoutUITests": 7,
+    "ExpandedEditorUITests": 4,
+    "TrackerSmokeUITests": 10,
+    "ExpandedEditorTests": 23,
+    "GameLogicRegressionTests": 10,
+    "ReferenceFeatureTests": 14,
+    "RepairRegressionTests": 31,
+    "SaveCoreTests": 36,
+    "TrackerMetricsTests": 7,
+    "TransactionRegressionTests": 9,
+    "WorldEditorTests": 18,
+    "RepairEditorUITests": 4
+  },
+  "unchanged_methods_from_full_run": 169,
+  "methods_from_complete_repair_retest": 4,
+  "superseded_cohort": "RepairEditorUITests",
+  "superseded_failed_methods": [
+    {
+      "class": "RepairEditorUITests",
+      "method": "testEquipmentCancelLeavesDraftUnchanged",
+      "result": "failed",
+      "seconds": 37.029
+    },
+    {
+      "class": "RepairEditorUITests",
+      "method": "testToolUpgradeCreatesReviewDiff",
+      "result": "failed",
+      "seconds": 39.204
+    },
+    {
+      "class": "RepairEditorUITests",
+      "method": "testWeaponInvalidInputAndRestore",
+      "result": "failed",
+      "seconds": 42.959
+    }
+  ],
+  "runtime_sources_identical_to_release_build": true,
+  "other_test_sources_identical_to_full_run": true,
+  "repair_test_source_identical_to_retest": true,
+  "evidence_runs": [
+    {
+      "report": "build15-tests-iphone-full.json",
+      "url": "https://github.com/ghb997/stardew-save-editor/actions/runs/34688653688",
+      "source_commit": "a0a0a7e0422adfd5d5e15dd1cc122a4f8cab0b34",
+      "job_id": 103540124554,
+      "status": "failed",
+      "outcomes": {
+        "passed": 170,
+        "failed": 3
+      }
+    },
+    {
+      "report": "build15-tests-iphone-repair.json",
+      "url": "https://github.com/ghb997/stardew-save-editor/actions/runs/34690602507",
+      "source_commit": "7453365bdb06f95676ae788b54742e0808c0cf2c",
+      "job_id": 103545037121,
+      "status": "passed",
+      "outcomes": {
+        "passed": 4
+      }
+    },
+    {
+      "report": "build15-tests-mini.json",
+      "url": "https://github.com/ghb997/stardew-save-editor/actions/runs/34688577619",
+      "source_commit": "a0a0a7e0422adfd5d5e15dd1cc122a4f8cab0b34",
+      "job_id": 103539779525,
+      "status": "passed",
+      "outcomes": {
+        "passed": 8
+      }
+    },
+    {
+      "report": "build15-tests-large.json",
+      "url": "https://github.com/ghb997/stardew-save-editor/actions/runs/34688577619",
+      "source_commit": "a0a0a7e0422adfd5d5e15dd1cc122a4f8cab0b34",
+      "job_id": 103539779573,
+      "status": "passed",
+      "outcomes": {
+        "passed": 8
+      }
+    }
+  ],
+  "coverage_executions_including_ipads": 189,
+  "raw_executions_in_evidence_runs": 193,
+  "raw_outcomes_in_evidence_runs": {
+    "passed": 190,
+    "failed": 3
+  },
+  "visual_screenshots_reviewed": 15,
+  "tests": [
+    {
+      "class": "AdaptiveLayoutUITests",
+      "method": "testAllEditorsInLandscape",
+      "result": "passed",
+      "seconds": 140.598,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "AdaptiveLayoutUITests",
+      "method": "testAllEditorsInPortrait",
+      "result": "passed",
+      "seconds": 126.386,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "AdaptiveLayoutUITests",
+      "method": "testEachDocumentPickerCanOpenCancelAndReopen",
+      "result": "passed",
+      "seconds": 69.084,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "AdaptiveLayoutUITests",
+      "method": "testExpandedMapFitsViewportAtDefaultZoomAfterRotation",
+      "result": "passed",
+      "seconds": 14.128,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "AdaptiveLayoutUITests",
+      "method": "testImportOptionsSurviveRotation",
+      "result": "passed",
+      "seconds": 48.673,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "AdaptiveLayoutUITests",
+      "method": "testMainPagesAndUtilitySheets",
+      "result": "passed",
+      "seconds": 81.482,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "AdaptiveLayoutUITests",
+      "method": "testNarrowWindowAndAccessibilityText",
+      "result": "passed",
+      "seconds": 55.542,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testAddingAtLastChestSlotPreservesOpaqueChildrenAndClearingKeepsSerializedFloor",
+      "result": "passed",
+      "seconds": 0.115,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testBigChestSeventySlotsAndOrdinaryFridgeSupported",
+      "result": "passed",
+      "seconds": 0.054,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testBundleSupplyAddsExactMaterialsToEmptySlotsAndLeavesAllQuestStateUnchanged",
+      "result": "passed",
+      "seconds": 0.07,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testBundleSupplyInsufficientSpaceInvalidSelectionsAndJojaAreAtomicFailures",
+      "result": "passed",
+      "seconds": 0.087,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testBundlesReadDefinitionsProgressChoicesAndGoldWithoutChangingCompletion",
+      "result": "passed",
+      "seconds": 0.051,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testChestQuantityPreservesQualitySpellingMetadataOtherContainersAndSummary",
+      "result": "passed",
+      "seconds": 0.048,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testDiscoversFarmNestedShedAndFridgeWithoutTreatingFurnitureAsChest",
+      "result": "passed",
+      "seconds": 0.029,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testDuplicateObjectCoordinatesCannotTargetTheWrongContainer",
+      "result": "passed",
+      "seconds": 0.031,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testExpandedDiffsGroupAndUndoIndependentlyIncludingMaterialSupply",
+      "result": "passed",
+      "seconds": 0.068,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testFinishingMachineKeepsOutputIdentityQuantityQualityAndMetadata",
+      "result": "passed",
+      "seconds": 0.049,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testLegacyNumericWeatherRetainsNumericEncodingAndLuckRange",
+      "result": "passed",
+      "seconds": 0.047,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testMissingLuckCannotBeInventedAndIslandRejectsSnow",
+      "result": "passed",
+      "seconds": 0.028,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testReadyMachineCannotBeFinishedAgainAndForgedMachineRejected",
+      "result": "passed",
+      "seconds": 0.027,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testSharedSpecialAndOversizedChestsRemainReadOnly",
+      "result": "passed",
+      "seconds": 0.096,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testSpecialConflictingDuplicateAndMissingWeatherRemainsUnavailable",
+      "result": "passed",
+      "seconds": 0.243,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testStorageWriteBoundaryRejectsSlotLayoutTemplateAndItemMetadataTampering",
+      "result": "passed",
+      "seconds": 0.034,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testTomorrowWeatherSynchronizesDefaultAliasesAndPreservesCurrentWeatherAndIsland",
+      "result": "passed",
+      "seconds": 0.048,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testUnknownEmptyCaskAndMalformedMachinesAreExcluded",
+      "result": "passed",
+      "seconds": 0.114,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testUnknownQuestAndMalformedItemsCannotBeEditedOrCleared",
+      "result": "passed",
+      "seconds": 0.212,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testUnreadableDuplicateAndMissingBundleStateNeverAssumedIncomplete",
+      "result": "passed",
+      "seconds": 0.102,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testUnrelatedEditsDoNotSerializeSyntheticStorageSlotsOrNormalizeWeather",
+      "result": "passed",
+      "seconds": 0.058,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testWorkerReparsePreservesUneditedStorageUUIDBaseline",
+      "result": "passed",
+      "seconds": 0.063,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testZlibExpandedEditsRoundTripWithoutChangingOriginalTree",
+      "result": "passed",
+      "seconds": 0.055,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ExpandedEditorUITests",
+      "method": "testBundleSupplyPreviewAddsInventoryDiffWithoutCompletingBundle",
+      "result": "passed",
+      "seconds": 21.112,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ExpandedEditorUITests",
+      "method": "testChestQuantityDraftAndReview",
+      "result": "passed",
+      "seconds": 23.826,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ExpandedEditorUITests",
+      "method": "testMachineSelectionPreviewApplyAndUndo",
+      "result": "passed",
+      "seconds": 18.771,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ExpandedEditorUITests",
+      "method": "testWeatherLuckPresetRestoreAndWeatherReview",
+      "result": "passed",
+      "seconds": 23.287,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "GameLogicRegressionTests",
+      "method": "testCodecAcceptsUTF8CharacterAcrossOldPrefixBoundary",
+      "result": "passed",
+      "seconds": 0.002,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "GameLogicRegressionTests",
+      "method": "testDebrisCleanupPreservesTypeNamespacesContainersAndModObjects",
+      "result": "passed",
+      "seconds": 0.009,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "GameLogicRegressionTests",
+      "method": "testEightStringIDObjectsHaveChineseNamesAndRoundTrip",
+      "result": "passed",
+      "seconds": 0.039,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "GameLogicRegressionTests",
+      "method": "testEveryDiffIsGroupedAndEachEditCanBeUndone",
+      "result": "passed",
+      "seconds": 0.004,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "GameLogicRegressionTests",
+      "method": "testPairingRejectsWrongRootAndDifferentFarmerButAllowsRenamedSameID",
+      "result": "passed",
+      "seconds": 0.002,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "GameLogicRegressionTests",
+      "method": "testProfessionValidationRejectsConflictsButPreservesUnrelatedExistingExtensions",
+      "result": "passed",
+      "seconds": 0.001,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "GameLogicRegressionTests",
+      "method": "testRenamingOneAnimalPreservesOtherAnimalsAndIndependentAges",
+      "result": "passed",
+      "seconds": 0.002,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "GameLogicRegressionTests",
+      "method": "testSingleDebrisUndoDoesNotUndoNeighborAndEqualCountSelectionIsVisible",
+      "result": "passed",
+      "seconds": 0.001,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "GameLogicRegressionTests",
+      "method": "testSkillLevelAndExperienceUseSameProfessionRules",
+      "result": "passed",
+      "seconds": 0.001,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "GameLogicRegressionTests",
+      "method": "testWalletFalseIsFalseAndOnlyEditedLegacyKeyIsMigrated",
+      "result": "passed",
+      "seconds": 0.003,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ReferenceFeatureTests",
+      "method": "testCapacityExpansionRoundTripsBothFilesAndPreservesOpaqueItems",
+      "result": "passed",
+      "seconds": 0.025,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ReferenceFeatureTests",
+      "method": "testCapacityUndoRemovesNewSlotEditsAndKeepsOldSlotEdits",
+      "result": "passed",
+      "seconds": 0.043,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ReferenceFeatureTests",
+      "method": "testGiftResetChangesOnlyExistingCountersAndEachDiffCanBeUndone",
+      "result": "passed",
+      "seconds": 0.002,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ReferenceFeatureTests",
+      "method": "testMissingGiftFieldsAreNotCreatedAndMalformedValuesArePreserved",
+      "result": "passed",
+      "seconds": 0.002,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ReferenceFeatureTests",
+      "method": "testMissingMalformedAndModdedCapacitiesRemainUnchanged",
+      "result": "passed",
+      "seconds": 0.002,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ReferenceFeatureTests",
+      "method": "testMissingPointsAndStatusStayReadOnly",
+      "result": "passed",
+      "seconds": 0.001,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ReferenceFeatureTests",
+      "method": "testOriginalSerializedSlotsSurviveShrinkAndCannotReceiveNewHiddenItems",
+      "result": "passed",
+      "seconds": 0.022,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ReferenceFeatureTests",
+      "method": "testRelationshipFiltersReflectGiftResetAndUndo",
+      "result": "passed",
+      "seconds": 0.001,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ReferenceFeatureTests",
+      "method": "testRelationshipWriteBoundaryRejectsUnsupportedStatusAndFriendshipLimits",
+      "result": "passed",
+      "seconds": 0.001,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ReferenceFeatureTests",
+      "method": "testScopedFullHeartsRespectsRelationshipsAndPreservesHigherAndUnknownPoints",
+      "result": "passed",
+      "seconds": 0.002,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ReferenceFeatureTests",
+      "method": "testShrinkWithOccupiedTailFailsWithoutChangingDraft",
+      "result": "passed",
+      "seconds": 0.028,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ReferenceFeatureTests",
+      "method": "testUneditedFriendshipXMLIsNotNormalizedWhenAnotherFriendChanges",
+      "result": "passed",
+      "seconds": 0.001,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ReferenceFeatureTests",
+      "method": "testUnrelatedEditDoesNotSerializeSyntheticEmptySlotsOrInventSummaryCapacity",
+      "result": "passed",
+      "seconds": 0.002,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "ReferenceFeatureTests",
+      "method": "testWriteBoundaryRejectsInvalidCapacityAndSlotLayout",
+      "result": "passed",
+      "seconds": 0.002,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "RepairEditorUITests",
+      "method": "testCollectionSupplyCreatesInventoryDraftWithoutMarkingDonation",
+      "result": "passed",
+      "seconds": 77.458,
+      "evidence": "build15-tests-iphone-repair.json"
+    },
+    {
+      "class": "RepairEditorUITests",
+      "method": "testEquipmentCancelLeavesDraftUnchanged",
+      "result": "passed",
+      "seconds": 49.273,
+      "evidence": "build15-tests-iphone-repair.json"
+    },
+    {
+      "class": "RepairEditorUITests",
+      "method": "testToolUpgradeCreatesReviewDiff",
+      "result": "passed",
+      "seconds": 43.255,
+      "evidence": "build15-tests-iphone-repair.json"
+    },
+    {
+      "class": "RepairEditorUITests",
+      "method": "testWeaponInvalidInputAndRestore",
+      "result": "passed",
+      "seconds": 48.768,
+      "evidence": "build15-tests-iphone-repair.json"
+    },
+    {
+      "class": "RepairRegressionTests",
+      "method": "testArtifactAndFishArrayCountsAndMalformedArrayAreDistinguished",
+      "result": "passed",
+      "seconds": 0.063,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "RepairRegressionTests",
+      "method": "testBackgroundRenderRejectsUnappliedEdit",
+      "result": "passed",
+      "seconds": 0.06,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "RepairRegressionTests",
+      "method": "testBackgroundRenderVerifiesEquipmentRecipeAndExpandedBackpack",
+      "result": "passed",
+      "seconds": 0.036,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "RepairRegressionTests",
+      "method": "testCopyMoveAndCanonicalNondefaultQuantityRemainSupported",
+      "result": "passed",
+      "seconds": 0.092,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "RepairRegressionTests",
+      "method": "testDuplicateAndMismatchedAnimalIDsRemainUntouched",
+      "result": "passed",
+      "seconds": 0.048,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "RepairRegressionTests",
+      "method": "testDuplicateFriendshipsAreExcludedWithoutModifyingTheirXML",
+      "result": "passed",
+      "seconds": 0.046,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "RepairRegressionTests",
+      "method": "testDuplicateInventoryContainerAndNilWithDataAreNotWritable",
+      "result": "passed",
+      "seconds": 0.063,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "RepairRegressionTests",
+      "method": "testDuplicatePlayersAreNotSilentlyAccepted",
+      "result": "passed",
+      "seconds": 0.001,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "RepairRegressionTests",
+      "method": "testEquipmentAndOrdinaryInventoryEditsCanBeSavedTogether",
+      "result": "passed",
+      "seconds": 0.06,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "RepairRegressionTests",
+      "method": "testEquipmentBoundsNaNAndDamageOrderAreRejected",
+      "result": "passed",
+      "seconds": 0.029,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "RepairRegressionTests",
+      "method": "testEquipmentChangesOnlySelectedFieldAndPreservesEnchantments",
+      "result": "passed",
+      "seconds": 0.042,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "RepairRegressionTests",
+      "method": "testEquipmentChestMachineWateringAndDebrisRemovalSaveTogether",
+      "result": "passed",
+      "seconds": 0.045,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "RepairRegressionTests",
+      "method": "testEquipmentUndoRestoresOneFieldWithoutLosingOtherChanges",
+      "result": "passed",
+      "seconds": 0.02,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "RepairRegressionTests",
+      "method": "testEquipmentVerificationSurvivesLegacyWalletFieldRemoval",
+      "result": "passed",
+      "seconds": 0.071,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "RepairRegressionTests",
+      "method": "testEquippedBootsWithoutExplicitTypeAndUnknownGearHandling",
+      "result": "passed",
+      "seconds": 0.031,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "RepairRegressionTests",
+      "method": "testEquivalentCoordinateSpellingsCannotTargetTwoContainers",
+      "result": "passed",
+      "seconds": 0.027,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "RepairRegressionTests",
+      "method": "testIntentVerifierChecksItemIDInsteadOfOnlyDisplayText",
+      "result": "passed",
+      "seconds": 0.044,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "RepairRegressionTests",
+      "method": "testIntentVerifierRejectsMissingScalarWriteBeforeAnyFileWrite",
+      "result": "passed",
+      "seconds": 0.054,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "RepairRegressionTests",
+      "method": "testInventoryMetadataAndDuplicateIdentityAreRejected",
+      "result": "passed",
+      "seconds": 0.031,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "RepairRegressionTests",
+      "method": "testInventoryQuantityPreservesQualitySpellingAndOpaqueMetadata",
+      "result": "passed",
+      "seconds": 0.068,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "RepairRegressionTests",
+      "method": "testMalformedDuplicateAndQualifiedCollectionIDs",
+      "result": "passed",
+      "seconds": 0.07,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "RepairRegressionTests",
+      "method": "testMissingCollectionDataIsUnknownNotZeroProgress",
+      "result": "passed",
+      "seconds": 0.06,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "RepairRegressionTests",
+      "method": "testMissingRecipeContainerCanBeCreatedAndDuplicateRecipeCannotBeEdited",
+      "result": "passed",
+      "seconds": 0.084,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "RepairRegressionTests",
+      "method": "testMuseumCoordinatesAndNilCollectionsDoNotReportFalseCompletion",
+      "result": "passed",
+      "seconds": 0.063,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "RepairRegressionTests",
+      "method": "testMuseumUsesDonationRecordsInsteadOfDiscoveryRecords",
+      "result": "passed",
+      "seconds": 0.053,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "RepairRegressionTests",
+      "method": "testQuestUnknownAndMalformedInventoryAreReadOnly",
+      "result": "passed",
+      "seconds": 0.051,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "RepairRegressionTests",
+      "method": "testReadOnlyInventoryCannotBeRemovedMovedOrForged",
+      "result": "passed",
+      "seconds": 0.023,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "RepairRegressionTests",
+      "method": "testRecipeInvalidCountAndChangedScopeAreRejected",
+      "result": "passed",
+      "seconds": 0.026,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "RepairRegressionTests",
+      "method": "testRecipeUnlockPreservesOtherCountsAndMalformedRecordsExactly",
+      "result": "passed",
+      "seconds": 0.068,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "RepairRegressionTests",
+      "method": "testStorageAcceptsCanonicalInitialQuantityAndRejectsDuplicateIDs",
+      "result": "passed",
+      "seconds": 0.079,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "RepairRegressionTests",
+      "method": "testWrappedRecipesKeepStructureAndMalformedValuesStayReadOnly",
+      "result": "passed",
+      "seconds": 0.069,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testBackupManifestDetectsTamperedData",
+      "result": "passed",
+      "seconds": 0.062,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testBundledCatalogHasFullUpstreamData",
+      "result": "passed",
+      "seconds": 0.026,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testBundledCropCatalogIsCompleteAndInternallyConsistent",
+      "result": "passed",
+      "seconds": 0.012,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testBundledRecipeCatalogHasCompleteChineseNames",
+      "result": "passed",
+      "seconds": 0.001,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testCatalogAndBackupInitializationSurviveUnavailableTransactionDirectory",
+      "result": "passed",
+      "seconds": 0.056,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testCodecReadsStandardZlibFixture",
+      "result": "passed",
+      "seconds": 0.001,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testCoordinatedWriteUpdatesSelectedFileWithoutReplacingIt",
+      "result": "passed",
+      "seconds": 0.005,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testCopyImportCreatesIndependentAppOwnedPair",
+      "result": "passed",
+      "seconds": 0.008,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testCropGrowthSpeedMirrorsGamePhaseRules",
+      "result": "passed",
+      "seconds": 0.001,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testCropPlannerChargesInitialSeedsBeforeFirstHarvest",
+      "result": "passed",
+      "seconds": 0.002,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testCropPlannerSchedulesCrossSeasonRegrowthAndProfit",
+      "result": "passed",
+      "seconds": 0.002,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testDiscoversSaveFoldersFromAuthorizedStardewRoot",
+      "result": "passed",
+      "seconds": 0.008,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testFarmSnapshotExtractsActualEntitiesCountsAndCoordinates",
+      "result": "passed",
+      "seconds": 0.005,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testFarmhouseAndMagicFarmActionsRoundTripWithoutRemovingNormalObjects",
+      "result": "passed",
+      "seconds": 0.006,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testGlobalKeyboardReturnAccessoryInstallsOnEveryUIKitTextInputKind",
+      "result": "passed",
+      "seconds": 0.081,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testInterruptedMixedPairIsRecoveredFromBackup",
+      "result": "passed",
+      "seconds": 0.034,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testLargeLocalSaveLoadingDiagnostics",
+      "result": "passed",
+      "seconds": 1.305,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testLazyXMLTraversalPreservesOrderAndStopsAtFirstMatch",
+      "result": "passed",
+      "seconds": 0.001,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testLegacyBackupManifestWithoutHashesRemainsReadable",
+      "result": "passed",
+      "seconds": 0.019,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testMagicMapCanRemoveOneSelectedDebrisWithoutTouchingNeighbors",
+      "result": "passed",
+      "seconds": 0.006,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testModern16HouseProgressWalletProfessionsAndAnimalsRoundTrip",
+      "result": "passed",
+      "seconds": 0.004,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testMovingEquivalentItemsStillProducesInventoryDiffs",
+      "result": "passed",
+      "seconds": 0.003,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testParseEditRenderAndReparsePair",
+      "result": "passed",
+      "seconds": 0.004,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testPlainAndZlibCodecRoundTrips",
+      "result": "passed",
+      "seconds": 0.001,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testSaveDiscoveryReportsRootWithoutValidSaves",
+      "result": "passed",
+      "seconds": 0.004,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testSessionEditingFreezeRejectsLateBindingsButCanInstallCommittedSnapshot",
+      "result": "passed",
+      "seconds": 0.011,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testSnapshotStillPrefersNamedFarmInsideWrappedLocations",
+      "result": "passed",
+      "seconds": 0.001,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testTeaBushGrowsAcrossOutdoorWinterButOnlyHarvestsInProducingSeasons",
+      "result": "passed",
+      "seconds": 0.002,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testTransactionWritesPairAndCreatesRestorableBackup",
+      "result": "passed",
+      "seconds": 0.02,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testUnchangedExtendedValuesSurviveAnUnrelatedEdit",
+      "result": "passed",
+      "seconds": 0.002,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testValidationRejectsUnsafeValues",
+      "result": "passed",
+      "seconds": 0.001,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testWorkerPreparesSnapshotAndRefreshesItAfterCommittedMapChanges",
+      "result": "passed",
+      "seconds": 0.03,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testWorkerPreservesInventoryBaselineWhenReparsingForUnrelatedEdit",
+      "result": "passed",
+      "seconds": 0.004,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testWorkerRejectsInvalidTargetBeforeCreatingBackupOrWritingSource",
+      "result": "passed",
+      "seconds": 0.019,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testWorkerTransfersOnlyFreshParsedTreesAndReturnsVerifiedPair",
+      "result": "passed",
+      "seconds": 0.026,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testXMLTreePreservesUnknownElementsAndEscapesText",
+      "result": "passed",
+      "seconds": 0.001,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "TrackerMetricsTests",
+      "method": "testCollectionFootprintIsAnObservedCountNotPerfection",
+      "result": "passed",
+      "seconds": 0.0,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "TrackerMetricsTests",
+      "method": "testDraftsAndClearStateHaveDistinctStatus",
+      "result": "passed",
+      "seconds": 0.006,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "TrackerMetricsTests",
+      "method": "testEmptySkillsHaveNoArtificialMaximumOrCompletedProgress",
+      "result": "passed",
+      "seconds": 0.001,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "TrackerMetricsTests",
+      "method": "testProgressDoesNotInventCompletionForMissingTotals",
+      "result": "passed",
+      "seconds": 0.001,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "TrackerMetricsTests",
+      "method": "testProgressStaysWithinItsDisplayRange",
+      "result": "passed",
+      "seconds": 0.0,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "TrackerMetricsTests",
+      "method": "testSkillSummaryUsesAvailableSkillsAndClampsExtendedLevels",
+      "result": "passed",
+      "seconds": 0.001,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "TrackerMetricsTests",
+      "method": "testWarningsRemainVisibleEvenWithoutDraftsOrAlongsideDrafts",
+      "result": "passed",
+      "seconds": 0.001,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "TrackerSmokeUITests",
+      "method": "testAllElevenModulesOpenAndClose",
+      "result": "passed",
+      "seconds": 114.763,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "TrackerSmokeUITests",
+      "method": "testAppearanceColorsSupportPresetHexAndRestore",
+      "result": "passed",
+      "seconds": 150.826,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "TrackerSmokeUITests",
+      "method": "testDetailSwitchingRecipeFiltersAndSearchEmptyState",
+      "result": "passed",
+      "seconds": 48.848,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "TrackerSmokeUITests",
+      "method": "testEditorCapacityAndInventorySearchUseDraft",
+      "result": "passed",
+      "seconds": 28.461,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "TrackerSmokeUITests",
+      "method": "testEmptyTrackerOpensToolsWithoutImportingFiles",
+      "result": "passed",
+      "seconds": 9.947,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "TrackerSmokeUITests",
+      "method": "testGiftBatchResetShowsChangedCountersWithoutChangingHearts",
+      "result": "passed",
+      "seconds": 35.65,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "TrackerSmokeUITests",
+      "method": "testMapScopedWaterPreviewPendingLocateAndUndo",
+      "result": "passed",
+      "seconds": 89.573,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "TrackerSmokeUITests",
+      "method": "testOverviewFiltersAndGroupExpansion",
+      "result": "passed",
+      "seconds": 64.299,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "TrackerSmokeUITests",
+      "method": "testRelationshipBatchPreviewCanCancelAndApplyOnlySearchedCharacter",
+      "result": "passed",
+      "seconds": 45.925,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "TrackerSmokeUITests",
+      "method": "testRoomStyleLibraryBatchPreviewAndRoomRestore",
+      "result": "passed",
+      "seconds": 97.823,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "TransactionRegressionTests",
+      "method": "testBackupExportsWithoutOriginalFilesOrEditingSession",
+      "result": "passed",
+      "seconds": 0.014,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "TransactionRegressionTests",
+      "method": "testBoundKnownMixedPairRestoresOriginal",
+      "result": "passed",
+      "seconds": 0.02,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "TransactionRegressionTests",
+      "method": "testFailureDuringSecondWriteRestoresBothOriginalFiles",
+      "result": "passed",
+      "seconds": 0.024,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "TransactionRegressionTests",
+      "method": "testInvalidRenderedInfoIsRejectedBeforeSourceWrites",
+      "result": "passed",
+      "seconds": 0.015,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "TransactionRegressionTests",
+      "method": "testProtectedRecoveryPointSurvivesAutomaticRetention",
+      "result": "passed",
+      "seconds": 0.064,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "TransactionRegressionTests",
+      "method": "testRollbackFailureRetainsJournalAndExportableProtectedBackup",
+      "result": "passed",
+      "seconds": 0.017,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "TransactionRegressionTests",
+      "method": "testSameFarmNameAtDifferentSourcesDoesNotShareJournal",
+      "result": "passed",
+      "seconds": 0.029,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "TransactionRegressionTests",
+      "method": "testUnboundLegacyJournalNeverGuessesSourceFromFarmName",
+      "result": "passed",
+      "seconds": 0.029,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "TransactionRegressionTests",
+      "method": "testUnknownNewProgressIsPreservedAndNeedsExplicitChoice",
+      "result": "passed",
+      "seconds": 0.059,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testColorChangeDoesNotInventOrRepairSummaryFields",
+      "result": "passed",
+      "seconds": 0.004,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testColorChannelsAndPackedValueRoundTripWithoutLosingMetadata",
+      "result": "passed",
+      "seconds": 0.002,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testColorDiffUndoRestoresOneFieldAndKeepsOtherDraftChanges",
+      "result": "passed",
+      "seconds": 0.002,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testColorWriteBoundaryRejectsMissingAddedInvalidAndAlphaChanges",
+      "result": "passed",
+      "seconds": 0.002,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testHexColorValidationAcceptsSixDigitsOnly",
+      "result": "passed",
+      "seconds": 0.002,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testInvalidOrMissingColorsStayReadOnlyAndUnchanged",
+      "result": "passed",
+      "seconds": 0.007,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testMapRegionFiltersBothActionsAndUndoKeepsOtherSelections",
+      "result": "passed",
+      "seconds": 0.003,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testMapRejectsInvalidRegionsAndNonActionableKeys",
+      "result": "passed",
+      "seconds": 0.001,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testMapSearchScopeAndToggleReflectDraftImmediately",
+      "result": "passed",
+      "seconds": 0.003,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testNilUnknownAndAmbiguousRoomFieldsStayReadOnly",
+      "result": "passed",
+      "seconds": 0.005,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testPackedOnlyColorsPreserveRepresentationAndSummaryAlpha",
+      "result": "passed",
+      "seconds": 0.003,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testRoomBatchChangesSelectedRoomsOfSameSurfaceKindOnly",
+      "result": "passed",
+      "seconds": 0.002,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testRoomEditPreservesUntouchedLexicalValuesAndFurniture",
+      "result": "passed",
+      "seconds": 0.001,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testRoomRestoreKeepsOtherRoomsAndUpgradeDraft",
+      "result": "passed",
+      "seconds": 0.001,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testRoomSearchAndStyleLibraryCoverKnownRanges",
+      "result": "passed",
+      "seconds": 0.011,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testRoomWriteBoundaryRejectsAddedRemovedOrRelocatedSurfaces",
+      "result": "passed",
+      "seconds": 0.001,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testSingleCropWateringChangesExactCoordinateOnly",
+      "result": "passed",
+      "seconds": 0.002,
+      "evidence": "build15-tests-iphone-full.json"
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testWateringPreservesWetDeadCustomNullableAndMissingStates",
+      "result": "passed",
+      "seconds": 0.003,
+      "evidence": "build15-tests-iphone-full.json"
+    }
+  ],
+  "limitations": [
+    "The 173-method full run remains failed. All four RepairEditorUITests were subsequently retested together.",
+    "Synthetic simulator saves only; no signed device installation or real game round trip."
+  ]
+}

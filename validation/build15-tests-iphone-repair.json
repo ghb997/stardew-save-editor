@@ -1,0 +1,57 @@
+{
+  "status": "passed",
+  "source_commit": "7453365bdb06f95676ae788b54742e0808c0cf2c",
+  "run_url": "https://github.com/ghb997/stardew-save-editor/actions/runs/34690602507",
+  "job_name": "Debug simulator tests and Tracker screenshots",
+  "job_id": 103545037121,
+  "scope": "repair-ui",
+  "device": {
+    "udid": "48B2DA2E-AF18-4E36-BB25-B25969A4EBCF",
+    "name": "iPhone SE (3rd generation)",
+    "state": "Shutdown",
+    "runtime": "com.apple.CoreSimulator.SimRuntime.iOS-26-2",
+    "iOSVersion": "26.2"
+  },
+  "total_tests": 4,
+  "declared_tests_in_scope": 4,
+  "counts_by_class": {
+    "RepairEditorUITests": 4
+  },
+  "outcomes": {
+    "passed": 4
+  },
+  "test_log_sha256": "cd3358a51ef0aedb00584b288b4e39df35c156d735312809547a21db062a9d16",
+  "missing": [],
+  "unexpected": [],
+  "duplicates": [],
+  "failures": [],
+  "tests": [
+    {
+      "class": "RepairEditorUITests",
+      "method": "testCollectionSupplyCreatesInventoryDraftWithoutMarkingDonation",
+      "result": "passed",
+      "seconds": 77.458
+    },
+    {
+      "class": "RepairEditorUITests",
+      "method": "testEquipmentCancelLeavesDraftUnchanged",
+      "result": "passed",
+      "seconds": 49.273
+    },
+    {
+      "class": "RepairEditorUITests",
+      "method": "testToolUpgradeCreatesReviewDiff",
+      "result": "passed",
+      "seconds": 43.255
+    },
+    {
+      "class": "RepairEditorUITests",
+      "method": "testWeaponInvalidInputAndRestore",
+      "result": "passed",
+      "seconds": 48.768
+    }
+  ],
+  "limitations": [
+    "Synthetic saves on simulators; no signed-device installation or real game round trip."
+  ]
+}

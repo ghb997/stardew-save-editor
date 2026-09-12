@@ -1,0 +1,58 @@
+{
+  "sourceCommit": "7453365bdb06f95676ae788b54742e0808c0cf2c",
+  "run": "https://github.com/ghb997/stardew-save-editor/actions/runs/34690602507",
+  "screenshots": [
+    {
+      "name": "build15-collection-review",
+      "file": "build15-collection-review.png",
+      "test": "RepairEditorUITests/testCollectionSupplyCreatesInventoryDraftWithoutMarkingDonation()",
+      "device": "iPhone SE (3rd generation)",
+      "originalAttachment": "9C0AF416-3B75-4D3F-917E-4E8A6F68FBEC.png",
+      "sha256": "6d561696e57e48579334bc2704770beffdf2d7405c65ddd96ec8af50f3386a1c",
+      "visualReview": "passed",
+      "reviewNotes": "已审阅原图：检查页显示槽位 3 从空变为矮人卷轴 II ×1（普通），未显示捐赠改动。"
+    },
+    {
+      "name": "build15-collection-supply",
+      "file": "build15-collection-supply.png",
+      "test": "RepairEditorUITests/testCollectionSupplyCreatesInventoryDraftWithoutMarkingDonation()",
+      "device": "iPhone SE (3rd generation)",
+      "originalAttachment": "DA81DFB9-03FD-4934-B433-1BCBAD71CB53.png",
+      "sha256": "8b258f7edf840cec7117d9ef05722c314868a8829596ba95081d8e16b61a2532",
+      "visualReview": "passed",
+      "reviewNotes": "已审阅原图：矮人卷轴 II 的缺少记录状态和已加入背包草稿反馈可读，补给与完成操作可达。"
+    },
+    {
+      "name": "build15-equipment-cancel",
+      "file": "build15-equipment-cancel.png",
+      "test": "RepairEditorUITests/testEquipmentCancelLeavesDraftUnchanged()",
+      "device": "iPhone SE (3rd generation)",
+      "originalAttachment": "BE069160-779C-4998-8736-B7B5642C0A5F.png",
+      "sha256": "b2cf262f1e87b1cc568cf62ce9921f25ab189307e11f364360536c7b0b4ef987",
+      "visualReview": "passed",
+      "reviewNotes": "已审阅原图：取消后检查页显示没有待保存的更改，操作列表正常显示。"
+    },
+    {
+      "name": "build15-equipment-invalid-damage",
+      "file": "build15-equipment-invalid-damage.png",
+      "test": "RepairEditorUITests/testWeaponInvalidInputAndRestore()",
+      "device": "iPhone SE (3rd generation)",
+      "originalAttachment": "BD7FD79C-C9F6-49A4-B110-B2500C412A14.png",
+      "sha256": "3599c57db266d07470631dce1bc20c864817bf9e1e8765d1f4bd9fb3b580e313",
+      "visualReview": "passed",
+      "reviewNotes": "已审阅原图：最低伤害 90、最高伤害 80 的错误提示可读，输入和恢复操作可达。"
+    },
+    {
+      "name": "build15-equipment-review",
+      "file": "build15-equipment-review.png",
+      "test": "RepairEditorUITests/testToolUpgradeCreatesReviewDiff()",
+      "device": "iPhone SE (3rd generation)",
+      "originalAttachment": "02A22053-2BFA-467C-B811-DAFA5F4E4EAC.png",
+      "sha256": "3cb1a63c8a7f15263772e2b378a9615b6a9bcb451b5e4c36e9ef206fe9d69cb3",
+      "visualReview": "passed",
+      "reviewNotes": "已审阅原图：检查页显示背包第 1 格装备升级等级 1 → 4，撤销操作可见。"
+    }
+  ],
+  "reviewer": "Codex visual review of original XCTest screenshot attachments",
+  "reviewedAtUTC": "2026-09-12T11:30:58.586969+00:00"
+}

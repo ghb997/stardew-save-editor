@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-09-12T11:15:08.459722+00:00",
+  "generated_at_utc": "2026-09-12T11:31:41.081836+00:00",
   "release_root": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\complete-repair-build15",
   "validation_type": "offline_static_release_checks",
   "compiled_swift": false,
@@ -57,7 +57,7 @@
       "status": "passed",
       "detail": {
         "counts": {
-          "json": 158,
+          "json": 162,
           "plist_and_privacy_manifest": 2,
           "xcode_xml": 2
         },
