@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-09-12T11:03:25.977288+00:00",
+  "generated_at_utc": "2026-09-12T11:15:08.459722+00:00",
   "release_root": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\complete-repair-build15",
   "validation_type": "offline_static_release_checks",
   "compiled_swift": false,
@@ -276,7 +276,7 @@
       "PelicanSaveEditorTests/WorldEditorTests.swift": "d95d44eec914e78d93da6ad227b27fb5ceaed75545060b304991d55b3893c96e",
       "PelicanSaveEditorUITests/AdaptiveLayoutUITests.swift": "9269f594634f5babb40b9d51e3a4bd70b920d24a42ee72cf23fe41899b7f5158",
       "PelicanSaveEditorUITests/ExpandedEditorUITests.swift": "cf5ec031eac5597d32474457561f5ea1caae9548286caaf17c8e421aae6f31a2",
-      "PelicanSaveEditorUITests/RepairEditorUITests.swift": "f915dffd9750f1349e8a3c450d3688613137831e81d9d1e7432847807d87cd13",
+      "PelicanSaveEditorUITests/RepairEditorUITests.swift": "45fd5cb03461d2234b8b76c3d04a45456f87320603fa50ac22df5fafe7a85138",
       "PelicanSaveEditorUITests/TrackerSmokeUITests.swift": "4c2c942dfbc7d35dfc0e25eea00506a9cad35efcb5961ed96ef555d7d9eb4765"
     },
     "source_counts": {
