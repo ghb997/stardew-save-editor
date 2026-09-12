@@ -44,6 +44,7 @@ struct CollectionLibraryView: View {
                                 Spacer()
                                 if entry.state == .recorded { Image(systemName: "checkmark.circle.fill").foregroundStyle(.green) }
                             }
+                            .contentShape(Rectangle())
                         }.buttonStyle(.plain).accessibilityIdentifier("collection.item.\(entry.item.id)")
                     }
                     if visible.isEmpty { ContentUnavailableView.search(text: search) }

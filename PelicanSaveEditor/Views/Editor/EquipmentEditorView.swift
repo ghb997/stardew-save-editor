@@ -26,7 +26,10 @@ struct EquipmentEditorView: View {
                                 Text(item.location).font(.caption).foregroundStyle(.secondary)
                                 Text(item.fields.map { "\($0.title) \($0.formatted)" }.joined(separator: " · "))
                                     .font(.caption).foregroundStyle(.secondary).lineLimit(3)
-                            }.padding(.vertical, 4)
+                            }
+                            .padding(.vertical, 4)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .contentShape(Rectangle())
                         }.buttonStyle(.plain).accessibilityIdentifier("equipment.item.\(item.id)")
                     }
                     if visible.isEmpty {
