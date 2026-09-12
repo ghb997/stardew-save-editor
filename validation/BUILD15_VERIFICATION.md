@@ -1,52 +1,45 @@
 # 构建 15 验证记录
 
-版本：0.7.0（15），源码候选。日期：2026-09-12。
+版本：0.7.0（15）。日期：2026-09-12。当前结果：设备构建和两种 iPad 测试通过，iPhone 全量回归正在执行。
 
-当前修正了上一轮 iPhone 界面操作失败：检查页需滚动到收藏补给明细，背包搜索需提交并滚动查看结果；背包页补充滚动收键盘支持。下列设备构建和 iPad 证据对应 `cd325fa`，当前源码的原生验证正在准备重跑。
+## 当前修订
 
-## 当前状态
+本轮原生任务均对应提交 `a0a0a7e0422adfd5d5e15dd1cc122a4f8cab0b34`，位于分支 `codex/complete-repair-build15`。随后提交只更新文档和 validation 证据，应用、测试、工程、脚本与 workflow 内容保持一致。
 
-| 检查 | 状态与证据 |
-| --- | --- |
-| 静态工程、资源与版本检查 | 6 项通过，88 个 Swift 文件、113 张位图、173 个测试方法声明；结果见 `static-release-results.json` |
-| Swift 语法扫描 | 88 个文件无语法错误；tree-sitter 0.26.0 / tree-sitter-swift 0.7.3，结果见 `swift-syntax-results.json` |
-| 配置和目录数据检查 | project.yml 及 3 个 workflow YAML 解析通过；博物馆候选数据确认为 95 项，见 `build15-supporting-checks.json` |
-| Shell 语法检查 | Git Bash 对 3 个 macOS 验证/构建脚本执行 `bash -n` 通过；未运行脚本中的 Xcode 命令 |
-| Swift 编译和类型检查 | Xcode 16.4 / SDK 18.5 的 Release 设备构建与 Debug 模拟器构建通过 |
-| XCTest / XCUITest | 上一轮两种 iPad 各 8 项 UI 通过；iPhone 173 项中 171 通过、2 项界面操作失败，修正后待重跑 |
-| 原生截图 | iPad mini 与 13 英寸 iPad Pro 共 10 张已审阅；见 build15-ui 下各设备清单 |
-| 构建 15 IPA | 已生成并校验，3,699,789 字节，未签名 |
-| 签名真机安装与游戏往返 | 未执行 |
+| 项目 | 当前结果 | 证据 |
+| --- | --- | --- |
+| Release arm64 IPA | 构建成功，版本、架构、签名状态与文件摘要已核对 | [构建任务](https://github.com/ghb997/stardew-save-editor/actions/runs/34688577632)、[元数据](build15-device-build.json) |
+| iPad mini（A17 Pro） | 实际执行 8 项 UI 测试，全部通过；5 张原生截图已审阅 | [逐项结果](build15-tests-mini.json)、[截图清单](build15-ui/mini/manifest.json) |
+| 13 英寸 iPad Pro（M5） | 实际执行 8 项 UI 测试，全部通过；5 张原生截图已审阅 | [逐项结果](build15-tests-large.json)、[截图清单](build15-ui/large/manifest.json) |
+| iPhone 完整回归 | 正在执行，范围为 148 项单元和 25 项 UI 测试，尚未获得本轮完整通过结果 | [测试任务](https://github.com/ghb997/stardew-save-editor/actions/runs/34688653688) |
+| 静态工程与资源检查 | 6 项通过，88 个 Swift 文件、113 张位图、173 个测试方法声明 | [静态结果](static-release-results.json) |
+| Swift 语法扫描 | 无语法错误；两个 Swift 6 sending 限定词的跳过在报告中披露 | [语法结果](swift-syntax-results.json) |
+| 配置及目录数据 | project.yml、3 个 workflow YAML 和 95 项博物馆候选数据通过检查 | [辅助检查](build15-supporting-checks.json) |
+| 签名真机安装、真实游戏往返 | 未执行 | 见下文覆盖边界 |
 
-静态结果文件由本轮命令重新生成。语法扫描工具不支持 Swift 6 的 `sending` 返回限定词，扫描时保留位置并跳过这两个限定词，在结果中单独披露；不将其作为已通过类型检查的证据。
+两种 iPad 的任务位于 [同一工作流运行](https://github.com/ghb997/stardew-save-editor/actions/runs/34688577619)，每台执行 ExpandedEditorUITests 的 4 项和 RepairEditorUITests 的 4 项。已逐项核对 XCTest 完成记录与方法声明，无缺测、跳过、重复或失败。
 
-## 云端构建与当前结果
+## 安装包
 
-GitHub 授权已恢复，下列上一轮原生构建与测试对应提交 `cd325fa4e86f456481d2e03cf463fc861ee2937c`。当前源码已包含上述小屏操作修正；下列证据不能替代当前修订的原生重跑。
+- 文件：`SheaflightAmberVault-v0.7.0-build15-unsigned.ipa`
+- 大小：3,701,134 字节，约 3.53 MiB；展开总量约 12.13 MiB。
+- SHA-256：`c52c20523639eb91e8fc3bd9ee3c78b819967bdd1f7e500006b9a51f3bd52080`
+- Xcode 16.4 / iPhoneOS SDK 18.5；Release，arm64，最低 iOS 17.0。
+- IPA 未签名，没有 provisioning profile；需要签名后安装。
+- [IPA 静态检查](build15-ipa-inspection.json)、[与参考 IPA 的大小对照](BUILD15_SIZE_COMPARISON.md)。
 
-- [Release 设备构建通过](https://github.com/ghb997/stardew-save-editor/actions/runs/34686632136)，元数据见 build15-device-build.json。
-- [两种 iPad 各 8 项 UI 通过](https://github.com/ghb997/stardew-save-editor/actions/runs/34686632117)，逐项结果见 build15-tests-mini.json 与 build15-tests-large.json。
-- [上一轮 iPhone 完整测试](https://github.com/ghb997/stardew-save-editor/actions/runs/34686632113)：实际执行 173 项，148 项单元全部通过；25 项 UI 中 2 项失败，未缺测、未跳过、未重复计数。
-- 最终 IPA SHA-256：`4228234536f0b2d454c794244dd6e87041083c4264eece275d847e6d540bb736`。与三个参考应用的体积差异见 [大小对照](BUILD15_SIZE_COMPARISON.md)。
+设备构建元数据中的 `testsRun: false` 表示 Release 打包脚本不运行测试；模拟器测试由上述独立任务执行。
 
-## 可重复验证
+## 回归发现与修正
 
-```text
-python3 scripts/verify_release.py
-python3 scripts/check_swift_syntax.py
-```
+此前原生回归修复了装备/收藏整行点击区域、系统组合的收藏记录标签及小屏搜索键盘操作。上一轮 `cd325fa` 的 iPhone 实际执行 173 项，其中 148 项单元测试全部通过，25 项 UI 中 2 项失败：收藏补给明细位于检查页下方，背包搜索未提交时键盘遮住结果。
 
-以下步骤需要 macOS / Xcode 16.x：
+当前测试会滚动核对“槽位 3”及“矮人卷轴 II ×1（普通）”，背包搜索提交后核对钻石槽位及筛选结果。背包页也补充了滚动收起键盘支持。当前完整 iPhone 任务保留全部 173 项测试和测试内原生截图；通过手动参数省略测试结束后的独立 Tracker 展示截图步骤。
 
-```sh
-bash scripts/validate-on-macos.sh
-LAYOUT_DEVICE=mini LAYOUT_SCOPE=repair bash scripts/validate-layout-on-macos.sh
-LAYOUT_DEVICE=large LAYOUT_SCOPE=repair bash scripts/validate-layout-on-macos.sh
-bash scripts/build-unsigned-ipa.sh
-```
+此前失败或取消的任务用于诊断，不计为当前修订的通过结果。
 
-本分支的 push 会触发现有 device build、完整 iPhone suite、两种 iPad 尺寸的 repair/expanded UI suite。构建成功后仍需审阅 xcresult、原生截图和包内版本/架构，并保存新 IPA 的 SHA-256。游戏验收还需使用真实 1.6 存档，在游戏关闭时编辑，载入检查并睡觉保存，再次加载确认字段保留。
+## 覆盖边界
 
-## 历史记录
+测试使用合成存档和模拟器。生成 XML 后重新解析并核对草稿，可验证序列化结果是否符合本次修改意图；尚未完成签名真机安装、真实存档在游戏中加载、睡觉保存及二次载入。文件提供器、云同步、多人和 Mod 存档仍需要相应环境与样本验证。
 
-构建 14 的设备构建和测试数字保留在 `BUILD14_VERIFICATION.md`；其他旧版本报告同样只适用于各自版本。本文件未复用任何旧 IPA 作为新构建产物。
+本轮未实现完整地形/人物渲染、高级事件预测或完整锻造编辑，也不宣称与参考应用全面等价。安装与使用步骤见 [START_HERE.md](../START_HERE.md)，修复范围见 [COMPLETE_REPAIR.md](../COMPLETE_REPAIR.md)。

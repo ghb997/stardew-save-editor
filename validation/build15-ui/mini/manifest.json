@@ -1,14 +1,14 @@
 {
-  "sourceCommit": "cd325fa4e86f456481d2e03cf463fc861ee2937c",
-  "run": "https://github.com/ghb997/stardew-save-editor/actions/runs/34686632117",
+  "sourceCommit": "a0a0a7e0422adfd5d5e15dd1cc122a4f8cab0b34",
+  "run": "https://github.com/ghb997/stardew-save-editor/actions/runs/34688577619",
   "screenshots": [
     {
       "name": "build15-collection-review",
       "file": "build15-collection-review.png",
       "test": "RepairEditorUITests/testCollectionSupplyCreatesInventoryDraftWithoutMarkingDonation()",
       "device": "iPad mini (A17 Pro)",
-      "originalAttachment": "36C3BF07-F6B9-418F-A6CD-61EF38A0D48E.png",
-      "sha256": "f166c303f8c4770819d3a0b726c1616d0df63962cf6902f8c78b21d6f12d45b4",
+      "originalAttachment": "2941035B-7411-42B4-BA66-FD1566A39E28.png",
+      "sha256": "1b07c65c74fc56112659035bc9ee5515daf39de2d6b028d7b822dddf0795fc95",
       "visualReview": "passed",
       "reviewNotes": "已审阅原图：检查页显示槽位 3 从空变为矮人卷轴 II ×1（普通），未显示捐赠改动。"
     },
@@ -17,8 +17,8 @@
       "file": "build15-collection-supply.png",
       "test": "RepairEditorUITests/testCollectionSupplyCreatesInventoryDraftWithoutMarkingDonation()",
       "device": "iPad mini (A17 Pro)",
-      "originalAttachment": "F1F00A37-AF55-4E23-8C5A-D1824146F256.png",
-      "sha256": "1a0077c583bb71aa10814552fd129e0ad09fe2bd8afea4c498ff71f56f7526bd",
+      "originalAttachment": "5FBE731B-DF5F-4791-A7C3-300AB9E44F06.png",
+      "sha256": "9d6cbad730ec37ffc4d491924f4969b6cc5cbb654529a4e706e97bed7c9d3243",
       "visualReview": "passed",
       "reviewNotes": "已审阅原图：矮人卷轴 II 的缺少记录状态和已加入背包草稿反馈可读，补给与完成操作可达。"
     },
@@ -27,8 +27,8 @@
       "file": "build15-equipment-cancel.png",
       "test": "RepairEditorUITests/testEquipmentCancelLeavesDraftUnchanged()",
       "device": "iPad mini (A17 Pro)",
-      "originalAttachment": "B3614952-E059-4C7D-87A9-60F205A693AC.png",
-      "sha256": "7e1052640062407efa303a08bb63ec6ce217afefa71be938e311a0ae9cd4fd35",
+      "originalAttachment": "B287D0E7-1D37-45CA-A7CF-522C1B962D30.png",
+      "sha256": "daace72d78a2f72da70dd45fbbb374e11c48863d7cc70bd192652496453f2f85",
       "visualReview": "passed",
       "reviewNotes": "已审阅原图：取消后检查页显示没有待保存的更改，操作列表正常显示。"
     },
@@ -37,8 +37,8 @@
       "file": "build15-equipment-invalid-damage.png",
       "test": "RepairEditorUITests/testWeaponInvalidInputAndRestore()",
       "device": "iPad mini (A17 Pro)",
-      "originalAttachment": "695E4EDB-1A77-4223-8348-432FA46A5799.png",
-      "sha256": "f7893e45d262a7aea392f75213fbf059c60196cc06c15638a96f33f9cff7159e",
+      "originalAttachment": "88F5A584-1508-41C0-9CDC-C12C420E42CF.png",
+      "sha256": "885c4a3d63ec7345ebc631aa87325e2e05e6e5d3297844a146769a390af6fad9",
       "visualReview": "passed",
       "reviewNotes": "已审阅原图：最低伤害 90、最高伤害 80 的错误提示可读，输入和恢复操作可达。"
     },
@@ -47,12 +47,12 @@
       "file": "build15-equipment-review.png",
       "test": "RepairEditorUITests/testToolUpgradeCreatesReviewDiff()",
       "device": "iPad mini (A17 Pro)",
-      "originalAttachment": "0697F2C5-8FB5-40FD-BDDB-62FDBAB36A22.png",
-      "sha256": "4bb168cda72c6cf31d6f1f2a7748cfd81a351e70d8431066c3fb1994412020ad",
+      "originalAttachment": "461A01E4-7383-4B79-9D18-8011E200A126.png",
+      "sha256": "ff081a755ccc8b354e8b25700932579e592a3b86e4bc84a8cb4059835ce09d1a",
       "visualReview": "passed",
       "reviewNotes": "已审阅原图：检查页显示背包第 1 格装备升级等级 1 → 4，撤销操作可见。"
     }
   ],
   "reviewer": "Codex visual review of original XCTest screenshot attachments",
-  "reviewedAtUTC": "2026-09-12T09:57:05.017843+00:00"
+  "reviewedAtUTC": "2026-09-12T10:40:11.946044+00:00"
 }

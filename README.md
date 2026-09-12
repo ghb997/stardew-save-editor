@@ -4,7 +4,7 @@
 
 源码版本：`0.7.0`（构建 `15`）
 
-构建 15 修复配方误写计数、背包及容器模板校验、歧义记录处理与组合保存核对，新增已有工具与装备属性编辑、收藏与缺失清单。上一轮设备构建及两种 iPad 各 8 条 UI 流程通过；iPhone 实际执行 173 项，148 项单元测试全部通过，25 项界面测试中 2 项因小屏键盘与明细滚动操作失败。当前已修正这些操作并补充背包滚动收键盘支持，等待重跑原生验证。修复范围见 [COMPLETE_REPAIR.md](COMPLETE_REPAIR.md)，本轮证据见 [构建 15 验证记录](validation/BUILD15_VERIFICATION.md)，体积原因见 [IPA 大小对照](validation/BUILD15_SIZE_COMPARISON.md)。以下较早版本记录为历史证据。
+构建 15 修复配方误写计数、背包及容器模板校验、歧义记录处理与组合保存核对，新增已有工具与装备属性编辑、收藏与缺失清单，并修正小屏滚动及搜索键盘操作。最新 Release arm64 IPA 已构建并校验，两种 iPad 各 8 项 UI 流程全部通过，10 张本轮截图已审阅。当前 iPhone 完整 173 项回归正在执行，尚未发布全部通过结论。修复范围见 [COMPLETE_REPAIR.md](COMPLETE_REPAIR.md)，本轮证据见 [构建 15 验证记录](validation/BUILD15_VERIFICATION.md)，体积原因见 [IPA 大小对照](validation/BUILD15_SIZE_COMPARISON.md)。以下较早版本记录为历史证据。
 
 构建 14 基于完整 build 13，新增箱子与冰箱、天气与运气、机器加工、社区中心四个工具，继续使用草稿、逐项撤销和双文件备份事务。社区中心支持读取存档中的材料与交付进度，并把选中的材料补给到背包，回游戏交付以触发奖励。实现范围与数据规则见 [COMPREHENSIVE_UPDATE.md](COMPREHENSIVE_UPDATE.md)。设备 Release 构建通过；iPhone SE 上完整 138 项测试通过（117 项单元、21 项 UI），iPad mini 和 13 英寸 iPad Pro 各 4 条新增 UI 流程通过，合计 146 次测试执行均通过。24 张新增流程截图已审阅，详情、源码对应关系和限制见 [构建 14 验证记录](validation/BUILD14_VERIFICATION.md)。下文为历史验证。
 

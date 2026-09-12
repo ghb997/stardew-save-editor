@@ -205,16 +205,16 @@
     },
     {
       "name": "SheaflightAmberVault-v0.7.0-build15-unsigned.ipa",
-      "sha256": "4228234536f0b2d454c794244dd6e87041083c4264eece275d847e6d540bb736",
-      "ipa_bytes": 3699789,
+      "sha256": "c52c20523639eb91e8fc3bd9ee3c78b819967bdd1f7e500006b9a51f3bd52080",
+      "ipa_bytes": 3701134,
       "members": 15,
-      "uncompressed_bytes": 12716347,
-      "compressed_member_bytes": 3696131,
+      "uncompressed_bytes": 12724387,
+      "compressed_member_bytes": 3697476,
       "categories": {
         "other_app_contents": {
           "members": 12,
-          "uncompressed_bytes": 11298399,
-          "compressed_bytes": 2478477
+          "uncompressed_bytes": 11306439,
+          "compressed_bytes": 2479822
         },
         "images_fonts_media": {
           "members": 3,
@@ -225,8 +225,8 @@
       "largest_members": [
         {
           "path": "Payload/SheaflightAmberVault.app/SheaflightAmberVault",
-          "bytes": 10293744,
-          "compressed_bytes": 2391486
+          "bytes": 10301784,
+          "compressed_bytes": 2392831
         },
         {
           "path": "Payload/SheaflightAmberVault.app/Assets.car",

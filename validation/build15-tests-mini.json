@@ -1,9 +1,9 @@
 {
   "status": "passed",
-  "source_commit": "cd325fa4e86f456481d2e03cf463fc861ee2937c",
-  "run_url": "https://github.com/ghb997/stardew-save-editor/actions/runs/34686632117",
+  "source_commit": "a0a0a7e0422adfd5d5e15dd1cc122a4f8cab0b34",
+  "run_url": "https://github.com/ghb997/stardew-save-editor/actions/runs/34688577619",
   "job_name": "Layout tests (mini)",
-  "job_id": 103534639656,
+  "job_id": 103539779525,
   "scope": "repair",
   "device": {
     "name": "iPad mini (A17 Pro)",
@@ -20,7 +20,7 @@
   "outcomes": {
     "passed": 8
   },
-  "test_log_sha256": "80f8e266c6a40f66f9893c4a8437e2da8975d66757f6189f531050283184dd02",
+  "test_log_sha256": "2a7cdd68636909e536ab5ae634417796975cf6fa5550f193ee00b75cf66d4798",
   "missing": [],
   "unexpected": [],
   "duplicates": [],
@@ -30,49 +30,49 @@
       "class": "ExpandedEditorUITests",
       "method": "testBundleSupplyPreviewAddsInventoryDiffWithoutCompletingBundle",
       "result": "passed",
-      "seconds": 33.811
+      "seconds": 41.701
     },
     {
       "class": "ExpandedEditorUITests",
       "method": "testChestQuantityDraftAndReview",
       "result": "passed",
-      "seconds": 28.938
+      "seconds": 61.376
     },
     {
       "class": "ExpandedEditorUITests",
       "method": "testMachineSelectionPreviewApplyAndUndo",
       "result": "passed",
-      "seconds": 17.106
+      "seconds": 15.153
     },
     {
       "class": "ExpandedEditorUITests",
       "method": "testWeatherLuckPresetRestoreAndWeatherReview",
       "result": "passed",
-      "seconds": 19.617
+      "seconds": 18.461
     },
     {
       "class": "RepairEditorUITests",
       "method": "testCollectionSupplyCreatesInventoryDraftWithoutMarkingDonation",
       "result": "passed",
-      "seconds": 26.317
+      "seconds": 24.076
     },
     {
       "class": "RepairEditorUITests",
       "method": "testEquipmentCancelLeavesDraftUnchanged",
       "result": "passed",
-      "seconds": 20.67
+      "seconds": 32.989
     },
     {
       "class": "RepairEditorUITests",
       "method": "testToolUpgradeCreatesReviewDiff",
       "result": "passed",
-      "seconds": 30.71
+      "seconds": 22.161
     },
     {
       "class": "RepairEditorUITests",
       "method": "testWeaponInvalidInputAndRestore",
       "result": "passed",
-      "seconds": 32.43
+      "seconds": 24.212
     }
   ],
   "limitations": [

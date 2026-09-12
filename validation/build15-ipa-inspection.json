@@ -91,18 +91,18 @@
     }
   ],
   "archive": {
-    "compressed_bytes": 3696131,
+    "compressed_bytes": 3697476,
     "compression_ratio": 3.44,
     "duplicate_members": [],
     "member_count": 17,
     "suspicious_paths": [],
     "symbolic_links": [],
-    "uncompressed_bytes": 12716347
+    "uncompressed_bytes": 12724387
   },
   "artifact": {
-    "path": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\complete-repair-build15-validation\\device-cd325fa\\SheaflightAmberVault-unsigned-ipa-33\\run-20260912T095047Z-1473\\SheaflightAmberVault-v0.7.0-build15-unsigned.ipa",
-    "sha256": "4228234536f0b2d454c794244dd6e87041083c4264eece275d847e6d540bb736",
-    "size": 3699789
+    "path": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\complete-repair-build15-validation\\device-a0a0a7e\\run-20260912T102937Z-1277\\SheaflightAmberVault-v0.7.0-build15-unsigned.ipa",
+    "sha256": "c52c20523639eb91e8fc3bd9ee3c78b819967bdd1f7e500006b9a51f3bd52080",
+    "size": 3701134
   },
   "schema_version": 1,
   "warnings": []
