@@ -30,10 +30,12 @@ final class ExpandedEditorUITests: XCTestCase {
         let app = try launch("weather")
         defer { app.terminate() }
         try tap(app.buttons["weather.luck.best"], app)
-        XCTAssertTrue(app.staticTexts["0.1000"].waitForExistence(timeout: 10))
+        let currentLuck = app.staticTexts["weather.luck.current"]
+        XCTAssertTrue(currentLuck.waitForExistence(timeout: 10))
+        XCTAssertTrue(currentLuck.label.contains("0.1000"))
         screenshot("build14-weather-luck", app)
         try tap(app.buttons["weather.luck.restore"], app)
-        XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label == %@", "0.0250")).firstMatch.exists)
+        XCTAssertTrue(app.staticTexts["weather.luck.current"].label.contains("0.0250"))
         try tap(app.buttons["weather.region.Default"], app, downFirst: true)
         try tap(app.buttons["雷雨"], app)
         XCTAssertTrue(app.staticTexts["原始：雨天 → 草稿：雷雨"].waitForExistence(timeout: 10))
@@ -56,7 +58,7 @@ final class ExpandedEditorUITests: XCTestCase {
         let undo = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", "machines.undo.")).firstMatch
         try tap(undo, app)
         XCTAssertFalse(app.staticTexts["待保存：完成加工"].exists)
-        XCTAssertTrue(app.switches.containing(NSPredicate(format: "label CONTAINS %@", "选择完成")).firstMatch.exists)
+        XCTAssertTrue(app.switches.matching(NSPredicate(format: "label CONTAINS %@", "选择完成")).firstMatch.exists)
     }
 
     @MainActor
