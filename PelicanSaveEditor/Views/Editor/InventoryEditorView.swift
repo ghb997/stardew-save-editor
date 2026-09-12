@@ -67,7 +67,7 @@ struct InventoryEditorView: View {
             .searchable(text: $searchText, prompt: "搜索物品名称、ID 或槽位编号")
             .onSubmit(of: .search) { KeyboardReturnAction.dismiss() }
             .safeAreaInset(edge: .bottom) {
-                Text("点按槽位编辑。工具、装备和未知特殊物品保持只读。")
+                Text("点按槽位编辑普通物品。工具和武器属性请前往“工具与装备”；未知物品保持只读。")
                     .font(.caption)
                     .foregroundStyle(.secondary)
                     .padding(10)

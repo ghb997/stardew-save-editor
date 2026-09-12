@@ -95,6 +95,16 @@
 		6065999ABB94A6C0645E9146 /* WeatherEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F6E2AACB69ECA6113547BD /* WeatherEditorView.swift */; };
 		6261AE855FA9F726231A6BAF /* ExpandedEditorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7FFA038641E80A3A7330A1 /* ExpandedEditorTests.swift */; };
 		B29900D610AC94C4762C3962 /* ExpandedEditorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E731A96492DF8A89BDB21557 /* ExpandedEditorUITests.swift */; };
+		98ACABB41A25FC25F0D39157 /* RepairEditorFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4258580EEF0BDBFDD997D0 /* RepairEditorFixture.swift */; };
+		E259D2C7B2092CF7EAEFC85D /* InventoryWriteRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F25F5AE272FABBFB1A967B4 /* InventoryWriteRules.swift */; };
+		8F37BBB84CCA2F8B130FA170 /* RecipeWriteRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F56D94681092DF1829478BE /* RecipeWriteRules.swift */; };
+		3A11ED57E854A198EDE6A594 /* SaveIntentVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87197A4CE192746964B02614 /* SaveIntentVerifier.swift */; };
+		F3F7E9913A9AD2AEEA56F2E4 /* CollectionLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496354BFA949F1FD09898BC0 /* CollectionLibrary.swift */; };
+		CA122C5F4C376D711B508B70 /* EquipmentEditorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106D9372A87133D7FC7802DF /* EquipmentEditorData.swift */; };
+		0DE12A30694D3BE474C4E0D0 /* EquipmentEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4960EA4BB76675ACEA19DE0B /* EquipmentEditorView.swift */; };
+		F7A0D411FC90209C9282614B /* CollectionLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF71783C83E0C21F559D0A24 /* CollectionLibraryView.swift */; };
+		C4AEAC7634D0D494B88EE214 /* RepairRegressionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80DF42DB2D6BF50939BCF1 /* RepairRegressionTests.swift */; };
+		B21B009B815A341B23E856B9 /* RepairEditorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC70611A52B04F81475AF37 /* RepairEditorUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -200,6 +210,16 @@
 		D0F6E2AACB69ECA6113547BD /* WeatherEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Editor/WeatherEditorView.swift"; sourceTree = SOURCE_ROOT; };
 		CD7FFA038641E80A3A7330A1 /* ExpandedEditorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditorTests/ExpandedEditorTests.swift"; sourceTree = SOURCE_ROOT; };
 		E731A96492DF8A89BDB21557 /* ExpandedEditorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditorUITests/ExpandedEditorUITests.swift"; sourceTree = SOURCE_ROOT; };
+		9A4258580EEF0BDBFDD997D0 /* RepairEditorFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/App/RepairEditorFixture.swift"; sourceTree = SOURCE_ROOT; };
+		7F25F5AE272FABBFB1A967B4 /* InventoryWriteRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Core/Save/InventoryWriteRules.swift"; sourceTree = SOURCE_ROOT; };
+		4F56D94681092DF1829478BE /* RecipeWriteRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Core/Save/RecipeWriteRules.swift"; sourceTree = SOURCE_ROOT; };
+		87197A4CE192746964B02614 /* SaveIntentVerifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Core/Save/SaveIntentVerifier.swift"; sourceTree = SOURCE_ROOT; };
+		496354BFA949F1FD09898BC0 /* CollectionLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Models/CollectionLibrary.swift"; sourceTree = SOURCE_ROOT; };
+		106D9372A87133D7FC7802DF /* EquipmentEditorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Models/EquipmentEditorData.swift"; sourceTree = SOURCE_ROOT; };
+		4960EA4BB76675ACEA19DE0B /* EquipmentEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Editor/EquipmentEditorView.swift"; sourceTree = SOURCE_ROOT; };
+		CF71783C83E0C21F559D0A24 /* CollectionLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Tools/CollectionLibraryView.swift"; sourceTree = SOURCE_ROOT; };
+		AE80DF42DB2D6BF50939BCF1 /* RepairRegressionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditorTests/RepairRegressionTests.swift"; sourceTree = SOURCE_ROOT; };
+		7CC70611A52B04F81475AF37 /* RepairEditorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditorUITests/RepairEditorUITests.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -247,6 +267,16 @@
 				D0F6E2AACB69ECA6113547BD /* WeatherEditorView.swift */,
 				CD7FFA038641E80A3A7330A1 /* ExpandedEditorTests.swift */,
 				E731A96492DF8A89BDB21557 /* ExpandedEditorUITests.swift */,
+				9A4258580EEF0BDBFDD997D0 /* RepairEditorFixture.swift */,
+				7F25F5AE272FABBFB1A967B4 /* InventoryWriteRules.swift */,
+				4F56D94681092DF1829478BE /* RecipeWriteRules.swift */,
+				87197A4CE192746964B02614 /* SaveIntentVerifier.swift */,
+				496354BFA949F1FD09898BC0 /* CollectionLibrary.swift */,
+				106D9372A87133D7FC7802DF /* EquipmentEditorData.swift */,
+				4960EA4BB76675ACEA19DE0B /* EquipmentEditorView.swift */,
+				CF71783C83E0C21F559D0A24 /* CollectionLibraryView.swift */,
+				AE80DF42DB2D6BF50939BCF1 /* RepairRegressionTests.swift */,
+				7CC70611A52B04F81475AF37 /* RepairEditorUITests.swift */,
 				52A33A42251270FA0061402D /* PelicanSaveEditor */,
 				D5CA3286FD20ABA40A3A831D /* PelicanSaveEditorTests */,
 				26115F3A720144889AA40005 /* PelicanSaveEditorUITests */,
@@ -545,6 +575,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B21B009B815A341B23E856B9 /* RepairEditorUITests.swift in Sources */,
 				B29900D610AC94C4762C3962 /* ExpandedEditorUITests.swift in Sources */,
 				EF1A190B9B8D101BDDEB997D /* AdaptiveLayoutUITests.swift in Sources */,26115F3A720144889AA40002 /* TrackerSmokeUITests.swift in Sources */,);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -553,6 +584,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4AEAC7634D0D494B88EE214 /* RepairRegressionTests.swift in Sources */,
 				6261AE855FA9F726231A6BAF /* ExpandedEditorTests.swift in Sources */,
 				2CF618BAE0F9C28AFD0E45B6 /* WorldEditorTests.swift in Sources */,
 				791D7F8EBA45F74FC4D58BC1 /* ReferenceFeatureTests.swift in Sources */,
@@ -567,6 +599,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7A0D411FC90209C9282614B /* CollectionLibraryView.swift in Sources */,
+				0DE12A30694D3BE474C4E0D0 /* EquipmentEditorView.swift in Sources */,
+				CA122C5F4C376D711B508B70 /* EquipmentEditorData.swift in Sources */,
+				F3F7E9913A9AD2AEEA56F2E4 /* CollectionLibrary.swift in Sources */,
+				3A11ED57E854A198EDE6A594 /* SaveIntentVerifier.swift in Sources */,
+				8F37BBB84CCA2F8B130FA170 /* RecipeWriteRules.swift in Sources */,
+				E259D2C7B2092CF7EAEFC85D /* InventoryWriteRules.swift in Sources */,
+				98ACABB41A25FC25F0D39157 /* RepairEditorFixture.swift in Sources */,
 				6065999ABB94A6C0645E9146 /* WeatherEditorView.swift in Sources */,
 				AB46A44038B6B7FE414D58BC /* StorageEditorView.swift in Sources */,
 				03208CF12172D41FB3C0C07A /* MachinesEditorView.swift in Sources */,
@@ -690,7 +730,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -711,7 +751,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.6.0;
+				MARKETING_VERSION = 0.7.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -760,7 +800,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -775,7 +815,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.6.0;
+				MARKETING_VERSION = 0.7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";

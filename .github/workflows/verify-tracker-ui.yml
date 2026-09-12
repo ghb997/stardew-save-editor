@@ -17,6 +17,7 @@ on:
   push:
     branches:
       - 'codex/tracker-ui-*'
+      - 'codex/complete-repair-*'
 
 permissions:
   contents: read

@@ -1,6 +1,6 @@
 {
   "method": "tree-sitter-swift syntax parsing only; not Swift typechecking or XCTest execution",
-  "swift_files": 78,
+  "swift_files": 88,
   "errors": [],
   "unsupported_qualifiers_not_typechecked": [
     {
@@ -10,7 +10,7 @@
     },
     {
       "file": "PelicanSaveEditor/App/SaveWorkService.swift",
-      "line": 122,
+      "line": 123,
       "qualifier": "sending return (requires Swift 6 compiler validation)"
     }
   ]

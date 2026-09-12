@@ -54,17 +54,14 @@ enum StorageEditorRules {
     }
 
     private static func readItem(_ node: XMLNode, catalog: [String: CatalogItem]) -> InventoryItemDraft? {
-        if ExistingSaveValue.bool(node.attributes["xsi:nil"] ?? node.attributes["nil"]) == true { return nil }
+        if ExistingSaveValue.bool(node.attributes["xsi:nil"] ?? node.attributes["nil"]) == true,
+           node.children.isEmpty, node.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty { return nil }
         let id = ExistingSaveValue.field("itemId", in: node) ?? ExistingSaveValue.field("parentSheetIndex", in: node) ?? "?"
         let known = catalog[id]
         let stack = ExistingSaveValue.field("stack", in: node).flatMap(Int.init)
         let quality = ExistingSaveValue.field("quality", in: node).flatMap(Int.init)
         let type = ExistingSaveValue.type(node)
-        let editable = known != nil && ["Object", "ColoredObject"].contains(type) && stack != nil && quality != nil
-            && ExistingSaveValue.bool(ExistingSaveValue.field("specialItem", in: node)) == false
-            && ExistingSaveValue.bool(ExistingSaveValue.field("questItem", in: node)) == false
-            && ExistingSaveValue.bool(ExistingSaveValue.field("isRecipe", in: node)) == false
-            && ExistingSaveValue.bool(ExistingSaveValue.field("bigCraftable", in: node)) == false
+        let editable = known != nil && InventoryWriteRules.canEdit(node, itemID: id)
         return InventoryItemDraft(id: UUID(), itemID: id, name: node.value(named: "name") ?? "未知物品",
             chineseName: known?.chineseName, objectType: type, stack: stack ?? 1, quality: quality ?? 0,
             spriteIndex: known?.spriteIndex, texture: known?.texture,
@@ -78,29 +75,8 @@ enum StorageEditorRules {
               storage.slots.map(\.id) == original.slots.map(\.id), storage.isEditable || storage == original else {
             throw SaveValidationError.invalid("容器结构或只读数据发生改变，请重新读取存档。")
         }
-        for (slot, old) in zip(storage.slots, original.slots) where slot != old {
-            guard old.item?.isEditable != false else { throw SaveValidationError.invalid("工具、装备与未知容器物品保持只读。") }
-            guard let item = slot.item else { continue }
-            guard item.isEditable, (1...999).contains(item.stack), item.allowedQualities.contains(item.quality) else {
-                throw SaveValidationError.invalid("容器物品数量须在 1–999 之间，品质须符合物品类型。")
-            }
-            if let previous = old.item, previous.id == item.id {
-                var metadata = item
-                metadata.stack = previous.stack; metadata.quality = previous.quality
-                guard metadata == previous else { throw SaveValidationError.invalid("现有物品只能修改数量和品质。") }
-            } else {
-                // New objects must use the same canonical template as the bundled picker.
-                guard let known = canonicalItems.first(where: { $0.id == item.itemID }) else {
-                    throw SaveValidationError.invalid("新增容器物品不在已支持的目录中。")
-                }
-                var canonical = known.makeInventoryItem()
-                canonical.id = item.id; canonical.stack = item.stack; canonical.quality = item.quality
-                guard item == canonical else { throw SaveValidationError.invalid("新增容器物品的模板无效。") }
-            }
-        }
+        try InventoryWriteRules.validate(storage.slots, original: original.slots)
     }
-
-    private static let canonicalItems: [CatalogItem] = (try? ItemCatalog.load()) ?? []
 
     static func apply(_ storage: StorageDraft, original: StorageDraft, to root: XMLNode) throws {
         guard storage != original else { return }

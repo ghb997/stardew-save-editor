@@ -42,6 +42,19 @@ enum ExistingSaveValue {
            wrapper.name.hasPrefix("SerializableDictionary") { return wrapper.children(named: "item") }
         return node.children(named: "item")
     }
+    static func farmAnimalID(_ entry: XMLNode) -> String? {
+        guard entry.children(named: "value").count == 1, let value = entry.child(named: "value"),
+              value.children.count == 1, let animal = value.child(named: "FarmAnimal"),
+              bool(animal.attributes["xsi:nil"] ?? animal.attributes["nil"]) != true,
+              entry.children(named: "key").count <= 1, animal.children(named: "myID").count <= 1 else { return nil }
+        let key = entry.child(named: "key")
+        let fromKey = key.flatMap { $0.children.count == 1 ? field("long", in: $0).flatMap(Int64.init) : nil }
+        let fromAnimal = field("myID", in: animal).flatMap(Int64.init)
+        if key != nil && fromKey == nil { return nil }
+        if animal.child(named: "myID") != nil && fromAnimal == nil { return nil }
+        if let fromKey, let fromAnimal, fromKey != fromAnimal { return nil }
+        return (fromKey ?? fromAnimal).map(String.init)
+    }
     static func locationTitle(_ name: String) -> String {
         ["Farm": "农场", "FarmHouse": "农舍", "Greenhouse": "温室", "Cellar": "地窖",
          "IslandWest": "姜岛农场", "IslandFarmHouse": "姜岛农舍", "Town": "鹈鹕镇",
@@ -58,6 +71,19 @@ struct LocatedWorldObject {
 }
 
 enum WorldObjectIndex {
+    private static func point(_ entry: XMLNode) -> (x: Int, y: Int, key: String)? {
+        guard entry.name == "item", entry.children(named: "key").count == 1,
+              let key = entry.child(named: "key"), key.children.count == 1,
+              let vector = key.child(named: "Vector2") else { return nil }
+        func integer(_ name: String) -> Int? {
+            guard let raw = ExistingSaveValue.field(name, in: vector), let value = Double(raw),
+                  value.isFinite, value.rounded() == value, abs(value) <= 1_000_000 else { return nil }
+            return Int(value)
+        }
+        guard let x = integer("X"), let y = integer("Y") else { return nil }
+        return (x, y, "\(x):\(y)")
+    }
+
     /// One traversal confined to world locations; never visits player inventories.
     static func collect(_ root: XMLNode) -> [LocatedWorldObject] {
         guard root.children(named: "locations").count == 1,
@@ -74,18 +100,16 @@ enum WorldObjectIndex {
                    first.name.hasPrefix("SerializableDictionary") {
                     container = first; containerPath = path.child(0)
                 } else { container = node; containerPath = path }
-                let keys = container.children.compactMap { $0.child(named: "key")?.xmlString() }
+                let keys = container.children.compactMap { point($0)?.key }
                 let counts = Dictionary(keys.map { ($0, 1) }, uniquingKeysWith: +)
                 for (i, entry) in container.children.enumerated() where entry.name == "item" {
-                    guard let key = entry.child(named: "key"), counts[key.xmlString()] == 1,
-                          let vector = key.child(named: "Vector2"),
-                          let x = ExistingSaveValue.field("X", in: vector).flatMap(Int.init),
-                          let y = ExistingSaveValue.field("Y", in: vector).flatMap(Int.init),
+                    guard let position = point(entry), counts[position.key] == 1,
+                          entry.children(named: "value").count == 1,
                           let v = entry.children.firstIndex(where: { $0.name == "value" }),
                           entry.children[v].children.count == 1 else { continue }
                     result.append(LocatedWorldObject(node: entry.children[v].children[0],
                         path: containerPath.child(i).child(v).child(0), location: location,
-                        coordinate: "X \(x) · Y \(y)", isFridge: false))
+                        coordinate: "X \(position.x) · Y \(position.y)", isFridge: false))
                 }
                 return
             }

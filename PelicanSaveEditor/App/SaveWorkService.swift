@@ -114,7 +114,8 @@ actor SaveWorkService {
             gameVersion: fresh.gameVersion, playTimeMilliseconds: fresh.playTimeMilliseconds,
             farmType: fresh.farmType, warnings: fresh.warnings)
         let rendered = try SaveMutator.render(parsed: parsed, draft: draft)
-        _ = try SaveParser.parse(mainData: rendered.mainData, infoData: rendered.infoData, catalog: items, recipeCatalog: recipes)
+        let reloaded = try SaveParser.parse(mainData: rendered.mainData, infoData: rendered.infoData, catalog: items, recipeCatalog: recipes)
+        try SaveIntentVerifier.verify(original: originalDraft, intended: draft, reloaded: reloaded, originalRoot: fresh.mainRoot)
         return SavePairData(main: rendered.mainData, info: rendered.infoData)
     }
 

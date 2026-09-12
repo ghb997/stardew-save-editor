@@ -51,7 +51,7 @@ enum SaveParser {
         let infoPayload = try infoData.map(SaveCodec.decode)
         let infoRoot = try infoPayload.map { try XMLTreeParser().parse($0.xmlData) }
 
-        guard let player = mainRoot.child(named: "player") else {
+        guard mainRoot.children(named: "player").count == 1, let player = mainRoot.child(named: "player") else {
             throw SaveParseError.missingField("SaveGame/player")
         }
 
@@ -73,7 +73,9 @@ enum SaveParser {
         let catalogByID = Dictionary(catalog.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
         var inventory = extractInventory(player: player, catalogByID: catalogByID, warnings: &warnings)
         let inventorySlotFloor = inventory.count
-        let backpackCapacity = editableScalar(player.child(named: "maxItems")).flatMap(Int.init)
+        let hasInventory = player.children(named: "items").count == 1
+            && ExistingSaveValue.bool(player.child(named: "items")?.attributes["xsi:nil"] ?? player.child(named: "items")?.attributes["nil"]) != true
+        let backpackCapacity = hasInventory ? ExistingSaveValue.field("maxItems", in: player).flatMap(Int.init) : nil
         if let capacity = backpackCapacity, BackpackRules.capacities.contains(capacity),
            player.child(named: "items") != nil, inventory.count < capacity {
             inventory.append(contentsOf: (inventory.count..<capacity).map {
@@ -157,6 +159,7 @@ enum SaveParser {
         draft.machines = MachineEditorRules.extract(worldObjects, catalog: catalogByID)
         draft.weatherAndLuck = WeatherAndLuckDraft.extract(mainRoot)
         draft.communityCenter = CommunityCenterData.extract(mainRoot)
+        draft.equipment = EquipmentEditorRules.extract(mainRoot, storages: draft.storages)
 
         return ParsedSaveDocument(
             mainRoot: mainRoot,
@@ -198,15 +201,18 @@ enum SaveParser {
         catalogByID: [String: CatalogItem],
         warnings: inout [String]
     ) -> [InventorySlotDraft] {
-        guard let items = player.child(named: "items") else {
-            warnings.append("存档没有背包字段。")
+        guard player.children(named: "items").count == 1, let items = player.child(named: "items"),
+              ExistingSaveValue.bool(items.attributes["xsi:nil"] ?? items.attributes["nil"]) != true else {
+            warnings.append("存档未提供唯一、有效的背包字段，未开放背包修改。")
             return []
         }
 
         var readOnlyCount = 0
         let slots = items.children(named: "Item").enumerated().map { index, node in
-            let isNil = node.attributes["xsi:nil"] == "true" || node.attributes["nil"] == "true"
-            guard !isNil else { return InventorySlotDraft(id: index, item: nil) }
+            let isNil = ExistingSaveValue.bool(node.attributes["xsi:nil"] ?? node.attributes["nil"]) == true
+            if isNil && node.children.isEmpty && node.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                return InventorySlotDraft(id: index, item: nil)
+            }
 
             let objectType = node.attributes["xsi:type"] ?? node.attributes["type"] ?? "Unknown"
             let itemID = node.value(named: "itemId") ?? node.value(named: "parentSheetIndex") ?? "?"
@@ -214,12 +220,7 @@ enum SaveParser {
             let stack = node.int(named: "stack") ?? 1
             let quality = node.int(named: "quality") ?? 0
             let known = catalogByID[itemID]
-            let special = node.value(named: "specialItem") == "true"
-            let editable = ["Object", "ColoredObject", "Cask"].contains(objectType)
-                && !special
-                && node.child(named: "stack") != nil
-                && node.child(named: "quality") != nil
-                && !name.hasPrefix("Secret Note")
+            let editable = InventoryWriteRules.canEdit(node, itemID: itemID)
 
             if !editable { readOnlyCount += 1 }
             let allowedQualities = known?.allowedQualities
@@ -245,20 +246,26 @@ enum SaveParser {
         }
 
         if readOnlyCount > 0 {
-            warnings.append("背包中有 \(readOnlyCount) 个工具、装备或特殊物品；为防止专属字段损坏，它们保持只读。")
+            warnings.append("背包中有 \(readOnlyCount) 个工具、装备或特殊物品，其槽位保持只读；支持的装备属性可在工具与装备页修改。")
         }
         return slots
     }
 
     private static func extractFriendships(player: XMLNode) -> [FriendshipDraft] {
-        guard let container = player.child(named: "friendshipData") else { return [] }
+        guard player.children(named: "friendshipData").count == 1,
+              let container = player.child(named: "friendshipData") else { return [] }
+        let names = container.children(named: "item").compactMap { $0.child(named: "key")?.value(named: "string") }
+        let counts = Dictionary(names.map { ($0, 1) }, uniquingKeysWith: +)
         return container.children(named: "item").compactMap { item in
-            guard let name = item.child(named: "key")?.value(named: "string"),
-                  let friendship = item.child(named: "value")?.child(named: "Friendship") else {
+            guard let name = item.child(named: "key")?.value(named: "string"), counts[name] == 1,
+                  item.children(named: "key").count == 1, item.child(named: "key")?.children.count == 1,
+                  item.children(named: "value").count == 1, item.child(named: "value")?.children.count == 1,
+                  let friendship = item.child(named: "value")?.child(named: "Friendship"),
+                  ExistingSaveValue.bool(friendship.attributes["xsi:nil"] ?? friendship.attributes["nil"]) != true else {
                 return nil
             }
-            let pointsValue = editableScalar(friendship.child(named: "Points")).flatMap(Int.init)
-            let statusValue = editableScalar(friendship.child(named: "Status")).flatMap(RelationshipStatus.init(rawValue:))
+            let pointsValue = ExistingSaveValue.field("Points", in: friendship).flatMap(Int.init)
+            let statusValue = ExistingSaveValue.field("Status", in: friendship).flatMap(RelationshipStatus.init(rawValue:))
             let points = pointsValue ?? 0
             let status = statusValue ?? .unknown
             return FriendshipDraft(
@@ -267,8 +274,8 @@ enum SaveParser {
                 status: status,
                 originalPoints: points,
                 originalStatus: status,
-                giftsToday: editableScalar(friendship.child(named: "GiftsToday")).flatMap(Int.init).flatMap { $0 >= 0 ? $0 : nil },
-                giftsThisWeek: editableScalar(friendship.child(named: "GiftsThisWeek")).flatMap(Int.init).flatMap { $0 >= 0 ? $0 : nil },
+                giftsToday: ExistingSaveValue.field("GiftsToday", in: friendship).flatMap(Int.init).flatMap { $0 >= 0 ? $0 : nil },
+                giftsThisWeek: ExistingSaveValue.field("GiftsThisWeek", in: friendship).flatMap(Int.init).flatMap { $0 >= 0 ? $0 : nil },
                 hasEditablePoints: pointsValue != nil,
                 hasEditableStatus: statusValue != nil
             )
@@ -291,28 +298,7 @@ enum SaveParser {
         player: XMLNode,
         recipeCatalog: [RecipeKind: [String]]
     ) -> [RecipeDraft] {
-        RecipeKind.allCases.flatMap { kind -> [RecipeDraft] in
-            let container = player.child(named: kind.containerName)
-            var existing: [String: Int] = [:]
-            for item in container?.children(named: "item") ?? [] {
-                guard let key = item.child(named: "key")?.value(named: "string") else { continue }
-                existing[key] = item.child(named: "value")?.int(named: "int") ?? 0
-            }
-
-            var keys = recipeCatalog[kind] ?? []
-            for key in existing.keys where !keys.contains(key) { keys.append(key) }
-            return keys.map { key in
-                let times = existing[key]
-                return RecipeDraft(
-                    key: key,
-                    kind: kind,
-                    unlocked: times != nil,
-                    timesMade: times ?? 0,
-                    originallyUnlocked: times != nil,
-                    originalTimesMade: times ?? 0
-                )
-            }
-        }
+        RecipeWriteRules.extract(player: player, catalog: recipeCatalog)
     }
 
     private static func extractProgress(root: XMLNode, player: XMLNode) -> ProgressDraft {
@@ -381,17 +367,14 @@ enum SaveParser {
     private static func extractAnimals(root: XMLNode) -> [FarmAnimalDraft] {
         var animalsByID: [String: FarmAnimalDraft] = [:]
         var order: [String] = []
+        var ambiguous = Set<String>()
 
         for item in descendants(of: root) where item.name == "item" {
             guard let animal = item.child(named: "value")?.child(named: "FarmAnimal") else { continue }
-            let rawID = item.child(named: "key")?.firstDescendant(named: "long")?.text
-                ?? animal.value(named: "myID")
             let type = animal.value(named: "type") ?? ""
             let name = animal.value(named: "name") ?? animal.value(named: "displayName") ?? type
-            let id = rawID?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false
-                ? rawID!
-                : "\(type)|\(name)|\(order.count)"
-            guard animalsByID[id] == nil else { continue }
+            guard let id = ExistingSaveValue.farmAnimalID(item) else { continue }
+            if animalsByID[id] != nil { ambiguous.insert(id); continue }
 
             animalsByID[id] = FarmAnimalDraft(
                 id: id,
@@ -406,7 +389,7 @@ enum SaveParser {
             order.append(id)
         }
 
-        return order.compactMap { animalsByID[$0] }.sorted {
+        return order.filter { !ambiguous.contains($0) }.compactMap { animalsByID[$0] }.sorted {
             if $0.home != $1.home {
                 return $0.home.localizedCaseInsensitiveCompare($1.home) == .orderedAscending
             }

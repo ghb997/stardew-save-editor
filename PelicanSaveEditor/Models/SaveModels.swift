@@ -336,6 +336,7 @@ struct RecipeDraft: Identifiable, Equatable, Sendable {
     var timesMade: Int
     let originallyUnlocked: Bool
     let originalTimesMade: Int
+    var isEditable = true
 }
 
 struct InventoryItemDraft: Identifiable, Equatable, Sendable {
@@ -471,6 +472,7 @@ struct SaveDraft: Equatable, Sendable {
     var machines: [MachineDraft] = []
     var weatherAndLuck = WeatherAndLuckDraft()
     var communityCenter = CommunityCenterData()
+    var equipment: [EquipmentDraft] = []
 }
 
 extension SaveDraft {

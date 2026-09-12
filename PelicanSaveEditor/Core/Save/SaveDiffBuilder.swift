@@ -278,6 +278,7 @@ enum SaveDiffBuilder {
             )
         }
 
+        result.append(contentsOf: EquipmentEditorRules.diffs(draft.equipment, original: original.equipment))
         result.append(contentsOf: ExpandedEditorChanges.diffs(original: original, draft: draft))
         return result
     }
@@ -294,6 +295,16 @@ enum SaveDiffBuilder {
     /// Undo one displayed change using the immutable baseline. Coupled skill
     /// level/XP/profession values are restored together to remain consistent.
     static func undo(_ diff: SaveDiff, original: SaveDraft, draft: inout SaveDraft) {
+        if diff.id.hasPrefix("equipment:") {
+            for i in draft.equipment.indices where original.equipment.indices.contains(i) {
+                for j in draft.equipment[i].fields.indices where original.equipment[i].fields.indices.contains(j) {
+                    if diff.id == "equipment:\(draft.equipment[i].id):\(draft.equipment[i].fields[j].id)" {
+                        draft.equipment[i].fields[j] = original.equipment[i].fields[j]
+                    }
+                }
+            }
+            return
+        }
         if diff.id.hasPrefix("storage:") || diff.id.hasPrefix("machine:") || diff.id.hasPrefix("weather:") {
             ExpandedEditorChanges.undo(diff.id, original: original, draft: &draft)
             return

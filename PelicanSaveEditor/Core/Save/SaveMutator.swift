@@ -30,6 +30,7 @@ enum SaveMutator {
         guard let player = main.child(named: "player") else {
             throw SaveParseError.missingField("SaveGame/player")
         }
+        try EquipmentEditorRules.apply(draft.equipment, original: parsed.draft.equipment, to: main)
         applyPlayerScalars(draft, original: parsed.draft, to: player)
         applyDate(draft, original: parsed.draft, root: main, player: player)
         try ExpandedEditorChanges.apply(draft, original: parsed.draft, to: main)
@@ -40,7 +41,7 @@ enum SaveMutator {
             applyFriendships(draft.friendships, original: parsed.draft.friendships, to: player)
         }
         if draft.recipes != parsed.draft.recipes {
-            applyRecipes(draft.recipes, to: player)
+            RecipeWriteRules.apply(draft.recipes, original: parsed.draft.recipes, to: player)
         }
         if draft.progress.professionIDs != parsed.draft.progress.professionIDs {
             applyProfessions(draft.progress.professionIDs, to: player)
@@ -91,7 +92,19 @@ enum SaveMutator {
     }
 
     static func validate(_ draft: SaveDraft, comparedTo original: SaveDraft? = nil) throws {
-        if let original { try ExpandedEditorChanges.validate(draft, original: original) }
+        if let original {
+            try ExpandedEditorChanges.validate(draft, original: original)
+            try InventoryWriteRules.validate(draft.inventory, original: original.inventory)
+            try RecipeWriteRules.validate(draft.recipes, original: original.recipes)
+            try EquipmentEditorRules.validate(draft.equipment, original: original.equipment)
+            guard draft.skills.map(\.key) == original.skills.map(\.key),
+                  draft.friendships.map(\.name) == original.friendships.map(\.name),
+                  draft.animals.map(\.id) == original.animals.map(\.id),
+                  draft.progress.walletUnlocks.map(\.key) == original.progress.walletUnlocks.map(\.key),
+                  draft.progress.insights == original.progress.insights else {
+                throw SaveValidationError.invalid("人物、技能、动物或统计记录的范围已改变，请重新读取存档。")
+            }
+        }
         func shouldValidate<T: Equatable>(_ value: T, originalValue: T?) -> Bool {
             guard let originalValue else { return true }
             return value != originalValue
@@ -513,8 +526,7 @@ enum SaveMutator {
                               uniquingKeysWith: { first, _ in first })
         for item in descendants(of: root) where item.name == "item" {
             guard let node = item.child(named: "value")?.child(named: "FarmAnimal") else { continue }
-            let id = item.child(named: "key")?.firstDescendant(named: "long")?.text ?? node.value(named: "myID")
-            guard let id, let animal = byID[id], let old = oldByID[id] else { continue }
+            guard let id = ExistingSaveValue.farmAnimalID(item), let animal = byID[id], let old = oldByID[id] else { continue }
             if animal.name != old.name {
                 node.setValue(animal.name, named: "name", createIfMissing: true)
                 node.setValue(animal.name, named: "displayName")
@@ -566,8 +578,12 @@ enum SaveMutator {
             guard let node = fragment.children.first else {
                 throw SaveValidationError.invalid("背包第 \(slot.id + 1) 格模板无效。")
             }
-            node.setValue(String(item.stack), named: "stack")
-            node.setValue(String(item.quality), named: "quality")
+            if ExistingSaveValue.field("stack", in: node).flatMap(Int.init) != item.stack {
+                node.setValue(String(item.stack), named: "stack")
+            }
+            if ExistingSaveValue.field("quality", in: node).flatMap(Int.init) != item.quality {
+                node.setValue(String(item.quality), named: "quality")
+            }
             return node.deepCopy()
         }
         var next = 0
@@ -600,42 +616,6 @@ enum SaveMutator {
             if draft.giftsThisWeek != old.giftsThisWeek, let value = draft.giftsThisWeek {
                 friendship.setValue(String(value), named: "GiftsThisWeek")
             }
-        }
-    }
-
-    private static func applyRecipes(_ recipes: [RecipeDraft], to player: XMLNode) {
-        for kind in RecipeKind.allCases {
-            guard let container = player.child(named: kind.containerName) else { continue }
-            let drafts = recipes.filter { $0.kind == kind }
-            let byKey = Dictionary(drafts.map { ($0.key, $0) }, uniquingKeysWith: { first, _ in first })
-            var retainedKeys = Set<String>()
-            var children: [XMLNode] = []
-
-            for item in container.children {
-                guard item.name == "item",
-                      let key = item.child(named: "key")?.value(named: "string"),
-                      let draft = byKey[key] else {
-                    // Preserve malformed, modded, or otherwise unknown children.
-                    children.append(item)
-                    continue
-                }
-                guard draft.unlocked else { continue }
-                item.child(named: "value")?.setValue(
-                    String(draft.timesMade),
-                    named: "int",
-                    createIfMissing: true
-                )
-                children.append(item)
-                retainedKeys.insert(key)
-            }
-
-            for recipe in drafts where recipe.unlocked && !retainedKeys.contains(recipe.key) {
-                children.append(XMLNode(name: "item", children: [
-                    XMLNode(name: "key", children: [XMLNode(name: "string", text: recipe.key)]),
-                    XMLNode(name: "value", children: [XMLNode(name: "int", text: String(recipe.timesMade))])
-                ]))
-            }
-            container.children = children
         }
     }
 

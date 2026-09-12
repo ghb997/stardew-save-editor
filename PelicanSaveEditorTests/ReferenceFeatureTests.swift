@@ -8,7 +8,7 @@ final class ReferenceFeatureTests: XCTestCase {
         var draft = parsed.draft
         XCTAssertEqual(draft.inventory.count, 12)
         try draft.setBackpackCapacity(36)
-        draft.inventory[35].item = stone(stack: 99)
+        draft.inventory[35].item = try stone(stack: 99)
         let pair = try SaveMutator.render(parsed: parsed, draft: draft)
         let roundTrip = try SaveParser.parse(mainData: pair.mainData, infoData: pair.infoData, catalog: [], recipeCatalog: [:])
         XCTAssertEqual(roundTrip.draft.backpackCapacity, 36)
@@ -37,7 +37,7 @@ final class ReferenceFeatureTests: XCTestCase {
     func testShrinkWithOccupiedTailFailsWithoutChangingDraft() throws {
         let parsed = try parse(capacity: "<maxItems>36</maxItems>")
         var draft = parsed.draft
-        draft.inventory[35].item = stone()
+        draft.inventory[35].item = try stone()
         let before = draft
         XCTAssertThrowsError(try draft.setBackpackCapacity(12))
         XCTAssertEqual(draft, before)
@@ -53,8 +53,8 @@ final class ReferenceFeatureTests: XCTestCase {
         let parsed = try parse()
         var draft = parsed.draft
         try draft.setBackpackCapacity(36)
-        draft.inventory[0].item = stone(stack: 10)
-        draft.inventory[35].item = stone(stack: 20)
+        draft.inventory[0].item = try stone(stack: 10)
+        draft.inventory[35].item = try stone(stack: 20)
         let capacityDiff = try XCTUnwrap(SaveDiffBuilder.build(original: parsed.draft, draft: draft).first { $0.id == "inventory.capacity" })
         SaveDiffBuilder.undo(capacityDiff, original: parsed.draft, draft: &draft)
         XCTAssertEqual(draft.backpackCapacity, 12)
@@ -71,7 +71,7 @@ final class ReferenceFeatureTests: XCTestCase {
         XCTAssertEqual(draft.inventory.count, 36)
         XCTAssertEqual(draft.usableInventoryCount, 24)
         XCTAssertFalse(draft.canUseInventorySlot(24))
-        draft.inventory[24].item = stone()
+        draft.inventory[24].item = try stone()
         XCTAssertThrowsError(try SaveMutator.render(parsed: parsed, draft: draft))
         draft.inventory[24].item = nil
         let root = try renderedRoot(parsed, draft: draft)
@@ -244,9 +244,8 @@ final class ReferenceFeatureTests: XCTestCase {
         }?.child(named: "value")?.child(named: "Friendship")
     }
 
-    private func stone(stack: Int = 1) -> InventoryItemDraft {
-        CatalogItem(id: "390", name: "Stone", chineseName: "石头", objectType: "Basic", category: -16,
-                    price: 2, edibility: -300, spriteIndex: 390, texture: "Maps/springobjects", allowedQualities: [0])
-            .makeInventoryItem(stack: stack)
+    private func stone(stack: Int = 1) throws -> InventoryItemDraft {
+        // Exercise the same canonical template offered by the production picker.
+        try XCTUnwrap(try ItemCatalog.load().first { $0.id == "390" }).makeInventoryItem(stack: stack)
     }
 }

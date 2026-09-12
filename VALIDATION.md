@@ -1,6 +1,10 @@
 # 交付验证说明
 
-## 当前版本：0.5.0（11）
+## 当前源码候选版本：0.7.0（15）
+
+本轮仅完成静态工程/资源检查和 Swift 语法扫描，尚未完成原生编译或测试，也没有构建 15 IPA。Windows 本机无 Xcode；GitHub CLI 返回 401，GitHub 连接器未登录，阻挡了既有 macOS 云端构建路径。新增测试是待执行用例，不能当作通过结果。详情见 [构建 15 验证记录](validation/BUILD15_VERIFICATION.md)。
+
+## 历史版本：0.5.0（11）
 
 2026-09-10，已完成 Xcode 16.4 / iOS SDK 18.5 的设备 Release 编译，并复核下载 IPA 的 ZIP CRC、版本、arm64 架构和无签名状态。设备构建来自提交 02c080cd9d5decbd5152f0b10290aae4702917aa，[构建记录](https://github.com/ghb997/stardew-save-editor/actions/runs/34432584841)。
 

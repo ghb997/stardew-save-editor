@@ -1,0 +1,11 @@
+{
+  "method": "YAML parsing and local catalogue data checks; no CI jobs or Swift tests executed",
+  "yaml_files": [
+    "project.yml",
+    ".github/workflows/build-ipa.yml",
+    ".github/workflows/verify-ipad-layout.yml",
+    ".github/workflows/verify-tracker-ui.yml"
+  ],
+  "museum_candidate_count": 95,
+  "status": "passed"
+}

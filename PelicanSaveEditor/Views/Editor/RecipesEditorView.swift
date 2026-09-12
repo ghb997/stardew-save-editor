@@ -78,12 +78,13 @@ struct RecipesEditorView: View {
                                 }
                             }
                         }
+                        .disabled(!session.draft.recipes[index].isEditable)
                         .padding(.vertical, 2)
                     }
                 } header: {
                     GameAssetLabel(selectedKind.displayName, assetName: "GameUIRecipes", iconSize: 24)
                 } footer: {
-                    Text("新解锁的配方会写入制作次数 0；已有配方的次数保持不变。")
+                    Text("新解锁的配方写入制作次数 0；其他计数与原始字段保持不变。重复、异常或未知扩展记录仅供查看。")
                 }
             }
             .searchable(text: $searchText, prompt: "搜索中文或英文配方名")
@@ -93,7 +94,7 @@ struct RecipesEditorView: View {
         }
         .alert("解锁全部配方？", isPresented: $showingUnlockAllConfirmation) {
             Button("全部解锁") {
-                for index in session.draft.recipes.indices {
+                for index in session.draft.recipes.indices where session.draft.recipes[index].isEditable {
                     session.draft.recipes[index].unlocked = true
                 }
             }
@@ -104,12 +105,15 @@ struct RecipesEditorView: View {
     private func recipeBinding(_ index: Int) -> Binding<Bool> {
         Binding(
             get: { session.draft.recipes[index].unlocked },
-            set: { session.draft.recipes[index].unlocked = $0 }
+            set: { value in
+                guard session.draft.recipes[index].isEditable else { return }
+                session.draft.recipes[index].unlocked = value
+            }
         )
     }
 
     private func unlock(kind: RecipeKind) {
-        for index in session.draft.recipes.indices where session.draft.recipes[index].kind == kind {
+        for index in session.draft.recipes.indices where session.draft.recipes[index].kind == kind && session.draft.recipes[index].isEditable {
             session.draft.recipes[index].unlocked = true
         }
     }

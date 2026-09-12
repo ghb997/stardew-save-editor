@@ -1,13 +1,13 @@
 import SwiftUI
 
 enum ExpandedEditorTool: String, CaseIterable, Identifiable {
-    case storage, weather, machines, bundles
+    case storage, weather, machines, bundles, equipment, collections
     var id: String { rawValue }
     var title: String {
-        switch self { case .storage: "箱子与冰箱"; case .weather: "天气与运气"; case .machines: "机器加工"; case .bundles: "社区中心" }
+        switch self { case .storage: "箱子与冰箱"; case .weather: "天气与运气"; case .machines: "机器加工"; case .bundles: "社区中心"; case .equipment: "工具与装备"; case .collections: "收藏与缺失清单" }
     }
     var symbol: String {
-        switch self { case .storage: "shippingbox.fill"; case .weather: "cloud.sun.fill"; case .machines: "gearshape.2.fill"; case .bundles: "leaf.fill" }
+        switch self { case .storage: "shippingbox.fill"; case .weather: "cloud.sun.fill"; case .machines: "gearshape.2.fill"; case .bundles: "leaf.fill"; case .equipment: "wrench.and.screwdriver.fill"; case .collections: "books.vertical.fill" }
     }
     var subtitle: String {
         switch self {
@@ -15,6 +15,8 @@ enum ExpandedEditorTool: String, CaseIterable, Identifiable {
         case .weather: "选择明日天气，调整每日运气并对照原值"
         case .machines: "查找正在加工的机器，预览并完成所选设备"
         case .bundles: "查看献祭进度，选择缺失材料并补给到背包"
+        case .equipment: "工具升级、武器和鞋子属性，逐项对照与撤销"
+        case .collections: "查找博物馆、钓鱼、矿物、古物与出货缺失记录"
         }
     }
 }
@@ -54,6 +56,8 @@ struct ExpandedEditorShell: View {
         case .weather: WeatherEditorView(session: session)
         case .machines: MachinesEditorView(session: session)
         case .bundles: CommunityCenterView(session: session, catalog: store.itemCatalog)
+        case .equipment: EquipmentEditorView(session: session)
+        case .collections: CollectionLibraryView(session: session, catalog: store.itemCatalog)
         }
     }
 }

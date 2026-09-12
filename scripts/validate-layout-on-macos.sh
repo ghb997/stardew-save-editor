@@ -38,6 +38,9 @@ args=(
 )
 if [[ "${LAYOUT_SCOPE:-layout}" == expanded ]]; then
     args+=(-only-testing:PelicanSaveEditorUITests/ExpandedEditorUITests)
+elif [[ "${LAYOUT_SCOPE:-layout}" == repair ]]; then
+    args+=(-only-testing:PelicanSaveEditorUITests/RepairEditorUITests)
+    args+=(-only-testing:PelicanSaveEditorUITests/ExpandedEditorUITests)
 elif [[ "${LAYOUT_DEVICE:-mini}" != iphone ]]; then
     args+=(-only-testing:PelicanSaveEditorTests -only-testing:PelicanSaveEditorUITests/AdaptiveLayoutUITests)
     args+=(-only-testing:PelicanSaveEditorUITests/TrackerSmokeUITests/testAllElevenModulesOpenAndClose)
