@@ -2,7 +2,7 @@
 
 ## 当前源码候选版本：0.7.0（15）
 
-本轮 Release arm64 IPA 已构建并校验，iPad mini 和 13 英寸 iPad Pro 各 8 条 UI 流程已通过，10 张原生截图已审阅。完整 iPhone suite（148 项单元、25 项 UI）仍在执行。GitHub 授权已恢复；结果见 [构建 15 验证记录](validation/BUILD15_VERIFICATION.md)。IPA 未签名，真机安装与真实游戏往返尚未验证。
+上一轮 Release arm64 IPA、两种 iPad 各 8 条 UI 流程通过；iPhone 实际执行 173 项，其中 171 项通过、2 项界面操作失败。当前修正收藏检查页的滚动定位、背包搜索提交和滚动收键盘操作，正在准备重跑原生验证。具体提交和历史证据见 [构建 15 验证记录](validation/BUILD15_VERIFICATION.md)。IPA 未签名，真机安装与真实游戏往返尚未验证。
 
 ## 历史版本：0.5.0（11）
 

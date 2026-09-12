@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-09-12T09:47:54.184252+00:00",
+  "generated_at_utc": "2026-09-12T10:23:37.834847+00:00",
   "release_root": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\complete-repair-build15",
   "validation_type": "offline_static_release_checks",
   "compiled_swift": false,
@@ -57,7 +57,7 @@
       "status": "passed",
       "detail": {
         "counts": {
-          "json": 154,
+          "json": 158,
           "plist_and_privacy_manifest": 2,
           "xcode_xml": 2
         },
@@ -243,7 +243,7 @@
       "PelicanSaveEditor/Views/Editor/EquipmentEditorView.swift": "8ea581e9b32e748dbd0cb1355d88f3a814c6e570a75583f38411a2011689c485",
       "PelicanSaveEditor/Views/Editor/ExpandedEditorShell.swift": "7dfd072a006f4ed3c8eb9bb46e460bda698d325690158d0fabed4714ef183ca8",
       "PelicanSaveEditor/Views/Editor/FarmhouseEditorView.swift": "5751d68f21a39b651c19cc054fc3c59406be95795c5107c8df7bbb09b085758b",
-      "PelicanSaveEditor/Views/Editor/InventoryEditorView.swift": "061b0445e40f347a72861e9eac523783dedfeb8b006cc69f99f473d724bc25ee",
+      "PelicanSaveEditor/Views/Editor/InventoryEditorView.swift": "eadf43db297220c9e691644e960f6ded713fe67a47829f5356207085981e4515",
       "PelicanSaveEditor/Views/Editor/MachinesEditorView.swift": "49224cdd6d9dae8be900b5ae0a83667be2d73da0522fbcacb957cba403341e27",
       "PelicanSaveEditor/Views/Editor/ProgressEditorView.swift": "e7e4c293c1cc579a4e4f07c7013fbd3b5999756e2f474a3cc7b59d8f64e2218e",
       "PelicanSaveEditor/Views/Editor/RecipesEditorView.swift": "582ef7bc3cc87a6db70d1b13317cf61d4109b45399771955efba5708b2da6239",
@@ -276,8 +276,8 @@
       "PelicanSaveEditorTests/WorldEditorTests.swift": "d95d44eec914e78d93da6ad227b27fb5ceaed75545060b304991d55b3893c96e",
       "PelicanSaveEditorUITests/AdaptiveLayoutUITests.swift": "9269f594634f5babb40b9d51e3a4bd70b920d24a42ee72cf23fe41899b7f5158",
       "PelicanSaveEditorUITests/ExpandedEditorUITests.swift": "cf5ec031eac5597d32474457561f5ea1caae9548286caaf17c8e421aae6f31a2",
-      "PelicanSaveEditorUITests/RepairEditorUITests.swift": "05be50982cd21feea6ad2d203d9deab05730f36615f373a385876160d5082f42",
-      "PelicanSaveEditorUITests/TrackerSmokeUITests.swift": "cabcb123f38ee2a33d7a9ecafadad86dd996529e89bd3beb07b74bb91df5ff7d"
+      "PelicanSaveEditorUITests/RepairEditorUITests.swift": "374c393ae817eb6b933ff006c49c3b143f8f413e04c70f17629fd74a1871d812",
+      "PelicanSaveEditorUITests/TrackerSmokeUITests.swift": "4c2c942dfbc7d35dfc0e25eea00506a9cad35efcb5961ed96ef555d7d9eb4765"
     },
     "source_counts": {
       "swift_files": 88,

@@ -61,6 +61,8 @@ struct InventoryEditorView: View {
                     }
                 }
             }
+            .accessibilityIdentifier("editor.inventory.list")
+            .scrollDismissesKeyboard(.interactively)
             .background(Color(.systemGroupedBackground))
             .navigationTitle("背包")
             .navigationBarTitleDisplayMode(.inline)

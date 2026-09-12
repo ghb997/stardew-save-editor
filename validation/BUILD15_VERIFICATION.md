@@ -2,6 +2,8 @@
 
 版本：0.7.0（15），源码候选。日期：2026-09-12。
 
+当前修正了上一轮 iPhone 界面操作失败：检查页需滚动到收藏补给明细，背包搜索需提交并滚动查看结果；背包页补充滚动收键盘支持。下列设备构建和 iPad 证据对应 `cd325fa`，当前源码的原生验证正在准备重跑。
+
 ## 当前状态
 
 | 检查 | 状态与证据 |
@@ -11,7 +13,7 @@
 | 配置和目录数据检查 | project.yml 及 3 个 workflow YAML 解析通过；博物馆候选数据确认为 95 项，见 `build15-supporting-checks.json` |
 | Shell 语法检查 | Git Bash 对 3 个 macOS 验证/构建脚本执行 `bash -n` 通过；未运行脚本中的 Xcode 命令 |
 | Swift 编译和类型检查 | Xcode 16.4 / SDK 18.5 的 Release 设备构建与 Debug 模拟器构建通过 |
-| XCTest / XCUITest | 两种 iPad 各 8 项 UI 已通过；iPhone 完整 173 项正在执行 |
+| XCTest / XCUITest | 上一轮两种 iPad 各 8 项 UI 通过；iPhone 173 项中 171 通过、2 项界面操作失败，修正后待重跑 |
 | 原生截图 | iPad mini 与 13 英寸 iPad Pro 共 10 张已审阅；见 build15-ui 下各设备清单 |
 | 构建 15 IPA | 已生成并校验，3,699,789 字节，未签名 |
 | 签名真机安装与游戏往返 | 未执行 |
@@ -20,11 +22,11 @@
 
 ## 云端构建与当前结果
 
-GitHub 授权已恢复，原生构建与测试对应提交 `cd325fa4e86f456481d2e03cf463fc861ee2937c`。此后的文档/validation 提交不修改应用和测试代码。
+GitHub 授权已恢复，下列上一轮原生构建与测试对应提交 `cd325fa4e86f456481d2e03cf463fc861ee2937c`。当前源码已包含上述小屏操作修正；下列证据不能替代当前修订的原生重跑。
 
 - [Release 设备构建通过](https://github.com/ghb997/stardew-save-editor/actions/runs/34686632136)，元数据见 build15-device-build.json。
 - [两种 iPad 各 8 项 UI 通过](https://github.com/ghb997/stardew-save-editor/actions/runs/34686632117)，逐项结果见 build15-tests-mini.json 与 build15-tests-large.json。
-- [iPhone 完整测试正在执行](https://github.com/ghb997/stardew-save-editor/actions/runs/34686632113)，尚未发布通过结论。
+- [上一轮 iPhone 完整测试](https://github.com/ghb997/stardew-save-editor/actions/runs/34686632113)：实际执行 173 项，148 项单元全部通过；25 项 UI 中 2 项失败，未缺测、未跳过、未重复计数。
 - 最终 IPA SHA-256：`4228234536f0b2d454c794244dd6e87041083c4264eece275d847e6d540bb736`。与三个参考应用的体积差异见 [大小对照](BUILD15_SIZE_COMPARISON.md)。
 
 ## 可重复验证

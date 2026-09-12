@@ -135,7 +135,9 @@ final class TrackerSmokeUITests: XCTestCase {
         let search = app.searchFields.firstMatch
         try require(search, app: app)
         try tap(search, app: app)
-        search.typeText("Diamond")
+        search.typeText("Diamond\n")
+        try revealEditorControl(app.buttons["editor.inventory.slot.2"], app: app,
+                                viewportID: "editor.inventory.list")
         try require(app.buttons["editor.inventory.slot.2"], app: app)
         try check(!app.buttons["editor.inventory.slot.0"].exists, "Search must hide other item slots", app: app)
         attachScreenshot("editor-backpack-search", app: app)

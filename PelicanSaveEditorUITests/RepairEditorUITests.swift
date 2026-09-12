@@ -69,7 +69,10 @@ final class RepairEditorUITests: XCTestCase {
         screenshot("build15-collection-supply", app)
         try tap(app.buttons["完成"], app)
         try tap(app.buttons["editor.review.open"], app)
-        XCTAssertTrue(app.staticTexts["槽位 3"].waitForExistence(timeout: 10))
+        // The compatibility warnings precede the lazy diff rows on compact phones.
+        try reveal(app.staticTexts["槽位 3"], app)
+        try reveal(app.staticTexts["矮人卷轴 II ×1（普通）"], app)
+        XCTAssertTrue(app.staticTexts["槽位 3"].exists)
         screenshot("build15-collection-review", app)
     }
 
