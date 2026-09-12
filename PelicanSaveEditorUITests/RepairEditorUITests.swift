@@ -59,10 +59,12 @@ final class RepairEditorUITests: XCTestCase {
         try tap(search, app, downFirst: true)
         search.typeText("97")
         try tap(app.buttons["collection.item.97"], app)
-        XCTAssertTrue(app.staticTexts["缺少记录"].waitForExistence(timeout: 10))
+        // LabeledContent exposes its title and value as one accessibility label.
+        let record = app.staticTexts["记录、缺少记录"]
+        XCTAssertTrue(record.waitForExistence(timeout: 10), app.debugDescription)
         try tap(app.buttons["collection.supply"], app)
         XCTAssertTrue(app.staticTexts["collection.feedback"].label.contains("已加入背包草稿"))
-        XCTAssertTrue(app.staticTexts["缺少记录"].exists)
+        XCTAssertTrue(record.exists, app.debugDescription)
         screenshot("build15-collection-supply", app)
         try tap(app.buttons["完成"], app)
         try tap(app.buttons["editor.review.open"], app)
