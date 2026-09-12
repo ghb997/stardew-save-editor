@@ -52,6 +52,8 @@ struct CollectionLibraryView: View {
             }
             .navigationTitle("收藏与缺失清单").navigationBarTitleDisplayMode(.inline)
             .searchable(text: $search, prompt: "搜索名称或物品 ID")
+            .onSubmit(of: .search) { KeyboardReturnAction.dismiss() }
+            .scrollDismissesKeyboard(.interactively)
             .task(id: session.mainHash) { sections = CollectionLibrary.extract(session.parsed.mainRoot, catalog: catalog) }
         }
         .sheet(item: $selected) { entry in CollectionItemSheet(session: session, entry: entry) }

@@ -40,6 +40,8 @@ struct EquipmentEditorView: View {
             }
             .navigationTitle("工具与装备").navigationBarTitleDisplayMode(.inline)
             .searchable(text: $search, prompt: "搜索装备名称或位置")
+            .onSubmit(of: .search) { KeyboardReturnAction.dismiss() }
+            .scrollDismissesKeyboard(.interactively)
         }
         .sheet(item: $selected) { item in EquipmentEditSheet(session: session, item: item) }
     }

@@ -37,12 +37,13 @@ final class RepairEditorUITests: XCTestCase {
         try tap(app.buttons["equipment.clear.minDamage"], app)
         try tap(app.buttons["equipment.apply"], app)
         let error = app.staticTexts["equipment.error"]
-        XCTAssertTrue(error.waitForExistence(timeout: 10))
+        try reveal(error, app)
         XCTAssertTrue(error.label.contains("有效"), app.debugDescription)
         let field = app.textFields["equipment.field.minDamage"]
         try tap(field, app)
         field.typeText("90")
         try tap(app.buttons["equipment.apply"], app)
+        try reveal(error, app)
         XCTAssertTrue(error.label.contains("最低伤害不能大于最高伤害"), app.debugDescription)
         screenshot("build15-equipment-invalid-damage", app)
         try tap(app.buttons["equipment.restore"], app)
@@ -57,7 +58,7 @@ final class RepairEditorUITests: XCTestCase {
         defer { app.terminate() }
         let search = app.searchFields.firstMatch
         try tap(search, app, downFirst: true)
-        search.typeText("97")
+        search.typeText("97\n")
         try tap(app.buttons["collection.item.97"], app)
         // LabeledContent exposes its title and value as one accessibility label.
         let record = app.staticTexts["记录、缺少记录"]
@@ -89,8 +90,19 @@ final class RepairEditorUITests: XCTestCase {
 
     @MainActor
     private func tap(_ element: XCUIElement, _ app: XCUIApplication, attempts: Int = 12, downFirst: Bool = false) throws {
+        try reveal(element, app, attempts: attempts, downFirst: downFirst)
+        element.tap()
+    }
+
+    @MainActor
+    private func reveal(_ element: XCUIElement, _ app: XCUIApplication, attempts: Int = 12, downFirst: Bool = false) throws {
         for _ in 0..<attempts {
-            if element.exists && element.isHittable { element.tap(); return }
+            if element.exists && element.isHittable { return }
+            let keyboardReturn = app.buttons["global.keyboardReturn.button"]
+            if keyboardReturn.exists && keyboardReturn.isHittable {
+                keyboardReturn.tap()
+                continue
+            }
             if downFirst { app.swipeDown() } else { app.swipeUp() }
         }
         screenshot("build15-missing-control", app)
