@@ -81,7 +81,9 @@ final class ExpandedEditorUITests: XCTestCase {
         let app = XCUIApplication()
         app.launchArguments = ["--ui-tab", "tools", "--ui-demo", "--ui-expanded", "-AppleLanguages", "(zh-Hans)", "-AppleLocale", "zh_CN"]
         app.launch()
-        XCTAssertTrue(app.tabBars.buttons["工具"].waitForExistence(timeout: 40))
+        // iPad can present the tab bar at the top without exposing a TabBar element.
+        let tools = app.descendants(matching: .any).matching(identifier: "editor.tools.list").firstMatch
+        XCTAssertTrue(tools.waitForExistence(timeout: 40))
         try tap(app.buttons["editor.tool.\(tool)"], app, attempts: 24)
         return app
     }
