@@ -1,0 +1,88 @@
+{
+  "sourceCommit": "40da6c03efb7b2b44e8d1283434deeaaf2b628c7",
+  "run": "https://github.com/ghb997/stardew-save-editor/actions/runs/34675557231",
+  "screenshots": [
+    {
+      "name": "build14-bundle-inventory-draft",
+      "file": "build14-bundle-inventory-draft.png",
+      "test": "ExpandedEditorUITests/testBundleSupplyPreviewAddsInventoryDiffWithoutCompletingBundle()",
+      "device": "iPad Pro 13-inch (M5)",
+      "originalAttachment": "24D2FDDE-ABE8-46B8-B584-F49FBD17C995.png",
+      "sha256": "0c25f240bea6c3765f34653369554a9e0819c493457176867830d386d9497f03",
+      "visualReview": "passed",
+      "reviewNotes": "检查页显示背包槽位 2 从空变为防风草 ×1；差异及逐项撤销文字清楚。演示数据没有载入 SaveGameInfo，界面正确提示。"
+    },
+    {
+      "name": "build14-bundle-supply-preview",
+      "file": "build14-bundle-supply-preview.png",
+      "test": "ExpandedEditorUITests/testBundleSupplyPreviewAddsInventoryDiffWithoutCompletingBundle()",
+      "device": "iPad Pro 13-inch (M5)",
+      "originalAttachment": "122485AD-103A-4EFD-9E3C-59FC8E8B2E8D.png",
+      "sha256": "5f27f8ceebf44ab887769d49b3e0f5d30772b19407915bd51c64d049e0892fee",
+      "visualReview": "passed",
+      "reviewNotes": "居中预览显示 1 个背包空格、防风草 ×1、品质 0、第 2 格；取消与加入草稿入口完整，补给说明可读。"
+    },
+    {
+      "name": "build14-machines-applied",
+      "file": "build14-machines-applied.png",
+      "test": "ExpandedEditorUITests/testMachineSelectionPreviewApplyAndUndo()",
+      "device": "iPad Pro 13-inch (M5)",
+      "originalAttachment": "2BB53BB1-AB33-428D-B724-B22E21218295.png",
+      "sha256": "ffb64125ac1f85f34e21ead5644aa5872d22a3dc1913af9e32a72d9e31491300",
+      "visualReview": "passed",
+      "reviewNotes": "小桶 X 20、Y 21、果酒显示待保存：完成加工；单台撤销可见，选择计数归零，底部显示 1 项待保存。"
+    },
+    {
+      "name": "build14-machines-preview",
+      "file": "build14-machines-preview.png",
+      "test": "ExpandedEditorUITests/testMachineSelectionPreviewApplyAndUndo()",
+      "device": "iPad Pro 13-inch (M5)",
+      "originalAttachment": "3378C3F7-55FB-4990-B077-C07396AF1A6B.png",
+      "sha256": "1d3f88d180847fabde90379f74ecc39fa86930e50eddd30e054bd1170fabbd15",
+      "visualReview": "passed",
+      "reviewNotes": "完成加工预览显示 1 台小桶、X 20、Y 21、果酒及 1,200 → 0 分钟；取消和加入草稿可见。"
+    },
+    {
+      "name": "build14-storage-quantity",
+      "file": "build14-storage-quantity.png",
+      "test": "ExpandedEditorUITests/testChestQuantityDraftAndReview()",
+      "device": "iPad Pro 13-inch (M5)",
+      "originalAttachment": "3F711023-FDF3-41BB-A649-5A53B282EA50.png",
+      "sha256": "7718ddb62ea922f24e74df54ae2d032ce8a081f4019b9091cb9f8f96707f4bd0",
+      "visualReview": "passed",
+      "reviewNotes": "容器列表显示 1/36 格占用和第 1 格防风草 ×25；物品图标、格子标签及底部检查 1 项更改入口可见，底栏占用独立空间。"
+    },
+    {
+      "name": "build14-storage-review",
+      "file": "build14-storage-review.png",
+      "test": "ExpandedEditorUITests/testChestQuantityDraftAndReview()",
+      "device": "iPad Pro 13-inch (M5)",
+      "originalAttachment": "08EAC32D-E94A-4D52-B9CB-14356B409687.png",
+      "sha256": "68f1c2e55c012a800b81f82511b3517ee0dd47d17d5efb66418d0671ae3e6f0f",
+      "visualReview": "passed",
+      "reviewNotes": "检查页列出农场箱子 X 10、Y 12、第 1 格从防风草 ×5 变为 ×25，保留品质 0；逐项撤销入口可见。"
+    },
+    {
+      "name": "build14-weather-luck",
+      "file": "build14-weather-luck.png",
+      "test": "ExpandedEditorUITests/testWeatherLuckPresetRestoreAndWeatherReview()",
+      "device": "iPad Pro 13-inch (M5)",
+      "originalAttachment": "C3391C1C-2DAA-49AA-AF3A-C662AC97CCB0.png",
+      "sha256": "93a8b9f833daaa7ea0bb81dc38789ac95186f11c5d0a8b749f5f8a5f5188f008",
+      "visualReview": "passed",
+      "reviewNotes": "每日运气当前草稿 0.1000 与原始 0.0250 清楚可读；数值输入、三个预设与恢复入口显示完整。"
+    },
+    {
+      "name": "build14-weather-review",
+      "file": "build14-weather-review.png",
+      "test": "ExpandedEditorUITests/testWeatherLuckPresetRestoreAndWeatherReview()",
+      "device": "iPad Pro 13-inch (M5)",
+      "originalAttachment": "4D70E740-0F82-480E-8ED9-5EE3D70B1736.png",
+      "sha256": "bf42fbbf3bdbcbaefff7821236056ff95d05a8d41bdf766a2318ebe78cae15f4",
+      "visualReview": "passed",
+      "reviewNotes": "检查页显示山谷明日天气由雨天变为雷雨及逐项撤销；恢复后的运气不在待保存差异内。"
+    }
+  ],
+  "reviewMethod": "逐张查看原始 XCUITest PNG 附件；不代表其他滚动位置、方向、主题或辅助功能已完成验收。",
+  "reviewDate": "2026-09-12"
+}

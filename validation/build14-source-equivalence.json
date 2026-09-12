@@ -1,0 +1,45 @@
+{
+  "deviceCommit": "40da6c03efb7b2b44e8d1283434deeaaf2b628c7",
+  "fullTestCommit": "af83dddc251d968ca7a8b35438ba73977de6ee01",
+  "applicationSourceIdentical": true,
+  "objects": [
+    {
+      "path": "PelicanSaveEditor",
+      "deviceObject": "2a0e91b289433291d08f1bfec38a0e411e9779dc",
+      "fullTestObject": "2a0e91b289433291d08f1bfec38a0e411e9779dc",
+      "identical": true
+    },
+    {
+      "path": "PelicanSaveEditorTests",
+      "deviceObject": "1e99eda1d40c3dfef9debb86ccb60dfabdb58d65",
+      "fullTestObject": "1e99eda1d40c3dfef9debb86ccb60dfabdb58d65",
+      "identical": true
+    },
+    {
+      "path": "PelicanSaveEditor.xcodeproj",
+      "deviceObject": "2fd111a4d797082c38d9840b2c9cbf46fea239a6",
+      "fullTestObject": "2fd111a4d797082c38d9840b2c9cbf46fea239a6",
+      "identical": true
+    },
+    {
+      "path": "project.yml",
+      "deviceObject": "83e9fcb5dd2d98fb9a945207a533893c67079754",
+      "fullTestObject": "83e9fcb5dd2d98fb9a945207a533893c67079754",
+      "identical": true
+    },
+    {
+      "path": "scripts",
+      "deviceObject": "1381e917ca45d4952eba2a8aa08773c33fa73358",
+      "fullTestObject": "1381e917ca45d4952eba2a8aa08773c33fa73358",
+      "identical": true
+    },
+    {
+      "path": ".github",
+      "deviceObject": "c6c0b39228d164955f6191c18535fdc10e94c94e",
+      "fullTestObject": "c6c0b39228d164955f6191c18535fdc10e94c94e",
+      "identical": true
+    }
+  ],
+  "uiTestDifference": "diff --git a/PelicanSaveEditorUITests/ExpandedEditorUITests.swift b/PelicanSaveEditorUITests/ExpandedEditorUITests.swift\nindex 6dca36e..802522e 100644\n--- a/PelicanSaveEditorUITests/ExpandedEditorUITests.swift\n+++ b/PelicanSaveEditorUITests/ExpandedEditorUITests.swift\n@@ -81,7 +81,9 @@ final class ExpandedEditorUITests: XCTestCase {\n         let app = XCUIApplication()\n         app.launchArguments = [\"--ui-tab\", \"tools\", \"--ui-demo\", \"--ui-expanded\", \"-AppleLanguages\", \"(zh-Hans)\", \"-AppleLocale\", \"zh_CN\"]\n         app.launch()\n-        XCTAssertTrue(app.tabBars.buttons[\"工具\"].waitForExistence(timeout: 40))\n+        // iPad can present the tab bar at the top without exposing a TabBar element.\n+        let tools = app.descendants(matching: .any).matching(identifier: \"editor.tools.list\").firstMatch\n+        XCTAssertTrue(tools.waitForExistence(timeout: 40))\n         try tap(app.buttons[\"editor.tool.\\(tool)\"], app, attempts: 24)\n         return app\n     }\n",
+  "note": "Only the UI launch wait changed to support iPad top navigation; individual reports preserve the exact tested commit. Final delivery may add only documentation and evidence."
+}

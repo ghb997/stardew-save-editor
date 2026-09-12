@@ -1,0 +1,88 @@
+{
+  "sourceCommit": "af83dddc251d968ca7a8b35438ba73977de6ee01",
+  "run": "https://github.com/ghb997/stardew-save-editor/actions/runs/34675123238",
+  "screenshots": [
+    {
+      "name": "build14-bundle-inventory-draft",
+      "file": "build14-bundle-inventory-draft.png",
+      "test": "ExpandedEditorUITests/testBundleSupplyPreviewAddsInventoryDiffWithoutCompletingBundle()",
+      "device": "iPhone SE (3rd generation)",
+      "originalAttachment": "4909ADAE-49BD-46D2-826C-B1CCA64D9F50.png",
+      "sha256": "87808e549272d75aeb4892f3f20cc31ccbc1d61411a0b3ea9b6a4c51e1c5c134",
+      "visualReview": "passed",
+      "reviewNotes": "当前截图在检查页顶部，底部可见背包槽位 2 从空变为防风草 ×1；逐项撤销与保存操作位于更下方，未在此截图内展示。演示数据未载入 SaveGameInfo，提示正常换行。"
+    },
+    {
+      "name": "build14-bundle-supply-preview",
+      "file": "build14-bundle-supply-preview.png",
+      "test": "ExpandedEditorUITests/testBundleSupplyPreviewAddsInventoryDiffWithoutCompletingBundle()",
+      "device": "iPhone SE (3rd generation)",
+      "originalAttachment": "441A068A-3438-4692-85FC-25008D449429.png",
+      "sha256": "74d7ffd57339e98ae3e5ab1bd59c4a73ab5f24e0bc1f257d16e479ad321994c3",
+      "visualReview": "passed",
+      "reviewNotes": "预览面板显示 1 个背包空格、防风草 ×1、品质 0、第 2 格；取消与加入草稿入口完整，补给说明可读。"
+    },
+    {
+      "name": "build14-machines-applied",
+      "file": "build14-machines-applied.png",
+      "test": "ExpandedEditorUITests/testMachineSelectionPreviewApplyAndUndo()",
+      "device": "iPhone SE (3rd generation)",
+      "originalAttachment": "C2B96543-A295-4BEA-AFA3-69E134F252D0.png",
+      "sha256": "194e1f75cc92f005e1f3d03c2494e283a93cd5849cadc21ffb9a94e380b61e9a",
+      "visualReview": "passed",
+      "reviewNotes": "小桶 X 20、Y 21、果酒显示待保存：完成加工；单台撤销可见，选择计数归零，底部显示 1 项待保存。"
+    },
+    {
+      "name": "build14-machines-preview",
+      "file": "build14-machines-preview.png",
+      "test": "ExpandedEditorUITests/testMachineSelectionPreviewApplyAndUndo()",
+      "device": "iPhone SE (3rd generation)",
+      "originalAttachment": "220333BC-2348-4FF2-A386-55DBC49AE31A.png",
+      "sha256": "b0e77292c77ed697041c27674ee71faf4bd6fc5f869e0521e9a03d1386994621",
+      "visualReview": "passed",
+      "reviewNotes": "完成加工预览显示 1 台小桶、X 20、Y 21、果酒及 1,200 → 0 分钟；取消和加入草稿可见。"
+    },
+    {
+      "name": "build14-storage-quantity",
+      "file": "build14-storage-quantity.png",
+      "test": "ExpandedEditorUITests/testChestQuantityDraftAndReview()",
+      "device": "iPhone SE (3rd generation)",
+      "originalAttachment": "9A2C205A-CB59-4CB5-9E0A-0E01CE24FEA0.png",
+      "sha256": "d0e766e139ea05d32d0689253cf9c545c9dc2683bf35db3230df22c952409802",
+      "visualReview": "passed",
+      "reviewNotes": "容器列表显示 1/36 格占用和第 1 格防风草 ×25；物品图标、格子标签及底部检查 1 项更改入口可见，底栏占用独立空间。"
+    },
+    {
+      "name": "build14-storage-review",
+      "file": "build14-storage-review.png",
+      "test": "ExpandedEditorUITests/testChestQuantityDraftAndReview()",
+      "device": "iPhone SE (3rd generation)",
+      "originalAttachment": "407592BB-5A2A-4F6C-9E9E-6BF6A4456EF6.png",
+      "sha256": "7667eaa04ad7a5c3b76a1d5a31a5f23be0466961d3a3b503ff4b7bde078297f6",
+      "visualReview": "passed",
+      "reviewNotes": "当前滚动位置的底部可见农场箱子 X 10、Y 12、第 1 格由防风草 ×5 变为 ×25，品质 0；更下方的撤销与保存操作不在此截图范围。"
+    },
+    {
+      "name": "build14-weather-luck",
+      "file": "build14-weather-luck.png",
+      "test": "ExpandedEditorUITests/testWeatherLuckPresetRestoreAndWeatherReview()",
+      "device": "iPhone SE (3rd generation)",
+      "originalAttachment": "B5DBEE70-5C8B-4545-95BC-4D253597DDDB.png",
+      "sha256": "b3bf1c2154c12b12dc466c2484cb6165f8b48cd9c084c322b7ffd24112e41e38",
+      "visualReview": "passed",
+      "reviewNotes": "每日运气当前草稿 0.1000 与原始 0.0250 清楚可读；数值输入、三个预设与恢复入口显示完整。"
+    },
+    {
+      "name": "build14-weather-review",
+      "file": "build14-weather-review.png",
+      "test": "ExpandedEditorUITests/testWeatherLuckPresetRestoreAndWeatherReview()",
+      "device": "iPhone SE (3rd generation)",
+      "originalAttachment": "DE2E7CEA-E383-4ADB-9F8E-2E4A35D5F695.png",
+      "sha256": "640c79c2292cda7a0bb91cd8ead9b08332c8c16f7feb7fe0876bea7d94734c37",
+      "visualReview": "passed",
+      "reviewNotes": "当前滚动位置的底部可见山谷明日天气由雨天变为雷雨，顶部显示 1 项待保存；更下方的撤销与保存操作不在此截图范围。"
+    }
+  ],
+  "reviewMethod": "逐张查看原始 XCUITest PNG 附件；不代表其他滚动位置、方向、主题或辅助功能已完成验收。",
+  "reviewDate": "2026-09-12"
+}

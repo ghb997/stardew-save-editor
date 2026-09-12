@@ -1,0 +1,878 @@
+{
+  "status": "passed",
+  "source_commit": "af83dddc251d968ca7a8b35438ba73977de6ee01",
+  "run_url": "https://github.com/ghb997/stardew-save-editor/actions/runs/34675123238",
+  "scope": "full",
+  "device": {
+    "udid": "48B2DA2E-AF18-4E36-BB25-B25969A4EBCF",
+    "name": "iPhone SE (3rd generation)",
+    "state": "Shutdown",
+    "runtime": "com.apple.CoreSimulator.SimRuntime.iOS-26-2",
+    "iOSVersion": "26.2"
+  },
+  "total_tests": 138,
+  "counts_by_class": {
+    "AdaptiveLayoutUITests": 7,
+    "ExpandedEditorUITests": 4,
+    "TrackerSmokeUITests": 10,
+    "ExpandedEditorTests": 23,
+    "GameLogicRegressionTests": 10,
+    "ReferenceFeatureTests": 14,
+    "SaveCoreTests": 36,
+    "TrackerMetricsTests": 7,
+    "TransactionRegressionTests": 9,
+    "WorldEditorTests": 18
+  },
+  "outcomes": {
+    "passed": 138
+  },
+  "testLogSha256": "610d90926ab940e16efa415eab4dd88270c8ed6d62ff6baeeb25476dbc38ba86",
+  "missing": [],
+  "unexpected": [],
+  "duplicates": [],
+  "tests": [
+    {
+      "class": "AdaptiveLayoutUITests",
+      "method": "testAllEditorsInLandscape",
+      "result": "passed",
+      "seconds": 141.214
+    },
+    {
+      "class": "AdaptiveLayoutUITests",
+      "method": "testAllEditorsInPortrait",
+      "result": "passed",
+      "seconds": 121.537
+    },
+    {
+      "class": "AdaptiveLayoutUITests",
+      "method": "testEachDocumentPickerCanOpenCancelAndReopen",
+      "result": "passed",
+      "seconds": 68.393
+    },
+    {
+      "class": "AdaptiveLayoutUITests",
+      "method": "testExpandedMapFitsViewportAtDefaultZoomAfterRotation",
+      "result": "passed",
+      "seconds": 12.279
+    },
+    {
+      "class": "AdaptiveLayoutUITests",
+      "method": "testImportOptionsSurviveRotation",
+      "result": "passed",
+      "seconds": 37.626
+    },
+    {
+      "class": "AdaptiveLayoutUITests",
+      "method": "testMainPagesAndUtilitySheets",
+      "result": "passed",
+      "seconds": 74.016
+    },
+    {
+      "class": "AdaptiveLayoutUITests",
+      "method": "testNarrowWindowAndAccessibilityText",
+      "result": "passed",
+      "seconds": 55.196
+    },
+    {
+      "class": "ExpandedEditorUITests",
+      "method": "testBundleSupplyPreviewAddsInventoryDiffWithoutCompletingBundle",
+      "result": "passed",
+      "seconds": 19.352
+    },
+    {
+      "class": "ExpandedEditorUITests",
+      "method": "testChestQuantityDraftAndReview",
+      "result": "passed",
+      "seconds": 22.931
+    },
+    {
+      "class": "ExpandedEditorUITests",
+      "method": "testMachineSelectionPreviewApplyAndUndo",
+      "result": "passed",
+      "seconds": 18.29
+    },
+    {
+      "class": "ExpandedEditorUITests",
+      "method": "testWeatherLuckPresetRestoreAndWeatherReview",
+      "result": "passed",
+      "seconds": 22.603
+    },
+    {
+      "class": "TrackerSmokeUITests",
+      "method": "testAllElevenModulesOpenAndClose",
+      "result": "passed",
+      "seconds": 101.587
+    },
+    {
+      "class": "TrackerSmokeUITests",
+      "method": "testAppearanceColorsSupportPresetHexAndRestore",
+      "result": "passed",
+      "seconds": 117.29
+    },
+    {
+      "class": "TrackerSmokeUITests",
+      "method": "testDetailSwitchingRecipeFiltersAndSearchEmptyState",
+      "result": "passed",
+      "seconds": 42.981
+    },
+    {
+      "class": "TrackerSmokeUITests",
+      "method": "testEditorCapacityAndInventorySearchUseDraft",
+      "result": "passed",
+      "seconds": 22.124
+    },
+    {
+      "class": "TrackerSmokeUITests",
+      "method": "testEmptyTrackerOpensToolsWithoutImportingFiles",
+      "result": "passed",
+      "seconds": 8.915
+    },
+    {
+      "class": "TrackerSmokeUITests",
+      "method": "testGiftBatchResetShowsChangedCountersWithoutChangingHearts",
+      "result": "passed",
+      "seconds": 34.862
+    },
+    {
+      "class": "TrackerSmokeUITests",
+      "method": "testMapScopedWaterPreviewPendingLocateAndUndo",
+      "result": "passed",
+      "seconds": 79.363
+    },
+    {
+      "class": "TrackerSmokeUITests",
+      "method": "testOverviewFiltersAndGroupExpansion",
+      "result": "passed",
+      "seconds": 58.601
+    },
+    {
+      "class": "TrackerSmokeUITests",
+      "method": "testRelationshipBatchPreviewCanCancelAndApplyOnlySearchedCharacter",
+      "result": "passed",
+      "seconds": 44.248
+    },
+    {
+      "class": "TrackerSmokeUITests",
+      "method": "testRoomStyleLibraryBatchPreviewAndRoomRestore",
+      "result": "passed",
+      "seconds": 97.163
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testAddingAtLastChestSlotPreservesOpaqueChildrenAndClearingKeepsSerializedFloor",
+      "result": "passed",
+      "seconds": 0.14
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testBigChestSeventySlotsAndOrdinaryFridgeSupported",
+      "result": "passed",
+      "seconds": 0.069
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testBundlesReadDefinitionsProgressChoicesAndGoldWithoutChangingCompletion",
+      "result": "passed",
+      "seconds": 0.059
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testBundleSupplyAddsExactMaterialsToEmptySlotsAndLeavesAllQuestStateUnchanged",
+      "result": "passed",
+      "seconds": 0.09
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testBundleSupplyInsufficientSpaceInvalidSelectionsAndJojaAreAtomicFailures",
+      "result": "passed",
+      "seconds": 0.08
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testChestQuantityPreservesQualitySpellingMetadataOtherContainersAndSummary",
+      "result": "passed",
+      "seconds": 0.05
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testDiscoversFarmNestedShedAndFridgeWithoutTreatingFurnitureAsChest",
+      "result": "passed",
+      "seconds": 0.028
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testDuplicateObjectCoordinatesCannotTargetTheWrongContainer",
+      "result": "passed",
+      "seconds": 0.028
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testExpandedDiffsGroupAndUndoIndependentlyIncludingMaterialSupply",
+      "result": "passed",
+      "seconds": 0.062
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testFinishingMachineKeepsOutputIdentityQuantityQualityAndMetadata",
+      "result": "passed",
+      "seconds": 0.053
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testLegacyNumericWeatherRetainsNumericEncodingAndLuckRange",
+      "result": "passed",
+      "seconds": 0.054
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testMissingLuckCannotBeInventedAndIslandRejectsSnow",
+      "result": "passed",
+      "seconds": 0.029
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testReadyMachineCannotBeFinishedAgainAndForgedMachineRejected",
+      "result": "passed",
+      "seconds": 0.029
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testSharedSpecialAndOversizedChestsRemainReadOnly",
+      "result": "passed",
+      "seconds": 0.106
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testSpecialConflictingDuplicateAndMissingWeatherRemainsUnavailable",
+      "result": "passed",
+      "seconds": 0.25
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testStorageWriteBoundaryRejectsSlotLayoutTemplateAndItemMetadataTampering",
+      "result": "passed",
+      "seconds": 0.027
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testTomorrowWeatherSynchronizesDefaultAliasesAndPreservesCurrentWeatherAndIsland",
+      "result": "passed",
+      "seconds": 0.069
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testUnknownEmptyCaskAndMalformedMachinesAreExcluded",
+      "result": "passed",
+      "seconds": 0.101
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testUnknownQuestAndMalformedItemsCannotBeEditedOrCleared",
+      "result": "passed",
+      "seconds": 0.229
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testUnreadableDuplicateAndMissingBundleStateNeverAssumedIncomplete",
+      "result": "passed",
+      "seconds": 0.105
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testUnrelatedEditsDoNotSerializeSyntheticStorageSlotsOrNormalizeWeather",
+      "result": "passed",
+      "seconds": 0.051
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testWorkerReparsePreservesUneditedStorageUUIDBaseline",
+      "result": "passed",
+      "seconds": 0.063
+    },
+    {
+      "class": "ExpandedEditorTests",
+      "method": "testZlibExpandedEditsRoundTripWithoutChangingOriginalTree",
+      "result": "passed",
+      "seconds": 0.052
+    },
+    {
+      "class": "GameLogicRegressionTests",
+      "method": "testCodecAcceptsUTF8CharacterAcrossOldPrefixBoundary",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "class": "GameLogicRegressionTests",
+      "method": "testDebrisCleanupPreservesTypeNamespacesContainersAndModObjects",
+      "result": "passed",
+      "seconds": 0.006
+    },
+    {
+      "class": "GameLogicRegressionTests",
+      "method": "testEightStringIDObjectsHaveChineseNamesAndRoundTrip",
+      "result": "passed",
+      "seconds": 0.033
+    },
+    {
+      "class": "GameLogicRegressionTests",
+      "method": "testEveryDiffIsGroupedAndEachEditCanBeUndone",
+      "result": "passed",
+      "seconds": 0.004
+    },
+    {
+      "class": "GameLogicRegressionTests",
+      "method": "testPairingRejectsWrongRootAndDifferentFarmerButAllowsRenamedSameID",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "class": "GameLogicRegressionTests",
+      "method": "testProfessionValidationRejectsConflictsButPreservesUnrelatedExistingExtensions",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "class": "GameLogicRegressionTests",
+      "method": "testRenamingOneAnimalPreservesOtherAnimalsAndIndependentAges",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "class": "GameLogicRegressionTests",
+      "method": "testSingleDebrisUndoDoesNotUndoNeighborAndEqualCountSelectionIsVisible",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "class": "GameLogicRegressionTests",
+      "method": "testSkillLevelAndExperienceUseSameProfessionRules",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "class": "GameLogicRegressionTests",
+      "method": "testWalletFalseIsFalseAndOnlyEditedLegacyKeyIsMigrated",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "class": "ReferenceFeatureTests",
+      "method": "testCapacityExpansionRoundTripsBothFilesAndPreservesOpaqueItems",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "class": "ReferenceFeatureTests",
+      "method": "testCapacityUndoRemovesNewSlotEditsAndKeepsOldSlotEdits",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "class": "ReferenceFeatureTests",
+      "method": "testGiftResetChangesOnlyExistingCountersAndEachDiffCanBeUndone",
+      "result": "passed",
+      "seconds": 0.004
+    },
+    {
+      "class": "ReferenceFeatureTests",
+      "method": "testMissingGiftFieldsAreNotCreatedAndMalformedValuesArePreserved",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "class": "ReferenceFeatureTests",
+      "method": "testMissingMalformedAndModdedCapacitiesRemainUnchanged",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "class": "ReferenceFeatureTests",
+      "method": "testMissingPointsAndStatusStayReadOnly",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "class": "ReferenceFeatureTests",
+      "method": "testOriginalSerializedSlotsSurviveShrinkAndCannotReceiveNewHiddenItems",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "class": "ReferenceFeatureTests",
+      "method": "testRelationshipFiltersReflectGiftResetAndUndo",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "class": "ReferenceFeatureTests",
+      "method": "testRelationshipWriteBoundaryRejectsUnsupportedStatusAndFriendshipLimits",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "class": "ReferenceFeatureTests",
+      "method": "testScopedFullHeartsRespectsRelationshipsAndPreservesHigherAndUnknownPoints",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "class": "ReferenceFeatureTests",
+      "method": "testShrinkWithOccupiedTailFailsWithoutChangingDraft",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "class": "ReferenceFeatureTests",
+      "method": "testUneditedFriendshipXMLIsNotNormalizedWhenAnotherFriendChanges",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "class": "ReferenceFeatureTests",
+      "method": "testUnrelatedEditDoesNotSerializeSyntheticEmptySlotsOrInventSummaryCapacity",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "class": "ReferenceFeatureTests",
+      "method": "testWriteBoundaryRejectsInvalidCapacityAndSlotLayout",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testBackupManifestDetectsTamperedData",
+      "result": "passed",
+      "seconds": 0.056
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testBundledCatalogHasFullUpstreamData",
+      "result": "passed",
+      "seconds": 0.031
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testBundledCropCatalogIsCompleteAndInternallyConsistent",
+      "result": "passed",
+      "seconds": 0.021
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testBundledRecipeCatalogHasCompleteChineseNames",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testCatalogAndBackupInitializationSurviveUnavailableTransactionDirectory",
+      "result": "passed",
+      "seconds": 0.066
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testCodecReadsStandardZlibFixture",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testCoordinatedWriteUpdatesSelectedFileWithoutReplacingIt",
+      "result": "passed",
+      "seconds": 0.009
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testCopyImportCreatesIndependentAppOwnedPair",
+      "result": "passed",
+      "seconds": 0.01
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testCropGrowthSpeedMirrorsGamePhaseRules",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testCropPlannerChargesInitialSeedsBeforeFirstHarvest",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testCropPlannerSchedulesCrossSeasonRegrowthAndProfit",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testDiscoversSaveFoldersFromAuthorizedStardewRoot",
+      "result": "passed",
+      "seconds": 0.026
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testFarmhouseAndMagicFarmActionsRoundTripWithoutRemovingNormalObjects",
+      "result": "passed",
+      "seconds": 0.008
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testFarmSnapshotExtractsActualEntitiesCountsAndCoordinates",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testGlobalKeyboardReturnAccessoryInstallsOnEveryUIKitTextInputKind",
+      "result": "passed",
+      "seconds": 0.064
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testInterruptedMixedPairIsRecoveredFromBackup",
+      "result": "passed",
+      "seconds": 0.045
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testLargeLocalSaveLoadingDiagnostics",
+      "result": "passed",
+      "seconds": 1.406
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testLazyXMLTraversalPreservesOrderAndStopsAtFirstMatch",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testLegacyBackupManifestWithoutHashesRemainsReadable",
+      "result": "passed",
+      "seconds": 0.02
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testMagicMapCanRemoveOneSelectedDebrisWithoutTouchingNeighbors",
+      "result": "passed",
+      "seconds": 0.005
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testModern16HouseProgressWalletProfessionsAndAnimalsRoundTrip",
+      "result": "passed",
+      "seconds": 0.016
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testMovingEquivalentItemsStillProducesInventoryDiffs",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testParseEditRenderAndReparsePair",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testPlainAndZlibCodecRoundTrips",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testSaveDiscoveryReportsRootWithoutValidSaves",
+      "result": "passed",
+      "seconds": 0.007
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testSessionEditingFreezeRejectsLateBindingsButCanInstallCommittedSnapshot",
+      "result": "passed",
+      "seconds": 0.016
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testSnapshotStillPrefersNamedFarmInsideWrappedLocations",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testTeaBushGrowsAcrossOutdoorWinterButOnlyHarvestsInProducingSeasons",
+      "result": "passed",
+      "seconds": 0.031
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testTransactionWritesPairAndCreatesRestorableBackup",
+      "result": "passed",
+      "seconds": 0.027
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testUnchangedExtendedValuesSurviveAnUnrelatedEdit",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testValidationRejectsUnsafeValues",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testWorkerPreparesSnapshotAndRefreshesItAfterCommittedMapChanges",
+      "result": "passed",
+      "seconds": 0.227
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testWorkerPreservesInventoryBaselineWhenReparsingForUnrelatedEdit",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testWorkerRejectsInvalidTargetBeforeCreatingBackupOrWritingSource",
+      "result": "passed",
+      "seconds": 0.029
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testWorkerTransfersOnlyFreshParsedTreesAndReturnsVerifiedPair",
+      "result": "passed",
+      "seconds": 0.039
+    },
+    {
+      "class": "SaveCoreTests",
+      "method": "testXMLTreePreservesUnknownElementsAndEscapesText",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "class": "TrackerMetricsTests",
+      "method": "testCollectionFootprintIsAnObservedCountNotPerfection",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "class": "TrackerMetricsTests",
+      "method": "testDraftsAndClearStateHaveDistinctStatus",
+      "result": "passed",
+      "seconds": 0.041
+    },
+    {
+      "class": "TrackerMetricsTests",
+      "method": "testEmptySkillsHaveNoArtificialMaximumOrCompletedProgress",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "class": "TrackerMetricsTests",
+      "method": "testProgressDoesNotInventCompletionForMissingTotals",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "class": "TrackerMetricsTests",
+      "method": "testProgressStaysWithinItsDisplayRange",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "class": "TrackerMetricsTests",
+      "method": "testSkillSummaryUsesAvailableSkillsAndClampsExtendedLevels",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "class": "TrackerMetricsTests",
+      "method": "testWarningsRemainVisibleEvenWithoutDraftsOrAlongsideDrafts",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "class": "TransactionRegressionTests",
+      "method": "testBackupExportsWithoutOriginalFilesOrEditingSession",
+      "result": "passed",
+      "seconds": 0.045
+    },
+    {
+      "class": "TransactionRegressionTests",
+      "method": "testBoundKnownMixedPairRestoresOriginal",
+      "result": "passed",
+      "seconds": 0.05
+    },
+    {
+      "class": "TransactionRegressionTests",
+      "method": "testFailureDuringSecondWriteRestoresBothOriginalFiles",
+      "result": "passed",
+      "seconds": 0.037
+    },
+    {
+      "class": "TransactionRegressionTests",
+      "method": "testInvalidRenderedInfoIsRejectedBeforeSourceWrites",
+      "result": "passed",
+      "seconds": 0.016
+    },
+    {
+      "class": "TransactionRegressionTests",
+      "method": "testProtectedRecoveryPointSurvivesAutomaticRetention",
+      "result": "passed",
+      "seconds": 0.048
+    },
+    {
+      "class": "TransactionRegressionTests",
+      "method": "testRollbackFailureRetainsJournalAndExportableProtectedBackup",
+      "result": "passed",
+      "seconds": 0.021
+    },
+    {
+      "class": "TransactionRegressionTests",
+      "method": "testSameFarmNameAtDifferentSourcesDoesNotShareJournal",
+      "result": "passed",
+      "seconds": 0.04
+    },
+    {
+      "class": "TransactionRegressionTests",
+      "method": "testUnboundLegacyJournalNeverGuessesSourceFromFarmName",
+      "result": "passed",
+      "seconds": 0.026
+    },
+    {
+      "class": "TransactionRegressionTests",
+      "method": "testUnknownNewProgressIsPreservedAndNeedsExplicitChoice",
+      "result": "passed",
+      "seconds": 0.075
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testColorChangeDoesNotInventOrRepairSummaryFields",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testColorChannelsAndPackedValueRoundTripWithoutLosingMetadata",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testColorDiffUndoRestoresOneFieldAndKeepsOtherDraftChanges",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testColorWriteBoundaryRejectsMissingAddedInvalidAndAlphaChanges",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testHexColorValidationAcceptsSixDigitsOnly",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testInvalidOrMissingColorsStayReadOnlyAndUnchanged",
+      "result": "passed",
+      "seconds": 0.009
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testMapRegionFiltersBothActionsAndUndoKeepsOtherSelections",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testMapRejectsInvalidRegionsAndNonActionableKeys",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testMapSearchScopeAndToggleReflectDraftImmediately",
+      "result": "passed",
+      "seconds": 0.004
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testNilUnknownAndAmbiguousRoomFieldsStayReadOnly",
+      "result": "passed",
+      "seconds": 0.018
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testPackedOnlyColorsPreserveRepresentationAndSummaryAlpha",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testRoomBatchChangesSelectedRoomsOfSameSurfaceKindOnly",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testRoomEditPreservesUntouchedLexicalValuesAndFurniture",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testRoomRestoreKeepsOtherRoomsAndUpgradeDraft",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testRoomSearchAndStyleLibraryCoverKnownRanges",
+      "result": "passed",
+      "seconds": 0.004
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testRoomWriteBoundaryRejectsAddedRemovedOrRelocatedSurfaces",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testSingleCropWateringChangesExactCoordinateOnly",
+      "result": "passed",
+      "seconds": 0.004
+    },
+    {
+      "class": "WorldEditorTests",
+      "method": "testWateringPreservesWetDeadCustomNullableAndMissingStates",
+      "result": "passed",
+      "seconds": 0.004
+    }
+  ],
+  "synthetic_load_diagnostics": [
+    {
+      "bytes": 8163552.0,
+      "recovery_ms": 0.4596250000759028,
+      "read_ms": 14.891499999976077,
+      "parse_ms": 1082.2007083334029,
+      "snapshot_ms": 0.24587500001871376,
+      "total_ms": 1097.7977083334736,
+      "eager_lookup_ms": 243.01862499987692,
+      "lazy_lookup_ms": 0.05933333341090474
+    }
+  ],
+  "limitations": [
+    "Synthetic saves on simulator; no signed-device installation or real in-game round trip."
+  ]
+}

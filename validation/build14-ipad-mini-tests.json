@@ -1,0 +1,53 @@
+{
+  "status": "passed",
+  "source_commit": "40da6c03efb7b2b44e8d1283434deeaaf2b628c7",
+  "run_url": "https://github.com/ghb997/stardew-save-editor/actions/runs/34675557231",
+  "scope": "expanded",
+  "device": {
+    "name": "iPad mini (A17 Pro)",
+    "udid": "9D9BF050-F6F5-4D32-84C0-4B7AC57F63EF",
+    "runtime": "com.apple.CoreSimulator.SimRuntime.iOS-26-2",
+    "family": "mini"
+  },
+  "total_tests": 4,
+  "counts_by_class": {
+    "ExpandedEditorUITests": 4
+  },
+  "outcomes": {
+    "passed": 4
+  },
+  "testLogSha256": "335845b156cd5da388c7b8cace541286a7ae86d1188afa416fe9e4bb9115d2c1",
+  "missing": [],
+  "unexpected": [],
+  "duplicates": [],
+  "tests": [
+    {
+      "class": "ExpandedEditorUITests",
+      "method": "testBundleSupplyPreviewAddsInventoryDiffWithoutCompletingBundle",
+      "result": "passed",
+      "seconds": 32.087
+    },
+    {
+      "class": "ExpandedEditorUITests",
+      "method": "testChestQuantityDraftAndReview",
+      "result": "passed",
+      "seconds": 23.763
+    },
+    {
+      "class": "ExpandedEditorUITests",
+      "method": "testMachineSelectionPreviewApplyAndUndo",
+      "result": "passed",
+      "seconds": 17.188
+    },
+    {
+      "class": "ExpandedEditorUITests",
+      "method": "testWeatherLuckPresetRestoreAndWeatherReview",
+      "result": "passed",
+      "seconds": 19.58
+    }
+  ],
+  "synthetic_load_diagnostics": [],
+  "limitations": [
+    "Synthetic saves on simulator; no signed-device installation or real in-game round trip."
+  ]
+}
