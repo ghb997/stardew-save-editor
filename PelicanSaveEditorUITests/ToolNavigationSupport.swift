@@ -22,12 +22,14 @@ extension XCTestCase {
     func revealDirectoryControl(_ element: XCUIElement, in app: XCUIApplication) throws {
         let list = app.scrollViews["editor.tools.list"]
         XCTAssertTrue(list.waitForExistence(timeout: 30))
+        let startsAbove = element.identifier.hasPrefix("tools.category.")
+            || element.identifier.hasPrefix("tools.search")
         for attempt in 0..<28 {
             let bounds = list.frame.intersection(app.frame).insetBy(dx: 0, dy: 4)
             let frame = element.exists ? element.frame : .null
             let hasFrame = !frame.isEmpty && frame.minY.isFinite
             if hasFrame && bounds.contains(frame) && element.isHittable { return }
-            let down = hasFrame ? frame.midY > bounds.midY : attempt >= 14
+            let down = hasFrame ? frame.midY > bounds.midY : (attempt < 14 ? !startsAbove : startsAbove)
             let distance = min(hasFrame ? max(abs(frame.midY - bounds.midY), 40) : 140,
                                bounds.height * 0.35)
             let direction: CGFloat = down ? 1 : -1

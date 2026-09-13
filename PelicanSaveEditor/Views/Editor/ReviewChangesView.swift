@@ -202,7 +202,9 @@ struct ReviewChangesView: View {
             Button("放弃草稿并重新载入", role: .destructive) { store.reload() }
             Button("取消", role: .cancel) {}
         } message: {
-            Text("当前未保存的更改会被放弃，并从磁盘重新读取两份存档文件。")
+            Text(session.source.mode == .importedCopy
+                ? "未保存的更改会被放弃，并重新读取应用内已保存的两份副本。游戏中的新进度需要重新复制导入。"
+                : "当前未保存的更改会被放弃，并从磁盘重新读取两份存档文件。")
         }
         .sheet(isPresented: $showingBackups) {
             BackupListView()

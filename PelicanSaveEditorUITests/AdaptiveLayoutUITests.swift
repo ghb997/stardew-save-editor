@@ -163,7 +163,7 @@ final class AdaptiveLayoutUITests: XCTestCase {
                         "skills", "wallet", "animals", "recipes", "review"] {
             try selectToolCategory(for: section, in: app)
             let entry = app.buttons["editor.tool.\(section)"]
-            try reveal(entry, in: "editor.tools.list", app: app)
+            if section != "review" { try reveal(entry, in: "editor.tools.list", app: app) }
             // Wide cards contain blank space between their text and chevron.
             // The entire card, including its center, must open the editor.
             try visible(entry, app: app)

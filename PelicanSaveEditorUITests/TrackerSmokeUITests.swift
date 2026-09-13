@@ -326,7 +326,9 @@ final class TrackerSmokeUITests: XCTestCase {
         try require(app.tabBars.buttons["工具"], app: app, timeout: 30)
         try selectToolCategory(for: section, in: app)
         try require(tool, app: app, timeout: 30)
-        try revealEditorControl(tool, app: app, viewportID: "editor.tools.list")
+        if section != "review" {
+            try revealEditorControl(tool, app: app, viewportID: "editor.tools.list")
+        }
         try tap(tool, app: app)
         return app
     }
