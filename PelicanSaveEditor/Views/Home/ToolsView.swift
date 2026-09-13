@@ -234,14 +234,20 @@ struct ToolsView: View {
             presentation = .entry(.editor(.review))
         } label: {
             VStack(spacing: 4) {
-                Label("检查与保存", systemImage: "checkmark.circle.fill").font(.headline)
-                Text(session.hasChanges ? "\(session.diffs.count) 项待保存 · 草稿在各分类间保留" : "查看存档、备份与导出")
-                    .font(.caption)
+                if typeSize.isAccessibilitySize {
+                    Text("检查与保存").font(.headline)
+                } else {
+                    Label("检查与保存", systemImage: "checkmark.circle.fill").font(.headline)
+                    Text(session.hasChanges ? "\(session.diffs.count) 项待保存 · 草稿在各分类间保留" : "查看存档、备份与导出")
+                        .font(.caption)
+                }
             }
             .multilineTextAlignment(.center).fixedSize(horizontal: false, vertical: true)
             .frame(maxWidth: .infinity, minHeight: 44)
         }
         .buttonStyle(.borderedProminent).tint(AppTheme.accent)
+        .accessibilityValue(typeSize.isAccessibilitySize
+            ? "\(session.diffs.count) 项待保存，草稿在各分类间保留" : "")
         .accessibilityIdentifier("editor.tool.review")
         .padding(.horizontal, 20).padding(.vertical, 10)
         .readablePageWidth().background(.bar)
