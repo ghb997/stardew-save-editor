@@ -1,48 +1,48 @@
 import SwiftUI
 
 enum FarmLoadMethod: String, Identifiable {
-    case recent, directory, files, copy
+    case copy
     var id: String { rawValue }
 }
 
-enum PickedFarmSource {
-    case directory(URL)
-    case files([URL])
-    case copy([URL])
-}
-
-/// A scrollable sheet avoids anchoring an iPad action popover to the whole
-/// Tools tab. The caller opens the selected picker only after this sheet ends.
+/// The caller presents the copy picker only after this sheet has dismissed.
 struct FarmLoadSheet: View {
     @Environment(\.dismiss) private var dismiss
-    let hasRecentSource: Bool
     @Binding var selection: FarmLoadMethod?
 
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(alignment: .leading, spacing: 16) {
-                    Text("选择存档打开方式")
-                        .font(.title2.bold())
-                    Text("自签安装建议直接选择主存档与 SaveGameInfo；编辑完成后可写回原文件。")
-                        .font(.subheadline)
+                VStack(alignment: .leading, spacing: 22) {
+                    Text("导入你的农场").font(.title2.bold())
+                    Text("先完全退出游戏，再从同一个农场文件夹中同时选择以下两个文件。")
                         .foregroundStyle(.secondary)
-                        .fixedSize(horizontal: false, vertical: true)
-
-                    if hasRecentSource {
-                        option(.recent, title: "打开上次农场",
-                               subtitle: "继续使用上次授权的存档位置", icon: "clock.arrow.circlepath")
+                    VStack(alignment: .leading, spacing: 16) {
+                        fileRow("主存档", detail: "通常为「农场名称_数字」，没有扩展名", symbol: "doc.text")
+                        Divider()
+                        fileRow("SaveGameInfo", detail: "与主存档位于同一个文件夹", symbol: "doc.text.magnifyingglass")
                     }
-                    option(.files, title: "选择两个存档文件",
-                           subtitle: "自签推荐 · 同时选择主存档与 SaveGameInfo，保存时写回原文件。",
-                           icon: "doc.badge.plus")
-                    option(.directory, title: "选择存档文件夹",
-                           subtitle: "选择 Stardew Valley 或农场文件夹，自动查找存档。",
-                           icon: "folder")
-                    option(.copy, title: "复制导入两个文件",
-                           subtitle: "备用 · 编辑的是副本，保存后需导出到游戏文件夹并替换原文件。",
-                           icon: "doc.on.doc")
+                    .padding(18)
+                    .appCard()
+                    Button {
+                        selection = .copy
+                        dismiss()
+                    } label: {
+                        Label("复制导入两个文件", systemImage: "doc.on.doc")
+                            .font(.headline)
+                            .frame(maxWidth: .infinity, minHeight: 44)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.large)
+                    .tint(AppTheme.accent)
+                    .accessibilityIdentifier("farm.load.copy")
+                    VStack(alignment: .leading, spacing: 8) {
+                        Label("修改后如何放回游戏", systemImage: "square.and.arrow.up").font(.headline)
+                        Text("编辑的是应用内副本。完成修改后，在「检查与保存」中保存并导出两份文件，放回游戏原农场文件夹，替换同名文件。")
+                            .font(.subheadline).foregroundStyle(.secondary)
+                    }
                 }
+                .fixedSize(horizontal: false, vertical: true)
                 .padding(20)
                 .readablePageWidth(680)
             }
@@ -52,8 +52,7 @@ struct FarmLoadSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("取消") { dismiss() }
-                        .accessibilityIdentifier("farm.load.cancel")
+                    Button("取消") { dismiss() }.accessibilityIdentifier("farm.load.cancel")
                 }
             }
         }
@@ -64,36 +63,21 @@ struct FarmLoadSheet: View {
 #endif
     }
 
-    private func option(_ method: FarmLoadMethod, title: String,
-                        subtitle: String, icon: String) -> some View {
-        Button {
-            selection = method
-            dismiss()
-        } label: {
-            VStack(alignment: .leading, spacing: 10) {
-                Label(title, systemImage: icon)
-                    .font(.headline)
-                Text(subtitle)
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
+    private func fileRow(_ title: String, detail: String, symbol: String) -> some View {
+        HStack(alignment: .top, spacing: 14) {
+            Image(systemName: symbol).font(.title2).foregroundStyle(AppTheme.accent)
+            VStack(alignment: .leading, spacing: 5) {
+                Text(title).font(.headline)
+                Text(detail).font(.subheadline).foregroundStyle(.secondary)
             }
-            .multilineTextAlignment(.leading)
-            .fixedSize(horizontal: false, vertical: true)
-            .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
-            .padding(18)
-            .background(AppTheme.card, in: RoundedRectangle(cornerRadius: 18))
-            .contentShape(Rectangle())
         }
-        .buttonStyle(.plain)
-        .accessibilityIdentifier("farm.load.\(method.rawValue)")
     }
 }
 
-#Preview("Import options") {
-    FarmLoadSheet(hasRecentSource: false, selection: .constant(nil))
+#Preview("Copy import") {
+    FarmLoadSheet(selection: .constant(nil))
 }
 
-#Preview("Recent farm · large text") {
-    FarmLoadSheet(hasRecentSource: true, selection: .constant(nil))
-        .environment(\.dynamicTypeSize, .accessibility3)
+#Preview("Copy import · large text") {
+    FarmLoadSheet(selection: .constant(nil)).environment(\.dynamicTypeSize, .accessibility3)
 }

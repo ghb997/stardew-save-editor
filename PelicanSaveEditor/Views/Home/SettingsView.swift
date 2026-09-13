@@ -12,6 +12,16 @@ struct SettingsView: View {
 
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
+                    HStack(spacing: 16) {
+                        GameAssetIcon(assetName: "AppLogo", size: 60)
+                        VStack(alignment: .leading, spacing: 5) {
+                            Text("鹈鹕修改器").font(.title2.bold())
+                            Text("星露谷物语 · 农场存档助手")
+                                .font(.subheadline).foregroundStyle(.secondary)
+                        }
+                    }
+                    .accessibilityIdentifier("settings.brand")
+
                     if let session = store.session {
                         Text("农场")
                             .font(.headline)
@@ -42,6 +52,8 @@ struct SettingsView: View {
                         .padding(18)
                     }
                     .appCard()
+
+                    QQGroupSection()
 
                     Text("关于")
                         .font(.headline)
@@ -111,8 +123,8 @@ struct SettingsView: View {
     }
 
     private var appVersion: String {
-        let version = (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String) ?? "0.7.0"
-        let build = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String) ?? "15"
+        let version = (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String) ?? "0.8.0"
+        let build = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String) ?? "16"
         return "\(version) (\(build))"
     }
 

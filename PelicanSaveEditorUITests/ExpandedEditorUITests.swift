@@ -84,6 +84,7 @@ final class ExpandedEditorUITests: XCTestCase {
         // iPad can present the tab bar at the top without exposing a TabBar element.
         let tools = app.descendants(matching: .any).matching(identifier: "editor.tools.list").firstMatch
         XCTAssertTrue(tools.waitForExistence(timeout: 40))
+        try selectToolCategory(for: tool, in: app)
         try tap(app.buttons["editor.tool.\(tool)"], app, attempts: 24)
         return app
     }

@@ -1,0 +1,49 @@
+name: Verify Pelican branding and tools
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ['codex/pelican-brand-*']
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Pelican UI (${{ matrix.device }})
+    runs-on: macos-15
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        device: [iphone, mini]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Select installed Xcode 16.4
+        run: |
+          test -d /Applications/Xcode_16.4.app/Contents/Developer
+          echo "DEVELOPER_DIR=/Applications/Xcode_16.4.app/Contents/Developer" >> "$GITHUB_ENV"
+      - name: Build and verify import, navigation, search and QQ
+        env:
+          LAYOUT_DEVICE: ${{ matrix.device }}
+          LAYOUT_SCOPE: brand
+        run: bash scripts/validate-layout-on-macos.sh
+      - name: Export test results and screenshots
+        if: always()
+        run: |
+          if [[ -d artifacts/ipad-layout/tests.xcresult ]]; then
+            xcrun xcresulttool get test-results summary --path artifacts/ipad-layout/tests.xcresult > artifacts/ipad-layout/summary.json
+            xcrun xcresulttool export attachments --path artifacts/ipad-layout/tests.xcresult --output-path artifacts/ipad-layout/attachments
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pelican-build16-${{ matrix.device }}-${{ github.run_attempt }}
+          path: |
+            artifacts/ipad-layout/*.log
+            artifacts/ipad-layout/*.json
+            artifacts/ipad-layout/attachments/**
+            !artifacts/ipad-layout/attachments/**/*.mp4
+          retention-days: 14

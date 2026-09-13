@@ -1,6 +1,6 @@
 # GitHub Actions 生成 IPA
 
-当前版本为 0.7.0（构建 15），修复源码位于 `codex/complete-repair-build15` 分支。对应的 Release arm64 IPA 已构建，详见 [构建任务](https://github.com/ghb997/stardew-save-editor/actions/runs/34688577632)。测试范围、原始结果与源码对应关系见 [构建 15 验证记录](validation/BUILD15_VERIFICATION.md)。
+当前版本为 0.8.0（构建 16），源码分支为 `codex/pelican-brand-build16`。设备构建与原生 UI 验证结果见 [构建 16 验证记录](validation/BUILD16_VERIFICATION.md)。
 
 仓库的 Actions 工作流使用 GitHub 托管的 macOS 构建机、Xcode 和 iPhoneOS SDK 编译 Release 应用，然后以 `Payload/SheaflightAmberVault.app` 结构打包 IPA。
 
@@ -8,7 +8,7 @@
 
 ## 生成与下载
 
-1. 在 Actions 中选择构建 IPA 的工作流，点击 Run workflow 并选择 `codex/complete-repair-build15` 分支；该分支的普通源码推送也会自动触发工作流。带 `[skip ci]` 的证据提交不触发自动构建。
+1. 在 Actions 中选择构建 IPA 的工作流，点击 Run workflow 并选择 `codex/pelican-brand-build16` 分支；该分支的普通源码推送也会自动触发工作流。带 `[skip ci]` 的证据提交不触发自动构建。
 2. 等待构建成功，打开该次运行页下方的 Artifacts。
 3. 下载 IPA 构建产物并解压。产物包括 IPA、SHA-256 与构建信息；构建日志另存为诊断产物。
 

@@ -1,10 +1,14 @@
 import SwiftUI
 
-private enum SaveUtilityTool: String, Identifiable {
-    case cropCalculator
-    case farmMapAnalysis
-
-    var id: String { rawValue }
+private enum ToolsPresentation: Identifiable {
+    case entry(EditorToolEntry)
+    case calculator
+    var id: String {
+        switch self {
+        case .entry(let entry): entry.id
+        case .calculator: "calculator"
+        }
+    }
 }
 
 struct ToolsView: View {
@@ -12,380 +16,252 @@ struct ToolsView: View {
     @Environment(\.dynamicTypeSize) private var typeSize
     @State private var showingSourceOptions = false
     @State private var sourceMethod: FarmLoadMethod?
-    @State private var pickedSource: PickedFarmSource?
-    @State private var showingDirectoryPicker = false
-    @State private var showingFilePicker = false
+    @State private var copiedURLs: [URL]?
     @State private var showingCopyImportPicker = false
-    @State private var selectedEditorSection: SaveEditorSection?
     @State private var showingBackups = false
     @State private var showingSwitchConfirmation = false
     @State private var showingReloadConfirmation = false
-    @State private var selectedUtilityTool: SaveUtilityTool?
-    @State private var selectedExpansion: ExpandedEditorTool?
+    @State private var presentation: ToolsPresentation?
+    @State private var category: EditorToolCategory = .common
+    @State private var searchText = ""
+    @FocusState private var searchFocused: Bool
+
+    private var isSearching: Bool { !searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
+    private var visibleEntries: [EditorToolEntry] { EditorToolEntry.visible(in: category, query: searchText) }
+    private var toolColumns: [GridItem] {
+        typeSize.isAccessibilitySize ? [GridItem(.flexible())] : [GridItem(.adaptive(minimum: 320), alignment: .top)]
+    }
 
     var body: some View {
         VStack(spacing: 0) {
             LargePageHeader(title: "工具", artworkName: "GameUISkillMining")
-
             ScrollView {
-                VStack(alignment: .leading, spacing: 14) {
+                VStack(alignment: .leading, spacing: 20) {
                     if let session = store.session {
                         connectedFarmCard(session)
-
-                        toolSectionTitle("存档修改")
-
-                        if session.hasChanges {
-                            GameLabel(
-                                session.source.mode == .importedCopy
-                                    ? "草稿会先保存到导入副本，再由系统文件界面导出替换"
-                                    : "草稿会在各板块间保留，进入“检查与保存”后统一写回",
-                                systemImage: "tray.full.fill"
-                            )
-                                .font(.footnote)
-                                .foregroundStyle(.orange)
-                                .padding(.horizontal, 4)
-                        }
-
-                        LazyVGrid(columns: toolColumns, alignment: .leading, spacing: 14) {
-                            ForEach(SaveEditorSection.allCases) { section in
-                                ToolRowButton(
-                                    title: section.title,
-                                    subtitle: editorSubtitle(for: section, session: session),
-                                    systemImage: section.systemImage,
-                                    iconColor: section.tint,
-                                    artworkName: section.artworkName
-                                ) {
-                                    selectedEditorSection = section
-                                }
-                                .accessibilityIdentifier("editor.tool.\(section.rawValue)")
-                            }
-                            ForEach(ExpandedEditorTool.allCases) { tool in
-                                ToolRowButton(title: tool.title, subtitle: tool.subtitle, systemImage: tool.symbol,
-                                              iconColor: .teal) { selectedExpansion = tool }
-                                    .accessibilityIdentifier("editor.tool.\(tool.rawValue)")
-                            }
-                        }
+                        toolDirectory
                     } else {
-                        ToolRowButton(
-                            title: "加载农场",
-                            subtitle: "授权 Stardew Valley 文件夹并自动查找存档",
-                            systemImage: "externaldrive.badge.plus",
-                            iconColor: .green,
-                            artworkName: "GameUIBackpack"
-                        ) {
-                            showingSourceOptions = true
-                        }
-                        .accessibilityIdentifier("farm.load.open")
+                        ToolRowButton(title: "加载农场",
+                                      subtitle: "复制导入主存档与 SaveGameInfo 两个文件",
+                                      systemImage: "doc.on.doc", iconColor: .green,
+                                      artworkName: "GameUIBackpack") { showingSourceOptions = true }
+                            .accessibilityIdentifier("farm.load.open")
                     }
-
-                    toolSectionTitle("存档管理")
-
-                    ToolRowButton(
-                        title: "备份管理",
-                        subtitle: "手动备份、完整性校验、导出与恢复",
-                        systemImage: "book.closed.fill",
-                        iconColor: .brown,
-                        artworkName: "GameUIBackup"
-                    ) {
-                        showingBackups = true
+                    if !isSearching {
+                        managementTools
+                        sectionTitle("辅助工具")
+                        ToolRowButton(title: "农作物计算器", subtitle: "计算成熟日、收获次数与基础收益",
+                                      systemImage: "calendar", iconColor: .purple,
+                                      artworkName: "GameUICropPlanner") { presentation = .calculator }
+                            .accessibilityIdentifier("tools.calculator")
                     }
-                    .accessibilityIdentifier("tools.backups")
-
-                    ToolRowButton(
-                        title: "重新读取与校验",
-                        subtitle: store.session == nil ? "加载农场后可用" : "重新读取两份文件并检查兼容性",
-                        systemImage: "checkmark.shield.fill",
-                        iconColor: .blue,
-                        artworkName: "GameUIReview",
-                        disabled: store.session == nil
-                    ) {
-                        if store.session?.hasChanges == true {
-                            showingReloadConfirmation = true
-                        } else {
-                            store.reload()
-                        }
-                    }
-
-                    toolSectionTitle("扩展工具")
-
-                    ToolRowButton(
-                        title: "农作物计算器",
-                        subtitle: "按 1.6 作物数据计算成熟日、收获次数、产量与基础收益",
-                        systemImage: "calendar",
-                        iconColor: .purple,
-                        artworkName: "GameUICropPlanner"
-                    ) {
-                        selectedUtilityTool = .cropCalculator
-                    }
-                    .accessibilityIdentifier("tools.calculator")
-
-                    ToolRowButton(
-                        title: "魔法地图",
-                        subtitle: store.session == nil
-                            ? "加载农场后查看真实坐标并使用批量工具"
-                            : "坐标地图、一键浇水、清除石块、杂草与树枝",
-                        systemImage: "map.fill",
-                        iconColor: .orange,
-                        artworkName: "GameUIFarmComputer",
-                        disabled: store.session == nil
-                    ) {
-                        selectedUtilityTool = .farmMapAnalysis
-                    }
-                    .accessibilityIdentifier("editor.tool.map")
                 }
                 .padding(.horizontal, 20)
-                .padding(.vertical, 24)
+                .padding(.vertical, 20)
                 .readablePageWidth()
             }
+            .scrollDismissesKeyboard(.interactively)
             .accessibilityIdentifier("editor.tools.list")
             .background(AppTheme.canvas)
+            if let session = store.session {
+                reviewFooter(session)
+            }
         }
         .sheet(isPresented: $showingSourceOptions, onDismiss: openSelectedSourceMethod) {
-            FarmLoadSheet(hasRecentSource: store.hasRecentSource, selection: $sourceMethod)
+            FarmLoadSheet(selection: $sourceMethod)
         }
-        .alert("切换农场？", isPresented: $showingSwitchConfirmation) {
-            Button("选择新农场", role: .destructive) {
-                showingSourceOptions = true
-            }
-            Button("取消", role: .cancel) {}
-        } message: {
-            Text("选择并成功加载新农场后才会替换当前会话。取消选择或加载失败会保留当前草稿。")
-        }
-        .alert("重新读取存档？", isPresented: $showingReloadConfirmation) {
-            Button("放弃草稿并重新读取", role: .destructive) {
-                store.reload()
-            }
-            Button("取消", role: .cancel) {}
-        } message: {
-            Text("当前未保存的更改会被放弃，并从磁盘重新读取两份存档文件。")
-        }
-        .sheet(isPresented: $showingDirectoryPicker, onDismiss: openPickedSource) {
-            DirectoryPicker(
-                onPick: { url in
-                    pickedSource = .directory(url)
-                    showingDirectoryPicker = false
-                },
-                onCancel: { showingDirectoryPicker = false }
-            )
-            .presentationDetents([.large])
-        }
-        .sheet(isPresented: $showingFilePicker, onDismiss: openPickedSource) {
-            TwoFilePicker(
-                onPick: { urls in
-                    pickedSource = .files(urls)
-                    showingFilePicker = false
-                },
-                onCancel: { showingFilePicker = false }
-            )
-            .presentationDetents([.large])
-        }
-        .sheet(isPresented: $showingCopyImportPicker, onDismiss: openPickedSource) {
+        .sheet(isPresented: $showingCopyImportPicker, onDismiss: openCopiedSource) {
             CopyImportTwoFilePicker(
                 onPick: { urls in
-                    pickedSource = .copy(urls)
+                    copiedURLs = urls
                     showingCopyImportPicker = false
                 },
-                onCancel: { showingCopyImportPicker = false }
+                onCancel: { copiedURLs = nil; showingCopyImportPicker = false }
             )
             .presentationDetents([.large])
         }
-        .sheet(
-            isPresented: Binding(
-                get: { !store.discoveredSaveSources.isEmpty },
-                set: { if !$0 { store.dismissDiscoveredSaves() } }
-            )
-        ) {
-            DiscoveredSaveSelectionView(
-                sources: store.discoveredSaveSources,
-                onSelect: store.openDiscoveredSave,
-                onCancel: store.dismissDiscoveredSaves
-            )
+        .sheet(isPresented: $showingBackups) { BackupListView() }
+        .alert("切换农场？", isPresented: $showingSwitchConfirmation) {
+            Button("导入新农场", role: .destructive) { showingSourceOptions = true }
+            Button("取消", role: .cancel) {}
+        } message: {
+            Text("成功导入新农场后才会替换当前会话。取消选择或导入失败会保留当前草稿。")
         }
-        .sheet(isPresented: $showingBackups) {
-            BackupListView()
+        .alert("重新读取副本？", isPresented: $showingReloadConfirmation) {
+            Button("放弃草稿并重新读取", role: .destructive) { store.reload() }
+            Button("取消", role: .cancel) {}
+        } message: {
+            Text("未保存的更改会被放弃，并重新读取应用内已保存的两份副本。如需读取游戏中的最新存档，请切换农场并重新导入。")
         }
-        .fullScreenCover(item: $selectedEditorSection) { section in
-            if let session = store.session {
-                EditorShellView(session: session, section: section)
-            } else {
-                GameEmptyState(title: "农场已卸载", systemImage: "externaldrive.badge.xmark")
-            }
-        }
-        .fullScreenCover(item: $selectedUtilityTool) { tool in
-            switch tool {
-            case .cropCalculator:
+        .fullScreenCover(item: $presentation) { destination in
+            switch destination {
+            case .calculator:
                 CropCalculatorView(catalog: store.cropCatalog, session: store.session)
-            case .farmMapAnalysis:
+            case .entry(let entry):
                 if let session = store.session {
-                    FarmMapAnalysisView(session: session, cropCatalog: store.cropCatalog)
+                    editor(entry, session: session)
                 } else {
                     GameEmptyState(title: "请先加载农场", systemImage: "externaldrive.badge.plus")
                 }
             }
         }
-        .fullScreenCover(item: $selectedExpansion) { tool in
-            if let session = store.session { ExpandedEditorShell(session: session, tool: tool) }
-            else { GameEmptyState(title: "请先加载农场", systemImage: "externaldrive.badge.plus") }
+    }
+
+    private var toolDirectory: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            HStack(spacing: 10) {
+                Image(systemName: "magnifyingglass").foregroundStyle(.secondary)
+                TextField("搜索修改功能，如金币、天气、工具", text: $searchText)
+                    .font(.subheadline).focused($searchFocused)
+                    .submitLabel(.search).onSubmit { searchFocused = false }
+                    .accessibilityIdentifier("tools.search")
+                if !searchText.isEmpty {
+                    Button {
+                        searchText = ""
+                        searchFocused = false
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundStyle(.secondary).frame(minWidth: 44, minHeight: 44)
+                    }
+                    .accessibilityLabel("清除搜索").accessibilityIdentifier("tools.search.clear")
+                }
+            }
+            .padding(.horizontal, 14).frame(minHeight: 52)
+            .background(AppTheme.card, in: RoundedRectangle(cornerRadius: 16))
+
+            if !isSearching {
+                LazyVGrid(columns: typeSize.isAccessibilitySize ? [GridItem(.flexible())]
+                          : [GridItem(.adaptive(minimum: 96))], spacing: 8) {
+                    ForEach(EditorToolCategory.allCases) { item in
+                        Button {
+                            category = item
+                            searchFocused = false
+                        } label: {
+                            Text(item.title)
+                                .font(.subheadline.weight(category == item ? .bold : .medium))
+                                .fixedSize(horizontal: false, vertical: true)
+                                .frame(maxWidth: .infinity, minHeight: 44)
+                                .padding(.horizontal, 8)
+                                .foregroundStyle(category == item ? AppTheme.title : .primary)
+                                .background(category == item ? AppTheme.headerSoft : AppTheme.card,
+                                            in: RoundedRectangle(cornerRadius: 12))
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityAddTraits(category == item ? .isSelected : [])
+                        .accessibilityIdentifier("tools.category.\(item.rawValue)")
+                    }
+                }
+            }
+            HStack {
+                sectionTitle(isSearching ? "搜索结果" : category.title)
+                Spacer()
+                Text("\(visibleEntries.count) 项").font(.caption).foregroundStyle(.secondary)
+            }
+            if visibleEntries.isEmpty {
+                ContentUnavailableView("没有找到相关功能", systemImage: "magnifyingglass",
+                                       description: Text("试试「金币」「背包」「天气」等关键词。"))
+                    .accessibilityIdentifier("tools.search.empty")
+            } else {
+                LazyVGrid(columns: toolColumns, alignment: .leading, spacing: 10) {
+                    ForEach(visibleEntries) { entry in
+                        ToolRowButton(title: entry.title, subtitle: entry.subtitle,
+                                      systemImage: entry.symbol, iconColor: entry.tint,
+                                      artworkName: entry.artworkName) {
+                            searchFocused = false
+                            presentation = .entry(entry)
+                        }
+                        .accessibilityIdentifier("editor.tool.\(entry.id)")
+                    }
+                }
+            }
         }
     }
 
-    private func openPickedSource() {
-        let source = pickedSource
-        pickedSource = nil
-        // Loading may immediately present discovered farms or an error.
-        // Start only after the system picker has left the presentation stack.
-        switch source {
-        case .directory(let url): store.openDirectory(url)
-        case .files(let urls): store.openFiles(urls)
-        case .copy(let urls): store.openCopiedFiles(urls)
-        case nil: break
+    private var managementTools: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            sectionTitle("存档管理")
+            ToolRowButton(title: "备份管理", subtitle: "创建备份、校验、导出与恢复",
+                          systemImage: "book.closed.fill", iconColor: .brown,
+                          artworkName: "GameUIBackup") { showingBackups = true }
+                .accessibilityIdentifier("tools.backups")
+            ToolRowButton(title: "重新读取与校验",
+                          subtitle: store.session == nil ? "加载农场后可用" : "重新读取应用内副本；游戏新进度需重新导入",
+                          systemImage: "checkmark.shield.fill", iconColor: .blue,
+                          artworkName: "GameUIReview", disabled: store.session == nil) {
+                if store.session?.hasChanges == true { showingReloadConfirmation = true }
+                else { store.reload() }
+            }
+            .accessibilityIdentifier("tools.reload")
         }
     }
 
-    private var toolColumns: [GridItem] {
-        typeSize.isAccessibilitySize ? [GridItem(.flexible())]
-            : [GridItem(.adaptive(minimum: 340), alignment: .top)]
+    private func connectedFarmCard(_ session: SaveSession) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack(alignment: .top, spacing: 12) {
+                GameAssetIcon(assetName: "AppLogo", size: 40)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(session.draft.farmName.isEmpty ? session.source.farmIdentifier : session.draft.farmName)
+                        .font(.headline)
+                    Text("\(session.draft.playerName) · 游戏 \(session.metadata.gameVersion)")
+                        .font(.caption).foregroundStyle(.secondary)
+                }
+                Spacer(minLength: 0)
+            }
+            Text("编辑导入副本 · 保存后导出两份文件并替换游戏存档")
+                .font(.caption).foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
+            Button("切换农场", systemImage: "arrow.left.arrow.right") {
+                searchFocused = false
+                if session.hasChanges { showingSwitchConfirmation = true }
+                else { showingSourceOptions = true }
+            }
+            .font(.subheadline.weight(.semibold)).frame(minHeight: 44)
+            .accessibilityIdentifier("farm.load.switch")
+        }
+        .padding(16).appCard()
+    }
+
+    private func reviewFooter(_ session: SaveSession) -> some View {
+        Button {
+            searchFocused = false
+            presentation = .entry(.editor(.review))
+        } label: {
+            VStack(spacing: 4) {
+                Label("检查与保存", systemImage: "checkmark.circle.fill").font(.headline)
+                Text(session.hasChanges ? "\(session.diffs.count) 项待保存 · 草稿在各分类间保留" : "查看存档、备份与导出")
+                    .font(.caption)
+            }
+            .multilineTextAlignment(.center).fixedSize(horizontal: false, vertical: true)
+            .frame(maxWidth: .infinity, minHeight: 44)
+        }
+        .buttonStyle(.borderedProminent).tint(AppTheme.accent)
+        .accessibilityIdentifier("editor.tool.review")
+        .padding(.horizontal, 20).padding(.vertical, 10)
+        .readablePageWidth().background(.bar)
+    }
+
+    @ViewBuilder private func editor(_ entry: EditorToolEntry, session: SaveSession) -> some View {
+        switch entry {
+        case .editor(let section): EditorShellView(session: session, section: section)
+        case .expanded(let tool): ExpandedEditorShell(session: session, tool: tool)
+        case .map: FarmMapAnalysisView(session: session, cropCatalog: store.cropCatalog)
+        }
+    }
+
+    private func sectionTitle(_ title: String) -> some View {
+        Text(title).font(.headline).foregroundStyle(.secondary)
     }
 
     private func openSelectedSourceMethod() {
         let method = sourceMethod
         sourceMethod = nil
-        // Wait for the options sheet's actual dismissal, including on iPad,
-        // rather than presenting a document picker during that transition.
-        switch method {
-        case .recent: store.openRecent()
-        case .directory: showingDirectoryPicker = true
-        case .files: showingFilePicker = true
-        case .copy: showingCopyImportPicker = true
-        case nil: break
-        }
+        // Preserve the established iPad dismissal ordering.
+        if method == .copy { showingCopyImportPicker = true }
     }
 
-    private func connectedFarmCard(_ session: SaveSession) -> some View {
-        VStack(alignment: .leading, spacing: 12) {
-            HStack {
-                GameIcon(systemName: "leaf.circle.fill")
-                    .font(.title)
-                    .foregroundStyle(.green)
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(session.draft.farmName.isEmpty ? session.source.farmIdentifier : session.draft.farmName)
-                        .font(.headline)
-                    Text("\(session.draft.playerName) · 游戏 \(session.metadata.gameVersion)")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-                Spacer()
-                if session.hasChanges {
-                    Text("\(session.diffs.count) 项待保存")
-                        .font(.caption.bold())
-                        .foregroundStyle(.orange)
-                }
-            }
-
-            if session.source.mode == .importedCopy {
-                GameLabel("复制导入副本 · 保存后需导出替换游戏文件", systemImage: "doc.on.doc.fill")
-                    .font(.caption.weight(.semibold))
-                    .foregroundStyle(.orange)
-            }
-
-            Button("切换农场", systemImage: "arrow.left.arrow.right") {
-                if session.hasChanges {
-                    showingSwitchConfirmation = true
-                } else {
-                    showingSourceOptions = true
-                }
-            }
-            .font(.subheadline.weight(.semibold))
-            .accessibilityIdentifier("farm.load.switch")
-        }
-        .padding(18)
-        .background(AppTheme.headerSoft, in: RoundedRectangle(cornerRadius: 20, style: .continuous))
-    }
-
-    private func editorSubtitle(for section: SaveEditorSection, session: SaveSession) -> String {
-        switch section {
-        case .character:
-            return "名称、金钱、生命、体力与游戏日期"
-        case .appearance:
-            return "前后对照预览，以及 74 款发型、24 种肤色和 31 个饰品编号"
-        case .farmhouse:
-            return session.draft.farmhouse.hasEditableContent
-                ? "农舍等级与 \(session.draft.farmhouse.decorations.count) 项房间装饰"
-                : "检查农舍等级与可编辑的房间字段"
-        case .inventory:
-            return "\(session.draft.usableInventoryCount) 格背包 · 容量、物品搜索与槽位编辑"
-        case .progress:
-            return "齐钻、齐币、核桃、干草与矿洞进度"
-        case .relationships:
-            return "\(session.draft.friendships.count) 位角色 · 批量好感、送礼次数与关系"
-        case .skills:
-            return "精确经验、等级与 5/10 级职业分支"
-        case .wallet:
-            let unlocked = session.draft.progress.walletUnlocks.filter(\.isUnlocked).count
-            return "管理 \(WalletUnlockKey.allCases.count) 项钱包能力，当前已获得 \(unlocked) 项"
-        case .animals:
-            return session.draft.animals.isEmpty
-                ? "检查标准动物节点；当前存档未发现可编辑动物"
-                : "编辑 \(session.draft.animals.count) 只动物的名称与状态"
-        case .recipes:
-            let unlocked = session.draft.recipes.filter(\.unlocked).count
-            return "已解锁 \(unlocked) / \(session.draft.recipes.count) 项配方"
-        case .review:
-            return session.hasChanges
-                ? "查看 \(session.diffs.count) 项草稿，统一备份并保存"
-                : "查看来源、备份与保存状态"
-        }
-    }
-
-    private func toolSectionTitle(_ title: String) -> some View {
-        Text(title)
-            .font(.headline)
-            .foregroundStyle(.secondary)
-            .padding(.top, 10)
-            .padding(.horizontal, 4)
-    }
-}
-
-private struct DiscoveredSaveSelectionView: View {
-    @Environment(\.dismiss) private var dismiss
-    let sources: [SaveSource]
-    let onSelect: @MainActor (SaveSource) -> Void
-    let onCancel: @MainActor () -> Void
-
-    var body: some View {
-        NavigationStack {
-            List(sources, id: \.farmIdentifier) { source in
-                Button {
-                    onSelect(source)
-                    dismiss()
-                } label: {
-                    HStack(spacing: 14) {
-                        GameIcon(systemName: "leaf.circle.fill", size: 28)
-                            .font(.title2)
-                            .foregroundStyle(.green)
-                        VStack(alignment: .leading, spacing: 3) {
-                            Text(source.farmIdentifier)
-                                .font(.headline)
-                            Text("包含主存档与 SaveGameInfo")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                        }
-                    }
-                    .padding(.vertical, 4)
-                }
-                .buttonStyle(.plain)
-            }
-            .navigationTitle("选择游戏存档")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("取消") {
-                        onCancel()
-                        dismiss()
-                    }
-                }
-            }
-        }
-        .presentationDetents([.large])
+    private func openCopiedSource() {
+        let urls = copiedURLs
+        copiedURLs = nil
+        if let urls { store.openCopiedFiles(urls) }
     }
 }

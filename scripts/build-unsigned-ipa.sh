@@ -143,7 +143,7 @@ info.update(
     appName=app.name, bundleIdentifier=plist['CFBundleIdentifier'], executable=name,
     version=plist['CFBundleShortVersionString'], buildNumber=plist['CFBundleVersion'],
     minimumOSVersion=plist.get('MinimumOSVersion'),
-    ipaFile=f"SheaflightAmberVault-v{safe(plist['CFBundleShortVersionString'])}-build{safe(plist['CFBundleVersion'])}-unsigned.ipa",
+    ipaFile=f"PelicanEditor-v{safe(plist['CFBundleShortVersionString'])}-build{safe(plist['CFBundleVersion'])}-unsigned.ipa",
 )
 with open(sys.argv[2], 'w', encoding='utf-8') as stream:
     json.dump(info, stream, ensure_ascii=False, indent=2)

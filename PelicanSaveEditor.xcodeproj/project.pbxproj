@@ -105,6 +105,11 @@
 		F7A0D411FC90209C9282614B /* CollectionLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF71783C83E0C21F559D0A24 /* CollectionLibraryView.swift */; };
 		C4AEAC7634D0D494B88EE214 /* RepairRegressionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80DF42DB2D6BF50939BCF1 /* RepairRegressionTests.swift */; };
 		B21B009B815A341B23E856B9 /* RepairEditorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC70611A52B04F81475AF37 /* RepairEditorUITests.swift */; };
+		66276754925EF14FDEFFA4EA /* QQGroupSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D861E60F236E82534032BA3D /* QQGroupSection.swift */; };
+		254F210DAE1B42345EF24F24 /* ToolDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45389BBB3DA05585BCBC0D42 /* ToolDirectory.swift */; };
+		627B0B19A0067BD6BCD33AD2 /* ToolDirectoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF502182C98C84B293CC6E54 /* ToolDirectoryTests.swift */; };
+		2CF7839B5127D3E25ABCE9FA /* PelicanBrandUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8516A3637C9985ED6D777286 /* PelicanBrandUITests.swift */; };
+		2FF6CE52EC94079E8133CD57 /* ToolNavigationSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2C36708BE787E3FEEBB212 /* ToolNavigationSupport.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -220,6 +225,11 @@
 		CF71783C83E0C21F559D0A24 /* CollectionLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Tools/CollectionLibraryView.swift"; sourceTree = SOURCE_ROOT; };
 		AE80DF42DB2D6BF50939BCF1 /* RepairRegressionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditorTests/RepairRegressionTests.swift"; sourceTree = SOURCE_ROOT; };
 		7CC70611A52B04F81475AF37 /* RepairEditorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditorUITests/RepairEditorUITests.swift"; sourceTree = SOURCE_ROOT; };
+		D861E60F236E82534032BA3D /* QQGroupSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Home/QQGroupSection.swift"; sourceTree = SOURCE_ROOT; };
+		45389BBB3DA05585BCBC0D42 /* ToolDirectory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Home/ToolDirectory.swift"; sourceTree = SOURCE_ROOT; };
+		BF502182C98C84B293CC6E54 /* ToolDirectoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditorTests/ToolDirectoryTests.swift"; sourceTree = SOURCE_ROOT; };
+		8516A3637C9985ED6D777286 /* PelicanBrandUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditorUITests/PelicanBrandUITests.swift"; sourceTree = SOURCE_ROOT; };
+		6F2C36708BE787E3FEEBB212 /* ToolNavigationSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditorUITests/ToolNavigationSupport.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -277,6 +287,11 @@
 				CF71783C83E0C21F559D0A24 /* CollectionLibraryView.swift */,
 				AE80DF42DB2D6BF50939BCF1 /* RepairRegressionTests.swift */,
 				7CC70611A52B04F81475AF37 /* RepairEditorUITests.swift */,
+				D861E60F236E82534032BA3D /* QQGroupSection.swift */,
+				45389BBB3DA05585BCBC0D42 /* ToolDirectory.swift */,
+				BF502182C98C84B293CC6E54 /* ToolDirectoryTests.swift */,
+				8516A3637C9985ED6D777286 /* PelicanBrandUITests.swift */,
+				6F2C36708BE787E3FEEBB212 /* ToolNavigationSupport.swift */,
 				52A33A42251270FA0061402D /* PelicanSaveEditor */,
 				D5CA3286FD20ABA40A3A831D /* PelicanSaveEditorTests */,
 				26115F3A720144889AA40005 /* PelicanSaveEditorUITests */,
@@ -575,6 +590,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FF6CE52EC94079E8133CD57 /* ToolNavigationSupport.swift in Sources */,
+				2CF7839B5127D3E25ABCE9FA /* PelicanBrandUITests.swift in Sources */,
 				B21B009B815A341B23E856B9 /* RepairEditorUITests.swift in Sources */,
 				B29900D610AC94C4762C3962 /* ExpandedEditorUITests.swift in Sources */,
 				EF1A190B9B8D101BDDEB997D /* AdaptiveLayoutUITests.swift in Sources */,26115F3A720144889AA40002 /* TrackerSmokeUITests.swift in Sources */,);
@@ -584,6 +601,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				627B0B19A0067BD6BCD33AD2 /* ToolDirectoryTests.swift in Sources */,
 				C4AEAC7634D0D494B88EE214 /* RepairRegressionTests.swift in Sources */,
 				6261AE855FA9F726231A6BAF /* ExpandedEditorTests.swift in Sources */,
 				2CF618BAE0F9C28AFD0E45B6 /* WorldEditorTests.swift in Sources */,
@@ -599,6 +617,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				254F210DAE1B42345EF24F24 /* ToolDirectory.swift in Sources */,
+				66276754925EF14FDEFFA4EA /* QQGroupSection.swift in Sources */,
 				F7A0D411FC90209C9282614B /* CollectionLibraryView.swift in Sources */,
 				0DE12A30694D3BE474C4E0D0 /* EquipmentEditorView.swift in Sources */,
 				CA122C5F4C376D711B508B70 /* EquipmentEditorData.swift in Sources */,
@@ -730,7 +750,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -751,7 +771,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.7.0;
+				MARKETING_VERSION = 0.8.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -800,7 +820,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -815,7 +835,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.7.0;
+				MARKETING_VERSION = 0.8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";

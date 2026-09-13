@@ -93,6 +93,7 @@ final class RepairEditorUITests: XCTestCase {
         app.launch()
         let list = app.scrollViews["editor.tools.list"]
         XCTAssertTrue(list.waitForExistence(timeout: 40))
+        try selectToolCategory(for: tool, in: app)
         let button = app.buttons["editor.tool.\(tool)"]
         try revealTool(button, in: list, app: app)
         button.tap()

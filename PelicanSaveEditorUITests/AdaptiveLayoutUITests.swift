@@ -25,7 +25,7 @@ final class AdaptiveLayoutUITests: XCTestCase {
         defer { XCUIDevice.shared.orientation = .portrait; XCUIApplication().terminate() }
         XCUIDevice.shared.orientation = .landscapeLeft
         let app = launch(demo: false)
-        for method in ["files", "directory", "copy"] {
+        for method in ["copy"] {
             try tap(app.buttons["farm.load.open"], app: app)
             let option = app.buttons["farm.load.\(method)"]
             try reveal(option, in: "farm.load.options", app: app)
@@ -147,7 +147,10 @@ final class AdaptiveLayoutUITests: XCTestCase {
     @MainActor
     private func verifyImportOptions(_ app: XCUIApplication) throws {
         try visible(app.buttons["farm.load.cancel"], app: app)
-        for method in ["files", "directory", "copy"] {
+        for removed in ["recent", "directory", "files"] {
+            XCTAssertFalse(app.buttons["farm.load.\(removed)"].exists)
+        }
+        for method in ["copy"] {
             let button = app.buttons["farm.load.\(method)"]
             try reveal(button, in: "farm.load.options", app: app)
             try visible(button, app: app)
@@ -158,6 +161,7 @@ final class AdaptiveLayoutUITests: XCTestCase {
     private func verifyEditors(_ app: XCUIApplication, label: String) throws {
         for section in ["character", "appearance", "farmhouse", "inventory", "progress", "relationships",
                         "skills", "wallet", "animals", "recipes", "review"] {
+            try selectToolCategory(for: section, in: app)
             let entry = app.buttons["editor.tool.\(section)"]
             try reveal(entry, in: "editor.tools.list", app: app)
             // Wide cards contain blank space between their text and chevron.

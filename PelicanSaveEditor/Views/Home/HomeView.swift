@@ -157,7 +157,7 @@ struct HomeView: View {
             VStack(alignment: .leading, spacing: 5) {
                 Text("本地、安全地处理存档")
                     .font(.headline)
-                Text("不会上传文件；每次写回前自动创建成对备份。编辑前请完全退出游戏。")
+                Text("不会上传文件；保存副本前自动创建成对备份。修改后请导出两份文件并替换游戏存档。")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
             }
@@ -372,8 +372,10 @@ private struct FarmDateHeader: View {
                     .font(.title3)
                     .foregroundStyle(AppTheme.title.opacity(0.72))
             } else {
-                Text("穗光琥珀存档匣")
-                    .font(headerFont)
+                HStack(spacing: 12) {
+                    GameAssetIcon(assetName: "AppLogo", size: verticalSizeClass == .compact ? 28 : 44)
+                    Text("鹈鹕修改器").font(headerFont)
+                }
                 Text("农场助手")
                     .font(.title3)
                     .foregroundStyle(AppTheme.title.opacity(0.72))
