@@ -7,6 +7,7 @@ private enum QQCommunity {
 }
 
 struct QQGroupSection: View {
+    @Environment(\.dynamicTypeSize) private var typeSize
     @State private var showingQRCode = false
     @State private var copied = false
 
@@ -24,11 +25,24 @@ struct QQGroupSection: View {
                     copied = true
                     UIAccessibility.post(notification: .announcement, argument: "QQ群号已复制")
                 } label: {
-                    Label(copied ? "已复制群号" : "复制群号", systemImage: copied ? "checkmark" : "doc.on.doc")
+                    Group {
+                        if typeSize.isAccessibilitySize {
+                            Text("复制群号")
+                        } else {
+                            Label("复制群号", systemImage: "doc.on.doc")
+                        }
+                    }
+                        .font(.headline)
                         .frame(maxWidth: .infinity, minHeight: 44)
                 }
-                .buttonStyle(.bordered).tint(AppTheme.accent)
+                .buttonStyle(.borderedProminent).tint(AppTheme.accent)
+                .accessibilityValue(copied ? "已复制群号" : "")
                 .accessibilityIdentifier("settings.qq.copy")
+                if copied {
+                    Text("已复制群号")
+                        .font(.caption).foregroundStyle(.secondary)
+                        .accessibilityIdentifier("settings.qq.copied")
+                }
                 Button { showingQRCode = true } label: {
                     Image(QQCommunity.image).resizable().scaledToFit()
                         .frame(maxWidth: 240)

@@ -74,7 +74,8 @@ final class PelicanBrandUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["鹈鹕修改器"].waitForExistence(timeout: 30))
         capture("build16-settings", app)
         try tapByScrolling(app.buttons["settings.qq.copy"], app)
-        XCTAssertTrue(app.buttons["settings.qq.copy"].label.contains("已复制群号"))
+        XCTAssertTrue(app.staticTexts["settings.qq.copied"].waitForExistence(timeout: 10))
+        XCTAssertEqual(app.buttons["settings.qq.copy"].value as? String, "已复制群号")
         try tapByScrolling(app.buttons["settings.qq.qrcode"], app)
         XCTAssertTrue(app.buttons["settings.qq.close"].waitForExistence(timeout: 10))
         XCTAssertTrue(app.images["settings.qq.fullImage"].exists)
@@ -104,6 +105,7 @@ final class PelicanBrandUITests: XCTestCase {
         app.terminate()
         _ = launch("settings", demo: false, extra: extra)
         try tapByScrolling(app.buttons["settings.qq.copy"], app)
+        XCTAssertTrue(app.staticTexts["settings.qq.copied"].waitForExistence(timeout: 10))
         capture("build16-settings-accessibility-dark", app)
     }
 
