@@ -434,11 +434,13 @@
   {
     "asset": "AppIcon",
     "file": "PelicanSaveEditor/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png",
-    "source_url": "https://raw.githubusercontent.com/colecrouter/stardew-save-editor/1ae326c685f46c1b8c603864ad796fac3c648ce2/static/img/summary.png",
-    "sha256": "dc36e3b97d44059d81c574d2f22bad0ea1e3c13a49e8f8924b8a93946475ea94",
+    "source_url": "https://raw.githubusercontent.com/ghb997/stardew-save-editor/ce2027fe237feee27be8c161c8d1e993dd4a560b/PelicanSaveEditor/Assets.xcassets/AppLogo.imageset/prismatic-shard.png",
+    "sha256": "28c045dc72a5954fa9d00e57244aeca6baccbc291989e6bfde1f199b53032709",
     "width": 1024,
     "height": 1024,
-    "transformation": "GameSaveSummary scaled 4x with nearest-neighbor resampling"
+    "transformation": "User-provided prismatic shard scaled 16x with nearest-neighbor resampling, centered on an opaque 1024x1024 ivory background",
+    "source_kind": "user_provided_file",
+    "original_sha256": "e8a90616aa073656f693860140b15b42cb702030f4babf5253619cd21e0ee968"
   },
   {
     "asset": "GameAnimalWhiteChicken",
@@ -1135,5 +1137,27 @@
     "width": 48,
     "height": 48,
     "usage_note": "树枝清理操作提示图"
+  },
+  {
+    "asset": "AppLogo",
+    "file": "PelicanSaveEditor/Assets.xcassets/AppLogo.imageset/prismatic-shard.png",
+    "source_kind": "user_provided_file",
+    "source_url": "https://raw.githubusercontent.com/ghb997/stardew-save-editor/ce2027fe237feee27be8c161c8d1e993dd4a560b/PelicanSaveEditor/Assets.xcassets/AppLogo.imageset/prismatic-shard.png",
+    "sha256": "e8a90616aa073656f693860140b15b42cb702030f4babf5253619cd21e0ee968",
+    "original_sha256": "e8a90616aa073656f693860140b15b42cb702030f4babf5253619cd21e0ee968",
+    "width": 48,
+    "height": 48,
+    "usage_note": "用户提供的七彩碎片原始 PNG，逐字节复制"
+  },
+  {
+    "asset": "QQGroupQRCode",
+    "file": "PelicanSaveEditor/Assets.xcassets/QQGroupQRCode.imageset/qq-group-719471525.jpg",
+    "source_kind": "user_provided_file",
+    "source_url": "https://raw.githubusercontent.com/ghb997/stardew-save-editor/ce2027fe237feee27be8c161c8d1e993dd4a560b/PelicanSaveEditor/Assets.xcassets/QQGroupQRCode.imageset/qq-group-719471525.jpg",
+    "sha256": "742bf70c88385144207df45bb3463af37e8fdcc312ea27758a403df3be6bdb3f",
+    "original_sha256": "742bf70c88385144207df45bb3463af37e8fdcc312ea27758a403df3be6bdb3f",
+    "width": 1284,
+    "height": 2283,
+    "usage_note": "用户提供的 QQ 群 719471525 原始二维码 JPEG，逐字节复制"
   }
 ]
