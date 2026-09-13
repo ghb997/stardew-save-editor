@@ -34,9 +34,9 @@ struct ToolsView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            LargePageHeader(title: "工具", artworkName: "GameUISkillMining")
+            LargePageHeader(title: "工具", artworkName: "GameUISkillMining", verticalPadding: 10, minimumHeight: 66)
             ScrollView {
-                VStack(alignment: .leading, spacing: 20) {
+                VStack(alignment: .leading, spacing: 16) {
                     if let session = store.session {
                         connectedFarmCard(session)
                         toolDirectory
@@ -57,7 +57,7 @@ struct ToolsView: View {
                     }
                 }
                 .padding(.horizontal, 20)
-                .padding(.vertical, 20)
+                .padding(.vertical, 14)
                 .readablePageWidth()
             }
             .scrollDismissesKeyboard(.interactively)
@@ -196,9 +196,9 @@ struct ToolsView: View {
     }
 
     private func connectedFarmCard(_ session: SaveSession) -> some View {
-        VStack(alignment: .leading, spacing: 10) {
-            HStack(alignment: .top, spacing: 12) {
-                GameAssetIcon(assetName: "AppLogo", size: 40)
+        VStack(alignment: .leading, spacing: 8) {
+            HStack(alignment: .center, spacing: 10) {
+                GameAssetIcon(assetName: "AppLogo", size: 32)
                 VStack(alignment: .leading, spacing: 4) {
                     Text(session.draft.farmName.isEmpty ? session.source.farmIdentifier : session.draft.farmName)
                         .font(.headline)
@@ -206,19 +206,26 @@ struct ToolsView: View {
                         .font(.caption).foregroundStyle(.secondary)
                 }
                 Spacer(minLength: 0)
+                if !typeSize.isAccessibilitySize { switchFarmButton(session) }
             }
-            Text("编辑导入副本 · 保存后导出两份文件并替换游戏存档")
+            Text("导入副本 · 保存后导出两份文件并替换游戏存档")
                 .font(.caption).foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
-            Button("切换农场", systemImage: "arrow.left.arrow.right") {
-                searchFocused = false
-                if session.hasChanges { showingSwitchConfirmation = true }
-                else { showingSourceOptions = true }
-            }
-            .font(.subheadline.weight(.semibold)).frame(minHeight: 44)
-            .accessibilityIdentifier("farm.load.switch")
+            if typeSize.isAccessibilitySize { switchFarmButton(session) }
         }
-        .padding(16).appCard()
+        .padding(12).appCard()
+    }
+
+    private func switchFarmButton(_ session: SaveSession) -> some View {
+        Button(typeSize.isAccessibilitySize ? "切换农场" : "切换", systemImage: "arrow.left.arrow.right") {
+            searchFocused = false
+            if session.hasChanges { showingSwitchConfirmation = true }
+            else { showingSourceOptions = true }
+        }
+        .font(.subheadline.weight(.semibold)).frame(minHeight: 44)
+        .fixedSize(horizontal: false, vertical: true)
+        .accessibilityLabel("切换农场")
+        .accessibilityIdentifier("farm.load.switch")
     }
 
     private func reviewFooter(_ session: SaveSession) -> some View {

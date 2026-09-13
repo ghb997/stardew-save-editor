@@ -14,16 +14,16 @@ extension XCTestCase {
         default: throw NSError(domain: "ToolDirectoryTests", code: 1)
         }
         let button = app.buttons["tools.category.\(category)"]
-        try revealDirectoryControl(button, in: app)
+        try revealDirectoryControl(button, in: app, towardTop: true)
         button.tap()
     }
 
     @MainActor
-    func revealDirectoryControl(_ element: XCUIElement, in app: XCUIApplication) throws {
+    func revealDirectoryControl(_ element: XCUIElement, in app: XCUIApplication, towardTop: Bool = false) throws {
         let list = app.scrollViews["editor.tools.list"]
         XCTAssertTrue(list.waitForExistence(timeout: 30))
-        let startsAbove = element.identifier.hasPrefix("tools.category.")
-            || element.identifier.hasPrefix("tools.search")
+        let farmSwitch = app.buttons["farm.load.switch"]
+        let startsAbove = towardTop && !(farmSwitch.exists && farmSwitch.isHittable)
         for attempt in 0..<28 {
             let bounds = list.frame.intersection(app.frame).insetBy(dx: 0, dy: 4)
             let frame = element.exists ? element.frame : .null

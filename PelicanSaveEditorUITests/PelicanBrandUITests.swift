@@ -12,6 +12,10 @@ final class PelicanBrandUITests: XCTestCase {
         XCTAssertTrue(review.waitForExistence(timeout: 30))
         let draftLabel = review.label
         XCTAssertTrue(draftLabel.contains("项待保存"))
+        let firstTool = app.buttons["editor.tool.character"]
+        XCTAssertTrue(firstTool.isHittable)
+        XCTAssertTrue(app.scrollViews["editor.tools.list"].frame.contains(firstTool.frame),
+                      "The first common editor should be visible without scrolling")
         capture("build16-tools-common", app)
         for tool in ["character", "appearance", "skills", "relationships", "inventory", "equipment",
                      "storage", "recipes", "collections", "farmhouse", "animals", "weather",
@@ -42,7 +46,7 @@ final class PelicanBrandUITests: XCTestCase {
         let app = launch("tools", demo: true)
         defer { app.terminate() }
         let search = app.textFields["tools.search"]
-        try revealDirectoryControl(search, in: app)
+        try revealDirectoryControl(search, in: app, towardTop: true)
         search.tap()
         search.typeText("天气\n")
         XCTAssertTrue(app.buttons["editor.tool.weather"].waitForExistence(timeout: 10))
@@ -51,7 +55,7 @@ final class PelicanBrandUITests: XCTestCase {
         app.buttons["editor.tool.weather"].tap()
         XCTAssertTrue(app.buttons["expanded.close"].waitForExistence(timeout: 15))
         app.buttons["expanded.close"].tap()
-        try revealDirectoryControl(app.buttons["tools.search.clear"], in: app)
+        try revealDirectoryControl(app.buttons["tools.search.clear"], in: app, towardTop: true)
         app.buttons["tools.search.clear"].tap()
         search.tap()
         search.typeText("zznomatch123\n")
@@ -90,7 +94,7 @@ final class PelicanBrandUITests: XCTestCase {
         let app = launch("tools", demo: true, extra: extra)
         defer { XCUIDevice.shared.orientation = .portrait; app.terminate() }
         let category = app.buttons["tools.category.items"]
-        try revealDirectoryControl(category, in: app)
+        try revealDirectoryControl(category, in: app, towardTop: true)
         category.tap()
         let entry = app.buttons["editor.tool.inventory"]
         try revealDirectoryControl(entry, in: app)
