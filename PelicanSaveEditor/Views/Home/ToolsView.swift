@@ -16,7 +16,7 @@ struct ToolsView: View {
     @Environment(\.dynamicTypeSize) private var typeSize
     @State private var showingSourceOptions = false
     @State private var sourceMethod: FarmLoadMethod?
-    @State private var copiedURLs: [URL]?
+    @State private var copyImportFlow = CopyImportPresentationFlow()
     @State private var showingCopyImportPicker = false
     @State private var showingBackups = false
     @State private var showingSwitchConfirmation = false
@@ -70,13 +70,16 @@ struct ToolsView: View {
         .sheet(isPresented: $showingSourceOptions, onDismiss: openSelectedSourceMethod) {
             FarmLoadSheet(selection: $sourceMethod)
         }
-        .sheet(isPresented: $showingCopyImportPicker, onDismiss: openCopiedSource) {
+        .sheet(isPresented: $showingCopyImportPicker, onDismiss: finishCopyImportDismissal) {
             CopyImportTwoFilePicker(
                 onPick: { urls in
-                    copiedURLs = urls
+                    openCopiedSource(copyImportFlow.selected(urls))
                     showingCopyImportPicker = false
                 },
-                onCancel: { copiedURLs = nil; showingCopyImportPicker = false }
+                onCancel: {
+                    copyImportFlow.cancelled()
+                    showingCopyImportPicker = false
+                }
             )
             .presentationDetents([.large])
         }
@@ -269,12 +272,17 @@ struct ToolsView: View {
         let method = sourceMethod
         sourceMethod = nil
         // Preserve the established iPad dismissal ordering.
-        if method == .copy { showingCopyImportPicker = true }
+        if method == .copy {
+            copyImportFlow.begin()
+            showingCopyImportPicker = true
+        }
     }
 
-    private func openCopiedSource() {
-        let urls = copiedURLs
-        copiedURLs = nil
+    private func finishCopyImportDismissal() {
+        openCopiedSource(copyImportFlow.dismissed())
+    }
+
+    private func openCopiedSource(_ urls: [URL]?) {
         if let urls { store.openCopiedFiles(urls) }
     }
 }

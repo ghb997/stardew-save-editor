@@ -1,6 +1,6 @@
 # GitHub Actions 生成 IPA
 
-当前版本为 0.8.0（构建 16），源码分支为 `codex/pelican-brand-build16`。设备构建与原生 UI 验证结果见 [构建 16 验证记录](validation/BUILD16_VERIFICATION.md)。
+当前版本为 0.8.1（构建 17），源码分支为 `codex/pelican-brand-build16`。本次构建修复首次复制导入的回调时序；验证完成后结果记录在 `validation/BUILD17_VERIFICATION.md`。
 
 仓库的 Actions 工作流使用 GitHub 托管的 macOS 构建机、Xcode 和 iPhoneOS SDK 编译 Release 应用，然后以 `Payload/SheaflightAmberVault.app` 结构打包 IPA。
 

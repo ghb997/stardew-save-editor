@@ -123,8 +123,8 @@ struct SettingsView: View {
     }
 
     private var appVersion: String {
-        let version = (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String) ?? "0.8.0"
-        let build = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String) ?? "16"
+        let version = (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String) ?? "0.8.1"
+        let build = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String) ?? "17"
         return "\(version) (\(build))"
     }
 

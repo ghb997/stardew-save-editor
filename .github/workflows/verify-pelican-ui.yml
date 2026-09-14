@@ -40,7 +40,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: pelican-build16-${{ matrix.device }}-${{ github.run_attempt }}
+          name: pelican-build17-${{ matrix.device }}-${{ github.run_attempt }}
           path: |
             artifacts/ipad-layout/*.log
             artifacts/ipad-layout/*.json

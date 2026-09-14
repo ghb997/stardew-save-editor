@@ -2,6 +2,48 @@ import SwiftUI
 import UniformTypeIdentifiers
 import UIKit
 
+/// Coordinates the two independent completion signals emitted by a copied-file import.
+/// UIKit may report the selected URLs before or after SwiftUI reports that the sheet closed.
+struct CopyImportPresentationFlow {
+    private var selectedURLs: [URL]?
+    private var didDismiss = false
+    private var isActive = false
+
+    mutating func begin() {
+        selectedURLs = nil
+        didDismiss = false
+        isActive = true
+    }
+
+    mutating func selected(_ urls: [URL]) -> [URL]? {
+        guard isActive else { return nil }
+        selectedURLs = urls
+        return consumeIfReady()
+    }
+
+    mutating func dismissed() -> [URL]? {
+        guard isActive else { return nil }
+        didDismiss = true
+        return consumeIfReady()
+    }
+
+    mutating func cancelled() {
+        reset()
+    }
+
+    private mutating func consumeIfReady() -> [URL]? {
+        guard didDismiss, let urls = selectedURLs else { return nil }
+        reset()
+        return urls
+    }
+
+    private mutating func reset() {
+        selectedURLs = nil
+        didDismiss = false
+        isActive = false
+    }
+}
+
 /// Imports the selected pair as local copies for editing and export.
 struct CopyImportTwoFilePicker: UIViewControllerRepresentable {
     let onPick: @MainActor ([URL]) -> Void

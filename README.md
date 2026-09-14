@@ -2,9 +2,9 @@
 
 一款个人使用的原生 iOS 17+《星露谷物语》1.6 存档编辑器，所有存档处理在设备本地完成。
 
-源码版本：`0.8.0`（构建 `16`）
+源码版本：`0.8.1`（构建 `17`）
 
-构建 16 更新名称与七彩碎片图标，增加 QQ 群 719471525 和原图二维码，统一复制导入两个文件；工具页增加分类、跨分类搜索和固定保存入口，并优化小屏首屏。Release arm64 IPA 已编译校验；iPhone 156 项及 iPad mini 6 项测试全部通过。使用方式见 [安装与使用](START_HERE.md)，完整证据见 [构建 16 验证记录](validation/BUILD16_VERIFICATION.md)。
+构建 17 修复复制导入两份存档文件后第一次选择可能不识别的问题，并增加选择回调、关闭回调及取消操作的时序回归测试。构建 16 完成名称、图标、QQ 群、单一复制导入入口与工具页整理。使用方式见 [安装与使用](START_HERE.md)；构建 17 的原生验证完成后记录在 `validation/BUILD17_VERIFICATION.md`。
 
 以下构建 15 及更早数据为历史验证记录。
 
@@ -63,7 +63,7 @@
 
 使用 macOS、Xcode 16+ 打开 `PelicanSaveEditor.xcodeproj`；工程已注册所有源文件。选择自己的签名 Team 后运行到 iOS 17+ 设备。源码包不包含证书或签名资料。
 
-- 静态工程与资源检查：`python3 scripts/verify_release.py --version 0.8.0 --build 16`
+- 静态工程与资源检查：`python3 scripts/verify_release.py --version 0.8.1 --build 17`
 - 可选 Swift 语法扫描：`python3 scripts/check_swift_syntax.py`（需要 tree-sitter 0.26.0、tree-sitter-swift 0.7.3）
 - 原生编译及全部测试：`bash scripts/validate-on-macos.sh`
 - 未签名 IPA：`bash scripts/build-unsigned-ipa.sh`
