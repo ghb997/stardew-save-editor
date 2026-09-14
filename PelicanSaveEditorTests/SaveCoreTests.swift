@@ -3,6 +3,56 @@ import UIKit
 @testable import PelicanSaveEditor
 
 final class SaveCoreTests: XCTestCase {
+    func testCopyImportSelectionBeforeDismissalIsConsumedOnce() {
+        let urls = [
+            URL(fileURLWithPath: "/tmp/Farm_123456789"),
+            URL(fileURLWithPath: "/tmp/SaveGameInfo")
+        ]
+        var flow = CopyImportPresentationFlow()
+
+        flow.begin()
+
+        XCTAssertNil(flow.selected(urls))
+        XCTAssertEqual(flow.dismissed(), urls)
+        XCTAssertNil(flow.dismissed())
+    }
+
+    func testCopyImportDismissalBeforeSelectionIsConsumedOnce() {
+        let urls = [
+            URL(fileURLWithPath: "/tmp/Farm_123456789"),
+            URL(fileURLWithPath: "/tmp/SaveGameInfo")
+        ]
+        var flow = CopyImportPresentationFlow()
+
+        flow.begin()
+
+        XCTAssertNil(flow.dismissed())
+        XCTAssertEqual(flow.selected(urls), urls)
+        XCTAssertNil(flow.selected(urls))
+    }
+
+    func testCopyImportCancellationDoesNotLeakSelectionIntoNextPresentation() {
+        let cancelledURLs = [
+            URL(fileURLWithPath: "/tmp/OldFarm_123456789"),
+            URL(fileURLWithPath: "/tmp/SaveGameInfo")
+        ]
+        let nextURLs = [
+            URL(fileURLWithPath: "/tmp/NewFarm_987654321"),
+            URL(fileURLWithPath: "/tmp/SaveGameInfo")
+        ]
+        var flow = CopyImportPresentationFlow()
+
+        flow.begin()
+        XCTAssertNil(flow.selected(cancelledURLs))
+        flow.cancelled()
+        XCTAssertNil(flow.dismissed())
+
+        flow.begin()
+        XCTAssertNil(flow.dismissed())
+        XCTAssertEqual(flow.selected(nextURLs), nextURLs)
+        XCTAssertNil(flow.selected(cancelledURLs))
+    }
+
     @MainActor
     func testGlobalKeyboardReturnAccessoryInstallsOnEveryUIKitTextInputKind() throws {
         GlobalKeyboardReturnInstaller.shared.start()
