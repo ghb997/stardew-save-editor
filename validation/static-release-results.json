@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-09-12T11:31:41.081836+00:00",
-  "release_root": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\complete-repair-build15",
+  "generated_at_utc": "2026-09-14T08:14:26.308928+00:00",
+  "release_root": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\pelican-brand-build16",
   "validation_type": "offline_static_release_checks",
   "compiled_swift": false,
   "executed_xctest": false,
@@ -22,8 +22,8 @@
       "check": "pbxproj_structure",
       "status": "passed",
       "detail": {
-        "objects": 240,
-        "sha256": "096b978742284f7704092dc373530d797b88afd857e77baebc85d37fede81677",
+        "objects": 250,
+        "sha256": "160b44f9c5f5d7241b6a4806f0644b4d04595e334e720474abb1a4f4c1fbf746",
         "duplicate_object_keys": 0
       }
     },
@@ -31,7 +31,7 @@
       "check": "xcode_file_references_exist",
       "status": "passed",
       "detail": {
-        "checked": 99,
+        "checked": 104,
         "build_products_or_sdk_skipped": [
           "PelicanSaveEditorUITests.xctest",
           "SheaflightAmberVault.app",
@@ -45,9 +45,9 @@
       "status": "passed",
       "detail": {
         "target_source_counts": {
-          "PelicanSaveEditorUITests": 4,
-          "PelicanSaveEditor": 76,
-          "PelicanSaveEditorTests": 8
+          "PelicanSaveEditorUITests": 6,
+          "PelicanSaveEditor": 78,
+          "PelicanSaveEditorTests": 9
         },
         "errors": []
       }
@@ -57,7 +57,7 @@
       "status": "passed",
       "detail": {
         "counts": {
-          "json": 162,
+          "json": 164,
           "plist_and_privacy_manifest": 2,
           "xcode_xml": 2
         },
@@ -68,8 +68,8 @@
       "check": "asset_manifest_hash_dimensions_and_catalog_coverage",
       "status": "passed",
       "detail": {
-        "manifest_entries": 113,
-        "verified_bitmaps": 113,
+        "manifest_entries": 115,
+        "verified_bitmaps": 115,
         "png_crc_validation": true,
         "errors": []
       }
@@ -78,14 +78,14 @@
       "check": "release_versions_consistent",
       "status": "passed",
       "detail": {
-        "expected_version": "0.7.0",
-        "expected_build": "15",
+        "expected_version": "0.8.1",
+        "expected_build": "17",
         "pbxproj_values": {
           "MARKETING_VERSION": [
-            "0.7.0"
+            "0.8.1"
           ],
           "CURRENT_PROJECT_VERSION": [
-            "15"
+            "17"
           ]
         },
         "errors": []
@@ -95,12 +95,16 @@
   "facts": {
     "target_sources": {
       "PelicanSaveEditorUITests": [
+        "PelicanSaveEditorUITests/ToolNavigationSupport.swift",
+        "PelicanSaveEditorUITests/PelicanBrandUITests.swift",
         "PelicanSaveEditorUITests/RepairEditorUITests.swift",
         "PelicanSaveEditorUITests/ExpandedEditorUITests.swift",
         "PelicanSaveEditorUITests/AdaptiveLayoutUITests.swift",
         "PelicanSaveEditorUITests/TrackerSmokeUITests.swift"
       ],
       "PelicanSaveEditor": [
+        "PelicanSaveEditor/Views/Home/ToolDirectory.swift",
+        "PelicanSaveEditor/Views/Home/QQGroupSection.swift",
         "PelicanSaveEditor/Views/Tools/CollectionLibraryView.swift",
         "PelicanSaveEditor/Views/Editor/EquipmentEditorView.swift",
         "PelicanSaveEditor/Models/EquipmentEditorData.swift",
@@ -179,6 +183,7 @@
         "PelicanSaveEditor/Core/XML/XMLTreeParser.swift"
       ],
       "PelicanSaveEditorTests": [
+        "PelicanSaveEditorTests/ToolDirectoryTests.swift",
         "PelicanSaveEditorTests/RepairRegressionTests.swift",
         "PelicanSaveEditorTests/ExpandedEditorTests.swift",
         "PelicanSaveEditorTests/WorldEditorTests.swift",
@@ -228,8 +233,8 @@
       "PelicanSaveEditor/Models/TrackerMetrics.swift": "74103a241f441b3ea3c458e5ad7c43476e8e79da6a8098c1b54b99bd77007f46",
       "PelicanSaveEditor/Models/WorldEditorData.swift": "19d39b672c9ef5a3a861aa02fa66dd28331393df9f5af5ad1f2b56415b91e340",
       "PelicanSaveEditor/Views/Components/AdaptiveLayout.swift": "8a21b37db567426b9189397a31678f465b4d37325be0e63f0ac0fc62759163b7",
-      "PelicanSaveEditor/Views/Components/DocumentPickers.swift": "d3a6094997deed1ddb793358b6a5caa7f8c4bbc83794d1ce4712ebaa9de499f8",
-      "PelicanSaveEditor/Views/Components/FarmLoadSheet.swift": "95fe3245f8241955e276bca4caf19eddd269a0ac3f66849127a34889281a7132",
+      "PelicanSaveEditor/Views/Components/DocumentPickers.swift": "3e375226c5d022918b7f1fbde80f440272bc61bf239944d40eff804dc7143cb2",
+      "PelicanSaveEditor/Views/Components/FarmLoadSheet.swift": "dfcea275eb87f44773480a3cb9089b6acf0bacbae7f1b5dddd639664c1c58635",
       "PelicanSaveEditor/Views/Components/GameArtwork.swift": "ddf50f4a638dc16f28b8e9f6ab9eae934b21e9ecd517811c788e5cf2bcd5a08d",
       "PelicanSaveEditor/Views/Components/OperationFeedback.swift": "26b80b16aaf8a543933820e8cb60cac15ac51e2f835626905115d42e70e7671c",
       "PelicanSaveEditor/Views/Editor/AnimalsEditorView.swift": "af96dbd88ee40f21bac09121cbd94fdc29ec8fb5522cee35b45a630c204699fb",
@@ -248,7 +253,7 @@
       "PelicanSaveEditor/Views/Editor/ProgressEditorView.swift": "e7e4c293c1cc579a4e4f07c7013fbd3b5999756e2f474a3cc7b59d8f64e2218e",
       "PelicanSaveEditor/Views/Editor/RecipesEditorView.swift": "582ef7bc3cc87a6db70d1b13317cf61d4109b45399771955efba5708b2da6239",
       "PelicanSaveEditor/Views/Editor/RelationshipsEditorView.swift": "9a3af4620c2f70c1c513d90931f20fbf61e999510507df9e8c1234787b232200",
-      "PelicanSaveEditor/Views/Editor/ReviewChangesView.swift": "60f88de3e13ed8e7e91bfce61530424a9a06f6fff6250b2f2560159fc54daf52",
+      "PelicanSaveEditor/Views/Editor/ReviewChangesView.swift": "a9ac12ab2d786e54f6246d79a46e6a04e9016ef947cb10addcb420376ebff190",
       "PelicanSaveEditor/Views/Editor/RoomStyleLibrary.swift": "377a11f5fc02bc735ca6f9c12c44c1937f3dc15a7be5933a6a762976cc484f8a",
       "PelicanSaveEditor/Views/Editor/SavePresentation.swift": "298227ce05c9b61484c3fffa939796b69a259f0dfed1eeda9404f01e8bae3326",
       "PelicanSaveEditor/Views/Editor/SkillsEditorView.swift": "f3aaef250a2a094b98fc232ff7763fd0b5608b94f93656aac6080b4ff772ded4",
@@ -256,9 +261,11 @@
       "PelicanSaveEditor/Views/Editor/WalletEditorView.swift": "75ef36c70d5613fe7d63e8bb30b4e2f68ca9d36fa3b3432da825f29fabc806f0",
       "PelicanSaveEditor/Views/Editor/WeatherEditorView.swift": "38ad00723e57b3891e644f0c7d6c85425b89c55323def8907b9719fc2dac821a",
       "PelicanSaveEditor/Views/Home/HomeComponents.swift": "ee2cee0cc6c80b70c27663efbd09b58afb02239847dad19c6bb624570b228240",
-      "PelicanSaveEditor/Views/Home/HomeView.swift": "a7c3ea381f0896454b945264a4cac2dad170b8b53a599144829b8ae8a2379bd1",
-      "PelicanSaveEditor/Views/Home/SettingsView.swift": "e348d038d9c5d729f7751372fb3fcfa8db153a50455143a8602523ccb8768a3b",
-      "PelicanSaveEditor/Views/Home/ToolsView.swift": "f1987e3a64ad6553084f0c420461db16390816f61a58ad53a94d84a7bf7fab9b",
+      "PelicanSaveEditor/Views/Home/HomeView.swift": "bcd0bbe1cd455539c95af7d31f191cd56248725b37e3574651f096a5193b7af6",
+      "PelicanSaveEditor/Views/Home/QQGroupSection.swift": "83362af9c6102289e8148d1c61dfb4e2d45728e6f089eeb847caf9b0ce970d39",
+      "PelicanSaveEditor/Views/Home/SettingsView.swift": "49cecb6562c16fa97dc794ffad24e4a620ba73cce82d574ab235f77fbe788b39",
+      "PelicanSaveEditor/Views/Home/ToolDirectory.swift": "9a90e15a4ca9e6ac2db2cecdf43de7403ea38e9fed3d33f61b284b88fb4f6c8c",
+      "PelicanSaveEditor/Views/Home/ToolsView.swift": "bb3f0449f67c4ee5c91daa095ab234047801b7ac9e402444206611cfd1ff4dfc",
       "PelicanSaveEditor/Views/Home/TrackerComponents.swift": "b3d279979ceca5797a1e9dac310514ce8c29b81d4990c32d3acd614fd5dc81e2",
       "PelicanSaveEditor/Views/Home/TrackerDetailView.swift": "ce9b8724f845a78dcdcf9994f42fb7fac9c812c40514b1b227bff9a3ef04d3af",
       "PelicanSaveEditor/Views/Home/TrackerView.swift": "6c16da6efed836630b1d7db5f16bd3c9d62c47e61039a8c94e580e28112c7363",
@@ -270,31 +277,37 @@
       "PelicanSaveEditorTests/GameLogicRegressionTests.swift": "8393a12cf57c540cd2f004e36f0463d12b4f10ebe566d320a0ab5e977431090e",
       "PelicanSaveEditorTests/ReferenceFeatureTests.swift": "008133bfb7e0ed3f7ef7ac4516688bd028120937ef79cd2693fb02037977d561",
       "PelicanSaveEditorTests/RepairRegressionTests.swift": "adcdfbe00470398197b9b726b73a5dcd3711b86bb6ecdc0fb9c1d9d2877e9c69",
-      "PelicanSaveEditorTests/SaveCoreTests.swift": "b4dab8181daf27a525a6ea0ac296da87d89fe5928f857c2abaf469225c124c82",
+      "PelicanSaveEditorTests/SaveCoreTests.swift": "fa791b427601e9177bf372d76f0bba5fafc9e4be90b25bfdcd7bf1c0c50a268c",
+      "PelicanSaveEditorTests/ToolDirectoryTests.swift": "46d9fc990c89f8060f185eb69c6a0df651efd425f289121ee4527020be16582f",
       "PelicanSaveEditorTests/TrackerMetricsTests.swift": "6abcad5fb03e171d40abb910e7d6338455097f1435d46c7ba9704bfc7f917862",
       "PelicanSaveEditorTests/TransactionRegressionTests.swift": "3e9a3a720b5c7899196d6f872b7c9369d313343fae9a435f10dd426f0bc8dac7",
       "PelicanSaveEditorTests/WorldEditorTests.swift": "d95d44eec914e78d93da6ad227b27fb5ceaed75545060b304991d55b3893c96e",
-      "PelicanSaveEditorUITests/AdaptiveLayoutUITests.swift": "9269f594634f5babb40b9d51e3a4bd70b920d24a42ee72cf23fe41899b7f5158",
-      "PelicanSaveEditorUITests/ExpandedEditorUITests.swift": "cf5ec031eac5597d32474457561f5ea1caae9548286caaf17c8e421aae6f31a2",
-      "PelicanSaveEditorUITests/RepairEditorUITests.swift": "45fd5cb03461d2234b8b76c3d04a45456f87320603fa50ac22df5fafe7a85138",
-      "PelicanSaveEditorUITests/TrackerSmokeUITests.swift": "4c2c942dfbc7d35dfc0e25eea00506a9cad35efcb5961ed96ef555d7d9eb4765"
+      "PelicanSaveEditorUITests/AdaptiveLayoutUITests.swift": "d8a610f193efcaf5c2b2450081585e1606e14492779c4dfe16f704c958984ba3",
+      "PelicanSaveEditorUITests/ExpandedEditorUITests.swift": "f6451b3920d497fcb75dfde2acd4b4c91adca3759ce6f92dc51de612a86d85e9",
+      "PelicanSaveEditorUITests/PelicanBrandUITests.swift": "824d4b22009d81b707385e38481a514e55bda1edc0acb2367081df26c51191a1",
+      "PelicanSaveEditorUITests/RepairEditorUITests.swift": "cedd41114c0fa27c69d736ddd35c80b32d9b99ba7856c31b95d2fad375fc0760",
+      "PelicanSaveEditorUITests/ToolNavigationSupport.swift": "8bef90926101d28c7298a7160e7c636b856e1a785c8f24ae55431061e11c223c",
+      "PelicanSaveEditorUITests/TrackerSmokeUITests.swift": "1cf8d1c0d013caf071c4d9e7c3f7fdff04a6616cdac03a07479e437b4732e59b"
     },
     "source_counts": {
-      "swift_files": 88,
-      "test_files": 12,
-      "declared_test_methods": 173,
+      "swift_files": 93,
+      "test_files": 15,
+      "declared_test_methods": 182,
       "test_methods_by_file": {
         "PelicanSaveEditorTests/ExpandedEditorTests.swift": 23,
         "PelicanSaveEditorTests/GameLogicRegressionTests.swift": 10,
         "PelicanSaveEditorTests/ReferenceFeatureTests.swift": 14,
         "PelicanSaveEditorTests/RepairRegressionTests.swift": 31,
-        "PelicanSaveEditorTests/SaveCoreTests.swift": 36,
+        "PelicanSaveEditorTests/SaveCoreTests.swift": 39,
+        "PelicanSaveEditorTests/ToolDirectoryTests.swift": 2,
         "PelicanSaveEditorTests/TrackerMetricsTests.swift": 7,
         "PelicanSaveEditorTests/TransactionRegressionTests.swift": 9,
         "PelicanSaveEditorTests/WorldEditorTests.swift": 18,
         "PelicanSaveEditorUITests/AdaptiveLayoutUITests.swift": 7,
         "PelicanSaveEditorUITests/ExpandedEditorUITests.swift": 4,
+        "PelicanSaveEditorUITests/PelicanBrandUITests.swift": 4,
         "PelicanSaveEditorUITests/RepairEditorUITests.swift": 4,
+        "PelicanSaveEditorUITests/ToolNavigationSupport.swift": 0,
         "PelicanSaveEditorUITests/TrackerSmokeUITests.swift": 10
       }
     },
@@ -682,7 +695,7 @@
         "file": "PelicanSaveEditor/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png",
         "width": 1024,
         "height": 1024,
-        "sha256": "dc36e3b97d44059d81c574d2f22bad0ea1e3c13a49e8f8924b8a93946475ea94"
+        "sha256": "28c045dc72a5954fa9d00e57244aeca6baccbc291989e6bfde1f199b53032709"
       },
       {
         "asset": "GameAnimalWhiteChicken",
@@ -1089,6 +1102,20 @@
         "width": 48,
         "height": 48,
         "sha256": "ad98c7b8160361c4925a332ab000364f00d2b962a8704c0d2f4f62b8b2349989"
+      },
+      {
+        "asset": "AppLogo",
+        "file": "PelicanSaveEditor/Assets.xcassets/AppLogo.imageset/prismatic-shard.png",
+        "width": 48,
+        "height": 48,
+        "sha256": "e8a90616aa073656f693860140b15b42cb702030f4babf5253619cd21e0ee968"
+      },
+      {
+        "asset": "QQGroupQRCode",
+        "file": "PelicanSaveEditor/Assets.xcassets/QQGroupQRCode.imageset/qq-group-719471525.jpg",
+        "width": 1284,
+        "height": 2283,
+        "sha256": "742bf70c88385144207df45bb3463af37e8fdcc312ea27758a403df3be6bdb3f"
       }
     ]
   }
