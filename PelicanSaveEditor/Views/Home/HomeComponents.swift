@@ -105,10 +105,10 @@ struct LargePageHeader: View {
         }
             .foregroundStyle(titleColor)
             .padding(.horizontal, 16)
-            .padding(.vertical, 10)
+            .padding(.vertical, 8)
             .background(GamePanel(fill: AppTheme.headerSoft, raised: false))
             .padding(.horizontal, 20)
-            .padding(.vertical, isShortWindow ? 5 : min(verticalPadding, 10))
+            .padding(.vertical, isShortWindow ? 5 : min(verticalPadding, 8))
             .frame(maxWidth: AppLayout.pageWidth, minHeight: isShortWindow ? 58 : minimumHeight)
             .frame(maxWidth: .infinity)
             .background(ValleyHeaderBackdrop())

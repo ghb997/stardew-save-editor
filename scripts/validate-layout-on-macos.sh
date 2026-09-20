@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")/.."
-mkdir -p artifacts/ipad-layout
-xcodebuild -version | tee artifacts/ipad-layout/xcode.log
-xcrun simctl list devices available --json > artifacts/ipad-layout/devices.json
-python3 - "${LAYOUT_DEVICE:-mini}" <<'PY'
+output_dir="${LAYOUT_OUTPUT_DIR:-artifacts/ipad-layout}"
+mkdir -p "$output_dir"
+xcodebuild -version | tee "$output_dir/xcode.log"
+xcrun simctl list devices available --json > "$output_dir/devices.json"
+python3 - "${LAYOUT_DEVICE:-mini}" "$output_dir" <<'PY'
 import json, re, sys
 from pathlib import Path
-root = Path('artifacts/ipad-layout')
+root = Path(sys.argv[2])
 family = sys.argv[1]
 candidates = []
 for runtime, devices in json.loads((root / 'devices.json').read_text())['devices'].items():
@@ -27,18 +28,20 @@ selection = {'name': name, 'udid': device['udid'], 'runtime': runtime, 'family':
 (root / 'selected-simulator.json').write_text(json.dumps(selection, indent=2))
 print(selection)
 PY
-simulator_id="$(python3 -c "import json; print(json.load(open('artifacts/ipad-layout/selected-simulator.json'))['udid'])")"
+simulator_id="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["udid"])' "$output_dir/selected-simulator.json")"
 xcrun simctl boot "$simulator_id" || true
 xcrun simctl bootstatus "$simulator_id" -b
 args=(
     -project PelicanSaveEditor.xcodeproj -scheme PelicanSaveEditor -configuration Debug
     -destination "platform=iOS Simulator,id=$simulator_id" -destination-timeout 120
-    -derivedDataPath artifacts/ipad-layout/DerivedData -parallel-testing-enabled NO
-    -resultBundlePath artifacts/ipad-layout/tests.xcresult CODE_SIGNING_ALLOWED=NO
+    -derivedDataPath "${LAYOUT_DERIVED_DIR:-artifacts/ipad-layout/DerivedData}" -parallel-testing-enabled NO
+    -resultBundlePath "$output_dir/tests.xcresult" CODE_SIGNING_ALLOWED=NO
 )
-if [[ "${LAYOUT_SCOPE:-layout}" == valley ]]; then
+if [[ "${LAYOUT_SCOPE:-layout}" == valley-preview ]]; then
+    args+=(-only-testing:PelicanSaveEditorUITests/ValleyThemeUITests)
+elif [[ "${LAYOUT_SCOPE:-layout}" == valley ]]; then
+    args+=(-skip-testing:PelicanSaveEditorUITests/ValleyThemeUITests)
     if [[ "${LAYOUT_DEVICE:-mini}" != iphone ]]; then
-        args+=(-only-testing:PelicanSaveEditorUITests/ValleyThemeUITests)
         args+=(-only-testing:PelicanSaveEditorUITests/PelicanBrandUITests)
         args+=(-only-testing:PelicanSaveEditorUITests/AdaptiveLayoutUITests)
     fi
@@ -60,4 +63,4 @@ elif [[ "${LAYOUT_DEVICE:-mini}" != iphone ]]; then
     args+=(-only-testing:PelicanSaveEditorUITests/TrackerSmokeUITests/testOverviewFiltersAndGroupExpansion)
     args+=(-only-testing:PelicanSaveEditorUITests/TrackerSmokeUITests/testDetailSwitchingRecipeFiltersAndSearchEmptyState)
 fi
-xcodebuild "${args[@]}" test 2>&1 | tee artifacts/ipad-layout/tests.log
+xcodebuild "${args[@]}" "${LAYOUT_BUILD_ACTION:-test}" 2>&1 | tee "$output_dir/tests.log"

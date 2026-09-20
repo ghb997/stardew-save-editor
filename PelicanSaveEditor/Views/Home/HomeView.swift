@@ -153,7 +153,7 @@ struct HomeView: View {
         HStack(alignment: .top, spacing: 14) {
             GameIcon(systemName: "lock.shield.fill", size: 28)
                 .font(.title2)
-                .foregroundStyle(.green)
+                .foregroundStyle(AppTheme.progress)
             VStack(alignment: .leading, spacing: 5) {
                 Text("本地、安全地处理存档")
                     .font(.headline)
@@ -324,7 +324,7 @@ private struct FarmMapCard: View {
             if let warning = snapshot.warnings.first {
                 GameLabel(warning, systemImage: "exclamationmark.triangle.fill")
                     .font(.caption)
-                    .foregroundStyle(.orange)
+                    .foregroundStyle(AppTheme.trackerWarning)
             }
         }
         .padding(20)

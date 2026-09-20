@@ -411,7 +411,7 @@ struct FarmMapAnalysisView: View {
             systemImage: "checkmark.seal.fill"
         )
         .font(.caption)
-        .foregroundStyle(.orange)
+        .foregroundStyle(AppTheme.trackerWarning)
     }
 
     private var cancelAllActionsButton: some View {
@@ -536,7 +536,7 @@ struct FarmMapAnalysisView: View {
             ForEach(snapshot.warnings, id: \.self) { warning in
                 GameLabel(warning, systemImage: "exclamationmark.triangle.fill")
                     .font(.footnote)
-                    .foregroundStyle(.orange)
+                    .foregroundStyle(AppTheme.trackerWarning)
             }
         }
         .padding(18)

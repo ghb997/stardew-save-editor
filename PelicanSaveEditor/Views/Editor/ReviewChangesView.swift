@@ -29,7 +29,7 @@ struct ReviewChangesView: View {
                     LabeledContent("访问模式", value: session.source.mode.displayName)
                     if session.source.mode == .importedCopy {
                         GameLabel("这是应用内副本，不会直接覆盖游戏存档", systemImage: "exclamationmark.triangle.fill")
-                            .foregroundStyle(.orange)
+                            .foregroundStyle(AppTheme.trackerWarning)
                     }
                 } header: {
                     GameAssetLabel("当前来源", assetName: "GameUIBackpack", iconSize: 24)
@@ -43,13 +43,13 @@ struct ReviewChangesView: View {
                     } else {
                         ForEach(session.metadata.warnings, id: \.self) { warning in
                             GameLabel(warning, systemImage: "exclamationmark.triangle.fill")
-                                .foregroundStyle(.orange)
+                                .foregroundStyle(AppTheme.trackerWarning)
                         }
                     }
                     ForEach(store.catalogWarnings, id: \.self) { warning in
                         GameLabel(warning, systemImage: "exclamationmark.triangle.fill")
                             .font(.footnote)
-                            .foregroundStyle(.orange)
+                            .foregroundStyle(AppTheme.trackerWarning)
                     }
                 } header: {
                     GameAssetLabel("兼容性与写入范围", assetName: "GameUIReview", iconSize: 24)
@@ -62,14 +62,14 @@ struct ReviewChangesView: View {
                 }
                 if let message = session.draftValidationMessage {
                     Section("请先修正草稿") {
-                        Text(message).foregroundStyle(.red)
+                        Text(message).foregroundStyle(AppTheme.danger)
                     }
                 }
 
                 if groupedDiffs.isEmpty {
                     Section {
                         GameLabel("没有待保存的更改", systemImage: "checkmark.circle.fill")
-                            .foregroundStyle(.green)
+                            .foregroundStyle(AppTheme.progress)
                     }
                 } else {
                     ForEach(groupedDiffs) { group in
@@ -77,7 +77,7 @@ struct ReviewChangesView: View {
                             if group.section == "农场", let farmActionImpactSummary {
                                 GameLabel(farmActionImpactSummary, systemImage: "wand.and.stars")
                                     .font(.subheadline)
-                                    .foregroundStyle(.orange)
+                                    .foregroundStyle(AppTheme.trackerWarning)
                                 DisclosureGroup("核对全部处理对象（\(affectedFarmEntities.count)）") {
                                     ForEach(affectedFarmEntities) { entity in
                                         VStack(alignment: .leading, spacing: 3) {

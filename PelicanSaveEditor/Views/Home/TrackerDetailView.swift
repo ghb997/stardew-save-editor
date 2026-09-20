@@ -613,7 +613,7 @@ struct TrackerDetailView: View {
             Section("兼容性") {
                 if session.metadata.warnings.isEmpty {
                     GameLabel("未发现兼容性警告", systemImage: "checkmark.seal.fill")
-                        .foregroundStyle(.green)
+                        .foregroundStyle(AppTheme.progress)
                 } else {
                     ForEach(session.metadata.warnings, id: \.self) { warning in
                         GameLabel(warning, systemImage: "exclamationmark.triangle.fill")
@@ -625,7 +625,7 @@ struct TrackerDetailView: View {
             Section {
                 if session.diffs.isEmpty {
                     GameLabel("没有待保存的更改", systemImage: "checkmark.circle.fill")
-                        .foregroundStyle(.green)
+                        .foregroundStyle(AppTheme.progress)
                 } else {
                     ForEach(session.diffs) { diff in
                         VStack(alignment: .leading, spacing: 4) {

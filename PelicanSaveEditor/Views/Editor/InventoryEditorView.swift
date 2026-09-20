@@ -144,7 +144,7 @@ private struct InventoryCapacityCard: View {
             }
             if let errorMessage {
                 Label(errorMessage, systemImage: "exclamationmark.circle")
-                    .font(.footnote).foregroundStyle(.orange)
+                    .font(.footnote).foregroundStyle(AppTheme.trackerWarning)
                     .accessibilityIdentifier("editor.inventory.capacityError")
             }
         }

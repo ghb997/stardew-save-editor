@@ -10,6 +10,8 @@ jobs:
     name: Valley UI (${{ matrix.device }})
     runs-on: macos-15
     timeout-minutes: 45
+    env:
+      LAYOUT_DERIVED_DIR: artifacts/valley-derivedData
     strategy:
       fail-fast: false
       matrix:
@@ -22,10 +24,35 @@ jobs:
         run: |
           test -d /Applications/Xcode_16.4.app/Contents/Developer
           echo "DEVELOPER_DIR=/Applications/Xcode_16.4.app/Contents/Developer" >> "$GITHUB_ENV"
+      - name: Capture day and night screens first
+        id: preview
+        env:
+          LAYOUT_DEVICE: ${{ matrix.device }}
+          LAYOUT_SCOPE: valley-preview
+          LAYOUT_OUTPUT_DIR: artifacts/valley-preview
+        run: bash scripts/validate-layout-on-macos.sh
+      - name: Export early screenshots
+        if: always()
+        run: |
+          if [[ -d artifacts/valley-preview/tests.xcresult ]]; then
+            xcrun xcresulttool get test-results summary --path artifacts/valley-preview/tests.xcresult > artifacts/valley-preview/summary.json
+            xcrun xcresulttool export attachments --path artifacts/valley-preview/tests.xcresult --output-path artifacts/valley-preview/attachments
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: valley-preview-${{ matrix.device }}-${{ github.run_attempt }}
+          path: |
+            artifacts/valley-preview/*.log
+            artifacts/valley-preview/*.json
+            artifacts/valley-preview/attachments/**
+            !artifacts/valley-preview/attachments/**/*.mp4
+          retention-days: 14
       - name: Verify native screens and editing flows
         env:
           LAYOUT_DEVICE: ${{ matrix.device }}
           LAYOUT_SCOPE: valley
+          LAYOUT_BUILD_ACTION: test-without-building
         run: bash scripts/validate-layout-on-macos.sh
       - name: Export results and screenshots
         if: always()

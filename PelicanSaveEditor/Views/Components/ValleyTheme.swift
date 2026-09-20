@@ -15,6 +15,8 @@ enum AppTheme {
     static let highlight = adaptive(0xFFF4CE, 0xA08B60)
     static let selection = adaptive(0xF2BD62, 0x65603D)
     static let progress = adaptive(0x497239, 0xA5CD80)
+    static let danger = adaptive(0xA4392C, 0xFFA295)
+    static let information = adaptive(0x315B76, 0x9ACDD9)
     static let inset = adaptive(0xF3D399, 0x2D372E)
     static let sky = adaptive(0x85C9D5, 0x223C4B)
     static let mountain = adaptive(0x679A8A, 0x32594F)
@@ -166,25 +168,16 @@ struct GamePageBackdrop: View {
 
 /// Decorative landscape; farm data stays in the labeled content above it.
 struct ValleyHeaderBackdrop: View {
+    @Environment(\.colorScheme) private var colorScheme
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .bottom) {
                 AppTheme.sky
-                Canvas { context, size in
-                    for x in stride(from: 18, to: Int(size.width), by: 156) {
-                        context.fill(Path(CGRect(x: x, y: 18, width: 44, height: 8)), with: .color(AppTheme.highlight.opacity(0.55)))
-                        context.fill(Path(CGRect(x: x + 8, y: 10, width: 24, height: 8)), with: .color(AppTheme.highlight.opacity(0.55)))
-                    }
-                    for x in stride(from: -32, to: Int(size.width) + 100, by: 84) {
-                        for tier in 0..<5 {
-                            context.fill(Path(CGRect(x: x + tier * 8, y: Int(size.height) - 12 - tier * 8,
-                                                     width: 88 - tier * 16, height: 12 + tier * 8)),
-                                         with: .color(AppTheme.mountain))
-                        }
-                    }
-                    context.fill(Path(CGRect(x: 0, y: size.height - 12, width: size.width, height: 12)),
-                                 with: .color(AppTheme.meadow))
-                }
+                Image("GameFarmBackdrop")
+                    .resizable().interpolation(.none).scaledToFill()
+                    .frame(width: geometry.size.width, height: geometry.size.height, alignment: .bottom)
+                    .clipped()
+                    .overlay { Color.black.opacity(colorScheme == .dark ? 0.48 : 0.08) }
                 Rectangle().fill(AppTheme.border).frame(height: 3)
             }
             .frame(width: geometry.size.width, height: geometry.size.height)
@@ -200,7 +193,7 @@ struct GameButtonStyle: ButtonStyle {
     @Environment(\.isEnabled) private var isEnabled
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .foregroundStyle(configuration.role == .destructive ? Color.red : AppTheme.ink)
+            .foregroundStyle(configuration.role == .destructive ? AppTheme.danger : AppTheme.ink)
             .padding(.horizontal, 12).padding(.vertical, 8)
             .frame(minHeight: 44)
             .background(GamePanel(fill: prominent ? AppTheme.selection : AppTheme.card, raised: !configuration.isPressed))

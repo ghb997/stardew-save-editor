@@ -180,7 +180,7 @@ struct CropCalculatorView: View {
                 ForEach(plan.notes, id: \.self) { note in
                     GameLabel(note, systemImage: "info.circle.fill")
                         .font(.footnote)
-                        .foregroundStyle(.orange)
+                        .foregroundStyle(AppTheme.trackerWarning)
                 }
             }
         }

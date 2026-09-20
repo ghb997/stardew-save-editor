@@ -11,7 +11,7 @@ struct CharacterEditorView: View {
                         ForEach(session.metadata.warnings, id: \.self) { warning in
                             GameLabel(warning, systemImage: "exclamationmark.triangle.fill")
                                 .font(.footnote)
-                                .foregroundStyle(.orange)
+                                .foregroundStyle(AppTheme.trackerWarning)
                         }
                     }
                 }

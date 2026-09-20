@@ -38,7 +38,7 @@ struct CommunityCenterView: View {
                     Button("预览补给 \(selected.count) 项材料", systemImage: "backpack") { prepare() }
                         .disabled(selected.isEmpty || data.isJojaMember).accessibilityIdentifier("bundles.preview")
                     if !selected.isEmpty { Button("清空材料选择") { selected = [] } }
-                    if let error { Text(error).foregroundStyle(.red).accessibilityIdentifier("bundles.error") }
+                    if let error { Text(error).foregroundStyle(AppTheme.danger).accessibilityIdentifier("bundles.error") }
                     if data.unreadableCount > 0 {
                         Text("另有 \(data.unreadableCount) 条结构不明或缺少进度的记录，已原样保留。").font(.caption).foregroundStyle(AppTheme.secondary)
                     }
@@ -102,7 +102,7 @@ private struct BundleRequirementRow: View {
                 }
             }
             Spacer()
-            if requirement.donated { Image(systemName: "checkmark.circle.fill").foregroundStyle(.green) }
+            if requirement.donated { Image(systemName: "checkmark.circle.fill").foregroundStyle(AppTheme.progress) }
             else if canSupply {
                 Button {
                     if selected.contains(requirement.id) { selected.remove(requirement.id) } else { selected.insert(requirement.id) }
@@ -144,7 +144,7 @@ private struct BundleSupplyPreview: View {
                         }
                     }
                 }
-                if let error { Text(error).foregroundStyle(.red) }
+                if let error { Text(error).foregroundStyle(AppTheme.danger) }
                 if lines.isEmpty { Text("背包或材料选择已变化，请返回重新预览。").foregroundStyle(AppTheme.secondary) }
             }
             .navigationTitle("材料补给预览").navigationBarTitleDisplayMode(.inline)

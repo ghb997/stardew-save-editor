@@ -10,7 +10,7 @@ struct ProgressEditorView: View {
                     HStack(spacing: 14) {
                         GameAssetIcon(assetName: "GameUIProgress", size: 40)
                             .font(.largeTitle)
-                            .foregroundStyle(.blue)
+                            .foregroundStyle(AppTheme.information)
                         VStack(alignment: .leading, spacing: 4) {
                             Text("状态、货币与世界进度")
                                 .font(.headline)

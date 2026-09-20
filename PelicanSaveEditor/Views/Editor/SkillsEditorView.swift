@@ -10,7 +10,7 @@ struct SkillsEditorView: View {
                     HStack(spacing: 14) {
                         GameAssetIcon(assetName: "GameUISkillFarming", size: 40)
                             .font(.largeTitle)
-                            .foregroundStyle(.purple)
+                            .foregroundStyle(AppTheme.accent)
                         VStack(alignment: .leading, spacing: 4) {
                             Text("等级、经验与职业")
                                 .font(.headline)

@@ -53,7 +53,7 @@ struct FarmEntityListView: View {
                         rangeFields
                         if !validRange {
                             Text("请输入有效坐标，起点不能大于终点。")
-                                .font(.caption).foregroundStyle(.red)
+                                .font(.caption).foregroundStyle(AppTheme.danger)
                         }
                     }
                     Text("匹配 \(entities.count) 个 · 全图待处理 \(snapshot.affectedEntities(by: actions).count) 个")
@@ -126,7 +126,7 @@ struct FarmEntityListView: View {
                 Text(entity.label).font(.headline)
                 Spacer()
                 if actions.affects(entity) {
-                    Text("待处理").font(.caption.bold()).foregroundStyle(.orange)
+                    Text("待处理").font(.caption.bold()).foregroundStyle(AppTheme.trackerWarning)
                 }
             }
             Text(entity.coordinateDescription).font(.subheadline.monospacedDigit())

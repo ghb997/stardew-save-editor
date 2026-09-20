@@ -45,7 +45,7 @@ struct DraftReviewBar: View {
     var body: some View {
         VStack(spacing: 6) {
             if let message = session.draftValidationMessage {
-                Text(message).font(.caption).foregroundStyle(.red)
+                Text(message).font(.caption).foregroundStyle(AppTheme.danger)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .fixedSize(horizontal: false, vertical: true)
             }

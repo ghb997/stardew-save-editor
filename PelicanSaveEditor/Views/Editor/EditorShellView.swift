@@ -126,7 +126,7 @@ struct EditorShellView: View {
                     if session.hasChanges {
                         Text("\(session.diffs.count) 项待保存")
                             .font(.caption.weight(.semibold))
-                            .foregroundStyle(.orange)
+                            .foregroundStyle(AppTheme.trackerWarning)
                     }
                 }
                 Spacer()

@@ -94,7 +94,7 @@ private struct EquipmentEditSheet: View {
                     }.accessibilityIdentifier("equipment.restore")
                     Text("加入草稿后，可在检查与保存中逐项撤销。取消此弹窗会放弃本次输入。")
                         .font(.caption).foregroundStyle(AppTheme.secondary)
-                    if let error { Text(error).foregroundStyle(.red).accessibilityIdentifier("equipment.error") }
+                    if let error { Text(error).foregroundStyle(AppTheme.danger).accessibilityIdentifier("equipment.error") }
                 }
             }
             .navigationTitle(item.name).navigationBarTitleDisplayMode(.inline)

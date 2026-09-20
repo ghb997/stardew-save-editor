@@ -40,7 +40,7 @@ struct MachinesEditorView: View {
                         Text("\(machine.name) · \(ExistingSaveValue.locationTitle(machine.location))").font(.headline)
                         Text("\(machine.coordinate) · \(machine.output)").font(.caption).foregroundStyle(AppTheme.secondary)
                         if machine.finish {
-                            Label("待保存：完成加工", systemImage: "checkmark.circle.fill").foregroundStyle(.green)
+                            Label("待保存：完成加工", systemImage: "checkmark.circle.fill").foregroundStyle(AppTheme.progress)
                             Button("撤销这台机器") {
                                 if let i = session.draft.machines.firstIndex(where: { $0.id == machine.id }) { session.draft.machines[i].finish = false }
                             }.accessibilityIdentifier("machines.undo.\(machine.id)")

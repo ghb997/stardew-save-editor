@@ -58,7 +58,7 @@ struct FarmhouseEditorView: View {
                             HStack {
                                 GameLabel("原始：\(levelName(originalLevel))", systemImage: "clock.arrow.circlepath")
                                     .font(.caption)
-                                    .foregroundStyle(.orange)
+                                    .foregroundStyle(AppTheme.trackerWarning)
                                 Spacer()
                                 Button("恢复") {
                                     session.draft.farmhouse.upgradeLevel = originalLevel
@@ -146,7 +146,7 @@ struct FarmhouseEditorView: View {
                                 HStack {
                                     GameLabel("原始编号：\(originalStyle)", systemImage: "clock.arrow.circlepath")
                                         .font(.caption)
-                                        .foregroundStyle(.orange)
+                                        .foregroundStyle(AppTheme.trackerWarning)
                                     Spacer()
                                     Button("恢复") {
                                         session.draft.farmhouse.decorations[index].styleIndex = originalStyle
@@ -165,7 +165,7 @@ struct FarmhouseEditorView: View {
                 if hasHouseChanges {
                     Section("房屋草稿") {
                         GameLabel("房屋修改尚未写入存档", systemImage: "pencil.and.list.clipboard")
-                            .foregroundStyle(.orange)
+                            .foregroundStyle(AppTheme.trackerWarning)
                         Button("撤销全部房屋修改", systemImage: "arrow.uturn.backward") {
                             session.draft.farmhouse = session.originalDraft.farmhouse
                         }
@@ -175,7 +175,7 @@ struct FarmhouseEditorView: View {
 
                 Section {
                     GameLabel("家具位置和容器内容仍保持原样", systemImage: "lock.shield.fill")
-                        .foregroundStyle(.green)
+                        .foregroundStyle(AppTheme.progress)
                 }
             }
             .accessibilityIdentifier("editor.house.form")

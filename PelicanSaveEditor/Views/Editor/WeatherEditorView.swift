@@ -50,7 +50,7 @@ struct WeatherEditorView: View {
                             error = nil
                         }.accessibilityIdentifier("weather.luck.restore")
                     } else { Text("存档未提供有效运气值，保留原样。").foregroundStyle(AppTheme.secondary) }
-                    if let error { Text(error).foregroundStyle(.red).accessibilityIdentifier("weather.luck.error") }
+                    if let error { Text(error).foregroundStyle(AppTheme.danger).accessibilityIdentifier("weather.luck.error") }
                 }
             }
             .navigationTitle("天气与运气").navigationBarTitleDisplayMode(.inline)

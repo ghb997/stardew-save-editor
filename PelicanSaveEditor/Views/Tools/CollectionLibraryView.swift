@@ -29,7 +29,7 @@ struct CollectionLibraryView: View {
                     Text(kind.scope).font(.caption).foregroundStyle(AppTheme.secondary)
                     if let current {
                         LabeledContent("目录内已有记录", value: "\(current.entries.filter { $0.state == .recorded }.count) / \(current.entries.count)")
-                        ForEach(current.notes, id: \.self) { Text($0).font(.caption).foregroundStyle(.orange) }
+                        ForEach(current.notes, id: \.self) { Text($0).font(.caption).foregroundStyle(AppTheme.trackerWarning) }
                     }
                 }
                 Section("\(visible.count) 项") {
@@ -42,7 +42,7 @@ struct CollectionLibraryView: View {
                                     Text("\(entry.state.rawValue) · ID \(entry.item.id)").font(.caption).foregroundStyle(AppTheme.secondary)
                                 }
                                 Spacer()
-                                if entry.state == .recorded { Image(systemName: "checkmark.circle.fill").foregroundStyle(.green) }
+                                if entry.state == .recorded { Image(systemName: "checkmark.circle.fill").foregroundStyle(AppTheme.progress) }
                             }
                             .contentShape(Rectangle())
                         }.buttonStyle(.plain).accessibilityIdentifier("collection.item.\(entry.item.id)")

@@ -167,7 +167,7 @@ private struct StorageSlotSheet: View {
                 } else {
                     Text("此物品或容器保持只读，专属字段将原样保留。").foregroundStyle(AppTheme.secondary)
                 }
-                if let error { Text(error).foregroundStyle(.red).accessibilityIdentifier("storage.error") }
+                if let error { Text(error).foregroundStyle(AppTheme.danger).accessibilityIdentifier("storage.error") }
             }
             .navigationTitle("第 \(index + 1) 格").navigationBarTitleDisplayMode(.inline)
             .toolbar {

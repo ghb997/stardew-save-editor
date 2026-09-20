@@ -35,7 +35,7 @@ struct BackupListView: View {
                     if let exportNotice { Text(exportNotice).font(.footnote) }
                     if let warning = store.backupWarning {
                         GameLabel(warning, systemImage: "exclamationmark.triangle.fill")
-                            .font(.footnote).foregroundStyle(.orange)
+                            .font(.footnote).foregroundStyle(AppTheme.trackerWarning)
                     }
                 } header: {
                     GameAssetLabel("备份管理", assetName: "GameUIBackup", iconSize: 26)

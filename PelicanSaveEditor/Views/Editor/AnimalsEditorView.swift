@@ -19,7 +19,7 @@ struct AnimalsEditorView: View {
                             Button("全部恢复最佳状态", systemImage: "sparkles") {
                                 showingMaxConfirmation = true
                             }
-                            .foregroundStyle(.orange)
+                            .foregroundStyle(AppTheme.trackerWarning)
                         } header: {
                             GameAssetLabel("动物批量状态", assetName: "GameAnimalWhiteChicken", iconSize: 26)
                         } footer: {
