@@ -21,7 +21,7 @@ struct MachinesEditorView: View {
     private var selectable: Set<String> { Set(visible.filter { $0.canFinish && !$0.finish }.map(\.id)) }
     var body: some View {
         NavigationStack {
-            List {
+            GameList {
                 Section {
                     Text("已识别 \(session.draft.machines.count) 台正在加工或可领取的设备").font(.headline)
                     Picker("机器筛选", selection: $filter) { ForEach(MachineFilter.allCases) { Text($0.rawValue).tag($0) } }
@@ -33,12 +33,12 @@ struct MachinesEditorView: View {
                     }
                     .disabled(selected.intersection(selectable).isEmpty).accessibilityIdentifier("machines.preview")
                     Text("完成后保留产物，回游戏手动领取。空机器、陈酿桶、孵化器及未知机器不参加。")
-                        .font(.caption).foregroundStyle(.secondary)
+                        .font(.caption).foregroundStyle(AppTheme.secondary)
                 }
                 ForEach(visible) { machine in
                     VStack(alignment: .leading, spacing: 8) {
                         Text("\(machine.name) · \(ExistingSaveValue.locationTitle(machine.location))").font(.headline)
-                        Text("\(machine.coordinate) · \(machine.output)").font(.caption).foregroundStyle(.secondary)
+                        Text("\(machine.coordinate) · \(machine.output)").font(.caption).foregroundStyle(AppTheme.secondary)
                         if machine.finish {
                             Label("待保存：完成加工", systemImage: "checkmark.circle.fill").foregroundStyle(.green)
                             Button("撤销这台机器") {
@@ -48,7 +48,7 @@ struct MachinesEditorView: View {
                             Toggle("剩余 \(machine.minutes) 分钟 · 选择完成", isOn: Binding(
                                 get: { selected.contains(machine.id) },
                                 set: { if $0 { selected.insert(machine.id) } else { selected.remove(machine.id) } }))
-                        } else { Text(machine.wasReady ? "可回游戏领取" : "等待游戏更新").foregroundStyle(.secondary) }
+                        } else { Text(machine.wasReady ? "可回游戏领取" : "等待游戏更新").foregroundStyle(AppTheme.secondary) }
                     }.padding(.vertical, 4)
                 }
                 if visible.isEmpty { ContentUnavailableView("没有符合条件的机器", systemImage: "gearshape.2", description: Text("支持小桶、熔炉、罐头瓶等 14 种标准设备。")) }
@@ -72,16 +72,16 @@ private struct MachineFinishPreview: View {
     private var targets: [MachineDraft] { session.draft.machines.filter { ids.contains($0.id) && $0.canFinish && !$0.finish } }
     var body: some View {
         NavigationStack {
-            List {
+            GameList {
                 Section {
                     Text("将完成 \(targets.count) 台机器").font(.headline)
-                    Text("计时归零并设为可领取，不增加产物数量。").font(.footnote).foregroundStyle(.secondary)
+                    Text("计时归零并设为可领取，不增加产物数量。").font(.footnote).foregroundStyle(AppTheme.secondary)
                 }
                 ForEach(targets) { machine in
                     VStack(alignment: .leading, spacing: 4) {
                         Text("\(machine.name) · \(ExistingSaveValue.locationTitle(machine.location))")
                         Text("\(machine.coordinate) · \(machine.output) · \(machine.minutes) → 0 分钟")
-                            .font(.caption).foregroundStyle(.secondary)
+                            .font(.caption).foregroundStyle(AppTheme.secondary)
                     }
                 }
             }

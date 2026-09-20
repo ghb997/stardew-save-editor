@@ -36,7 +36,13 @@ args=(
     -derivedDataPath artifacts/ipad-layout/DerivedData -parallel-testing-enabled NO
     -resultBundlePath artifacts/ipad-layout/tests.xcresult CODE_SIGNING_ALLOWED=NO
 )
-if [[ "${LAYOUT_SCOPE:-layout}" == brand ]]; then
+if [[ "${LAYOUT_SCOPE:-layout}" == valley ]]; then
+    if [[ "${LAYOUT_DEVICE:-mini}" != iphone ]]; then
+        args+=(-only-testing:PelicanSaveEditorUITests/ValleyThemeUITests)
+        args+=(-only-testing:PelicanSaveEditorUITests/PelicanBrandUITests)
+        args+=(-only-testing:PelicanSaveEditorUITests/AdaptiveLayoutUITests)
+    fi
+elif [[ "${LAYOUT_SCOPE:-layout}" == brand ]]; then
     args+=(-only-testing:PelicanSaveEditorUITests/PelicanBrandUITests)
     args+=(-only-testing:PelicanSaveEditorUITests/AdaptiveLayoutUITests/testImportOptionsSurviveRotation)
     args+=(-only-testing:PelicanSaveEditorUITests/AdaptiveLayoutUITests/testEachDocumentPickerCanOpenCancelAndReopen)

@@ -59,14 +59,14 @@ struct DraftReviewBar: View {
                 .fixedSize(horizontal: false, vertical: true)
                 .frame(maxWidth: .infinity, minHeight: 44)
             }
-            .buttonStyle(.borderedProminent)
+            .buttonStyle(GameButtonStyle(prominent: true))
             .tint(AppTheme.accent)
             .accessibilityIdentifier("editor.review.open")
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 10)
         .readablePageWidth(AppLayout.editorWidth)
-        .background(.bar)
+        .gameBar()
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("editor.review.bar")
     }

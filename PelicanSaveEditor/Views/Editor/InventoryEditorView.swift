@@ -63,7 +63,7 @@ struct InventoryEditorView: View {
             }
             .accessibilityIdentifier("editor.inventory.list")
             .scrollDismissesKeyboard(.interactively)
-            .background(Color(.systemGroupedBackground))
+            .background(GamePageBackdrop())
             .navigationTitle("背包")
             .navigationBarTitleDisplayMode(.inline)
             .searchable(text: $searchText, prompt: "搜索物品名称、ID 或槽位编号")
@@ -71,10 +71,10 @@ struct InventoryEditorView: View {
             .safeAreaInset(edge: .bottom) {
                 Text("点按槽位编辑普通物品。工具和武器属性请前往“工具与装备”；未知物品保持只读。")
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.secondary)
                     .padding(10)
                     .frame(maxWidth: .infinity)
-                    .background(.bar)
+                    .gameBar()
             }
         }
         .sheet(item: $selection) { selected in
@@ -137,10 +137,10 @@ private struct InventoryCapacityCard: View {
                 .adaptiveSegmentedPicker()
                 .accessibilityIdentifier("editor.inventory.capacity")
                 Text("扩容后可编辑新槽位；缩容前请移走末尾物品。撤销扩容会同时恢复新解锁槽位。")
-                    .font(.caption).foregroundStyle(.secondary)
+                    .font(.caption).foregroundStyle(AppTheme.secondary)
             } else {
                 Text("存档未提供标准容量，保留现有槽位。")
-                    .font(.caption).foregroundStyle(.secondary)
+                    .font(.caption).foregroundStyle(AppTheme.secondary)
             }
             if let errorMessage {
                 Label(errorMessage, systemImage: "exclamationmark.circle")
@@ -149,7 +149,7 @@ private struct InventoryCapacityCard: View {
             }
         }
         .padding()
-        .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 14))
+        .gameInset(AppTheme.card)
     }
 }
 
@@ -161,12 +161,12 @@ private struct InventorySlotCard: View {
             HStack {
                 Text("#\(slot.id + 1)")
                     .font(.caption2.monospacedDigit())
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.secondary)
                 Spacer()
                 if let item = slot.item, !item.isEditable {
                     GameIcon(systemName: "lock.fill", size: 12)
                         .font(.caption2)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.secondary)
                 }
             }
             if let item = slot.item {
@@ -180,23 +180,23 @@ private struct InventorySlotCard: View {
                     Text(qualityName(item.quality))
                 }
                 .font(.caption)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.secondary)
             } else {
                 GameIcon(systemName: "plus.circle.dashed", size: 28)
                     .font(.title2)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.secondary)
                 Text("空槽位")
                     .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.secondary)
                 Spacer(minLength: 17)
             }
         }
         .padding(12)
         .frame(maxWidth: .infinity, minHeight: 128, alignment: .leading)
-        .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 14))
+        .gameInset(AppTheme.card)
         .overlay {
-            RoundedRectangle(cornerRadius: 14)
-                .stroke(Color.primary.opacity(0.06))
+            GamePixelShape(cornerRadius: 14)
+                .stroke(AppTheme.ink.opacity(0.06))
         }
     }
 }
@@ -249,14 +249,14 @@ private struct GameItemArtwork: View {
     var body: some View {
         if let sprite = GameItemSprite.sprite(index: spriteIndex, texture: texture) {
             ZStack {
-                RoundedRectangle(cornerRadius: size * 0.24, style: .continuous)
-                    .fill(Color(.secondarySystemBackground))
+                GamePixelShape(cornerRadius: size * 0.24, style: .continuous)
+                    .fill(AppTheme.inset)
                 Image(uiImage: sprite)
                     .interpolation(.none)
                     .resizable()
                     .scaledToFit()
                     .padding(size * 0.09)
-                RoundedRectangle(cornerRadius: size * 0.24, style: .continuous)
+                GamePixelShape(cornerRadius: size * 0.24, style: .continuous)
                     .stroke(qualityColor(quality).opacity(0.55), lineWidth: quality == 0 ? 1 : 2)
             }
             .frame(width: size, height: size)
@@ -317,9 +317,9 @@ private struct ItemSymbolArtwork: View {
     var body: some View {
         GameIcon(systemName: "questionmark", size: size * 0.6)
             .frame(width: size, height: size)
-            .background(Color(.secondarySystemBackground), in: RoundedRectangle(cornerRadius: size * 0.24))
+            .background(AppTheme.inset, in: GamePixelShape(cornerRadius: size * 0.24))
             .overlay {
-                RoundedRectangle(cornerRadius: size * 0.24)
+                GamePixelShape(cornerRadius: size * 0.24)
                     .stroke(qualityColor(quality).opacity(0.5))
             }
             .accessibilityLabel("暂无可确认的原版物品贴图")
@@ -347,13 +347,13 @@ private struct InventorySlotEditorView: View {
 
     var body: some View {
         NavigationStack {
-            Form {
+            GameForm {
                 if let item {
                     Section("物品") {
                         LabeledContent("名称", value: item.displayName)
                         if item.chineseName != nil {
                             LabeledContent("原始名称", value: item.name)
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(AppTheme.secondary)
                         }
                         LabeledContent("标识", value: item.itemID)
                         LabeledContent("类型", value: item.objectType)
@@ -378,7 +378,7 @@ private struct InventorySlotEditorView: View {
                                         .accessibilityLabel("数量设为 \(quantity)")
                                 }
                             }
-                            .buttonStyle(.bordered)
+                            .buttonStyle(GameButtonStyle())
                             .font(.caption)
                             Picker("品质", selection: qualityBinding) {
                                 ForEach(item.allowedQualities, id: \.self) { value in

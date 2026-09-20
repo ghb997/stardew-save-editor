@@ -28,7 +28,7 @@ struct FarmMapAnalysisView: View {
                     Button("按坐标查看与选择全部对象", systemImage: "list.bullet.rectangle") {
                         showingEntityList = true
                     }
-                    .buttonStyle(.bordered)
+                    .buttonStyle(GameButtonStyle())
                     .frame(maxWidth: .infinity, alignment: .leading)
                     summaryGrid
 
@@ -44,7 +44,7 @@ struct FarmMapAnalysisView: View {
 
                     Text("实体坐标来自当前农场，底图为坐标参考网格。作物以产物图标标识种类，果树和动物使用物种示意图；年龄、生长阶段与动作请看文字。无法确认具体外观的对象显示问号，可在对象列表核对名称与坐标。操作加入草稿后需检查并保存。")
                         .font(.footnote)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.secondary)
                         .padding(.horizontal, 4)
                 }
                 .padding(20)
@@ -59,7 +59,7 @@ struct FarmMapAnalysisView: View {
             }
             DraftReviewBar(session: session) { showingReview = true }
             }
-            .background(Color(.systemGroupedBackground))
+            .background(GamePageBackdrop())
             .navigationTitle("魔法地图")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -104,7 +104,7 @@ struct FarmMapAnalysisView: View {
 
             VStack(alignment: .leading, spacing: 4) {
                 Text(session.draft.farmName.isEmpty ? session.source.farmIdentifier : session.draft.farmName)
-                    .font(.title2.bold())
+                    .font(.system(.title2, design: .monospaced).bold())
                 Text("真实坐标图层 · \(snapshot.positionedEntities.count) 个实体 · 游戏 \(session.metadata.gameVersion)")
                     .font(.caption.weight(.medium))
                     .opacity(0.92)
@@ -113,9 +113,9 @@ struct FarmMapAnalysisView: View {
             .padding(18)
         }
         .frame(height: 210)
-        .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
+        .clipShape(GamePixelShape(cornerRadius: 22, style: .continuous))
         .overlay {
-            RoundedRectangle(cornerRadius: 22, style: .continuous)
+            GamePixelShape(cornerRadius: 22, style: .continuous)
                 .stroke(Color.white.opacity(0.16), lineWidth: 1)
         }
     }
@@ -128,7 +128,7 @@ struct FarmMapAnalysisView: View {
                         .font(.title3.bold())
                     Text("先加入草稿，保存时一次执行")
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.secondary)
                 }
                 Spacer()
                 GameAssetIcon(assetName: "GameUIFarmComputer", size: 64)
@@ -205,7 +205,7 @@ struct FarmMapAnalysisView: View {
                                         .font(.caption.weight(.medium))
                                     Text(coordinateText(entity))
                                         .font(.caption2.monospacedDigit())
-                                        .foregroundStyle(.secondary)
+                                        .foregroundStyle(AppTheme.secondary)
                                 }
                                 Spacer(minLength: 0)
                             }
@@ -214,7 +214,7 @@ struct FarmMapAnalysisView: View {
                         if pendingActionEntities.count > 20 {
                             Text("另有 \(pendingActionEntities.count - 20) 个对象，将在保存前的检查页再次汇总。")
                                 .font(.caption2)
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(AppTheme.secondary)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
                     }
@@ -229,7 +229,7 @@ struct FarmMapAnalysisView: View {
             }
         }
         .padding(18)
-        .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 22))
+        .gamePanel(AppTheme.card)
     }
 
     private var summaryGrid: some View {
@@ -258,14 +258,14 @@ struct FarmMapAnalysisView: View {
                         .font(.headline)
                     Text(coordinateSubtitle)
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.secondary)
                 }
                 Spacer()
                 Button("大图", systemImage: "arrow.up.left.and.arrow.down.right") {
                     showingExpandedMap = true
                 }
                 .font(.caption.weight(.semibold))
-                .buttonStyle(.bordered)
+                .buttonStyle(GameButtonStyle())
             }
 
             FarmCoordinateCanvas(
@@ -314,7 +314,7 @@ struct FarmMapAnalysisView: View {
             }
         }
         .padding(18)
-        .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 20))
+        .gamePanel(AppTheme.card)
     }
 
     private func entityGroup(_ kind: FarmEntityKind) -> some View {
@@ -326,7 +326,7 @@ struct FarmMapAnalysisView: View {
                 Spacer()
                 Text("\(snapshot.count(for: kind))")
                     .font(.subheadline.monospacedDigit())
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.secondary)
             }
 
             let groups = snapshot.groupedLabels(for: kind)
@@ -336,7 +336,7 @@ struct FarmMapAnalysisView: View {
                     Text(group.label)
                     Spacer()
                     Text("×\(group.count)")
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.secondary)
                         .monospacedDigit()
                 }
             }
@@ -353,12 +353,12 @@ struct FarmMapAnalysisView: View {
                                 Spacer()
                                 Text(coordinateText(entity))
                                     .font(.caption.monospacedDigit())
-                                    .foregroundStyle(.secondary)
+                                    .foregroundStyle(AppTheme.secondary)
                             }
                             if let detail = entity.detail, !detail.isEmpty {
                                 Text(detail)
                                     .font(.caption2)
-                                    .foregroundStyle(.secondary)
+                                    .foregroundStyle(AppTheme.secondary)
                             }
                         }
                         .padding(.vertical, 3)
@@ -368,7 +368,7 @@ struct FarmMapAnalysisView: View {
             }
         }
         .padding(18)
-        .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 20))
+        .gamePanel(AppTheme.card)
     }
 
     private func positionedEntities(for kind: FarmEntityKind) -> [FarmEntity] {
@@ -482,7 +482,7 @@ struct FarmMapAnalysisView: View {
                             .foregroundStyle(isVisible ? Color.white : kind.color)
                             .background(
                                 isVisible ? kind.color : kind.color.opacity(0.10),
-                                in: Capsule()
+                                in: GamePixelShape(cornerRadius: 4)
                             )
                     }
                     .buttonStyle(.plain)
@@ -499,13 +499,13 @@ struct FarmMapAnalysisView: View {
                 GameIcon(systemName: entity.kind.systemImage)
                     .foregroundStyle(entity.kind.color)
                     .frame(width: 28, height: 28)
-                    .background(entity.kind.color.opacity(0.12), in: RoundedRectangle(cornerRadius: 8))
+                    .background(entity.kind.color.opacity(0.12), in: GamePixelShape(cornerRadius: 8))
                 VStack(alignment: .leading, spacing: 2) {
                     Text(entity.label)
                         .font(.headline)
                     Text(coordinateText(entity))
                         .font(.caption.monospacedDigit())
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.secondary)
                 }
                 Spacer()
                 Button("关闭", systemImage: "xmark") {
@@ -518,13 +518,13 @@ struct FarmMapAnalysisView: View {
             if let detail = entity.detail, !detail.isEmpty {
                 Text(detail)
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.secondary)
             }
 
             FarmEntityActionButton(entity: entity, actions: $session.draft.farmActions)
         }
         .padding(14)
-        .background(Color.primary.opacity(0.045), in: RoundedRectangle(cornerRadius: 15))
+        .background(AppTheme.ink.opacity(0.045), in: GamePixelShape(cornerRadius: 15))
     }
 
     private func actionCountText(_ count: Int, unit: String) -> String {
@@ -541,7 +541,7 @@ struct FarmMapAnalysisView: View {
         }
         .padding(18)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(.orange.opacity(0.10), in: RoundedRectangle(cornerRadius: 18))
+        .background(.orange.opacity(0.10), in: GamePixelShape(cornerRadius: 18))
     }
 }
 
@@ -575,10 +575,10 @@ private struct MagicActionButton: View {
             .frame(maxWidth: .infinity, minHeight: 116, alignment: .leading)
             .background(
                 isSelected ? tint : tint.opacity(0.11),
-                in: RoundedRectangle(cornerRadius: 16, style: .continuous)
+                in: GamePixelShape(cornerRadius: 16, style: .continuous)
             )
             .overlay {
-                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                GamePixelShape(cornerRadius: 16, style: .continuous)
                     .stroke(tint.opacity(isSelected ? 0 : 0.28), lineWidth: 1)
             }
         }
@@ -635,10 +635,10 @@ struct FarmCoordinateCanvas: View {
                     }
             )
         }
-        .clipShape(RoundedRectangle(cornerRadius: 14))
+        .clipShape(GamePixelShape(cornerRadius: 14))
         .overlay {
-            RoundedRectangle(cornerRadius: 14)
-                .stroke(Color.primary.opacity(0.08))
+            GamePixelShape(cornerRadius: 14)
+                .stroke(AppTheme.ink.opacity(0.08))
         }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("农场坐标分布图")
@@ -649,7 +649,7 @@ struct FarmCoordinateCanvas: View {
     private func drawTerrain(context: GraphicsContext, size: CGSize) {
         // A neutral coordinate reference avoids inventing ponds or terrain
         // that are not present in the loaded save.
-        context.fill(Path(CGRect(origin: .zero, size: size)), with: .color(Color(.secondarySystemBackground)))
+        context.fill(Path(CGRect(origin: .zero, size: size)), with: .color(AppTheme.inset))
     }
 
     private func drawGrid(context: GraphicsContext, size: CGSize) {
@@ -664,14 +664,14 @@ struct FarmCoordinateCanvas: View {
             grid.move(to: CGPoint(x: 0, y: y))
             grid.addLine(to: CGPoint(x: size.width, y: y))
         }
-        context.stroke(grid, with: .color(Color.primary.opacity(0.07)), lineWidth: 0.5)
+        context.stroke(grid, with: .color(AppTheme.ink.opacity(0.07)), lineWidth: 0.5)
     }
 
     private func drawEntities(context: GraphicsContext, size: CGSize) {
         let allPoints = snapshot.positionedEntities
         let points = displayedEntities
         guard !points.isEmpty else {
-            let text = Text("没有可绘制的实体坐标").font(.callout).foregroundStyle(.secondary)
+            let text = Text("没有可绘制的实体坐标").font(.callout).foregroundStyle(AppTheme.secondary)
             context.draw(text, at: CGPoint(x: size.width / 2, y: size.height / 2))
             return
         }
@@ -780,7 +780,7 @@ private struct MapLegendItem: View {
                 .frame(width: 9, height: 9)
         }
         .font(.caption)
-        .foregroundStyle(.secondary)
+        .foregroundStyle(AppTheme.secondary)
     }
 }
 
@@ -830,7 +830,7 @@ struct ExpandedFarmMapView: View {
                         .updating($pinch) { value, state, _ in state = value.magnification }
                         .onEnded { value in zoom = min(4, max(1, zoom * value.magnification)) }
                 )
-                .background(Color(.systemGroupedBackground))
+                .background(GamePageBackdrop())
             }
             .navigationTitle("农场坐标大图")
             .navigationBarTitleDisplayMode(.inline)
@@ -867,7 +867,7 @@ struct ExpandedFarmMapView: View {
                 .padding(.horizontal, 18)
                 .padding(.vertical, 12)
                 .readablePageWidth()
-                .background(.bar)
+                .gameBar()
             }
         }
         .sheet(isPresented: $showingEntityList) {
@@ -903,7 +903,7 @@ struct ExpandedFarmMapView: View {
                             .foregroundStyle(isVisible ? Color.white : kind.color)
                             .background(
                                 isVisible ? kind.color : kind.color.opacity(0.10),
-                                in: Capsule()
+                                in: GamePixelShape(cornerRadius: 4)
                             )
                     }
                     .buttonStyle(.plain)
@@ -923,7 +923,7 @@ struct ExpandedFarmMapView: View {
                     .lineLimit(1)
                 Text(coordinateText(entity))
                     .font(.caption2.monospacedDigit())
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.secondary)
             }
             Spacer(minLength: 4)
 
@@ -937,7 +937,7 @@ struct ExpandedFarmMapView: View {
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 9)
-        .background(Color.primary.opacity(0.06), in: RoundedRectangle(cornerRadius: 12))
+        .background(AppTheme.ink.opacity(0.06), in: GamePixelShape(cornerRadius: 12))
     }
 
     private func coordinateText(_ entity: FarmEntity) -> String {
@@ -969,12 +969,12 @@ private struct FarmMetricCard: View {
                     .font(.title3.bold().monospacedDigit())
                 Text(title)
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.secondary)
             }
             Spacer(minLength: 0)
         }
         .padding(14)
-        .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 16))
+        .gameInset(AppTheme.card)
     }
 }
 

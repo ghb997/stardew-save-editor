@@ -16,9 +16,9 @@ struct RoomStyleLibrary: View {
                         .font(.headline)
                         .accessibilityIdentifier("editor.house.style.current")
                     Text("点选样式后立即更新草稿，可继续比较或返回房间页。")
-                        .font(.caption).foregroundStyle(.secondary)
+                        .font(.caption).foregroundStyle(AppTheme.secondary)
                     TextField("搜索样式编号", text: $searchText)
-                        .textFieldStyle(.roundedBorder)
+                        .textFieldStyle(GameTextFieldStyle())
                         .textInputAutocapitalization(.never)
                         .autocorrectionDisabled()
                         .submitLabel(.search)
@@ -43,7 +43,7 @@ struct RoomStyleLibrary: View {
             }
         }
         .accessibilityIdentifier("editor.house.style.library")
-        .background(Color(.systemGroupedBackground))
+        .background(GamePageBackdrop())
         .navigationTitle("样式库")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar { ToolbarItem(placement: .confirmationAction) { Button("完成") { dismiss() } } }
@@ -69,7 +69,7 @@ struct RoomStyleBatchPreview: View {
 
     var body: some View {
         NavigationStack {
-            List {
+            GameList {
                 Section {
                     Text("将修改 \(selectedRooms.count) 个房间").font(.headline)
                         .accessibilityIdentifier("editor.house.batch.count")

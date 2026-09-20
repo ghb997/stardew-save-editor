@@ -53,7 +53,7 @@ struct DebugLayoutViewport: ViewModifier {
                     .frame(width: min(width, proxy.size.width))
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
-            .background(AppTheme.canvas)
+            .background(GamePageBackdrop())
         } else {
             content
         }

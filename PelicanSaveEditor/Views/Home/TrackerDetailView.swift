@@ -60,15 +60,15 @@ struct TrackerDetailView: View {
                         } label: {
                             Text(candidate.trackerTitle)
                                 .font(.caption.weight(.semibold))
-                                .foregroundStyle(section == candidate ? AppTheme.trackerTitle : Color.primary)
+                                .foregroundStyle(section == candidate ? AppTheme.trackerTitle : AppTheme.ink)
                                 .padding(.horizontal, 14)
                                 .frame(minHeight: 44)
                                 .background(
-                                    section == candidate ? AppTheme.trackerSelection : Color(.tertiarySystemFill),
-                                    in: Capsule()
+                                    section == candidate ? AppTheme.trackerSelection : AppTheme.inset,
+                                    in: GamePixelShape(cornerRadius: 4)
                                 )
                                 .overlay {
-                                    Capsule().stroke(Color(.separator).opacity(0.25), lineWidth: 1)
+                                    GamePixelShape(cornerRadius: 4).stroke(AppTheme.wood.opacity(0.25), lineWidth: 1)
                                 }
                         }
                         .buttonStyle(.plain)
@@ -88,7 +88,7 @@ struct TrackerDetailView: View {
             }
         }
         .readablePageWidth(AppLayout.editorWidth)
-        .background(.bar)
+        .gameBar()
         .overlay(alignment: .bottom) { Divider() }
     }
 
@@ -121,7 +121,7 @@ struct TrackerDetailView: View {
     }
 
     private var characterList: some View {
-        List {
+        GameList {
             draftNotice
 
             Section("基本信息") {
@@ -143,7 +143,7 @@ struct TrackerDetailView: View {
     }
 
     private var appearanceList: some View {
-        List {
+        GameList {
             draftNotice
 
             Section("存档角色") {
@@ -168,7 +168,7 @@ struct TrackerDetailView: View {
     }
 
     private var farmhouseList: some View {
-        List {
+        GameList {
             draftNotice
 
             Section {
@@ -178,7 +178,7 @@ struct TrackerDetailView: View {
                     .scaledToFill()
                     .frame(height: 180)
                     .clipped()
-                    .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                    .clipShape(GamePixelShape(cornerRadius: 16, style: .continuous))
                     .listRowInsets(EdgeInsets())
                     .listRowBackground(Color.clear)
             }
@@ -208,7 +208,7 @@ struct TrackerDetailView: View {
     }
 
     private var inventoryList: some View {
-        List {
+        GameList {
             draftNotice
 
             Section("统计") {
@@ -247,7 +247,7 @@ struct TrackerDetailView: View {
     }
 
     private var relationshipsList: some View {
-        List {
+        GameList {
             draftNotice
 
             Section {
@@ -300,7 +300,7 @@ struct TrackerDetailView: View {
                         .foregroundStyle(AppTheme.trackerWarning)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(14)
-                        .background(Color.orange.opacity(0.12), in: RoundedRectangle(cornerRadius: 15))
+                        .background(Color.orange.opacity(0.12), in: GamePixelShape(cornerRadius: 15))
                 }
 
                 collectionOverviewCard
@@ -355,7 +355,7 @@ struct TrackerDetailView: View {
             .frame(maxWidth: 720)
             .frame(maxWidth: .infinity)
         }
-        .background(AppTheme.canvas)
+        .background(GamePageBackdrop())
     }
 
     private var collectionOverviewCard: some View {
@@ -364,10 +364,10 @@ struct TrackerDetailView: View {
             HStack(spacing: 13) {
                 GameAssetIcon(assetName: "GameUITrophy", size: 54)
                     .padding(8)
-                    .background(Color(.systemBackground).opacity(0.72), in: RoundedRectangle(cornerRadius: 15))
+                    .background(AppTheme.card.opacity(0.72), in: GamePixelShape(cornerRadius: 15))
                 VStack(alignment: .leading, spacing: 3) {
                     Text("收藏记录")
-                        .font(.title2.bold())
+                        .font(.system(.title2, design: .monospaced).bold())
                         .foregroundStyle(AppTheme.trackerTitle)
                     Text("四类记录相加，不代表完美度")
                         .font(.caption)
@@ -389,11 +389,7 @@ struct TrackerDetailView: View {
                 .foregroundStyle(AppTheme.trackerTitle.opacity(0.80))
         }
         .padding(20)
-        .background(AppTheme.trackerHeaderSoft, in: RoundedRectangle(cornerRadius: 22, style: .continuous))
-        .overlay {
-            RoundedRectangle(cornerRadius: 22, style: .continuous)
-                .stroke(AppTheme.trackerAccent.opacity(0.14), lineWidth: 1)
-        }
+        .gamePanel(AppTheme.trackerHeaderSoft)
     }
 
     private func formatted(_ value: Int?) -> String {
@@ -401,7 +397,7 @@ struct TrackerDetailView: View {
     }
 
     private var skillsList: some View {
-        List {
+        GameList {
             draftNotice
 
             Section("技能") {
@@ -442,7 +438,7 @@ struct TrackerDetailView: View {
     }
 
     private var walletList: some View {
-        List {
+        GameList {
             draftNotice
 
             Section {
@@ -496,7 +492,7 @@ struct TrackerDetailView: View {
     }
 
     private var animalsList: some View {
-        List {
+        GameList {
             draftNotice
 
             Section("动物") {
@@ -543,7 +539,7 @@ struct TrackerDetailView: View {
     }
 
     private var recipesList: some View {
-        List {
+        GameList {
             draftNotice
 
             Section {
@@ -602,7 +598,7 @@ struct TrackerDetailView: View {
     }
 
     private var statusList: some View {
-        List {
+        GameList {
             draftNotice
 
             Section("当前来源") {

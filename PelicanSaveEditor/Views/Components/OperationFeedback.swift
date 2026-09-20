@@ -37,7 +37,7 @@ private struct OperationFeedbackModifier: ViewModifier {
                         Color.black.opacity(0.18).ignoresSafeArea()
                         ProgressView(store.busyMessage)
                             .padding(24)
-                            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 18))
+                            .gamePanel(AppTheme.card)
                     }
                 }
             }

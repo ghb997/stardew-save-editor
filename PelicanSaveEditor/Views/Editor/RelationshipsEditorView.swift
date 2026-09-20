@@ -23,7 +23,7 @@ struct RelationshipsEditorView: View {
                 if session.draft.friendships.isEmpty {
                     GameEmptyState(title: "没有关系数据", systemImage: "heart.slash")
                 } else {
-                    List {
+                    GameList {
                         Section {
                             Picker("人物筛选", selection: $filter) {
                                 ForEach(RelationshipFilter.allCases) { value in
@@ -86,14 +86,14 @@ private struct RelationshipBatchPreview: View {
 
     var body: some View {
         NavigationStack {
-            List {
+            GameList {
                 Section {
                     Text("将修改 \(request.friends.count) 位角色")
                         .font(.headline)
                     Text(request.action == .fillHearts
                         ? "按当前关系补到 8、10 或 14 心。已有更高好感会保留；关系状态不会改变。"
                         : "将已有的今日、本周送礼次数清零。好感、婚姻和上次送礼日期会保留。")
-                        .font(.subheadline).foregroundStyle(.secondary)
+                        .font(.subheadline).foregroundStyle(AppTheme.secondary)
                 }
                 Section("本次范围") {
                     ForEach(request.friends) { friend in
@@ -149,7 +149,7 @@ private struct RelationshipRow: View {
                     Text(friend.localizedName)
                         .font(.headline)
                     if npcChineseNames[friend.name] != nil {
-                        Text(friend.name).font(.caption).foregroundStyle(.secondary)
+                        Text(friend.name).font(.caption).foregroundStyle(AppTheme.secondary)
                     }
                 }
                 Spacer()
@@ -180,7 +180,7 @@ private struct RelationshipRow: View {
                     Button("满心") { session.draft.friendships[index].points = max(friend.points, target) }
                 }
             }
-            .buttonStyle(.bordered)
+            .buttonStyle(GameButtonStyle())
             .font(.caption)
             .disabled(!friend.hasEditablePoints)
 
@@ -192,7 +192,7 @@ private struct RelationshipRow: View {
                 .adaptiveSegmentedPicker()
             } else {
                 LabeledContent("状态", value: friend.status.displayName)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.secondary)
             }
             if friend.giftsToday != nil || friend.giftsThisWeek != nil {
                 VStack(alignment: .leading, spacing: 5) {

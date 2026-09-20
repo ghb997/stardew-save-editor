@@ -5,7 +5,7 @@ struct WalletEditorView: View {
 
     var body: some View {
         NavigationStack {
-            Form {
+            GameForm {
                 Section {
                     VStack(alignment: .leading, spacing: 12) {
                         Image("GameUIWalletStrip")
@@ -19,7 +19,7 @@ struct WalletEditorView: View {
                             .font(.headline)
                         Text("兼容星露谷物语 1.6 的存档标记")
                             .font(.caption)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(AppTheme.secondary)
                     }
                 } footer: {
                     Text("未知邮件与剧情标记会原样保留；这里只处理下列已知钱包能力。")

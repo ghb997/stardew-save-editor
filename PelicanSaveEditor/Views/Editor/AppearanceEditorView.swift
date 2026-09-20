@@ -8,7 +8,7 @@ struct AppearanceEditorView: View {
 
     var body: some View {
         NavigationStack {
-            Form {
+            GameForm {
                 Section {
                     comparisonLayout {
                         AppearanceDataSnapshot(
@@ -22,7 +22,7 @@ struct AppearanceEditorView: View {
 
                         GameIcon(systemName: typeSize.isAccessibilitySize ? "arrow.down" : "arrow.right", size: 20)
                             .font(.headline)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(AppTheme.secondary)
                             .accessibilityHidden(true)
 
                         AppearanceDataSnapshot(
@@ -146,17 +146,17 @@ struct AppearanceEditorView: View {
             HStack {
                 GameLabel(appearanceCategory.helpText, systemImage: appearanceCategory.icon)
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.secondary)
                 Spacer()
                 Text("\(appearanceValues.count) 项")
                     .font(.caption.monospacedDigit())
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.secondary)
             }
 
             if appearanceCategory == .skin,
                GameArtwork.appearanceImage(category: "skin", index: selectedAppearanceValue) == nil {
                 Text("缺少原版肤色色板，暂无颜色预览。这里按存档编号选择肤色。")
-                    .font(.caption).foregroundStyle(.secondary)
+                    .font(.caption).foregroundStyle(AppTheme.secondary)
             }
 
             ScrollView(.horizontal) {
@@ -253,7 +253,7 @@ private struct AppearanceDataSnapshot: View {
         VStack(alignment: .leading, spacing: 8) {
             Text(title)
                 .font(.subheadline.bold())
-                .foregroundStyle(isCurrent ? Color.accentColor : Color.secondary)
+                .foregroundStyle(isCurrent ? Color.accentColor : AppTheme.secondary)
             Divider()
             HStack(spacing: 8) {
                 if let sprite = GameArtwork.appearanceImage(category: "hair", index: hair) {
@@ -261,34 +261,34 @@ private struct AppearanceDataSnapshot: View {
                         .frame(width: 36, height: 36)
                         .accessibilityLabel("发型 \(hair) 原版贴图")
                 } else {
-                    Text("发型无预览").font(.caption2).foregroundStyle(.secondary)
+                    Text("发型无预览").font(.caption2).foregroundStyle(AppTheme.secondary)
                 }
                 if let sprite = GameArtwork.appearanceImage(category: "accessory", index: accessory) {
                     Image(uiImage: sprite).resizable().interpolation(.none).scaledToFit()
                         .frame(width: 36, height: 36)
                         .accessibilityLabel("饰品 \(accessory) 原版贴图")
                 } else if accessory >= 0 {
-                    Text("饰品无预览").font(.caption2).foregroundStyle(.secondary)
+                    Text("饰品无预览").font(.caption2).foregroundStyle(AppTheme.secondary)
                 }
             }
             appearanceValue("性别", gender.displayName)
             appearanceValue("发型", hair.formatted())
             appearanceValue("肤色", skin.formatted())
             if GameArtwork.appearanceImage(category: "skin", index: skin) == nil {
-                Text("肤色暂无原版色板预览").font(.caption2).foregroundStyle(.secondary)
+                Text("肤色暂无原版色板预览").font(.caption2).foregroundStyle(AppTheme.secondary)
             }
             appearanceValue("饰品", accessory < 0 ? "无（-1）" : accessory.formatted())
         }
         .padding(12)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(
-            isCurrent ? Color.accentColor.opacity(0.10) : Color.secondary.opacity(0.07),
-            in: RoundedRectangle(cornerRadius: 14, style: .continuous)
+            isCurrent ? Color.accentColor.opacity(0.10) : AppTheme.secondary.opacity(0.07),
+            in: GamePixelShape(cornerRadius: 14, style: .continuous)
         )
         .overlay {
-            RoundedRectangle(cornerRadius: 14, style: .continuous)
+            GamePixelShape(cornerRadius: 14, style: .continuous)
                 .stroke(
-                    isCurrent ? Color.accentColor.opacity(0.65) : Color.secondary.opacity(0.18),
+                    isCurrent ? Color.accentColor.opacity(0.65) : AppTheme.secondary.opacity(0.18),
                     lineWidth: isCurrent ? 2 : 1
                 )
         }
@@ -297,7 +297,7 @@ private struct AppearanceDataSnapshot: View {
     private func appearanceValue(_ label: String, _ value: String) -> some View {
         HStack(spacing: 6) {
             Text(label)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.secondary)
             Spacer(minLength: 4)
             Text(value)
                 .fontWeight(.semibold)
@@ -329,7 +329,7 @@ private struct AppearanceChoiceButton: View {
             } else {
                 Text("无预览")
                     .font(.caption2)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.secondary)
                     .frame(height: 40)
             }
             Text(value.formatted())
@@ -337,11 +337,11 @@ private struct AppearanceChoiceButton: View {
                 .monospacedDigit()
         }
         .frame(width: tileWidth, height: tileHeight)
-        .background(isSelected ? Color.accentColor.opacity(0.16) : Color.secondary.opacity(0.06))
+        .background(isSelected ? Color.accentColor.opacity(0.16) : AppTheme.secondary.opacity(0.06))
         .overlay {
-            RoundedRectangle(cornerRadius: 9, style: .continuous)
+            GamePixelShape(cornerRadius: 9, style: .continuous)
                 .stroke(isSelected ? Color.accentColor : Color.clear, lineWidth: 2)
         }
-        .clipShape(RoundedRectangle(cornerRadius: 9, style: .continuous))
+        .clipShape(GamePixelShape(cornerRadius: 9, style: .continuous))
     }
 }

@@ -57,7 +57,7 @@ struct CropCalculatorView: View {
                         message: "内置作物数据没有成功载入。"
                     )
                 } else {
-                    Form {
+                    GameForm {
                         cropSection
                         calendarSection
                         growthSection
@@ -93,7 +93,7 @@ struct CropCalculatorView: View {
                             .font(.headline)
                         Text("收获物 ID \(crop.id)")
                             .font(.caption.monospacedDigit())
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(AppTheme.secondary)
                     }
                 }
                 LabeledContent("适宜季节", value: cropSeasonText(crop))
@@ -218,7 +218,7 @@ struct CropCalculatorView: View {
         Section("计算依据") {
             Text("成熟天数按游戏对各生长阶段的单精度浮点加速规则计算；多次收获作物成熟后按再生天数排期，单次收获作物按当天收获后立即补种排期。茶树按成熟后每季 22—28 日产叶的独立规则计算。")
                 .font(.footnote)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.secondary)
         }
     }
 

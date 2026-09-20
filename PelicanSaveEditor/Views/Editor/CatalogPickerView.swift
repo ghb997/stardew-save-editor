@@ -38,7 +38,7 @@ struct CatalogPickerView: View {
 
     var body: some View {
         NavigationStack {
-            List {
+            GameList {
                 Section {
                     Picker("浏览方式", selection: $selectedCollection) {
                         ForEach(CatalogCollection.allCases) { collection in
@@ -50,7 +50,7 @@ struct CatalogPickerView: View {
                         ForEach(categories, id: \.self) { category in Text(category).tag(category) }
                     }
                     Text("显示 \(filtered.count) / \(catalog.count) 项安全物品")
-                        .font(.caption).foregroundStyle(.secondary)
+                        .font(.caption).foregroundStyle(AppTheme.secondary)
                 }
                 ForEach(filtered) { item in
                     HStack(spacing: 12) {
@@ -63,9 +63,9 @@ struct CatalogPickerView: View {
                             HStack(spacing: 12) {
                                 CatalogItemArtworkView(item: item)
                                 VStack(alignment: .leading, spacing: 3) {
-                                    Text(item.displayName).foregroundStyle(.primary)
+                                    Text(item.displayName).foregroundStyle(AppTheme.ink)
                                     Text("\(item.name) · ID \(item.id)")
-                                        .font(.caption).foregroundStyle(.secondary)
+                                        .font(.caption).foregroundStyle(AppTheme.secondary)
                                 }
                                 Spacer(minLength: 0)
                             }

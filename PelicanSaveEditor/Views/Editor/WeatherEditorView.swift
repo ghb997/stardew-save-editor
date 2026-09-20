@@ -6,10 +6,10 @@ struct WeatherEditorView: View {
     @State private var error: String?
     var body: some View {
         NavigationStack {
-            Form {
+            GameForm {
                 Section {
                     Text("明日天气会在下一天由游戏读取，节日、婚礼和特殊事件可能覆盖选择。每日运气只影响已保存的当前值，新一天仍由游戏重新计算。")
-                        .font(.footnote).foregroundStyle(.secondary)
+                        .font(.footnote).foregroundStyle(AppTheme.secondary)
                 }
                 Section("明日天气") {
                     ForEach(session.draft.weatherAndLuck.regions.indices, id: \.self) { index in
@@ -22,13 +22,13 @@ struct WeatherEditorView: View {
                             }
                             .accessibilityIdentifier("weather.region.\(region.id)")
                             Text("原始：\(region.original.title) → 草稿：\(region.selected.title)")
-                                .font(.caption).foregroundStyle(.secondary)
+                                .font(.caption).foregroundStyle(AppTheme.secondary)
                             Button("恢复\(region.title)") { session.draft.weatherAndLuck.regions[index].selected = region.original }
                                 .font(.caption).disabled(region.selected == region.original)
                         }
                     }
-                    if session.draft.weatherAndLuck.regions.isEmpty { Text("没有可编辑的标准明日天气字段。").foregroundStyle(.secondary) }
-                    ForEach(session.draft.weatherAndLuck.notes, id: \.self) { Text($0).font(.caption).foregroundStyle(.secondary) }
+                    if session.draft.weatherAndLuck.regions.isEmpty { Text("没有可编辑的标准明日天气字段。").foregroundStyle(AppTheme.secondary) }
+                    ForEach(session.draft.weatherAndLuck.notes, id: \.self) { Text($0).font(.caption).foregroundStyle(AppTheme.secondary) }
                 }
                 Section("每日运气") {
                     if let value = session.draft.weatherAndLuck.dailyLuck {
@@ -49,7 +49,7 @@ struct WeatherEditorView: View {
                             luckText = session.draft.weatherAndLuck.dailyLuck.map { String($0) } ?? ""
                             error = nil
                         }.accessibilityIdentifier("weather.luck.restore")
-                    } else { Text("存档未提供有效运气值，保留原样。").foregroundStyle(.secondary) }
+                    } else { Text("存档未提供有效运气值，保留原样。").foregroundStyle(AppTheme.secondary) }
                     if let error { Text(error).foregroundStyle(.red).accessibilityIdentifier("weather.luck.error") }
                 }
             }

@@ -5,7 +5,7 @@ struct CharacterEditorView: View {
 
     var body: some View {
         NavigationStack {
-            Form {
+            GameForm {
                 if !session.metadata.warnings.isEmpty {
                     Section("注意") {
                         ForEach(session.metadata.warnings, id: \.self) { warning in

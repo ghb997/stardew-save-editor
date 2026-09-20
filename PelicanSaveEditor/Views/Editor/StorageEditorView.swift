@@ -13,12 +13,12 @@ struct StorageEditorView: View {
     }
     var body: some View {
         NavigationStack {
-            List {
+            GameList {
                 Section {
                     Text("找到 \(session.draft.storages.count) 个容器").font(.headline)
                     Toggle("仅显示已修改", isOn: $editedOnly)
                     Text("包含农场、室内及其他存档地点。标准箱子和冰箱为 36 格，大箱子为 70 格。")
-                        .font(.caption).foregroundStyle(.secondary)
+                        .font(.caption).foregroundStyle(AppTheme.secondary)
                 }
                 ForEach(visible) { storage in
                     NavigationLink {
@@ -28,8 +28,8 @@ struct StorageEditorView: View {
                             Label(storage.title, systemImage: storage.isEditable ? "shippingbox" : "lock")
                                 .font(.headline)
                             Text("\(storage.coordinate) · \(storage.occupiedCount) / \(storage.capacity) 格")
-                                .font(.caption).foregroundStyle(.secondary)
-                            if let reason = storage.readOnlyReason { Text(reason).font(.caption).foregroundStyle(.secondary) }
+                                .font(.caption).foregroundStyle(AppTheme.secondary)
+                            if let reason = storage.readOnlyReason { Text(reason).font(.caption).foregroundStyle(AppTheme.secondary) }
                         }.padding(.vertical, 4)
                     }
                     .accessibilityIdentifier("storage.container.\(storage.id)")
@@ -57,16 +57,16 @@ private struct StorageContentsView: View {
     @State private var occupiedOnly = false
     private var storage: StorageDraft? { session.draft.storages.first { $0.id == storageID } }
     var body: some View {
-        List {
+        GameList {
             if let storage {
                 Section {
-                    Text(storage.coordinate).font(.caption).foregroundStyle(.secondary)
+                    Text(storage.coordinate).font(.caption).foregroundStyle(AppTheme.secondary)
                     Toggle("只看有物品的格子", isOn: $occupiedOnly)
                     if storage.isEditable, let empty = storage.slots.first(where: { $0.item == nil }) {
                         Button("添加到第 \(empty.id + 1) 格", systemImage: "plus.circle") { selection = StorageSlotSelection(id: empty.id) }
                             .accessibilityIdentifier("storage.add")
                     }
-                    if let reason = storage.readOnlyReason { Text(reason).foregroundStyle(.secondary) }
+                    if let reason = storage.readOnlyReason { Text(reason).foregroundStyle(AppTheme.secondary) }
                 }
                 Section("\(storage.occupiedCount) / \(storage.capacity) 格") {
                     ForEach(storage.slots.filter { slot in
@@ -76,14 +76,14 @@ private struct StorageContentsView: View {
                         Button { selection = StorageSlotSelection(id: slot.id) } label: {
                             HStack(spacing: 12) {
                                 if let item = slot.item { ItemArtworkView(item: item, size: 38) }
-                                else { Image(systemName: "square.dashed").frame(width: 38).foregroundStyle(.secondary) }
+                                else { Image(systemName: "square.dashed").frame(width: 38).foregroundStyle(AppTheme.secondary) }
                                 VStack(alignment: .leading, spacing: 3) {
-                                    Text(slot.item?.localizedName ?? "空槽位").foregroundStyle(.primary)
+                                    Text(slot.item?.localizedName ?? "空槽位").foregroundStyle(AppTheme.ink)
                                     Text("第 \(slot.id + 1) 格" + (slot.item.map { " · ×\($0.stack) · 品质 \($0.quality)" } ?? ""))
-                                        .font(.caption).foregroundStyle(.secondary)
+                                        .font(.caption).foregroundStyle(AppTheme.secondary)
                                 }
                                 Spacer()
-                                if slot.item?.isEditable == false || !storage.isEditable { Image(systemName: "lock").foregroundStyle(.secondary) }
+                                if slot.item?.isEditable == false || !storage.isEditable { Image(systemName: "lock").foregroundStyle(AppTheme.secondary) }
                             }.padding(.vertical, 3)
                         }
                         .accessibilityIdentifier("storage.slot.\(slot.id)")
@@ -132,7 +132,7 @@ private struct StorageSlotSheet: View {
     }
     var body: some View {
         NavigationStack {
-            Form {
+            GameForm {
                 Section {
                     if let item {
                         HStack { ItemArtworkView(item: item, size: 48); Text(item.localizedName).font(.headline) }
@@ -162,10 +162,10 @@ private struct StorageSlotSheet: View {
                         Button(item == nil ? "选择物品" : "替换为其他物品", systemImage: "plus") { picking = true }
                             .accessibilityIdentifier("storage.pick")
                         Text("加入草稿后可在检查页逐项撤销；保存时才写入容器。")
-                            .font(.caption).foregroundStyle(.secondary)
+                            .font(.caption).foregroundStyle(AppTheme.secondary)
                     }
                 } else {
-                    Text("此物品或容器保持只读，专属字段将原样保留。").foregroundStyle(.secondary)
+                    Text("此物品或容器保持只读，专属字段将原样保留。").foregroundStyle(AppTheme.secondary)
                 }
                 if let error { Text(error).foregroundStyle(.red).accessibilityIdentifier("storage.error") }
             }

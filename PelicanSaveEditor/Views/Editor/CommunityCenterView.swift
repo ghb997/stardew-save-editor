@@ -24,12 +24,12 @@ struct CommunityCenterView: View {
     private var visibleIDs: Set<String> { Set(visible.filter { !$0.isComplete }.flatMap(\.requirements).filter { !$0.donated }.map(\.id)) }
     var body: some View {
         NavigationStack {
-            List {
+            GameList {
                 Section {
                     Text("\(data.bundles.filter(\.isComplete).count) / \(data.bundles.count) 个收集包已完成")
                         .font(.headline).accessibilityIdentifier("bundles.progress")
                     Text(data.isJojaMember ? "存档记录为 Joja 会员，保留献祭信息供查看。" : "从存档读取普通或混合收集包。选择缺失材料，预览后补给到背包；回游戏交付可正常触发奖励与修复。")
-                        .font(.footnote).foregroundStyle(.secondary)
+                        .font(.footnote).foregroundStyle(AppTheme.secondary)
                     Toggle("仅显示未完成", isOn: $incompleteOnly)
                     Picker("区域", selection: $area) {
                         Text("全部区域").tag("全部区域")
@@ -40,7 +40,7 @@ struct CommunityCenterView: View {
                     if !selected.isEmpty { Button("清空材料选择") { selected = [] } }
                     if let error { Text(error).foregroundStyle(.red).accessibilityIdentifier("bundles.error") }
                     if data.unreadableCount > 0 {
-                        Text("另有 \(data.unreadableCount) 条结构不明或缺少进度的记录，已原样保留。").font(.caption).foregroundStyle(.secondary)
+                        Text("另有 \(data.unreadableCount) 条结构不明或缺少进度的记录，已原样保留。").font(.caption).foregroundStyle(AppTheme.secondary)
                     }
                 }
                 ForEach(visible) { bundle in
@@ -48,7 +48,7 @@ struct CommunityCenterView: View {
                         Text(bundle.isComplete ? "已完成" : "已交付 \(bundle.donatedCount) / \(bundle.requiredCount) 项，还需 \(max(0, bundle.requiredCount - bundle.donatedCount)) 项")
                             .font(.caption).foregroundStyle(bundle.isComplete ? .green : .secondary)
                         if bundle.requiredCount < bundle.requirements.count {
-                            Text("这是任选收集包，请自行选择剩余材料组合。").font(.caption).foregroundStyle(.secondary)
+                            Text("这是任选收集包，请自行选择剩余材料组合。").font(.caption).foregroundStyle(AppTheme.secondary)
                         }
                         ForEach(bundle.requirements) { requirement in
                             BundleRequirementRow(requirement: requirement,
@@ -96,9 +96,9 @@ private struct BundleRequirementRow: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(requirement.isGold ? "\(requirement.quantity) 金" : "\(item?.displayName ?? "物品 \(requirement.itemID)") ×\(requirement.quantity)")
                 Text(requirement.donated ? "已交付" : requirement.isGold ? "回游戏支付" : "未交付 · 最低品质 \(requirement.quality)")
-                    .font(.caption).foregroundStyle(.secondary)
+                    .font(.caption).foregroundStyle(AppTheme.secondary)
                 if !canSupply && !requirement.donated && !requirement.isGold && allowsSupply {
-                    Text("此材料需在游戏中准备").font(.caption).foregroundStyle(.secondary)
+                    Text("此材料需在游戏中准备").font(.caption).foregroundStyle(AppTheme.secondary)
                 }
             }
             Spacer()
@@ -128,11 +128,11 @@ private struct BundleSupplyPreview: View {
     private var lines: [BundleSupplyLine] { (try? BundleSupplyRules.plan(ids: ids, draft: session.draft, catalog: catalog)) ?? [] }
     var body: some View {
         NavigationStack {
-            List {
+            GameList {
                 Section {
                     Text("将添加到 \(lines.count) 个背包空格").font(.headline)
                     Text("每项按完整献祭数量补给。已有背包物品保持原样，献祭状态在游戏内交付后更新。")
-                        .font(.footnote).foregroundStyle(.secondary)
+                        .font(.footnote).foregroundStyle(AppTheme.secondary)
                 }
                 ForEach(lines) { line in
                     HStack {
@@ -140,12 +140,12 @@ private struct BundleSupplyPreview: View {
                         VStack(alignment: .leading, spacing: 4) {
                             Text("\(line.item.displayName) ×\(line.requirement.quantity)")
                             Text("\(line.bundleTitle) · 品质 \(line.requirement.quality) · 第 \(line.slot + 1) 格")
-                                .font(.caption).foregroundStyle(.secondary)
+                                .font(.caption).foregroundStyle(AppTheme.secondary)
                         }
                     }
                 }
                 if let error { Text(error).foregroundStyle(.red) }
-                if lines.isEmpty { Text("背包或材料选择已变化，请返回重新预览。").foregroundStyle(.secondary) }
+                if lines.isEmpty { Text("背包或材料选择已变化，请返回重新预览。").foregroundStyle(AppTheme.secondary) }
             }
             .navigationTitle("材料补给预览").navigationBarTitleDisplayMode(.inline)
             .toolbar {

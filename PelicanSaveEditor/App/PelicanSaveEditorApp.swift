@@ -6,6 +6,7 @@ struct PelicanSaveEditorApp: App {
     @State private var store: EditorStore
 
     init() {
+        AppTheme.installNativeAppearance()
         GlobalKeyboardReturnInstaller.shared.start()
         _store = State(initialValue: EditorStore())
     }
@@ -14,7 +15,9 @@ struct PelicanSaveEditorApp: App {
         WindowGroup {
             RootView()
                 .environment(store)
-                .tint(Color(red: 0.20, green: 0.56, blue: 0.31))
+                .tint(AppTheme.accent)
+                .foregroundStyle(AppTheme.ink)
+                .fontDesign(.monospaced)
 #if DEBUG
                 .modifier(DebugLayoutViewport())
 #endif

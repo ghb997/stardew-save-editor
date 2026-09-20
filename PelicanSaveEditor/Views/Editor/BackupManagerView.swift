@@ -18,7 +18,7 @@ struct BackupListView: View {
 
     var body: some View {
         NavigationStack {
-            List {
+            GameList {
                 Section {
                     if let session = store.session {
                         LabeledContent("当前农场", value: session.source.farmIdentifier)
@@ -27,7 +27,7 @@ struct BackupListView: View {
                         }
                         Text("手动备份保存磁盘上的文件，未保存草稿请先到检查页保存。")
                             .font(.caption)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(AppTheme.secondary)
                     } else {
                         Text("无需加载农场即可校验和导出备份。加载对应农场后，还可以直接恢复。")
                             .font(.subheadline)
@@ -55,11 +55,11 @@ struct BackupListView: View {
                                     Text(backup.farmIdentifier).font(.headline)
                                     Text(backup.savedAt, format: .dateTime.year().month().day().hour().minute().second())
                                         .font(.subheadline)
-                                    Text(backup.reason).font(.caption).foregroundStyle(.secondary)
+                                    Text(backup.reason).font(.caption).foregroundStyle(AppTheme.secondary)
                                     Text(verificationResults[backup.id] ??
                                          (store.verifiedBackupIDs.contains(backup.id) ? "完整性校验通过" : "尚未在本次会话校验"))
                                         .font(.caption)
-                                        .foregroundStyle(store.verifiedBackupIDs.contains(backup.id) ? Color.green : Color.secondary)
+                                        .foregroundStyle(store.verifiedBackupIDs.contains(backup.id) ? Color.green : AppTheme.secondary)
                                 }
                             }
                             .accessibilityElement(children: .combine)
@@ -68,7 +68,7 @@ struct BackupListView: View {
                             }
                             if let location = backup.sourceLocation, !location.isEmpty {
                                 VStack(alignment: .leading, spacing: 3) {
-                                    Text("来源位置").font(.caption).foregroundStyle(.secondary)
+                                    Text("来源位置").font(.caption).foregroundStyle(AppTheme.secondary)
                                     Text(location).font(.caption).textSelection(.enabled)
                                 }
                             }

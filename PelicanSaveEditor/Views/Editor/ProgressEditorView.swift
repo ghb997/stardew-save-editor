@@ -5,7 +5,7 @@ struct ProgressEditorView: View {
 
     var body: some View {
         NavigationStack {
-            Form {
+            GameForm {
                 Section {
                     HStack(spacing: 14) {
                         GameAssetIcon(assetName: "GameUIProgress", size: 40)
@@ -16,7 +16,7 @@ struct ProgressEditorView: View {
                                 .font(.headline)
                             Text("仅显示这份存档真实存在的可编辑字段")
                                 .font(.caption)
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(AppTheme.secondary)
                         }
                     }
                 }
@@ -117,7 +117,7 @@ struct ProgressEditorView: View {
             GameAssetLabel(title, assetName: assetName, iconSize: 24)
             Spacer()
             Text(value.formatted())
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.secondary)
                 .monospacedDigit()
         }
     }

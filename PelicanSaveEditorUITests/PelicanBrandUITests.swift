@@ -16,7 +16,7 @@ final class PelicanBrandUITests: XCTestCase {
         XCTAssertTrue(firstTool.isHittable)
         XCTAssertTrue(app.scrollViews["editor.tools.list"].frame.contains(firstTool.frame),
                       "The first common editor should be visible without scrolling")
-        capture("build16-tools-common", app)
+        capture("build18-tools-common", app)
         for tool in ["character", "appearance", "skills", "relationships", "inventory", "equipment",
                      "storage", "recipes", "collections", "farmhouse", "animals", "weather",
                      "machines", "map", "progress", "wallet", "bundles"] {
@@ -24,7 +24,7 @@ final class PelicanBrandUITests: XCTestCase {
             let entry = app.buttons["editor.tool.\(tool)"]
             try revealDirectoryControl(entry, in: app)
             if ["collections", "machines", "bundles"].contains(tool) {
-                capture("build16-category-\(tool)", app)
+                capture("build18-category-\(tool)", app)
             }
             XCTAssertTrue(review.isHittable, "Review stays available while browsing")
             entry.tap()
@@ -32,13 +32,14 @@ final class PelicanBrandUITests: XCTestCase {
                 : app.buttons[["equipment", "storage", "collections", "weather", "machines", "bundles"].contains(tool)
                     ? "expanded.close" : "editor.shell.close"]
             XCTAssertTrue(close.waitForExistence(timeout: 20), "Opened \(tool)")
+            capture("build18-editor-\(tool)", app)
             close.tap()
             XCTAssertTrue(review.waitForExistence(timeout: 20))
             XCTAssertEqual(review.label, draftLabel, "Browsing \(tool) must retain draft changes")
         }
         review.tap()
         XCTAssertTrue(app.buttons["editor.shell.close"].waitForExistence(timeout: 20))
-        capture("build16-review", app)
+        capture("build18-review", app)
     }
 
     @MainActor
@@ -51,7 +52,7 @@ final class PelicanBrandUITests: XCTestCase {
         search.typeText("天气\n")
         XCTAssertTrue(app.buttons["editor.tool.weather"].waitForExistence(timeout: 10))
         XCTAssertFalse(app.buttons["editor.tool.inventory"].exists)
-        capture("build16-search-weather", app)
+        capture("build18-search-weather", app)
         app.buttons["editor.tool.weather"].tap()
         XCTAssertTrue(app.buttons["expanded.close"].waitForExistence(timeout: 15))
         app.buttons["expanded.close"].tap()
@@ -61,7 +62,7 @@ final class PelicanBrandUITests: XCTestCase {
         search.typeText("zznomatch123\n")
         XCTAssertTrue(app.staticTexts["没有找到相关功能"].waitForExistence(timeout: 10))
         XCTAssertTrue(app.buttons["editor.tool.review"].isHittable)
-        capture("build16-search-empty", app)
+        capture("build18-search-empty", app)
         app.buttons["tools.search.clear"].tap()
         XCTAssertTrue(app.buttons["tools.category.common"].exists)
         XCTAssertTrue(app.buttons["editor.tool.character"].exists)
@@ -72,19 +73,19 @@ final class PelicanBrandUITests: XCTestCase {
         let app = launch("settings", demo: false)
         defer { app.terminate() }
         XCTAssertTrue(app.staticTexts["鹈鹕修改器"].waitForExistence(timeout: 30))
-        capture("build16-settings", app)
+        capture("build18-settings", app)
         try tapByScrolling(app.buttons["settings.qq.copy"], app)
         XCTAssertTrue(app.staticTexts["settings.qq.copied"].waitForExistence(timeout: 10))
         XCTAssertEqual(app.buttons["settings.qq.copy"].value as? String, "已复制群号")
         try tapByScrolling(app.buttons["settings.qq.qrcode"], app)
         XCTAssertTrue(app.buttons["settings.qq.close"].waitForExistence(timeout: 10))
         XCTAssertTrue(app.images["settings.qq.fullImage"].exists)
-        capture("build16-qq-full", app)
+        capture("build18-qq-full", app)
         try tapByScrolling(app.buttons["settings.qq.share"], app)
         let covered = NSPredicate(format: "hittable == false")
         XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: covered,
             object: app.buttons["settings.qq.close"])], timeout: 10), .completed)
-        capture("build16-qq-share", app)
+        capture("build18-qq-share", app)
     }
 
     @MainActor
@@ -101,12 +102,12 @@ final class PelicanBrandUITests: XCTestCase {
         try revealDirectoryControl(entry, in: app)
         XCTAssertLessThanOrEqual(entry.frame.width, 375)
         XCTAssertTrue(app.buttons["editor.tool.review"].isHittable)
-        capture("build16-tools-accessibility-dark", app)
+        capture("build18-tools-accessibility-dark", app)
         app.terminate()
         _ = launch("settings", demo: false, extra: extra)
         try tapByScrolling(app.buttons["settings.qq.copy"], app)
         XCTAssertTrue(app.staticTexts["settings.qq.copied"].waitForExistence(timeout: 10))
-        capture("build16-settings-accessibility-dark", app)
+        capture("build18-settings-accessibility-dark", app)
     }
 
     @MainActor

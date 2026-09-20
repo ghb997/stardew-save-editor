@@ -31,7 +31,7 @@ struct RecipesEditorView: View {
 
     var body: some View {
         NavigationStack {
-            List {
+            GameList {
                 Section {
                     Picker("分类", selection: $selectedKind) {
                         ForEach(RecipeKind.allCases) { kind in
@@ -73,7 +73,7 @@ struct RecipesEditorView: View {
                                     ) {
                                         Text(session.draft.recipes[index].key)
                                             .font(.caption)
-                                            .foregroundStyle(.secondary)
+                                            .foregroundStyle(AppTheme.secondary)
                                     }
                                 }
                             }
@@ -137,7 +137,7 @@ struct RecipeArtworkView: View {
             }
         }
         .frame(width: size, height: size)
-        .background(Color(.secondarySystemBackground), in: RoundedRectangle(cornerRadius: 8))
+        .gameInset(AppTheme.inset)
         .accessibilityHidden(true)
     }
 }

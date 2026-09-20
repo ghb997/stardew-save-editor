@@ -17,7 +17,7 @@ struct CollectionLibraryView: View {
     }
     var body: some View {
         NavigationStack {
-            List {
+            GameList {
                 Section {
                     Picker("收藏分类", selection: $kind) {
                         ForEach(CollectionKind.allCases) { Text($0.rawValue).tag($0) }
@@ -26,7 +26,7 @@ struct CollectionLibraryView: View {
                         Text("全部").tag(CollectionState?.none)
                         ForEach(CollectionState.allCases) { Text($0.rawValue).tag(Optional($0)) }
                     }.accessibilityIdentifier("collection.state")
-                    Text(kind.scope).font(.caption).foregroundStyle(.secondary)
+                    Text(kind.scope).font(.caption).foregroundStyle(AppTheme.secondary)
                     if let current {
                         LabeledContent("目录内已有记录", value: "\(current.entries.filter { $0.state == .recorded }.count) / \(current.entries.count)")
                         ForEach(current.notes, id: \.self) { Text($0).font(.caption).foregroundStyle(.orange) }
@@ -39,7 +39,7 @@ struct CollectionLibraryView: View {
                                 CatalogItemArtworkView(item: entry.item)
                                 VStack(alignment: .leading, spacing: 4) {
                                     Text(entry.item.displayName).font(.headline)
-                                    Text("\(entry.state.rawValue) · ID \(entry.item.id)").font(.caption).foregroundStyle(.secondary)
+                                    Text("\(entry.state.rawValue) · ID \(entry.item.id)").font(.caption).foregroundStyle(AppTheme.secondary)
                                 }
                                 Spacer()
                                 if entry.state == .recorded { Image(systemName: "checkmark.circle.fill").foregroundStyle(.green) }
@@ -67,7 +67,7 @@ private struct CollectionItemSheet: View {
     @State private var message: String?
     var body: some View {
         NavigationStack {
-            Form {
+            GameForm {
                 Section {
                     HStack { Spacer(); CatalogItemArtworkView(item: entry.item, size: 80); Spacer() }
                     LabeledContent("物品", value: entry.item.displayName)
@@ -86,7 +86,7 @@ private struct CollectionItemSheet: View {
                         message = "已加入背包草稿，请在检查与保存中确认。"
                     }.accessibilityIdentifier("collection.supply")
                     Text("补给物品不会直接更改发现、捕获、出货或捐赠记录；请在游戏内完成相应操作。")
-                        .font(.caption).foregroundStyle(.secondary)
+                        .font(.caption).foregroundStyle(AppTheme.secondary)
                     if let message { Text(message).accessibilityIdentifier("collection.feedback") }
                 }
             }

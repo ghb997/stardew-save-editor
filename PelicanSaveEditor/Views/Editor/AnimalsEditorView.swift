@@ -14,7 +14,7 @@ struct AnimalsEditorView: View {
                         message: "动物仍可能存在于模组自定义结构中；应用不会猜测未知节点。"
                     )
                 } else {
-                    List {
+                    GameList {
                         Section {
                             Button("全部恢复最佳状态", systemImage: "sparkles") {
                                 showingMaxConfirmation = true
@@ -37,10 +37,10 @@ struct AnimalsEditorView: View {
                                             .font(.headline)
                                         Text("\(session.draft.animals[index].localizedType) · \(session.draft.animals[index].home)")
                                             .font(.caption)
-                                            .foregroundStyle(.secondary)
+                                            .foregroundStyle(AppTheme.secondary)
                                         if GameArtwork.animalImage(type: session.draft.animals[index].type) == nil {
                                             Text("缺少该动物的原版贴图，无预览")
-                                                .font(.caption2).foregroundStyle(.secondary)
+                                                .font(.caption2).foregroundStyle(AppTheme.secondary)
                                         }
                                     }
                                     Spacer()
@@ -86,7 +86,7 @@ private struct AnimalDetailEditorView: View {
     let index: Int
 
     var body: some View {
-        Form {
+        GameForm {
             Section {
                 HStack(spacing: 16) {
                     AnimalPreview(type: session.draft.animals[index].type, size: 56)
@@ -95,10 +95,10 @@ private struct AnimalDetailEditorView: View {
                             .font(.headline)
                         Text(session.draft.animals[index].home)
                             .font(.caption)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(AppTheme.secondary)
                         if GameArtwork.animalImage(type: session.draft.animals[index].type) == nil {
                             Text("缺少原版动物贴图；下方为存档实际数据。")
-                                .font(.caption).foregroundStyle(.secondary)
+                                .font(.caption).foregroundStyle(AppTheme.secondary)
                         }
                     }
                 }
@@ -218,12 +218,12 @@ private struct AnimalPreview: View {
             } else {
                 Text("无预览")
                     .font(.caption2)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.secondary)
                     .multilineTextAlignment(.center)
             }
         }
         .frame(width: size, height: size)
-        .background(Color(.secondarySystemBackground), in: RoundedRectangle(cornerRadius: 10))
+        .gameInset(AppTheme.inset)
         .accessibilityLabel(GameArtwork.animalImage(type: type) == nil
                             ? "\(type)，缺少原版动物贴图，无预览" : "\(type)，游戏原版贴图")
     }

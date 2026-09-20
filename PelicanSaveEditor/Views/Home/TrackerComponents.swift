@@ -170,7 +170,7 @@ struct TrackerDetailCard<Content: View>: View {
                         .font(.caption.bold())
                         .foregroundStyle(AppTheme.trackerSecondary)
                 }
-                .foregroundStyle(.primary)
+                .foregroundStyle(AppTheme.ink)
                 .padding(.horizontal, 18)
                 .padding(.vertical, 15)
                 .contentShape(Rectangle())
@@ -188,12 +188,8 @@ struct TrackerDetailCard<Content: View>: View {
                 .transition(.opacity.combined(with: .move(edge: .top)))
             }
         }
-        .background(AppTheme.card, in: RoundedRectangle(cornerRadius: 21, style: .continuous))
-        .overlay {
-            RoundedRectangle(cornerRadius: 21, style: .continuous)
-                .stroke(Color(.separator).opacity(0.38), lineWidth: 1)
-        }
-        .clipShape(RoundedRectangle(cornerRadius: 21, style: .continuous))
+        .gamePanel(AppTheme.card)
+        .clipShape(GamePixelShape(cornerRadius: 21, style: .continuous))
     }
 }
 
@@ -216,7 +212,7 @@ struct TrackerDetailDataRow: View {
                 }
             }
             .frame(width: 42, height: 42)
-            .background(Color(.systemBackground).opacity(0.78), in: RoundedRectangle(cornerRadius: 11))
+            .background(AppTheme.card.opacity(0.78), in: GamePixelShape(cornerRadius: 11))
 
             if dynamicTypeSize.isAccessibilitySize {
                 VStack(alignment: .leading, spacing: 5) {
@@ -237,10 +233,6 @@ struct TrackerDetailDataRow: View {
         }
         .accessibilityElement(children: .combine)
         .padding(12)
-        .background(AppTheme.trackerRow, in: RoundedRectangle(cornerRadius: 15, style: .continuous))
-        .overlay {
-            RoundedRectangle(cornerRadius: 15, style: .continuous)
-                .stroke(Color(.separator).opacity(0.22), lineWidth: 1)
-        }
+        .gameInset(AppTheme.trackerRow)
     }
 }

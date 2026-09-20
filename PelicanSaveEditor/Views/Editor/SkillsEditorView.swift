@@ -5,7 +5,7 @@ struct SkillsEditorView: View {
 
     var body: some View {
         NavigationStack {
-            Form {
+            GameForm {
                 Section {
                     HStack(spacing: 14) {
                         GameAssetIcon(assetName: "GameUISkillFarming", size: 40)
@@ -16,7 +16,7 @@ struct SkillsEditorView: View {
                                 .font(.headline)
                             Text("五项技能会作为同一份草稿安全写回")
                                 .font(.caption)
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(AppTheme.secondary)
                         }
                     }
                 } footer: {

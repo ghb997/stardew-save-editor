@@ -34,7 +34,7 @@ struct FarmEntityListView: View {
 
     var body: some View {
         NavigationStack {
-            List {
+            GameList {
                 Section {
                     Picker("对象类型", selection: $query.kind) {
                         Text("全部类型").tag(nil as FarmEntityKind?)
@@ -57,10 +57,10 @@ struct FarmEntityListView: View {
                         }
                     }
                     Text("匹配 \(entities.count) 个 · 全图待处理 \(snapshot.affectedEntities(by: actions).count) 个")
-                        .font(.caption).foregroundStyle(.secondary)
+                        .font(.caption).foregroundStyle(AppTheme.secondary)
                         .accessibilityIdentifier("editor.map.matchCount")
                     Text("范围操作只处理下方匹配对象；预览确认后加入草稿。")
-                        .font(.caption).foregroundStyle(.secondary)
+                        .font(.caption).foregroundStyle(AppTheme.secondary)
                     ForEach(FarmScopedAction.allCases) { action in
                         let candidates = action.candidates(entities, actions: actions)
                         Button("预览\(action.title)（\(candidates.count)）") {
@@ -104,10 +104,10 @@ struct FarmEntityListView: View {
                         let index = axis * 2 + edge
                         TextField(edge == 0 ? "起点" : "终点", text: $bounds[index])
                             .keyboardType(.numbersAndPunctuation)
-                            .textFieldStyle(.roundedBorder)
+                            .textFieldStyle(GameTextFieldStyle())
                             .accessibilityLabel("\(axis == 0 ? "X" : "Y") \(edge == 0 ? "起点" : "终点")")
                             .accessibilityIdentifier("editor.map.region.\(index)")
-                        if edge == 0 { Text("至").foregroundStyle(.secondary) }
+                        if edge == 0 { Text("至").foregroundStyle(AppTheme.secondary) }
                     }
                 }
             }
@@ -130,14 +130,14 @@ struct FarmEntityListView: View {
                 }
             }
             Text(entity.coordinateDescription).font(.subheadline.monospacedDigit())
-            if let detail = entity.detail { Text(detail).font(.caption).foregroundStyle(.secondary) }
+            if let detail = entity.detail { Text(detail).font(.caption).foregroundStyle(AppTheme.secondary) }
             FarmEntityActionButton(entity: entity, actions: $actions)
             if let onLocate, entity.tileX != nil, entity.tileY != nil {
                 Button("在地图中定位", systemImage: "scope") {
                     onLocate(entity)
                     dismiss()
                 }
-                .buttonStyle(.bordered)
+                .buttonStyle(GameButtonStyle())
                 .accessibilityIdentifier("editor.map.locate.\(entity.id)")
             }
         }
@@ -164,11 +164,11 @@ struct FarmEntityActionButton: View {
                 actions.toggle(entity)
             }
             .font(.caption.weight(.semibold))
-            .buttonStyle(.bordered)
+            .buttonStyle(GameButtonStyle())
             .disabled(covered)
             .accessibilityIdentifier("editor.map.entity.action.\(entity.id)")
         } else {
-            Text("只读对象").font(.caption).foregroundStyle(.secondary)
+            Text("只读对象").font(.caption).foregroundStyle(AppTheme.secondary)
         }
     }
 }
@@ -186,13 +186,13 @@ private struct FarmActionPreview: View {
 
     var body: some View {
         NavigationStack {
-            List {
+            GameList {
                 Section {
                     Text("将\(request.action.title) \(request.entities.count) 个对象")
                         .font(.headline)
                         .accessibilityIdentifier("editor.map.preview.count")
                     Text("仅包含本次筛选中尚未加入草稿的可操作对象。确认后仍需检查并保存。")
-                        .font(.caption).foregroundStyle(.secondary)
+                        .font(.caption).foregroundStyle(AppTheme.secondary)
                     Button("确认加入草稿") {
                         actions.apply(request.action, to: request.entities)
                         dismiss()
@@ -203,7 +203,7 @@ private struct FarmActionPreview: View {
                     ForEach(request.entities) { entity in
                         VStack(alignment: .leading, spacing: 4) {
                             Text(entity.label)
-                            Text(entity.coordinateDescription).font(.caption.monospacedDigit()).foregroundStyle(.secondary)
+                            Text(entity.coordinateDescription).font(.caption.monospacedDigit()).foregroundStyle(AppTheme.secondary)
                         }
                     }
                 }

@@ -35,14 +35,14 @@ struct ExpandedEditorShell: View {
                     .fixedSize(horizontal: false, vertical: true)
                 Spacer()
                 Button("返回工具", systemImage: "xmark") { dismiss() }
-                    .labelStyle(.iconOnly).buttonStyle(.bordered).frame(minWidth: 44, minHeight: 44)
+                    .labelStyle(.iconOnly).buttonStyle(GameButtonStyle()).frame(minWidth: 44, minHeight: 44)
                     .accessibilityIdentifier("expanded.close")
             }
-            .padding(.horizontal).padding(.vertical, 10).readablePageWidth(AppLayout.editorWidth).background(.bar)
+            .padding(.horizontal).padding(.vertical, 10).readablePageWidth(AppLayout.editorWidth).gameBar()
             content.readablePageWidth(AppLayout.editorWidth)
             DraftReviewBar(session: session) { review = true }
         }
-        .background(AppTheme.canvas)
+        .background(GamePageBackdrop())
         .fullScreenCover(isPresented: $review) { EditorShellView(session: session, section: .review) }
         .disabled(store.isBusy).interactiveDismissDisabled(store.isBusy).operationFeedback()
 #if DEBUG

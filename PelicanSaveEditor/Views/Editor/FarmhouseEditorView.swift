@@ -8,7 +8,7 @@ struct FarmhouseEditorView: View {
 
     var body: some View {
         NavigationStack {
-            Form {
+            GameForm {
                 Section {
                     ZStack(alignment: .bottomLeading) {
                         Image("GameFarmBackdrop")
@@ -34,7 +34,7 @@ struct FarmhouseEditorView: View {
                         .padding(16)
                     }
                     .frame(height: 190)
-                    .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
+                    .clipShape(GamePixelShape(cornerRadius: 18, style: .continuous))
                     .listRowInsets(EdgeInsets())
                     .listRowBackground(Color.clear)
                 }
@@ -51,7 +51,7 @@ struct FarmhouseEditorView: View {
                         }
 
                         LabeledContent("对应布局", value: levelDetail(upgradeLevelBinding.wrappedValue))
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(AppTheme.secondary)
 
                         if let originalLevel = session.originalDraft.farmhouse.upgradeLevel,
                            originalLevel != upgradeLevelBinding.wrappedValue {
@@ -76,10 +76,10 @@ struct FarmhouseEditorView: View {
                 if session.draft.farmhouse.decorations.isEmpty {
                     Section("房间装饰") {
                         GameLabel("这份存档没有可安全编辑的现有墙纸/地板字段。", systemImage: "paintbrush.pointed")
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(AppTheme.secondary)
                         Text("应用只编辑已经存在的房间条目，不会猜测或伪造未知 XML 结构。")
                             .font(.footnote)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(AppTheme.secondary)
                     }
                 } else {
                     Section {
@@ -87,7 +87,7 @@ struct FarmhouseEditorView: View {
                             .autocorrectionDisabled()
                             .accessibilityIdentifier("editor.house.roomSearch")
                         Text("\(Set(visibleDecorations.map(\.roomKey)).count) 个房间 · \(visibleDecorations.count) 个表面")
-                            .font(.caption).foregroundStyle(.secondary)
+                            .font(.caption).foregroundStyle(AppTheme.secondary)
                         FarmhouseBlueprint(
                             decorations: visibleDecorations,
                             selectedDecorationID: $selectedDecorationID
@@ -310,12 +310,12 @@ private struct FarmhouseBlueprint: View {
                         Text(surfaces.map { "\($0.kind.displayName) #\($0.styleIndex)" }.joined(separator: " · "))
                             .font(.caption2)
                     }
-                    .foregroundStyle(.primary)
+                    .foregroundStyle(AppTheme.ink)
                     .padding(10)
-                    .background(Color(.secondarySystemBackground), in: RoundedRectangle(cornerRadius: 12))
+                    .gameInset(AppTheme.inset)
                     .overlay {
-                        RoundedRectangle(cornerRadius: 12)
-                            .stroke(selected ? .orange : Color.primary.opacity(0.15), lineWidth: selected ? 3 : 1)
+                        GamePixelShape(cornerRadius: 12)
+                            .stroke(selected ? .orange : AppTheme.ink.opacity(0.15), lineWidth: selected ? 3 : 1)
                     }
                 }
                 .buttonStyle(.plain)
@@ -344,13 +344,13 @@ struct RoomStyleSwatch: View {
                 Text("\(style)")
                     .font(.caption2.bold().monospacedDigit())
                     .padding(.horizontal, 5)
-                    .background(.regularMaterial, in: Capsule())
+                    .background(AppTheme.card, in: GamePixelShape(cornerRadius: 4))
                     .padding(3)
             }
-            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .clipShape(GamePixelShape(cornerRadius: 8))
             .overlay {
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(isSelected ? .orange : Color.primary.opacity(0.15), lineWidth: isSelected ? 3 : 1)
+                GamePixelShape(cornerRadius: 8)
+                    .stroke(isSelected ? .orange : AppTheme.ink.opacity(0.15), lineWidth: isSelected ? 3 : 1)
             }
     }
 }
@@ -363,7 +363,7 @@ private struct RoomSurfacePreview: View {
             RoomTexturePreview(style: decoration.styleIndex, kind: decoration.kind)
                 .frame(height: 96)
                 .clipped()
-                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .clipShape(GamePixelShape(cornerRadius: 12))
             Text("\(decoration.kind.displayName) \(decoration.styleIndex) · \(hasTexture ? "游戏原版贴图" : "无贴图预览")")
                 .font(.caption2.weight(.medium))
                 .fixedSize(horizontal: false, vertical: true)
@@ -399,7 +399,7 @@ private struct RoomTexturePreview: View {
                 Text("无贴图预览").font(.caption2)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color(.secondarySystemBackground))
+            .background(AppTheme.inset)
         }
     }
 }

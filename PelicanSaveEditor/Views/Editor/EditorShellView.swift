@@ -121,7 +121,7 @@ struct EditorShellView: View {
                         .fixedSize(horizontal: false, vertical: true)
                     Text("\(session.draft.farmName.isEmpty ? session.source.farmIdentifier : session.draft.farmName) · \(session.draft.playerName)")
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.secondary)
                         .fixedSize(horizontal: false, vertical: true)
                     if session.hasChanges {
                         Text("\(session.diffs.count) 项待保存")
@@ -134,14 +134,14 @@ struct EditorShellView: View {
                     dismiss()
                 }
                 .labelStyle(.iconOnly)
-                .buttonStyle(.bordered)
+                .buttonStyle(GameButtonStyle())
                 .frame(minWidth: 44, minHeight: 44)
                 .accessibilityIdentifier("editor.shell.close")
             }
             .padding(.horizontal)
             .padding(.vertical, 10)
             .readablePageWidth(AppLayout.editorWidth)
-            .background(.bar)
+            .gameBar()
 
             editorContent
                 .readablePageWidth(AppLayout.editorWidth)
@@ -153,7 +153,7 @@ struct EditorShellView: View {
                 DraftReviewBar(session: session) { showingReview = true }
             }
         }
-        .background(AppTheme.canvas)
+        .background(GamePageBackdrop())
         .fullScreenCover(isPresented: $showingReview) {
             EditorShellView(session: session, section: .review)
         }

@@ -11,9 +11,9 @@ struct HomeView: View {
             FarmDateHeader(session: store.session)
 
             ScrollView {
-                VStack(alignment: .leading, spacing: 26) {
+                VStack(alignment: .leading, spacing: 22) {
                     Text("今日概览")
-                        .font(.title2.bold())
+                        .font(.system(.title2, design: .monospaced).bold())
 
                     if let session = store.session {
                         loadedFarmCard(session)
@@ -33,7 +33,7 @@ struct HomeView: View {
                 .padding(.bottom, 34)
                 .readablePageWidth()
             }
-            .background(AppTheme.canvas)
+            .background(GamePageBackdrop())
         }
         .fullScreenCover(isPresented: $showingMagicMap) {
             if let session = store.session {
@@ -49,14 +49,14 @@ struct HomeView: View {
             HStack(alignment: .firstTextBaseline) {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(session.draft.playerName.isEmpty ? "未命名农夫" : session.draft.playerName)
-                        .font(.title2.bold())
+                        .font(.system(.title2, design: .monospaced).bold())
                     Text("农场：\(session.draft.farmName.isEmpty ? session.source.farmIdentifier : session.draft.farmName)")
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.secondary)
                 }
                 Spacer()
                 Text("v\(session.metadata.gameVersion)")
                     .font(.subheadline.weight(.medium))
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.secondary)
             }
 
             LazyVGrid(
@@ -93,18 +93,18 @@ struct HomeView: View {
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 6)
             }
-            .buttonStyle(.borderedProminent)
+            .buttonStyle(GameButtonStyle(prominent: true))
             .controlSize(.large)
             .tint(AppTheme.accent)
         }
         .padding(22)
-        .background(AppTheme.headerSoft, in: RoundedRectangle(cornerRadius: 24, style: .continuous))
+        .gamePanel(AppTheme.headerSoft)
     }
 
     private var quickActions: some View {
         VStack(alignment: .leading, spacing: 14) {
             Text("快捷入口")
-                .font(.title2.bold())
+                .font(.system(.title2, design: .monospaced).bold())
 
             LazyVGrid(columns: AppLayout.pairedColumns(for: typeSize), spacing: 14) {
                 HomeShortcut(
@@ -135,12 +135,12 @@ struct HomeView: View {
                 .font(.title3.bold())
             Text("在工具页加载《星露谷物语》1.6.x 存档后，这里会显示日期、农场和角色概览。")
                 .font(.subheadline)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.secondary)
                 .multilineTextAlignment(.center)
             Button("前往工具页加载") {
                 selectedTab = .tools
             }
-            .buttonStyle(.borderedProminent)
+            .buttonStyle(GameButtonStyle(prominent: true))
             .controlSize(.large)
             .tint(AppTheme.accent)
         }
@@ -159,7 +159,7 @@ struct HomeView: View {
                     .font(.headline)
                 Text("不会上传文件；保存副本前自动创建成对备份。修改后请导出两份文件并替换游戏存档。")
                     .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.secondary)
             }
         }
         .padding(20)
@@ -176,10 +176,10 @@ private struct FarmerPortraitCard: View {
             HStack {
                 VStack(alignment: .leading, spacing: 3) {
                     Text("外观存档参数")
-                        .font(.title2.bold())
+                        .font(.system(.title2, design: .monospaced).bold())
                     Text(session.draft.playerName.isEmpty ? "未命名农夫" : session.draft.playerName)
                         .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.secondary)
                 }
                 Spacer()
                 GameLabel(
@@ -222,7 +222,7 @@ private struct FarmerPortraitCard: View {
                     : "以上内容直接读取自主存档。"
             )
                 .font(.caption)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.secondary)
         }
         .padding(20)
         .appCard()
@@ -244,12 +244,12 @@ private struct AppearanceMetric: View {
                     .font(.headline.monospacedDigit())
                 Text(title)
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.secondary)
             }
             Spacer(minLength: 0)
         }
         .padding(14)
-        .background(Color.primary.opacity(0.045), in: RoundedRectangle(cornerRadius: 14))
+        .background(AppTheme.ink.opacity(0.045), in: GamePixelShape(cornerRadius: 14))
     }
 }
 
@@ -264,10 +264,10 @@ private struct FarmMapCard: View {
             HStack {
                 VStack(alignment: .leading, spacing: 3) {
                     Text("农场实体坐标")
-                        .font(.title2.bold())
+                        .font(.system(.title2, design: .monospaced).bold())
                     Text(session.draft.farmName.isEmpty ? session.source.farmIdentifier : session.draft.farmName)
                         .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.secondary)
                 }
                 Spacer()
                 Text(farmTypeName(session.metadata.farmType))
@@ -297,7 +297,8 @@ private struct FarmMapCard: View {
                 }
             }
             .frame(height: 184)
-            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+            .clipShape(GamePixelShape(cornerRadius: 8))
+            .overlay { GamePixelShape().strokeBorder(AppTheme.wood, lineWidth: 3) }
 
             if typeSize.isAccessibilitySize {
                 VStack(alignment: .leading, spacing: 8) { mapCounts }
@@ -310,14 +311,14 @@ private struct FarmMapCard: View {
                 systemImage: "scope"
             )
                 .font(.caption)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.secondary)
 
             Button(action: onOpen) {
                 GameLabel("打开魔法地图", systemImage: "wand.and.stars")
                     .font(.headline)
                     .frame(maxWidth: .infinity)
             }
-            .buttonStyle(.borderedProminent)
+            .buttonStyle(GameButtonStyle(prominent: true))
             .tint(.green)
 
             if let warning = snapshot.warnings.first {
@@ -383,16 +384,19 @@ private struct FarmDateHeader: View {
         }
         .multilineTextAlignment(.center)
         .fixedSize(horizontal: false, vertical: true)
-        .padding(.horizontal, 20)
-        .padding(.vertical, verticalSizeClass == .compact ? 8 : 24)
+        .padding(.horizontal, 24)
+        .padding(.vertical, verticalSizeClass == .compact ? 10 : 18)
         .foregroundStyle(AppTheme.title)
+        .background(GamePanel(fill: AppTheme.headerSoft))
+        .padding(.horizontal, 32)
+        .padding(.vertical, verticalSizeClass == .compact ? 6 : 16)
         .frame(maxWidth: .infinity)
-        .frame(minHeight: verticalSizeClass == .compact ? 64 : 130)
-        .background(AppTheme.header.ignoresSafeArea(edges: .top))
+        .frame(minHeight: verticalSizeClass == .compact ? 64 : 142)
+        .background(ValleyHeaderBackdrop())
     }
 
     private var headerFont: Font {
-        verticalSizeClass == .compact ? .title2.bold() : .largeTitle.bold()
+        .system(verticalSizeClass == .compact ? .title3 : .title, design: .monospaced).bold()
     }
 
     private func weekday(for draft: SaveDraft) -> String {
@@ -415,12 +419,12 @@ private struct MetricView: View {
                 GameAssetIcon(assetName: artworkName, size: 30)
             }
             Text(value)
-                .font(.title2.bold())
+                .font(.system(.title2, design: .monospaced).bold())
                 .lineLimit(typeSize.isAccessibilitySize ? nil : 1)
                 .minimumScaleFactor(0.7)
             Text(label)
                 .font(.caption)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.secondary)
         }
         .frame(maxWidth: .infinity)
     }
@@ -441,9 +445,9 @@ private struct HomeShortcut: View {
                     .font(.headline)
                 Text(subtitle)
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.secondary)
             }
-            .foregroundStyle(.primary)
+            .foregroundStyle(AppTheme.ink)
             .padding(.vertical, 20)
             .frame(maxWidth: .infinity)
             .appCard()

@@ -6,7 +6,7 @@ struct AppearanceColorsEditor: View {
     @State private var field: FarmerColorField = .hair
 
     var body: some View {
-        Form {
+        GameForm {
             Section {
                 Picker("颜色部位", selection: $field) {
                     ForEach(FarmerColorField.allCases) { field in
@@ -46,7 +46,7 @@ private struct AppearanceColorControls: View {
         Section("原始与当前") {
             comparisonLayout {
                 colorSample(original, title: "原始")
-                Image(systemName: typeSize.isAccessibilitySize ? "arrow.down" : "arrow.right").foregroundStyle(.secondary)
+                Image(systemName: typeSize.isAccessibilitySize ? "arrow.down" : "arrow.right").foregroundStyle(AppTheme.secondary)
                 colorSample(current, title: "当前草稿")
             }
             .frame(maxWidth: .infinity)
@@ -69,7 +69,7 @@ private struct AppearanceColorControls: View {
                     hexInput = ""
                 } label: {
                     Image(systemName: "xmark.circle.fill")
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.secondary)
                         .frame(width: 44, height: 44)
                 }
                 .buttonStyle(.borderless)
@@ -82,7 +82,7 @@ private struct AppearanceColorControls: View {
                 .disabled(FarmerColor(hex: hexInput, alpha: current.alpha) == nil)
                 .accessibilityIdentifier("editor.appearance.color.applyHex")
             Text("RGB：\(current.red) / \(current.green) / \(current.blue)")
-                .font(.caption.monospaced()).foregroundStyle(.secondary)
+                .font(.caption.monospaced()).foregroundStyle(AppTheme.secondary)
         } header: {
             Text(field.title)
         } footer: {
@@ -94,10 +94,10 @@ private struct AppearanceColorControls: View {
                     Button {
                         session.draft.appearanceColors[field] = FarmerColor(hex: hex, alpha: current.alpha)
                     } label: {
-                        RoundedRectangle(cornerRadius: 10)
+                        GamePixelShape(cornerRadius: 10)
                             .fill(FarmerColor(hex: hex)!.swiftUIColor)
                             .frame(height: 48)
-                            .overlay { RoundedRectangle(cornerRadius: 10).stroke(.secondary.opacity(0.3)) }
+                            .overlay { GamePixelShape(cornerRadius: 10).stroke(.secondary.opacity(0.3)) }
                             .overlay { if current.hex == "#" + hex { Image(systemName: "checkmark.circle.fill").foregroundStyle(.white, .black) } }
                     }
                     .buttonStyle(.plain)
@@ -121,9 +121,9 @@ private struct AppearanceColorControls: View {
 
     private func colorSample(_ color: FarmerColor, title: String) -> some View {
         VStack(spacing: 6) {
-            RoundedRectangle(cornerRadius: 12).fill(color.swiftUIColor).frame(height: 64)
-                .overlay { RoundedRectangle(cornerRadius: 12).stroke(.secondary.opacity(0.3)) }
-            Text(title).font(.caption).foregroundStyle(.secondary)
+            GamePixelShape(cornerRadius: 12).fill(color.swiftUIColor).frame(height: 64)
+                .overlay { GamePixelShape(cornerRadius: 12).stroke(.secondary.opacity(0.3)) }
+            Text(title).font(.caption).foregroundStyle(AppTheme.secondary)
             Text(color.hex).font(.caption.monospaced())
         }
     }

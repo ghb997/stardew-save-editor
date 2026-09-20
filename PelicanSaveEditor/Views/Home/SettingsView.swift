@@ -15,9 +15,9 @@ struct SettingsView: View {
                     HStack(spacing: 16) {
                         GameAssetIcon(assetName: "AppLogo", size: 60)
                         VStack(alignment: .leading, spacing: 5) {
-                            Text("鹈鹕修改器").font(.title2.bold())
+                            Text("鹈鹕修改器").font(.system(.title2, design: .monospaced).bold())
                             Text("星露谷物语 · 农场存档助手")
-                                .font(.subheadline).foregroundStyle(.secondary)
+                                .font(.subheadline).foregroundStyle(AppTheme.secondary)
                         }
                     }
                     .accessibilityIdentifier("settings.brand")
@@ -25,13 +25,13 @@ struct SettingsView: View {
                     if let session = store.session {
                         Text("农场")
                             .font(.headline)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(AppTheme.secondary)
                         farmCard(session)
                     }
 
                     Text("通用设置")
                         .font(.headline)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.secondary)
 
                     VStack(spacing: 0) {
                         SettingsRow(title: "语言", value: "简体中文", systemImage: "character.bubble")
@@ -57,7 +57,7 @@ struct SettingsView: View {
 
                     Text("关于")
                         .font(.headline)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.secondary)
 
                     VStack(spacing: 0) {
                         SettingsRow(
@@ -78,7 +78,7 @@ struct SettingsView: View {
 
                     Text("非官方个人工具；界面使用游戏内像素素材。修改存档前请完全退出游戏，并保留额外副本。")
                         .font(.footnote)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.secondary)
                         .padding(.horizontal, 4)
                 }
                 .padding(.horizontal, 20)
@@ -86,7 +86,7 @@ struct SettingsView: View {
                 .padding(.bottom, 20)
                 .readablePageWidth()
             }
-            .background(AppTheme.canvas)
+            .background(GamePageBackdrop())
         }
     }
 
@@ -105,7 +105,7 @@ struct SettingsView: View {
                     Text("\(session.diffs.count) 项待保存")
                 }
                 .font(.caption)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(AppTheme.secondary)
             }
 
             Button {
@@ -114,17 +114,17 @@ struct SettingsView: View {
                 GameLabel("在工具页管理农场", systemImage: "arrow.left.arrow.right")
                     .frame(maxWidth: .infinity)
             }
-            .buttonStyle(.bordered)
+            .buttonStyle(GameButtonStyle())
             .controlSize(.large)
             .tint(AppTheme.accent)
         }
         .padding(20)
-        .background(AppTheme.headerSoft, in: RoundedRectangle(cornerRadius: 22, style: .continuous))
+        .gamePanel(AppTheme.headerSoft)
     }
 
     private var appVersion: String {
-        let version = (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String) ?? "0.8.1"
-        let build = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String) ?? "17"
+        let version = (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String) ?? "0.9.0"
+        let build = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String) ?? "18"
         return "\(version) (\(build))"
     }
 
@@ -142,7 +142,7 @@ private struct SettingsRow: View {
 
     var body: some View {
         LabeledContent {
-            Text(value).foregroundStyle(.secondary)
+            Text(value).foregroundStyle(AppTheme.secondary)
                 .fixedSize(horizontal: false, vertical: true)
         } label: {
             HStack(spacing: 14) {
@@ -151,7 +151,7 @@ private struct SettingsRow: View {
                     GameAssetIcon(assetName: artworkName, size: 26)
                 } else {
                     GameIcon(systemName: systemImage)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.secondary)
                 }
             }
             .frame(width: 30)

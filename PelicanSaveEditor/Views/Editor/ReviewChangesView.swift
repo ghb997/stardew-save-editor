@@ -18,7 +18,7 @@ struct ReviewChangesView: View {
 
     var body: some View {
         NavigationStack {
-            List {
+            GameList {
                 Section {
                     LabeledContent("农场", value: session.source.farmIdentifier)
                     LabeledContent("游戏版本", value: session.metadata.gameVersion)
@@ -84,7 +84,7 @@ struct ReviewChangesView: View {
                                             Text(entity.label)
                                             Text(entity.coordinateDescription)
                                                 .font(.caption.monospacedDigit())
-                                                .foregroundStyle(.secondary)
+                                                .foregroundStyle(AppTheme.secondary)
                                         }
                                         .accessibilityElement(children: .combine)
                                     }
@@ -99,17 +99,17 @@ struct ReviewChangesView: View {
                                         if diff.affectsSaveGameInfo {
                                             Text("同步摘要")
                                                 .font(.caption2)
-                                                .foregroundStyle(.secondary)
+                                                .foregroundStyle(AppTheme.secondary)
                                         }
                                     }
                                     HStack(alignment: .firstTextBaseline) {
                                         Text(diff.oldValue)
-                                            .foregroundStyle(.secondary)
+                                            .foregroundStyle(AppTheme.secondary)
                                         GameIcon(systemName: "arrow.right", size: 14)
                                             .font(.caption)
-                                            .foregroundStyle(.secondary)
+                                            .foregroundStyle(AppTheme.secondary)
                                         Text(diff.newValue)
-                                            .foregroundStyle(.primary)
+                                            .foregroundStyle(AppTheme.ink)
                                     }
                                     .font(.subheadline)
                                     Button("撤销这项更改", systemImage: "arrow.uturn.backward") {

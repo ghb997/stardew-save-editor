@@ -12,20 +12,20 @@ struct EquipmentEditorView: View {
     }
     var body: some View {
         NavigationStack {
-            List {
+            GameList {
                 Section {
                     Text("编辑已有斧头、镐、锄头、喷壶的升级等级，以及武器和鞋子的现有属性。")
                     Text("数量、附魔、锻造和未列出的专属字段保持原样。保存后重新加载游戏，核对属性是否保留。")
-                        .font(.caption).foregroundStyle(.secondary)
+                        .font(.caption).foregroundStyle(AppTheme.secondary)
                 }
                 Section("可编辑装备 \(session.draft.equipment.count) 件") {
                     ForEach(visible) { item in
                         Button { selected = item } label: {
                             VStack(alignment: .leading, spacing: 5) {
                                 Text(item.name).font(.headline)
-                                Text(item.location).font(.caption).foregroundStyle(.secondary)
+                                Text(item.location).font(.caption).foregroundStyle(AppTheme.secondary)
                                 Text(item.fields.map { "\($0.title) \($0.formatted)" }.joined(separator: " · "))
-                                    .font(.caption).foregroundStyle(.secondary).lineLimit(3)
+                                    .font(.caption).foregroundStyle(AppTheme.secondary).lineLimit(3)
                             }
                             .padding(.vertical, 4)
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -56,7 +56,7 @@ private struct EquipmentEditSheet: View {
 
     var body: some View {
         NavigationStack {
-            Form {
+            GameForm {
                 Section {
                     Text(item.location).font(.subheadline)
                     ForEach(item.fields.indices, id: \.self) { index in
@@ -81,7 +81,7 @@ private struct EquipmentEditSheet: View {
                                         .accessibilityIdentifier("equipment.clear.\(field.id)")
                                 }
                                 Text("范围 \(field.minimum.formatted())–\(field.maximum.formatted())")
-                                    .font(.caption).foregroundStyle(.secondary)
+                                    .font(.caption).foregroundStyle(AppTheme.secondary)
                             }
                         }
                     }
@@ -93,7 +93,7 @@ private struct EquipmentEditSheet: View {
                         error = nil
                     }.accessibilityIdentifier("equipment.restore")
                     Text("加入草稿后，可在检查与保存中逐项撤销。取消此弹窗会放弃本次输入。")
-                        .font(.caption).foregroundStyle(.secondary)
+                        .font(.caption).foregroundStyle(AppTheme.secondary)
                     if let error { Text(error).foregroundStyle(.red).accessibilityIdentifier("equipment.error") }
                 }
             }

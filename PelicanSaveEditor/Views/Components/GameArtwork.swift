@@ -385,7 +385,7 @@ struct GameItemIcon: View {
             }
         }
         .frame(width: size, height: size)
-        .background(Color(.secondarySystemBackground), in: RoundedRectangle(cornerRadius: size * 0.22))
+        .background(AppTheme.inset, in: GamePixelShape(cornerRadius: size * 0.22))
         .accessibilityHidden(true)
     }
 }
@@ -420,7 +420,7 @@ struct GameAnimalPortrait: View {
             } else {
                 Text("无预览")
                     .font(.system(size: max(9, min(12, size / 4))))
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(AppTheme.secondary)
                     .multilineTextAlignment(.center)
             }
         }.frame(width: size, height: size)
@@ -435,7 +435,7 @@ struct GameNPCPortrait: View {
         Group {
             if let image = GameArtwork.npcPortrait(name: name) {
                 Image(uiImage: image).resizable().interpolation(.none).scaledToFit()
-            } else { Text("无预览").font(.caption2).foregroundStyle(.secondary) }
+            } else { Text("无预览").font(.caption2).foregroundStyle(AppTheme.secondary) }
         }.frame(width: size, height: size).accessibilityHidden(true)
     }
 }

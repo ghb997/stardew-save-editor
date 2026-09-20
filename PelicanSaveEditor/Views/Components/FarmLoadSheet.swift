@@ -14,9 +14,9 @@ struct FarmLoadSheet: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 22) {
-                    Text("导入你的农场").font(.title2.bold())
+                    Text("导入你的农场").font(.system(.title2, design: .monospaced).bold())
                     Text("先完全退出游戏，再从同一个农场文件夹中同时选择以下两个文件。")
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(AppTheme.secondary)
                     VStack(alignment: .leading, spacing: 16) {
                         fileRow("主存档", detail: "通常为「农场名称_数字」，没有扩展名", symbol: "doc.text")
                         Divider()
@@ -32,14 +32,14 @@ struct FarmLoadSheet: View {
                             .font(.headline)
                             .frame(maxWidth: .infinity, minHeight: 44)
                     }
-                    .buttonStyle(.borderedProminent)
+                    .buttonStyle(GameButtonStyle(prominent: true))
                     .controlSize(.large)
                     .tint(AppTheme.accent)
                     .accessibilityIdentifier("farm.load.copy")
                     VStack(alignment: .leading, spacing: 8) {
                         Label("修改后如何放回游戏", systemImage: "square.and.arrow.up").font(.headline)
                         Text("编辑的是应用内副本。完成修改后，在「检查与保存」中保存并导出两份文件，放回游戏原农场文件夹，替换同名文件。")
-                            .font(.subheadline).foregroundStyle(.secondary)
+                            .font(.subheadline).foregroundStyle(AppTheme.secondary)
                     }
                 }
                 .fixedSize(horizontal: false, vertical: true)
@@ -47,7 +47,7 @@ struct FarmLoadSheet: View {
                 .readablePageWidth(680)
             }
             .accessibilityIdentifier("farm.load.options")
-            .background(AppTheme.canvas)
+            .background(GamePageBackdrop())
             .navigationTitle("加载农场")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -68,7 +68,7 @@ struct FarmLoadSheet: View {
             Image(systemName: symbol).font(.title2).foregroundStyle(AppTheme.accent)
             VStack(alignment: .leading, spacing: 5) {
                 Text(title).font(.headline)
-                Text(detail).font(.subheadline).foregroundStyle(.secondary)
+                Text(detail).font(.subheadline).foregroundStyle(AppTheme.secondary)
             }
         }
     }

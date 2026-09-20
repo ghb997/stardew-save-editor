@@ -37,7 +37,7 @@ struct RootView: View {
                 Color.black.opacity(0.18).ignoresSafeArea()
                 ProgressView(store.busyMessage)
                     .padding(24)
-                    .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 18))
+                    .background(GamePanel())
             }
         }
         .disabled(store.isBusy)
@@ -123,34 +123,32 @@ struct RootView: View {
             HomeView(selectedTab: $selectedTab)
                 .tag(MainTab.home)
                 .tabItem {
-                    Label("主页", systemImage: "house.fill")
+                    Label { Text("主页") } icon: { Image(uiImage: AppTheme.tabImage("GameUIFarmhouse")) }
                 }
 
             TrackerView(selectedTab: $selectedTab)
                 .tag(MainTab.tracker)
                 .tabItem {
-                    Label("追踪", systemImage: "trophy.fill")
+                    Label { Text("追踪") } icon: { Image(uiImage: AppTheme.tabImage("GameUITrophy")) }
                 }
 
             ToolsView()
                 .tag(MainTab.tools)
                 .badge(store.session?.diffs.count ?? 0)
                 .tabItem {
-                    Label("工具", systemImage: "hammer.fill")
+                    Label { Text("工具") } icon: { Image(uiImage: AppTheme.tabImage("GameUISkillMining")) }
                 }
 
             SettingsView(selectedTab: $selectedTab)
                 .tag(MainTab.settings)
                 .tabItem {
-                    Label("设置", systemImage: "gearshape.fill")
+                    Label { Text("设置") } icon: { Image(uiImage: AppTheme.tabImage("GameUIFarmComputer")) }
                 }
         }
-        // UITabBar reads an icon's intrinsic UIImage size and does not honor
-        // layout frames inside a custom SwiftUI label. Native tab symbols keep
-        // every item inside the system-managed bar on iPhone and iPad.
-        .tint(selectedTab == .tracker ? AppTheme.trackerAccent : AppTheme.accent)
+        // Pre-sized original sprites retain native tab navigation and accessibility.
+        .tint(AppTheme.accent)
         .toolbarBackground(.visible, for: .tabBar)
-        .toolbarBackground(Color(.systemBackground), for: .tabBar)
+        .toolbarBackground(AppTheme.card, for: .tabBar)
     }
 
     private var preferredColorScheme: ColorScheme? {

@@ -2,7 +2,9 @@
 
 一款个人使用的原生 iOS 17+《星露谷物语》1.6 存档编辑器，所有存档处理在设备本地完成。
 
-源码版本：`0.8.1`（构建 `17`）
+源码版本：`0.9.0`（构建 `18`）
+
+构建 18 将全软件界面统一为星露谷风格：像素木框、羊皮纸面板、山谷页头、游戏素材底栏和日间/夜间配色。改动与验证范围见 [界面改版说明](VALLEY_UI.md)。以下构建 17 及更早数据为历史验证记录。
 
 构建 17 修复复制导入两份存档文件后第一次选择可能不识别的问题，并增加选择回调、关闭回调及取消操作的时序回归测试。Release arm64 IPA 已编译校验；iPhone 159 项及 iPad mini 6 项测试全部通过。构建 16 完成名称、图标、QQ 群、单一复制导入入口与工具页整理。使用方式见 [安装与使用](START_HERE.md)，完整证据见 [构建 17 验证记录](validation/BUILD17_VERIFICATION.md)。
 
@@ -63,7 +65,7 @@
 
 使用 macOS、Xcode 16+ 打开 `PelicanSaveEditor.xcodeproj`；工程已注册所有源文件。选择自己的签名 Team 后运行到 iOS 17+ 设备。源码包不包含证书或签名资料。
 
-- 静态工程与资源检查：`python3 scripts/verify_release.py --version 0.8.1 --build 17`
+- 静态工程与资源检查：`python3 scripts/verify_release.py --version 0.9.0 --build 18`
 - 可选 Swift 语法扫描：`python3 scripts/check_swift_syntax.py`（需要 tree-sitter 0.26.0、tree-sitter-swift 0.7.3）
 - 原生编译及全部测试：`bash scripts/validate-on-macos.sh`
 - 未签名 IPA：`bash scripts/build-unsigned-ipa.sh`

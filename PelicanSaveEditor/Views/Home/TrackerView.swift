@@ -22,7 +22,7 @@ struct TrackerView: View {
                     .padding(.horizontal, 16)
                     .padding(.vertical, 10)
                     .readablePageWidth()
-                    .background(AppTheme.canvas)
+                    .background(GamePageBackdrop())
             }
 
             ScrollViewReader { proxy in
@@ -45,7 +45,7 @@ struct TrackerView: View {
                     .padding(.bottom, 20)
                     .readablePageWidth()
                 }
-                .background(AppTheme.canvas)
+                .background(GamePageBackdrop())
                 .onChange(of: selectedFilter) { _, _ in
                     proxy.scrollTo("tracker.top", anchor: .top)
                 }
@@ -75,11 +75,11 @@ struct TrackerView: View {
             farmHeaderLayout {
                 GameAssetIcon(assetName: "GameUIFarmhouse", size: 42)
                     .padding(5)
-                    .background(Color(.tertiarySystemBackground), in: RoundedRectangle(cornerRadius: 16))
+                    .gameInset(AppTheme.inset)
 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(session.draft.farmName.isEmpty ? session.source.farmIdentifier : session.draft.farmName)
-                        .font(.title2.bold())
+                        .font(.system(.title2, design: .monospaced).bold())
                         .fixedSize(horizontal: false, vertical: true)
                     Text(session.draft.playerName.isEmpty ? "未命名农夫" : session.draft.playerName)
                         .font(.subheadline)
@@ -92,7 +92,7 @@ struct TrackerView: View {
                     .foregroundStyle(AppTheme.trackerAccent)
                     .padding(.horizontal, 10)
                     .padding(.vertical, 7)
-                    .background(Color(.systemBackground).opacity(0.72), in: Capsule())
+                    .background(AppTheme.card.opacity(0.72), in: GamePixelShape(cornerRadius: 4))
             }
 
             Divider()
@@ -122,16 +122,12 @@ struct TrackerView: View {
                     .foregroundStyle(AppTheme.trackerWarning)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(12)
-                    .background(Color.orange.opacity(0.12), in: RoundedRectangle(cornerRadius: 12))
+                    .background(Color.orange.opacity(0.12), in: GamePixelShape(cornerRadius: 12))
             }
         }
         .foregroundStyle(AppTheme.trackerTitle)
         .padding(16)
-        .background(AppTheme.trackerHeaderSoft, in: RoundedRectangle(cornerRadius: 24, style: .continuous))
-        .overlay {
-            RoundedRectangle(cornerRadius: 24, style: .continuous)
-                .stroke(AppTheme.trackerAccent.opacity(0.14), lineWidth: 1)
-        }
+        .gamePanel(AppTheme.trackerHeaderSoft)
         .accessibilityIdentifier("tracker.farmSummary")
     }
 
@@ -159,19 +155,14 @@ struct TrackerView: View {
                     } label: {
                         Text(filter.title)
                             .font(.subheadline.weight(.semibold))
-                            .foregroundStyle(selectedFilter == filter ? AppTheme.trackerTitle : Color.primary)
+                            .foregroundStyle(selectedFilter == filter ? AppTheme.trackerTitle : AppTheme.ink)
                             .padding(.horizontal, 17)
                             .frame(minHeight: 44)
-                            .background(
-                                selectedFilter == filter ? AppTheme.trackerSelection : Color(.tertiarySystemFill),
-                                in: Capsule()
-                            )
-                            .overlay {
-                                Capsule()
-                                    .stroke(
-                                        selectedFilter == filter ? AppTheme.trackerAccent.opacity(0.12) : Color(.separator).opacity(0.42),
-                                        lineWidth: 1
-                                    )
+                            .background(GameInset(fill: selectedFilter == filter ? AppTheme.selection : AppTheme.card))
+                            .overlay(alignment: .bottom) {
+                                if selectedFilter == filter {
+                                    Rectangle().fill(AppTheme.accent).frame(height: 3).padding(.horizontal, 8)
+                                }
                             }
                     }
                     .buttonStyle(.plain)
@@ -212,7 +203,7 @@ struct TrackerView: View {
                         .font(.caption.bold())
                         .foregroundStyle(AppTheme.trackerSecondary)
                 }
-                .foregroundStyle(.primary)
+                .foregroundStyle(AppTheme.ink)
                 .padding(.horizontal, 18)
                 .padding(.vertical, 16)
                 .contentShape(Rectangle())
@@ -234,12 +225,8 @@ struct TrackerView: View {
                 .transition(.opacity.combined(with: .move(edge: .top)))
             }
         }
-        .background(AppTheme.card, in: RoundedRectangle(cornerRadius: 22, style: .continuous))
-        .overlay {
-            RoundedRectangle(cornerRadius: 22, style: .continuous)
-                .stroke(Color(.separator).opacity(0.38), lineWidth: 1)
-        }
-        .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
+        .gamePanel(AppTheme.card)
+        .clipShape(GamePixelShape(cornerRadius: 22, style: .continuous))
     }
 
     private func trackerSectionRow(_ section: SaveEditorSection, session: SaveSession) -> some View {
@@ -249,7 +236,7 @@ struct TrackerView: View {
             HStack(alignment: .top, spacing: 12) {
                 TrackerSectionArtwork(section: section, size: 44)
                     .frame(width: 52, height: 52)
-                    .background(Color(.systemBackground).opacity(0.78), in: RoundedRectangle(cornerRadius: 13))
+                    .background(AppTheme.card.opacity(0.78), in: GamePixelShape(cornerRadius: 13))
 
                 VStack(alignment: .leading, spacing: 7) {
                     Text(section.trackerTitle)
@@ -276,14 +263,10 @@ struct TrackerView: View {
                     .foregroundStyle(.tertiary)
                     .padding(.top, 18)
             }
-            .foregroundStyle(.primary)
+            .foregroundStyle(AppTheme.ink)
             .padding(13)
-            .background(AppTheme.trackerRow, in: RoundedRectangle(cornerRadius: 17, style: .continuous))
-            .overlay {
-                RoundedRectangle(cornerRadius: 17, style: .continuous)
-                    .stroke(Color(.separator).opacity(0.24), lineWidth: 1)
-            }
-            .contentShape(RoundedRectangle(cornerRadius: 17, style: .continuous))
+            .gameInset(AppTheme.trackerRow)
+            .contentShape(GamePixelShape(cornerRadius: 17, style: .continuous))
         }
         .buttonStyle(.plain)
         .accessibilityElement(children: .combine)
@@ -303,7 +286,7 @@ struct TrackerView: View {
     private func trackerRowProgress(_ section: SaveEditorSection, session: SaveSession) -> some View {
         if let progress = trackerProgress(for: section, session: session) {
             ProgressView(value: progress)
-                .progressViewStyle(.linear)
+                .progressViewStyle(GameProgressStyle())
                 .tint(AppTheme.progress)
                 .frame(width: 72)
                 .accessibilityHidden(true)
@@ -400,10 +383,10 @@ struct TrackerView: View {
         VStack(spacing: 20) {
             GameAssetIcon(assetName: "GameUITrophy", size: 72)
                 .padding(16)
-                .background(AppTheme.trackerHeaderSoft, in: RoundedRectangle(cornerRadius: 22))
+                .gamePanel(AppTheme.trackerHeaderSoft)
             VStack(spacing: 7) {
                 Text("载入农场，开始追踪")
-                    .font(.title2.bold())
+                    .font(.system(.title2, design: .monospaced).bold())
                 Text("集中查看角色、收藏、技能、关系与农场生活进度。")
                     .font(.subheadline)
                     .foregroundStyle(AppTheme.trackerSecondary)
@@ -416,7 +399,7 @@ struct TrackerView: View {
                     .font(.headline)
                     .frame(maxWidth: .infinity)
             }
-            .buttonStyle(.borderedProminent)
+            .buttonStyle(GameButtonStyle(prominent: true))
             .controlSize(.large)
             .tint(AppTheme.accent)
             .accessibilityIdentifier("tracker.loadFarm")

@@ -62,7 +62,7 @@ struct ToolsView: View {
             }
             .scrollDismissesKeyboard(.interactively)
             .accessibilityIdentifier("editor.tools.list")
-            .background(AppTheme.canvas)
+            .background(GamePageBackdrop())
             if let session = store.session {
                 reviewFooter(session)
             }
@@ -113,7 +113,7 @@ struct ToolsView: View {
     private var toolDirectory: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack(spacing: 10) {
-                Image(systemName: "magnifyingglass").foregroundStyle(.secondary)
+                Image(systemName: "magnifyingglass").foregroundStyle(AppTheme.secondary)
                 TextField("搜索修改功能，如金币、天气、工具", text: $searchText)
                     .font(.subheadline).focused($searchFocused)
                     .submitLabel(.search).onSubmit { searchFocused = false }
@@ -124,13 +124,13 @@ struct ToolsView: View {
                         searchFocused = false
                     } label: {
                         Image(systemName: "xmark.circle.fill")
-                            .foregroundStyle(.secondary).frame(minWidth: 44, minHeight: 44)
+                            .foregroundStyle(AppTheme.secondary).frame(minWidth: 44, minHeight: 44)
                     }
                     .accessibilityLabel("清除搜索").accessibilityIdentifier("tools.search.clear")
                 }
             }
             .padding(.horizontal, 14).frame(minHeight: 52)
-            .background(AppTheme.card, in: RoundedRectangle(cornerRadius: 16))
+            .gameInset(AppTheme.card)
 
             if !isSearching {
                 LazyVGrid(columns: typeSize.isAccessibilitySize ? [GridItem(.flexible())]
@@ -145,9 +145,13 @@ struct ToolsView: View {
                                 .fixedSize(horizontal: false, vertical: true)
                                 .frame(maxWidth: .infinity, minHeight: 44)
                                 .padding(.horizontal, 8)
-                                .foregroundStyle(category == item ? AppTheme.title : .primary)
-                                .background(category == item ? AppTheme.headerSoft : AppTheme.card,
-                                            in: RoundedRectangle(cornerRadius: 12))
+                                .foregroundStyle(category == item ? AppTheme.title : AppTheme.ink)
+                                .background(GameInset(fill: category == item ? AppTheme.selection : AppTheme.card))
+                                .overlay(alignment: .bottom) {
+                                    if category == item {
+                                        Rectangle().fill(AppTheme.accent).frame(height: 3).padding(.horizontal, 8)
+                                    }
+                                }
                         }
                         .buttonStyle(.plain)
                         .accessibilityAddTraits(category == item ? .isSelected : [])
@@ -158,7 +162,7 @@ struct ToolsView: View {
             HStack {
                 sectionTitle(isSearching ? "搜索结果" : category.title)
                 Spacer()
-                Text("\(visibleEntries.count) 项").font(.caption).foregroundStyle(.secondary)
+                Text("\(visibleEntries.count) 项").font(.caption).foregroundStyle(AppTheme.secondary)
             }
             if visibleEntries.isEmpty {
                 ContentUnavailableView("没有找到相关功能", systemImage: "magnifyingglass",
@@ -206,13 +210,13 @@ struct ToolsView: View {
                     Text(session.draft.farmName.isEmpty ? session.source.farmIdentifier : session.draft.farmName)
                         .font(.headline)
                     Text("\(session.draft.playerName) · 游戏 \(session.metadata.gameVersion)")
-                        .font(.caption).foregroundStyle(.secondary)
+                        .font(.caption).foregroundStyle(AppTheme.secondary)
                 }
                 Spacer(minLength: 0)
                 if !typeSize.isAccessibilitySize { switchFarmButton(session) }
             }
             Text("导入副本 · 保存后导出两份文件并替换游戏存档")
-                .font(.caption).foregroundStyle(.secondary)
+                .font(.caption).foregroundStyle(AppTheme.secondary)
                 .fixedSize(horizontal: false, vertical: true)
             if typeSize.isAccessibilitySize { switchFarmButton(session) }
         }
@@ -248,12 +252,12 @@ struct ToolsView: View {
             .multilineTextAlignment(.center).fixedSize(horizontal: false, vertical: true)
             .frame(maxWidth: .infinity, minHeight: 44)
         }
-        .buttonStyle(.borderedProminent).tint(AppTheme.accent)
+        .buttonStyle(GameButtonStyle(prominent: true)).tint(AppTheme.accent)
         .accessibilityValue(typeSize.isAccessibilitySize
             ? "\(session.diffs.count) 项待保存，草稿在各分类间保留" : "")
         .accessibilityIdentifier("editor.tool.review")
         .padding(.horizontal, 20).padding(.vertical, 10)
-        .readablePageWidth().background(.bar)
+        .readablePageWidth().gameBar()
     }
 
     @ViewBuilder private func editor(_ entry: EditorToolEntry, session: SaveSession) -> some View {
@@ -265,7 +269,7 @@ struct ToolsView: View {
     }
 
     private func sectionTitle(_ title: String) -> some View {
-        Text(title).font(.headline).foregroundStyle(.secondary)
+        Text(title).font(.headline).foregroundStyle(AppTheme.secondary)
     }
 
     private func openSelectedSourceMethod() {
