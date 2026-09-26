@@ -339,7 +339,7 @@ final class WorldEditorTests: XCTestCase {
         "<item><key><Vector2><X>\(x)</X><Y>29</Y></Vector2></key><value><TerrainFeature xsi:type=\"\(type)\">\(state)<crop><netSeedIndex>472</netSeedIndex><dead>\(dead)</dead><currentPhase>2</currentPhase><modData keep=\"yes\"/></crop></TerrainFeature></value></item>"
     }
     private func object(x: Int, id: String) -> String {
-        "<item><key><Vector2><X>\(x)</X><Y>29</Y></Vector2></key><value><Object><name>Debris</name><itemId>\(id)</itemId><stack>1</stack></Object></value></item>"
+        "<item><key><Vector2><X>\(x)</X><Y>29</Y></Vector2></key><value><Object><name>Debris</name><itemId>\(id)</itemId><stack>1</stack><bigCraftable>false</bigCraftable></Object></value></item>"
     }
     private func location(_ name: String, in root: XMLNode) -> XMLNode? {
         root.child(named: "locations")?.children.first { $0.value(named: "name") == name }

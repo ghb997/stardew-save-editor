@@ -42,6 +42,7 @@ struct CharacterEditorView: View {
                         .submitLabel(.done)
                         .onSubmit { KeyboardReturnAction.dismiss() }
                     TextField("最喜欢的东西", text: $session.draft.favoriteThing)
+                        .accessibilityIdentifier("character.favorite")
                         .submitLabel(.done)
                         .onSubmit { KeyboardReturnAction.dismiss() }
                 } header: {

@@ -19,6 +19,8 @@ struct ToolsView: View {
     @State private var copyImportFlow = CopyImportPresentationFlow()
     @State private var showingCopyImportPicker = false
     @State private var showingBackups = false
+    @State private var showingLibrary = false
+    @State private var selectedCopy: LocalCopyRecord?
     @State private var showingSwitchConfirmation = false
     @State private var showingReloadConfirmation = false
     @State private var presentation: ToolsPresentation?
@@ -46,6 +48,12 @@ struct ToolsView: View {
                                       systemImage: "doc.on.doc", iconColor: .green,
                                       artworkName: "GameUIBackpack") { showingSourceOptions = true }
                             .accessibilityIdentifier("farm.load.open")
+                        if let recent = store.localCopies.first {
+                            ToolRowButton(title: "继续上次副本", subtitle: "\(recent.farmName) · \(recent.status)",
+                                          systemImage: "clock.arrow.circlepath", iconColor: .brown,
+                                          artworkName: "GameUIBackup") { store.openLocalCopy(recent) }
+                                .accessibilityIdentifier("library.continue")
+                        }
                     }
                     if !isSearching {
                         managementTools
@@ -84,6 +92,10 @@ struct ToolsView: View {
             .presentationDetents([.large])
         }
         .sheet(isPresented: $showingBackups) { BackupListView() }
+        .sheet(isPresented: $showingLibrary, onDismiss: {
+            if let selectedCopy { store.openLocalCopy(selectedCopy) }
+            selectedCopy = nil
+        }) { LocalCopyLibraryView(selection: $selectedCopy) }
         .alert("切换农场？", isPresented: $showingSwitchConfirmation) {
             Button("导入新农场", role: .destructive) { showingSourceOptions = true }
             Button("取消", role: .cancel) {}
@@ -187,6 +199,10 @@ struct ToolsView: View {
     private var managementTools: some View {
         VStack(alignment: .leading, spacing: 10) {
             sectionTitle("存档管理")
+            ToolRowButton(title: "本地副本", subtitle: "继续上次修改、恢复草稿与管理存储空间",
+                          systemImage: "doc.on.doc", iconColor: .blue,
+                          artworkName: "GameUIBackpack") { showingLibrary = true }
+                .accessibilityIdentifier("tools.library")
             ToolRowButton(title: "备份管理", subtitle: "创建备份、校验、导出与恢复",
                           systemImage: "book.closed.fill", iconColor: .brown,
                           artworkName: "GameUIBackup") { showingBackups = true }
@@ -199,6 +215,10 @@ struct ToolsView: View {
                 else { store.reload() }
             }
             .accessibilityIdentifier("tools.reload")
+            if store.session != nil {
+                Button("关闭当前副本（保留草稿）", systemImage: "xmark.circle") { store.closeSession() }
+                    .accessibilityIdentifier("library.close")
+            }
         }
     }
 
@@ -218,6 +238,10 @@ struct ToolsView: View {
             Text("导入副本 · 保存后导出两份文件并替换游戏存档")
                 .font(.caption).foregroundStyle(AppTheme.secondary)
                 .fixedSize(horizontal: false, vertical: true)
+            if let status = store.draftStorageMessage {
+                Text(status).font(.caption).foregroundStyle(AppTheme.secondary)
+                    .accessibilityIdentifier("draft.storage.status")
+            }
             if typeSize.isAccessibilitySize { switchFarmButton(session) }
         }
         .padding(12).appCard()

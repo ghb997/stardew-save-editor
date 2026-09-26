@@ -51,8 +51,10 @@ final class XMLTreeParser: NSObject, XMLParserDelegate {
             name: qName ?? elementName,
             attributes: attributeDict
         )
+        node.preservesWhitespace = attributeDict["xml:space"].map { $0 == "preserve" }
+            ?? stack.last?.preservesWhitespace ?? false
         if let parent = stack.last {
-            parent.children.append(node)
+            parent.appendParsedChild(node)
         } else {
             root = node
         }
@@ -60,12 +62,12 @@ final class XMLTreeParser: NSObject, XMLParserDelegate {
     }
 
     func parser(_ parser: XMLParser, foundCharacters string: String) {
-        stack.last?.text.append(string)
+        stack.last?.appendParsedText(string)
     }
 
     func parser(_ parser: XMLParser, foundCDATA CDATABlock: Data) {
         guard let string = String(data: CDATABlock, encoding: .utf8) else { return }
-        stack.last?.text.append(string)
+        stack.last?.appendParsedText(string)
     }
 
     func parser(
@@ -75,14 +77,10 @@ final class XMLTreeParser: NSObject, XMLParserDelegate {
         qualifiedName qName: String?
     ) {
         guard let node = stack.popLast() else { return }
-        if !node.children.isEmpty,
-           node.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            node.text = ""
-        }
+        node.finishParsing()
     }
 
     func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
         parserError = parseError
     }
 }
-

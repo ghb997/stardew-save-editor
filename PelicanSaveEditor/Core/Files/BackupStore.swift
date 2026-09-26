@@ -199,6 +199,30 @@ final class BackupStore {
         return updated
     }
 
+    func delete(_ manifest: BackupManifest) throws {
+        try validateManifest(manifest)
+        guard manifest.isProtected != true else {
+            throw SaveValidationError.invalid("请先解除备份保护，再删除这份备份。")
+        }
+        let directory = backupURL(manifest).standardizedFileURL
+        guard directory.resolvingSymlinksInPath().path.hasPrefix(rootURL.resolvingSymlinksInPath().path + "/") else {
+            throw BackupStoreError.invalidManifest
+        }
+        try fileManager.removeItem(at: directory)
+    }
+
+    /// Export files can always be regenerated from their verified backup. Only
+    /// clean this cache while no export picker is using it (caller owns the lease).
+    func cleanExportCache() throws {
+        let cache = rootURL.deletingLastPathComponent().appendingPathComponent("BackupExports", isDirectory: true)
+        guard fileManager.fileExists(atPath: cache.path) else { return }
+        for directory in try fileManager.contentsOfDirectory(at: cache, includingPropertiesForKeys: nil) {
+            guard UUID(uuidString: directory.lastPathComponent) != nil,
+                  directory.resolvingSymlinksInPath().deletingLastPathComponent() == cache.resolvingSymlinksInPath() else { continue }
+            try fileManager.removeItem(at: directory)
+        }
+    }
+
     private func writeManifest(_ manifest: BackupManifest) throws {
         try JSONEncoder.backupEncoder.encode(manifest)
             .write(to: backupURL(manifest).appendingPathComponent("manifest.json"), options: .atomic)

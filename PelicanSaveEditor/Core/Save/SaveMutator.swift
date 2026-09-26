@@ -60,8 +60,7 @@ enum SaveMutator {
             applyFarmActions(draft.farmActions, to: main)
         }
 
-        let mainXML = Data(main.xmlString(includeDeclaration: true).utf8)
-        _ = try XMLTreeParser().parse(mainXML)
+        let mainXML = try losslessXML(main)
         let mainData = try SaveCodec.encode(
             xmlData: mainXML,
             encoding: parsed.mainPayload.encoding,
@@ -79,8 +78,7 @@ enum SaveMutator {
             if draft.progress.walletUnlocks != parsed.draft.progress.walletUnlocks {
                 applyWalletUnlocks(draft.progress.walletUnlocks, original: parsed.draft.progress.walletUnlocks, to: info)
             }
-            let infoXML = Data(info.xmlString(includeDeclaration: true).utf8)
-            _ = try XMLTreeParser().parse(infoXML)
+            let infoXML = try losslessXML(info)
             infoData = try SaveCodec.encode(
                 xmlData: infoXML,
                 encoding: payload.encoding,
@@ -89,6 +87,18 @@ enum SaveMutator {
         }
 
         return RenderedSavePair(mainData: mainData, infoData: infoData)
+    }
+
+    private static func losslessXML(_ root: XMLNode) throws -> Data {
+        guard root.canSerializeLosslessly else {
+            throw SaveValidationError.invalid("这项修改涉及含混合文本的扩展字段，无法保证完整保留，已停止写入。")
+        }
+        let data = Data(root.xmlString(includeDeclaration: true).utf8)
+        let reloaded = try XMLTreeParser().parse(data)
+        guard root.semanticallyEquals(reloaded) else {
+            throw SaveValidationError.invalid("XML 完整性校验发现未能保留的内容，原文件未修改。")
+        }
+        return data
     }
 
     static func validate(_ draft: SaveDraft, comparedTo original: SaveDraft? = nil) throws {

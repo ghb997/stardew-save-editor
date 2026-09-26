@@ -41,6 +41,7 @@ struct SaveTransactionJournal: Codable, Sendable {
     var phase: Phase
     var sourceIdentity: String? = nil
     var rescueBackupID: UUID? = nil
+    var keepBackupProtected: Bool? = nil
 }
 
 enum SaveTransactionRecovery: Equatable, Sendable {
@@ -153,12 +154,12 @@ final class SaveTransactionService {
                 }
                 if matches(current, mainHash: journal.targetMainHash, infoHash: journal.targetInfoHash) {
                     try removeJournal(at: journalURL)
-                    if let backup { _ = try? backupStore.setProtected(backup, isProtected: false) }
+                    if let backup, journal.keepBackupProtected != true { _ = try? backupStore.setProtected(backup, isProtected: false) }
                     return .completedSaveConfirmed
                 }
                 if matches(current, mainHash: journal.originalMainHash, infoHash: journal.originalInfoHash) {
                     try removeJournal(at: journalURL)
-                    if let backup { _ = try? backupStore.setProtected(backup, isProtected: false) }
+                    if let backup, journal.keepBackupProtected != true { _ = try? backupStore.setProtected(backup, isProtected: false) }
                     return .originalFilesConfirmed
                 }
                 let knownMain = current.mainHash == journal.originalMainHash || current.mainHash == journal.targetMainHash
@@ -217,7 +218,8 @@ final class SaveTransactionService {
         expectedMainHash: String,
         expectedInfoHash: String?,
         newData: SavePairData,
-        reason: String
+        reason: String,
+        keepBackupProtected: Bool = false
     ) throws -> SaveTransactionResult {
         try validate(pair: newData, expectsInfo: source.infoURL != nil)
         return try source.withSecurityScopedAccess {
@@ -240,7 +242,7 @@ final class SaveTransactionService {
                     id: UUID(), farmIdentifier: source.farmIdentifier, backupID: backup.id,
                     startedAt: Date(), originalMainHash: current.mainHash, originalInfoHash: current.infoHash,
                     targetMainHash: newData.mainHash, targetInfoHash: newData.infoHash, phase: .prepared,
-                    sourceIdentity: source.identity
+                    sourceIdentity: source.identity, keepBackupProtected: keepBackupProtected
                 )
                 try writeJournal(journal, to: journalURL)
                 do {
@@ -259,7 +261,7 @@ final class SaveTransactionService {
                     journal.phase = .verified
                     try writeJournal(journal, to: journalURL)
                     try removeJournal(at: journalURL)
-                    let completedBackup = (try? backupStore.setProtected(backup, isProtected: false)) ?? backup
+                    let completedBackup = keepBackupProtected ? backup : ((try? backupStore.setProtected(backup, isProtected: false)) ?? backup)
                     return SaveTransactionResult(backup: completedBackup, written: verification)
                 } catch {
                     let writeFailure = error
@@ -288,6 +290,19 @@ final class SaveTransactionService {
 
     func journalURL(for source: SaveSource) -> URL {
         journalDirectoryURL.appendingPathComponent("source-\(source.identity).json", isDirectory: false)
+    }
+
+    func hasPendingTransaction(for source: SaveSource) -> Bool { activeJournalURL(for: source) != nil }
+
+    func ensureBackupIsNotRequired(_ manifest: BackupManifest) throws {
+        let files = try fileManager.contentsOfDirectory(at: journalDirectoryURL, includingPropertiesForKeys: nil)
+            .filter { $0.pathExtension == "json" }
+        for url in files {
+            let journal = try readJournal(at: url)
+            guard journal.backupID != manifest.id, journal.rescueBackupID != manifest.id else {
+                throw SaveValidationError.invalid("这份备份仍用于未完成的存档事务，暂时不能删除或解除保护。")
+            }
+        }
     }
 
     /// Legacy location, retained for migration; new transactions never use it.

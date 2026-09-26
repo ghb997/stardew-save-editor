@@ -44,6 +44,7 @@ elif [[ "${LAYOUT_SCOPE:-layout}" == valley ]]; then
     if [[ "${LAYOUT_DEVICE:-mini}" != iphone ]]; then
         args+=(-only-testing:PelicanSaveEditorUITests/PelicanBrandUITests)
         args+=(-only-testing:PelicanSaveEditorUITests/AdaptiveLayoutUITests)
+        args+=(-only-testing:PelicanSaveEditorUITests/PersistenceUITests)
     fi
 elif [[ "${LAYOUT_SCOPE:-layout}" == brand ]]; then
     args+=(-only-testing:PelicanSaveEditorUITests/PelicanBrandUITests)

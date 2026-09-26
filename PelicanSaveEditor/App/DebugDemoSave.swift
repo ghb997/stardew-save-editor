@@ -105,9 +105,9 @@ enum DebugDemoSave {
         <GameLocation xsi:type="Farm">
           <name>Farm</name><piecesOfHay>146</piecesOfHay>
           <objects>
-            <item><key><Vector2><X>18</X><Y>20</Y></Vector2></key><value><Object><name>Stone</name><itemId>343</itemId><stack>1</stack></Object></value></item>
-            <item><key><Vector2><X>23</X><Y>17</Y></Vector2></key><value><Object><name>Weeds</name><itemId>313</itemId><stack>1</stack></Object></value></item>
-            <item><key><Vector2><X>31</X><Y>27</Y></Vector2></key><value><Object><name>Twig</name><itemId>294</itemId><stack>1</stack></Object></value></item>
+            <item><key><Vector2><X>18</X><Y>20</Y></Vector2></key><value><Object><name>Stone</name><itemId>343</itemId><stack>1</stack><bigCraftable>false</bigCraftable></Object></value></item>
+            <item><key><Vector2><X>23</X><Y>17</Y></Vector2></key><value><Object><name>Weeds</name><itemId>313</itemId><stack>1</stack><bigCraftable>false</bigCraftable></Object></value></item>
+            <item><key><Vector2><X>31</X><Y>27</Y></Vector2></key><value><Object><name>Twig</name><itemId>294</itemId><stack>1</stack><bigCraftable>false</bigCraftable></Object></value></item>
             <item><key><Vector2><X>42</X><Y>22</Y></Vector2></key><value><Object><name>Chest</name><itemId>130</itemId><stack>1</stack><bigCraftable>true</bigCraftable></Object></value></item>
           </objects>
           <terrainFeatures>

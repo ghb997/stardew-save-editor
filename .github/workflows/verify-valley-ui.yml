@@ -2,14 +2,14 @@ name: Verify valley interface
 on:
   workflow_dispatch:
   push:
-    branches: ['codex/stardew-ui-*']
+    branches: ['codex/stardew-ui-*', 'codex/reliability-*']
 permissions:
   contents: read
 jobs:
   verify:
     name: Valley UI (${{ matrix.device }})
     runs-on: macos-15
-    timeout-minutes: 45
+    timeout-minutes: 60
     env:
       LAYOUT_DERIVED_DIR: artifacts/valley-derivedData
     strategy:
@@ -49,6 +49,7 @@ jobs:
             !artifacts/valley-preview/attachments/**/*.mp4
           retention-days: 14
       - name: Verify native screens and editing flows
+        if: ${{ !cancelled() }}
         env:
           LAYOUT_DEVICE: ${{ matrix.device }}
           LAYOUT_SCOPE: valley
@@ -64,7 +65,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: valley-build18-${{ matrix.device }}-${{ github.run_attempt }}
+          name: valley-build19-${{ matrix.device }}-${{ github.run_attempt }}
           path: |
             artifacts/ipad-layout/*.log
             artifacts/ipad-layout/*.json

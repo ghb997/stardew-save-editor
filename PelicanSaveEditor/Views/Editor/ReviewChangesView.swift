@@ -166,7 +166,7 @@ struct ReviewChangesView: View {
                 } footer: {
                     Text(
                         session.source.mode == .importedCopy
-                            ? "应用先自动备份并保存，再打开系统文件界面。请选择游戏原农场目录，并确认替换主存档与 SaveGameInfo。"
+                            ? "应用先自动备份并保存副本，再核对游戏目标目录。确认后备份目标并写入两份文件。"
                             : "保存前会创建私有备份，并确认两份文件在编辑期间没有被其他应用修改。"
                     )
                 }
@@ -210,21 +210,9 @@ struct ReviewChangesView: View {
             BackupListView()
         }
         .sheet(isPresented: $showingExportPicker, onDismiss: {
-            if exportNotice == nil {
-                exportNotice = "应用内副本已保存，导出尚未完成。可再次导出继续。"
-            }
+            exportNotice = "应用内副本已保存。导出状态可在本地副本中查看，关闭应用后也可继续。"
         }) {
-            SavePairExportPicker(
-                urls: exportURLs,
-                onExport: {
-                    showingExportPicker = false
-                    exportNotice = "已完成导出。请确认目标目录中的同名文件已替换，再启动游戏。"
-                },
-                onCancel: {
-                    showingExportPicker = false
-                    exportNotice = "已保存应用内副本，尚未完成导出。可点“再次导出已保存副本”继续。"
-                }
-            )
+            VerifiedExportView(session: session)
         }
         .disabled(store.isBusy)
         .interactiveDismissDisabled(store.isBusy)
@@ -257,7 +245,7 @@ struct ReviewChangesView: View {
 
     private var saveConfirmationMessage: String {
         let base = session.source.mode == .importedCopy
-            ? "应用会先备份、保存并校验导入副本，然后打开系统文件界面。请选择游戏原农场目录并确认替换两个同名文件。"
+            ? "应用会先备份、保存并校验导入副本，然后核对所选游戏目录。确认后先备份游戏目标，再写入并校验两个同名文件。"
             : "应用会先备份两份原文件，再写入并重新读取校验。操作时请确保游戏已完全退出。"
         guard let farmActionImpactSummary else { return base }
         return "\(farmActionImpactSummary)。\n\n\(base)"

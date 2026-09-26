@@ -85,7 +85,9 @@ final class ExpandedEditorUITests: XCTestCase {
         let tools = app.descendants(matching: .any).matching(identifier: "editor.tools.list").firstMatch
         XCTAssertTrue(tools.waitForExistence(timeout: 40))
         try selectToolCategory(for: tool, in: app)
-        try tap(app.buttons["editor.tool.\(tool)"], app, attempts: 24)
+        let entry = app.buttons["editor.tool.\(tool)"]
+        try revealDirectoryControl(entry, in: app)
+        entry.tap()
         return app
     }
 

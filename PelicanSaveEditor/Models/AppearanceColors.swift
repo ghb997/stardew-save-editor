@@ -1,6 +1,6 @@
 import Foundation
 
-enum FarmerColorField: String, CaseIterable, Identifiable, Sendable {
+enum FarmerColorField: String, CaseIterable, Identifiable, Sendable, Codable {
     case hair = "hairstyleColor", eyes = "eyeColor", pants = "pantsColor"
     var id: String { rawValue }
     var title: String {
@@ -12,7 +12,7 @@ enum FarmerColorField: String, CaseIterable, Identifiable, Sendable {
     }
 }
 
-struct FarmerColor: Equatable, Sendable {
+struct FarmerColor: Equatable, Sendable, Codable {
     var red: Int
     var green: Int
     var blue: Int

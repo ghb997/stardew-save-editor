@@ -1,6 +1,6 @@
 import Foundation
 
-struct EquipmentField: Identifiable, Equatable, Sendable {
+struct EquipmentField: Identifiable, Equatable, Sendable, Codable {
     let id: String
     let title: String
     let originalText: String
@@ -11,7 +11,7 @@ struct EquipmentField: Identifiable, Equatable, Sendable {
     var formatted: String { isInteger && value.isFinite && abs(value) < Double(Int.max) ? String(Int(value)) : String(value) }
 }
 
-struct EquipmentDraft: Identifiable, Equatable, Sendable {
+struct EquipmentDraft: Identifiable, Equatable, Sendable, Codable {
     var id: String { path.id }
     let path: SaveNodePath
     let name: String

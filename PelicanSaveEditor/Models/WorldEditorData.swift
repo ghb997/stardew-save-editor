@@ -2,7 +2,7 @@ import Foundation
 
 /// Element indices are stable within the immutable source tree and its copy.
 /// They are never resolved against another farm or a tree already saved to disk.
-struct SaveNodePath: Hashable, Sendable {
+struct SaveNodePath: Hashable, Sendable, Codable {
     let indices: [Int]
     var id: String { indices.map(String.init).joined(separator: ".") }
     func child(_ index: Int) -> SaveNodePath { SaveNodePath(indices: indices + [index]) }
@@ -27,7 +27,7 @@ enum ExistingSaveValue {
         return matches.count == 1 ? scalar(matches[0]) : nil
     }
     static func bool(_ text: String?) -> Bool? {
-        switch text?.lowercased() {
+        switch text?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() {
         case "true", "1": true
         case "false", "0": false
         default: nil
@@ -133,7 +133,7 @@ enum WorldObjectIndex {
     }
 }
 
-enum SavedWeather: String, CaseIterable, Identifiable, Sendable {
+enum SavedWeather: String, CaseIterable, Identifiable, Sendable, Codable {
     case sun = "Sun", rain = "Rain", wind = "Wind", storm = "Storm", snow = "Snow"
     var id: String { rawValue }
     var title: String {
@@ -147,13 +147,13 @@ enum SavedWeather: String, CaseIterable, Identifiable, Sendable {
     }
 }
 
-struct WeatherField: Equatable, Sendable {
+struct WeatherField: Equatable, Sendable, Codable {
     let path: SaveNodePath
     let raw: String
     func encoded(_ weather: SavedWeather) -> String { Int(raw) != nil ? String(weather.number) : weather.rawValue }
 }
 
-struct WeatherDraft: Identifiable, Equatable, Sendable {
+struct WeatherDraft: Identifiable, Equatable, Sendable, Codable {
     let id: String
     let title: String
     let fields: [WeatherField]
@@ -161,7 +161,7 @@ struct WeatherDraft: Identifiable, Equatable, Sendable {
     var selected: SavedWeather
 }
 
-struct WeatherAndLuckDraft: Equatable, Sendable {
+struct WeatherAndLuckDraft: Equatable, Sendable, Codable {
     var regions: [WeatherDraft] = []
     var dailyLuck: Double? = nil
     var notes: [String] = []
@@ -224,7 +224,7 @@ struct WeatherAndLuckDraft: Equatable, Sendable {
     }
 }
 
-struct MachineDraft: Identifiable, Equatable, Sendable {
+struct MachineDraft: Identifiable, Equatable, Sendable, Codable {
     var id: String { "\(path.id)|\(location)|\(coordinate)" }
     let path: SaveNodePath
     let name: String

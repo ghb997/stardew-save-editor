@@ -112,6 +112,13 @@
 		2FF6CE52EC94079E8133CD57 /* ToolNavigationSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2C36708BE787E3FEEBB212 /* ToolNavigationSupport.swift */; };
 		7D2D3B21C7EB5B832C5538AE /* ValleyTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DA3CD29E35379FB183AE13 /* ValleyTheme.swift */; };
 		96ACAB60F1F92BFAAAD844A9 /* ValleyThemeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFA8EF1C33BCB2BBEE4F1E6 /* ValleyThemeUITests.swift */; };
+		A1704DE02EFF4D26B2149BBF /* LocalSaveLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599D6D063A4ACB20959EEF6D /* LocalSaveLibrary.swift */; };
+		4E43454D699FE43D9805A7ED /* VerifiedSaveExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635B123C950477A29002F3C7 /* VerifiedSaveExport.swift */; };
+		BA53F38DB0AC9677F6734162 /* LocalCopyLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D44025C87397E2424F2AE28 /* LocalCopyLibraryView.swift */; };
+		0991735EB1AA357290BA1A28 /* VerifiedExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B64FB77CEB7F93D6524415D /* VerifiedExportView.swift */; };
+		A093B4008635C51787579DF3 /* DebugPersistenceFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AE4F5A0E60A03B413E5E41 /* DebugPersistenceFixture.swift */; };
+		E35147F3E1389D04C3FFD94D /* ReliabilityRegressionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BCB9A745F592D0D2560E19 /* ReliabilityRegressionTests.swift */; };
+		CFEEA7389861176D9190817A /* PersistenceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32BF71B9806E7FFD7FAB39B /* PersistenceUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -234,6 +241,13 @@
 		6F2C36708BE787E3FEEBB212 /* ToolNavigationSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditorUITests/ToolNavigationSupport.swift"; sourceTree = SOURCE_ROOT; };
 		08DA3CD29E35379FB183AE13 /* ValleyTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Components/ValleyTheme.swift"; sourceTree = SOURCE_ROOT; };
 		8CFA8EF1C33BCB2BBEE4F1E6 /* ValleyThemeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditorUITests/ValleyThemeUITests.swift"; sourceTree = SOURCE_ROOT; };
+		599D6D063A4ACB20959EEF6D /* LocalSaveLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Core/Files/LocalSaveLibrary.swift"; sourceTree = SOURCE_ROOT; };
+		635B123C950477A29002F3C7 /* VerifiedSaveExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Core/Files/VerifiedSaveExport.swift"; sourceTree = SOURCE_ROOT; };
+		0D44025C87397E2424F2AE28 /* LocalCopyLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Editor/LocalCopyLibraryView.swift"; sourceTree = SOURCE_ROOT; };
+		1B64FB77CEB7F93D6524415D /* VerifiedExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/Views/Editor/VerifiedExportView.swift"; sourceTree = SOURCE_ROOT; };
+		B4AE4F5A0E60A03B413E5E41 /* DebugPersistenceFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditor/App/DebugPersistenceFixture.swift"; sourceTree = SOURCE_ROOT; };
+		84BCB9A745F592D0D2560E19 /* ReliabilityRegressionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditorTests/ReliabilityRegressionTests.swift"; sourceTree = SOURCE_ROOT; };
+		E32BF71B9806E7FFD7FAB39B /* PersistenceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PelicanSaveEditorUITests/PersistenceUITests.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -334,6 +348,13 @@
 		52A33A42251270FA0061402D /* PelicanSaveEditor */ = {
 			isa = PBXGroup;
 			children = (
+				E32BF71B9806E7FFD7FAB39B /* PersistenceUITests.swift */,
+				84BCB9A745F592D0D2560E19 /* ReliabilityRegressionTests.swift */,
+				B4AE4F5A0E60A03B413E5E41 /* DebugPersistenceFixture.swift */,
+				1B64FB77CEB7F93D6524415D /* VerifiedExportView.swift */,
+				0D44025C87397E2424F2AE28 /* LocalCopyLibraryView.swift */,
+				635B123C950477A29002F3C7 /* VerifiedSaveExport.swift */,
+				599D6D063A4ACB20959EEF6D /* LocalSaveLibrary.swift */,
 				BB7EE32FEDD4A88B77240732 /* Assets.xcassets */,
 				63667D1FA6F9C0D0AC468B95 /* Info.plist */,
 				62DE6F1C0FC927E2CA92F6AA /* PrivacyInfo.xcprivacy */,
@@ -596,6 +617,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFEEA7389861176D9190817A /* PersistenceUITests.swift in Sources */,
 				96ACAB60F1F92BFAAAD844A9 /* ValleyThemeUITests.swift in Sources */,
 				2FF6CE52EC94079E8133CD57 /* ToolNavigationSupport.swift in Sources */,
 				2CF7839B5127D3E25ABCE9FA /* PelicanBrandUITests.swift in Sources */,
@@ -608,6 +630,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E35147F3E1389D04C3FFD94D /* ReliabilityRegressionTests.swift in Sources */,
 				627B0B19A0067BD6BCD33AD2 /* ToolDirectoryTests.swift in Sources */,
 				C4AEAC7634D0D494B88EE214 /* RepairRegressionTests.swift in Sources */,
 				6261AE855FA9F726231A6BAF /* ExpandedEditorTests.swift in Sources */,
@@ -624,6 +647,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A093B4008635C51787579DF3 /* DebugPersistenceFixture.swift in Sources */,
+				0991735EB1AA357290BA1A28 /* VerifiedExportView.swift in Sources */,
+				BA53F38DB0AC9677F6734162 /* LocalCopyLibraryView.swift in Sources */,
+				4E43454D699FE43D9805A7ED /* VerifiedSaveExport.swift in Sources */,
+				A1704DE02EFF4D26B2149BBF /* LocalSaveLibrary.swift in Sources */,
 				7D2D3B21C7EB5B832C5538AE /* ValleyTheme.swift in Sources */,
 				254F210DAE1B42345EF24F24 /* ToolDirectory.swift in Sources */,
 				66276754925EF14FDEFFA4EA /* QQGroupSection.swift in Sources */,
@@ -758,7 +786,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 19;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -779,7 +807,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.9.0;
+				MARKETING_VERSION = 0.9.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -828,7 +856,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 19;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -843,7 +871,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.9.0;
+				MARKETING_VERSION = 0.9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";

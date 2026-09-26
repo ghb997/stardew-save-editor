@@ -4,6 +4,8 @@ struct BackupListView: View {
     @Environment(EditorStore.self) private var store
     @Environment(\.dismiss) private var dismiss
     @State private var selectedBackup: BackupManifest?
+    @State private var deletingBackup: BackupManifest?
+    @State private var unprotectingBackup: BackupManifest?
     @State private var exportURLs: [URL] = []
     @State private var showingExporter = false
     @State private var exportNotice: String?
@@ -92,6 +94,13 @@ struct BackupListView: View {
                                     showingExporter = true
                                 }
                             }
+                            Button(backup.isProtected == true ? "解除保护" : "设为保护备份",
+                                   systemImage: backup.isProtected == true ? "lock.open" : "lock.shield") {
+                                if backup.isProtected == true { unprotectingBackup = backup }
+                                else { store.setBackupProtection(backup, protected: true) }
+                            }
+                            Button("删除备份", systemImage: "trash", role: .destructive) { deletingBackup = backup }
+                                .disabled(backup.isProtected == true)
                             if store.session?.source.farmIdentifier == backup.farmIdentifier {
                                 Button("恢复到当前农场", systemImage: "clock.arrow.circlepath", role: .destructive) {
                                     selectedBackup = backup
@@ -114,6 +123,8 @@ struct BackupListView: View {
         .disabled(store.isBusy)
         .interactiveDismissDisabled(store.isBusy)
         .sheet(isPresented: $showingExporter, onDismiss: {
+            store.finishBackupExport()
+            exportURLs = []
             if exportNotice == nil { exportNotice = "导出尚未完成，应用内备份仍保留。" }
         }) {
             SavePairExportPicker(urls: exportURLs, onExport: {
@@ -124,6 +135,20 @@ struct BackupListView: View {
                 exportNotice = "已取消导出，应用内备份仍保留。"
             })
         }
+        .alert("解除备份保护？", isPresented: Binding(get: { unprotectingBackup != nil }, set: { if !$0 { unprotectingBackup = nil } })) {
+            Button("解除保护", role: .destructive) {
+                if let unprotectingBackup { store.setBackupProtection(unprotectingBackup, protected: false) }
+                unprotectingBackup = nil
+            }
+            Button("取消", role: .cancel) { unprotectingBackup = nil }
+        } message: { Text("解除后会参与自动清理，也可以手动删除。未完成事务所需的备份仍会受保护。") }
+        .alert("删除这份备份？", isPresented: Binding(get: { deletingBackup != nil }, set: { if !$0 { deletingBackup = nil } })) {
+            Button("删除", role: .destructive) {
+                if let deletingBackup { store.deleteBackup(deletingBackup) }
+                deletingBackup = nil
+            }
+            Button("取消", role: .cancel) { deletingBackup = nil }
+        } message: { Text("删除后无法从应用恢复这份备份。当前存档和其他备份不受影响。") }
         .alert("恢复这份备份？", isPresented: Binding(
             get: { selectedBackup != nil },
             set: { if !$0 { selectedBackup = nil } }

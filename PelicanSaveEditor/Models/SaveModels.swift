@@ -78,7 +78,7 @@ enum SkillKey: String, CaseIterable, Codable, Identifiable, Sendable {
     }
 }
 
-struct SkillDraft: Identifiable, Equatable, Sendable {
+struct SkillDraft: Identifiable, Equatable, Sendable, Codable {
     var id: SkillKey { key }
     let key: SkillKey
     let originalLevel: Int
@@ -145,7 +145,7 @@ enum ProfessionCatalog {
     }
 }
 
-enum WalletUnlockKey: String, CaseIterable, Identifiable, Sendable {
+enum WalletUnlockKey: String, CaseIterable, Identifiable, Sendable, Codable {
     case dwarvishGuide = "HasDwarvishTranslationGuide"
     case rustyKey = "HasRustyKey"
     case clubCard = "HasClubCard"
@@ -203,13 +203,13 @@ enum WalletUnlockKey: String, CaseIterable, Identifiable, Sendable {
     }
 }
 
-struct WalletUnlockDraft: Identifiable, Equatable, Sendable {
+struct WalletUnlockDraft: Identifiable, Equatable, Sendable, Codable {
     var id: WalletUnlockKey { key }
     let key: WalletUnlockKey
     var isUnlocked: Bool
 }
 
-struct SaveInsights: Equatable, Sendable {
+struct SaveInsights: Equatable, Sendable, Codable {
     var weatherForTomorrow: String?
     var dailyLuck: Double?
     var activeQuestCount: Int
@@ -228,7 +228,7 @@ struct SaveInsights: Equatable, Sendable {
     var fishCaught: Int?
 }
 
-struct ProgressDraft: Equatable, Sendable {
+struct ProgressDraft: Equatable, Sendable, Codable {
     var qiGems: Int?
     var clubCoins: Int?
     var totalMoneyEarned: Int?
@@ -241,7 +241,7 @@ struct ProgressDraft: Equatable, Sendable {
     var insights: SaveInsights
 }
 
-struct FarmAnimalDraft: Identifiable, Equatable, Sendable {
+struct FarmAnimalDraft: Identifiable, Equatable, Sendable, Codable {
     let id: String
     let type: String
     let home: String
@@ -298,7 +298,7 @@ enum RelationshipStatus: String, CaseIterable, Codable, Identifiable, Sendable {
     var safelyEditable: Bool { self == .friendly || self == .dating }
 }
 
-struct FriendshipDraft: Identifiable, Equatable, Sendable {
+struct FriendshipDraft: Identifiable, Equatable, Sendable, Codable {
     var id: String { name }
     let name: String
     var points: Int
@@ -328,7 +328,7 @@ enum RecipeKind: String, CaseIterable, Codable, Identifiable, Sendable {
     var containerName: String { self == .cooking ? "cookingRecipes" : "craftingRecipes" }
 }
 
-struct RecipeDraft: Identifiable, Equatable, Sendable {
+struct RecipeDraft: Identifiable, Equatable, Sendable, Codable {
     var id: String { "\(kind.rawValue):\(key)" }
     let key: String
     let kind: RecipeKind
@@ -339,7 +339,7 @@ struct RecipeDraft: Identifiable, Equatable, Sendable {
     var isEditable = true
 }
 
-struct InventoryItemDraft: Identifiable, Equatable, Sendable {
+struct InventoryItemDraft: Identifiable, Equatable, Sendable, Codable {
     var id: UUID
     var itemID: String
     var name: String
@@ -370,12 +370,12 @@ struct InventoryItemDraft: Identifiable, Equatable, Sendable {
     }
 }
 
-struct InventorySlotDraft: Identifiable, Equatable, Sendable {
+struct InventorySlotDraft: Identifiable, Equatable, Sendable, Codable {
     let id: Int
     var item: InventoryItemDraft?
 }
 
-enum RoomDecorationKind: String, Identifiable, Equatable, Sendable {
+enum RoomDecorationKind: String, Identifiable, Equatable, Sendable, Codable {
     case wallpaper
     case flooring
 
@@ -389,12 +389,12 @@ enum RoomDecorationKind: String, Identifiable, Equatable, Sendable {
     }
 }
 
-enum RoomDecorationStorage: Equatable, Sendable {
+enum RoomDecorationStorage: Equatable, Sendable, Codable {
     case scalar(fieldName: String)
     case dictionary(containerName: String, key: String)
 }
 
-struct RoomDecorationDraft: Identifiable, Equatable, Sendable {
+struct RoomDecorationDraft: Identifiable, Equatable, Sendable, Codable {
     let id: String
     let kind: RoomDecorationKind
     let roomKey: String
@@ -418,7 +418,7 @@ struct RoomDecorationDraft: Identifiable, Equatable, Sendable {
     }
 }
 
-struct FarmhouseDraft: Equatable, Sendable {
+struct FarmhouseDraft: Equatable, Sendable, Codable {
     var upgradeLevel: Int?
     var decorations: [RoomDecorationDraft]
 
@@ -427,7 +427,7 @@ struct FarmhouseDraft: Equatable, Sendable {
     }
 }
 
-struct FarmActionDraft: Equatable, Sendable {
+struct FarmActionDraft: Equatable, Sendable, Codable {
     var waterAllCrops = false
     var clearStones = false
     var clearWeeds = false
@@ -440,7 +440,7 @@ struct FarmActionDraft: Equatable, Sendable {
     }
 }
 
-struct SaveDraft: Equatable, Sendable {
+struct SaveDraft: Equatable, Sendable, Codable {
     var playerName: String
     var farmName: String
     var favoriteThing: String

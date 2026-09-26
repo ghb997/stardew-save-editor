@@ -1,6 +1,6 @@
 import Foundation
 
-struct StorageDraft: Identifiable, Equatable, Sendable {
+struct StorageDraft: Identifiable, Equatable, Sendable, Codable {
     var id: String { "\(path.id)|\(location)|\(coordinate)" }
     let path: SaveNodePath
     let name: String

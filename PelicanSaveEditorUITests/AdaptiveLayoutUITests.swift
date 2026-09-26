@@ -132,7 +132,7 @@ final class AdaptiveLayoutUITests: XCTestCase {
         if extra.contains("expanded-map") {
             ready = app.buttons["map.expanded.reset"]
         } else if tab == "tools" {
-            ready = app.buttons[demo ? "editor.tool.character" : "farm.load.open"]
+            ready = demo ? app.buttons["farm.load.switch"] : app.buttons["farm.load.open"]
         } else if tab == "tracker" {
             ready = app.buttons["tracker.filter.overview"]
         } else if tab == "home" {

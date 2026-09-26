@@ -7,6 +7,13 @@ final class XMLNode {
     var attributes: [String: String]
     var text: String
     var children: [XMLNode]
+    // Text slots before, between and after children retain mixed XML content.
+    // Mutators may update descendant values; changing the shape of a mixed
+    // element requires explicit support instead of silently dropping text.
+    private var textSlots: [String]?
+    private var parsedChildIDs: [ObjectIdentifier] = []
+    private var parsedText: String?
+    var preservesWhitespace = false
 
     init(
         name: String,
@@ -49,12 +56,53 @@ final class XMLNode {
     }
 
     func deepCopy() -> XMLNode {
-        XMLNode(
+        let copy = XMLNode(
             name: name,
             attributes: attributes,
             text: text,
             children: children.map { $0.deepCopy() }
         )
+        copy.preservesWhitespace = preservesWhitespace
+        copy.textSlots = textSlots
+        copy.parsedText = parsedText
+        copy.parsedChildIDs = copy.children.map(ObjectIdentifier.init)
+        return copy
+    }
+
+    func appendParsedChild(_ child: XMLNode) {
+        if textSlots == nil { textSlots = [text] }
+        children.append(child)
+        textSlots?.append("")
+    }
+
+    func appendParsedText(_ value: String) {
+        text.append(value)
+        if let last = textSlots?.indices.last { textSlots?[last].append(value) }
+    }
+
+    func finishParsing() {
+        if !children.isEmpty, !preservesWhitespace,
+           text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            text = ""; textSlots = nil
+        }
+        if textSlots != nil {
+            parsedText = text
+            parsedChildIDs = children.map(ObjectIdentifier.init)
+        }
+    }
+
+    var canSerializeLosslessly: Bool {
+        (textSlots == nil || (parsedText == text && parsedChildIDs == children.map(ObjectIdentifier.init)))
+            && children.allSatisfy(\.canSerializeLosslessly)
+    }
+
+    /// Compare every element, attribute and meaningful text segment, including
+    /// fields unknown to SaveDraft. Attribute order is intentionally irrelevant.
+    func semanticallyEquals(_ other: XMLNode) -> Bool {
+        guard name == other.name, attributes == other.attributes, text == other.text,
+              children.count == other.children.count else { return false }
+        if !text.isEmpty && !children.isEmpty, textSlots != other.textSlots { return false }
+        return zip(children, other.children).allSatisfy { $0.semanticallyEquals($1) }
     }
 
     /// Preorder traversal excluding self, without constructing a flattened copy
@@ -112,7 +160,13 @@ final class XMLNode {
         }
 
         output.append(">")
-        if children.isEmpty {
+        if let textSlots, textSlots.count == children.count + 1 {
+            for (index, child) in children.enumerated() {
+                output.append(Self.escapeText(textSlots[index]))
+                child.appendXML(to: &output)
+            }
+            output.append(Self.escapeText(textSlots[children.count]))
+        } else if children.isEmpty {
             output.append(Self.escapeText(text))
         } else {
             for child in children {
@@ -129,6 +183,7 @@ final class XMLNode {
             .replacingOccurrences(of: "&", with: "&amp;")
             .replacingOccurrences(of: "<", with: "&lt;")
             .replacingOccurrences(of: ">", with: "&gt;")
+            .replacingOccurrences(of: "\r", with: "&#13;")
     }
 
     private static func escapeAttribute(_ text: String) -> String {

@@ -9,6 +9,7 @@ enum MainTab: Hashable {
 
 struct RootView: View {
     @Environment(EditorStore.self) private var store
+    @Environment(\.scenePhase) private var scenePhase
     @AppStorage("appearanceMode") private var appearanceMode = "system"
     @State private var selectedTab: MainTab = Self.debugInitialTab
     @State private var showingRescueBackups = false
@@ -17,9 +18,13 @@ struct RootView: View {
         let title: String
         let message: String
         let isRecovery: Bool
+        var isDraft = false
     }
     private var notice: Notice? {
         guard !store.isBusy else { return nil }
+        if let message = store.draftRecoveryMessage {
+            return Notice(title: "恢复未保存草稿", message: message, isRecovery: false, isDraft: true)
+        }
         if let message = store.recoveryConflictMessage {
             return Notice(title: "发现未完成事务", message: message, isRecovery: true)
         }
@@ -55,7 +60,13 @@ struct RootView: View {
             ),
             presenting: notice,
             actions: { displayed in
-                if displayed.isRecovery {
+                if displayed.isDraft {
+                    if store.canRecoverDraft {
+                        Button("恢复草稿") { store.restoreRecoveredDraft() }
+                    }
+                    Button("放弃这份草稿", role: .destructive) { store.discardRecoveredDraft() }
+                    Button("关闭副本，保留草稿", role: .cancel) { store.closeUnresolvedDraft() }
+                } else if displayed.isRecovery {
                     Button("保留当前文件并继续") { store.keepCurrentFilesAfterConflict() }
                     Button("查看与导出备份") {
                         store.dismissRecoveryConflict()
@@ -71,6 +82,9 @@ struct RootView: View {
             }
         )
         .sheet(isPresented: $showingRescueBackups) { BackupListView() }
+        .onChange(of: scenePhase) { _, phase in
+            if phase != .active { store.flushDraftWhenBackgrounding() }
+        }
     }
 
     @ViewBuilder

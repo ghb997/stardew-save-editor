@@ -1,6 +1,6 @@
 import Foundation
 
-struct BundleRequirement: Identifiable, Equatable, Sendable {
+struct BundleRequirement: Identifiable, Equatable, Sendable, Codable {
     let id: String
     let itemID: String
     let quantity: Int
@@ -9,7 +9,7 @@ struct BundleRequirement: Identifiable, Equatable, Sendable {
     var isGold: Bool { itemID == "-1" }
 }
 
-struct CommunityBundle: Identifiable, Equatable, Sendable {
+struct CommunityBundle: Identifiable, Equatable, Sendable, Codable {
     let id: String
     let area: String
     let name: String
@@ -34,7 +34,7 @@ struct CommunityBundle: Identifiable, Equatable, Sendable {
     ]
 }
 
-struct CommunityCenterData: Equatable, Sendable {
+struct CommunityCenterData: Equatable, Sendable, Codable {
     var bundles: [CommunityBundle] = []
     var unreadableCount = 0
     var isJojaMember = false

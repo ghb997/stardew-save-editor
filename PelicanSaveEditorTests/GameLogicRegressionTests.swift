@@ -237,7 +237,8 @@ final class GameLogicRegressionTests: XCTestCase {
 
     private func objectEntry(_ name: String, id: String, x: Int, extra: String = "", type: String? = nil) -> String {
         let attribute = type.map { " xsi:type=\"\($0)\"" } ?? ""
-        return "<item><key><Vector2><X>\(x)</X><Y>1</Y></Vector2></key><value><Object\(attribute)><name>\(name)</name><itemId>\(id)</itemId>\(extra)</Object></value></item>"
+        let flag = extra.contains("<bigCraftable>") ? "" : "<bigCraftable>false</bigCraftable>"
+        return "<item><key><Vector2><X>\(x)</X><Y>1</Y></Vector2></key><value><Object\(attribute)><name>\(name)</name><itemId>\(id)</itemId>\(flag)\(extra)</Object></value></item>"
     }
 
     private func animal(id: String, name: String, age: Int, owned: Int) -> String {

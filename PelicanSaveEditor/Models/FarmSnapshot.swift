@@ -62,16 +62,20 @@ enum FarmDebrisClassifier {
     /// while Object "0" is debris; never strip arbitrary mod namespaces.
     static func kind(in object: XMLNode) -> FarmDebrisKind? {
         guard ["Object", "Item"].contains(object.name),
-              object.value(named: "bigCraftable") != "true",
-              object.value(named: "bigCraftable") != "1",
+              ExistingSaveValue.bool(object.attributes["xsi:nil"] ?? object.attributes["nil"]) != true,
+              object.children(named: "bigCraftable").count == 1,
+              ExistingSaveValue.bool(ExistingSaveValue.field("bigCraftable", in: object)) == false,
+              object.children(named: "itemId").count <= 1,
+              object.children(named: "parentSheetIndex").count <= 1,
+              object.children(named: "heldObject").count <= 1,
               object.child(named: "items") == nil else { return nil }
         if let held = object.child(named: "heldObject"),
            held.attributes["xsi:nil"] != "true", held.attributes["nil"] != "true",
            !held.children.isEmpty || !held.text.isEmpty { return nil }
         let serializedType = object.attributes["xsi:type"] ?? object.attributes["type"]
         guard serializedType == nil || serializedType == "Object" else { return nil }
-        guard let id = vanillaObjectID(object.value(named: "itemId")
-            ?? object.value(named: "parentSheetIndex")) else { return nil }
+        guard let id = vanillaObjectID(ExistingSaveValue.field("itemId", in: object)
+            ?? ExistingSaveValue.field("parentSheetIndex", in: object)) else { return nil }
         if stoneIDs.contains(id) { return .stone }
         if weedIDs.contains(id) { return .weed }
         if twigIDs.contains(id) { return .twig }
