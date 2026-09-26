@@ -26,11 +26,12 @@ enum VerifiedExportRules {
             try SaveParser.stableIdentity(in: node, names: keys)
         }
         var verifiedIdentity = false
-        for (a, b) in try [
+        let identities = try [
             (identifier(source.mainRoot, ["uniqueIDForThisGame"]), identifier(destination.mainRoot, ["uniqueIDForThisGame"])),
             (identifier(source.mainRoot.child(named: "player"), ["uniqueMultiplayerID", "UniqueMultiplayerID"]),
              identifier(destination.mainRoot.child(named: "player"), ["uniqueMultiplayerID", "UniqueMultiplayerID"]))
-        ] {
+        ]
+        for (a, b) in identities {
             if let a, let b {
                 guard a == b else { throw SaveValidationError.invalid("目标目录属于另一份农场或另一位玩家，已阻止覆盖。") }
                 verifiedIdentity = true

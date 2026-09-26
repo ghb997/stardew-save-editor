@@ -1,43 +1,7 @@
 {
   "method": "tree-sitter-swift syntax parsing only; not Swift typechecking or XCTest execution",
   "swift_files": 102,
-  "errors": [
-    {
-      "file": "PelicanSaveEditor/Core/Files/VerifiedSaveExport.swift",
-      "line": 29,
-      "column": 20,
-      "kind": "ERROR",
-      "text": "in try [\n            (identifier(source.mainRoot, [\"uniqueIDForThisGame\"]), identifier(destination.mainRoot, [\"uniqueIDForThisGame\"])),\n            (identifier(source.mainRoot.chil"
-    },
-    {
-      "file": "PelicanSaveEditor/Core/Files/VerifiedSaveExport.swift",
-      "line": 39,
-      "column": 9,
-      "kind": "ERROR",
-      "text": "func description"
-    },
-    {
-      "file": "PelicanSaveEditor/Core/Files/VerifiedSaveExport.swift",
-      "line": 39,
-      "column": 28,
-      "kind": "ERROR",
-      "text": "parsed"
-    },
-    {
-      "file": "PelicanSaveEditor/Core/Files/VerifiedSaveExport.swift",
-      "line": 39,
-      "column": 28,
-      "kind": "ERROR",
-      "text": "parsed"
-    },
-    {
-      "file": "PelicanSaveEditor/Core/Files/VerifiedSaveExport.swift",
-      "line": 39,
-      "column": 59,
-      "kind": "ERROR",
-      "text": "Str"
-    }
-  ],
+  "errors": [],
   "unsupported_qualifiers_not_typechecked": [
     {
       "file": "PelicanSaveEditor/App/SaveWorkService.swift",
