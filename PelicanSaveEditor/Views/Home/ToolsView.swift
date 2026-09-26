@@ -126,7 +126,8 @@ struct ToolsView: View {
         VStack(alignment: .leading, spacing: 16) {
             HStack(spacing: 10) {
                 Image(systemName: "magnifyingglass").foregroundStyle(AppTheme.secondary)
-                TextField("搜索修改功能，如金币、天气、工具", text: $searchText)
+                TextField("搜索修改功能，如金币、天气、工具", text: $searchText,
+                          prompt: Text("搜索修改功能，如金币、天气、工具").foregroundStyle(AppTheme.secondary))
                     .font(.subheadline).focused($searchFocused)
                     .submitLabel(.search).onSubmit { searchFocused = false }
                     .accessibilityIdentifier("tools.search")

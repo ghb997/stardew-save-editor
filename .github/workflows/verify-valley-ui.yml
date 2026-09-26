@@ -1,6 +1,12 @@
 name: Verify valley interface
 on:
   workflow_dispatch:
+    inputs:
+      test_scope:
+        description: 'Full interface suite or all core tests plus persistence flows'
+        type: choice
+        options: [full, reliability]
+        default: full
   push:
     branches: ['codex/stardew-ui-*', 'codex/reliability-*']
 permissions:
@@ -52,7 +58,7 @@ jobs:
         if: ${{ !cancelled() }}
         env:
           LAYOUT_DEVICE: ${{ matrix.device }}
-          LAYOUT_SCOPE: valley
+          LAYOUT_SCOPE: ${{ inputs.test_scope == 'reliability' && 'reliability' || 'valley' }}
           LAYOUT_BUILD_ACTION: test-without-building
         run: bash scripts/validate-layout-on-macos.sh
       - name: Export results and screenshots

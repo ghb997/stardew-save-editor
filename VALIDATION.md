@@ -1,6 +1,10 @@
 # 交付验证说明
 
-## 当前版本：0.8.1（17）
+## 当前版本：0.9.1（19）
+
+当前构建及测试状态见 [构建 19 验证记录](validation/BUILD19_VERIFICATION.md)，整改范围见 [可靠性整改对照](RELIABILITY_UPDATE.md)。下文为历史版本记录。
+
+## 历史版本：0.8.1（17）
 
 Release arm64 IPA 已使用 Xcode 16.4 构建并校验。iPhone SE 第 3 代模拟器 159 项测试、iPad mini 模拟器 6 项测试全部通过；新增 3 项首次复制导入回调时序测试均已执行。IPA 未签名，真机安装和真实游戏读档、睡觉保存、再次载入未验证。详见 [构建 17 验证记录](validation/BUILD17_VERIFICATION.md)。下文为历史版本记录。
 

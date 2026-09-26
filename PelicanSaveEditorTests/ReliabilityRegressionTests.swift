@@ -169,6 +169,17 @@ final class ReliabilityRegressionTests: XCTestCase {
         XCTAssertEqual(try Data(contentsOf: library.source(for: record).mainURL), original.main)
     }
 
+    func testCopyLibraryNormalizesNewRootWithoutDirectorySlash() throws {
+        let root = try root(), original = pair()
+        let game = try game(root, pair: original)
+        let rawRoot = root.appendingPathComponent("FreshImports", isDirectory: false)
+        let library = try LocalSaveLibrary(root: rawRoot)
+        let copy = try SaveSourceResolver.copiedFiles([game.mainURL, try XCTUnwrap(game.infoURL)], importRootURL: library.root)
+        let record = try library.register(copy, draft: parse(original).draft, pair: original, imported: true)
+        let reopened = try LocalSaveLibrary(root: rawRoot).source(for: record)
+        XCTAssertEqual(try Data(contentsOf: reopened.mainURL), original.main)
+    }
+
     func testDraftReopensAndRebindsInventoryUUIDs() async throws {
         let root = try root(), pair = pair()
         let source = try imported(root, pair: pair), original = try parse(pair).draft

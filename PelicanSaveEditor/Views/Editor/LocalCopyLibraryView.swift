@@ -30,6 +30,7 @@ struct LocalCopyLibraryView: View {
                         }
                         if let problem = copy.problem { Text(problem).font(.footnote).foregroundStyle(AppTheme.trackerWarning) }
                         LabeledContent("最近保存", value: copy.savedAt.formatted(date: .abbreviated, time: .shortened))
+                        LabeledContent("导入时间", value: copy.importedAt.formatted(date: .abbreviated, time: .shortened))
                         LabeledContent("占用空间", value: ByteCountFormatter.string(fromByteCount: copy.byteCount, countStyle: .file))
                         Button("打开这份副本", systemImage: "folder") {
                             selection = copy; dismiss()

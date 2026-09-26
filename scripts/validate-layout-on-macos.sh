@@ -39,6 +39,9 @@ args=(
 )
 if [[ "${LAYOUT_SCOPE:-layout}" == valley-preview ]]; then
     args+=(-only-testing:PelicanSaveEditorUITests/ValleyThemeUITests)
+elif [[ "${LAYOUT_SCOPE:-layout}" == reliability ]]; then
+    args+=(-only-testing:PelicanSaveEditorTests)
+    args+=(-only-testing:PelicanSaveEditorUITests/PersistenceUITests)
 elif [[ "${LAYOUT_SCOPE:-layout}" == valley ]]; then
     args+=(-skip-testing:PelicanSaveEditorUITests/ValleyThemeUITests)
     if [[ "${LAYOUT_DEVICE:-mini}" != iphone ]]; then

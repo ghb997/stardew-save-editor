@@ -85,9 +85,10 @@ final class LocalSaveLibrary {
     private let manager = FileManager.default
 
     init(root: URL? = nil) throws {
-        self.root = try root ?? FileManager.default.url(for: .applicationSupportDirectory,
+        let location = try root ?? FileManager.default.url(for: .applicationSupportDirectory,
             in: .userDomainMask, appropriateFor: nil, create: true)
             .appendingPathComponent("PelicanSaveEditor/ImportedSaves", isDirectory: true)
+        self.root = URL(fileURLWithPath: location.path, isDirectory: true).standardizedFileURL
         try manager.createDirectory(at: self.root, withIntermediateDirectories: true)
     }
 
@@ -132,9 +133,11 @@ final class LocalSaveLibrary {
                   imported: Bool = false, saved: Bool = false) throws -> LocalCopyRecord {
         let id = try id(for: source)
         let now = Date()
+        let createdAt = (try? directory(id).resourceValues(forKeys: [.creationDateKey]).creationDate) ?? now
+        let modifiedAt = (try? source.mainURL.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate) ?? now
         var record = (try? readRecord(id)) ?? LocalCopyRecord(id: id, farmIdentifier: source.farmIdentifier,
             playerName: draft.playerName, farmName: draft.farmName,
-            importedAt: now, lastOpenedAt: now, savedAt: now, gameDate: "",
+            importedAt: createdAt, lastOpenedAt: now, savedAt: modifiedAt, gameDate: "",
             savedMainHash: pair.mainHash, savedInfoHash: pair.infoHash,
             originMainHash: imported ? pair.mainHash : nil, originInfoHash: imported ? pair.infoHash : nil,
             needsExport: !imported)

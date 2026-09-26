@@ -59,6 +59,12 @@ final class PersistenceUITests: XCTestCase {
         XCTAssertTrue(resume.waitForExistence(timeout: 30)); resume.tap()
         dismissNotice(app)
         XCTAssertFalse(app.alerts["恢复未保存草稿"].exists)
+        let library = app.buttons["tools.library"]
+        try revealDirectoryControl(library, in: app); library.tap()
+        XCTAssertTrue(app.staticTexts["已保存，待导出"].waitForExistence(timeout: 15))
+        let libraryScreenshot = XCTAttachment(screenshot: app.screenshot())
+        libraryScreenshot.name = "build19-local-library"; libraryScreenshot.lifetime = .keepAlways; add(libraryScreenshot)
+        app.buttons["完成"].tap()
         XCTAssertEqual(try openCharacter(app).value as? String, value)
         app.buttons["editor.review.open"].tap()
         let export = app.buttons["再次导出已保存副本"]
@@ -73,6 +79,7 @@ final class PersistenceUITests: XCTestCase {
     @MainActor
     private func openCharacter(_ app: XCUIApplication) throws -> XCUIElement {
         XCTAssertTrue(app.buttons["farm.load.switch"].waitForExistence(timeout: 30))
+        try selectToolCategory(for: "character", in: app)
         let entry = app.buttons["editor.tool.character"]
         try revealDirectoryControl(entry, in: app); entry.tap()
         let field = app.textFields["character.favorite"]
