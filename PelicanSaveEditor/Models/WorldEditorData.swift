@@ -19,7 +19,7 @@ struct SaveNodePath: Hashable, Sendable, Codable {
 enum ExistingSaveValue {
     static func scalar(_ node: XMLNode?) -> String? {
         guard let node, node.children.isEmpty,
-              !["true", "1"].contains((node.attributes["xsi:nil"] ?? node.attributes["nil"] ?? "false").lowercased()) else { return nil }
+              bool(node.attributes["xsi:nil"] ?? node.attributes["nil"] ?? "false") == false else { return nil }
         return node.text.trimmingCharacters(in: .whitespacesAndNewlines)
     }
     static func field(_ name: String, in node: XMLNode) -> String? {

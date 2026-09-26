@@ -36,6 +36,20 @@ enum SaveParseError: LocalizedError {
 }
 
 enum SaveParser {
+    static func stableIdentity(in node: XMLNode?, names: [String]) throws -> String? {
+        guard let node else { return nil }
+        var values: Set<String> = []
+        for name in names {
+            let fields = node.children(named: name)
+            guard fields.count <= 1 else { throw SaveParseError.invalidValue("重复的身份字段 \(name)") }
+            guard let field = fields.first else { continue }
+            guard let value = ExistingSaveValue.scalar(field) else { throw SaveParseError.invalidValue(name) }
+            let normalized = Int64(value).map(String.init) ?? value
+            if !normalized.isEmpty && normalized != "0" { values.insert(normalized) }
+        }
+        guard values.count <= 1 else { throw SaveParseError.invalidValue("身份字段互相冲突") }
+        return values.first
+    }
     static func parse(
         mainData: Data,
         infoData: Data?,
@@ -181,14 +195,9 @@ enum SaveParser {
         guard infoRoot.name == "Farmer" else {
             throw SaveParseError.invalidRoot("SaveGameInfo/\(infoRoot.name)，应为 Farmer")
         }
-        func identity(in node: XMLNode?) -> String? {
-            guard let value = node?.value(named: "uniqueMultiplayerID")?
-                .trimmingCharacters(in: .whitespacesAndNewlines),
-                !value.isEmpty, value != "0" else { return nil }
-            return value
-        }
-        let mainID = identity(in: mainRoot.child(named: "player"))
-        let infoID = identity(in: infoRoot)
+        let names = ["uniqueMultiplayerID", "UniqueMultiplayerID"]
+        let mainID = try stableIdentity(in: mainRoot.child(named: "player"), names: names)
+        let infoID = try stableIdentity(in: infoRoot, names: names)
         if let mainID, let infoID {
             guard mainID == infoID else { throw SaveParseError.mismatchedPair }
             return []

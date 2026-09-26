@@ -22,15 +22,14 @@ enum VerifiedExportRules {
         }
         let source = try SaveParser.parse(mainData: pair.main, infoData: pair.info, catalog: [], recipeCatalog: [:])
         let destination = try SaveParser.parse(mainData: targetPair.main, infoData: targetPair.info, catalog: [], recipeCatalog: [:])
-        func identifier(_ node: XMLNode?, _ key: String) -> String? {
-            guard let node, let value = ExistingSaveValue.field(key, in: node), !value.isEmpty, value != "0" else { return nil }
-            return value
+        func identifier(_ node: XMLNode?, _ keys: [String]) throws -> String? {
+            try SaveParser.stableIdentity(in: node, names: keys)
         }
         var verifiedIdentity = false
-        for (a, b) in [
-            (identifier(source.mainRoot, "uniqueIDForThisGame"), identifier(destination.mainRoot, "uniqueIDForThisGame")),
-            (identifier(source.mainRoot.child(named: "player"), "uniqueMultiplayerID"),
-             identifier(destination.mainRoot.child(named: "player"), "uniqueMultiplayerID"))
+        for (a, b) in try [
+            (identifier(source.mainRoot, ["uniqueIDForThisGame"]), identifier(destination.mainRoot, ["uniqueIDForThisGame"])),
+            (identifier(source.mainRoot.child(named: "player"), ["uniqueMultiplayerID", "UniqueMultiplayerID"]),
+             identifier(destination.mainRoot.child(named: "player"), ["uniqueMultiplayerID", "UniqueMultiplayerID"]))
         ] {
             if let a, let b {
                 guard a == b else { throw SaveValidationError.invalid("目标目录属于另一份农场或另一位玩家，已阻止覆盖。") }

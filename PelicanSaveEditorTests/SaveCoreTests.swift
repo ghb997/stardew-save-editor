@@ -511,9 +511,9 @@ final class SaveCoreTests: XCTestCase {
             <GameLocation xsi:type="Farm">
               <name>Farm</name>
               <objects>
-                <item><key><Vector2><X>1</X><Y>1</Y></Vector2></key><value><Object><name>Stone</name><itemId>StardewValley:(O)343</itemId></Object></value></item>
-                <item><key><Vector2><X>2</X><Y>1</Y></Vector2></key><value><Object><name>Weeds</name><itemId>313</itemId></Object></value></item>
-                <item><key><Vector2><X>3</X><Y>1</Y></Vector2></key><value><Object><name>Twig</name><itemId>294</itemId></Object></value></item>
+                <item><key><Vector2><X>1</X><Y>1</Y></Vector2></key><value><Object><name>Stone</name><itemId>StardewValley:(O)343</itemId><bigCraftable>false</bigCraftable></Object></value></item>
+                <item><key><Vector2><X>2</X><Y>1</Y></Vector2></key><value><Object><name>Weeds</name><itemId>313</itemId><bigCraftable>false</bigCraftable></Object></value></item>
+                <item><key><Vector2><X>3</X><Y>1</Y></Vector2></key><value><Object><name>Twig</name><itemId>294</itemId><bigCraftable>false</bigCraftable></Object></value></item>
                 <item><key><Vector2><X>4</X><Y>1</Y></Vector2></key><value><Object><name>Chest</name><itemId>130</itemId><bigCraftable>true</bigCraftable></Object></value></item>
               </objects>
               <terrainFeatures>
@@ -759,8 +759,8 @@ final class SaveCoreTests: XCTestCase {
     func testMagicMapCanRemoveOneSelectedDebrisWithoutTouchingNeighbors() throws {
         let farm = """
           <locations><GameLocation xsi:type="Farm"><name>Farm</name><objects>
-            <item><key><Vector2><X>1</X><Y>1</Y></Vector2></key><value><Object><name>Stone</name><itemId>343</itemId></Object></value></item>
-            <item><key><Vector2><X>2</X><Y>1</Y></Vector2></key><value><Object><name>Stone</name><itemId>343</itemId></Object></value></item>
+            <item><key><Vector2><X>1</X><Y>1</Y></Vector2></key><value><Object><name>Stone</name><itemId>343</itemId><bigCraftable>false</bigCraftable></Object></value></item>
+            <item><key><Vector2><X>2</X><Y>1</Y></Vector2></key><value><Object><name>Stone</name><itemId>343</itemId><bigCraftable>false</bigCraftable></Object></value></item>
             <item><key><Vector2><X>3</X><Y>1</Y></Vector2></key><value><Object><name>Chest</name><itemId>130</itemId><bigCraftable>true</bigCraftable></Object></value></item>
           </objects></GameLocation></locations>
         """

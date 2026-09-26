@@ -3,6 +3,38 @@ import XCTest
 
 @MainActor
 final class ReliabilityRegressionTests: XCTestCase {
+    private func waitUntilIdle(_ store: EditorStore) async throws {
+        let deadline = Date().addingTimeInterval(15)
+        while store.isBusy && Date() < deadline { try await Task.sleep(for: .milliseconds(10)) }
+        XCTAssertFalse(store.isBusy)
+    }
+    func testQueuedDraftSaveDoesNotResurrectCheckpointAndFailedDraftCannotBeClosed() async throws {
+        let root = try root(), original = pair(), source = try imported(root, pair: original)
+        let service = worker(root), store = EditorStore(worker: worker(root))
+        try await waitUntilIdle(store)
+        let copies = try await service.localCopies()
+        store.openLocalCopy(try XCTUnwrap(copies.first)); try await waitUntilIdle(store)
+        let session = try XCTUnwrap(store.session)
+        session.draft.money = 200; session.draft.money = 300
+        store.save(showSuccess: false); try await waitUntilIdle(store)
+        await store.flushDraft()
+        XCTAssertNil(store.errorMessage)
+        XCTAssertEqual(store.session?.originalDraft.money, 300)
+        let checkpoint = source.mainURL.deletingLastPathComponent().appendingPathComponent("draft.json")
+        XCTAssertFalse(FileManager.default.fileExists(atPath: checkpoint.path))
+        try FileManager.default.createDirectory(at: checkpoint, withIntermediateDirectories: false)
+        session.draft.money = 400; await store.flushDraft()
+        store.closeSession(); try await waitUntilIdle(store)
+        XCTAssertTrue(store.session === session)
+        XCTAssertEqual(store.session?.draft.money, 400)
+        XCTAssertTrue(store.errorMessage?.contains("尚未安全暂存") == true)
+        try FileManager.default.removeItem(at: checkpoint)
+        session.draft.money = 500; await store.flushDraft()
+        store.closeSession(); try await waitUntilIdle(store)
+        XCTAssertNil(store.session)
+        XCTAssertTrue(FileManager.default.fileExists(atPath: checkpoint.path))
+    }
+
     private func pair(money: Int = 100, identity: String = "42", extra: String = "", objects: String = "") -> SavePairData {
         let player = """
         <name>Farmer</name><farmName>Farm</farmName><favoriteThing>Tea</favoriteThing>
@@ -58,6 +90,27 @@ final class ReliabilityRegressionTests: XCTestCase {
         }
         XCTAssertEqual(reread.mainRoot.value(named: "line"), "first\rsecond")
         XCTAssertTrue(String(decoding: rendered.mainData, as: UTF8.self).contains("before<value>kept</value>after&lt;&amp;&gt;"))
+    }
+
+    func testIntentVerifierRejectsUnexpectedScalarChange() throws {
+        let original = try parse(pair())
+        var intended = original.draft; intended.money = 500
+        let wrong = try parse(pair(money: 500))
+        wrong.mainRoot.child(named: "player")?.setValue("Unexpected", named: "farmName")
+        let changed = try parse(SavePairData(main: Data(wrong.mainRoot.xmlString().utf8), info: nil))
+        XCTAssertThrowsError(try SaveIntentVerifier.verify(original: original.draft, intended: intended,
+                                                           reloaded: changed, originalRoot: original.mainRoot))
+    }
+
+    func testNilAndConflictingIDsNeverBecomeDebris() throws {
+        for xml in [
+            "<Object><itemId>0</itemId><bigCraftable xsi:nil=\" true \">false</bigCraftable></Object>",
+            "<Object><itemId>0</itemId><parentSheetIndex>130</parentSheetIndex><bigCraftable>false</bigCraftable></Object>",
+            "<Object><itemId>mod:0</itemId><parentSheetIndex>0</parentSheetIndex><bigCraftable>false</bigCraftable></Object>"
+        ] {
+            let object = try XMLTreeParser().parse(Data(xml.utf8))
+            XCTAssertNil(FarmDebrisClassifier.kind(in: object))
+        }
     }
 
     func testUnsupportedMixedContainerMutationIsRejected() throws {
@@ -129,6 +182,35 @@ final class ReliabilityRegressionTests: XCTestCase {
         XCTAssertEqual(recovered?.inventory[0].item?.id, fresh.inventory[0].item?.id)
         let copies = try await restarted.localCopies()
         XCTAssertEqual(copies.first?.hasDraft, true)
+    }
+
+    func testFullDraftCheckpointPreservesNewItemsAndRebindsStorageItems() throws {
+        let pair = SavePairData(main: Data(ExpandedEditorFixture.xml.utf8), info: Data(ExpandedEditorFixture.info.utf8))
+        let catalog = try ItemCatalog.load()
+        let original = try SaveParser.parse(mainData: pair.main, infoData: pair.info, catalog: catalog, recipeCatalog: [:]).draft
+        var draft = original
+        draft.storages[0].slots[0].item?.stack = 25
+        let wood = try XCTUnwrap(catalog.first { $0.id == "388" }).makeInventoryItem()
+        draft.storages[0].slots[35].item = wood
+        draft.weatherAndLuck.dailyLuck = 0.1
+        let checkpoint = DraftCheckpoint(copyID: "example", savedAt: Date(), mainHash: pair.mainHash, infoHash: pair.infoHash, original: original, draft: draft)
+        let data = try JSONEncoder().encode(checkpoint)
+        let decoded = try JSONDecoder().decode(DraftCheckpoint.self, from: data)
+        let fresh = try SaveParser.parse(mainData: pair.main, infoData: pair.info, catalog: catalog, recipeCatalog: [:])
+        let restored = try decoded.rebased(on: fresh.draft, pair: pair, copyID: "example")
+        XCTAssertEqual(restored.storages[0].slots[0].item?.id, fresh.draft.storages[0].slots[0].item?.id)
+        XCTAssertEqual(restored.storages[0].slots[0].item?.stack, 25)
+        XCTAssertEqual(restored.storages[0].slots[35].item?.id, wood.id)
+        _ = try SaveMutator.render(parsed: fresh, draft: restored)
+    }
+
+    func testUppercasePlayerIdentityAndDuplicateIDsAreChecked() throws {
+        let first = pair(identity: "42"), other = pair(identity: "99")
+        let main = String(decoding: first.main, as: UTF8.self).replacingOccurrences(of: "uniqueMultiplayerID", with: "UniqueMultiplayerID")
+        let info = String(decoding: try XCTUnwrap(other.info), as: UTF8.self).replacingOccurrences(of: "uniqueMultiplayerID", with: "UniqueMultiplayerID")
+        XCTAssertThrowsError(try parse(SavePairData(main: Data(main.utf8), info: Data(info.utf8))))
+        let duplicate = main.replacingOccurrences(of: "</UniqueMultiplayerID>", with: "</UniqueMultiplayerID><UniqueMultiplayerID>42</UniqueMultiplayerID>")
+        XCTAssertThrowsError(try parse(SavePairData(main: Data(duplicate.utf8), info: first.info)))
     }
 
     func testDraftRejectsChangedPairAndPreservesCheckpoint() async throws {

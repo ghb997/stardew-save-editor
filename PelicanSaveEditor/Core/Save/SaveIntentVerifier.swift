@@ -9,6 +9,11 @@ enum SaveIntentVerifier {
         let observed = Dictionary(SaveDiffBuilder.build(original: original, draft: reloaded.draft)
             .map { ($0.id, $0.newValue) }, uniquingKeysWith: { first, _ in first })
         let specializedPrefixes = ["farm.", "machine:", "equipment:", "storage:", "inventory."]
+        let expectedIDs = Set(expected.map(\.id))
+        for id in observed.keys where !expectedIDs.contains(id)
+            && !specializedPrefixes.contains(where: { id.hasPrefix($0) }) {
+            throw SaveValidationError.invalid("写回验证发现未在检查页确认的额外变化（\(id)），已停止保存。")
+        }
         for diff in expected where !specializedPrefixes.contains(where: { diff.id.hasPrefix($0) }) {
             guard observed[diff.id] == diff.newValue else {
                 throw SaveValidationError.invalid("写回验证未通过：\(diff.label)没有按草稿生效。原存档尚未写入，请撤销该项并检查存档字段。")

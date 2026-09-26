@@ -76,6 +76,7 @@ final class EditorStore {
     var canRecoverDraft: Bool { recoveredDraft != nil }
     private var draftWriteTask: Task<Void, Never>?
     private var draftRevision = 0
+    private var draftWriteError: String?
     var exportRecoveryDirectory: URL?
 
     init(worker: SaveWorkService? = nil) {
@@ -147,13 +148,14 @@ final class EditorStore {
         perform("正在重新读取存档…") {
             await self.flushDraft()
             try await self.worker.discardDraft(source: source)
-            try await self.load(source: source, remember: false)
+            try await self.load(source: source, remember: false, preservingDraft: false)
         }
     }
     func closeSession(discardingChanges: Bool = false) {
         guard !isBusy, let session else { return }
         perform("正在关闭副本…") {
-            await self.flushDraft()
+            if discardingChanges { await self.flushDraft() }
+            else { try await self.preserveCurrentDraft() }
             if discardingChanges { try await self.worker.discardDraft(source: session.source) }
             self.session = nil
             self.draftRecoveryMessage = nil; self.recoveredDraft = nil; self.draftStorageMessage = nil
@@ -180,6 +182,7 @@ final class EditorStore {
             session.replaceParsed(written.parsed, pair: written.pair, snapshot: written.snapshot)
             self.libraryWarning = written.storageWarning
             self.draftStorageMessage = nil
+            self.draftWriteError = nil
             if showSuccess {
                 self.successMessage = session.source.mode == .importedCopy
                     ? "副本已保存并校验。请导出两份文件到游戏农场目录。"
@@ -249,8 +252,9 @@ final class EditorStore {
     func dismissRecoveryConflict() { recoveryConflictMessage = nil; recoverySource = nil }
     func clearMessages() { errorMessage = nil; successMessage = nil }
 
-    private func load(source: SaveSource, remember: Bool, imported: Bool = false) async throws {
-        await flushDraft()
+    private func load(source: SaveSource, remember: Bool, imported: Bool = false, preservingDraft: Bool = true) async throws {
+        if preservingDraft { try await preserveCurrentDraft() }
+        else { await flushDraft() }
         loadFollowUpTask?.cancel()
         let result: LoadedSaveWork
         do {
@@ -269,6 +273,7 @@ final class EditorStore {
         loadedSession.setEditingLocked(isBusy)
         session = loadedSession
         draftStorageMessage = nil
+        draftWriteError = nil
         recoveredDraft = nil; draftRecoveryMessage = nil
         do {
             recoveredDraft = try await worker.recoveredDraft(source: source, pair: result.pair, original: result.parsed.draft)
@@ -285,7 +290,9 @@ final class EditorStore {
         case .originalFilesConfirmed: successMessage = "原始文件完整，上次未开始的写回事务已清理。"
         case .restoredFromBackup: successMessage = "上次写入中断，已恢复两份原始文件。"
         case .none:
-            if source.mode == .importedCopy { successMessage = "已复制导入。保存后可导出副本用于游戏。" }
+            if source.mode == .importedCopy {
+                successMessage = imported ? "已复制导入。保存后可导出副本用于游戏。" : "已打开本地副本，可继续编辑或导出。"
+            }
         }
         // The farm is usable now. File-provider bookmarks and the backup index
         // are housekeeping, and must not extend the modal loading lock.
@@ -319,14 +326,24 @@ final class EditorStore {
             do {
                 try await self.worker.persistDraft(source: source, pair: pair, original: original, draft: draft)
                 if self.draftRevision == revision, self.session === session {
+                    self.draftWriteError = nil
                     self.draftStorageMessage = SaveDiffBuilder.build(original: original, draft: draft).isEmpty ? nil : "草稿已暂存，可在重启后恢复"
                 }
             } catch {
-                if self.session === session { self.draftStorageMessage = "草稿暂存失败：\(error.localizedDescription)" }
+                if self.draftRevision == revision, self.session === session {
+                    self.draftWriteError = error.localizedDescription
+                    self.draftStorageMessage = "草稿暂存失败：\(error.localizedDescription)"
+                }
             }
         }
     }
     func flushDraft() async { await draftWriteTask?.value }
+    private func preserveCurrentDraft() async throws {
+        await flushDraft()
+        if session?.source.mode == .importedCopy, session?.hasChanges == true, let draftWriteError {
+            throw SaveValidationError.invalid("草稿尚未安全暂存，已保留当前编辑。请先保存或明确放弃草稿，再关闭或切换副本。\(draftWriteError)")
+        }
+    }
     func flushDraftWhenBackgrounding() {
         let token = UIApplication.shared.beginBackgroundTask(withName: "Persist edit draft")
         Task {
@@ -351,7 +368,7 @@ final class EditorStore {
     }
     func closeUnresolvedDraft() {
         draftRecoveryMessage = nil; recoveredDraft = nil
-        session = nil
+        session = nil; clearMessages()
     }
     func openLocalCopy(_ record: LocalCopyRecord) {
         perform("正在打开本地副本…") {

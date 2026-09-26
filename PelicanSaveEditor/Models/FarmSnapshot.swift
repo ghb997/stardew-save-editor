@@ -74,8 +74,12 @@ enum FarmDebrisClassifier {
            !held.children.isEmpty || !held.text.isEmpty { return nil }
         let serializedType = object.attributes["xsi:type"] ?? object.attributes["type"]
         guard serializedType == nil || serializedType == "Object" else { return nil }
-        guard let id = vanillaObjectID(ExistingSaveValue.field("itemId", in: object)
-            ?? ExistingSaveValue.field("parentSheetIndex", in: object)) else { return nil }
+        let modernID = vanillaObjectID(ExistingSaveValue.field("itemId", in: object))
+        let legacyID = vanillaObjectID(ExistingSaveValue.field("parentSheetIndex", in: object))
+        if object.child(named: "itemId") != nil && modernID == nil { return nil }
+        if object.child(named: "parentSheetIndex") != nil && legacyID == nil { return nil }
+        if let modernID, let legacyID, modernID != legacyID { return nil }
+        guard let id = modernID ?? legacyID else { return nil }
         if stoneIDs.contains(id) { return .stone }
         if weedIDs.contains(id) { return .weed }
         if twigIDs.contains(id) { return .twig }
