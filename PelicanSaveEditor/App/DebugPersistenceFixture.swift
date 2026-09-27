@@ -27,7 +27,15 @@ enum DebugPersistenceFixture {
         <items/><maxItems>12</maxItems><Gender>Male</Gender><hair>0</hair><skin>0</skin><accessory>-1</accessory>
         """
         let urls = [directory.appendingPathComponent("Farmer_123"), directory.appendingPathComponent("SaveGameInfo")]
-        try Data("<SaveGame><gameVersion>1.6.15</gameVersion><player>\(player)</player><year>1</year><currentSeason>spring</currentSeason><dayOfMonth>1</dayOfMonth><locations/></SaveGame>".utf8).write(to: urls[0])
+        let animals = [("1", "Alpha"), ("2", "Beta")].map { id, name in
+            """
+            <item><key><long>\(id)</long></key><value><FarmAnimal>
+            <name>\(name)</name><displayName>\(name)</displayName><type>White Cow</type><buildingTypeILiveIn>Barn</buildingTypeILiveIn>
+            <friendshipTowardFarmer>400</friendshipTowardFarmer><happiness>180</happiness><fullness>160</fullness><daysOwned>20</daysOwned><age>20</age>
+            </FarmAnimal></value></item>
+            """
+        }.joined()
+        try Data("<SaveGame xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><gameVersion>1.6.15</gameVersion><player>\(player)</player><year>1</year><currentSeason>spring</currentSeason><dayOfMonth>1</dayOfMonth><locations><GameLocation xsi:type=\"Farm\"><name>Farm</name><animals>\(animals)</animals></GameLocation></locations></SaveGame>".utf8).write(to: urls[0])
         try Data("<Farmer>\(player)</Farmer>".utf8).write(to: urls[1])
         return urls
     }

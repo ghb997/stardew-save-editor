@@ -77,6 +77,55 @@ final class PersistenceUITests: XCTestCase {
     }
 
     @MainActor
+    func testAnimalRenameSaveKeepsSameAnimalAfterListReorders() throws {
+        let app = XCUIApplication()
+        let args = ["--ui-library", UUID().uuidString, "--ui-tab", "tools", "-AppleLanguages", "(zh-Hans)", "-AppleLocale", "zh_CN"]
+        app.launchArguments = args + ["--ui-library-seed"]; app.launch()
+        defer { app.terminate() }
+        XCTAssertTrue(app.buttons["farm.load.switch"].waitForExistence(timeout: 30))
+        try openAnimal("1", app)
+        let name = app.textFields["editor.animal.name"]
+        try revealInEditor(name, app)
+        XCTAssertEqual(name.value as? String, "Alpha")
+        name.tap()
+        name.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: 5) + "Zulu\n")
+        let renamed = try XCTUnwrap(name.value as? String)
+        XCTAssertTrue(renamed.hasPrefix("Zulu"), "Renaming must move this animal after Beta in the saved list")
+        app.buttons["editor.review.open"].tap()
+        try saveLocalCopy(app)
+        try returnFromReview(app)
+        try revealInEditor(name, app)
+        XCTAssertEqual(name.value as? String, renamed, "Returning after saving must stay on animal ID 1")
+        capture("build21-animal-after-reordered-save", app)
+        name.tap(); name.typeText("X\n")
+        let editedAgain = try XCTUnwrap(name.value as? String)
+        app.buttons["editor.review.open"].tap()
+        try saveLocalCopy(app)
+        app.terminate(); app.launchArguments = args; app.launch()
+        let resume = app.buttons["library.continue"]
+        XCTAssertTrue(resume.waitForExistence(timeout: 30)); resume.tap()
+        dismissNotice(app)
+        try openAnimal("1", app)
+        try revealInEditor(name, app)
+        XCTAssertEqual(name.value as? String, editedAgain)
+        let back = app.navigationBars.firstMatch.buttons.element(boundBy: 0)
+        back.tap()
+        let otherAnimal = app.buttons["editor.animal.2"]
+        try revealInEditor(otherAnimal, app); otherAnimal.tap()
+        try revealInEditor(name, app)
+        XCTAssertEqual(name.value as? String, "Beta", "The other animal must not receive edits after saving")
+    }
+
+    @MainActor
+    private func openAnimal(_ id: String, _ app: XCUIApplication) throws {
+        try selectToolCategory(for: "animals", in: app)
+        let entry = app.buttons["editor.tool.animals"]
+        try revealDirectoryControl(entry, in: app); entry.tap()
+        let animal = app.buttons["editor.animal.\(id)"]
+        try revealInEditor(animal, app); animal.tap()
+    }
+
+    @MainActor
     func testSaveReturnAndContinueEditingPersistsBothChanges() throws {
         let app = XCUIApplication()
         let args = ["--ui-library", UUID().uuidString, "--ui-tab", "tools", "-AppleLanguages", "(zh-Hans)", "-AppleLocale", "zh_CN"]
