@@ -39,6 +39,7 @@ args=(
     -resultBundlePath "$output_dir/tests.xcresult" CODE_SIGNING_ALLOWED=NO
 )
 if [[ "${LAYOUT_SCOPE:-layout}" == editor-flows ]]; then
+    args+=(-only-testing:PelicanSaveEditorTests/SaveCoreTests/testGlobalKeyboardReturnAccessoryInstallsOnEveryUIKitTextInputKind)
     args+=(-only-testing:PelicanSaveEditorUITests/PelicanBrandUITests)
     args+=(-only-testing:PelicanSaveEditorUITests/PersistenceUITests)
 elif [[ "${LAYOUT_SCOPE:-layout}" == editor-navigation ]]; then

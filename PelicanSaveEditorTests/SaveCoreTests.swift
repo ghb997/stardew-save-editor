@@ -67,7 +67,7 @@ final class SaveCoreTests: XCTestCase {
             textFieldToolbar.accessibilityIdentifier,
             GlobalKeyboardReturnInstaller.toolbarIdentifier
         )
-        XCTAssertEqual(textFieldToolbar.items?.last?.title, "返回")
+        XCTAssertEqual(textFieldToolbar.items?.last?.title, "完成输入")
         XCTAssertEqual(
             textFieldToolbar.items?.last?.accessibilityIdentifier,
             GlobalKeyboardReturnInstaller.buttonIdentifier
@@ -83,7 +83,7 @@ final class SaveCoreTests: XCTestCase {
             searchFieldToolbar.accessibilityIdentifier,
             GlobalKeyboardReturnInstaller.toolbarIdentifier
         )
-        XCTAssertEqual(searchFieldToolbar.items?.last?.title, "返回")
+        XCTAssertEqual(searchFieldToolbar.items?.last?.title, "完成输入")
         XCTAssertEqual(
             searchFieldToolbar.items?.last?.accessibilityIdentifier,
             GlobalKeyboardReturnInstaller.buttonIdentifier
@@ -99,7 +99,7 @@ final class SaveCoreTests: XCTestCase {
             textViewToolbar.accessibilityIdentifier,
             GlobalKeyboardReturnInstaller.toolbarIdentifier
         )
-        XCTAssertEqual(textViewToolbar.items?.last?.title, "返回")
+        XCTAssertEqual(textViewToolbar.items?.last?.title, "完成输入")
         XCTAssertEqual(
             textViewToolbar.items?.last?.accessibilityIdentifier,
             GlobalKeyboardReturnInstaller.buttonIdentifier

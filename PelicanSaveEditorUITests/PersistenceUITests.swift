@@ -211,7 +211,7 @@ final class PersistenceUITests: XCTestCase {
 
     @MainActor
     private func returnFromReview(_ app: XCUIApplication) throws {
-        let back = app.buttons["editor.shell.close"]
+        let back = app.navigationBars["检查更改"].buttons["editor.shell.close"]
         XCTAssertTrue(back.waitForExistence(timeout: 10))
         XCTAssertEqual(back.label, "返回编辑")
         capture("build21-review-after-operation", app)
