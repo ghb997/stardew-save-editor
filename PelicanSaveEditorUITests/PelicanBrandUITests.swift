@@ -118,6 +118,15 @@ final class PelicanBrandUITests: XCTestCase {
         capture("build20-tools-accessibility-dark", app)
         app.terminate()
         _ = launch("settings", demo: false, extra: extra)
+        let appearance = app.descendants(matching: .any).matching(identifier: "settings.appearance").firstMatch
+        try tapByScrolling(appearance, app)
+        let dark = app.buttons["深色"].firstMatch
+        XCTAssertTrue(dark.waitForExistence(timeout: 10))
+        capture("build20-settings-appearance-accessibility-menu", app)
+        dark.tap()
+        XCTAssertTrue(appearance.isHittable)
+        XCTAssertTrue(app.frame.contains(appearance.frame))
+        capture("build20-settings-appearance-accessibility-dark", app)
         try tapByScrolling(app.buttons["settings.qq.copy"], app)
         XCTAssertTrue(app.staticTexts["settings.qq.copied"].waitForExistence(timeout: 10))
         capture("build20-settings-accessibility-dark", app)

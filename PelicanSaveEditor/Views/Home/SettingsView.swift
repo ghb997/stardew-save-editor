@@ -36,11 +36,13 @@ struct SettingsView: View {
                     VStack(spacing: 0) {
                         SettingsRow(title: "语言", value: "简体中文", systemImage: "character.bubble")
                         Divider().padding(.leading, 54)
-                        HStack(spacing: 14) {
-                            GameAssetIcon(assetName: "GameUIProgress", size: 26)
-                                .frame(width: 30)
-                            Text("外观")
-                            Spacer()
+                        appearanceRowLayout {
+                            HStack(spacing: 14) {
+                                GameAssetIcon(assetName: "GameUIProgress", size: 26)
+                                    .frame(width: 30)
+                                Text("外观").fixedSize(horizontal: false, vertical: true)
+                            }
+                            if !typeSize.isAccessibilitySize { Spacer() }
                             Picker("外观", selection: $appearanceMode) {
                                 Text("跟随系统").tag("system")
                                 Text("浅色").tag("light")
@@ -48,6 +50,9 @@ struct SettingsView: View {
                             }
                             .labelsHidden()
                             .pickerStyle(.menu)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .frame(maxWidth: typeSize.isAccessibilitySize ? .infinity : nil, alignment: .leading)
+                            .accessibilityIdentifier("settings.appearance")
                         }
                         .padding(18)
                     }
@@ -131,6 +136,11 @@ struct SettingsView: View {
     private var farmHeaderLayout: AnyLayout {
         typeSize.isAccessibilitySize ? AnyLayout(VStackLayout(alignment: .leading, spacing: 12))
             : AnyLayout(HStackLayout(spacing: 12))
+    }
+
+    private var appearanceRowLayout: AnyLayout {
+        typeSize.isAccessibilitySize ? AnyLayout(VStackLayout(alignment: .leading, spacing: 12))
+            : AnyLayout(HStackLayout(spacing: 14))
     }
 }
 
