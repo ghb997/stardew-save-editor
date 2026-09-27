@@ -5,7 +5,7 @@ on:
       test_scope:
         description: 'Full interface suite, reliability, or journal entry interactions'
         type: choice
-        options: [full, reliability, interaction]
+        options: [full, reliability, interaction, map]
         default: full
   push:
     branches: ['codex/stardew-ui-*', 'codex/reliability-*']
@@ -21,7 +21,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        device: [iphone, mini]
+        device: ${{ fromJSON(inputs.test_scope == 'map' && '["iphone"]' || '["iphone","mini"]') }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -31,6 +31,7 @@ jobs:
           test -d /Applications/Xcode_16.4.app/Contents/Developer
           echo "DEVELOPER_DIR=/Applications/Xcode_16.4.app/Contents/Developer" >> "$GITHUB_ENV"
       - name: Capture day and night screens first
+        if: ${{ inputs.test_scope != 'map' }}
         id: preview
         env:
           LAYOUT_DEVICE: ${{ matrix.device == 'iphone' && 'reference' || matrix.device }}
@@ -45,7 +46,7 @@ jobs:
             xcrun xcresulttool export attachments --path artifacts/valley-preview/tests.xcresult --output-path artifacts/valley-preview/attachments
           fi
       - uses: actions/upload-artifact@v4
-        if: always()
+        if: ${{ always() && inputs.test_scope != 'map' }}
         with:
           name: valley-preview-${{ matrix.device }}-${{ github.run_attempt }}
           path: |
@@ -58,8 +59,8 @@ jobs:
         if: ${{ !cancelled() }}
         env:
           LAYOUT_DEVICE: ${{ matrix.device }}
-          LAYOUT_SCOPE: ${{ inputs.test_scope == 'reliability' && 'reliability' || inputs.test_scope == 'interaction' && 'journal-interaction' || 'valley' }}
-          LAYOUT_BUILD_ACTION: test-without-building
+          LAYOUT_SCOPE: ${{ inputs.test_scope == 'reliability' && 'reliability' || inputs.test_scope == 'interaction' && 'journal-interaction' || inputs.test_scope == 'map' && 'journal-map' || 'valley' }}
+          LAYOUT_BUILD_ACTION: ${{ inputs.test_scope == 'map' && 'test' || 'test-without-building' }}
         run: bash scripts/validate-layout-on-macos.sh
       - name: Export results and screenshots
         if: always()

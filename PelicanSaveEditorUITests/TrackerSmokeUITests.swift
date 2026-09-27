@@ -325,10 +325,11 @@ final class TrackerSmokeUITests: XCTestCase {
         let tool = app.buttons["editor.tool.\(section)"]
         try require(app.tabBars.buttons["工具"], app: app, timeout: 30)
         try selectToolCategory(for: section, in: app)
-        try require(tool, app: app, timeout: 30)
         if section != "review" {
+            // Lazy directory rows enter the accessibility tree after scrolling.
             try revealEditorControl(tool, app: app, viewportID: "editor.tools.list")
         }
+        try require(tool, app: app, timeout: 30)
         try tap(tool, app: app)
         return app
     }
