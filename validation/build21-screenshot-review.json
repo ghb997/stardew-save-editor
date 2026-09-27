@@ -1,0 +1,937 @@
+{
+  "status": "passed",
+  "binarySourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+  "reviewedAtUTC": "2026-09-27T15:29:09.229129+00:00",
+  "method": "Native screenshots inspected at full view and in contact sheets; button visibility also checked by XCTest label and frame width.",
+  "checked": [
+    "All 17 editor return headers on iPhone SE: visible arrow and return destination, no clipping or overlap.",
+    "All 17 editor return headers on iPad mini: visible arrow and return destination, no clipping or overlap.",
+    "Full character editor screen on both devices: single navigation title, retained farm theme and review footer.",
+    "iPhone and iPad narrow accessibility text: complete visible return title; scrolling body and fixed review action remain distinct.",
+    "iPhone animal and review landscape screens: visible return destination, single title, no toolbar overlap.",
+    "Final iPhone runtime: all 17 visible return controls checked again in native header screenshots.",
+    "Final iPhone save/reload completion alerts show enabled confirmation actions; subsequent screenshots show alerts dismissed and the visible return-to-editor control. XCTest additionally verifies actual dismissal and navigation.",
+    "Final iPhone keyboard is present with separate finish-input and page-return controls, then disappears after finish-input while the editor remains open.",
+    "Final iPhone animal remains Zulu after save reorders the list; continued save/relaunch asserts stable animal ID and unchanged Beta.",
+    "Final iPhone persistence screenshots show TeaAB after two saves/relaunch and TeaR after reload/edit/save/relaunch.",
+    "Final user preview inspected: three unaltered native screenshots, captions outside screenshots, no cropped navigation controls.",
+    "Final iPad mini runtime: all 17 visible return controls rechecked in native header screenshots.",
+    "Final iPad mini completion alerts, post-operation review screens, active keyboard and finished input reviewed at full size and in contact sheets; no blocked return control or overlap.",
+    "Final iPad mini animal Zulu detail, reload TeaR, and repeated-save TeaAB screenshots match the passed identity and persistence assertions.",
+    "Final iPhone system sharing screenshot shows the correct QR image and native Copy action; matching test passes with the observed native activity element type."
+  ],
+  "historicalFinding": "First native screenshots showed icon-only return controls despite correct accessibility labels. Replaced semantic Label with explicit HStack and added minimum rendered-width assertions; final previews show full text.",
+  "remainingChecks": [],
+  "screenshots": [
+    {
+      "name": "build21-editor-animals",
+      "file": "verified-iphone-editor-preview-1/attachments/5A6486DE-EF75-4918-BA84-2CCBC3F7E144.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "895edc51722fc6fdd41444264437e6f2b6d4d365f45b4cffbceab9d2d54e4564",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-appearance",
+      "file": "verified-iphone-editor-preview-1/attachments/2EE58148-6CED-4B30-881F-CE83E5426443.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "a435682b6acdbbccb14f662349e7317527f9c7acf7db1a8d95512cbd2300ff90",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-bundles",
+      "file": "verified-iphone-editor-preview-1/attachments/2AAB8E6B-C3ED-40AF-9329-3354923D58FC.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "39d8a75e751d736ed81664dc17246984267f8a69ff4ce1aea70a91f81a6959ca",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-character",
+      "file": "verified-iphone-editor-preview-1/attachments/FBD1BF1A-1C9E-4369-8838-65A4EF35CF68.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "7e09e016a5b55783bc306ae5e3fd25cd94a4f1e98a66f832f88c496c7c60439e",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-collections",
+      "file": "verified-iphone-editor-preview-1/attachments/DDBB183A-2941-461D-9682-C77121959E2A.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "015c62054869bdb98f0365db1245439ad4a2c5c4d706b4d411c844f28fc2e470",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-equipment",
+      "file": "verified-iphone-editor-preview-1/attachments/148EAE82-ADB7-468F-AE11-D4C65DD30952.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "4cc19fb8fa3a62e7847c7890d50edb6189209c5d10a03c9c6f2622208bcd7856",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-farmhouse",
+      "file": "verified-iphone-editor-preview-1/attachments/DC3A70A8-D1D7-476E-B309-10760E4E2EB0.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "ad9ec57b89008136cbbc813c515d082377bf59a0c234feebd53207b1c66fde91",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-inventory",
+      "file": "verified-iphone-editor-preview-1/attachments/CE924AC8-3ADD-429C-A33F-477BE8FD169D.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "14e55561030538be4968d39c644de994ef150e5c37469dbefed615a505c5276f",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-machines",
+      "file": "verified-iphone-editor-preview-1/attachments/750D2A14-D722-4686-BD1E-28FA80B34FC6.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "9bd919e6f3120c7bec67b6c91d0f269dd425dc28319bc516bdaf24f1622775ad",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-map",
+      "file": "verified-iphone-editor-preview-1/attachments/EB176920-1572-484E-AEE5-842D6A6B1E25.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "5294608e195d534aba201ec7c68db40fcd03e91fcaec81e814c0300e6ffa339c",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-progress",
+      "file": "verified-iphone-editor-preview-1/attachments/710C084B-E9A9-446E-A4A3-EC2DA2790970.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "d12cc51b8548fb3b7173e4869bd53a2921c9ae72a9aa77eef53262b4cfb3b277",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-recipes",
+      "file": "verified-iphone-editor-preview-1/attachments/F213245C-CD17-4829-A8FA-C0CFA076D13B.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "54d70c6657ec90bbb55ae61a8d6eb774438b5f95880975122607dba7c7cf3371",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-relationships",
+      "file": "verified-iphone-editor-preview-1/attachments/CF740A53-BA6C-48B2-9354-46A02D299D47.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "a3a83c8f5dfb60e32b6ce77a6354a8b5db02af4b659a648d8e4396b2531ad06a",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-skills",
+      "file": "verified-iphone-editor-preview-1/attachments/E9BEA669-022C-454C-AB4B-30E4953012AB.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "f6f0492b64bb9f721393743f55b091924f5b9df4b54c7ce60f50f54d3eec3de7",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-storage",
+      "file": "verified-iphone-editor-preview-1/attachments/257AE2AF-070B-422D-A82F-BBA791E1D683.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "38af763027fb20aa2c7e737a0b214dbbe5a19364d262b57db8f005298d485be4",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-wallet",
+      "file": "verified-iphone-editor-preview-1/attachments/99D45A74-022F-4539-8E87-BA3BE02CDFF0.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "569ae4d1e7de39e6cfcec182da2919f63a6ae16c10543afbef8c724d45c8e228",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-weather",
+      "file": "verified-iphone-editor-preview-1/attachments/40749E70-582A-4DE0-BD53-83A80F3ACA95.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "bbba903148c8630c003388628b715b753564fa258d1e680b2b6643dbd799b14e",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-animals",
+      "file": "verified-mini-editor-preview-1/attachments/CAF336A0-2E33-4681-A565-CF919811ABBA.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "a28aebfc56298ad5687245e1050ea03469a57d9d884966cef78c44c7a68f78e2",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-appearance",
+      "file": "verified-mini-editor-preview-1/attachments/EC471A55-459D-4D0F-8EB4-89FC314B65CC.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "cc0e16c28affe9521a3d23d03dee78629649a2543816b87e44d880af3b64f3ce",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-bundles",
+      "file": "verified-mini-editor-preview-1/attachments/737EEE72-BA51-4C13-B59A-9F327E548254.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "9bcfa33928c2d2ef3381dcf5ed2f7a8874e29493323d98adec30184df009dd6b",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-character",
+      "file": "verified-mini-editor-preview-1/attachments/F672F1BF-D7EB-407D-BF65-C570DE4B5D1D.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "734f6344304959a059f04b04e345b03f0b689146405b4428a8f1325461c2ce1e",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-collections",
+      "file": "verified-mini-editor-preview-1/attachments/6746EB02-E2C5-43F4-9407-756558DCBA43.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "559334737efcdfad1dfcc2c990a914fc7429fd46e5300e32377e46df6e6ccab5",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-equipment",
+      "file": "verified-mini-editor-preview-1/attachments/4B86FCBB-E7D3-4530-8878-8DDE30F2FA4F.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "22bcfc3ffd0ce894da94c07d7ebbd1cc9f24d98dadcb61e447ef698756aaaffd",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-farmhouse",
+      "file": "verified-mini-editor-preview-1/attachments/5D9ED67B-E9BA-46FD-AB5A-D5F6CBD3BE73.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "903976d22e52beeb220a0dfd73ea54582bac58e2150e456fa855864d06a8c8ab",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-inventory",
+      "file": "verified-mini-editor-preview-1/attachments/7D5CFD21-DD29-462E-AD3D-20125E3C281E.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "1e88061a9e458e2553a3c7221542c7c37f83f9dc742add84005586ac124fdebd",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-machines",
+      "file": "verified-mini-editor-preview-1/attachments/AEABEAAE-B6E6-485A-ACE3-9019EDAF7395.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "a9c807e20673626a2749f724a76054ca3697d4e598fa76ca11ba1ca46076926f",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-map",
+      "file": "verified-mini-editor-preview-1/attachments/5F674E58-BD36-4417-9797-763C87772728.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "fbbf44992455fecb37a17efb10b10ce60c192f0c9fc871db12c7a4f044c726c9",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-progress",
+      "file": "verified-mini-editor-preview-1/attachments/2E77753F-6C5D-4FF4-A09D-BED681FD1A54.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "1b212660699e5e1449d894778f9b2d09265c35db3187adee5a3ee5866c260b57",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-recipes",
+      "file": "verified-mini-editor-preview-1/attachments/D3C827B8-BD2E-430A-A144-F89C48FC2828.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "77497f4176991526e66149737e63a23fddba68c06224e75fae0ca45cc8f38f5c",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-relationships",
+      "file": "verified-mini-editor-preview-1/attachments/EBED44F6-001F-476F-B1A9-D740DE2312D6.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "1180ee1b1d46bd7eff247046c64fd02dcb30a26707d41ca19ccea1b72be0eb20",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-skills",
+      "file": "verified-mini-editor-preview-1/attachments/970AB3F3-F0E2-4743-8B5F-CEB14B75690A.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "bda1ad0175424e77eec1db8f000e226fa2930f66d7875f905910bb45a4726e8e",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-storage",
+      "file": "verified-mini-editor-preview-1/attachments/621CAF90-4712-45E1-831F-D3516B013F17.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "2f8fa4230e8e327e473616cc2173ee4cbba64b4c98cf994839285f0c1de57a3b",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-wallet",
+      "file": "verified-mini-editor-preview-1/attachments/0D080319-9AFF-4A34-964B-19B148F28983.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "89cb7c7729a7b0640874d7720af4393ba5418874daaf60cab69adc6ee599ea6f",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-weather",
+      "file": "verified-mini-editor-preview-1/attachments/CC02139E-1864-40EB-AE3D-755AEA77F755.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "33d4ae526e3eb5d6967979c7ec04be7eb53780baa064793232b5203cd9442b3a",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "narrow-accessibility-editor",
+      "file": "verified-iphone-editor-flows-1/attachments/93511253-E931-4445-BC09-CD8622C57731.png",
+      "test": "AdaptiveLayoutUITests/testNarrowWindowAndAccessibilityText()",
+      "sha256": "0a3ebbefef43f5d2298689c98406b3176a9c488b897ff3f80a4b2fb29bb60e1e",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "narrow-accessibility-editor",
+      "file": "verified-mini-editor-flows-1/attachments/6BD45C08-4AA3-4876-8C53-7842F494D49C.png",
+      "test": "AdaptiveLayoutUITests/testNarrowWindowAndAccessibilityText()",
+      "sha256": "f6f94c646769e57ecc709692514320e24a4859232008fd7bee8befa941f460ff",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "editor-animals-landscape",
+      "file": "verified-iphone-editor-flows-1/attachments/6774FB6A-8B6C-4830-B79E-0D386DB008EE.png",
+      "test": "AdaptiveLayoutUITests/testAllEditorsInLandscape()",
+      "sha256": "6663731ac0967cdfd39397dbd284ca05b4d994e6fa5e2c7cb0b9731c19499f79",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "editor-review-landscape",
+      "file": "verified-iphone-editor-flows-1/attachments/EC4F4B0F-3847-4E06-8775-FEA5D8C19B7C.png",
+      "test": "AdaptiveLayoutUITests/testAllEditorsInLandscape()",
+      "sha256": "6a09186ed79258e7bad945758ac9bb0f5dba8fab732eaaab2cf890e52065cd0f",
+      "sourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+      "run": 36320735295
+    },
+    {
+      "name": "build21-editor-animals",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/3D92E999-32F7-43CD-8AB8-77FBD7E696CE.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "31cc02b04986767c07864c88a1774c0e04031437b6a95dfd3d97f92419baef51",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-editor-appearance",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/AA659E11-AE77-42CE-AD15-D43200C08E94.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "cd3232a6f5dcaf4103ec04b06401d92fedc4c3443b1675867f62ced848b3760c",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-editor-bundles",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/88EAA4B7-DDA5-4EBC-BECC-4FEFA777CB0F.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "8dd4678f16860d7ca2c8cf63c6f24b2993fb1dd1fc7effcf9fb41cd1a51ff4e1",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-editor-character",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/52F9ED1D-B7E5-4BE2-A78D-91CC0FAB643E.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "63578c25a2dc303f244d51e4f3ee57fd6ddecf4aad98a249af58f6d02efaae68",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-editor-collections",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/BCF41D3F-AC93-479A-8EDC-9EA5E6A0EDBB.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "9a52b42b9dee1b798eb96c5edf823de8d2f6be6b89c856d169e90abc72228652",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-editor-equipment",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/96D60E22-BB70-4691-9FD1-B51B75DA1C2E.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "60485aa91be16c315d645e66ae3d2edcd43d5c053c726d22527baa7e7d515a9f",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-editor-farmhouse",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/FE7E84BB-9CCF-4C67-8B73-AAC1900FB7CC.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "dd62dfa3823975ff792acd13b3f273e56c158ab63de2a492cbb93f2725f10dba",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-editor-inventory",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/D8A54ACC-24A9-4D25-A3D5-767CCAD91926.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "c1dae29f8f9e74bd39750e89ee7775a18f23639bd58e633166ab722d67855817",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-editor-machines",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/C5670143-F932-45B4-98AE-FA57FB6B348E.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "52173be884b38bb08c3bfa715a97b6faa1cbd55edab6c924f29763a3cb74eca8",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-editor-map",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/823343F3-EC8B-4BB8-AAC5-2689A1019331.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "076eb323cec3563854b772218d64ce26d398639278ddfc9bee6c52494c7e4581",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-editor-progress",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/6B92AEF0-9DCD-47F0-80D9-18DFEE3C091D.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "86a0bdf4fb9b8b9f4373e7140fe57fedb4ffacbb7ebbdbb4e3b3ea3b3425ab3f",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-editor-recipes",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/CEE9814E-DF14-44F7-8B88-552D530E00E7.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "fd6de38bfb4f0ed2ea20973c25f1fef5979b6fa18950086f77287decc77cb33a",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-editor-relationships",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/B7423309-82A5-43D1-BBD1-B32BD3ADFA49.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "bc2ca67088cb00cef5c9beee671212fb76102e017247601b872c10bb5cf6545e",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-editor-skills",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/4EC3E527-3954-41F5-9EA7-7B5D33D07D94.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "badf8a12bbac4ab09a40af6feb9dc27a8ea235adf7670ef887d314f49e66ab99",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-editor-storage",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/F55413F7-F6C7-462B-B53F-498AB0300440.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "a90e2dacf3d5ccbd8a662604839391110e6b0a55bfb637bfe49c370ad2afed51",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-editor-wallet",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/B7644D2E-601B-43B3-A15A-1C98681875D4.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "5bdee3df278667be34baa1c6e87d7e63c1e1842dc61bfd8d343b5d191f5fa64e",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-editor-weather",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/63C718A3-8056-4012-B271-9225BF971161.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "382a895c3d0c846a649761293b1da1af7ad829b9cfab92814ebf2ad75ce5fc90",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-animal-after-reordered-save",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/7FF77A27-A372-4F04-8A37-9553BD8BF748.png",
+      "test": "PersistenceUITests/testAnimalRenameSaveKeepsSameAnimalAfterListReorders()",
+      "sha256": "ca0f1b1f3ecd5268c3ac551b38d98e4bf194b49d53274c9d80667c7425e8203a",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-child-editor",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/E9DB3E4D-14CC-40C4-88AF-51C744B1B9F8.png",
+      "test": "PelicanBrandUITests/testChildEditorAndMapReviewReturnToTheirSource()",
+      "sha256": "e8b815a8efb23fae514e65d5388dc8d71361d2d5cd75c6c1aa270583be643134",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-completion-enabled",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/ABA9B39E-8E82-4AE5-B68A-762CBE0D7167.png",
+      "test": "PersistenceUITests/testAnimalRenameSaveKeepsSameAnimalAfterListReorders()",
+      "sha256": "96897275f1d1d860f3b691a95ac0c75ec0a17327157e6cb5ba5572e86bf143c0",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-completion-enabled",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/A9799293-CADA-4E85-8826-4F306AB8712A.png",
+      "test": "PersistenceUITests/testAnimalRenameSaveKeepsSameAnimalAfterListReorders()",
+      "sha256": "96897275f1d1d860f3b691a95ac0c75ec0a17327157e6cb5ba5572e86bf143c0",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-completion-enabled",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/8F692736-4FAB-41C4-A23A-7143E45B0A19.png",
+      "test": "PersistenceUITests/testReloadFromReviewThenEditAndSaveUsesCurrentSession()",
+      "sha256": "8840f74f9793439e9487bd4ca8d6f4e21f971b871af4660181945b1c96266cff",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-completion-enabled",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/C0FFE9BE-AD0E-4FF2-9966-27F53AA26387.png",
+      "test": "PersistenceUITests/testReloadFromReviewThenEditAndSaveUsesCurrentSession()",
+      "sha256": "67de41cda3bd30caa70d7715cd0cb22a17e09e9f9e61393474ccf95c3d85455e",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-completion-enabled",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/C2817C1D-9160-4AD3-B05B-2EEA0119C0F5.png",
+      "test": "PersistenceUITests/testSavedCopySurvivesTerminationAndOpensVerifiedExportScreen()",
+      "sha256": "8840f74f9793439e9487bd4ca8d6f4e21f971b871af4660181945b1c96266cff",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-completion-enabled",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/2A261696-23D2-4D3D-9ECD-C707BFFC1225.png",
+      "test": "PersistenceUITests/testSaveReturnAndContinueEditingPersistsBothChanges()",
+      "sha256": "b0dedfafbbcadc26f44bda0a6e4ba6c9b24dedf9291308b8b185de524f90ed70",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-completion-enabled",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/436348D7-4F14-4CBA-B50D-366F1B008C61.png",
+      "test": "PersistenceUITests/testSaveReturnAndContinueEditingPersistsBothChanges()",
+      "sha256": "b0dedfafbbcadc26f44bda0a6e4ba6c9b24dedf9291308b8b185de524f90ed70",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-input-finished",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/DB309A31-43E8-4674-91CF-E21EAD8F10E9.png",
+      "test": "PelicanBrandUITests/testNumericInputCanReturnReviewAndUndoWithoutLosingDraft()",
+      "sha256": "4d4da08b0370c7d007ef901d0e7938a76b72f16bd070796332b0dbf9ca19b9b3",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-map-review-return",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/FF9DE467-EF87-4D2D-ABCD-241D42FC8698.png",
+      "test": "PelicanBrandUITests/testChildEditorAndMapReviewReturnToTheirSource()",
+      "sha256": "c099beab1c3c3a52481516c79d172ecb98d8e705ae54dca11b7c647acb94696d",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-number-keyboard-return",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/99090D35-5385-4235-A90C-615303908CDB.png",
+      "test": "PelicanBrandUITests/testNumericInputCanReturnReviewAndUndoWithoutLosingDraft()",
+      "sha256": "3e764140793515e817abd54b629be268d617e92b1d21e972ccd2a93de264db4a",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-reload-edit-save-reopened",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/9F4591AC-059E-4BAA-9A4B-DF33D7281532.png",
+      "test": "PersistenceUITests/testReloadFromReviewThenEditAndSaveUsesCurrentSession()",
+      "sha256": "81813b8fa82e93968d0b58ded530e2414c4f3d829df25a9d934957e6b2270018",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-review-after-operation",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/53BC498C-1A35-4527-8FBB-5DFE618E1F66.png",
+      "test": "PersistenceUITests/testAnimalRenameSaveKeepsSameAnimalAfterListReorders()",
+      "sha256": "130e0ef7515c6ee429e03017259cfe2c1a497403e1d91ddacbefc05cec60832b",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-review-after-operation",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/C894189E-6FC2-4592-9363-B5FBE89EAE32.png",
+      "test": "PersistenceUITests/testReloadFromReviewThenEditAndSaveUsesCurrentSession()",
+      "sha256": "38649c086b509f971f19723d0f7482a0ef67b74e87d15a804d115954b48d8b3f",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-review-after-operation",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/51229343-2FFC-4EE4-8DFD-1F94A1879C6D.png",
+      "test": "PersistenceUITests/testReloadFromReviewThenEditAndSaveUsesCurrentSession()",
+      "sha256": "d8c737fac26113cb6895a7aaa05a5193f7335b7eb23fdf38b75148cf0aa798e5",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-review-after-operation",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/E3CAAF02-E6D4-461C-8AC3-89DEE512BADA.png",
+      "test": "PersistenceUITests/testSaveReturnAndContinueEditingPersistsBothChanges()",
+      "sha256": "d6cf2a34b7b0f726a5f6841f6229295c9f1f81b54a1d43f6c54a78be3030a235",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-review-after-operation",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/645DABAD-F917-4077-A9FC-BDEAD3C62570.png",
+      "test": "PersistenceUITests/testSaveReturnAndContinueEditingPersistsBothChanges()",
+      "sha256": "d6cf2a34b7b0f726a5f6841f6229295c9f1f81b54a1d43f6c54a78be3030a235",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-second-save-reopened",
+      "file": "completion-iphone-editor-lifecycle-1/attachments/92DA3492-8BED-413F-9E1F-C74311285EBA.png",
+      "test": "PersistenceUITests/testSaveReturnAndContinueEditingPersistsBothChanges()",
+      "sha256": "dbcdeafe8e692c0e43a4973341cee3a9b504b9d27eb879abd6103bb72f25cdad",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-editor-animals",
+      "file": "completion-mini-editor-lifecycle-1/attachments/65CE1470-EFA8-46F1-A0A2-035919313B3B.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "a809ac43896deb1f64f6e48a246ce3f43cde7803110809648b2ebe0887f7ddc2",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-editor-appearance",
+      "file": "completion-mini-editor-lifecycle-1/attachments/346188F8-8846-4D5A-9432-EEBB50FFA989.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "d84de120c39e547ae9e4f5e5107a13dbfc19620b1e32dc40e278bb69cb7761dd",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-editor-bundles",
+      "file": "completion-mini-editor-lifecycle-1/attachments/6E4CE0DA-19C2-4B0F-B9F6-FC1090BD2D7B.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "27d48e4ab29d25ad5f7570c6e0446ee5109a74c5a6d6fb9efe7a3057ecff336a",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-editor-character",
+      "file": "completion-mini-editor-lifecycle-1/attachments/FE02CE02-BA20-4B20-ACF5-CA1C37334EA7.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "e69668d416c2bb0fdef3816ba5fdddf4f5e423edbf246084de664a188f86b07e",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-editor-collections",
+      "file": "completion-mini-editor-lifecycle-1/attachments/97A3EDA8-FE80-42A3-A553-9DB32230F321.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "593bf03ec6ab1a435cbba2dca7ea2e112146cd6241fbbc48a46b9d404da17680",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-editor-equipment",
+      "file": "completion-mini-editor-lifecycle-1/attachments/4FBEBF62-09C8-41A2-81FA-AA04F71B4DFC.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "8a1e626230d17d0f3169a885ccf05825d8b23061ae7a3878c5d8d2976dffa71c",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-editor-farmhouse",
+      "file": "completion-mini-editor-lifecycle-1/attachments/D430123A-0483-4F7C-92A3-B1DC7DAA6C6A.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "4b7aec245cd522a3be0d38243cd70ee53297beab4415a18767c6fe163ad4c9fd",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-editor-inventory",
+      "file": "completion-mini-editor-lifecycle-1/attachments/458C7E39-E8AA-4C8F-BC29-29CA039C5836.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "b9557004b09c35f47524ce371453d5a073d5134d627f05cb2754710f068ee91a",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-editor-machines",
+      "file": "completion-mini-editor-lifecycle-1/attachments/B9B1FAFD-DF88-4298-AEFB-1DD1157DD661.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "37e386a85752973adb28d8b2e88ad865ee1fb65f9db270aa1285183c434b5ada",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-editor-map",
+      "file": "completion-mini-editor-lifecycle-1/attachments/3CE22495-4C4F-4349-BD0D-51CF444E809E.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "ed787bef0c2248eef3408b502a36343396c9be7ea3a42891ac770435ff973b82",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-editor-progress",
+      "file": "completion-mini-editor-lifecycle-1/attachments/DA19789C-7D6F-4005-A475-C9FC3EB7C140.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "658766b7c309802caf54538475cc145acfe5bcd3d7bd31a7ebbd92d7d38ff6d5",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-editor-recipes",
+      "file": "completion-mini-editor-lifecycle-1/attachments/7DB42EDA-F0D0-4846-AEAF-E00B62A93EBC.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "5aeb559482c444f004a993dce9100e0ab1f78bb0e774694952fdd0190aeeec82",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-editor-relationships",
+      "file": "completion-mini-editor-lifecycle-1/attachments/7B07BB0E-9CD7-4696-9763-68FECDFE2415.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "98ad8fb0e2d64c123b4c10d23d18854fcd4db4752084a91389295aca139710aa",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-editor-skills",
+      "file": "completion-mini-editor-lifecycle-1/attachments/76309893-735D-482E-88DD-73F370D1539C.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "91b0e21c8b68938e5c6543bb4e5bcc9ee17cf2d0397b6e84661e3c18a2912886",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-editor-storage",
+      "file": "completion-mini-editor-lifecycle-1/attachments/E24C8B58-AC6D-45CB-99BE-B7DF5F2CEB43.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "c3652d2b8d0a319eec79d888b46bb6c199d4a4e9c50384bcaa8138b9767a5df5",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-editor-wallet",
+      "file": "completion-mini-editor-lifecycle-1/attachments/6426D974-ACBD-4691-899B-79AC71141272.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "e79b2c370923d3879c46a79e2a9fa204853eed79569c7ecec2c51f74ea2bc7a9",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-editor-weather",
+      "file": "completion-mini-editor-lifecycle-1/attachments/6663DDC4-C658-4610-8AE4-1B2B0AC400FB.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "sha256": "e1117ce82dae390847f4c3c64aa787bc34af9c0fa242288a74bb800039ab604e",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-animal-after-reordered-save",
+      "file": "completion-mini-editor-lifecycle-1/attachments/CABFB7CE-DA5E-4CBE-8ED5-00F043EB9C33.png",
+      "test": "PersistenceUITests/testAnimalRenameSaveKeepsSameAnimalAfterListReorders()",
+      "sha256": "188073ef9d66a81dfb3e39df0061829882eac760fb9a513f988d0f6076e2276e",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-child-editor",
+      "file": "completion-mini-editor-lifecycle-1/attachments/F7C2282C-8796-47A7-B09E-FC41CF7D4D82.png",
+      "test": "PelicanBrandUITests/testChildEditorAndMapReviewReturnToTheirSource()",
+      "sha256": "31a01ac4a8207588cb011e3defe8071e9b24c81fa93ead86defffb0a5ccbaf73",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-completion-enabled",
+      "file": "completion-mini-editor-lifecycle-1/attachments/5CB61913-FB4C-4826-B0BF-42F2CB45B78F.png",
+      "test": "PersistenceUITests/testAnimalRenameSaveKeepsSameAnimalAfterListReorders()",
+      "sha256": "b34acd2333802f55848918f42ad9046d31fd823a10db7ea41c296dc6c8ab4321",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-completion-enabled",
+      "file": "completion-mini-editor-lifecycle-1/attachments/AD3DF17E-5E0B-4D86-9FE1-203006F3CFAC.png",
+      "test": "PersistenceUITests/testAnimalRenameSaveKeepsSameAnimalAfterListReorders()",
+      "sha256": "8f57505f8af5aafac3f363a8e39d2f34d3c143fe3ff05ac40d2068728922d5e9",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-completion-enabled",
+      "file": "completion-mini-editor-lifecycle-1/attachments/67D98B72-F358-44A5-9ABC-56379919A2C6.png",
+      "test": "PersistenceUITests/testReloadFromReviewThenEditAndSaveUsesCurrentSession()",
+      "sha256": "af4703cb9a7e62cb123f2bd007490ddca02ae26b31ac7d72387aadff464beeaa",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-completion-enabled",
+      "file": "completion-mini-editor-lifecycle-1/attachments/57E679CE-1215-4204-B525-049AF50C2C6C.png",
+      "test": "PersistenceUITests/testReloadFromReviewThenEditAndSaveUsesCurrentSession()",
+      "sha256": "ac8b3eb8ea682cf67ae14303a6ddc725f573691e85ae45eff9715cd41b0782e9",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-completion-enabled",
+      "file": "completion-mini-editor-lifecycle-1/attachments/6D14CF91-3103-42E3-8934-02A8CE2A3D35.png",
+      "test": "PersistenceUITests/testSavedCopySurvivesTerminationAndOpensVerifiedExportScreen()",
+      "sha256": "c935cb4aab5c0a94afd0389890677318af645c498579fbdb8f23a393c4520073",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-completion-enabled",
+      "file": "completion-mini-editor-lifecycle-1/attachments/4972DB44-D445-47CF-B9CE-E16140A85D23.png",
+      "test": "PersistenceUITests/testSaveReturnAndContinueEditingPersistsBothChanges()",
+      "sha256": "f02ccdb93fd7a2c151d6edeb3784ae32a84e8edf23d444ddb36439cdf8bad418",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-completion-enabled",
+      "file": "completion-mini-editor-lifecycle-1/attachments/D5D9CEB0-B26C-4A69-BA25-38AFBD9FE458.png",
+      "test": "PersistenceUITests/testSaveReturnAndContinueEditingPersistsBothChanges()",
+      "sha256": "8278a5d5eeef0ca0ce430482f8d0ee9a136febdc8ff3fb2e55c2522a182ccc2d",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-input-finished",
+      "file": "completion-mini-editor-lifecycle-1/attachments/A78AA1AA-4973-4676-A373-4F50A527E291.png",
+      "test": "PelicanBrandUITests/testNumericInputCanReturnReviewAndUndoWithoutLosingDraft()",
+      "sha256": "7a421f9b8fef4b71e731827c54eaeb566b540fea543895564644268e372dbf16",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-map-review-return",
+      "file": "completion-mini-editor-lifecycle-1/attachments/0FBE2AFB-5014-4015-80BC-56184C8A11F6.png",
+      "test": "PelicanBrandUITests/testChildEditorAndMapReviewReturnToTheirSource()",
+      "sha256": "2ed276502415bb46e71f2a7731b9eca674fd529b8a03677c9d391448991bad8b",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-number-keyboard-return",
+      "file": "completion-mini-editor-lifecycle-1/attachments/478179BC-E388-48FC-92D3-2533FEB472F1.png",
+      "test": "PelicanBrandUITests/testNumericInputCanReturnReviewAndUndoWithoutLosingDraft()",
+      "sha256": "d90e503ab3307c41eb043fa2ef51791d71ce1a0564b335b11320d161b41a5d93",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-reload-edit-save-reopened",
+      "file": "completion-mini-editor-lifecycle-1/attachments/F0CACD60-555B-4063-9635-B3EC8C597F19.png",
+      "test": "PersistenceUITests/testReloadFromReviewThenEditAndSaveUsesCurrentSession()",
+      "sha256": "376630dde81fd7d4df099c3dd82860c81aca30deee70bc6524303a84463c86be",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-review-after-operation",
+      "file": "completion-mini-editor-lifecycle-1/attachments/D21C6EB0-30E3-4CF8-AEE7-E4E3DF07B02A.png",
+      "test": "PersistenceUITests/testAnimalRenameSaveKeepsSameAnimalAfterListReorders()",
+      "sha256": "89f8035152e06add0e763e44b34e62caf01a3b0e2ae159f17de24d5b2779a18b",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-review-after-operation",
+      "file": "completion-mini-editor-lifecycle-1/attachments/3CE7DBA2-023C-4B32-A6DF-1E0B6E7AD9F9.png",
+      "test": "PersistenceUITests/testReloadFromReviewThenEditAndSaveUsesCurrentSession()",
+      "sha256": "462518d30fbb4abefd97ca5f9759c20301e502907dbd325b256a39022a497616",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-review-after-operation",
+      "file": "completion-mini-editor-lifecycle-1/attachments/D23894E9-6F9A-4FAB-810A-D2405CCBAFFA.png",
+      "test": "PersistenceUITests/testReloadFromReviewThenEditAndSaveUsesCurrentSession()",
+      "sha256": "462518d30fbb4abefd97ca5f9759c20301e502907dbd325b256a39022a497616",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-review-after-operation",
+      "file": "completion-mini-editor-lifecycle-1/attachments/C0D4E082-4AA9-4CE7-BB13-26B80BCE90C7.png",
+      "test": "PersistenceUITests/testSaveReturnAndContinueEditingPersistsBothChanges()",
+      "sha256": "d8a6696833f4c5ba1391a0d345a172b392529473acc56f42b82a59943e17ab13",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-review-after-operation",
+      "file": "completion-mini-editor-lifecycle-1/attachments/4A6B9E49-7EB2-4378-9658-C44E8A5EEEA0.png",
+      "test": "PersistenceUITests/testSaveReturnAndContinueEditingPersistsBothChanges()",
+      "sha256": "381c28f1fe13b643594086eab4710d91399d1681ce216daaebfcad2fc68912ce",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-second-save-reopened",
+      "file": "completion-mini-editor-lifecycle-1/attachments/ED01C8E8-1200-46F6-86B1-4C9B4FBEB658.png",
+      "test": "PersistenceUITests/testSaveReturnAndContinueEditingPersistsBothChanges()",
+      "sha256": "c8dc833e9062b832f2a2f148fe34c5a021f500b754aed3e2e08aaf937861a39d",
+      "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+      "run": 36322373049
+    },
+    {
+      "name": "build21-qq-share",
+      "file": "sharing-final-iphone-editor-sharing-1/attachments/D04BFA68-3208-4060-9433-124C85006C6B.png",
+      "test": "PelicanBrandUITests/testBrandGroupCopyAndQRCode()",
+      "sha256": "43c50ccd15d0d19a7a1f093ee6c53a3b0fb519f1eab85fc4b306f1e3485f75a9",
+      "sourceCommit": "1fd209e8d644d2f0990d74894722dbe2421b0d3d",
+      "run": 36323330071
+    }
+  ],
+  "previouslyReviewedSourceCommit": "84dbf5866212e9449c5bd8592860aa02304b29f2",
+  "historicalFindings": [
+    {
+      "finding": "Compact native toolbar collapsed Label to an icon although its accessibility label contained a destination.",
+      "resolution": "Explicit arrow/text layout; final screenshots and rendered-width assertions cover all 17 roots on both devices."
+    },
+    {
+      "finding": "Completion alert acknowledgement remained disabled after save or reload.",
+      "evidence": "verified-mini-editor-flows-1/attachments/AA4F5384-372C-42C7-9180-0526FA623FE0.png",
+      "resolution": "Busy pages block hit testing without passing a disabled environment into alerts. Final screenshots show enabled acknowledgements and alert-free review screens; tests assert dismissal."
+    },
+    {
+      "finding": "Share action was classified as a button by a test, but iOS 26 exposes it as a collection cell.",
+      "evidence": "sharing-iphone-editor-sharing-1/attachments/5FC81BC2-A5FB-4D19-82ED-38B118C73EFA.png",
+      "resolution": "System share sheet is visibly present; final test scopes to ActivityListView and supports either native element type."
+    }
+  ],
+  "preview": {
+    "file": "screenshots/preview.png",
+    "sources": "screenshots/preview-sources.json",
+    "sha256": "568c7a00aec8802234dc038da9b0d6b1d0834cacc12e1d6f8daf62c85b60e559"
+  }
+}

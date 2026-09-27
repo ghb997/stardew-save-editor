@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "verifiedAtUTC": "2026-09-27T13:33:11.048739+00:00",
+  "sourceCommit": "2aee291bd832a0d803b9a40230c6727736c97195",
+  "version": "0.9.3",
+  "build": 21,
+  "file": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\build21-validation\\completion-release\\run-20260927T132628Z-2353\\PelicanEditor-v0.9.3-build21-unsigned.ipa",
+  "bytes": 7143688,
+  "sha256": "7c9dff0ebd4d6cb2c828a0849a647b96f09aac4d2d545401d60091accadbc232",
+  "architecture": "arm64",
+  "platform": "physical iOS",
+  "minimumOSVersion": "17.0",
+  "unsigned": true,
+  "requiresOwnSigning": true,
+  "zipIntegrity": "passed",
+  "resourceBundle": "Assets.car present"
+}
