@@ -1,0 +1,120 @@
+{
+  "reviewDates": [
+    "2026-09-26",
+    "2026-09-27"
+  ],
+  "method": "Visual inspection of native XCTest screenshots via view_image",
+  "limitations": "Only the listed screenshots were inspected. Screenshots do not prove real file-provider behavior or in-game compatibility.",
+  "screenshots": [
+    {
+      "file": "final-preview-iphone/attachments/ABB58D43-0E43-44E4-9CAA-A9562FEB4E47.png",
+      "sourceCommit": "77ddecc3e4b369a39b233233915e300c8233868d",
+      "run": 36247122644,
+      "device": "iPhone SE (3rd generation)",
+      "test": "ValleyThemeUITests/testMainTabsInDayAndNight()",
+      "attachmentName": "build19-tools-dark_0_9CBD56CF-63BB-453E-854D-3B1D32278F0D.png",
+      "sha256": "2853b769dacfe6228b5cf070f47ba272818f0253396acb882766048391287fdf",
+      "observation": "夜间搜索提示清晰可读，分类与固定检查按钮可见。"
+    },
+    {
+      "file": "final-preview-mini/attachments/C7D42FE2-10CE-4745-AEB4-3DC12E0FC0C3.png",
+      "sourceCommit": "77ddecc3e4b369a39b233233915e300c8233868d",
+      "run": 36247122644,
+      "device": "iPad mini (A17 Pro)",
+      "test": "ValleyThemeUITests/testMainTabsInDayAndNight()",
+      "attachmentName": "build19-tools-dark_0_D0471A70-201D-49B1-868E-6789C5A76353.png",
+      "sha256": "dc5f1444c405fd30f806ee5c2798f01fe683806aa4e66fb60de816895a201c49",
+      "observation": "顶部导航可见，夜间搜索提示和两列工具内容可读。"
+    },
+    {
+      "file": "final-iphone/attachments/B364E780-6283-4182-9607-F653042A14C1.png",
+      "sourceCommit": "77ddecc3e4b369a39b233233915e300c8233868d",
+      "run": 36247122644,
+      "device": "iPhone SE (3rd generation)",
+      "test": "PersistenceUITests/testSavedCopySurvivesTerminationAndOpensVerifiedExportScreen()",
+      "attachmentName": "build19-local-library_0_CC2EA477-8BE3-4804-90A1-1E89F257449A.png",
+      "sha256": "82839d01af923c5ef628cef5184c95c54226e9f0aca1ddfe70fa236f53660269",
+      "observation": "待导出状态、保存和导入时间、占用空间、禁用删除及保护说明完整可读。"
+    },
+    {
+      "file": "final-mini/attachments/18FEC642-1F50-430A-9E26-C0DEFDB4F6C0.png",
+      "sourceCommit": "77ddecc3e4b369a39b233233915e300c8233868d",
+      "run": 36247122644,
+      "device": "iPad mini (A17 Pro)",
+      "test": "PersistenceUITests/testSavedCopySurvivesTerminationAndOpensVerifiedExportScreen()",
+      "attachmentName": "build19-local-library_0_51C1B148-45EE-41DF-B627-002E14D3D365.png",
+      "sha256": "a5db4fb7b7283ec1b5e62c94237498aecfe7db3bc558232ae6027127dcad67f2",
+      "observation": "副本库弹窗布局正常，状态、日期、空间和删除保护说明可读。"
+    },
+    {
+      "file": "final-iphone/attachments/213AFB15-321F-4541-9025-241C12E1DD65.png",
+      "sourceCommit": "77ddecc3e4b369a39b233233915e300c8233868d",
+      "run": 36247122644,
+      "device": "iPhone SE (3rd generation)",
+      "test": "PersistenceUITests/testSavedCopySurvivesTerminationAndOpensVerifiedExportScreen()",
+      "attachmentName": "build19-verified-export_0_3C0B009E-76D8-41F9-B980-7C6B2E36EBBB.png",
+      "sha256": "4b3b3ee36e08b90589cb2820335e2f027bcf0bf1806c9a10dbccbdbed305a28c",
+      "observation": "目录核对入口与普通系统另存的含义区分清楚，未选目标时没有写入按钮。"
+    },
+    {
+      "file": "final-mini/attachments/364FDEE4-1EFF-4D34-BEFA-EE4D726948FF.png",
+      "sourceCommit": "77ddecc3e4b369a39b233233915e300c8233868d",
+      "run": 36247122644,
+      "device": "iPad mini (A17 Pro)",
+      "test": "PersistenceUITests/testSavedCopySurvivesTerminationAndOpensVerifiedExportScreen()",
+      "attachmentName": "build19-verified-export_0_07A3328A-1E78-4175-9F0D-A203596CEF6C.png",
+      "sha256": "c7765112cd71b010682ea66f608df77602b75b249af1304ef2aaabdf47b6a686",
+      "observation": "导出弹窗布局正常，目标核对和另存入口可达，未选目标时没有写入按钮。"
+    },
+    {
+      "file": "full-mini/attachments/A5777705-34EA-4452-BDEE-5EF4D201824E.png",
+      "sourceCommit": "5278c59a5aefc9eff6c53397a8b03cdd7382c7ef",
+      "run": 36246004595,
+      "device": "iPad mini (A17 Pro)",
+      "test": "PelicanBrandUITests/testToolsAndSettingsAtLargeTextInNarrowWindow()",
+      "attachmentName": "build18-tools-accessibility-dark_0_86959117-FC35-4BF4-8CB2-B38588135A77.png",
+      "sha256": "65683c8bb3075ffdb4414ddfb9c69abfc55282009b446b83410366f1bf1ee9f9",
+      "observation": "窄窗口大字号内容换行，分类、工具与固定检查按钮可读；截图位于滚动中间位置。"
+    },
+    {
+      "file": "full-mini/attachments/97AA3601-3F58-4687-8CAD-3976829714DC.png",
+      "sourceCommit": "5278c59a5aefc9eff6c53397a8b03cdd7382c7ef",
+      "run": 36246004595,
+      "device": "iPad mini (A17 Pro)",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "attachmentName": "build18-editor-storage_0_491DBB26-BDE1-4A73-AA3E-068C8D71F87A.png",
+      "sha256": "341ba4736ff3e887e2db130fb362b04af07eb2a99d1be243976653e56bb22491",
+      "observation": "合成样本的容器空状态、搜索、说明和检查入口显示正常；不代表真实容器写入验证。"
+    },
+    {
+      "file": "full-iphone/attachments/6E5F757B-AB7D-4E1B-937C-B9203AEEF7FE.png",
+      "sourceCommit": "5278c59a5aefc9eff6c53397a8b03cdd7382c7ef",
+      "run": 36246004595,
+      "device": "iPhone SE (3rd generation)",
+      "test": "ExpandedEditorUITests/testChestQuantityDraftAndReview()",
+      "attachmentName": "build14-storage-quantity_0_E7093164-239B-4A33-8BB6-5C14599B8B03.png",
+      "sha256": "23e0285d4e1e97adc937c4acb7d25a836ac707f4c3bd347eab8cf243dd3a808c",
+      "observation": "箱子第一格的防风草数量显示为 25，检查入口标记 1 项更改，编辑后状态正常。"
+    },
+    {
+      "file": "full-iphone/attachments/C314737D-F7F2-4403-99EF-33737004C416.png",
+      "sourceCommit": "5278c59a5aefc9eff6c53397a8b03cdd7382c7ef",
+      "run": 36246004595,
+      "device": "iPhone SE (3rd generation)",
+      "test": "ExpandedEditorUITests/testChestQuantityDraftAndReview()",
+      "attachmentName": "build14-storage-review_0_0A58ACF9-531E-40B2-BAF9-AAC0B615FA1B.png",
+      "sha256": "6168b75ce330e13bbf538db96c0409bde8cdf5846179940f71441d1e1e0e1f1b",
+      "observation": "检查页显示 1 项待保存与对应箱子位置；此 DEBUG 样本缺少摘要文件并明确显示提示。"
+    },
+    {
+      "file": "full-iphone/attachments/6D69AE27-63D4-4EA7-9490-4641E5E76160.png",
+      "sourceCommit": "5278c59a5aefc9eff6c53397a8b03cdd7382c7ef",
+      "run": 36246004595,
+      "device": "iPhone SE (3rd generation)",
+      "test": "PelicanBrandUITests/testToolsAndSettingsAtLargeTextInNarrowWindow()",
+      "attachmentName": "build18-tools-accessibility-dark_0_94957630-623A-43B7-9459-4A106232F7E2.png",
+      "sha256": "855996d839bfac1b7ed8aa13392cebc110dc5d68a10ea27a0d66b1ef732d862c",
+      "observation": "大字号下工具卡片换行，固定检查入口与底部导航保持可见。"
+    }
+  ]
+}

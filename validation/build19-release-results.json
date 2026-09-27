@@ -1,0 +1,18 @@
+{
+  "sourceCommit": "77ddecc3e4b369a39b233233915e300c8233868d",
+  "run": 36247124145,
+  "version": "0.9.1",
+  "build": "19",
+  "minimumOS": "17.0",
+  "deviceFamilies": [
+    1,
+    2
+  ],
+  "architecture": "arm64",
+  "machoPlatform": "iOS device",
+  "signed": false,
+  "zipCRC": "passed",
+  "sha256": "a5a0a3156e11f831833668274ff88794d6df99251df68aeadf90873a7239c3ed",
+  "bytes": 4032982,
+  "ipa": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\build19-validation\\final-release\\SheaflightAmberVault-unsigned-ipa-45\\run-20260926T140256Z-1257\\PelicanEditor-v0.9.1-build19-unsigned.ipa"
+}

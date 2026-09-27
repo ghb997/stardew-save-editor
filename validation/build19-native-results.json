@@ -1,0 +1,210 @@
+{
+  "generatedAtUTC": "2026-09-27T08:26:02.120826+00:00",
+  "binarySourceCommit": "77ddecc3e4b369a39b233233915e300c8233868d",
+  "broadRegressionSourceCommit": "5278c59a5aefc9eff6c53397a8b03cdd7382c7ef",
+  "uniqueTestMethodsCoveredAcrossRounds": 208,
+  "note": "Coverage spans two commits. These are not all executions at the final binary source; per-round source SHA and counts are authoritative.",
+  "rounds": [
+    {
+      "sourceCommit": "5278c59a5aefc9eff6c53397a8b03cdd7382c7ef",
+      "run": 36246004595,
+      "folder": "preview-iphone",
+      "method": "Parsed XCTest case results from preserved native tests.log; matched xcresult summary when present",
+      "total": 2,
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "coreTests": 0,
+      "uiTests": 2,
+      "suiteCounts": {
+        "PelicanSaveEditorUITests.ValleyThemeUITests": 2
+      },
+      "log": "preview-iphone/tests.log",
+      "logSHA256": "c0fee919694a96f9aba1511e267faa722d5928287320a9b1cde3001071887af7"
+    },
+    {
+      "sourceCommit": "5278c59a5aefc9eff6c53397a8b03cdd7382c7ef",
+      "run": 36246004595,
+      "folder": "preview-mini",
+      "method": "Parsed XCTest case results from preserved native tests.log; matched xcresult summary when present",
+      "total": 2,
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "coreTests": 0,
+      "uiTests": 2,
+      "suiteCounts": {
+        "PelicanSaveEditorUITests.ValleyThemeUITests": 2
+      },
+      "log": "preview-mini/tests.log",
+      "logSHA256": "6e559a881bcf46791880f0fe4b56d59a6a1a783e92692d087a46294dd6c0d767"
+    },
+    {
+      "sourceCommit": "5278c59a5aefc9eff6c53397a8b03cdd7382c7ef",
+      "run": 36246004595,
+      "folder": "full-iphone",
+      "method": "Parsed XCTest case results from preserved native tests.log; matched xcresult summary when present",
+      "total": 205,
+      "passed": 205,
+      "failed": 0,
+      "skipped": 0,
+      "coreTests": 174,
+      "uiTests": 31,
+      "suiteCounts": {
+        "PelicanSaveEditorUITests.AdaptiveLayoutUITests": 7,
+        "PelicanSaveEditorUITests.ExpandedEditorUITests": 4,
+        "PelicanSaveEditorUITests.PelicanBrandUITests": 4,
+        "PelicanSaveEditorUITests.PersistenceUITests": 2,
+        "PelicanSaveEditorUITests.RepairEditorUITests": 4,
+        "PelicanSaveEditorUITests.TrackerSmokeUITests": 10,
+        "PelicanSaveEditorTests.ExpandedEditorTests": 23,
+        "PelicanSaveEditorTests.GameLogicRegressionTests": 10,
+        "PelicanSaveEditorTests.ReferenceFeatureTests": 14,
+        "PelicanSaveEditorTests.ReliabilityRegressionTests": 21,
+        "PelicanSaveEditorTests.RepairRegressionTests": 31,
+        "PelicanSaveEditorTests.SaveCoreTests": 39,
+        "PelicanSaveEditorTests.ToolDirectoryTests": 2,
+        "PelicanSaveEditorTests.TrackerMetricsTests": 7,
+        "PelicanSaveEditorTests.TransactionRegressionTests": 9,
+        "PelicanSaveEditorTests.WorldEditorTests": 18
+      },
+      "log": "full-iphone/tests.log",
+      "logSHA256": "f069fe5415ec4f853e408a10588b87d3d9f25cec498dddc7dfd915d9e7b65064"
+    },
+    {
+      "sourceCommit": "5278c59a5aefc9eff6c53397a8b03cdd7382c7ef",
+      "run": 36246004595,
+      "folder": "full-mini",
+      "method": "Parsed XCTest case results from preserved native tests.log; matched xcresult summary when present",
+      "total": 13,
+      "passed": 13,
+      "failed": 0,
+      "skipped": 0,
+      "coreTests": 0,
+      "uiTests": 13,
+      "suiteCounts": {
+        "PelicanSaveEditorUITests.AdaptiveLayoutUITests": 7,
+        "PelicanSaveEditorUITests.PelicanBrandUITests": 4,
+        "PelicanSaveEditorUITests.PersistenceUITests": 2
+      },
+      "log": "full-mini/tests.log",
+      "logSHA256": "20b94f1075d5d2c49d367d86c6d19dbf1c427a7d76dac823ab68b1595a531d4d"
+    },
+    {
+      "sourceCommit": "5278c59a5aefc9eff6c53397a8b03cdd7382c7ef",
+      "run": 36246665085,
+      "folder": "core-round",
+      "method": "Parsed XCTest case results from preserved native tests.log; matched xcresult summary when present",
+      "total": 177,
+      "passed": 177,
+      "failed": 0,
+      "skipped": 0,
+      "coreTests": 174,
+      "uiTests": 3,
+      "suiteCounts": {
+        "PelicanSaveEditorUITests.AdaptiveLayoutUITests": 1,
+        "PelicanSaveEditorUITests.TrackerSmokeUITests": 2,
+        "PelicanSaveEditorTests.ExpandedEditorTests": 23,
+        "PelicanSaveEditorTests.GameLogicRegressionTests": 10,
+        "PelicanSaveEditorTests.ReferenceFeatureTests": 14,
+        "PelicanSaveEditorTests.ReliabilityRegressionTests": 21,
+        "PelicanSaveEditorTests.RepairRegressionTests": 31,
+        "PelicanSaveEditorTests.SaveCoreTests": 39,
+        "PelicanSaveEditorTests.ToolDirectoryTests": 2,
+        "PelicanSaveEditorTests.TrackerMetricsTests": 7,
+        "PelicanSaveEditorTests.TransactionRegressionTests": 9,
+        "PelicanSaveEditorTests.WorldEditorTests": 18
+      },
+      "log": "core-round/tests/20260926-135345-1798/tests.log",
+      "logSHA256": "f60b46cb444fbc8a6bdd53850ade8ad28e45ec014c7090738cf04815e609ab7f"
+    },
+    {
+      "sourceCommit": "77ddecc3e4b369a39b233233915e300c8233868d",
+      "run": 36247122644,
+      "folder": "final-preview-iphone",
+      "method": "Parsed XCTest case results from preserved native tests.log; matched xcresult summary when present",
+      "total": 2,
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "coreTests": 0,
+      "uiTests": 2,
+      "suiteCounts": {
+        "PelicanSaveEditorUITests.ValleyThemeUITests": 2
+      },
+      "log": "final-preview-iphone/tests.log",
+      "logSHA256": "b8c01a45b86b13502cfdff656ed25d91d78cd799b68d905df03fd12da6ccec50"
+    },
+    {
+      "sourceCommit": "77ddecc3e4b369a39b233233915e300c8233868d",
+      "run": 36247122644,
+      "folder": "final-preview-mini",
+      "method": "Parsed XCTest case results from preserved native tests.log; matched xcresult summary when present",
+      "total": 2,
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "coreTests": 0,
+      "uiTests": 2,
+      "suiteCounts": {
+        "PelicanSaveEditorUITests.ValleyThemeUITests": 2
+      },
+      "log": "final-preview-mini/tests.log",
+      "logSHA256": "65b91ed8e3528419df53fa3793350c6d1dfa201f3d64118d63cd2c5cbc5aca10"
+    },
+    {
+      "sourceCommit": "77ddecc3e4b369a39b233233915e300c8233868d",
+      "run": 36247122644,
+      "folder": "final-iphone",
+      "method": "Parsed XCTest case results from preserved native tests.log; matched xcresult summary when present",
+      "total": 177,
+      "passed": 177,
+      "failed": 0,
+      "skipped": 0,
+      "coreTests": 175,
+      "uiTests": 2,
+      "suiteCounts": {
+        "PelicanSaveEditorUITests.PersistenceUITests": 2,
+        "PelicanSaveEditorTests.ExpandedEditorTests": 23,
+        "PelicanSaveEditorTests.GameLogicRegressionTests": 10,
+        "PelicanSaveEditorTests.ReferenceFeatureTests": 14,
+        "PelicanSaveEditorTests.ReliabilityRegressionTests": 22,
+        "PelicanSaveEditorTests.RepairRegressionTests": 31,
+        "PelicanSaveEditorTests.SaveCoreTests": 39,
+        "PelicanSaveEditorTests.ToolDirectoryTests": 2,
+        "PelicanSaveEditorTests.TrackerMetricsTests": 7,
+        "PelicanSaveEditorTests.TransactionRegressionTests": 9,
+        "PelicanSaveEditorTests.WorldEditorTests": 18
+      },
+      "log": "final-iphone/tests.log",
+      "logSHA256": "446e390d7813949e833356f9d3368defc1841564c4f3f8980be3128c8d129141"
+    },
+    {
+      "sourceCommit": "77ddecc3e4b369a39b233233915e300c8233868d",
+      "run": 36247122644,
+      "folder": "final-mini",
+      "method": "Parsed XCTest case results from preserved native tests.log; matched xcresult summary when present",
+      "total": 177,
+      "passed": 177,
+      "failed": 0,
+      "skipped": 0,
+      "coreTests": 175,
+      "uiTests": 2,
+      "suiteCounts": {
+        "PelicanSaveEditorUITests.PersistenceUITests": 2,
+        "PelicanSaveEditorTests.ExpandedEditorTests": 23,
+        "PelicanSaveEditorTests.GameLogicRegressionTests": 10,
+        "PelicanSaveEditorTests.ReferenceFeatureTests": 14,
+        "PelicanSaveEditorTests.ReliabilityRegressionTests": 22,
+        "PelicanSaveEditorTests.RepairRegressionTests": 31,
+        "PelicanSaveEditorTests.SaveCoreTests": 39,
+        "PelicanSaveEditorTests.ToolDirectoryTests": 2,
+        "PelicanSaveEditorTests.TrackerMetricsTests": 7,
+        "PelicanSaveEditorTests.TransactionRegressionTests": 9,
+        "PelicanSaveEditorTests.WorldEditorTests": 18
+      },
+      "log": "final-mini/tests.log",
+      "logSHA256": "d26b3ce2a86450e2d272cb33a341ebc612da12f07f1cb957956ec53c3ca08f1d"
+    }
+  ]
+}

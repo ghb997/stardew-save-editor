@@ -2,7 +2,7 @@
 
 ## 当前版本：0.9.1（19）
 
-当前构建及测试状态见 [构建 19 验证记录](validation/BUILD19_VERIFICATION.md)，整改范围见 [可靠性整改对照](RELIABILITY_UPDATE.md)。下文为历史版本记录。
+Release arm64 IPA 已构建并复核。完整回归中 iPhone 205 项、iPad mini 13 项全部通过；最终安装包源码在两种设备上分别通过 175 项核心、2 项持久化 UI 和独立的 2 项主题预览。各轮均零失败、零跳过，跨轮次覆盖 208 个不同测试方法。完整回归与最终复验的提交对应关系、安装包校验值和验证边界见 [构建 19 验证记录](validation/BUILD19_VERIFICATION.md)，整改范围见 [可靠性整改对照](RELIABILITY_UPDATE.md)。下文为历史版本记录。
 
 ## 历史版本：0.8.1（17）
 
