@@ -142,6 +142,7 @@ struct ToolsView: View {
                         Image(systemName: "magnifyingglass")
                             .font(.title2.weight(.regular))
                             .frame(width: 44, height: 44)
+                            .contentShape(Rectangle())
                     }
                     .accessibilityLabel("搜索功能")
                     .accessibilityIdentifier("tools.search.open")
@@ -162,7 +163,9 @@ struct ToolsView: View {
                             .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
                     }
                 }
-                .clipped().accessibilityHidden(true)
+                // Clipping trims pixels, but does not trim SwiftUI hit testing.
+                // Transparent illustration padding must never cover nearby controls.
+                .clipped().allowsHitTesting(false).accessibilityHidden(true)
                 .padding(.horizontal, -20).padding(.top, 6)
         }
     }
@@ -185,6 +188,7 @@ struct ToolsView: View {
                         Image(systemName: showingDirectory ? "chevron.up" : "arrow.right")
                     }
                     .font(.subheadline).frame(minHeight: 44)
+                    .contentShape(Rectangle())
                 }
                 .accessibilityIdentifier("tools.directory.toggle")
                 .accessibilityValue(showingDirectory ? "已展开" : "已收起")
@@ -204,11 +208,13 @@ struct ToolsView: View {
                         .overlay(alignment: .trailing) {
                             if !typeSize.isAccessibilitySize && index.isMultiple(of: 2) {
                                 Rectangle().fill(AppTheme.border).frame(width: 0.5)
+                                    .allowsHitTesting(false)
                             }
                         }
                         .overlay(alignment: .bottom) {
                             if index < visibleEntries.count - (typeSize.isAccessibilitySize ? 1 : 2) {
                                 Rectangle().fill(AppTheme.border).frame(height: 0.5)
+                                    .allowsHitTesting(false)
                             }
                         }
                         .accessibilityIdentifier("editor.tool.\(entry.id)")
@@ -260,8 +266,10 @@ struct ToolsView: View {
                                 .overlay(alignment: .bottom) {
                                     if category == item {
                                         Rectangle().fill(AppTheme.accent).frame(height: 3).padding(.horizontal, 8)
+                                            .allowsHitTesting(false)
                                     }
                                 }
+                                .contentShape(Rectangle())
                         }
                         .buttonStyle(.plain)
                         .accessibilityAddTraits(category == item ? .isSelected : [])

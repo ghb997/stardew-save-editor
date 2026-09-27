@@ -6,7 +6,7 @@
 
 构建 20 按第 2 套参考改为轻量农场手账：奶油色底、胡桃木色文字、细分隔线、常用六项双列入口、可展开的完整目录，以及统一的浅色/深色页面。原有编辑、草稿恢复、备份和成对导出功能保留。设计依据见 [界面说明](design/JOURNAL_UI.md)，原生验证完成后记录在 [构建 20 验证记录](validation/BUILD20_VERIFICATION.md)。
 
-构建 19 增加本地副本库、版本绑定的草稿恢复、游戏目标核对与双文件导出事务、备份和临时文件管理，修复杂物识别与 XML 文本保留缺陷。当前验证状态见 [构建 19 验证记录](validation/BUILD19_VERIFICATION.md)。
+构建 19 增加本地副本库、版本绑定的草稿恢复、游戏目标核对与双文件导出事务、备份和临时文件管理，修复杂物识别与 XML 文本保留缺陷。该版本的验证状态见 [构建 19 验证记录](validation/BUILD19_VERIFICATION.md)。
 
 构建 19 的 Release arm64 IPA 已编译并校验。完整回归中 iPhone 205 项、iPad mini 13 项全部通过；最终安装包源码又在两种设备上分别通过 175 项核心、2 项持久化 UI 和独立的 2 项主题预览。跨轮次覆盖 208 个不同用例，具体提交对应关系与未验证的真机/游戏内范围见上述记录。IPA 未签名，需要自己的签名后安装。
 
@@ -76,7 +76,7 @@
 
 使用 macOS、Xcode 16+ 打开 `PelicanSaveEditor.xcodeproj`；工程已注册所有源文件。选择自己的签名 Team 后运行到 iOS 17+ 设备。源码包不包含证书或签名资料。
 
-- 静态工程与资源检查：`python3 scripts/verify_release.py --version 0.9.0 --build 18`
+- 静态工程与资源检查：`python3 scripts/verify_release.py --version 0.9.2 --build 20`
 - 可选 Swift 语法扫描：`python3 scripts/check_swift_syntax.py`（需要 tree-sitter 0.26.0、tree-sitter-swift 0.7.3）
 - 原生编译及全部测试：`bash scripts/validate-on-macos.sh`
 - 未签名 IPA：`bash scripts/build-unsigned-ipa.sh`

@@ -58,6 +58,7 @@ final class PelicanBrandUITests: XCTestCase {
         XCTAssertTrue(openSearch.waitForExistence(timeout: 10))
         openSearch.tap()
         let search = app.textFields["tools.search"]
+        XCTAssertTrue(search.waitForExistence(timeout: 10), "The header search control must expand the directory")
         try revealDirectoryControl(search, in: app, towardTop: true)
         search.tap()
         search.typeText("天气\n")

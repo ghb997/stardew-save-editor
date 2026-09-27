@@ -19,6 +19,7 @@ extension XCTestCase {
         let button = app.buttons["tools.category.\(category)"]
         try revealDirectoryControl(button, in: app, towardTop: true)
         button.tap()
+        XCTAssertTrue(button.isSelected, "Tapping the category must change the visible tool group")
     }
 
     @MainActor
@@ -51,6 +52,10 @@ extension XCTestCase {
                 dy: bounds.midY - app.frame.minY - direction * distance / 2))
             start.press(forDuration: 0.05, thenDragTo: end, withVelocity: .slow, thenHoldForDuration: 0.2)
         }
+        let screenshot = XCTAttachment(screenshot: app.screenshot())
+        screenshot.name = "tool-directory-failure"
+        screenshot.lifetime = .keepAlways
+        add(screenshot)
         XCTFail("Tool directory control unreachable: \(element)\n\(app.debugDescription)")
         throw NSError(domain: "ToolDirectoryTests", code: 2)
     }

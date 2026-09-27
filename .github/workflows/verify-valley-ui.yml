@@ -3,9 +3,9 @@ on:
   workflow_dispatch:
     inputs:
       test_scope:
-        description: 'Full interface suite or all core tests plus persistence flows'
+        description: 'Full interface suite, reliability, or journal entry interactions'
         type: choice
-        options: [full, reliability]
+        options: [full, reliability, interaction]
         default: full
   push:
     branches: ['codex/stardew-ui-*', 'codex/reliability-*']
@@ -58,7 +58,7 @@ jobs:
         if: ${{ !cancelled() }}
         env:
           LAYOUT_DEVICE: ${{ matrix.device }}
-          LAYOUT_SCOPE: ${{ inputs.test_scope == 'reliability' && 'reliability' || 'valley' }}
+          LAYOUT_SCOPE: ${{ inputs.test_scope == 'reliability' && 'reliability' || inputs.test_scope == 'interaction' && 'journal-interaction' || 'valley' }}
           LAYOUT_BUILD_ACTION: test-without-building
         run: bash scripts/validate-layout-on-macos.sh
       - name: Export results and screenshots

@@ -12,4 +12,4 @@
 
 文字使用 iOS 系统字体与中文回退，支持 Dynamic Type。原生系统状态栏、TabView 和安全区保留，因此真实设备的可用内容高度与无系统栏的概念图不同。小屏允许滚动，iPad 内容限制宽度。
 
-生成图像的来源见 `GENERATED_ASSETS.md`；实际截图对照与交互验证将记录于项目根目录 `design-qa.md` 和 `validation/BUILD20_VERIFICATION.md`。
+生成图像的来源见 `GENERATED_ASSETS.md`；实际截图对照与交互验证记录于项目根目录 `design-qa.md` 和 `validation/BUILD20_VERIFICATION.md`。
