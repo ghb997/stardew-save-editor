@@ -1,0 +1,2228 @@
+{
+  "generatedAtUTC": "2026-09-27T10:17:13.726823+00:00",
+  "binarySourceCommit": "c401a11ff6ad308334996f1c1f20e43a09930b05",
+  "uniqueTestMethodsCoveredAcrossRounds": 208,
+  "coverageMethod": "Passed method union plus latest result per device; all historical failures must be followed by a pass on that device.",
+  "totalExecutions": 236,
+  "historicalFailedExecutions": [
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "suite": "PelicanSaveEditorUITests.TrackerSmokeUITests",
+      "test": "testMapScopedWaterPreviewPendingLocateAndUndo",
+      "result": "failed",
+      "seconds": 46.883
+    },
+    {
+      "deviceFamily": "mini",
+      "folder": "full-mini",
+      "suite": "PelicanSaveEditorUITests.PelicanBrandUITests",
+      "test": "testAllToolCategoriesOpenAndKeepDraft",
+      "result": "failed",
+      "seconds": 218.393
+    },
+    {
+      "deviceFamily": "mini",
+      "folder": "full-mini",
+      "suite": "PelicanSaveEditorUITests.PelicanBrandUITests",
+      "test": "testSearchAcrossCategoriesAndEmptyState",
+      "result": "failed",
+      "seconds": 72.313
+    }
+  ],
+  "unresolvedFailures": [],
+  "latestDeviceMethodResults": [
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testAddingAtLastChestSlotPreservesOpaqueChildrenAndClearingKeepsSerializedFloor",
+      "result": "passed",
+      "seconds": 0.121
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testBigChestSeventySlotsAndOrdinaryFridgeSupported",
+      "result": "passed",
+      "seconds": 0.057
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testBundleSupplyAddsExactMaterialsToEmptySlotsAndLeavesAllQuestStateUnchanged",
+      "result": "passed",
+      "seconds": 0.08
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testBundleSupplyInsufficientSpaceInvalidSelectionsAndJojaAreAtomicFailures",
+      "result": "passed",
+      "seconds": 0.068
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testBundlesReadDefinitionsProgressChoicesAndGoldWithoutChangingCompletion",
+      "result": "passed",
+      "seconds": 0.055
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testChestQuantityPreservesQualitySpellingMetadataOtherContainersAndSummary",
+      "result": "passed",
+      "seconds": 0.048
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testDiscoversFarmNestedShedAndFridgeWithoutTreatingFurnitureAsChest",
+      "result": "passed",
+      "seconds": 0.025
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testDuplicateObjectCoordinatesCannotTargetTheWrongContainer",
+      "result": "passed",
+      "seconds": 0.022
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testExpandedDiffsGroupAndUndoIndependentlyIncludingMaterialSupply",
+      "result": "passed",
+      "seconds": 0.057
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testFinishingMachineKeepsOutputIdentityQuantityQualityAndMetadata",
+      "result": "passed",
+      "seconds": 0.057
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testLegacyNumericWeatherRetainsNumericEncodingAndLuckRange",
+      "result": "passed",
+      "seconds": 0.05
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testMissingLuckCannotBeInventedAndIslandRejectsSnow",
+      "result": "passed",
+      "seconds": 0.034
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testReadyMachineCannotBeFinishedAgainAndForgedMachineRejected",
+      "result": "passed",
+      "seconds": 0.023
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testSharedSpecialAndOversizedChestsRemainReadOnly",
+      "result": "passed",
+      "seconds": 0.111
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testSpecialConflictingDuplicateAndMissingWeatherRemainsUnavailable",
+      "result": "passed",
+      "seconds": 0.24
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testStorageWriteBoundaryRejectsSlotLayoutTemplateAndItemMetadataTampering",
+      "result": "passed",
+      "seconds": 0.023
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testTomorrowWeatherSynchronizesDefaultAliasesAndPreservesCurrentWeatherAndIsland",
+      "result": "passed",
+      "seconds": 0.055
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testUnknownEmptyCaskAndMalformedMachinesAreExcluded",
+      "result": "passed",
+      "seconds": 0.084
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testUnknownQuestAndMalformedItemsCannotBeEditedOrCleared",
+      "result": "passed",
+      "seconds": 0.2
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testUnreadableDuplicateAndMissingBundleStateNeverAssumedIncomplete",
+      "result": "passed",
+      "seconds": 0.098
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testUnrelatedEditsDoNotSerializeSyntheticStorageSlotsOrNormalizeWeather",
+      "result": "passed",
+      "seconds": 0.046
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testWorkerReparsePreservesUneditedStorageUUIDBaseline",
+      "result": "passed",
+      "seconds": 0.057
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testZlibExpandedEditsRoundTripWithoutChangingOriginalTree",
+      "result": "passed",
+      "seconds": 0.047
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+      "test": "testCodecAcceptsUTF8CharacterAcrossOldPrefixBoundary",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+      "test": "testDebrisCleanupPreservesTypeNamespacesContainersAndModObjects",
+      "result": "passed",
+      "seconds": 0.005
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+      "test": "testEightStringIDObjectsHaveChineseNamesAndRoundTrip",
+      "result": "passed",
+      "seconds": 0.029
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+      "test": "testEveryDiffIsGroupedAndEachEditCanBeUndone",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+      "test": "testPairingRejectsWrongRootAndDifferentFarmerButAllowsRenamedSameID",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+      "test": "testProfessionValidationRejectsConflictsButPreservesUnrelatedExistingExtensions",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+      "test": "testRenamingOneAnimalPreservesOtherAnimalsAndIndependentAges",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+      "test": "testSingleDebrisUndoDoesNotUndoNeighborAndEqualCountSelectionIsVisible",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+      "test": "testSkillLevelAndExperienceUseSameProfessionRules",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+      "test": "testWalletFalseIsFalseAndOnlyEditedLegacyKeyIsMigrated",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "test": "testCapacityExpansionRoundTripsBothFilesAndPreservesOpaqueItems",
+      "result": "passed",
+      "seconds": 0.024
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "test": "testCapacityUndoRemovesNewSlotEditsAndKeepsOldSlotEdits",
+      "result": "passed",
+      "seconds": 0.052
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "test": "testGiftResetChangesOnlyExistingCountersAndEachDiffCanBeUndone",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "test": "testMissingGiftFieldsAreNotCreatedAndMalformedValuesArePreserved",
+      "result": "passed",
+      "seconds": 0.004
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "test": "testMissingMalformedAndModdedCapacitiesRemainUnchanged",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "test": "testMissingPointsAndStatusStayReadOnly",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "test": "testOriginalSerializedSlotsSurviveShrinkAndCannotReceiveNewHiddenItems",
+      "result": "passed",
+      "seconds": 0.022
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "test": "testRelationshipFiltersReflectGiftResetAndUndo",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "test": "testRelationshipWriteBoundaryRejectsUnsupportedStatusAndFriendshipLimits",
+      "result": "passed",
+      "seconds": 0.014
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "test": "testScopedFullHeartsRespectsRelationshipsAndPreservesHigherAndUnknownPoints",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "test": "testShrinkWithOccupiedTailFailsWithoutChangingDraft",
+      "result": "passed",
+      "seconds": 0.021
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "test": "testUneditedFriendshipXMLIsNotNormalizedWhenAnotherFriendChanges",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "test": "testUnrelatedEditDoesNotSerializeSyntheticEmptySlotsOrInventSummaryCapacity",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "test": "testWriteBoundaryRejectsInvalidCapacityAndSlotLayout",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testActiveTransactionBlocksBackupUnprotectAndCopyDelete",
+      "result": "passed",
+      "seconds": 0.074
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testBackupExportCacheLeaseAndCleanupAndProtection",
+      "result": "passed",
+      "seconds": 0.028
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testChangedTargetAfterReviewAbortsWithoutWriting",
+      "result": "passed",
+      "seconds": 0.047
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testCopyLibraryNormalizesNewRootWithoutDirectorySlash",
+      "result": "passed",
+      "seconds": 0.011
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testCurrentAndDraftCopiesCannotBeDeletedThenExportedCopyCan",
+      "result": "passed",
+      "seconds": 0.056
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testDebrisRequiresUnambiguousFalseAndPreservesWhitespaceTruePlants",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testDraftRejectsChangedPairAndPreservesCheckpoint",
+      "result": "passed",
+      "seconds": 0.026
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testDraftReopensAndRebindsInventoryUUIDs",
+      "result": "passed",
+      "seconds": 0.017
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testExportRejectsWrongPlayerAndShowsChangedTarget",
+      "result": "passed",
+      "seconds": 0.048
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testFailedUnindexedImportCanBeRemovedWithoutTouchingOriginal",
+      "result": "passed",
+      "seconds": 0.019
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testFullDraftCheckpointPreservesNewItemsAndRebindsStorageItems",
+      "result": "passed",
+      "seconds": 0.039
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testIntentVerifierRejectsUnexpectedScalarChange",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testLegacyCopyMigratesWithoutInventingOriginHashes",
+      "result": "passed",
+      "seconds": 0.017
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testMixedXMLTextCDATAWhitespaceAndCarriageReturnsSurviveMoneyEdit",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testNilAndConflictingIDsNeverBecomeDebris",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testQueuedDraftSaveDoesNotResurrectCheckpointAndFailedDraftCannotBeClosed",
+      "result": "passed",
+      "seconds": 0.176
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testSaveClearsDraftAndProtectsPendingExportFromDeletion",
+      "result": "passed",
+      "seconds": 0.026
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testSavedCopyIsDiscoverableAfterNewWorkerAndReopensExactBytes",
+      "result": "passed",
+      "seconds": 0.036
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testUnknownDraftSchemaAndCorruptDraftAreRetained",
+      "result": "passed",
+      "seconds": 0.015
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testUnsupportedMixedContainerMutationIsRejected",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testUppercasePlayerIdentityAndDuplicateIDsAreChecked",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testVerifiedExportBacksUpTargetAndRecordsExactWrittenPair",
+      "result": "passed",
+      "seconds": 0.07
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testArtifactAndFishArrayCountsAndMalformedArrayAreDistinguished",
+      "result": "passed",
+      "seconds": 0.051
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testBackgroundRenderRejectsUnappliedEdit",
+      "result": "passed",
+      "seconds": 0.039
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testBackgroundRenderVerifiesEquipmentRecipeAndExpandedBackpack",
+      "result": "passed",
+      "seconds": 0.026
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testCopyMoveAndCanonicalNondefaultQuantityRemainSupported",
+      "result": "passed",
+      "seconds": 0.082
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testDuplicateAndMismatchedAnimalIDsRemainUntouched",
+      "result": "passed",
+      "seconds": 0.043
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testDuplicateFriendshipsAreExcludedWithoutModifyingTheirXML",
+      "result": "passed",
+      "seconds": 0.055
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testDuplicateInventoryContainerAndNilWithDataAreNotWritable",
+      "result": "passed",
+      "seconds": 0.039
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testDuplicatePlayersAreNotSilentlyAccepted",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testEquipmentAndOrdinaryInventoryEditsCanBeSavedTogether",
+      "result": "passed",
+      "seconds": 0.041
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testEquipmentBoundsNaNAndDamageOrderAreRejected",
+      "result": "passed",
+      "seconds": 0.021
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testEquipmentChangesOnlySelectedFieldAndPreservesEnchantments",
+      "result": "passed",
+      "seconds": 0.047
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testEquipmentChestMachineWateringAndDebrisRemovalSaveTogether",
+      "result": "passed",
+      "seconds": 0.043
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testEquipmentUndoRestoresOneFieldWithoutLosingOtherChanges",
+      "result": "passed",
+      "seconds": 0.02
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testEquipmentVerificationSurvivesLegacyWalletFieldRemoval",
+      "result": "passed",
+      "seconds": 0.06
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testEquippedBootsWithoutExplicitTypeAndUnknownGearHandling",
+      "result": "passed",
+      "seconds": 0.02
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testEquivalentCoordinateSpellingsCannotTargetTwoContainers",
+      "result": "passed",
+      "seconds": 0.02
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testIntentVerifierChecksItemIDInsteadOfOnlyDisplayText",
+      "result": "passed",
+      "seconds": 0.04
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testIntentVerifierRejectsMissingScalarWriteBeforeAnyFileWrite",
+      "result": "passed",
+      "seconds": 0.04
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testInventoryMetadataAndDuplicateIdentityAreRejected",
+      "result": "passed",
+      "seconds": 0.02
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testInventoryQuantityPreservesQualitySpellingAndOpaqueMetadata",
+      "result": "passed",
+      "seconds": 0.043
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testMalformedDuplicateAndQualifiedCollectionIDs",
+      "result": "passed",
+      "seconds": 0.058
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testMissingCollectionDataIsUnknownNotZeroProgress",
+      "result": "passed",
+      "seconds": 0.049
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testMissingRecipeContainerCanBeCreatedAndDuplicateRecipeCannotBeEdited",
+      "result": "passed",
+      "seconds": 0.069
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testMuseumCoordinatesAndNilCollectionsDoNotReportFalseCompletion",
+      "result": "passed",
+      "seconds": 0.05
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testMuseumUsesDonationRecordsInsteadOfDiscoveryRecords",
+      "result": "passed",
+      "seconds": 0.062
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testQuestUnknownAndMalformedInventoryAreReadOnly",
+      "result": "passed",
+      "seconds": 0.041
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testReadOnlyInventoryCannotBeRemovedMovedOrForged",
+      "result": "passed",
+      "seconds": 0.02
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testRecipeInvalidCountAndChangedScopeAreRejected",
+      "result": "passed",
+      "seconds": 0.021
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testRecipeUnlockPreservesOtherCountsAndMalformedRecordsExactly",
+      "result": "passed",
+      "seconds": 0.04
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testStorageAcceptsCanonicalInitialQuantityAndRejectsDuplicateIDs",
+      "result": "passed",
+      "seconds": 0.064
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testWrappedRecipesKeepStructureAndMalformedValuesStayReadOnly",
+      "result": "passed",
+      "seconds": 0.061
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testBackupManifestDetectsTamperedData",
+      "result": "passed",
+      "seconds": 0.022
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testBundledCatalogHasFullUpstreamData",
+      "result": "passed",
+      "seconds": 0.024
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testBundledCropCatalogIsCompleteAndInternallyConsistent",
+      "result": "passed",
+      "seconds": 0.01
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testBundledRecipeCatalogHasCompleteChineseNames",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testCatalogAndBackupInitializationSurviveUnavailableTransactionDirectory",
+      "result": "passed",
+      "seconds": 0.046
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testCodecReadsStandardZlibFixture",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testCoordinatedWriteUpdatesSelectedFileWithoutReplacingIt",
+      "result": "passed",
+      "seconds": 0.005
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testCopyImportCancellationDoesNotLeakSelectionIntoNextPresentation",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testCopyImportCreatesIndependentAppOwnedPair",
+      "result": "passed",
+      "seconds": 0.01
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testCopyImportDismissalBeforeSelectionIsConsumedOnce",
+      "result": "passed",
+      "seconds": 0.0
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testCopyImportSelectionBeforeDismissalIsConsumedOnce",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testCropGrowthSpeedMirrorsGamePhaseRules",
+      "result": "passed",
+      "seconds": 0.0
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testCropPlannerChargesInitialSeedsBeforeFirstHarvest",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testCropPlannerSchedulesCrossSeasonRegrowthAndProfit",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testDiscoversSaveFoldersFromAuthorizedStardewRoot",
+      "result": "passed",
+      "seconds": 0.013
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testFarmSnapshotExtractsActualEntitiesCountsAndCoordinates",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testFarmhouseAndMagicFarmActionsRoundTripWithoutRemovingNormalObjects",
+      "result": "passed",
+      "seconds": 0.008
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testGlobalKeyboardReturnAccessoryInstallsOnEveryUIKitTextInputKind",
+      "result": "passed",
+      "seconds": 0.045
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testInterruptedMixedPairIsRecoveredFromBackup",
+      "result": "passed",
+      "seconds": 0.025
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testLargeLocalSaveLoadingDiagnostics",
+      "result": "passed",
+      "seconds": 1.185
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testLazyXMLTraversalPreservesOrderAndStopsAtFirstMatch",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testLegacyBackupManifestWithoutHashesRemainsReadable",
+      "result": "passed",
+      "seconds": 0.017
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testMagicMapCanRemoveOneSelectedDebrisWithoutTouchingNeighbors",
+      "result": "passed",
+      "seconds": 0.01
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testModern16HouseProgressWalletProfessionsAndAnimalsRoundTrip",
+      "result": "passed",
+      "seconds": 0.009
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testMovingEquivalentItemsStillProducesInventoryDiffs",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testParseEditRenderAndReparsePair",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testPlainAndZlibCodecRoundTrips",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testSaveDiscoveryReportsRootWithoutValidSaves",
+      "result": "passed",
+      "seconds": 0.004
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testSessionEditingFreezeRejectsLateBindingsButCanInstallCommittedSnapshot",
+      "result": "passed",
+      "seconds": 0.012
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testSnapshotStillPrefersNamedFarmInsideWrappedLocations",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testTeaBushGrowsAcrossOutdoorWinterButOnlyHarvestsInProducingSeasons",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testTransactionWritesPairAndCreatesRestorableBackup",
+      "result": "passed",
+      "seconds": 0.021
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testUnchangedExtendedValuesSurviveAnUnrelatedEdit",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testValidationRejectsUnsafeValues",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testWorkerPreparesSnapshotAndRefreshesItAfterCommittedMapChanges",
+      "result": "passed",
+      "seconds": 0.025
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testWorkerPreservesInventoryBaselineWhenReparsingForUnrelatedEdit",
+      "result": "passed",
+      "seconds": 0.004
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testWorkerRejectsInvalidTargetBeforeCreatingBackupOrWritingSource",
+      "result": "passed",
+      "seconds": 0.024
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testWorkerTransfersOnlyFreshParsedTreesAndReturnsVerifiedPair",
+      "result": "passed",
+      "seconds": 0.042
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testXMLTreePreservesUnknownElementsAndEscapesText",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ToolDirectoryTests",
+      "test": "testEveryEditorHasOneCategoryAndStableIdentifier",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.ToolDirectoryTests",
+      "test": "testSearchIgnoresCategoryAndAcceptsWhitespaceAndAliases",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.TrackerMetricsTests",
+      "test": "testCollectionFootprintIsAnObservedCountNotPerfection",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.TrackerMetricsTests",
+      "test": "testDraftsAndClearStateHaveDistinctStatus",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.TrackerMetricsTests",
+      "test": "testEmptySkillsHaveNoArtificialMaximumOrCompletedProgress",
+      "result": "passed",
+      "seconds": 0.007
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.TrackerMetricsTests",
+      "test": "testProgressDoesNotInventCompletionForMissingTotals",
+      "result": "passed",
+      "seconds": 0.0
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.TrackerMetricsTests",
+      "test": "testProgressStaysWithinItsDisplayRange",
+      "result": "passed",
+      "seconds": 0.0
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.TrackerMetricsTests",
+      "test": "testSkillSummaryUsesAvailableSkillsAndClampsExtendedLevels",
+      "result": "passed",
+      "seconds": 0.0
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.TrackerMetricsTests",
+      "test": "testWarningsRemainVisibleEvenWithoutDraftsOrAlongsideDrafts",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+      "test": "testBackupExportsWithoutOriginalFilesOrEditingSession",
+      "result": "passed",
+      "seconds": 0.01
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+      "test": "testBoundKnownMixedPairRestoresOriginal",
+      "result": "passed",
+      "seconds": 0.024
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+      "test": "testFailureDuringSecondWriteRestoresBothOriginalFiles",
+      "result": "passed",
+      "seconds": 0.032
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+      "test": "testInvalidRenderedInfoIsRejectedBeforeSourceWrites",
+      "result": "passed",
+      "seconds": 0.021
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+      "test": "testProtectedRecoveryPointSurvivesAutomaticRetention",
+      "result": "passed",
+      "seconds": 0.037
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+      "test": "testRollbackFailureRetainsJournalAndExportableProtectedBackup",
+      "result": "passed",
+      "seconds": 0.015
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+      "test": "testSameFarmNameAtDifferentSourcesDoesNotShareJournal",
+      "result": "passed",
+      "seconds": 0.03
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+      "test": "testUnboundLegacyJournalNeverGuessesSourceFromFarmName",
+      "result": "passed",
+      "seconds": 0.022
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+      "test": "testUnknownNewProgressIsPreservedAndNeedsExplicitChoice",
+      "result": "passed",
+      "seconds": 0.082
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testColorChangeDoesNotInventOrRepairSummaryFields",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testColorChannelsAndPackedValueRoundTripWithoutLosingMetadata",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testColorDiffUndoRestoresOneFieldAndKeepsOtherDraftChanges",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testColorWriteBoundaryRejectsMissingAddedInvalidAndAlphaChanges",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testHexColorValidationAcceptsSixDigitsOnly",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testInvalidOrMissingColorsStayReadOnlyAndUnchanged",
+      "result": "passed",
+      "seconds": 0.008
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testMapRegionFiltersBothActionsAndUndoKeepsOtherSelections",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testMapRejectsInvalidRegionsAndNonActionableKeys",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testMapSearchScopeAndToggleReflectDraftImmediately",
+      "result": "passed",
+      "seconds": 0.004
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testNilUnknownAndAmbiguousRoomFieldsStayReadOnly",
+      "result": "passed",
+      "seconds": 0.006
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testPackedOnlyColorsPreserveRepresentationAndSummaryAlpha",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testRoomBatchChangesSelectedRoomsOfSameSurfaceKindOnly",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testRoomEditPreservesUntouchedLexicalValuesAndFurniture",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testRoomRestoreKeepsOtherRoomsAndUpgradeDraft",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testRoomSearchAndStyleLibraryCoverKnownRanges",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testRoomWriteBoundaryRejectsAddedRemovedOrRelocatedSurfaces",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testSingleCropWateringChangesExactCoordinateOnly",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testWateringPreservesWetDeadCustomNullableAndMissingStates",
+      "result": "passed",
+      "seconds": 0.006
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.AdaptiveLayoutUITests",
+      "test": "testAllEditorsInLandscape",
+      "result": "passed",
+      "seconds": 179.218
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.AdaptiveLayoutUITests",
+      "test": "testAllEditorsInPortrait",
+      "result": "passed",
+      "seconds": 161.64
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.AdaptiveLayoutUITests",
+      "test": "testEachDocumentPickerCanOpenCancelAndReopen",
+      "result": "passed",
+      "seconds": 41.212
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.AdaptiveLayoutUITests",
+      "test": "testExpandedMapFitsViewportAtDefaultZoomAfterRotation",
+      "result": "passed",
+      "seconds": 25.85
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.AdaptiveLayoutUITests",
+      "test": "testImportOptionsSurviveRotation",
+      "result": "passed",
+      "seconds": 27.658
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.AdaptiveLayoutUITests",
+      "test": "testMainPagesAndUtilitySheets",
+      "result": "passed",
+      "seconds": 70.201
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.AdaptiveLayoutUITests",
+      "test": "testNarrowWindowAndAccessibilityText",
+      "result": "passed",
+      "seconds": 48.448
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.ExpandedEditorUITests",
+      "test": "testBundleSupplyPreviewAddsInventoryDiffWithoutCompletingBundle",
+      "result": "passed",
+      "seconds": 60.882
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.ExpandedEditorUITests",
+      "test": "testChestQuantityDraftAndReview",
+      "result": "passed",
+      "seconds": 96.049
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.ExpandedEditorUITests",
+      "test": "testMachineSelectionPreviewApplyAndUndo",
+      "result": "passed",
+      "seconds": 28.115
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.ExpandedEditorUITests",
+      "test": "testWeatherLuckPresetRestoreAndWeatherReview",
+      "result": "passed",
+      "seconds": 26.609
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "verified-interaction-iphone",
+      "sourceCommit": "c401a11ff6ad308334996f1c1f20e43a09930b05",
+      "suite": "PelicanSaveEditorUITests.PelicanBrandUITests",
+      "test": "testAllToolCategoriesOpenAndKeepDraft",
+      "result": "passed",
+      "seconds": 242.152
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "verified-interaction-iphone",
+      "sourceCommit": "c401a11ff6ad308334996f1c1f20e43a09930b05",
+      "suite": "PelicanSaveEditorUITests.PelicanBrandUITests",
+      "test": "testBrandGroupCopyAndQRCode",
+      "result": "passed",
+      "seconds": 29.956
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "verified-interaction-iphone",
+      "sourceCommit": "c401a11ff6ad308334996f1c1f20e43a09930b05",
+      "suite": "PelicanSaveEditorUITests.PelicanBrandUITests",
+      "test": "testSearchAcrossCategoriesAndEmptyState",
+      "result": "passed",
+      "seconds": 70.161
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "verified-interaction-iphone",
+      "sourceCommit": "c401a11ff6ad308334996f1c1f20e43a09930b05",
+      "suite": "PelicanSaveEditorUITests.PelicanBrandUITests",
+      "test": "testToolsAndSettingsAtLargeTextInNarrowWindow",
+      "result": "passed",
+      "seconds": 49.162
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testDraftSurvivesTerminationAndCanBeRecoveredThenDiscarded",
+      "result": "passed",
+      "seconds": 68.41
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testSavedCopySurvivesTerminationAndOpensVerifiedExportScreen",
+      "result": "passed",
+      "seconds": 74.115
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.RepairEditorUITests",
+      "test": "testCollectionSupplyCreatesInventoryDraftWithoutMarkingDonation",
+      "result": "passed",
+      "seconds": 38.855
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.RepairEditorUITests",
+      "test": "testEquipmentCancelLeavesDraftUnchanged",
+      "result": "passed",
+      "seconds": 24.321
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.RepairEditorUITests",
+      "test": "testToolUpgradeCreatesReviewDiff",
+      "result": "passed",
+      "seconds": 24.507
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.RepairEditorUITests",
+      "test": "testWeaponInvalidInputAndRestore",
+      "result": "passed",
+      "seconds": 33.352
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.TrackerSmokeUITests",
+      "test": "testAllElevenModulesOpenAndClose",
+      "result": "passed",
+      "seconds": 126.884
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.TrackerSmokeUITests",
+      "test": "testAppearanceColorsSupportPresetHexAndRestore",
+      "result": "passed",
+      "seconds": 179.374
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.TrackerSmokeUITests",
+      "test": "testDetailSwitchingRecipeFiltersAndSearchEmptyState",
+      "result": "passed",
+      "seconds": 54.829
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.TrackerSmokeUITests",
+      "test": "testEditorCapacityAndInventorySearchUseDraft",
+      "result": "passed",
+      "seconds": 27.472
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.TrackerSmokeUITests",
+      "test": "testEmptyTrackerOpensToolsWithoutImportingFiles",
+      "result": "passed",
+      "seconds": 11.177
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.TrackerSmokeUITests",
+      "test": "testGiftBatchResetShowsChangedCountersWithoutChangingHearts",
+      "result": "passed",
+      "seconds": 44.903
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "verified-map-iphone",
+      "sourceCommit": "9acd75b14171fae903a4e3619ac08f23646a89b8",
+      "suite": "PelicanSaveEditorUITests.TrackerSmokeUITests",
+      "test": "testMapScopedWaterPreviewPendingLocateAndUndo",
+      "result": "passed",
+      "seconds": 142.532
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.TrackerSmokeUITests",
+      "test": "testOverviewFiltersAndGroupExpansion",
+      "result": "passed",
+      "seconds": 83.94
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.TrackerSmokeUITests",
+      "test": "testRelationshipBatchPreviewCanCancelAndApplyOnlySearchedCharacter",
+      "result": "passed",
+      "seconds": 41.094
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "full-iphone",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.TrackerSmokeUITests",
+      "test": "testRoomStyleLibraryBatchPreviewAndRoomRestore",
+      "result": "passed",
+      "seconds": 108.625
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "verified-preview-iphone",
+      "sourceCommit": "c401a11ff6ad308334996f1c1f20e43a09930b05",
+      "suite": "PelicanSaveEditorUITests.ValleyThemeUITests",
+      "test": "testEmptyFarmAndImportPanel",
+      "result": "passed",
+      "seconds": 35.828
+    },
+    {
+      "deviceFamily": "iphone",
+      "folder": "verified-preview-iphone",
+      "sourceCommit": "c401a11ff6ad308334996f1c1f20e43a09930b05",
+      "suite": "PelicanSaveEditorUITests.ValleyThemeUITests",
+      "test": "testMainTabsInDayAndNight",
+      "result": "passed",
+      "seconds": 35.772
+    },
+    {
+      "deviceFamily": "mini",
+      "folder": "full-mini",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.AdaptiveLayoutUITests",
+      "test": "testAllEditorsInLandscape",
+      "result": "passed",
+      "seconds": 249.798
+    },
+    {
+      "deviceFamily": "mini",
+      "folder": "full-mini",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.AdaptiveLayoutUITests",
+      "test": "testAllEditorsInPortrait",
+      "result": "passed",
+      "seconds": 201.811
+    },
+    {
+      "deviceFamily": "mini",
+      "folder": "full-mini",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.AdaptiveLayoutUITests",
+      "test": "testEachDocumentPickerCanOpenCancelAndReopen",
+      "result": "passed",
+      "seconds": 49.209
+    },
+    {
+      "deviceFamily": "mini",
+      "folder": "full-mini",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.AdaptiveLayoutUITests",
+      "test": "testExpandedMapFitsViewportAtDefaultZoomAfterRotation",
+      "result": "passed",
+      "seconds": 20.775
+    },
+    {
+      "deviceFamily": "mini",
+      "folder": "full-mini",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.AdaptiveLayoutUITests",
+      "test": "testImportOptionsSurviveRotation",
+      "result": "passed",
+      "seconds": 30.518
+    },
+    {
+      "deviceFamily": "mini",
+      "folder": "full-mini",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.AdaptiveLayoutUITests",
+      "test": "testMainPagesAndUtilitySheets",
+      "result": "passed",
+      "seconds": 66.451
+    },
+    {
+      "deviceFamily": "mini",
+      "folder": "full-mini",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.AdaptiveLayoutUITests",
+      "test": "testNarrowWindowAndAccessibilityText",
+      "result": "passed",
+      "seconds": 59.472
+    },
+    {
+      "deviceFamily": "mini",
+      "folder": "verified-interaction-mini",
+      "sourceCommit": "c401a11ff6ad308334996f1c1f20e43a09930b05",
+      "suite": "PelicanSaveEditorUITests.PelicanBrandUITests",
+      "test": "testAllToolCategoriesOpenAndKeepDraft",
+      "result": "passed",
+      "seconds": 213.542
+    },
+    {
+      "deviceFamily": "mini",
+      "folder": "verified-interaction-mini",
+      "sourceCommit": "c401a11ff6ad308334996f1c1f20e43a09930b05",
+      "suite": "PelicanSaveEditorUITests.PelicanBrandUITests",
+      "test": "testBrandGroupCopyAndQRCode",
+      "result": "passed",
+      "seconds": 21.835
+    },
+    {
+      "deviceFamily": "mini",
+      "folder": "verified-interaction-mini",
+      "sourceCommit": "c401a11ff6ad308334996f1c1f20e43a09930b05",
+      "suite": "PelicanSaveEditorUITests.PelicanBrandUITests",
+      "test": "testSearchAcrossCategoriesAndEmptyState",
+      "result": "passed",
+      "seconds": 27.217
+    },
+    {
+      "deviceFamily": "mini",
+      "folder": "verified-interaction-mini",
+      "sourceCommit": "c401a11ff6ad308334996f1c1f20e43a09930b05",
+      "suite": "PelicanSaveEditorUITests.PelicanBrandUITests",
+      "test": "testToolsAndSettingsAtLargeTextInNarrowWindow",
+      "result": "passed",
+      "seconds": 37.693
+    },
+    {
+      "deviceFamily": "mini",
+      "folder": "full-mini",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testDraftSurvivesTerminationAndCanBeRecoveredThenDiscarded",
+      "result": "passed",
+      "seconds": 70.357
+    },
+    {
+      "deviceFamily": "mini",
+      "folder": "full-mini",
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testSavedCopySurvivesTerminationAndOpensVerifiedExportScreen",
+      "result": "passed",
+      "seconds": 58.977
+    },
+    {
+      "deviceFamily": "mini",
+      "folder": "verified-preview-mini",
+      "sourceCommit": "c401a11ff6ad308334996f1c1f20e43a09930b05",
+      "suite": "PelicanSaveEditorUITests.ValleyThemeUITests",
+      "test": "testEmptyFarmAndImportPanel",
+      "result": "passed",
+      "seconds": 30.018
+    },
+    {
+      "deviceFamily": "mini",
+      "folder": "verified-preview-mini",
+      "sourceCommit": "c401a11ff6ad308334996f1c1f20e43a09930b05",
+      "suite": "PelicanSaveEditorUITests.ValleyThemeUITests",
+      "test": "testMainTabsInDayAndNight",
+      "result": "passed",
+      "seconds": 44.747
+    }
+  ],
+  "runtimeDeltaFromFullRegression": [
+    "PelicanSaveEditor/Views/Home/SettingsView.swift",
+    "PelicanSaveEditor/Views/Home/ToolsView.swift"
+  ],
+  "rounds": [
+    {
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "run": 36308563115,
+      "folder": "final-preview-iphone",
+      "method": "Native XCTest case results matched with xcresult summary",
+      "total": 2,
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "historical": true,
+      "coreTests": 0,
+      "uiTests": 2,
+      "suiteCounts": {
+        "PelicanSaveEditorUITests.ValleyThemeUITests": 2
+      },
+      "log": "final-preview-iphone/tests.log",
+      "logSHA256": "05599814aa58b248c53812ca1191f95401b5b121227f13bdb0965f9a68a83b22"
+    },
+    {
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "run": 36308563115,
+      "folder": "final-preview-mini",
+      "method": "Native XCTest case results matched with xcresult summary",
+      "total": 2,
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "historical": true,
+      "coreTests": 0,
+      "uiTests": 2,
+      "suiteCounts": {
+        "PelicanSaveEditorUITests.ValleyThemeUITests": 2
+      },
+      "log": "final-preview-mini/tests.log",
+      "logSHA256": "c088835326354dbf9d17df6136b5866e045c8ade0c91520613718d1720601020"
+    },
+    {
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "run": 36308563115,
+      "folder": "full-iphone",
+      "method": "Native XCTest case results matched with xcresult summary",
+      "total": 206,
+      "passed": 205,
+      "failed": 1,
+      "skipped": 0,
+      "historical": true,
+      "coreTests": 175,
+      "uiTests": 31,
+      "suiteCounts": {
+        "PelicanSaveEditorUITests.AdaptiveLayoutUITests": 7,
+        "PelicanSaveEditorUITests.ExpandedEditorUITests": 4,
+        "PelicanSaveEditorUITests.PelicanBrandUITests": 4,
+        "PelicanSaveEditorUITests.PersistenceUITests": 2,
+        "PelicanSaveEditorUITests.RepairEditorUITests": 4,
+        "PelicanSaveEditorUITests.TrackerSmokeUITests": 10,
+        "PelicanSaveEditorTests.ExpandedEditorTests": 23,
+        "PelicanSaveEditorTests.GameLogicRegressionTests": 10,
+        "PelicanSaveEditorTests.ReferenceFeatureTests": 14,
+        "PelicanSaveEditorTests.ReliabilityRegressionTests": 22,
+        "PelicanSaveEditorTests.RepairRegressionTests": 31,
+        "PelicanSaveEditorTests.SaveCoreTests": 39,
+        "PelicanSaveEditorTests.ToolDirectoryTests": 2,
+        "PelicanSaveEditorTests.TrackerMetricsTests": 7,
+        "PelicanSaveEditorTests.TransactionRegressionTests": 9,
+        "PelicanSaveEditorTests.WorldEditorTests": 18
+      },
+      "log": "full-iphone/tests.log",
+      "logSHA256": "9242e9d567a46fb6863e0a2e601955c34b79219d656d4bad81049471526c2a02"
+    },
+    {
+      "sourceCommit": "18b53e46a6533af9dd080e4496824a8b03bb6e8b",
+      "run": 36308563115,
+      "folder": "full-mini",
+      "method": "Native XCTest case results matched with xcresult summary",
+      "total": 13,
+      "passed": 11,
+      "failed": 2,
+      "skipped": 0,
+      "historical": true,
+      "coreTests": 0,
+      "uiTests": 13,
+      "suiteCounts": {
+        "PelicanSaveEditorUITests.AdaptiveLayoutUITests": 7,
+        "PelicanSaveEditorUITests.PelicanBrandUITests": 4,
+        "PelicanSaveEditorUITests.PersistenceUITests": 2
+      },
+      "log": "full-mini/tests.log",
+      "logSHA256": "6a8d59462e19c90187ef3c0bd6a253d6406be6f3be610cc275ca103e7ed02657"
+    },
+    {
+      "sourceCommit": "c401a11ff6ad308334996f1c1f20e43a09930b05",
+      "run": 36310763788,
+      "folder": "verified-preview-iphone",
+      "method": "Native XCTest case results matched with xcresult summary",
+      "total": 2,
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "historical": false,
+      "coreTests": 0,
+      "uiTests": 2,
+      "suiteCounts": {
+        "PelicanSaveEditorUITests.ValleyThemeUITests": 2
+      },
+      "log": "verified-preview-iphone/tests.log",
+      "logSHA256": "2eca092dd4aed30f89add7a5b5c1f1bf3e4096ab4630fc4e73d5dfd687eb7296"
+    },
+    {
+      "sourceCommit": "c401a11ff6ad308334996f1c1f20e43a09930b05",
+      "run": 36310763788,
+      "folder": "verified-preview-mini",
+      "method": "Native XCTest case results matched with xcresult summary",
+      "total": 2,
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "historical": false,
+      "coreTests": 0,
+      "uiTests": 2,
+      "suiteCounts": {
+        "PelicanSaveEditorUITests.ValleyThemeUITests": 2
+      },
+      "log": "verified-preview-mini/tests.log",
+      "logSHA256": "0e0ce6a51f02b3eb8f16bbf4e664ea0570f67dcd0fc94264f95669ce1409a0a2"
+    },
+    {
+      "sourceCommit": "c401a11ff6ad308334996f1c1f20e43a09930b05",
+      "run": 36310763788,
+      "folder": "verified-interaction-iphone",
+      "method": "Native XCTest case results matched with xcresult summary",
+      "total": 4,
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "historical": false,
+      "coreTests": 0,
+      "uiTests": 4,
+      "suiteCounts": {
+        "PelicanSaveEditorUITests.PelicanBrandUITests": 4
+      },
+      "log": "verified-interaction-iphone/tests.log",
+      "logSHA256": "2c88e7a6b7b43160a6a0e706411ed1e98b7d0f321501f7e793a6730f22f3ee25"
+    },
+    {
+      "sourceCommit": "c401a11ff6ad308334996f1c1f20e43a09930b05",
+      "run": 36310763788,
+      "folder": "verified-interaction-mini",
+      "method": "Native XCTest case results matched with xcresult summary",
+      "total": 4,
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "historical": false,
+      "coreTests": 0,
+      "uiTests": 4,
+      "suiteCounts": {
+        "PelicanSaveEditorUITests.PelicanBrandUITests": 4
+      },
+      "log": "verified-interaction-mini/tests.log",
+      "logSHA256": "60f60f322a3d59aeb1a73212c9f3e742ac80b4cb0b2468c4b431c9f070c55d31"
+    },
+    {
+      "sourceCommit": "9acd75b14171fae903a4e3619ac08f23646a89b8",
+      "run": 36311148489,
+      "folder": "verified-map-iphone",
+      "method": "Native XCTest case results matched with xcresult summary",
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "historical": false,
+      "coreTests": 0,
+      "uiTests": 1,
+      "suiteCounts": {
+        "PelicanSaveEditorUITests.TrackerSmokeUITests": 1
+      },
+      "log": "verified-map-iphone/tests.log",
+      "logSHA256": "1190be98ec05eda98f3daa438b607aa0951a7922ac9e80ad0dd6e9cdd4ced455"
+    }
+  ]
+}

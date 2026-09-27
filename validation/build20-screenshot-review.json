@@ -1,0 +1,124 @@
+{
+  "status": "passed",
+  "reviewedAtUTC": "2026-09-27T10:19:16.024313+00:00",
+  "binarySourceCommit": "c401a11ff6ad308334996f1c1f20e43a09930b05",
+  "method": "Human-visible review of native XCTest contact sheets, selected original PNGs, and normalized side-by-side reference comparisons. Screenshots are grouped by exact source/test round; historical failures are retained.",
+  "completedChecks": [
+    "Final c401a11 iPhone 16e and iPad mini light/dark main screens, import panels and no-farm states.",
+    "Reference and native screen in one normalized comparison: system typography, layout rhythm, palette/contrast, pixel artwork and data-backed copy.",
+    "Focused grid and management/navigation regions: full six-tool grid, complete backup rows at 390pt, fixed save footer and valid native tab symbols.",
+    "Every full-mini contact sheet (10) and full-iphone contact sheet (18), including portrait/landscape editors, accessibility sizes, map, inventory, appearance, house, tools/equipment, collection and recipe states.",
+    "All 31 final Brand UI screenshots per device: 17 editor entries, category selection, search result and empty state, review, QQ copy/image/share sheet.",
+    "Final 375pt accessibility appearance selector originals and open menu: value remains in its own vertical row, menu options readable and selection tested.",
+    "Final accessibility tool directory: single-column wrapped labels and reachable fixed review action.",
+    "Final map scoped watering preview, pending search and located crop screenshots; native journey also verifies undo.",
+    "Baseline local library and export flow screens; underlying persistence and export implementation unchanged by final UI fixes.",
+    "Final overview, focused comparison, appearance repair, interaction and persistence/responsive evidence sheets inspected after generation."
+  ],
+  "remainingChecks": [],
+  "actionableFindings": [],
+  "resolvedFindings": [
+    {
+      "priority": "P2",
+      "issue": "Invalid tools tab symbol",
+      "fix": "Use wrench.and.screwdriver",
+      "evidence": "design/reference-vs-native.png"
+    },
+    {
+      "priority": "P2",
+      "issue": "Backup subtitle obscured above fixed footer at 390pt",
+      "fix": "Reduce decorative spacing and grid row height",
+      "evidence": "design/focus-management-navigation.png"
+    },
+    {
+      "priority": "P2",
+      "issue": "Backpack/gift artwork did not match the selected direction",
+      "fix": "Generate matching transparent pixel assets",
+      "evidence": "design/focus-tool-grid.png"
+    },
+    {
+      "priority": "P1",
+      "issue": "Header search and category taps ineffective on iPad",
+      "fix": "Exclude decorative banner from hit testing and give button labels explicit rectangular hit shapes",
+      "evidence": "design/interaction-recheck.png"
+    },
+    {
+      "priority": "P2",
+      "issue": "Appearance selector overflow at accessibility text size",
+      "fix": "Vertical label and selector layout at accessibility sizes",
+      "evidence": "design/accessibility-appearance-recheck.png"
+    }
+  ],
+  "captureCorrections": [
+    "Wait for the native settings tab transition to settle before screenshot capture."
+  ],
+  "testHarnessCorrections": [
+    "Reveal the lazy map tool row before waiting for its existence; keep all map behavior assertions."
+  ],
+  "acceptableDifferences": [
+    "Reference lacks system chrome. Native iPhone safe areas and iPad system tabs are intentionally preserved.",
+    "System fonts and SF Symbols support native scaling; reference-generated font outlines are not pixel-identical.",
+    "Some inherited native empty-state containers retain a system white background in light appearance (P3 visual polish).",
+    "At maximum accessibility text size, long labels and the group number wrap; copy controls remain accessible."
+  ],
+  "normalization": {
+    "referencePixels": [
+      853,
+      1844
+    ],
+    "referenceAt390pt": [
+      390,
+      843
+    ],
+    "iphonePreviewPixels": [
+      1170,
+      2532
+    ],
+    "iphonePreviewPoints": [
+      390,
+      844
+    ],
+    "iphoneScale": 3,
+    "iphoneInteractionPixels": [
+      750,
+      1334
+    ],
+    "iphoneInteractionPoints": [
+      375,
+      667
+    ],
+    "iphoneInteractionScale": 2,
+    "ipadPreviewPixels": [
+      1488,
+      2266
+    ],
+    "ipadPreviewPoints": [
+      744,
+      1133
+    ],
+    "ipadScale": 2,
+    "accessibilityTestContentWidthPoints": 375,
+    "landscape": "Contact sheets apply EXIF orientation before proportional downsampling."
+  },
+  "reviewedAttachmentCount": 267,
+  "attachmentCountsByRound": {
+    "final-preview-iphone": 10,
+    "final-preview-mini": 10,
+    "full-mini": 57,
+    "full-iphone": 105,
+    "verified-preview-mini": 10,
+    "verified-preview-iphone": 10,
+    "verified-interaction-mini": 31,
+    "verified-map-iphone": 3,
+    "verified-interaction-iphone": 31
+  },
+  "inspectedMainScreenIndex": "design/screenshot-index.json",
+  "additionalScreenshotIndex": "design/review/index.json",
+  "presentationSheetIndex": "design/handoff-screenshot-index.json",
+  "residualVerificationGaps": [
+    "Physical-device signed install",
+    "Real game load/save round trip",
+    "Third-party document provider permissions",
+    "Physical-device VoiceOver"
+  ]
+}

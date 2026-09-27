@@ -1,0 +1,16 @@
+{
+  "version": "0.9.2",
+  "build": "20",
+  "displayName": "鹈鹕修改器",
+  "minimumOSVersion": "17.0",
+  "sourceCommit": "c401a11ff6ad308334996f1c1f20e43a09930b05",
+  "ipa": "verified-release/run-20260927T095438Z-1530/PelicanEditor-v0.9.2-build20-unsigned.ipa",
+  "sha256": "fb7d432feeee6279d2ce94def1b1978a8a765a254e25245ff24c8292194af21c",
+  "sizeBytes": 7145752,
+  "zipCRC": "passed",
+  "architecture": "arm64",
+  "signatureOrProfilePresent": false,
+  "unsigned": true,
+  "installedOnPhysicalDevice": false,
+  "inGameRoundTripVerified": false
+}
