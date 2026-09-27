@@ -32,8 +32,9 @@ final class PelicanBrandUITests: XCTestCase {
                 : app.buttons[["equipment", "storage", "collections", "weather", "machines", "bundles"].contains(tool)
                     ? "expanded.close" : "editor.shell.close"]
             XCTAssertTrue(close.waitForExistence(timeout: 20), "Opened \(tool)")
+            capture("build21-editor-\(tool)", app)
             XCTAssertEqual(close.label, "返回工具", "Every editor must show a visible destination instead of an icon-only close control")
-            capture("build20-editor-\(tool)", app)
+            XCTAssertGreaterThan(close.frame.width, 80, "The visible return control must fit its arrow and four-character destination")
             close.tap()
             XCTAssertTrue(review.waitForExistence(timeout: 20))
             XCTAssertEqual(review.label, draftLabel, "Browsing \(tool) must retain draft changes")
@@ -160,6 +161,7 @@ final class PelicanBrandUITests: XCTestCase {
         let reviewClose = app.navigationBars["检查更改"].buttons["editor.shell.close"]
         XCTAssertTrue(reviewClose.waitForExistence(timeout: 10))
         XCTAssertEqual(reviewClose.label, "返回编辑")
+        XCTAssertGreaterThan(reviewClose.frame.width, 80)
         try tapByScrolling(app.buttons["撤销这项更改"].firstMatch, app)
         reviewClose.tap()
         try tapByScrolling(money, app)

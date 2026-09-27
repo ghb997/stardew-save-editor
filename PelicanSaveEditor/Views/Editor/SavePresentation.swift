@@ -47,11 +47,16 @@ struct EditorReturnButton: View {
             KeyboardReturnAction.dismiss()
             action()
         } label: {
-            Label(title, systemImage: "chevron.left")
-                .labelStyle(.titleAndIcon)
-                .fixedSize(horizontal: true, vertical: false)
-                .frame(minHeight: 44)
+            // A semantic Label is collapsed to its icon by compact toolbars.
+            // Keep destination text in an explicit layout so it stays visible.
+            HStack(spacing: 4) {
+                Image(systemName: "chevron.left")
+                Text(title)
+            }
+            .fixedSize(horizontal: true, vertical: false)
+            .frame(minHeight: 44)
         }
+        .accessibilityLabel(title)
         .accessibilityHint("保留当前草稿并返回，不会直接写入游戏存档")
     }
 }

@@ -16,6 +16,8 @@ jobs:
     name: Editor flows (${{ matrix.device }}, ${{ matrix.scope }})
     runs-on: macos-15
     timeout-minutes: 60
+    env:
+      LAYOUT_DERIVED_DIR: artifacts/editor-derivedData
     strategy:
       fail-fast: false
       matrix:
@@ -28,10 +30,36 @@ jobs:
         run: |
           test -d /Applications/Xcode_16.4.app/Contents/Developer
           echo "DEVELOPER_DIR=/Applications/Xcode_16.4.app/Contents/Developer" >> "$GITHUB_ENV"
+      - name: Capture all return controls first
+        if: ${{ inputs.test_scope == 'flows' }}
+        env:
+          LAYOUT_DEVICE: ${{ matrix.device }}
+          LAYOUT_SCOPE: editor-preview
+          LAYOUT_OUTPUT_DIR: artifacts/editor-preview
+        run: bash scripts/validate-layout-on-macos.sh
+      - name: Export early return screenshots
+        if: ${{ always() && inputs.test_scope == 'flows' }}
+        run: |
+          if [[ -d artifacts/editor-preview/tests.xcresult ]]; then
+            xcrun xcresulttool get test-results summary --path artifacts/editor-preview/tests.xcresult > artifacts/editor-preview/summary.json
+            xcrun xcresulttool export attachments --path artifacts/editor-preview/tests.xcresult --output-path artifacts/editor-preview/attachments
+          fi
+      - uses: actions/upload-artifact@v4
+        if: ${{ always() && inputs.test_scope == 'flows' }}
+        with:
+          name: editor-build21-${{ matrix.device }}-editor-preview-${{ github.run_attempt }}
+          path: |
+            artifacts/editor-preview/*.log
+            artifacts/editor-preview/*.json
+            artifacts/editor-preview/attachments/**
+            !artifacts/editor-preview/attachments/**/*.mp4
+          retention-days: 14
       - name: Build and verify native editor flows
+        if: ${{ !cancelled() }}
         env:
           LAYOUT_DEVICE: ${{ matrix.device }}
           LAYOUT_SCOPE: ${{ matrix.scope }}
+          LAYOUT_BUILD_ACTION: ${{ inputs.test_scope == 'flows' && 'test-without-building' || 'test' }}
         run: bash scripts/validate-layout-on-macos.sh
       - name: Export results and screenshots
         if: always()

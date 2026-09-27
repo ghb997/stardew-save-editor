@@ -38,10 +38,15 @@ args=(
     -derivedDataPath "${LAYOUT_DERIVED_DIR:-artifacts/ipad-layout/DerivedData}" -parallel-testing-enabled NO
     -resultBundlePath "$output_dir/tests.xcresult" CODE_SIGNING_ALLOWED=NO
 )
-if [[ "${LAYOUT_SCOPE:-layout}" == editor-flows ]]; then
+if [[ "${LAYOUT_SCOPE:-layout}" == editor-preview ]]; then
+    args+=(-only-testing:PelicanSaveEditorUITests/PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft)
+elif [[ "${LAYOUT_SCOPE:-layout}" == editor-flows ]]; then
     args+=(-only-testing:PelicanSaveEditorTests/SaveCoreTests/testGlobalKeyboardReturnAccessoryInstallsOnEveryUIKitTextInputKind)
     args+=(-only-testing:PelicanSaveEditorUITests/PelicanBrandUITests)
+    args+=(-skip-testing:PelicanSaveEditorUITests/PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft)
     args+=(-only-testing:PelicanSaveEditorUITests/PersistenceUITests)
+    args+=(-only-testing:PelicanSaveEditorUITests/AdaptiveLayoutUITests/testAllEditorsInLandscape)
+    args+=(-only-testing:PelicanSaveEditorUITests/AdaptiveLayoutUITests/testNarrowWindowAndAccessibilityText)
 elif [[ "${LAYOUT_SCOPE:-layout}" == editor-navigation ]]; then
     args+=(-only-testing:PelicanSaveEditorTests)
     args+=(-only-testing:PelicanSaveEditorUITests/PelicanBrandUITests)
