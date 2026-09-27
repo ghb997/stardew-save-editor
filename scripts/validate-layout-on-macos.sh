@@ -38,7 +38,9 @@ args=(
     -derivedDataPath "${LAYOUT_DERIVED_DIR:-artifacts/ipad-layout/DerivedData}" -parallel-testing-enabled NO
     -resultBundlePath "$output_dir/tests.xcresult" CODE_SIGNING_ALLOWED=NO
 )
-if [[ "${LAYOUT_SCOPE:-layout}" == editor-lifecycle ]]; then
+if [[ "${LAYOUT_SCOPE:-layout}" == editor-sharing ]]; then
+    args+=(-only-testing:PelicanSaveEditorUITests/PelicanBrandUITests/testBrandGroupCopyAndQRCode)
+elif [[ "${LAYOUT_SCOPE:-layout}" == editor-lifecycle ]]; then
     if [[ "${LAYOUT_DEVICE:-mini}" == iphone ]]; then
         args+=(-only-testing:PelicanSaveEditorTests)
     else

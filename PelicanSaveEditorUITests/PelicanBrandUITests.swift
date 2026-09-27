@@ -96,10 +96,19 @@ final class PelicanBrandUITests: XCTestCase {
         XCTAssertTrue(app.images["settings.qq.fullImage"].exists)
         capture("build20-qq-full", app)
         try tapByScrolling(app.buttons["settings.qq.share"], app)
-        let covered = NSPredicate(format: "hittable == false")
-        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: covered,
-            object: app.buttons["settings.qq.close"])], timeout: 10), .completed)
-        capture("build20-qq-share", app)
+        // Assert the presented system action itself, rather than whether its
+        // asynchronously loaded sheet currently covers the underlying toolbar.
+        let copyImage = app.buttons.matching(NSPredicate(format: "label IN %@", ["拷贝", "Copy"])).firstMatch
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == true AND hittable == true"), object: copyImage)
+        let result = XCTWaiter.wait(for: [ready], timeout: 30)
+        capture("build21-qq-share", app)
+        if result != .completed {
+            let hierarchy = XCTAttachment(string: app.debugDescription)
+            hierarchy.name = "build21-qq-share-hierarchy"
+            hierarchy.lifetime = .keepAlways
+            add(hierarchy)
+        }
+        XCTAssertEqual(result, .completed, "Sharing must present the system image-copy action")
     }
 
     @MainActor
