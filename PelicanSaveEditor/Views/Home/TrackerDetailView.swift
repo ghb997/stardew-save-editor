@@ -367,7 +367,7 @@ struct TrackerDetailView: View {
                     .background(AppTheme.card.opacity(0.72), in: GamePixelShape(cornerRadius: 15))
                 VStack(alignment: .leading, spacing: 3) {
                     Text("收藏记录")
-                        .font(.system(.title2, design: .monospaced).bold())
+                        .font(.system(.title2).bold())
                         .foregroundStyle(AppTheme.trackerTitle)
                     Text("四类记录相加，不代表完美度")
                         .font(.caption)

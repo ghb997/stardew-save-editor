@@ -17,7 +17,7 @@ struct PelicanSaveEditorApp: App {
                 .environment(store)
                 .tint(AppTheme.accent)
                 .foregroundStyle(AppTheme.ink)
-                .fontDesign(.monospaced)
+                .fontDesign(.default)
 #if DEBUG
                 .modifier(DebugLayoutViewport())
 #endif

@@ -29,13 +29,13 @@ enum EditorToolEntry: Identifiable {
         if !terms.isEmpty {
             return all.filter { entry in
                 terms.allSatisfy {
-                    (entry.title + entry.subtitle + entry.category.title + entry.keywords)
+                    (entry.title + entry.subtitle + entry.compactTitle + entry.compactSubtitle + entry.category.title + entry.keywords)
                         .localizedStandardContains($0)
                 }
             }
         }
         if category == .common {
-            let ids = ["character", "inventory", "equipment", "relationships", "weather"]
+            let ids = ["character", "inventory", "equipment", "relationships", "weather", "map"]
             return ids.compactMap { id in all.first { $0.id == id } }
         }
         return all.filter { $0.category == category }
@@ -86,6 +86,38 @@ enum EditorToolEntry: Identifiable {
         case .expanded(.equipment): "工具升级、武器与鞋子属性"
         case .expanded(.collections): "博物馆、钓鱼、矿物与出货记录"
         case .map: "查看坐标、批量浇水与清理杂物"
+        }
+    }
+
+    var compactTitle: String {
+        switch self {
+        case .map: "农场地图"
+        case .expanded(.collections): "收藏清单"
+        case .editor(.wallet): "特殊能力"
+        default: title
+        }
+    }
+
+    var compactSubtitle: String {
+        switch self {
+        case .editor(.character): "金币与体力"
+        case .editor(.appearance): "发型与颜色"
+        case .editor(.farmhouse): "升级与装饰"
+        case .editor(.inventory): "数量与品质"
+        case .editor(.progress): "财富与矿洞"
+        case .editor(.relationships): "好感与送礼"
+        case .editor(.skills): "等级与职业"
+        case .editor(.wallet): "钥匙与道具"
+        case .editor(.animals): "名称与好感"
+        case .editor(.recipes): "烹饪与制作"
+        case .editor(.review): "备份与导出"
+        case .expanded(.storage): "箱子与冰箱"
+        case .expanded(.weather): "天气与运气值"
+        case .expanded(.machines): "查找与加工"
+        case .expanded(.bundles): "进度与材料"
+        case .expanded(.equipment): "升级与属性"
+        case .expanded(.collections): "记录与补全"
+        case .map: "查看与整理"
         }
     }
 

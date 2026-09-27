@@ -33,7 +33,7 @@ jobs:
       - name: Capture day and night screens first
         id: preview
         env:
-          LAYOUT_DEVICE: ${{ matrix.device }}
+          LAYOUT_DEVICE: ${{ matrix.device == 'iphone' && 'reference' || matrix.device }}
           LAYOUT_SCOPE: valley-preview
           LAYOUT_OUTPUT_DIR: artifacts/valley-preview
         run: bash scripts/validate-layout-on-macos.sh
@@ -71,7 +71,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: valley-build19-${{ matrix.device }}-${{ github.run_attempt }}
+          name: valley-build20-${{ matrix.device }}-${{ github.run_attempt }}
           path: |
             artifacts/ipad-layout/*.log
             artifacts/ipad-layout/*.json

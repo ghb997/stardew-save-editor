@@ -349,6 +349,14 @@ class Validator:
                     archive_path = Path(archive_entry)
                     if not archive_entry or archive_path.is_absolute() or ".." in archive_path.parts or "\\" in archive_entry:
                         raise ValueError("Unsafe or missing user archive entry provenance")
+                elif entry.get("source_kind") == "generated":
+                    if entry.get("generation_tool") != "image_gen":
+                        raise ValueError("Missing generation tool provenance")
+                    for key in ("prompt_file", "reference_file"):
+                        provenance = entry.get(key, "")
+                        document = (self.root / provenance).resolve()
+                        if not provenance or not document.is_relative_to(self.root) or not document.is_file():
+                            raise ValueError(f"Missing or unsafe generated asset {key}")
                 elif not re.match(r"https://", entry.get("source_url", "")):
                     raise ValueError("Missing HTTPS source URL")
                 contents = read_json(path.parent / "Contents.json")

@@ -13,9 +13,20 @@ extension XCTestCase {
         case "progress", "wallet", "bundles": category = "progress"
         default: throw NSError(domain: "ToolDirectoryTests", code: 1)
         }
+        let toggle = app.buttons["tools.directory.toggle"]
+        if category == "common", toggle.value as? String == "已收起" { return }
+        try openToolDirectory(in: app)
         let button = app.buttons["tools.category.\(category)"]
         try revealDirectoryControl(button, in: app, towardTop: true)
         button.tap()
+    }
+
+    @MainActor
+    func openToolDirectory(in app: XCUIApplication) throws {
+        let toggle = app.buttons["tools.directory.toggle"]
+        try revealDirectoryControl(toggle, in: app, towardTop: true)
+        if toggle.value as? String == "已收起" { toggle.tap() }
+        XCTAssertTrue(app.textFields["tools.search"].waitForExistence(timeout: 10))
     }
 
     @MainActor

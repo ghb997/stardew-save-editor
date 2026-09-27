@@ -18,7 +18,9 @@ final class ToolDirectoryTests: XCTestCase {
         XCTAssertEqual(EditorToolEntry.visible(in: .items, query: " 天气 ").map(\.id), ["weather"])
         XCTAssertEqual(EditorToolEntry.visible(in: .farm, query: "金钱").map(\.id), ["character"])
         XCTAssertEqual(EditorToolEntry.visible(in: .progress, query: "工具 升级").map(\.id), ["equipment"])
+        XCTAssertEqual(EditorToolEntry.visible(in: .items, query: "农场地图").map(\.id), ["map"])
         XCTAssertTrue(EditorToolEntry.visible(in: .common, query: "zznomatch123").isEmpty)
-        XCTAssertEqual(EditorToolEntry.visible(in: .common, query: "  \n").count, 5)
+        XCTAssertEqual(EditorToolEntry.visible(in: .common, query: "  \n").map(\.id),
+                       ["character", "inventory", "equipment", "relationships", "weather", "map"])
     }
 }

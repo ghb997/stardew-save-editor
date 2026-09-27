@@ -63,7 +63,7 @@ final class PersistenceUITests: XCTestCase {
         try revealDirectoryControl(library, in: app); library.tap()
         XCTAssertTrue(app.staticTexts["已保存，待导出"].waitForExistence(timeout: 15))
         let libraryScreenshot = XCTAttachment(screenshot: app.screenshot())
-        libraryScreenshot.name = "build19-local-library"; libraryScreenshot.lifetime = .keepAlways; add(libraryScreenshot)
+        libraryScreenshot.name = "build20-local-library"; libraryScreenshot.lifetime = .keepAlways; add(libraryScreenshot)
         app.buttons["完成"].tap()
         XCTAssertEqual(try openCharacter(app).value as? String, value)
         app.buttons["editor.review.open"].tap()
@@ -73,7 +73,7 @@ final class PersistenceUITests: XCTestCase {
         XCTAssertTrue(app.buttons["export.choose.directory"].waitForExistence(timeout: 10))
         XCTAssertFalse(app.buttons["export.commit"].exists, "No write can be offered before selecting and inspecting the target")
         let attachment = XCTAttachment(screenshot: app.screenshot())
-        attachment.name = "build19-verified-export"; attachment.lifetime = .keepAlways; add(attachment)
+        attachment.name = "build20-verified-export"; attachment.lifetime = .keepAlways; add(attachment)
     }
 
     @MainActor

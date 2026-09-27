@@ -26,19 +26,21 @@ struct ToolsView: View {
     @State private var presentation: ToolsPresentation?
     @State private var category: EditorToolCategory = .common
     @State private var searchText = ""
+    @State private var showingDirectory = false
     @FocusState private var searchFocused: Bool
 
     private var isSearching: Bool { !searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
     private var visibleEntries: [EditorToolEntry] { EditorToolEntry.visible(in: category, query: searchText) }
     private var toolColumns: [GridItem] {
-        typeSize.isAccessibilitySize ? [GridItem(.flexible())] : [GridItem(.adaptive(minimum: 320), alignment: .top)]
+        Array(repeating: GridItem(.flexible(), spacing: 0, alignment: .top),
+              count: typeSize.isAccessibilitySize ? 1 : 2)
     }
 
     var body: some View {
         VStack(spacing: 0) {
-            LargePageHeader(title: "工具", artworkName: "GameUISkillMining", verticalPadding: 10, minimumHeight: 66)
             ScrollView {
-                VStack(alignment: .leading, spacing: 16) {
+                VStack(alignment: .leading, spacing: 12) {
+                    journalHeader
                     if let session = store.session {
                         connectedFarmCard(session)
                         toolDirectory
@@ -57,16 +59,17 @@ struct ToolsView: View {
                     }
                     if !isSearching {
                         managementTools
-                        sectionTitle("辅助工具")
-                        ToolRowButton(title: "农作物计算器", subtitle: "计算成熟日、收获次数与基础收益",
-                                      systemImage: "calendar", iconColor: .purple,
-                                      artworkName: "GameUICropPlanner") { presentation = .calculator }
-                            .accessibilityIdentifier("tools.calculator")
+                        if showingDirectory || store.session == nil {
+                            JournalActionRow(title: "农作物计算器", subtitle: "成熟日、收获次数与收益",
+                                             systemImage: "calendar") { presentation = .calculator }
+                                .accessibilityIdentifier("tools.calculator")
+                        }
                     }
                 }
                 .padding(.horizontal, 20)
-                .padding(.vertical, 14)
-                .readablePageWidth()
+                .padding(.top, 8)
+                .padding(.bottom, 12)
+                .readablePageWidth(760)
             }
             .scrollDismissesKeyboard(.interactively)
             .accessibilityIdentifier("editor.tools.list")
@@ -122,8 +125,102 @@ struct ToolsView: View {
         }
     }
 
+    private var journalHeader: some View {
+        VStack(alignment: .leading, spacing: 2) {
+            HStack(alignment: .center, spacing: 8) {
+                Text("工具").font(.largeTitle.bold())
+                if let sprig = GameArtwork.itemImage(id: "251") {
+                    Image(uiImage: sprig).resizable().interpolation(.none).scaledToFit()
+                        .frame(width: 26, height: 30).accessibilityHidden(true)
+                }
+                Spacer(minLength: 8)
+                if store.session != nil {
+                    Button {
+                        showingDirectory = true
+                        searchFocused = true
+                    } label: {
+                        Image(systemName: "magnifyingglass")
+                            .font(.title2.weight(.regular))
+                            .frame(width: 44, height: 44)
+                    }
+                    .accessibilityLabel("搜索功能")
+                    .accessibilityIdentifier("tools.search.open")
+                }
+            }
+            Text("让你的星露谷存档更自由")
+                .font(.subheadline).foregroundStyle(AppTheme.secondary)
+                .fixedSize(horizontal: false, vertical: true)
+            // Keep the whole illustration at its native aspect ratio. Only the
+            // generated image's transparent top/bottom padding falls outside.
+            Color.clear.aspectRatio(6.4, contentMode: .fit)
+                .overlay {
+                    GeometryReader { geometry in
+                        Image("JournalFarmBanner")
+                            .resizable().interpolation(.none).scaledToFit()
+                            .frame(width: geometry.size.width,
+                                   height: geometry.size.width * 718 / 2188)
+                            .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+                    }
+                }
+                .clipped().accessibilityHidden(true)
+                .padding(.horizontal, -20).padding(.top, 6)
+        }
+    }
+
     private var toolDirectory: some View {
-        VStack(alignment: .leading, spacing: 16) {
+        VStack(alignment: .leading, spacing: 4) {
+            HStack {
+                sectionTitle(showingDirectory ? "全部功能" : "常用工具")
+                Spacer(minLength: 8)
+                Button {
+                    showingDirectory.toggle()
+                    if !showingDirectory {
+                        category = .common
+                        searchText = ""
+                        searchFocused = false
+                    }
+                } label: {
+                    HStack(spacing: 6) {
+                        Text(showingDirectory ? "收起" : "全部功能")
+                        Image(systemName: showingDirectory ? "chevron.up" : "arrow.right")
+                    }
+                    .font(.subheadline).frame(minHeight: 44)
+                }
+                .accessibilityIdentifier("tools.directory.toggle")
+                .accessibilityValue(showingDirectory ? "已展开" : "已收起")
+            }
+            if showingDirectory { directoryFilters }
+            if visibleEntries.isEmpty {
+                ContentUnavailableView("没有找到相关功能", systemImage: "magnifyingglass",
+                                       description: Text("试试「金币」「背包」「天气」等关键词。"))
+                    .accessibilityIdentifier("tools.search.empty")
+            } else {
+                LazyVGrid(columns: toolColumns, alignment: .leading, spacing: 0) {
+                    ForEach(Array(visibleEntries.enumerated()), id: \.element.id) { index, entry in
+                        JournalToolButton(entry: entry) {
+                            searchFocused = false
+                            presentation = .entry(entry)
+                        }
+                        .overlay(alignment: .trailing) {
+                            if !typeSize.isAccessibilitySize && index.isMultiple(of: 2) {
+                                Rectangle().fill(AppTheme.border).frame(width: 0.5)
+                            }
+                        }
+                        .overlay(alignment: .bottom) {
+                            if index < visibleEntries.count - (typeSize.isAccessibilitySize ? 1 : 2) {
+                                Rectangle().fill(AppTheme.border).frame(height: 0.5)
+                            }
+                        }
+                        .accessibilityIdentifier("editor.tool.\(entry.id)")
+                    }
+                }
+            }
+        }
+    }
+
+
+    private var directoryFilters: some View {
+        VStack(alignment: .leading, spacing: 10) {
             HStack(spacing: 10) {
                 Image(systemName: "magnifyingglass").foregroundStyle(AppTheme.secondary)
                 TextField("搜索修改功能，如金币、天气、工具", text: $searchText,
@@ -142,8 +239,8 @@ struct ToolsView: View {
                     .accessibilityLabel("清除搜索").accessibilityIdentifier("tools.search.clear")
                 }
             }
-            .padding(.horizontal, 14).frame(minHeight: 52)
-            .gameInset(AppTheme.card)
+            .padding(.horizontal, 14).frame(minHeight: 48)
+            .gameInset(AppTheme.inset)
 
             if !isSearching {
                 LazyVGrid(columns: typeSize.isAccessibilitySize ? [GridItem(.flexible())]
@@ -173,88 +270,74 @@ struct ToolsView: View {
                 }
             }
             HStack {
-                sectionTitle(isSearching ? "搜索结果" : category.title)
+                Text(isSearching ? "搜索结果" : category.title)
+                    .font(.caption).foregroundStyle(AppTheme.secondary)
                 Spacer()
                 Text("\(visibleEntries.count) 项").font(.caption).foregroundStyle(AppTheme.secondary)
-            }
-            if visibleEntries.isEmpty {
-                ContentUnavailableView("没有找到相关功能", systemImage: "magnifyingglass",
-                                       description: Text("试试「金币」「背包」「天气」等关键词。"))
-                    .accessibilityIdentifier("tools.search.empty")
-            } else {
-                LazyVGrid(columns: toolColumns, alignment: .leading, spacing: 10) {
-                    ForEach(visibleEntries) { entry in
-                        ToolRowButton(title: entry.title, subtitle: entry.subtitle,
-                                      systemImage: entry.symbol, iconColor: entry.tint,
-                                      artworkName: entry.artworkName) {
-                            searchFocused = false
-                            presentation = .entry(entry)
-                        }
-                        .accessibilityIdentifier("editor.tool.\(entry.id)")
-                    }
-                }
             }
         }
     }
 
     private var managementTools: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            sectionTitle("存档管理")
-            ToolRowButton(title: "本地副本", subtitle: "继续上次修改、恢复草稿与管理存储空间",
-                          systemImage: "doc.on.doc", iconColor: .blue,
-                          artworkName: "GameUIBackpack") { showingLibrary = true }
+        VStack(alignment: .leading, spacing: 0) {
+            HStack {
+                sectionTitle("存档管理")
+                Spacer()
+                if store.session != nil {
+                    Menu {
+                        Button("重新读取与校验", systemImage: "arrow.clockwise") {
+                            if store.session?.hasChanges == true { showingReloadConfirmation = true }
+                            else { store.reload() }
+                        }
+                        .accessibilityIdentifier("tools.reload")
+                        Button("关闭当前副本（保留草稿）", systemImage: "xmark.circle") { store.closeSession() }
+                            .accessibilityIdentifier("library.close")
+                    } label: {
+                        Label("更多", systemImage: "ellipsis").font(.subheadline).frame(minHeight: 44)
+                    }
+                    .accessibilityIdentifier("tools.management.more")
+                }
+            }
+            JournalActionRow(title: "本地副本", subtitle: "导入副本 · 保存后导出两份文件",
+                             systemImage: "doc.on.doc") { showingLibrary = true }
                 .accessibilityIdentifier("tools.library")
-            ToolRowButton(title: "备份管理", subtitle: "创建备份、校验、导出与恢复",
-                          systemImage: "book.closed.fill", iconColor: .brown,
-                          artworkName: "GameUIBackup") { showingBackups = true }
+            Divider().overlay(AppTheme.border)
+            JournalActionRow(title: "备份管理", subtitle: "管理历史存档 · 恢复与替换",
+                             systemImage: "folder") { showingBackups = true }
                 .accessibilityIdentifier("tools.backups")
-            ToolRowButton(title: "重新读取与校验",
-                          subtitle: store.session == nil ? "加载农场后可用" : "重新读取应用内副本；游戏新进度需重新导入",
-                          systemImage: "checkmark.shield.fill", iconColor: .blue,
-                          artworkName: "GameUIReview", disabled: store.session == nil) {
-                if store.session?.hasChanges == true { showingReloadConfirmation = true }
-                else { store.reload() }
-            }
-            .accessibilityIdentifier("tools.reload")
-            if store.session != nil {
-                Button("关闭当前副本（保留草稿）", systemImage: "xmark.circle") { store.closeSession() }
-                    .accessibilityIdentifier("library.close")
-            }
         }
     }
 
     private func connectedFarmCard(_ session: SaveSession) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack(alignment: .center, spacing: 10) {
-                GameAssetIcon(assetName: "AppLogo", size: 32)
                 VStack(alignment: .leading, spacing: 4) {
                     Text(session.draft.farmName.isEmpty ? session.source.farmIdentifier : session.draft.farmName)
-                        .font(.headline)
-                    Text("\(session.draft.playerName) · 游戏 \(session.metadata.gameVersion)")
+                        .font(.title2.bold()).fixedSize(horizontal: false, vertical: true)
+                    Text("\(session.draft.playerName) · 第\(session.draft.year)年 \(session.draft.season.displayName)季\(session.draft.day)日")
                         .font(.caption).foregroundStyle(AppTheme.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 Spacer(minLength: 0)
                 if !typeSize.isAccessibilitySize { switchFarmButton(session) }
             }
-            Text("导入副本 · 保存后导出两份文件并替换游戏存档")
-                .font(.caption).foregroundStyle(AppTheme.secondary)
-                .fixedSize(horizontal: false, vertical: true)
             if let status = store.draftStorageMessage {
                 Text(status).font(.caption).foregroundStyle(AppTheme.secondary)
                     .accessibilityIdentifier("draft.storage.status")
             }
             if typeSize.isAccessibilitySize { switchFarmButton(session) }
         }
-        .padding(12).appCard()
+        .padding(.bottom, 12)
+        .overlay(alignment: .bottom) { Rectangle().fill(AppTheme.accent.opacity(0.6)).frame(height: 1) }
     }
 
     private func switchFarmButton(_ session: SaveSession) -> some View {
-        Button(typeSize.isAccessibilitySize ? "切换农场" : "切换", systemImage: "arrow.left.arrow.right") {
+        Button("切换农场", systemImage: "arrow.left.arrow.right") {
             searchFocused = false
             if session.hasChanges { showingSwitchConfirmation = true }
             else { showingSourceOptions = true }
         }
-        .font(.subheadline.weight(.semibold)).frame(minHeight: 44)
+        .font(.caption.weight(.medium)).frame(minHeight: 44)
         .fixedSize(horizontal: false, vertical: true)
         .accessibilityLabel("切换农场")
         .accessibilityIdentifier("farm.load.switch")
@@ -265,24 +348,18 @@ struct ToolsView: View {
             searchFocused = false
             presentation = .entry(.editor(.review))
         } label: {
-            VStack(spacing: 4) {
-                if typeSize.isAccessibilitySize {
-                    Text("检查与保存").font(.headline)
-                } else {
-                    Label("检查与保存", systemImage: "checkmark.circle.fill").font(.headline)
-                    Text(session.hasChanges ? "\(session.diffs.count) 项待保存 · 草稿在各分类间保留" : "查看存档、备份与导出")
-                        .font(.caption)
-                }
-            }
-            .multilineTextAlignment(.center).fixedSize(horizontal: false, vertical: true)
-            .frame(maxWidth: .infinity, minHeight: 44)
+            Text(typeSize.isAccessibilitySize || !session.hasChanges ? "检查与保存"
+                 : "检查与保存 · \(session.diffs.count) 项待保存")
+                .font(.headline)
+                .multilineTextAlignment(.center).fixedSize(horizontal: false, vertical: true)
+                .frame(maxWidth: .infinity, minHeight: 32)
         }
         .buttonStyle(GameButtonStyle(prominent: true)).tint(AppTheme.accent)
         .accessibilityValue(typeSize.isAccessibilitySize
             ? "\(session.diffs.count) 项待保存，草稿在各分类间保留" : "")
         .accessibilityIdentifier("editor.tool.review")
         .padding(.horizontal, 20).padding(.vertical, 10)
-        .readablePageWidth().gameBar()
+        .readablePageWidth(760).gameBar()
     }
 
     @ViewBuilder private func editor(_ entry: EditorToolEntry, session: SaveSession) -> some View {
@@ -294,7 +371,7 @@ struct ToolsView: View {
     }
 
     private func sectionTitle(_ title: String) -> some View {
-        Text(title).font(.headline).foregroundStyle(AppTheme.secondary)
+        Text(title).font(.title3.bold()).foregroundStyle(AppTheme.ink)
     }
 
     private func openSelectedSourceMethod() {

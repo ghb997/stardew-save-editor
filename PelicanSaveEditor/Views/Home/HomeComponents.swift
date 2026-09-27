@@ -16,7 +16,7 @@ struct ToolRowButton: View {
             Group {
                 if typeSize.isAccessibilitySize {
                     VStack(alignment: .leading, spacing: 12) {
-                        HStack(spacing: 16) {
+                        HStack(spacing: 12) {
                             icon
                             rowTitle.frame(maxWidth: .infinity, alignment: .leading)
                             accessory
@@ -24,7 +24,7 @@ struct ToolRowButton: View {
                         detail
                     }
                 } else {
-                    HStack(spacing: 16) {
+                    HStack(spacing: 12) {
                         icon
                         VStack(alignment: .leading, spacing: 5) {
                             rowTitle
@@ -37,7 +37,7 @@ struct ToolRowButton: View {
             }
             .multilineTextAlignment(.leading)
             .foregroundStyle(AppTheme.ink)
-            .padding(18)
+            .padding(16)
             .gamePanel(AppTheme.card)
             .opacity(disabled ? 0.58 : 1)
             .contentShape(Rectangle())
@@ -48,7 +48,7 @@ struct ToolRowButton: View {
 
     private var rowTitle: some View {
         Text(title)
-            .font(.title3.bold())
+            .font(.headline)
             .fixedSize(horizontal: false, vertical: true)
     }
 
@@ -69,15 +69,14 @@ struct ToolRowButton: View {
     private var icon: some View {
         Group {
             if let artworkName {
-                GameAssetIcon(assetName: artworkName, size: 48)
+                GameAssetIcon(assetName: artworkName, size: 34)
             } else {
                 GameIcon(systemName: systemImage, size: 28)
                     .font(.system(size: 28, weight: .medium))
                     .foregroundStyle(disabled ? AppTheme.secondary : iconColor)
             }
         }
-        .frame(width: 58, height: 58)
-        .gameInset(AppTheme.inset)
+        .frame(width: 38, height: 38)
     }
 }
 
@@ -92,29 +91,99 @@ struct LargePageHeader: View {
     var minimumHeight: CGFloat = 82
 
     var body: some View {
-        HStack(spacing: 14) {
-            if let artworkName {
-                GameAssetIcon(assetName: artworkName, size: isShortWindow ? 28 : 34)
-            } else if let systemImage {
-                GameIcon(systemName: systemImage, size: isShortWindow ? 28 : 34)
-            }
+        HStack(spacing: 10) {
             Text(title)
-                .font(.system(isShortWindow ? .headline : .title2, design: .monospaced).bold())
+                .font(.system(isShortWindow ? .title3 : .largeTitle).bold())
                 .fixedSize(horizontal: false, vertical: true)
+            if let artworkName {
+                GameAssetIcon(assetName: artworkName, size: 26)
+            } else if let systemImage {
+                Image(systemName: systemImage).font(.title3).foregroundStyle(AppTheme.progress)
+            }
             Spacer(minLength: 0)
         }
             .foregroundStyle(titleColor)
-            .padding(.horizontal, 16)
-            .padding(.vertical, 8)
-            .background(GamePanel(fill: AppTheme.headerSoft, raised: false))
             .padding(.horizontal, 20)
-            .padding(.vertical, isShortWindow ? 5 : min(verticalPadding, 8))
+            .padding(.vertical, isShortWindow ? 8 : verticalPadding)
             .frame(maxWidth: AppLayout.pageWidth, minHeight: isShortWindow ? 58 : minimumHeight)
             .frame(maxWidth: .infinity)
             .background(ValleyHeaderBackdrop())
     }
 
     private var isShortWindow: Bool { verticalSizeClass == .compact }
+}
+
+/// Compact content shortcuts keep game artwork, while navigation uses SF Symbols.
+struct JournalToolButton: View {
+    let entry: EditorToolEntry
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            HStack(spacing: 10) {
+                artwork.frame(width: 34, height: 38)
+                VStack(alignment: .leading, spacing: 5) {
+                    Text(entry.compactTitle).font(.subheadline.weight(.semibold))
+                        .foregroundStyle(AppTheme.ink)
+                    Text(entry.compactSubtitle).font(.caption)
+                        .foregroundStyle(AppTheme.secondary)
+                }
+                .fixedSize(horizontal: false, vertical: true)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            .multilineTextAlignment(.leading)
+            .padding(.horizontal, 10).padding(.vertical, 14)
+            .frame(maxWidth: .infinity, minHeight: 72, alignment: .leading)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel(entry.compactTitle)
+        .accessibilityHint(entry.subtitle)
+    }
+
+    @ViewBuilder private var artwork: some View {
+        if case .editor(.character) = entry {
+            GameAssetIcon(assetName: "JournalFarmerIcon", size: 38)
+        } else if case .map = entry {
+            GameAssetIcon(assetName: "JournalMapIcon", size: 38)
+        } else if case .expanded(.equipment) = entry {
+            GameAssetIcon(assetName: "GameUISkillMining", size: 34)
+        } else if case .expanded(.weather) = entry {
+            GameAssetIcon(assetName: "JournalWeatherIcon", size: 38)
+        } else if let name = entry.artworkName {
+            GameAssetIcon(assetName: name, size: 34)
+        } else {
+            GameIcon(systemName: entry.symbol, size: 34)
+        }
+    }
+}
+
+struct JournalActionRow: View {
+    let title: String
+    let subtitle: String
+    let systemImage: String
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            HStack(spacing: 14) {
+                Image(systemName: systemImage).font(.title2.weight(.regular))
+                    .foregroundStyle(AppTheme.secondary).frame(width: 32)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(title).font(.subheadline.weight(.semibold)).foregroundStyle(AppTheme.ink)
+                    Text(subtitle).font(.caption).foregroundStyle(AppTheme.secondary)
+                }
+                .fixedSize(horizontal: false, vertical: true)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                Image(systemName: "chevron.right").font(.caption.weight(.semibold))
+                    .foregroundStyle(AppTheme.secondary)
+            }
+            .multilineTextAlignment(.leading)
+            .padding(.vertical, 14).frame(minHeight: 60)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+    }
 }
 
 extension View {

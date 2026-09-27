@@ -79,7 +79,7 @@ struct TrackerView: View {
 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(session.draft.farmName.isEmpty ? session.source.farmIdentifier : session.draft.farmName)
-                        .font(.system(.title2, design: .monospaced).bold())
+                        .font(.system(.title2).bold())
                         .fixedSize(horizontal: false, vertical: true)
                     Text(session.draft.playerName.isEmpty ? "未命名农夫" : session.draft.playerName)
                         .font(.subheadline)
@@ -386,7 +386,7 @@ struct TrackerView: View {
                 .gamePanel(AppTheme.trackerHeaderSoft)
             VStack(spacing: 7) {
                 Text("载入农场，开始追踪")
-                    .font(.system(.title2, design: .monospaced).bold())
+                    .font(.system(.title2).bold())
                 Text("集中查看角色、收藏、技能、关系与农场生活进度。")
                     .font(.subheadline)
                     .foregroundStyle(AppTheme.trackerSecondary)

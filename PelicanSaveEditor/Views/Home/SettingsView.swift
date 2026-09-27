@@ -15,7 +15,7 @@ struct SettingsView: View {
                     HStack(spacing: 16) {
                         GameAssetIcon(assetName: "AppLogo", size: 60)
                         VStack(alignment: .leading, spacing: 5) {
-                            Text("鹈鹕修改器").font(.system(.title2, design: .monospaced).bold())
+                            Text("鹈鹕修改器").font(.system(.title2).bold())
                             Text("星露谷物语 · 农场存档助手")
                                 .font(.subheadline).foregroundStyle(AppTheme.secondary)
                         }
@@ -123,8 +123,8 @@ struct SettingsView: View {
     }
 
     private var appVersion: String {
-        let version = (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String) ?? "0.9.1"
-        let build = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String) ?? "19"
+        let version = (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String) ?? "0.9.2"
+        let build = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String) ?? "20"
         return "\(version) (\(build))"
     }
 

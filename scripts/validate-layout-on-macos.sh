@@ -21,7 +21,8 @@ for runtime, devices in json.loads((root / 'devices.json').read_text())['devices
                    'iPad' in name and ('13-inch' in name or '12.9-inch' in name) if family == 'large' else
                    name.startswith('iPhone'))
         if device.get('isAvailable') and matches:
-            candidates.append((version, 'SE' in name, name, runtime, device))
+            preferred = name in ('iPhone 16e', 'iPhone 14', 'iPhone 13') if family == 'reference' else 'SE' in name
+            candidates.append((version, preferred, name, runtime, device))
 if not candidates: raise SystemExit('No compatible installed Simulator for ' + family)
 version, _, name, runtime, device = max(candidates, key=lambda row: row[:3])
 selection = {'name': name, 'udid': device['udid'], 'runtime': runtime, 'family': family}

@@ -13,7 +13,7 @@ struct HomeView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 22) {
                     Text("今日概览")
-                        .font(.system(.title2, design: .monospaced).bold())
+                        .font(.system(.title2).bold())
 
                     if let session = store.session {
                         loadedFarmCard(session)
@@ -49,7 +49,7 @@ struct HomeView: View {
             HStack(alignment: .firstTextBaseline) {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(session.draft.playerName.isEmpty ? "未命名农夫" : session.draft.playerName)
-                        .font(.system(.title2, design: .monospaced).bold())
+                        .font(.system(.title2).bold())
                     Text("农场：\(session.draft.farmName.isEmpty ? session.source.farmIdentifier : session.draft.farmName)")
                         .foregroundStyle(AppTheme.secondary)
                 }
@@ -104,7 +104,7 @@ struct HomeView: View {
     private var quickActions: some View {
         VStack(alignment: .leading, spacing: 14) {
             Text("快捷入口")
-                .font(.system(.title2, design: .monospaced).bold())
+                .font(.system(.title2).bold())
 
             LazyVGrid(columns: AppLayout.pairedColumns(for: typeSize), spacing: 14) {
                 HomeShortcut(
@@ -176,7 +176,7 @@ private struct FarmerPortraitCard: View {
             HStack {
                 VStack(alignment: .leading, spacing: 3) {
                     Text("外观存档参数")
-                        .font(.system(.title2, design: .monospaced).bold())
+                        .font(.system(.title2).bold())
                     Text(session.draft.playerName.isEmpty ? "未命名农夫" : session.draft.playerName)
                         .font(.subheadline)
                         .foregroundStyle(AppTheme.secondary)
@@ -264,7 +264,7 @@ private struct FarmMapCard: View {
             HStack {
                 VStack(alignment: .leading, spacing: 3) {
                     Text("农场实体坐标")
-                        .font(.system(.title2, design: .monospaced).bold())
+                        .font(.system(.title2).bold())
                     Text(session.draft.farmName.isEmpty ? session.source.farmIdentifier : session.draft.farmName)
                         .font(.subheadline)
                         .foregroundStyle(AppTheme.secondary)
@@ -298,7 +298,6 @@ private struct FarmMapCard: View {
             }
             .frame(height: 184)
             .clipShape(GamePixelShape(cornerRadius: 8))
-            .overlay { GamePixelShape().strokeBorder(AppTheme.wood, lineWidth: 3) }
 
             if typeSize.isAccessibilitySize {
                 VStack(alignment: .leading, spacing: 8) { mapCounts }
@@ -365,12 +364,12 @@ private struct FarmDateHeader: View {
     let session: SaveSession?
 
     var body: some View {
-        VStack(spacing: 5) {
+        VStack(alignment: .leading, spacing: 5) {
             if let session {
                 Text("\(session.draft.season.displayName)季第 \(session.draft.day) 天")
                     .font(headerFont)
                 Text("第 \(session.draft.year) 年 · \(weekday(for: session.draft))")
-                    .font(.title3)
+                    .font(.subheadline)
                     .foregroundStyle(AppTheme.title.opacity(0.72))
             } else {
                 HStack(spacing: 12) {
@@ -378,25 +377,22 @@ private struct FarmDateHeader: View {
                     Text("鹈鹕修改器").font(headerFont)
                 }
                 Text("农场助手")
-                    .font(.title3)
+                    .font(.subheadline)
                     .foregroundStyle(AppTheme.title.opacity(0.72))
             }
         }
-        .multilineTextAlignment(.center)
+        .multilineTextAlignment(.leading)
         .fixedSize(horizontal: false, vertical: true)
-        .padding(.horizontal, 24)
-        .padding(.vertical, verticalSizeClass == .compact ? 10 : 18)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.horizontal, 20)
+        .padding(.vertical, verticalSizeClass == .compact ? 10 : 16)
         .foregroundStyle(AppTheme.title)
-        .background(GamePanel(fill: AppTheme.headerSoft))
-        .padding(.horizontal, 32)
-        .padding(.vertical, verticalSizeClass == .compact ? 6 : 16)
-        .frame(maxWidth: .infinity)
-        .frame(minHeight: verticalSizeClass == .compact ? 64 : 142)
+        .readablePageWidth()
         .background(ValleyHeaderBackdrop())
     }
 
     private var headerFont: Font {
-        .system(verticalSizeClass == .compact ? .title3 : .title, design: .monospaced).bold()
+        .system(verticalSizeClass == .compact ? .title3 : .title).bold()
     }
 
     private func weekday(for draft: SaveDraft) -> String {
@@ -419,7 +415,7 @@ private struct MetricView: View {
                 GameAssetIcon(assetName: artworkName, size: 30)
             }
             Text(value)
-                .font(.system(.title2, design: .monospaced).bold())
+                .font(.system(.title2).bold())
                 .lineLimit(typeSize.isAccessibilitySize ? nil : 1)
                 .minimumScaleFactor(0.7)
             Text(label)

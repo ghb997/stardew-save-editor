@@ -14,7 +14,7 @@ struct FarmLoadSheet: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 22) {
-                    Text("导入你的农场").font(.system(.title2, design: .monospaced).bold())
+                    Text("导入你的农场").font(.system(.title2).bold())
                     Text("先完全退出游戏，再从同一个农场文件夹中同时选择以下两个文件。")
                         .foregroundStyle(AppTheme.secondary)
                     VStack(alignment: .leading, spacing: 16) {

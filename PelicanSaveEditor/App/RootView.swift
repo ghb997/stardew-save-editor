@@ -137,32 +137,31 @@ struct RootView: View {
             HomeView(selectedTab: $selectedTab)
                 .tag(MainTab.home)
                 .tabItem {
-                    Label { Text("主页") } icon: { Image(uiImage: AppTheme.tabImage("GameUIFarmhouse")) }
+                    Label("主页", systemImage: "house")
                 }
 
             TrackerView(selectedTab: $selectedTab)
                 .tag(MainTab.tracker)
                 .tabItem {
-                    Label { Text("追踪") } icon: { Image(uiImage: AppTheme.tabImage("GameUITrophy")) }
+                    Label("追踪", systemImage: "leaf")
                 }
 
             ToolsView()
                 .tag(MainTab.tools)
-                .badge(store.session?.diffs.count ?? 0)
                 .tabItem {
-                    Label { Text("工具") } icon: { Image(uiImage: AppTheme.tabImage("GameUISkillMining")) }
+                    Label("工具", systemImage: "pickaxe")
                 }
 
             SettingsView(selectedTab: $selectedTab)
                 .tag(MainTab.settings)
                 .tabItem {
-                    Label { Text("设置") } icon: { Image(uiImage: AppTheme.tabImage("GameUIFarmComputer")) }
+                    Label("设置", systemImage: "gearshape")
                 }
         }
-        // Pre-sized original sprites retain native tab navigation and accessibility.
+        // System symbols keep the navigation quiet; game artwork stays in the content.
         .tint(AppTheme.accent)
         .toolbarBackground(.visible, for: .tabBar)
-        .toolbarBackground(AppTheme.card, for: .tabBar)
+        .toolbarBackground(AppTheme.canvas, for: .tabBar)
     }
 
     private var preferredColorScheme: ColorScheme? {

@@ -301,28 +301,19 @@ struct GameIcon: View {
     var size: CGFloat = 24
     var body: some View {
         Group {
-            if let glyph {
-                Text(glyph).font(.system(size: size * 0.72, weight: .semibold))
+            if isControl {
+                Image(systemName: systemName).font(.system(size: size * 0.8, weight: .medium))
             } else if let image = GameArtwork.uiImage(systemName: systemName) {
                 Image(uiImage: image).resizable().interpolation(.none).scaledToFit()
-            } else { Text("?").font(.headline) }
+            } else { Image(systemName: "questionmark").font(.headline) }
         }
         .frame(width: size, height: size)
         .accessibilityHidden(true)
     }
-    private var glyph: String? {
-        if systemName.contains("checkmark") { return "✓" }
-        if systemName.contains("xmark") { return "×" }
-        if systemName.contains("chevron.right") { return "›" }
-        if systemName.contains("chevron.left") { return "‹" }
-        if systemName.contains("arrow.uturn") { return "↶" }
-        if systemName.contains("arrow.clockwise") { return "↻" }
-        if systemName.contains("arrow.right") { return "→" }
-        if systemName.contains("arrow.up") { return "↑" }
-        if systemName.contains("plus") && !systemName.contains("externaldrive") { return "+" }
-        if systemName.contains("minus") { return "−" }
-        if systemName.contains("exclamation") { return "!" }
-        return nil
+    private var isControl: Bool {
+        ["checkmark", "xmark", "chevron", "arrow", "minus", "exclamation", "magnifyingglass", "questionmark", "lock", "shield"]
+            .contains(where: systemName.contains)
+            || (systemName.contains("plus") && !systemName.contains("externaldrive"))
     }
 }
 

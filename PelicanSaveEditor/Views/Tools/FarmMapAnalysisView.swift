@@ -104,7 +104,7 @@ struct FarmMapAnalysisView: View {
 
             VStack(alignment: .leading, spacing: 4) {
                 Text(session.draft.farmName.isEmpty ? session.source.farmIdentifier : session.draft.farmName)
-                    .font(.system(.title2, design: .monospaced).bold())
+                    .font(.system(.title2).bold())
                 Text("真实坐标图层 · \(snapshot.positionedEntities.count) 个实体 · 游戏 \(session.metadata.gameVersion)")
                     .font(.caption.weight(.medium))
                     .opacity(0.92)

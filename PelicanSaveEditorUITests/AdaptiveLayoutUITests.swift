@@ -66,6 +66,7 @@ final class AdaptiveLayoutUITests: XCTestCase {
             try visible(scrollView, app: app)
             capture("main-\(tab)", app)
             if tab == "tools" {
+                try openToolDirectory(in: app)
                 for entry in ["tools.backups", "tools.calculator"] {
                     let button = app.buttons[entry]
                     try reveal(button, in: "editor.tools.list", app: app)
