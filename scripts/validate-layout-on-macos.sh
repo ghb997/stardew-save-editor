@@ -38,7 +38,17 @@ args=(
     -derivedDataPath "${LAYOUT_DERIVED_DIR:-artifacts/ipad-layout/DerivedData}" -parallel-testing-enabled NO
     -resultBundlePath "$output_dir/tests.xcresult" CODE_SIGNING_ALLOWED=NO
 )
-if [[ "${LAYOUT_SCOPE:-layout}" == editor-preview ]]; then
+if [[ "${LAYOUT_SCOPE:-layout}" == editor-lifecycle ]]; then
+    if [[ "${LAYOUT_DEVICE:-mini}" == iphone ]]; then
+        args+=(-only-testing:PelicanSaveEditorTests)
+    else
+        args+=(-only-testing:PelicanSaveEditorTests/SaveCoreTests/testGlobalKeyboardReturnAccessoryInstallsOnEveryUIKitTextInputKind)
+    fi
+    args+=(-only-testing:PelicanSaveEditorUITests/PersistenceUITests)
+    args+=(-only-testing:PelicanSaveEditorUITests/PelicanBrandUITests/testNumericInputCanReturnReviewAndUndoWithoutLosingDraft)
+    args+=(-only-testing:PelicanSaveEditorUITests/PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft)
+    args+=(-only-testing:PelicanSaveEditorUITests/PelicanBrandUITests/testChildEditorAndMapReviewReturnToTheirSource)
+elif [[ "${LAYOUT_SCOPE:-layout}" == editor-preview ]]; then
     args+=(-only-testing:PelicanSaveEditorUITests/PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft)
 elif [[ "${LAYOUT_SCOPE:-layout}" == editor-flows ]]; then
     args+=(-only-testing:PelicanSaveEditorTests/SaveCoreTests/testGlobalKeyboardReturnAccessoryInstallsOnEveryUIKitTextInputKind)

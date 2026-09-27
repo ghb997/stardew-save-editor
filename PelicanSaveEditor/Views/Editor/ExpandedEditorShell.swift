@@ -46,7 +46,7 @@ struct ExpandedEditorShell: View {
         .fullScreenCover(isPresented: $review) {
             EditorShellView(session: session, section: .review, returnTitle: "返回编辑")
         }
-        .disabled(store.isBusy).interactiveDismissDisabled(store.isBusy).operationFeedback()
+        .allowsHitTesting(!store.isBusy).interactiveDismissDisabled(store.isBusy).operationFeedback()
 #if DEBUG
         .modifier(DebugLayoutViewport())
 #endif

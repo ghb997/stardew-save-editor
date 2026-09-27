@@ -46,7 +46,9 @@ struct RootView: View {
             }
         }
         .background(GamePageBackdrop())
-        .disabled(store.isBusy)
+        // Do not pass a disabled environment into alerts created while busy;
+        // UIKit can retain that state on the later completion action.
+        .allowsHitTesting(!store.isBusy)
         .preferredColorScheme(preferredColorScheme)
         .alert(
             notice?.title ?? "提示",

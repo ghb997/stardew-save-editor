@@ -214,7 +214,7 @@ struct ReviewChangesView: View {
         }) {
             VerifiedExportView(session: session)
         }
-        .disabled(store.isBusy)
+        .allowsHitTesting(!store.isBusy)
         .interactiveDismissDisabled(store.isBusy)
     }
 

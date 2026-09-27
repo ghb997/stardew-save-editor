@@ -98,7 +98,7 @@ struct VerifiedExportView: View {
             Button("保留并重新核对") { store.keepExportTarget { review = $0 } }
             Button("取消", role: .cancel) {}
         } message: { Text("会另存当前目标为保护备份，结束旧事务，不会在这一步替换游戏文件。") }
-        .disabled(store.isBusy).interactiveDismissDisabled(store.isBusy)
+        .allowsHitTesting(!store.isBusy).interactiveDismissDisabled(store.isBusy)
         .operationFeedback()
     }
 

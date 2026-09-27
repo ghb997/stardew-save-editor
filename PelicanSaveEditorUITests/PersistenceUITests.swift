@@ -53,7 +53,7 @@ final class PersistenceUITests: XCTestCase {
         XCTAssertTrue(save.isHittable); save.tap()
         app.alerts.buttons["仅保存到应用副本"].tap()
         let done = app.alerts.buttons["好"]
-        XCTAssertTrue(done.waitForExistence(timeout: 30)); done.tap()
+        try acknowledgeCompletion(done, app)
         app.terminate(); app.launchArguments = args; app.launch()
         let resume = app.buttons["library.continue"]
         XCTAssertTrue(resume.waitForExistence(timeout: 30)); resume.tap()
@@ -170,7 +170,7 @@ final class PersistenceUITests: XCTestCase {
         let confirm = app.alerts.buttons["放弃草稿并重新载入"]
         XCTAssertTrue(confirm.waitForExistence(timeout: 10)); confirm.tap()
         let done = app.alerts.buttons["好"]
-        XCTAssertTrue(done.waitForExistence(timeout: 30)); done.tap()
+        try acknowledgeCompletion(done, app)
         try returnFromReview(app)
         favorite = app.textFields["character.favorite"]
         try revealInEditor(favorite, app)
@@ -205,8 +205,20 @@ final class PersistenceUITests: XCTestCase {
         let confirm = app.alerts.buttons["仅保存到应用副本"]
         XCTAssertTrue(confirm.waitForExistence(timeout: 10)); confirm.tap()
         let done = app.alerts.buttons["好"]
-        XCTAssertTrue(done.waitForExistence(timeout: 30)); done.tap()
+        try acknowledgeCompletion(done, app)
         XCTAssertFalse(save.isEnabled, "Successful saving must clear pending changes")
+    }
+
+    @MainActor
+    private func acknowledgeCompletion(_ button: XCUIElement, _ app: XCUIApplication) throws {
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == true AND enabled == true AND hittable == true"), object: button)
+        XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 30), .completed,
+                       "The completion action must become enabled after writing finishes")
+        capture("build21-completion-enabled", app)
+        button.tap()
+        let dismissed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: app.alerts.firstMatch)
+        XCTAssertEqual(XCTWaiter.wait(for: [dismissed], timeout: 10), .completed,
+                       "Acknowledging completion must dismiss the alert so returning is possible")
     }
 
     @MainActor

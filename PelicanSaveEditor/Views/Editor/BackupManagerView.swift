@@ -120,7 +120,7 @@ struct BackupListView: View {
             }
         }
         .onAppear { store.refreshBackups() }
-        .disabled(store.isBusy)
+        .allowsHitTesting(!store.isBusy)
         .interactiveDismissDisabled(store.isBusy)
         .sheet(isPresented: $showingExporter, onDismiss: {
             store.finishBackupExport()

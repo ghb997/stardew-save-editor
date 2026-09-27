@@ -60,7 +60,7 @@ struct LocalCopyLibraryView: View {
             Button("删除", role: .destructive) { if let deleting { store.deleteLocalCopy(deleting) }; deleting = nil }
             Button("取消", role: .cancel) { deleting = nil }
         } message: { Text("副本将从本机删除，应用备份和已导出的文件不受影响。") }
-        .disabled(store.isBusy).interactiveDismissDisabled(store.isBusy)
+        .allowsHitTesting(!store.isBusy).interactiveDismissDisabled(store.isBusy)
         .operationFeedback()
     }
 

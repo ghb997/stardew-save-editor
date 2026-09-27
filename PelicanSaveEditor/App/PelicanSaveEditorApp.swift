@@ -117,9 +117,9 @@ final class GlobalKeyboardReturnInstaller: NSObject {
     }
 
     @objc func dismissKeyboard() {
-        if activeResponder?.resignFirstResponder() != true {
-            KeyboardReturnAction.dismiss()
-        }
+        // The recorded field can belong to a previous presentation. Resolve
+        // the current first responder when the accessory is actually tapped.
+        KeyboardReturnAction.dismiss()
     }
 }
 
