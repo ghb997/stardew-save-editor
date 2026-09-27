@@ -46,6 +46,9 @@ final class ValleyThemeUITests: XCTestCase {
 
     @MainActor
     private func capture(_ name: String, _ app: XCUIApplication) {
+        // The iOS 26 tab compositor may still cross-fade after the new
+        // accessibility tree is ready. Capture the stable rendered page.
+        Thread.sleep(forTimeInterval: 0.6)
         let attachment = XCTAttachment(screenshot: app.screenshot())
         attachment.name = name
         attachment.lifetime = .keepAlways

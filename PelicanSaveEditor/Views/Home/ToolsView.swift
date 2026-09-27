@@ -39,7 +39,7 @@ struct ToolsView: View {
     var body: some View {
         VStack(spacing: 0) {
             ScrollView {
-                VStack(alignment: .leading, spacing: 12) {
+                VStack(alignment: .leading, spacing: 8) {
                     journalHeader
                     if let session = store.session {
                         connectedFarmCard(session)
@@ -152,7 +152,7 @@ struct ToolsView: View {
                 .fixedSize(horizontal: false, vertical: true)
             // Keep the whole illustration at its native aspect ratio. Only the
             // generated image's transparent top/bottom padding falls outside.
-            Color.clear.aspectRatio(6.4, contentMode: .fit)
+            Color.clear.aspectRatio(7, contentMode: .fit)
                 .overlay {
                     GeometryReader { geometry in
                         Image("JournalFarmBanner")
@@ -327,7 +327,7 @@ struct ToolsView: View {
             }
             if typeSize.isAccessibilitySize { switchFarmButton(session) }
         }
-        .padding(.bottom, 12)
+        .padding(.bottom, 10)
         .overlay(alignment: .bottom) { Rectangle().fill(AppTheme.accent.opacity(0.6)).frame(height: 1) }
     }
 

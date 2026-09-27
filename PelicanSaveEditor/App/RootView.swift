@@ -45,6 +45,7 @@ struct RootView: View {
                     .background(GamePanel())
             }
         }
+        .background(GamePageBackdrop())
         .disabled(store.isBusy)
         .preferredColorScheme(preferredColorScheme)
         .alert(
@@ -149,7 +150,7 @@ struct RootView: View {
             ToolsView()
                 .tag(MainTab.tools)
                 .tabItem {
-                    Label("工具", systemImage: "pickaxe")
+                    Label("工具", systemImage: "wrench.and.screwdriver")
                 }
 
             SettingsView(selectedTab: $selectedTab)

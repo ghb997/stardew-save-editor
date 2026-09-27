@@ -1203,5 +1203,27 @@
     "sha256": "5f9874c2c91eaf014597a220de9a3319387a29aed404eec9cf77f28e3b141c25",
     "width": 1254,
     "height": 1254
+  },
+  {
+    "asset": "JournalBackpackIcon",
+    "file": "PelicanSaveEditor/Assets.xcassets/JournalBackpackIcon.imageset/journal-backpack-icon.png",
+    "source_kind": "generated",
+    "generation_tool": "image_gen",
+    "prompt_file": "design/GENERATED_ASSETS.md",
+    "reference_file": "design/selected-journal-reference.png",
+    "sha256": "aa1931621aa5885d03e6adbd5d8dc421959ab1a962301021a36f884c4f748acb",
+    "width": 1254,
+    "height": 1254
+  },
+  {
+    "asset": "JournalRelationshipsIcon",
+    "file": "PelicanSaveEditor/Assets.xcassets/JournalRelationshipsIcon.imageset/journal-relationships-icon.png",
+    "source_kind": "generated",
+    "generation_tool": "image_gen",
+    "prompt_file": "design/GENERATED_ASSETS.md",
+    "reference_file": "design/selected-journal-reference.png",
+    "sha256": "e7b1c0130fcce0bd308d5cbe7cb02bdf2f6b25f05880043ad7fc8015b0a80294",
+    "width": 1254,
+    "height": 1254
   }
 ]

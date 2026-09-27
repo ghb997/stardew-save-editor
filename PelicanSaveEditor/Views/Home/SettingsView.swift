@@ -76,7 +76,7 @@ struct SettingsView: View {
                     }
                     .appCard()
 
-                    Text("非官方个人工具；界面使用游戏内像素素材。修改存档前请完全退出游戏，并保留额外副本。")
+                    Text("非官方个人工具；界面使用像素风装饰和部分游戏素材。修改存档前请完全退出游戏，并保留额外副本。")
                         .font(.footnote)
                         .foregroundStyle(AppTheme.secondary)
                         .padding(.horizontal, 4)

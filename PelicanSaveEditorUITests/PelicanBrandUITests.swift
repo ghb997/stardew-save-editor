@@ -40,8 +40,8 @@ final class PelicanBrandUITests: XCTestCase {
         let more = app.buttons["tools.management.more"]
         try revealDirectoryControl(more, in: app)
         more.tap()
-        XCTAssertTrue(app.buttons["library.close"].waitForExistence(timeout: 10))
-        app.buttons["tools.reload"].tap()
+        XCTAssertTrue(app.buttons["关闭当前副本（保留草稿）"].waitForExistence(timeout: 10))
+        app.buttons["重新读取与校验"].tap()
         XCTAssertTrue(app.alerts["重新读取副本？"].waitForExistence(timeout: 10))
         app.alerts.buttons["取消"].tap()
         XCTAssertEqual(review.label, draftLabel, "Cancelling reload must retain the draft")

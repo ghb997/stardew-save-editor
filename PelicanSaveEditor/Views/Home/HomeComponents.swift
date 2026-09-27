@@ -132,8 +132,8 @@ struct JournalToolButton: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
             .multilineTextAlignment(.leading)
-            .padding(.horizontal, 10).padding(.vertical, 14)
-            .frame(maxWidth: .infinity, minHeight: 72, alignment: .leading)
+            .padding(.horizontal, 10).padding(.vertical, 12)
+            .frame(maxWidth: .infinity, minHeight: 68, alignment: .leading)
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
@@ -144,6 +144,10 @@ struct JournalToolButton: View {
     @ViewBuilder private var artwork: some View {
         if case .editor(.character) = entry {
             GameAssetIcon(assetName: "JournalFarmerIcon", size: 38)
+        } else if case .editor(.inventory) = entry {
+            GameAssetIcon(assetName: "JournalBackpackIcon", size: 46)
+        } else if case .editor(.relationships) = entry {
+            GameAssetIcon(assetName: "JournalRelationshipsIcon", size: 38)
         } else if case .map = entry {
             GameAssetIcon(assetName: "JournalMapIcon", size: 38)
         } else if case .expanded(.equipment) = entry {
