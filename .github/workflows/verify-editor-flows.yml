@@ -1,5 +1,7 @@
 name: Verify editor navigation and save lifecycle
 on:
+  push:
+    branches: ['codex/editor-navigation-*']
   workflow_dispatch:
     inputs:
       test_scope:
