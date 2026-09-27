@@ -20,7 +20,7 @@ struct MachinesEditorView: View {
     }
     private var selectable: Set<String> { Set(visible.filter { $0.canFinish && !$0.finish }.map(\.id)) }
     var body: some View {
-        NavigationStack {
+        Group {
             GameList {
                 Section {
                     Text("已识别 \(session.draft.machines.count) 台正在加工或可领取的设备").font(.headline)

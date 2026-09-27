@@ -77,6 +77,106 @@ final class PersistenceUITests: XCTestCase {
     }
 
     @MainActor
+    func testSaveReturnAndContinueEditingPersistsBothChanges() throws {
+        let app = XCUIApplication()
+        let args = ["--ui-library", UUID().uuidString, "--ui-tab", "tools", "-AppleLanguages", "(zh-Hans)", "-AppleLocale", "zh_CN"]
+        app.launchArguments = args + ["--ui-library-seed"]; app.launch()
+        defer { app.terminate() }
+        var favorite = try openCharacter(app)
+        favorite.tap(); favorite.typeText("A\n")
+        let firstValue = try XCTUnwrap(favorite.value as? String)
+        app.buttons["editor.review.open"].tap()
+        try saveLocalCopy(app)
+        try returnFromReview(app)
+        favorite = app.textFields["character.favorite"]
+        try revealInEditor(favorite, app)
+        XCTAssertEqual(favorite.value as? String, firstValue)
+        favorite.tap(); favorite.typeText("B\n")
+        let secondValue = try XCTUnwrap(favorite.value as? String)
+        XCTAssertTrue(secondValue.contains("A") && secondValue.contains("B"))
+        app.buttons["editor.review.open"].tap()
+        try saveLocalCopy(app)
+        try returnFromReview(app)
+        app.buttons["editor.shell.close"].tap()
+        app.terminate(); app.launchArguments = args; app.launch()
+        let resume = app.buttons["library.continue"]
+        XCTAssertTrue(resume.waitForExistence(timeout: 30)); resume.tap()
+        dismissNotice(app)
+        XCTAssertFalse(app.alerts["恢复未保存草稿"].exists)
+        XCTAssertEqual(try openCharacter(app).value as? String, secondValue)
+        capture("build21-second-save-reopened", app)
+    }
+
+    @MainActor
+    func testReloadFromReviewThenEditAndSaveUsesCurrentSession() throws {
+        let app = XCUIApplication()
+        let args = ["--ui-library", UUID().uuidString, "--ui-tab", "tools", "-AppleLanguages", "(zh-Hans)", "-AppleLocale", "zh_CN"]
+        app.launchArguments = args + ["--ui-library-seed"]; app.launch()
+        defer { app.terminate() }
+        var favorite = try openCharacter(app)
+        favorite.tap(); favorite.typeText("DiscardMe\n")
+        app.buttons["editor.review.open"].tap()
+        let reload = app.buttons["重新载入文件"]
+        try revealInEditor(reload, app); reload.tap()
+        let confirm = app.alerts.buttons["放弃草稿并重新载入"]
+        XCTAssertTrue(confirm.waitForExistence(timeout: 10)); confirm.tap()
+        let done = app.alerts.buttons["好"]
+        XCTAssertTrue(done.waitForExistence(timeout: 30)); done.tap()
+        try returnFromReview(app)
+        favorite = app.textFields["character.favorite"]
+        try revealInEditor(favorite, app)
+        XCTAssertEqual(favorite.value as? String, "Tea", "Reload must update the already open editor")
+        favorite.tap(); favorite.typeText("R\n")
+        let value = try XCTUnwrap(favorite.value as? String)
+        app.buttons["editor.review.open"].tap()
+        try saveLocalCopy(app)
+        try returnFromReview(app)
+        app.buttons["editor.shell.close"].tap()
+        app.terminate(); app.launchArguments = args; app.launch()
+        let resume = app.buttons["library.continue"]
+        XCTAssertTrue(resume.waitForExistence(timeout: 30)); resume.tap()
+        dismissNotice(app)
+        XCTAssertEqual(try openCharacter(app).value as? String, value,
+                       "Edits after reload must save to the active session and survive relaunch")
+        capture("build21-reload-edit-save-reopened", app)
+    }
+
+    @MainActor
+    private func revealInEditor(_ element: XCUIElement, _ app: XCUIApplication) throws {
+        for _ in 0..<12 where !element.isHittable { app.swipeUp() }
+        XCTAssertTrue(element.isHittable)
+    }
+
+    @MainActor
+    private func saveLocalCopy(_ app: XCUIApplication) throws {
+        let save = app.buttons["保存副本并导出"]
+        try revealInEditor(save, app)
+        XCTAssertTrue(save.isEnabled)
+        save.tap()
+        let confirm = app.alerts.buttons["仅保存到应用副本"]
+        XCTAssertTrue(confirm.waitForExistence(timeout: 10)); confirm.tap()
+        let done = app.alerts.buttons["好"]
+        XCTAssertTrue(done.waitForExistence(timeout: 30)); done.tap()
+        XCTAssertFalse(save.isEnabled, "Successful saving must clear pending changes")
+    }
+
+    @MainActor
+    private func returnFromReview(_ app: XCUIApplication) throws {
+        let back = app.buttons["editor.shell.close"]
+        XCTAssertTrue(back.waitForExistence(timeout: 10))
+        XCTAssertEqual(back.label, "返回编辑")
+        capture("build21-review-after-operation", app)
+        back.tap()
+        XCTAssertTrue(app.buttons["editor.review.open"].waitForExistence(timeout: 10))
+    }
+
+    @MainActor
+    private func capture(_ name: String, _ app: XCUIApplication) {
+        let attachment = XCTAttachment(screenshot: app.screenshot())
+        attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)
+    }
+
+    @MainActor
     private func openCharacter(_ app: XCUIApplication) throws -> XCUIElement {
         XCTAssertTrue(app.buttons["farm.load.switch"].waitForExistence(timeout: 30))
         try selectToolCategory(for: "character", in: app)

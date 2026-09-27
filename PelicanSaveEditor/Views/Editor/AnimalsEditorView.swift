@@ -5,7 +5,7 @@ struct AnimalsEditorView: View {
     @State private var showingMaxConfirmation = false
 
     var body: some View {
-        NavigationStack {
+        Group {
             Group {
                 if session.draft.animals.isEmpty {
                     GameEmptyState(

@@ -64,11 +64,13 @@ struct FarmMapAnalysisView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("搜索与范围", systemImage: "magnifyingglass") { showingEntityList = true }
-                        .accessibilityIdentifier("editor.map.objects")
+                    EditorReturnButton(title: "返回工具") { dismiss() }
+                        .accessibilityIdentifier("editor.map.close")
                 }
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("完成") { dismiss() }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("搜索与范围", systemImage: "magnifyingglass") { showingEntityList = true }
+                        .labelStyle(.iconOnly)
+                        .accessibilityIdentifier("editor.map.objects")
                 }
             }
         }
@@ -82,7 +84,7 @@ struct FarmMapAnalysisView: View {
             }
         }
         .fullScreenCover(isPresented: $showingReview) {
-            EditorShellView(session: session, section: .review)
+            EditorShellView(session: session, section: .review, returnTitle: "返回地图")
         }
         .operationFeedback()
     }
@@ -836,10 +838,12 @@ struct ExpandedFarmMapView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("对象列表", systemImage: "list.bullet") { showingEntityList = true }
+                    EditorReturnButton(title: "返回地图") { dismiss() }
+                        .accessibilityIdentifier("map.expanded.close")
                 }
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("完成") { dismiss() }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("对象列表", systemImage: "list.bullet") { showingEntityList = true }
+                        .labelStyle(.iconOnly)
                 }
             }
             .safeAreaInset(edge: .bottom) {

@@ -17,7 +17,7 @@ struct ReviewChangesView: View {
     }
 
     var body: some View {
-        NavigationStack {
+        Group {
             GameList {
                 Section {
                     LabeledContent("农场", value: session.source.farmIdentifier)

@@ -11,7 +11,7 @@ struct EquipmentEditorView: View {
         }
     }
     var body: some View {
-        NavigationStack {
+        Group {
             GameList {
                 Section {
                     Text("编辑已有斧头、镐、锄头、喷壶的升级等级，以及武器和鞋子的现有属性。")

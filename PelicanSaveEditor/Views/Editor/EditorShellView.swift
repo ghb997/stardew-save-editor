@@ -109,53 +109,31 @@ struct EditorShellView: View {
     @Environment(\.dismiss) private var dismiss
     @Bindable var session: SaveSession
     let section: SaveEditorSection
+    var returnTitle = "返回工具"
     @State private var showingReview = false
 
     var body: some View {
         VStack(spacing: 0) {
-            HStack(spacing: 12) {
-                SaveSectionArtwork(section: section, size: 42)
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(section.title)
-                        .font(.headline)
-                        .fixedSize(horizontal: false, vertical: true)
-                    Text("\(session.draft.farmName.isEmpty ? session.source.farmIdentifier : session.draft.farmName) · \(session.draft.playerName)")
-                        .font(.caption)
-                        .foregroundStyle(AppTheme.secondary)
-                        .fixedSize(horizontal: false, vertical: true)
-                    if session.hasChanges {
-                        Text("\(session.diffs.count) 项待保存")
-                            .font(.caption.weight(.semibold))
-                            .foregroundStyle(AppTheme.trackerWarning)
+            NavigationStack {
+                editorContent
+                    .toolbar {
+                        ToolbarItem(placement: .topBarLeading) {
+                            EditorReturnButton(title: returnTitle) { dismiss() }
+                                .accessibilityIdentifier("editor.shell.close")
+                        }
                     }
-                }
-                Spacer()
-                Button("返回工具", systemImage: "xmark") {
-                    dismiss()
-                }
-                .labelStyle(.iconOnly)
-                .buttonStyle(GameButtonStyle())
-                .frame(minWidth: 44, minHeight: 44)
-                .accessibilityIdentifier("editor.shell.close")
             }
-            .padding(.horizontal)
-            .padding(.vertical, 10)
             .readablePageWidth(AppLayout.editorWidth)
-            .gameBar()
 
-            editorContent
-                .readablePageWidth(AppLayout.editorWidth)
-
-            // Reserve layout space outside each editor's NavigationStack.
-            // An outer safe-area inset can be lost at that boundary, leaving
-            // the final Form row behind the review bar even at scroll end.
+            // Keep the review action outside the shared navigation stack so
+            // pushed editors also retain it without covering the final row.
             if section != .review {
                 DraftReviewBar(session: session) { showingReview = true }
             }
         }
         .background(GamePageBackdrop())
         .fullScreenCover(isPresented: $showingReview) {
-            EditorShellView(session: session, section: .review)
+            EditorShellView(session: session, section: .review, returnTitle: "返回编辑")
         }
         .disabled(store.isBusy)
         .interactiveDismissDisabled(store.isBusy)

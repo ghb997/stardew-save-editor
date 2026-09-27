@@ -7,7 +7,7 @@ struct AppearanceEditorView: View {
     @State private var appearanceCategory: AppearanceCategory = .hair
 
     var body: some View {
-        NavigationStack {
+        Group {
             GameForm {
                 Section {
                     comparisonLayout {

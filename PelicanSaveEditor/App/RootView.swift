@@ -101,27 +101,27 @@ struct RootView: View {
                     actions: session.draft.farmActions
                 )
             case "house":
-                FarmhouseEditorView(session: session)
+                EditorShellView(session: session, section: .farmhouse)
             case "character":
-                CharacterEditorView(session: session)
+                EditorShellView(session: session, section: .character)
             case "appearance":
-                AppearanceEditorView(session: session)
+                EditorShellView(session: session, section: .appearance)
             case "inventory":
-                InventoryEditorView(session: session, catalog: store.itemCatalog)
+                EditorShellView(session: session, section: .inventory)
             case "progress":
-                ProgressEditorView(session: session)
+                EditorShellView(session: session, section: .progress)
             case "relationships":
-                RelationshipsEditorView(session: session)
+                EditorShellView(session: session, section: .relationships)
             case "skills":
-                SkillsEditorView(session: session)
+                EditorShellView(session: session, section: .skills)
             case "wallet":
-                WalletEditorView(session: session)
+                EditorShellView(session: session, section: .wallet)
             case "animals":
-                AnimalsEditorView(session: session)
+                EditorShellView(session: session, section: .animals)
             case "recipes":
-                RecipesEditorView(session: session)
+                EditorShellView(session: session, section: .recipes)
             case "review":
-                ReviewChangesView(session: session)
+                EditorShellView(session: session, section: .review)
             default:
                 tabContent
             }

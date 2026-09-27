@@ -37,6 +37,25 @@ extension SaveSession {
     }
 }
 
+/// A visible destination label distinguishes leaving the editor from ending text entry.
+struct EditorReturnButton: View {
+    let title: String
+    let action: () -> Void
+
+    var body: some View {
+        Button {
+            KeyboardReturnAction.dismiss()
+            action()
+        } label: {
+            Label(title, systemImage: "chevron.left")
+                .labelStyle(.titleAndIcon)
+                .fixedSize(horizontal: true, vertical: false)
+                .frame(minHeight: 44)
+        }
+        .accessibilityHint("保留当前草稿并返回，不会直接写入游戏存档")
+    }
+}
+
 /// Shared entry point so edits are always one tap away from the complete review.
 struct DraftReviewBar: View {
     @Bindable var session: SaveSession
@@ -49,7 +68,10 @@ struct DraftReviewBar: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .fixedSize(horizontal: false, vertical: true)
             }
-            Button(action: onReview) {
+            Button {
+                KeyboardReturnAction.dismiss()
+                onReview()
+            } label: {
                 GameLabel(
                     session.hasChanges ? "检查 \(session.diffs.count) 项更改并保存" : "查看存档与备份",
                     systemImage: "checkmark.circle.fill"

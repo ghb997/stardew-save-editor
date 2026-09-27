@@ -4,7 +4,7 @@ struct CharacterEditorView: View {
     @Bindable var session: SaveSession
 
     var body: some View {
-        NavigationStack {
+        Group {
             GameForm {
                 if !session.metadata.warnings.isEmpty {
                     Section("注意") {
@@ -52,6 +52,7 @@ struct CharacterEditorView: View {
                 Section {
                     LabeledContent("金钱") {
                         TextField("0", value: $session.draft.money, format: .number)
+                            .accessibilityIdentifier("character.money")
                             .keyboardType(.numberPad)
                             .multilineTextAlignment(.trailing)
                     }

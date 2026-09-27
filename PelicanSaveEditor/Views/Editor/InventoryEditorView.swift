@@ -28,7 +28,7 @@ struct InventoryEditorView: View {
     }
 
     var body: some View {
-        NavigationStack {
+        Group {
             ScrollView {
                 InventoryCapacityCard(session: session)
                     .padding([.horizontal, .top])

@@ -7,7 +7,7 @@ struct FarmhouseEditorView: View {
     @State private var batchRequest: RoomStyleBatchRequest?
 
     var body: some View {
-        NavigationStack {
+        Group {
             GameForm {
                 Section {
                     ZStack(alignment: .bottomLeading) {

@@ -104,12 +104,13 @@ final class GlobalKeyboardReturnInstaller: NSObject {
 
         let spacer = UIBarButtonItem(systemItem: .flexibleSpace)
         let returnButton = UIBarButtonItem(
-            title: "返回",
+            title: "完成输入",
             style: .done,
             target: self,
             action: #selector(dismissKeyboard)
         )
         returnButton.accessibilityIdentifier = Self.buttonIdentifier
+        returnButton.accessibilityHint = "收起键盘并结束当前输入，不返回上一页"
         toolbar.items = [spacer, returnButton]
         toolbar.sizeToFit()
         return toolbar

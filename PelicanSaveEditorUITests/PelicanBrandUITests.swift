@@ -28,10 +28,11 @@ final class PelicanBrandUITests: XCTestCase {
             }
             XCTAssertTrue(review.isHittable, "Review stays available while browsing")
             entry.tap()
-            let close = tool == "map" ? app.buttons["完成"].firstMatch
+            let close = tool == "map" ? app.buttons["editor.map.close"]
                 : app.buttons[["equipment", "storage", "collections", "weather", "machines", "bundles"].contains(tool)
                     ? "expanded.close" : "editor.shell.close"]
             XCTAssertTrue(close.waitForExistence(timeout: 20), "Opened \(tool)")
+            XCTAssertEqual(close.label, "返回工具", "Every editor must show a visible destination instead of an icon-only close control")
             capture("build20-editor-\(tool)", app)
             close.tap()
             XCTAssertTrue(review.waitForExistence(timeout: 20))
@@ -130,6 +131,81 @@ final class PelicanBrandUITests: XCTestCase {
         try tapByScrolling(app.buttons["settings.qq.copy"], app)
         XCTAssertTrue(app.staticTexts["settings.qq.copied"].waitForExistence(timeout: 10))
         capture("build20-settings-accessibility-dark", app)
+    }
+
+    @MainActor
+    func testNumericInputCanReturnReviewAndUndoWithoutLosingDraft() throws {
+        let app = launch("tools", demo: true)
+        defer { app.terminate() }
+        try tapByScrolling(app.buttons["editor.tool.character"], app)
+        let money = app.textFields["character.money"]
+        try tapByScrolling(money, app)
+        let original = try XCTUnwrap(money.value as? String).filter(\.isNumber)
+        money.typeText("7")
+        let edited = try XCTUnwrap(money.value as? String).filter(\.isNumber)
+        XCTAssertNotEqual(edited, original)
+        let finishInput = app.buttons["global.keyboardReturn.button"]
+        XCTAssertTrue(finishInput.waitForExistence(timeout: 10))
+        XCTAssertEqual(finishInput.label, "完成输入")
+        let close = app.buttons["editor.shell.close"]
+        XCTAssertTrue(close.isHittable, "Page return must remain available with the number keyboard open")
+        capture("build21-number-keyboard-return", app)
+        close.tap()
+        XCTAssertTrue(app.buttons["editor.tool.review"].waitForExistence(timeout: 10))
+        XCTAssertFalse(app.keyboards.firstMatch.exists)
+        try tapByScrolling(app.buttons["editor.tool.character"], app)
+        try tapByScrolling(money, app)
+        XCTAssertEqual((money.value as? String)?.filter(\.isNumber), edited)
+        app.buttons["editor.review.open"].tap()
+        XCTAssertTrue(close.waitForExistence(timeout: 10))
+        XCTAssertEqual(close.label, "返回编辑")
+        try tapByScrolling(app.buttons["撤销这项更改"].firstMatch, app)
+        close.tap()
+        try tapByScrolling(money, app)
+        XCTAssertEqual((money.value as? String)?.filter(\.isNumber), original)
+        app.buttons["global.keyboardReturn.button"].tap()
+        XCTAssertFalse(app.keyboards.firstMatch.exists)
+        XCTAssertTrue(close.isHittable, "Finishing input must keep the editor open")
+        close.tap()
+        XCTAssertTrue(app.buttons["editor.tool.review"].waitForExistence(timeout: 10))
+    }
+
+    @MainActor
+    func testChildEditorAndMapReviewReturnToTheirSource() throws {
+        let app = launch("tools", demo: true, extra: ["--ui-repair"])
+        defer { app.terminate() }
+        try selectToolCategory(for: "appearance", in: app)
+        try revealDirectoryControl(app.buttons["editor.tool.appearance"], in: app)
+        app.buttons["editor.tool.appearance"].tap()
+        try tapByScrolling(app.buttons["editor.appearance.colors"], app)
+        let childBar = app.navigationBars["外观颜色"]
+        XCTAssertTrue(childBar.waitForExistence(timeout: 10))
+        XCTAssertTrue(app.buttons["editor.review.open"].isHittable)
+        capture("build21-child-editor", app)
+        app.buttons["editor.review.open"].tap()
+        let close = app.buttons["editor.shell.close"]
+        XCTAssertTrue(close.waitForExistence(timeout: 10))
+        XCTAssertEqual(close.label, "返回编辑")
+        close.tap()
+        XCTAssertTrue(childBar.waitForExistence(timeout: 10), "Review must return to the same child editor")
+        let back = childBar.buttons.element(boundBy: 0)
+        XCTAssertNotEqual(back.identifier, "editor.shell.close", "Child back must preserve the one-level navigation hierarchy")
+        back.tap()
+        XCTAssertTrue(app.navigationBars["人物外观"].waitForExistence(timeout: 10))
+        XCTAssertEqual(close.label, "返回工具")
+        close.tap()
+        try selectToolCategory(for: "map", in: app)
+        try revealDirectoryControl(app.buttons["editor.tool.map"], in: app)
+        app.buttons["editor.tool.map"].tap()
+        XCTAssertTrue(app.buttons["editor.map.close"].waitForExistence(timeout: 15))
+        app.buttons["editor.review.open"].tap()
+        XCTAssertTrue(close.waitForExistence(timeout: 10))
+        XCTAssertEqual(close.label, "返回地图")
+        capture("build21-map-review-return", app)
+        close.tap()
+        XCTAssertTrue(app.buttons["editor.map.close"].waitForExistence(timeout: 10))
+        app.buttons["editor.map.close"].tap()
+        XCTAssertTrue(app.buttons["editor.tool.review"].waitForExistence(timeout: 10))
     }
 
     @MainActor

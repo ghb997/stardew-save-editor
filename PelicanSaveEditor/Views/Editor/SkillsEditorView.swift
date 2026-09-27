@@ -4,7 +4,7 @@ struct SkillsEditorView: View {
     @Bindable var session: SaveSession
 
     var body: some View {
-        NavigationStack {
+        Group {
             GameForm {
                 Section {
                     HStack(spacing: 14) {

@@ -18,7 +18,7 @@ struct RelationshipsEditorView: View {
     }
 
     var body: some View {
-        NavigationStack {
+        Group {
             Group {
                 if session.draft.friendships.isEmpty {
                     GameEmptyState(title: "没有关系数据", systemImage: "heart.slash")

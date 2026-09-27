@@ -30,20 +30,22 @@ struct ExpandedEditorShell: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            HStack {
-                Label(tool.title, systemImage: tool.symbol).font(.headline)
-                    .fixedSize(horizontal: false, vertical: true)
-                Spacer()
-                Button("返回工具", systemImage: "xmark") { dismiss() }
-                    .labelStyle(.iconOnly).buttonStyle(GameButtonStyle()).frame(minWidth: 44, minHeight: 44)
-                    .accessibilityIdentifier("expanded.close")
+            NavigationStack {
+                content
+                    .toolbar {
+                        ToolbarItem(placement: .topBarLeading) {
+                            EditorReturnButton(title: "返回工具") { dismiss() }
+                                .accessibilityIdentifier("expanded.close")
+                        }
+                    }
             }
-            .padding(.horizontal).padding(.vertical, 10).readablePageWidth(AppLayout.editorWidth).gameBar()
-            content.readablePageWidth(AppLayout.editorWidth)
+            .readablePageWidth(AppLayout.editorWidth)
             DraftReviewBar(session: session) { review = true }
         }
         .background(GamePageBackdrop())
-        .fullScreenCover(isPresented: $review) { EditorShellView(session: session, section: .review) }
+        .fullScreenCover(isPresented: $review) {
+            EditorShellView(session: session, section: .review, returnTitle: "返回编辑")
+        }
         .disabled(store.isBusy).interactiveDismissDisabled(store.isBusy).operationFeedback()
 #if DEBUG
         .modifier(DebugLayoutViewport())

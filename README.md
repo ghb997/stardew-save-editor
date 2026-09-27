@@ -2,7 +2,9 @@
 
 一款个人使用的原生 iOS 17+《星露谷物语》1.6 存档编辑器，所有存档处理在设备本地完成。
 
-源码版本：`0.9.2`（构建 `20`）
+源码版本：`0.9.3`（构建 `21`）
+
+构建 21 统一编辑页的文字返回入口，区分页面返回与完成输入，并补充返回、撤销、连续保存及重新载入后继续编辑的回归测试。原生验证进行中。
 
 构建 20 按第 2 套参考改为轻量农场手账：奶油色底、胡桃木色文字、细分隔线、常用六项双列入口、可展开的完整目录，以及统一的浅色/深色页面。原有编辑、草稿恢复、备份和成对导出功能保留。设计依据见 [界面说明](design/JOURNAL_UI.md)，Release arm64 安装包已编译校验；跨轮次覆盖 208 个不同用例，3 次历史失败均修复后在相同设备复验通过，完整记录见 [构建 20 验证记录](validation/BUILD20_VERIFICATION.md)。IPA 未签名，需要自己的签名后安装。
 
@@ -76,7 +78,7 @@
 
 使用 macOS、Xcode 16+ 打开 `PelicanSaveEditor.xcodeproj`；工程已注册所有源文件。选择自己的签名 Team 后运行到 iOS 17+ 设备。源码包不包含证书或签名资料。
 
-- 静态工程与资源检查：`python3 scripts/verify_release.py --version 0.9.2 --build 20`
+- 静态工程与资源检查：`python3 scripts/verify_release.py --version 0.9.3 --build 21`
 - 可选 Swift 语法扫描：`python3 scripts/check_swift_syntax.py`（需要 tree-sitter 0.26.0、tree-sitter-swift 0.7.3）
 - 原生编译及全部测试：`bash scripts/validate-on-macos.sh`
 - 未签名 IPA：`bash scripts/build-unsigned-ipa.sh`

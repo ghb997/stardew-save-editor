@@ -5,7 +5,7 @@ struct WeatherEditorView: View {
     @State private var luckText = ""
     @State private var error: String?
     var body: some View {
-        NavigationStack {
+        Group {
             GameForm {
                 Section {
                     Text("明日天气会在下一天由游戏读取，节日、婚礼和特殊事件可能覆盖选择。每日运气只影响已保存的当前值，新一天仍由游戏重新计算。")

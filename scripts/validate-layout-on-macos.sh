@@ -38,7 +38,26 @@ args=(
     -derivedDataPath "${LAYOUT_DERIVED_DIR:-artifacts/ipad-layout/DerivedData}" -parallel-testing-enabled NO
     -resultBundlePath "$output_dir/tests.xcresult" CODE_SIGNING_ALLOWED=NO
 )
-if [[ "${LAYOUT_SCOPE:-layout}" == valley-preview ]]; then
+if [[ "${LAYOUT_SCOPE:-layout}" == editor-flows ]]; then
+    args+=(-only-testing:PelicanSaveEditorUITests/PelicanBrandUITests)
+    args+=(-only-testing:PelicanSaveEditorUITests/PersistenceUITests)
+elif [[ "${LAYOUT_SCOPE:-layout}" == editor-navigation ]]; then
+    args+=(-only-testing:PelicanSaveEditorTests)
+    args+=(-only-testing:PelicanSaveEditorUITests/PelicanBrandUITests)
+    args+=(-only-testing:PelicanSaveEditorUITests/PersistenceUITests)
+elif [[ "${LAYOUT_SCOPE:-layout}" == editor-layout ]]; then
+    args+=(-only-testing:PelicanSaveEditorUITests/AdaptiveLayoutUITests)
+    args+=(-only-testing:PelicanSaveEditorUITests/ValleyThemeUITests)
+elif [[ "${LAYOUT_SCOPE:-layout}" == editor-editing ]]; then
+    args+=(-only-testing:PelicanSaveEditorUITests/ExpandedEditorUITests)
+    args+=(-only-testing:PelicanSaveEditorUITests/RepairEditorUITests)
+    args+=(-only-testing:PelicanSaveEditorUITests/TrackerSmokeUITests)
+elif [[ "${LAYOUT_SCOPE:-layout}" == editor-tablet ]]; then
+    args+=(-only-testing:PelicanSaveEditorUITests/PelicanBrandUITests)
+    args+=(-only-testing:PelicanSaveEditorUITests/PersistenceUITests)
+    args+=(-only-testing:PelicanSaveEditorUITests/AdaptiveLayoutUITests)
+    args+=(-only-testing:PelicanSaveEditorUITests/ValleyThemeUITests)
+elif [[ "${LAYOUT_SCOPE:-layout}" == valley-preview ]]; then
     args+=(-only-testing:PelicanSaveEditorUITests/ValleyThemeUITests)
 elif [[ "${LAYOUT_SCOPE:-layout}" == reliability ]]; then
     args+=(-only-testing:PelicanSaveEditorTests)

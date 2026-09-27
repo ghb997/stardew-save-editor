@@ -30,7 +30,7 @@ struct RecipesEditorView: View {
     }
 
     var body: some View {
-        NavigationStack {
+        Group {
             GameList {
                 Section {
                     Picker("分类", selection: $selectedKind) {

@@ -23,7 +23,7 @@ struct CommunityCenterView: View {
     }
     private var visibleIDs: Set<String> { Set(visible.filter { !$0.isComplete }.flatMap(\.requirements).filter { !$0.donated }.map(\.id)) }
     var body: some View {
-        NavigationStack {
+        Group {
             GameList {
                 Section {
                     Text("\(data.bundles.filter(\.isComplete).count) / \(data.bundles.count) 个收集包已完成")

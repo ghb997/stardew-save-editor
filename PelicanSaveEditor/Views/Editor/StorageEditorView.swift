@@ -12,7 +12,7 @@ struct StorageEditorView: View {
         }
     }
     var body: some View {
-        NavigationStack {
+        Group {
             GameList {
                 Section {
                     Text("找到 \(session.draft.storages.count) 个容器").font(.headline)

@@ -4,7 +4,7 @@ struct WalletEditorView: View {
     @Bindable var session: SaveSession
 
     var body: some View {
-        NavigationStack {
+        Group {
             GameForm {
                 Section {
                     VStack(alignment: .leading, spacing: 12) {

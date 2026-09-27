@@ -16,7 +16,7 @@ struct CollectionLibraryView: View {
         } ?? []
     }
     var body: some View {
-        NavigationStack {
+        Group {
             GameList {
                 Section {
                     Picker("收藏分类", selection: $kind) {
