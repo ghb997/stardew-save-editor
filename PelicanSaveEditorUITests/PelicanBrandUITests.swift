@@ -98,7 +98,11 @@ final class PelicanBrandUITests: XCTestCase {
         try tapByScrolling(app.buttons["settings.qq.share"], app)
         // Assert the presented system action itself, rather than whether its
         // asynchronously loaded sheet currently covers the underlying toolbar.
-        let copyImage = app.buttons.matching(NSPredicate(format: "label IN %@", ["拷贝", "Copy"])).firstMatch
+        let shareSheet = app.otherElements["ActivityListView"]
+        // iOS 26 exposes these actions as collection cells; older versions
+        // expose buttons. Scope to the system sheet and accept either type.
+        let copyImage = shareSheet.descendants(matching: .any)
+            .matching(NSPredicate(format: "label IN %@", ["拷贝", "Copy"])).firstMatch
         let ready = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == true AND hittable == true"), object: copyImage)
         let result = XCTWaiter.wait(for: [ready], timeout: 30)
         capture("build21-qq-share", app)
