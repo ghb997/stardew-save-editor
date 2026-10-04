@@ -64,6 +64,9 @@ final class PersistenceUITests: XCTestCase {
     @MainActor
     private func cancelSystemExportPicker(_ app: XCUIApplication, returningTo control: XCUIElement,
                                          screenshot: String) throws {
+        if screenshot.contains("file-export") {
+            navigateFileExportPickerToCancel(app, screenshot: screenshot)
+        }
         // Same system Cancel lookup used by the existing AdaptiveLayout picker
         // integration; accept English too if the simulator's Files UI uses it.
         let cancel = app.buttons.matching(NSPredicate(format: "label IN %@", ["取消", "Cancel"])).firstMatch
@@ -96,6 +99,33 @@ final class PersistenceUITests: XCTestCase {
                        "Cancelling the system picker must return to a usable export stage")
         XCTAssertTrue(app.navigationBars["保存并导出"].exists)
         XCTAssertFalse(app.alerts.firstMatch.exists)
+    }
+
+    @MainActor
+    private func navigateFileExportPickerToCancel(_ app: XCUIApplication, screenshot: String) {
+        // The observed iPhone Files exporter restores its last subfolder and
+        // shows only Back and Save there. Cancel appears at the picker root.
+        // Navigate the exact system bar only; never activate its Save button.
+        for depth in 1...3 {
+            let cancel = app.buttons.matching(NSPredicate(format: "label IN %@", ["取消", "Cancel"])).firstMatch
+            if cancel.waitForExistence(timeout: 3), cancel.isHittable { return }
+            let navigation = app.navigationBars["FullDocumentManagerViewControllerNavigationBar"]
+            let back = navigation.buttons["BackButton"]
+            guard back.waitForExistence(timeout: 10), back.isEnabled, back.isHittable else { return }
+            let backLabel = back.label
+            let name = screenshot + "-parent-\(depth)"
+            capture(name + "-before", app)
+            let before = XCTAttachment(string: "system back label=\(backLabel), frame=\(back.frame)\n" + app.debugDescription)
+            before.name = name + "-before-hierarchy"
+            before.lifetime = .keepAlways
+            add(before)
+            back.tap()
+            capture(name + "-after", app)
+            let after = XCTAttachment(string: "navigated via system back label=\(backLabel)\n" + app.debugDescription)
+            after.name = name + "-after-hierarchy"
+            after.lifetime = .keepAlways
+            add(after)
+        }
     }
 
     @MainActor
