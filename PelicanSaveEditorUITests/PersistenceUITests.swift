@@ -39,7 +39,7 @@ final class PersistenceUITests: XCTestCase {
             return
         }
         for attempt in 1...2 {
-            try revealInEditor(files, app); files.tap()
+            try tapVisibleFileExportButton(files, app, attempt: attempt)
             try cancelSystemExportPicker(app, returningTo: files,
                                          screenshot: "build22-system-file-export-picker-\(attempt)")
             let cancelled = XCTNSPredicateExpectation(
@@ -70,17 +70,61 @@ final class PersistenceUITests: XCTestCase {
         let visible = XCTNSPredicateExpectation(
             predicate: NSPredicate(format: "exists == true AND enabled == true AND hittable == true"),
             object: cancel)
-        XCTAssertEqual(XCTWaiter.wait(for: [visible], timeout: 30), .completed,
-                       "The real system picker must finish presenting before cancellation")
+        let presentationResult = XCTWaiter.wait(for: [visible], timeout: 30)
         capture(screenshot, app)
+        if presentationResult != .completed {
+            let hierarchy = XCTAttachment(string: app.debugDescription)
+            hierarchy.name = screenshot + "-missing-cancel-hierarchy"
+            hierarchy.lifetime = .keepAlways
+            add(hierarchy)
+        }
+        XCTAssertEqual(presentationResult, .completed,
+                       "The real system picker must finish presenting before cancellation")
         cancel.tap()
         let dismissed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: cancel)
         let resumed = XCTNSPredicateExpectation(
             predicate: NSPredicate(format: "exists == true AND enabled == true"), object: control)
-        XCTAssertEqual(XCTWaiter.wait(for: [dismissed, resumed], timeout: 30), .completed,
+        let dismissalResult = XCTWaiter.wait(for: [dismissed, resumed], timeout: 30)
+        if dismissalResult != .completed {
+            capture(screenshot + "-dismissal-failed", app)
+            let hierarchy = XCTAttachment(string: app.debugDescription)
+            hierarchy.name = screenshot + "-dismissal-failed-hierarchy"
+            hierarchy.lifetime = .keepAlways
+            add(hierarchy)
+        }
+        XCTAssertEqual(dismissalResult, .completed,
                        "Cancelling the system picker must return to a usable export stage")
         XCTAssertTrue(app.navigationBars["保存并导出"].exists)
         XCTAssertFalse(app.alerts.firstMatch.exists)
+    }
+
+    @MainActor
+    private func tapVisibleFileExportButton(_ button: XCUIElement, _ app: XCUIApplication,
+                                           attempt: Int) throws {
+        try revealInEditor(button, app)
+        let navigation = app.navigationBars["保存并导出"]
+        let footer = app.buttons["export.choose.directory"]
+        for _ in 0..<6 {
+            let frame = button.frame
+            let visibleTop = navigation.frame.maxY + 8
+            let visibleBottom = footer.frame.minY - 20
+            if frame.minY >= visibleTop && frame.maxY <= visibleBottom { break }
+            if frame.maxY > visibleBottom { app.swipeUp() } else { app.swipeDown() }
+        }
+        let frame = button.frame
+        capture("build22-file-export-button-before-tap-\(attempt)", app)
+        let hierarchy = XCTAttachment(string: "file button frame=\(frame)\n" + app.debugDescription)
+        hierarchy.name = "build22-file-export-button-before-tap-\(attempt)-hierarchy"
+        hierarchy.lifetime = .keepAlways
+        add(hierarchy)
+        XCTAssertTrue(button.isHittable)
+        XCTAssertGreaterThanOrEqual(frame.minY, navigation.frame.maxY + 8)
+        XCTAssertLessThanOrEqual(frame.maxY, footer.frame.minY - 20,
+                                "The complete file export button must be above the fixed action bar")
+        // Use the observed, fully visible child frame. Its inherited identifier
+        // is shared with the DisclosureGroup and is unsuitable for retargeting.
+        app.coordinate(withNormalizedOffset: .zero)
+            .withOffset(CGVector(dx: frame.midX - app.frame.minX, dy: frame.midY - app.frame.minY)).tap()
     }
 
     @MainActor

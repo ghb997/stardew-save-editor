@@ -7,7 +7,7 @@ on:
       test_scope:
         description: 'Full regression or focused navigation and persistence rerun'
         type: choice
-        options: [full, flows, lifecycle, sharing, export-picker, export-flow]
+        options: [full, flows, lifecycle, sharing, export-picker, export-flow, export-picker-phone]
         default: full
 permissions:
   contents: read
@@ -21,7 +21,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include: ${{ fromJSON(inputs.test_scope == 'export-flow' && '[{"device":"iphone","scope":"export-flow"},{"device":"mini","scope":"export-flow"}]' || inputs.test_scope == 'export-picker' && '[{"device":"iphone","scope":"export-picker"},{"device":"mini","scope":"export-picker"}]' || inputs.test_scope == 'sharing' && '[{"device":"iphone","scope":"editor-sharing"}]' || inputs.test_scope == 'lifecycle' && '[{"device":"iphone","scope":"editor-lifecycle"},{"device":"mini","scope":"editor-lifecycle"}]' || inputs.test_scope == 'flows' && '[{"device":"iphone","scope":"editor-flows"},{"device":"mini","scope":"editor-flows"}]' || '[{"device":"iphone","scope":"editor-navigation"},{"device":"iphone","scope":"editor-layout"},{"device":"iphone","scope":"editor-editing"},{"device":"mini","scope":"editor-tablet"}]') }}
+        include: ${{ fromJSON(inputs.test_scope == 'export-picker-phone' && '[{"device":"iphone","scope":"export-picker"}]' || inputs.test_scope == 'export-flow' && '[{"device":"iphone","scope":"export-flow"},{"device":"mini","scope":"export-flow"}]' || inputs.test_scope == 'export-picker' && '[{"device":"iphone","scope":"export-picker"},{"device":"mini","scope":"export-picker"}]' || inputs.test_scope == 'sharing' && '[{"device":"iphone","scope":"editor-sharing"}]' || inputs.test_scope == 'lifecycle' && '[{"device":"iphone","scope":"editor-lifecycle"},{"device":"mini","scope":"editor-lifecycle"}]' || inputs.test_scope == 'flows' && '[{"device":"iphone","scope":"editor-flows"},{"device":"mini","scope":"editor-flows"}]' || '[{"device":"iphone","scope":"editor-navigation"},{"device":"iphone","scope":"editor-layout"},{"device":"iphone","scope":"editor-editing"},{"device":"mini","scope":"editor-tablet"}]') }}
     steps:
       - uses: actions/checkout@v4
         with:
