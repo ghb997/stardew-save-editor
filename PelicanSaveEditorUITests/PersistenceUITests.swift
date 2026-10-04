@@ -246,8 +246,10 @@ final class PersistenceUITests: XCTestCase {
         XCTAssertTrue(acknowledge.exists)
         try confirmGameExited(app, mayWrite: false)
         XCTAssertFalse(app.buttons["export.commit"].isEnabled, "Game exit alone must not authorize replacing a changed target")
-        try revealInEditor(acknowledge, app); acknowledge.tap()
-        XCTAssertTrue(app.buttons["export.commit"].isEnabled)
+        try enableExportConfirmation("export.confirm.target", app)
+        let writable = XCTNSPredicateExpectation(predicate: NSPredicate(format: "enabled == true"),
+                                                 object: app.buttons["export.commit"])
+        XCTAssertEqual(XCTWaiter.wait(for: [writable], timeout: 10), .completed)
         capture("build22-export-changed-target-confirmed", app)
         try finishVerifiedExport(app)
     }
@@ -427,9 +429,53 @@ final class PersistenceUITests: XCTestCase {
 
     @MainActor
     private func confirmGameExited(_ app: XCUIApplication, mayWrite: Bool = true) throws {
-        let exited = app.switches["export.game.exited"]
-        try revealInEditor(exited, app); exited.tap()
-        XCTAssertEqual(app.buttons["export.commit"].isEnabled, mayWrite)
+        try enableExportConfirmation("export.game.exited", app)
+        let expected = XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "enabled == %@", NSNumber(value: mayWrite)),
+            object: app.buttons["export.commit"])
+        XCTAssertEqual(XCTWaiter.wait(for: [expected], timeout: 10), .completed,
+                       "The write action must reflect the confirmations after the switch value changes")
+    }
+
+    @MainActor
+    private func enableExportConfirmation(_ identifier: String, _ app: XCUIApplication) throws {
+        let row = app.switches[identifier]
+        try revealInEditor(row, app)
+        // iOS 26 can expose a SwiftUI Toggle as a full-width Switch row.
+        // Its center is blank space; prefer an inner UIKit switch when exposed.
+        let inner = row.descendants(matching: .switch).allElementsBoundByIndex
+            .filter { $0.isHittable && $0.frame.width > 0 && $0.frame.width <= 100 }
+            .min { $0.frame.width < $1.frame.width }
+        let control = inner ?? row
+        captureExportConfirmation("before", identifier: identifier, row: row, control: control, app: app)
+        if control.value as? String != "1" {
+            if control.frame.width <= 100 {
+                control.tap()
+            } else {
+                // The real switch occupies the trailing ~51 points of the
+                // observed row; tap its center rather than the row's center.
+                control.coordinate(withNormalizedOffset: CGVector(dx: 1, dy: 0.5))
+                    .withOffset(CGVector(dx: -25, dy: 0)).tap()
+            }
+        }
+        let enabled = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == %@", "1"), object: control)
+        let result = XCTWaiter.wait(for: [enabled], timeout: 10)
+        captureExportConfirmation("after", identifier: identifier, row: row, control: control, app: app)
+        XCTAssertEqual(result, .completed, "The confirmation switch must actually turn on before testing the write action")
+    }
+
+    @MainActor
+    private func captureExportConfirmation(_ phase: String, identifier: String, row: XCUIElement,
+                                           control: XCUIElement, app: XCUIApplication) {
+        let name = "build22-\(identifier)-\(phase)"
+        capture(name, app)
+        let details = "row value=\(String(describing: row.value)) frame=\(row.frame)\n"
+            + "control value=\(String(describing: control.value)) frame=\(control.frame)\n"
+            + app.debugDescription
+        let hierarchy = XCTAttachment(string: details)
+        hierarchy.name = name + "-state"
+        hierarchy.lifetime = .keepAlways
+        add(hierarchy)
     }
 
     @MainActor

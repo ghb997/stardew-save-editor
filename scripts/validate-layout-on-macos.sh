@@ -38,7 +38,12 @@ args=(
     -derivedDataPath "${LAYOUT_DERIVED_DIR:-artifacts/ipad-layout/DerivedData}" -parallel-testing-enabled NO
     -resultBundlePath "$output_dir/tests.xcresult" CODE_SIGNING_ALLOWED=NO
 )
-if [[ "${LAYOUT_SCOPE:-layout}" == export-picker ]]; then
+if [[ "${LAYOUT_SCOPE:-layout}" == export-flow ]]; then
+    args+=(-only-testing:PelicanSaveEditorUITests/PersistenceUITests/testSaveAndExportRunsContinuouslyThenReturnsToSameEditor)
+    args+=(-only-testing:PelicanSaveEditorUITests/PersistenceUITests/testCancelledExportCanResumeAfterRelaunchWithoutSavingAgain)
+    args+=(-only-testing:PelicanSaveEditorUITests/PersistenceUITests/testWrongFarmIsRejectedAndCorrectTargetCanBeSelectedAgain)
+    args+=(-only-testing:PelicanSaveEditorUITests/PersistenceUITests/testChangedTargetIsPreservedUntilReinspectionAndExplicitConfirmation)
+elif [[ "${LAYOUT_SCOPE:-layout}" == export-picker ]]; then
     args+=(-only-testing:PelicanSaveEditorUITests/PersistenceUITests/testSystemExportPickersCanCancelAndReopenWithoutLosingSavedCopy)
 elif [[ "${LAYOUT_SCOPE:-layout}" == editor-sharing ]]; then
     args+=(-only-testing:PelicanSaveEditorUITests/PelicanBrandUITests/testBrandGroupCopyAndQRCode)
