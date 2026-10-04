@@ -24,9 +24,20 @@ final class PersistenceUITests: XCTestCase {
             XCTAssertFalse(app.buttons["export.commit"].exists)
             XCTAssertFalse(app.buttons["export.done"].exists)
         }
-        let files = app.buttons["export.files"]
+        // SwiftUI may propagate the DisclosureGroup's identifier to its
+        // descendants, so find this child by its exact visible button label.
+        let files = app.buttons.matching(NSPredicate(format: "label == %@", "导出文件到其他位置")).firstMatch
         let other = app.buttons["export.other"]
         try revealInEditor(other, app); other.tap()
+        capture("build22-system-export-options-expanded", app)
+        if !files.waitForExistence(timeout: 10) {
+            let hierarchy = XCTAttachment(string: app.debugDescription)
+            hierarchy.name = "build22-missing-file-export-button-hierarchy"
+            hierarchy.lifetime = .keepAlways
+            add(hierarchy)
+            XCTFail("Expanding other export methods must expose the exact file export button label")
+            return
+        }
         for attempt in 1...2 {
             try revealInEditor(files, app); files.tap()
             try cancelSystemExportPicker(app, returningTo: files,
