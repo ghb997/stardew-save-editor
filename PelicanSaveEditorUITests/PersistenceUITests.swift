@@ -4,6 +4,75 @@ final class PersistenceUITests: XCTestCase {
     override func setUpWithError() throws { continueAfterFailure = false }
 
     @MainActor
+    func testSystemExportPickersCanCancelAndReopenWithoutLosingSavedCopy() throws {
+        let app = XCUIApplication()
+        // Deliberately omit --ui-export-fixture: both real UIKit pickers must
+        // present and send their cancellation and dismissal callbacks.
+        app.launchArguments = ["--ui-library", UUID().uuidString, "--ui-library-seed",
+            "--ui-tab", "tools", "-AppleLanguages", "(zh-Hans)", "-AppleLocale", "zh_CN"]
+        app.launch()
+        defer { app.terminate() }
+        let value = try editAndBeginExport("P", app)
+        for attempt in 1...2 {
+            let choose = app.buttons["export.choose.directory"]
+            XCTAssertTrue(choose.waitForExistence(timeout: 10)); choose.tap()
+            try cancelSystemExportPicker(app, returningTo: choose,
+                                         screenshot: "build22-system-directory-picker-\(attempt)")
+            let notice = app.staticTexts["export.notice"]
+            XCTAssertTrue(notice.waitForExistence(timeout: 10))
+            XCTAssertTrue(notice.label.contains("选择已取消"))
+            XCTAssertFalse(app.buttons["export.commit"].exists)
+            XCTAssertFalse(app.buttons["export.done"].exists)
+        }
+        let files = app.buttons["export.files"]
+        let other = app.buttons["export.other"]
+        try revealInEditor(other, app); other.tap()
+        for attempt in 1...2 {
+            try revealInEditor(files, app); files.tap()
+            try cancelSystemExportPicker(app, returningTo: files,
+                                         screenshot: "build22-system-file-export-picker-\(attempt)")
+            let cancelled = XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "exists == true AND label CONTAINS %@", "导出已取消"),
+                object: app.staticTexts["export.notice"])
+            XCTAssertEqual(XCTWaiter.wait(for: [cancelled], timeout: 15), .completed,
+                           "The item-driven file sheet must consume its cancellation after dismissal")
+            XCTAssertFalse(app.buttons["export.done"].exists,
+                           "Cancelling file export must never advance to export completion")
+        }
+        capture("build22-system-export-cancelled", app)
+        app.buttons["export.later"].tap()
+        XCTAssertTrue(app.staticTexts["review.saved.notice"].waitForExistence(timeout: 10))
+        try returnFromReview(app)
+        let favorite = app.textFields["character.favorite"]
+        try revealInEditor(favorite, app)
+        XCTAssertEqual(favorite.value as? String, value)
+        app.buttons["editor.shell.close"].tap()
+        try assertLibraryStatus("已保存，待导出", app)
+    }
+
+    @MainActor
+    private func cancelSystemExportPicker(_ app: XCUIApplication, returningTo control: XCUIElement,
+                                         screenshot: String) throws {
+        // Same system Cancel lookup used by the existing AdaptiveLayout picker
+        // integration; accept English too if the simulator's Files UI uses it.
+        let cancel = app.buttons.matching(NSPredicate(format: "label IN %@", ["取消", "Cancel"])).firstMatch
+        let visible = XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == true AND enabled == true AND hittable == true"),
+            object: cancel)
+        XCTAssertEqual(XCTWaiter.wait(for: [visible], timeout: 30), .completed,
+                       "The real system picker must finish presenting before cancellation")
+        capture(screenshot, app)
+        cancel.tap()
+        let dismissed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: cancel)
+        let resumed = XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == true AND enabled == true"), object: control)
+        XCTAssertEqual(XCTWaiter.wait(for: [dismissed, resumed], timeout: 30), .completed,
+                       "Cancelling the system picker must return to a usable export stage")
+        XCTAssertTrue(app.navigationBars["保存并导出"].exists)
+        XCTAssertFalse(app.alerts.firstMatch.exists)
+    }
+
+    @MainActor
     func testDraftSurvivesTerminationAndCanBeRecoveredThenDiscarded() throws {
         let app = XCUIApplication()
         let args = ["--ui-library", UUID().uuidString, "--ui-tab", "tools", "-AppleLanguages", "(zh-Hans)", "-AppleLocale", "zh_CN"]

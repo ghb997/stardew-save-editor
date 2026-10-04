@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-10-04T15:10:28.276660+00:00",
+  "generated_at_utc": "2026-10-04T15:16:51.772441+00:00",
   "release_root": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\reliability-build19",
   "validation_type": "offline_static_release_checks",
   "compiled_swift": false,
@@ -305,7 +305,7 @@
       "PelicanSaveEditorUITests/AdaptiveLayoutUITests.swift": "5befc392b01b14aa8017979aeac311ed4bb5e8413743de4bc2b728e20b39bacc",
       "PelicanSaveEditorUITests/ExpandedEditorUITests.swift": "b669f39c9278ed0c29b24c05d7337412fa7927282f663e3fa067995b6ddae2f2",
       "PelicanSaveEditorUITests/PelicanBrandUITests.swift": "594e4b3257e91d65bc6ea2c925e0511ed4b3b28e30792348ec2bcaba3f9ca3b4",
-      "PelicanSaveEditorUITests/PersistenceUITests.swift": "2394a583024586dcb57674e102147ce7378fd6e858f737411749d5ecd8511d34",
+      "PelicanSaveEditorUITests/PersistenceUITests.swift": "758f87eef2868bd5eaa3a26df517a81246971a6bad4802a86adef467c25cfd39",
       "PelicanSaveEditorUITests/RepairEditorUITests.swift": "faf57b2750200a6d4a98540eaaa71f2881fb4d35a4c412ed1273d75875ce7209",
       "PelicanSaveEditorUITests/ToolNavigationSupport.swift": "05246d0cf08b9a7b7fa73d093ac6d8362969c80f874c047069e0a874022d59d1",
       "PelicanSaveEditorUITests/TrackerSmokeUITests.swift": "39046455753c67495127b728726cb53367af96b964a0c29168b8f31dadc4a498",
@@ -314,7 +314,7 @@
     "source_counts": {
       "swift_files": 104,
       "test_files": 19,
-      "declared_test_methods": 222,
+      "declared_test_methods": 223,
       "test_methods_by_file": {
         "PelicanSaveEditorTests/ExpandedEditorTests.swift": 23,
         "PelicanSaveEditorTests/ExportPresentationTests.swift": 2,
@@ -330,7 +330,7 @@
         "PelicanSaveEditorUITests/AdaptiveLayoutUITests.swift": 7,
         "PelicanSaveEditorUITests/ExpandedEditorUITests.swift": 4,
         "PelicanSaveEditorUITests/PelicanBrandUITests.swift": 6,
-        "PelicanSaveEditorUITests/PersistenceUITests.swift": 9,
+        "PelicanSaveEditorUITests/PersistenceUITests.swift": 10,
         "PelicanSaveEditorUITests/RepairEditorUITests.swift": 4,
         "PelicanSaveEditorUITests/ToolNavigationSupport.swift": 0,
         "PelicanSaveEditorUITests/TrackerSmokeUITests.swift": 10,
