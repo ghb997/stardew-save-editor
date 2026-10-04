@@ -1,0 +1,71 @@
+{
+  "status": "findings-recorded",
+  "reviewedAtUTC": "2026-10-04T15:24:54.561863+00:00",
+  "sourceCommit": "9007dcff8c91e41e6befb5855747f7f073ad96c8",
+  "run": 37211567115,
+  "scope": "Fresh baseline iPad mini screenshots captured in this run; four selected originals inspected, plus two contact sheets. Historical capture names retained by unchanged tests.",
+  "findings": [
+    {
+      "id": "baseline-review-action",
+      "observation": "Review begins with source/XML/version details and compatibility text; saving action is below the initial viewport.",
+      "improvement": "Promote change summary, collapse technical metadata, fix the primary action to the bottom."
+    },
+    {
+      "id": "baseline-save-continuity",
+      "observation": "Saving only the local copy presents generic 完成/好 alert. The next export action remains behind the dismissed alert in the operation list.",
+      "improvement": "Continue directly into export for default action; show saved-for-later state inline for secondary action."
+    },
+    {
+      "id": "baseline-export-completion-language",
+      "observation": "The export sheet labels its close button 完成 even before a target has been selected or files written.",
+      "improvement": "Use explicit return/later navigation before export and reserve completion wording for successful export."
+    },
+    {
+      "id": "baseline-library-resume",
+      "observation": "The library clearly displays 已保存，待导出, but only offers 打开这份副本, requiring another review/export navigation.",
+      "improvement": "Ensure the reopened copy provides prominent 继续导出 without requiring another save."
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "build20-local-library",
+      "file": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\build22-validation\\baseline-mini-editor-lifecycle-1\\attachments\\BD41D3DE-E671-4D9E-96E7-F048942381CD.png",
+      "test": "PersistenceUITests/testSavedCopySurvivesTerminationAndOpensVerifiedExportScreen()",
+      "width": 1488,
+      "height": 2266,
+      "sha256": "1166500c19b7030e28069fc69ec41609e81a90d7c3e2e6bb8f4dcc04af16f7f7",
+      "sourceCommit": "9007dcff8c91e41e6befb5855747f7f073ad96c8",
+      "run": 37211567115
+    },
+    {
+      "name": "build20-review",
+      "file": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\build22-validation\\baseline-mini-editor-lifecycle-1\\attachments\\51B5083F-21C7-4A9B-B839-24A0C5F4426E.png",
+      "test": "PelicanBrandUITests/testAllToolCategoriesOpenAndKeepDraft()",
+      "width": 1488,
+      "height": 2266,
+      "sha256": "1c628107f0a968f8a27cd0eee40eda8c1d99d3863b01c2912f13bcd311ca4253",
+      "sourceCommit": "9007dcff8c91e41e6befb5855747f7f073ad96c8",
+      "run": 37211567115
+    },
+    {
+      "name": "build20-verified-export",
+      "file": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\build22-validation\\baseline-mini-editor-lifecycle-1\\attachments\\7124AD2D-99F4-4197-926B-B88790684DDD.png",
+      "test": "PersistenceUITests/testSavedCopySurvivesTerminationAndOpensVerifiedExportScreen()",
+      "width": 1488,
+      "height": 2266,
+      "sha256": "07a697e85a3f6a765e776d5112f7c8fb440402ea27dd92d49b35ea967343726b",
+      "sourceCommit": "9007dcff8c91e41e6befb5855747f7f073ad96c8",
+      "run": 37211567115
+    },
+    {
+      "name": "build21-completion-enabled",
+      "file": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\build22-validation\\baseline-mini-editor-lifecycle-1\\attachments\\4F38C31B-989D-42C9-A6BB-2A0BA8D3A03E.png",
+      "test": "PersistenceUITests/testAnimalRenameSaveKeepsSameAnimalAfterListReorders()",
+      "width": 1488,
+      "height": 2266,
+      "sha256": "7f22edc5034705da33dde05189fa389db161167b1efda9a7d1ca4c14127740a4",
+      "sourceCommit": "9007dcff8c91e41e6befb5855747f7f073ad96c8",
+      "run": 37211567115
+    }
+  ]
+}

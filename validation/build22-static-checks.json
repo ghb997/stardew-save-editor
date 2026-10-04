@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-10-04T15:16:51.772441+00:00",
+  "generated_at_utc": "2026-10-04T15:56:45.620184+00:00",
   "release_root": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\reliability-build19",
   "validation_type": "offline_static_release_checks",
   "compiled_swift": false,
@@ -305,7 +305,7 @@
       "PelicanSaveEditorUITests/AdaptiveLayoutUITests.swift": "5befc392b01b14aa8017979aeac311ed4bb5e8413743de4bc2b728e20b39bacc",
       "PelicanSaveEditorUITests/ExpandedEditorUITests.swift": "b669f39c9278ed0c29b24c05d7337412fa7927282f663e3fa067995b6ddae2f2",
       "PelicanSaveEditorUITests/PelicanBrandUITests.swift": "594e4b3257e91d65bc6ea2c925e0511ed4b3b28e30792348ec2bcaba3f9ca3b4",
-      "PelicanSaveEditorUITests/PersistenceUITests.swift": "758f87eef2868bd5eaa3a26df517a81246971a6bad4802a86adef467c25cfd39",
+      "PelicanSaveEditorUITests/PersistenceUITests.swift": "485336347062142d55c7bcc322cc1bdc2000f81fb50e59968b2682491f545882",
       "PelicanSaveEditorUITests/RepairEditorUITests.swift": "faf57b2750200a6d4a98540eaaa71f2881fb4d35a4c412ed1273d75875ce7209",
       "PelicanSaveEditorUITests/ToolNavigationSupport.swift": "05246d0cf08b9a7b7fa73d093ac6d8362969c80f874c047069e0a874022d59d1",
       "PelicanSaveEditorUITests/TrackerSmokeUITests.swift": "39046455753c67495127b728726cb53367af96b964a0c29168b8f31dadc4a498",

@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "scope": "Static package verification only; no install or game round-trip claimed",
+  "verifiedAtUTC": "2026-10-04T15:16:24.984990+00:00",
+  "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+  "version": "0.9.4",
+  "build": "22",
+  "file": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\build22-validation\\initial-release\\run-20261004T151106Z-2889\\PelicanEditor-v0.9.4-build22-unsigned.ipa",
+  "bytes": 7200370,
+  "sha256": "f81a69da1cf0bbb1e49804a02bb8034ff29be9e95c7b3d5567176adc1056ae77",
+  "architecture": "arm64",
+  "platform": "physical iOS",
+  "minimumOSVersion": "17.0",
+  "unsigned": true,
+  "requiresOwnSigning": true,
+  "zipIntegrity": "passed",
+  "assetsPresent": true
+}

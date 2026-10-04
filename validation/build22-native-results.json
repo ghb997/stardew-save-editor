@@ -1,0 +1,4424 @@
+{
+  "status": "passed",
+  "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+  "binarySourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+  "scope": "Only listed artifacts; failures resolve by newer same-device-family/same-method passes on an equivalent runtime",
+  "totalExecutions": 219,
+  "passedExecutions": 207,
+  "failedExecutions": 12,
+  "skippedExecutions": 0,
+  "uniqueMethodsExecuted": 193,
+  "declaredSourceMethods": 223,
+  "unexecutedSourceMethods": [
+    "PelicanSaveEditorUITests.AdaptiveLayoutUITests/testAllEditorsInLandscape",
+    "PelicanSaveEditorUITests.AdaptiveLayoutUITests/testAllEditorsInPortrait",
+    "PelicanSaveEditorUITests.AdaptiveLayoutUITests/testEachDocumentPickerCanOpenCancelAndReopen",
+    "PelicanSaveEditorUITests.AdaptiveLayoutUITests/testExpandedMapFitsViewportAtDefaultZoomAfterRotation",
+    "PelicanSaveEditorUITests.AdaptiveLayoutUITests/testImportOptionsSurviveRotation",
+    "PelicanSaveEditorUITests.AdaptiveLayoutUITests/testMainPagesAndUtilitySheets",
+    "PelicanSaveEditorUITests.AdaptiveLayoutUITests/testNarrowWindowAndAccessibilityText",
+    "PelicanSaveEditorUITests.ExpandedEditorUITests/testBundleSupplyPreviewAddsInventoryDiffWithoutCompletingBundle",
+    "PelicanSaveEditorUITests.ExpandedEditorUITests/testChestQuantityDraftAndReview",
+    "PelicanSaveEditorUITests.ExpandedEditorUITests/testMachineSelectionPreviewApplyAndUndo",
+    "PelicanSaveEditorUITests.ExpandedEditorUITests/testWeatherLuckPresetRestoreAndWeatherReview",
+    "PelicanSaveEditorUITests.PelicanBrandUITests/testBrandGroupCopyAndQRCode",
+    "PelicanSaveEditorUITests.PelicanBrandUITests/testSearchAcrossCategoriesAndEmptyState",
+    "PelicanSaveEditorUITests.PelicanBrandUITests/testToolsAndSettingsAtLargeTextInNarrowWindow",
+    "PelicanSaveEditorUITests.RepairEditorUITests/testCollectionSupplyCreatesInventoryDraftWithoutMarkingDonation",
+    "PelicanSaveEditorUITests.RepairEditorUITests/testEquipmentCancelLeavesDraftUnchanged",
+    "PelicanSaveEditorUITests.RepairEditorUITests/testToolUpgradeCreatesReviewDiff",
+    "PelicanSaveEditorUITests.RepairEditorUITests/testWeaponInvalidInputAndRestore",
+    "PelicanSaveEditorUITests.TrackerSmokeUITests/testAllElevenModulesOpenAndClose",
+    "PelicanSaveEditorUITests.TrackerSmokeUITests/testAppearanceColorsSupportPresetHexAndRestore",
+    "PelicanSaveEditorUITests.TrackerSmokeUITests/testDetailSwitchingRecipeFiltersAndSearchEmptyState",
+    "PelicanSaveEditorUITests.TrackerSmokeUITests/testEditorCapacityAndInventorySearchUseDraft",
+    "PelicanSaveEditorUITests.TrackerSmokeUITests/testEmptyTrackerOpensToolsWithoutImportingFiles",
+    "PelicanSaveEditorUITests.TrackerSmokeUITests/testGiftBatchResetShowsChangedCountersWithoutChangingHearts",
+    "PelicanSaveEditorUITests.TrackerSmokeUITests/testMapScopedWaterPreviewPendingLocateAndUndo",
+    "PelicanSaveEditorUITests.TrackerSmokeUITests/testOverviewFiltersAndGroupExpansion",
+    "PelicanSaveEditorUITests.TrackerSmokeUITests/testRelationshipBatchPreviewCanCancelAndApplyOnlySearchedCharacter",
+    "PelicanSaveEditorUITests.TrackerSmokeUITests/testRoomStyleLibraryBatchPreviewAndRoomRestore",
+    "PelicanSaveEditorUITests.ValleyThemeUITests/testEmptyFarmAndImportPanel",
+    "PelicanSaveEditorUITests.ValleyThemeUITests/testMainTabsInDayAndNight"
+  ],
+  "historicalFailedExecutions": [
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "picker-iphone-export-picker-1",
+      "run": 37212409115,
+      "sourceCommit": "42a02acdce338fbf93090d4d830f62ebbd6b1711",
+      "finishTime": 1791127419.472,
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testSystemExportPickersCanCancelAndReopenWithoutLosingSavedCopy",
+      "result": "failed",
+      "seconds": 98.155,
+      "resolvedBy": {
+        "folder": "picker-phone-native-nav-iphone-export-picker-1",
+        "run": 37214842035,
+        "sourceCommit": "a99493432f0fa522f1903f91e8453c2b4f3a6e34",
+        "deviceFamily": "iphone",
+        "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+        "test": "testSystemExportPickersCanCancelAndReopenWithoutLosingSavedCopy",
+        "finishTime": 1791129943.103
+      }
+    },
+    {
+      "deviceFamily": "mini",
+      "deviceName": "iPad mini (A17 Pro)",
+      "folder": "picker-mini-export-picker-1",
+      "run": 37212409115,
+      "sourceCommit": "42a02acdce338fbf93090d4d830f62ebbd6b1711",
+      "finishTime": 1791127762.847,
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testSystemExportPickersCanCancelAndReopenWithoutLosingSavedCopy",
+      "result": "failed",
+      "seconds": 130.961,
+      "resolvedBy": {
+        "folder": "picker-final-mini-export-picker-1",
+        "run": 37213149874,
+        "sourceCommit": "9735a26e25053602d0cb32852cf2e536a8850b21",
+        "deviceFamily": "mini",
+        "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+        "test": "testSystemExportPickersCanCancelAndReopenWithoutLosingSavedCopy",
+        "finishTime": 1791128262.19
+      }
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testCancelledExportCanResumeAfterRelaunchWithoutSavingAgain",
+      "result": "failed",
+      "seconds": 68.846,
+      "resolvedBy": {
+        "folder": "flow-final-iphone-export-flow-1",
+        "run": 37213660650,
+        "sourceCommit": "2d69094e3d27b34fef4eaf34291405ed2d668f60",
+        "deviceFamily": "iphone",
+        "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+        "test": "testCancelledExportCanResumeAfterRelaunchWithoutSavingAgain",
+        "finishTime": 1791128913.108
+      }
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testChangedTargetIsPreservedUntilReinspectionAndExplicitConfirmation",
+      "result": "failed",
+      "seconds": 37.551,
+      "resolvedBy": {
+        "folder": "flow-final-iphone-export-flow-1",
+        "run": 37213660650,
+        "sourceCommit": "2d69094e3d27b34fef4eaf34291405ed2d668f60",
+        "deviceFamily": "iphone",
+        "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+        "test": "testChangedTargetIsPreservedUntilReinspectionAndExplicitConfirmation",
+        "finishTime": 1791128913.108
+      }
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testSaveAndExportRunsContinuouslyThenReturnsToSameEditor",
+      "result": "failed",
+      "seconds": 29.601,
+      "resolvedBy": {
+        "folder": "flow-final-iphone-export-flow-1",
+        "run": 37213660650,
+        "sourceCommit": "2d69094e3d27b34fef4eaf34291405ed2d668f60",
+        "deviceFamily": "iphone",
+        "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+        "test": "testSaveAndExportRunsContinuouslyThenReturnsToSameEditor",
+        "finishTime": 1791128913.108
+      }
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testWrongFarmIsRejectedAndCorrectTargetCanBeSelectedAgain",
+      "result": "failed",
+      "seconds": 48.457,
+      "resolvedBy": {
+        "folder": "flow-final-iphone-export-flow-1",
+        "run": 37213660650,
+        "sourceCommit": "2d69094e3d27b34fef4eaf34291405ed2d668f60",
+        "deviceFamily": "iphone",
+        "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+        "test": "testWrongFarmIsRejectedAndCorrectTargetCanBeSelectedAgain",
+        "finishTime": 1791128913.108
+      }
+    },
+    {
+      "deviceFamily": "mini",
+      "deviceName": "iPad mini (A17 Pro)",
+      "folder": "initial-mini-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127899.391,
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testCancelledExportCanResumeAfterRelaunchWithoutSavingAgain",
+      "result": "failed",
+      "seconds": 55.989,
+      "resolvedBy": {
+        "folder": "flow-final-mini-export-flow-1",
+        "run": 37213660650,
+        "sourceCommit": "2d69094e3d27b34fef4eaf34291405ed2d668f60",
+        "deviceFamily": "mini",
+        "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+        "test": "testCancelledExportCanResumeAfterRelaunchWithoutSavingAgain",
+        "finishTime": 1791129012.338
+      }
+    },
+    {
+      "deviceFamily": "mini",
+      "deviceName": "iPad mini (A17 Pro)",
+      "folder": "initial-mini-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127899.391,
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testChangedTargetIsPreservedUntilReinspectionAndExplicitConfirmation",
+      "result": "failed",
+      "seconds": 27.634,
+      "resolvedBy": {
+        "folder": "flow-final-mini-export-flow-1",
+        "run": 37213660650,
+        "sourceCommit": "2d69094e3d27b34fef4eaf34291405ed2d668f60",
+        "deviceFamily": "mini",
+        "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+        "test": "testChangedTargetIsPreservedUntilReinspectionAndExplicitConfirmation",
+        "finishTime": 1791129012.338
+      }
+    },
+    {
+      "deviceFamily": "mini",
+      "deviceName": "iPad mini (A17 Pro)",
+      "folder": "initial-mini-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127899.391,
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testSaveAndExportRunsContinuouslyThenReturnsToSameEditor",
+      "result": "failed",
+      "seconds": 41.753,
+      "resolvedBy": {
+        "folder": "flow-final-mini-export-flow-1",
+        "run": 37213660650,
+        "sourceCommit": "2d69094e3d27b34fef4eaf34291405ed2d668f60",
+        "deviceFamily": "mini",
+        "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+        "test": "testSaveAndExportRunsContinuouslyThenReturnsToSameEditor",
+        "finishTime": 1791129012.338
+      }
+    },
+    {
+      "deviceFamily": "mini",
+      "deviceName": "iPad mini (A17 Pro)",
+      "folder": "initial-mini-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127899.391,
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testWrongFarmIsRejectedAndCorrectTargetCanBeSelectedAgain",
+      "result": "failed",
+      "seconds": 35.599,
+      "resolvedBy": {
+        "folder": "flow-final-mini-export-flow-1",
+        "run": 37213660650,
+        "sourceCommit": "2d69094e3d27b34fef4eaf34291405ed2d668f60",
+        "deviceFamily": "mini",
+        "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+        "test": "testWrongFarmIsRejectedAndCorrectTargetCanBeSelectedAgain",
+        "finishTime": 1791129012.338
+      }
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "picker-final-iphone-export-picker-1",
+      "run": 37213149874,
+      "sourceCommit": "9735a26e25053602d0cb32852cf2e536a8850b21",
+      "finishTime": 1791128355.879,
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testSystemExportPickersCanCancelAndReopenWithoutLosingSavedCopy",
+      "result": "failed",
+      "seconds": 126.448,
+      "resolvedBy": {
+        "folder": "picker-phone-native-nav-iphone-export-picker-1",
+        "run": 37214842035,
+        "sourceCommit": "a99493432f0fa522f1903f91e8453c2b4f3a6e34",
+        "deviceFamily": "iphone",
+        "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+        "test": "testSystemExportPickersCanCancelAndReopenWithoutLosingSavedCopy",
+        "finishTime": 1791129943.103
+      }
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "picker-phone-final-iphone-export-picker-1",
+      "run": 37214108081,
+      "sourceCommit": "f9fe6ed8b87b0d5c5b5fc4a25da0aa81896d8d85",
+      "finishTime": 1791129023.698,
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testSystemExportPickersCanCancelAndReopenWithoutLosingSavedCopy",
+      "result": "failed",
+      "seconds": 98.944,
+      "resolvedBy": {
+        "folder": "picker-phone-native-nav-iphone-export-picker-1",
+        "run": 37214842035,
+        "sourceCommit": "a99493432f0fa522f1903f91e8453c2b4f3a6e34",
+        "deviceFamily": "iphone",
+        "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+        "test": "testSystemExportPickersCanCancelAndReopenWithoutLosingSavedCopy",
+        "finishTime": 1791129943.103
+      }
+    }
+  ],
+  "historicalSkippedExecutions": [],
+  "unresolvedFailures": [],
+  "latestDeviceMethodResults": [
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "picker-phone-native-nav-iphone-export-picker-1",
+      "run": 37214842035,
+      "sourceCommit": "a99493432f0fa522f1903f91e8453c2b4f3a6e34",
+      "finishTime": 1791129943.103,
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testSystemExportPickersCanCancelAndReopenWithoutLosingSavedCopy",
+      "result": "passed",
+      "seconds": 179.073
+    },
+    {
+      "deviceFamily": "mini",
+      "deviceName": "iPad mini (A17 Pro)",
+      "folder": "picker-final-mini-export-picker-1",
+      "run": 37213149874,
+      "sourceCommit": "9735a26e25053602d0cb32852cf2e536a8850b21",
+      "finishTime": 1791128262.19,
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testSystemExportPickersCanCancelAndReopenWithoutLosingSavedCopy",
+      "result": "passed",
+      "seconds": 118.8
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorUITests.PelicanBrandUITests",
+      "test": "testAllToolCategoriesOpenAndKeepDraft",
+      "result": "passed",
+      "seconds": 229.342
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorUITests.PelicanBrandUITests",
+      "test": "testChildEditorAndMapReviewReturnToTheirSource",
+      "result": "passed",
+      "seconds": 55.656
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorUITests.PelicanBrandUITests",
+      "test": "testNumericInputCanReturnReviewAndUndoWithoutLosingDraft",
+      "result": "passed",
+      "seconds": 43.735
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testAnimalRenameSaveKeepsSameAnimalAfterListReorders",
+      "result": "passed",
+      "seconds": 79.423
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "flow-final-iphone-export-flow-1",
+      "run": 37213660650,
+      "sourceCommit": "2d69094e3d27b34fef4eaf34291405ed2d668f60",
+      "finishTime": 1791128913.108,
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testCancelledExportCanResumeAfterRelaunchWithoutSavingAgain",
+      "result": "passed",
+      "seconds": 93.54
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "flow-final-iphone-export-flow-1",
+      "run": 37213660650,
+      "sourceCommit": "2d69094e3d27b34fef4eaf34291405ed2d668f60",
+      "finishTime": 1791128913.108,
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testChangedTargetIsPreservedUntilReinspectionAndExplicitConfirmation",
+      "result": "passed",
+      "seconds": 102.981
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testDraftSurvivesTerminationAndCanBeRecoveredThenDiscarded",
+      "result": "passed",
+      "seconds": 60.237
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testReloadFromReviewThenEditAndSaveUsesCurrentSession",
+      "result": "passed",
+      "seconds": 60.809
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "flow-final-iphone-export-flow-1",
+      "run": 37213660650,
+      "sourceCommit": "2d69094e3d27b34fef4eaf34291405ed2d668f60",
+      "finishTime": 1791128913.108,
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testSaveAndExportRunsContinuouslyThenReturnsToSameEditor",
+      "result": "passed",
+      "seconds": 80.452
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testSavedCopySurvivesTerminationAndOpensVerifiedExportScreen",
+      "result": "passed",
+      "seconds": 42.378
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testSaveReturnAndContinueEditingPersistsBothChanges",
+      "result": "passed",
+      "seconds": 45.156
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "flow-final-iphone-export-flow-1",
+      "run": 37213660650,
+      "sourceCommit": "2d69094e3d27b34fef4eaf34291405ed2d668f60",
+      "finishTime": 1791128913.108,
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testWrongFarmIsRejectedAndCorrectTargetCanBeSelectedAgain",
+      "result": "passed",
+      "seconds": 51.543
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testAddingAtLastChestSlotPreservesOpaqueChildrenAndClearingKeepsSerializedFloor",
+      "result": "passed",
+      "seconds": 0.157
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testBigChestSeventySlotsAndOrdinaryFridgeSupported",
+      "result": "passed",
+      "seconds": 0.057
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testBundlesReadDefinitionsProgressChoicesAndGoldWithoutChangingCompletion",
+      "result": "passed",
+      "seconds": 0.085
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testBundleSupplyAddsExactMaterialsToEmptySlotsAndLeavesAllQuestStateUnchanged",
+      "result": "passed",
+      "seconds": 0.149
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testBundleSupplyInsufficientSpaceInvalidSelectionsAndJojaAreAtomicFailures",
+      "result": "passed",
+      "seconds": 0.12
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testChestQuantityPreservesQualitySpellingMetadataOtherContainersAndSummary",
+      "result": "passed",
+      "seconds": 0.048
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testDiscoversFarmNestedShedAndFridgeWithoutTreatingFurnitureAsChest",
+      "result": "passed",
+      "seconds": 0.023
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testDuplicateObjectCoordinatesCannotTargetTheWrongContainer",
+      "result": "passed",
+      "seconds": 0.031
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testExpandedDiffsGroupAndUndoIndependentlyIncludingMaterialSupply",
+      "result": "passed",
+      "seconds": 0.064
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testFinishingMachineKeepsOutputIdentityQuantityQualityAndMetadata",
+      "result": "passed",
+      "seconds": 0.079
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testLegacyNumericWeatherRetainsNumericEncodingAndLuckRange",
+      "result": "passed",
+      "seconds": 0.063
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testMissingLuckCannotBeInventedAndIslandRejectsSnow",
+      "result": "passed",
+      "seconds": 0.027
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testReadyMachineCannotBeFinishedAgainAndForgedMachineRejected",
+      "result": "passed",
+      "seconds": 0.032
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testSharedSpecialAndOversizedChestsRemainReadOnly",
+      "result": "passed",
+      "seconds": 0.117
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testSpecialConflictingDuplicateAndMissingWeatherRemainsUnavailable",
+      "result": "passed",
+      "seconds": 0.333
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testStorageWriteBoundaryRejectsSlotLayoutTemplateAndItemMetadataTampering",
+      "result": "passed",
+      "seconds": 0.028
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testTomorrowWeatherSynchronizesDefaultAliasesAndPreservesCurrentWeatherAndIsland",
+      "result": "passed",
+      "seconds": 0.063
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testUnknownEmptyCaskAndMalformedMachinesAreExcluded",
+      "result": "passed",
+      "seconds": 0.098
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testUnknownQuestAndMalformedItemsCannotBeEditedOrCleared",
+      "result": "passed",
+      "seconds": 0.222
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testUnreadableDuplicateAndMissingBundleStateNeverAssumedIncomplete",
+      "result": "passed",
+      "seconds": 0.123
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testUnrelatedEditsDoNotSerializeSyntheticStorageSlotsOrNormalizeWeather",
+      "result": "passed",
+      "seconds": 0.057
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testWorkerReparsePreservesUneditedStorageUUIDBaseline",
+      "result": "passed",
+      "seconds": 0.059
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+      "test": "testZlibExpandedEditsRoundTripWithoutChangingOriginalTree",
+      "result": "passed",
+      "seconds": 0.053
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ExportPresentationTests",
+      "test": "testFileExportCancellationAndLateCallbacksDoNotAffectNextPresentation",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ExportPresentationTests",
+      "test": "testFileExportSuccessIsConsumedOnceInEitherCallbackOrder",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+      "test": "testCodecAcceptsUTF8CharacterAcrossOldPrefixBoundary",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+      "test": "testDebrisCleanupPreservesTypeNamespacesContainersAndModObjects",
+      "result": "passed",
+      "seconds": 0.007
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+      "test": "testEightStringIDObjectsHaveChineseNamesAndRoundTrip",
+      "result": "passed",
+      "seconds": 0.044
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+      "test": "testEveryDiffIsGroupedAndEachEditCanBeUndone",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+      "test": "testPairingRejectsWrongRootAndDifferentFarmerButAllowsRenamedSameID",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+      "test": "testProfessionValidationRejectsConflictsButPreservesUnrelatedExistingExtensions",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+      "test": "testRenamingOneAnimalPreservesOtherAnimalsAndIndependentAges",
+      "result": "passed",
+      "seconds": 0.004
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+      "test": "testSingleDebrisUndoDoesNotUndoNeighborAndEqualCountSelectionIsVisible",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+      "test": "testSkillLevelAndExperienceUseSameProfessionRules",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+      "test": "testWalletFalseIsFalseAndOnlyEditedLegacyKeyIsMigrated",
+      "result": "passed",
+      "seconds": 0.004
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "test": "testCapacityExpansionRoundTripsBothFilesAndPreservesOpaqueItems",
+      "result": "passed",
+      "seconds": 0.041
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "test": "testCapacityUndoRemovesNewSlotEditsAndKeepsOldSlotEdits",
+      "result": "passed",
+      "seconds": 0.043
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "test": "testGiftResetChangesOnlyExistingCountersAndEachDiffCanBeUndone",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "test": "testMissingGiftFieldsAreNotCreatedAndMalformedValuesArePreserved",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "test": "testMissingMalformedAndModdedCapacitiesRemainUnchanged",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "test": "testMissingPointsAndStatusStayReadOnly",
+      "result": "passed",
+      "seconds": 0.004
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "test": "testOriginalSerializedSlotsSurviveShrinkAndCannotReceiveNewHiddenItems",
+      "result": "passed",
+      "seconds": 0.03
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "test": "testRelationshipFiltersReflectGiftResetAndUndo",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "test": "testRelationshipWriteBoundaryRejectsUnsupportedStatusAndFriendshipLimits",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "test": "testScopedFullHeartsRespectsRelationshipsAndPreservesHigherAndUnknownPoints",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "test": "testShrinkWithOccupiedTailFailsWithoutChangingDraft",
+      "result": "passed",
+      "seconds": 0.028
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "test": "testUneditedFriendshipXMLIsNotNormalizedWhenAnotherFriendChanges",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "test": "testUnrelatedEditDoesNotSerializeSyntheticEmptySlotsOrInventSummaryCapacity",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+      "test": "testWriteBoundaryRejectsInvalidCapacityAndSlotLayout",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testActiveTransactionBlocksBackupUnprotectAndCopyDelete",
+      "result": "passed",
+      "seconds": 0.062
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testBackupExportCacheLeaseAndCleanupAndProtection",
+      "result": "passed",
+      "seconds": 0.041
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testChangedTargetAfterReviewAbortsWithoutWriting",
+      "result": "passed",
+      "seconds": 0.063
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testCopyLibraryNormalizesNewRootWithoutDirectorySlash",
+      "result": "passed",
+      "seconds": 0.024
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testCurrentAndDraftCopiesCannotBeDeletedThenExportedCopyCan",
+      "result": "passed",
+      "seconds": 0.089
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testDebrisRequiresUnambiguousFalseAndPreservesWhitespaceTruePlants",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testDraftRejectsChangedPairAndPreservesCheckpoint",
+      "result": "passed",
+      "seconds": 0.034
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testDraftReopensAndRebindsInventoryUUIDs",
+      "result": "passed",
+      "seconds": 0.032
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testExportRecoveryTargetIsClearedWhenSwitchingOrClosingCopy",
+      "result": "passed",
+      "seconds": 0.262
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testExportRejectsWrongPlayerAndShowsChangedTarget",
+      "result": "passed",
+      "seconds": 0.081
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testExportReviewRejectsAnotherIdenticalCopyAndChangedLocalBytes",
+      "result": "passed",
+      "seconds": 0.114
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testFailedUnindexedImportCanBeRemovedWithoutTouchingOriginal",
+      "result": "passed",
+      "seconds": 0.038
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testFullDraftCheckpointPreservesNewItemsAndRebindsStorageItems",
+      "result": "passed",
+      "seconds": 0.049
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testIntentVerifierRejectsUnexpectedScalarChange",
+      "result": "passed",
+      "seconds": 0.005
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testLateFileExportRecordsCapturedCopyAndRejectsNewerSavedRevision",
+      "result": "passed",
+      "seconds": 0.202
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testLegacyCopyMigratesWithoutInventingOriginHashes",
+      "result": "passed",
+      "seconds": 0.023
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testMixedXMLTextCDATAWhitespaceAndCarriageReturnsSurviveMoneyEdit",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testNilAndConflictingIDsNeverBecomeDebris",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testQueuedDraftSaveDoesNotResurrectCheckpointAndFailedDraftCannotBeClosed",
+      "result": "passed",
+      "seconds": 0.165
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testSaveClearsDraftAndProtectsPendingExportFromDeletion",
+      "result": "passed",
+      "seconds": 0.043
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testSavedCopyIsDiscoverableAfterNewWorkerAndReopensExactBytes",
+      "result": "passed",
+      "seconds": 0.043
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testUnknownDraftSchemaAndCorruptDraftAreRetained",
+      "result": "passed",
+      "seconds": 0.022
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testUnsupportedMixedContainerMutationIsRejected",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testUppercasePlayerIdentityAndDuplicateIDsAreChecked",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+      "test": "testVerifiedExportBacksUpTargetAndRecordsExactWrittenPair",
+      "result": "passed",
+      "seconds": 0.094
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testArtifactAndFishArrayCountsAndMalformedArrayAreDistinguished",
+      "result": "passed",
+      "seconds": 0.064
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testBackgroundRenderRejectsUnappliedEdit",
+      "result": "passed",
+      "seconds": 0.048
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testBackgroundRenderVerifiesEquipmentRecipeAndExpandedBackpack",
+      "result": "passed",
+      "seconds": 0.03
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testCopyMoveAndCanonicalNondefaultQuantityRemainSupported",
+      "result": "passed",
+      "seconds": 0.112
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testDuplicateAndMismatchedAnimalIDsRemainUntouched",
+      "result": "passed",
+      "seconds": 0.043
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testDuplicateFriendshipsAreExcludedWithoutModifyingTheirXML",
+      "result": "passed",
+      "seconds": 0.048
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testDuplicateInventoryContainerAndNilWithDataAreNotWritable",
+      "result": "passed",
+      "seconds": 0.055
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testDuplicatePlayersAreNotSilentlyAccepted",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testEquipmentAndOrdinaryInventoryEditsCanBeSavedTogether",
+      "result": "passed",
+      "seconds": 0.055
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testEquipmentBoundsNaNAndDamageOrderAreRejected",
+      "result": "passed",
+      "seconds": 0.028
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testEquipmentChangesOnlySelectedFieldAndPreservesEnchantments",
+      "result": "passed",
+      "seconds": 0.062
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testEquipmentChestMachineWateringAndDebrisRemovalSaveTogether",
+      "result": "passed",
+      "seconds": 0.055
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testEquipmentUndoRestoresOneFieldWithoutLosingOtherChanges",
+      "result": "passed",
+      "seconds": 0.028
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testEquipmentVerificationSurvivesLegacyWalletFieldRemoval",
+      "result": "passed",
+      "seconds": 0.085
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testEquippedBootsWithoutExplicitTypeAndUnknownGearHandling",
+      "result": "passed",
+      "seconds": 0.027
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testEquivalentCoordinateSpellingsCannotTargetTwoContainers",
+      "result": "passed",
+      "seconds": 0.023
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testIntentVerifierChecksItemIDInsteadOfOnlyDisplayText",
+      "result": "passed",
+      "seconds": 0.052
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testIntentVerifierRejectsMissingScalarWriteBeforeAnyFileWrite",
+      "result": "passed",
+      "seconds": 0.057
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testInventoryMetadataAndDuplicateIdentityAreRejected",
+      "result": "passed",
+      "seconds": 0.038
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testInventoryQuantityPreservesQualitySpellingAndOpaqueMetadata",
+      "result": "passed",
+      "seconds": 0.063
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testMalformedDuplicateAndQualifiedCollectionIDs",
+      "result": "passed",
+      "seconds": 0.061
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testMissingCollectionDataIsUnknownNotZeroProgress",
+      "result": "passed",
+      "seconds": 0.078
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testMissingRecipeContainerCanBeCreatedAndDuplicateRecipeCannotBeEdited",
+      "result": "passed",
+      "seconds": 0.083
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testMuseumCoordinatesAndNilCollectionsDoNotReportFalseCompletion",
+      "result": "passed",
+      "seconds": 0.082
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testMuseumUsesDonationRecordsInsteadOfDiscoveryRecords",
+      "result": "passed",
+      "seconds": 0.077
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testQuestUnknownAndMalformedInventoryAreReadOnly",
+      "result": "passed",
+      "seconds": 0.074
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testReadOnlyInventoryCannotBeRemovedMovedOrForged",
+      "result": "passed",
+      "seconds": 0.026
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testRecipeInvalidCountAndChangedScopeAreRejected",
+      "result": "passed",
+      "seconds": 0.022
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testRecipeUnlockPreservesOtherCountsAndMalformedRecordsExactly",
+      "result": "passed",
+      "seconds": 0.048
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testStorageAcceptsCanonicalInitialQuantityAndRejectsDuplicateIDs",
+      "result": "passed",
+      "seconds": 0.126
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+      "test": "testWrappedRecipesKeepStructureAndMalformedValuesStayReadOnly",
+      "result": "passed",
+      "seconds": 0.068
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testBackupManifestDetectsTamperedData",
+      "result": "passed",
+      "seconds": 0.027
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testBundledCatalogHasFullUpstreamData",
+      "result": "passed",
+      "seconds": 0.034
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testBundledCropCatalogIsCompleteAndInternallyConsistent",
+      "result": "passed",
+      "seconds": 0.013
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testBundledRecipeCatalogHasCompleteChineseNames",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testCatalogAndBackupInitializationSurviveUnavailableTransactionDirectory",
+      "result": "passed",
+      "seconds": 0.062
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testCodecReadsStandardZlibFixture",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testCoordinatedWriteUpdatesSelectedFileWithoutReplacingIt",
+      "result": "passed",
+      "seconds": 0.012
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testCopyImportCancellationDoesNotLeakSelectionIntoNextPresentation",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testCopyImportCreatesIndependentAppOwnedPair",
+      "result": "passed",
+      "seconds": 0.02
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testCopyImportDismissalBeforeSelectionIsConsumedOnce",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testCopyImportSelectionBeforeDismissalIsConsumedOnce",
+      "result": "passed",
+      "seconds": 0.0
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testCropGrowthSpeedMirrorsGamePhaseRules",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testCropPlannerChargesInitialSeedsBeforeFirstHarvest",
+      "result": "passed",
+      "seconds": 0.004
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testCropPlannerSchedulesCrossSeasonRegrowthAndProfit",
+      "result": "passed",
+      "seconds": 0.006
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testDiscoversSaveFoldersFromAuthorizedStardewRoot",
+      "result": "passed",
+      "seconds": 0.012
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testFarmhouseAndMagicFarmActionsRoundTripWithoutRemovingNormalObjects",
+      "result": "passed",
+      "seconds": 0.008
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testFarmSnapshotExtractsActualEntitiesCountsAndCoordinates",
+      "result": "passed",
+      "seconds": 0.067
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testGlobalKeyboardReturnAccessoryInstallsOnEveryUIKitTextInputKind",
+      "result": "passed",
+      "seconds": 0.06
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testInterruptedMixedPairIsRecoveredFromBackup",
+      "result": "passed",
+      "seconds": 0.057
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testLargeLocalSaveLoadingDiagnostics",
+      "result": "passed",
+      "seconds": 1.75
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testLazyXMLTraversalPreservesOrderAndStopsAtFirstMatch",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testLegacyBackupManifestWithoutHashesRemainsReadable",
+      "result": "passed",
+      "seconds": 0.018
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testMagicMapCanRemoveOneSelectedDebrisWithoutTouchingNeighbors",
+      "result": "passed",
+      "seconds": 0.006
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testModern16HouseProgressWalletProfessionsAndAnimalsRoundTrip",
+      "result": "passed",
+      "seconds": 0.007
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testMovingEquivalentItemsStillProducesInventoryDiffs",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testParseEditRenderAndReparsePair",
+      "result": "passed",
+      "seconds": 0.004
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testPlainAndZlibCodecRoundTrips",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testSaveDiscoveryReportsRootWithoutValidSaves",
+      "result": "passed",
+      "seconds": 0.007
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testSessionEditingFreezeRejectsLateBindingsButCanInstallCommittedSnapshot",
+      "result": "passed",
+      "seconds": 0.018
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testSnapshotStillPrefersNamedFarmInsideWrappedLocations",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testTeaBushGrowsAcrossOutdoorWinterButOnlyHarvestsInProducingSeasons",
+      "result": "passed",
+      "seconds": 0.029
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testTransactionWritesPairAndCreatesRestorableBackup",
+      "result": "passed",
+      "seconds": 0.032
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testUnchangedExtendedValuesSurviveAnUnrelatedEdit",
+      "result": "passed",
+      "seconds": 0.005
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testValidationRejectsUnsafeValues",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testWorkerPreparesSnapshotAndRefreshesItAfterCommittedMapChanges",
+      "result": "passed",
+      "seconds": 0.039
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testWorkerPreservesInventoryBaselineWhenReparsingForUnrelatedEdit",
+      "result": "passed",
+      "seconds": 0.004
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testWorkerRejectsInvalidTargetBeforeCreatingBackupOrWritingSource",
+      "result": "passed",
+      "seconds": 0.021
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testWorkerTransfersOnlyFreshParsedTreesAndReturnsVerifiedPair",
+      "result": "passed",
+      "seconds": 0.043
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testXMLTreePreservesUnknownElementsAndEscapesText",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ToolDirectoryTests",
+      "test": "testEveryEditorHasOneCategoryAndStableIdentifier",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.ToolDirectoryTests",
+      "test": "testSearchIgnoresCategoryAndAcceptsWhitespaceAndAliases",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.TrackerMetricsTests",
+      "test": "testCollectionFootprintIsAnObservedCountNotPerfection",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.TrackerMetricsTests",
+      "test": "testDraftsAndClearStateHaveDistinctStatus",
+      "result": "passed",
+      "seconds": 0.023
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.TrackerMetricsTests",
+      "test": "testEmptySkillsHaveNoArtificialMaximumOrCompletedProgress",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.TrackerMetricsTests",
+      "test": "testProgressDoesNotInventCompletionForMissingTotals",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.TrackerMetricsTests",
+      "test": "testProgressStaysWithinItsDisplayRange",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.TrackerMetricsTests",
+      "test": "testSkillSummaryUsesAvailableSkillsAndClampsExtendedLevels",
+      "result": "passed",
+      "seconds": 0.006
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.TrackerMetricsTests",
+      "test": "testWarningsRemainVisibleEvenWithoutDraftsOrAlongsideDrafts",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+      "test": "testBackupExportsWithoutOriginalFilesOrEditingSession",
+      "result": "passed",
+      "seconds": 0.016
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+      "test": "testBoundKnownMixedPairRestoresOriginal",
+      "result": "passed",
+      "seconds": 0.038
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+      "test": "testFailureDuringSecondWriteRestoresBothOriginalFiles",
+      "result": "passed",
+      "seconds": 0.038
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+      "test": "testInvalidRenderedInfoIsRejectedBeforeSourceWrites",
+      "result": "passed",
+      "seconds": 0.014
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+      "test": "testProtectedRecoveryPointSurvivesAutomaticRetention",
+      "result": "passed",
+      "seconds": 0.058
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+      "test": "testRollbackFailureRetainsJournalAndExportableProtectedBackup",
+      "result": "passed",
+      "seconds": 0.019
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+      "test": "testSameFarmNameAtDifferentSourcesDoesNotShareJournal",
+      "result": "passed",
+      "seconds": 0.038
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+      "test": "testUnboundLegacyJournalNeverGuessesSourceFromFarmName",
+      "result": "passed",
+      "seconds": 0.038
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+      "test": "testUnknownNewProgressIsPreservedAndNeedsExplicitChoice",
+      "result": "passed",
+      "seconds": 0.07
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testColorChangeDoesNotInventOrRepairSummaryFields",
+      "result": "passed",
+      "seconds": 0.005
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testColorChannelsAndPackedValueRoundTripWithoutLosingMetadata",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testColorDiffUndoRestoresOneFieldAndKeepsOtherDraftChanges",
+      "result": "passed",
+      "seconds": 0.004
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testColorWriteBoundaryRejectsMissingAddedInvalidAndAlphaChanges",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testHexColorValidationAcceptsSixDigitsOnly",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testInvalidOrMissingColorsStayReadOnlyAndUnchanged",
+      "result": "passed",
+      "seconds": 0.014
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testMapRegionFiltersBothActionsAndUndoKeepsOtherSelections",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testMapRejectsInvalidRegionsAndNonActionableKeys",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testMapSearchScopeAndToggleReflectDraftImmediately",
+      "result": "passed",
+      "seconds": 0.009
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testNilUnknownAndAmbiguousRoomFieldsStayReadOnly",
+      "result": "passed",
+      "seconds": 0.007
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testPackedOnlyColorsPreserveRepresentationAndSummaryAlpha",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testRoomBatchChangesSelectedRoomsOfSameSurfaceKindOnly",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testRoomEditPreservesUntouchedLexicalValuesAndFurniture",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testRoomRestoreKeepsOtherRoomsAndUpgradeDraft",
+      "result": "passed",
+      "seconds": 0.005
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testRoomSearchAndStyleLibraryCoverKnownRanges",
+      "result": "passed",
+      "seconds": 0.003
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testRoomWriteBoundaryRejectsAddedRemovedOrRelocatedSurfaces",
+      "result": "passed",
+      "seconds": 0.001
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testSingleCropWateringChangesExactCoordinateOnly",
+      "result": "passed",
+      "seconds": 0.002
+    },
+    {
+      "deviceFamily": "iphone",
+      "deviceName": "iPhone SE (3rd generation)",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127891.092,
+      "suite": "PelicanSaveEditorTests.WorldEditorTests",
+      "test": "testWateringPreservesWetDeadCustomNullableAndMissingStates",
+      "result": "passed",
+      "seconds": 0.007
+    },
+    {
+      "deviceFamily": "mini",
+      "deviceName": "iPad mini (A17 Pro)",
+      "folder": "initial-mini-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127899.391,
+      "suite": "PelicanSaveEditorUITests.PelicanBrandUITests",
+      "test": "testAllToolCategoriesOpenAndKeepDraft",
+      "result": "passed",
+      "seconds": 243.922
+    },
+    {
+      "deviceFamily": "mini",
+      "deviceName": "iPad mini (A17 Pro)",
+      "folder": "initial-mini-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127899.391,
+      "suite": "PelicanSaveEditorUITests.PelicanBrandUITests",
+      "test": "testChildEditorAndMapReviewReturnToTheirSource",
+      "result": "passed",
+      "seconds": 47.596
+    },
+    {
+      "deviceFamily": "mini",
+      "deviceName": "iPad mini (A17 Pro)",
+      "folder": "initial-mini-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127899.391,
+      "suite": "PelicanSaveEditorUITests.PelicanBrandUITests",
+      "test": "testNumericInputCanReturnReviewAndUndoWithoutLosingDraft",
+      "result": "passed",
+      "seconds": 40.489
+    },
+    {
+      "deviceFamily": "mini",
+      "deviceName": "iPad mini (A17 Pro)",
+      "folder": "initial-mini-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127899.391,
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testAnimalRenameSaveKeepsSameAnimalAfterListReorders",
+      "result": "passed",
+      "seconds": 70.293
+    },
+    {
+      "deviceFamily": "mini",
+      "deviceName": "iPad mini (A17 Pro)",
+      "folder": "flow-final-mini-export-flow-1",
+      "run": 37213660650,
+      "sourceCommit": "2d69094e3d27b34fef4eaf34291405ed2d668f60",
+      "finishTime": 1791129012.338,
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testCancelledExportCanResumeAfterRelaunchWithoutSavingAgain",
+      "result": "passed",
+      "seconds": 105.564
+    },
+    {
+      "deviceFamily": "mini",
+      "deviceName": "iPad mini (A17 Pro)",
+      "folder": "flow-final-mini-export-flow-1",
+      "run": 37213660650,
+      "sourceCommit": "2d69094e3d27b34fef4eaf34291405ed2d668f60",
+      "finishTime": 1791129012.338,
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testChangedTargetIsPreservedUntilReinspectionAndExplicitConfirmation",
+      "result": "passed",
+      "seconds": 96.285
+    },
+    {
+      "deviceFamily": "mini",
+      "deviceName": "iPad mini (A17 Pro)",
+      "folder": "initial-mini-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127899.391,
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testDraftSurvivesTerminationAndCanBeRecoveredThenDiscarded",
+      "result": "passed",
+      "seconds": 55.553
+    },
+    {
+      "deviceFamily": "mini",
+      "deviceName": "iPad mini (A17 Pro)",
+      "folder": "initial-mini-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127899.391,
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testReloadFromReviewThenEditAndSaveUsesCurrentSession",
+      "result": "passed",
+      "seconds": 90.961
+    },
+    {
+      "deviceFamily": "mini",
+      "deviceName": "iPad mini (A17 Pro)",
+      "folder": "flow-final-mini-export-flow-1",
+      "run": 37213660650,
+      "sourceCommit": "2d69094e3d27b34fef4eaf34291405ed2d668f60",
+      "finishTime": 1791129012.338,
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testSaveAndExportRunsContinuouslyThenReturnsToSameEditor",
+      "result": "passed",
+      "seconds": 116.764
+    },
+    {
+      "deviceFamily": "mini",
+      "deviceName": "iPad mini (A17 Pro)",
+      "folder": "initial-mini-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127899.391,
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testSavedCopySurvivesTerminationAndOpensVerifiedExportScreen",
+      "result": "passed",
+      "seconds": 45.152
+    },
+    {
+      "deviceFamily": "mini",
+      "deviceName": "iPad mini (A17 Pro)",
+      "folder": "initial-mini-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127899.391,
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testSaveReturnAndContinueEditingPersistsBothChanges",
+      "result": "passed",
+      "seconds": 65.008
+    },
+    {
+      "deviceFamily": "mini",
+      "deviceName": "iPad mini (A17 Pro)",
+      "folder": "flow-final-mini-export-flow-1",
+      "run": 37213660650,
+      "sourceCommit": "2d69094e3d27b34fef4eaf34291405ed2d668f60",
+      "finishTime": 1791129012.338,
+      "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+      "test": "testWrongFarmIsRejectedAndCorrectTargetCanBeSelectedAgain",
+      "result": "passed",
+      "seconds": 67.577
+    },
+    {
+      "deviceFamily": "mini",
+      "deviceName": "iPad mini (A17 Pro)",
+      "folder": "initial-mini-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "finishTime": 1791127899.391,
+      "suite": "PelicanSaveEditorTests.SaveCoreTests",
+      "test": "testGlobalKeyboardReturnAccessoryInstallsOnEveryUIKitTextInputKind",
+      "result": "passed",
+      "seconds": 0.066
+    }
+  ],
+  "runtimeEquivalentSourceCommits": [
+    "2d69094e3d27b34fef4eaf34291405ed2d668f60",
+    "42a02acdce338fbf93090d4d830f62ebbd6b1711",
+    "9735a26e25053602d0cb32852cf2e536a8850b21",
+    "a99493432f0fa522f1903f91e8453c2b4f3a6e34",
+    "ed5b68287f99c71b1d64752a98bba736966f1db8",
+    "f9fe6ed8b87b0d5c5b5fc4a25da0aa81896d8d85"
+  ],
+  "artifacts": [
+    {
+      "artifact": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\build22-validation\\picker-iphone-export-picker-1",
+      "folder": "picker-iphone-export-picker-1",
+      "run": 37212409115,
+      "sourceCommit": "42a02acdce338fbf93090d4d830f62ebbd6b1711",
+      "result": "Failed",
+      "runtimeEquivalentToSourceCommit": true,
+      "deviceFamily": "iphone",
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "48B2DA2E-AF18-4E36-BB25-B25969A4EBCF",
+        "deviceName": "iPhone SE (3rd generation)",
+        "modelName": "iPhone SE (3rd generation)",
+        "osBuildNumber": "23C54",
+        "osVersion": "26.2",
+        "platform": "iOS Simulator"
+      },
+      "startTime": 1791127156.813,
+      "finishTime": 1791127419.472,
+      "total": 1,
+      "passed": 0,
+      "failed": 1,
+      "skipped": 0,
+      "suiteCounts": {
+        "PelicanSaveEditorUITests.PersistenceUITests": 1
+      },
+      "logSHA256": "a721183239d461403238741c52d9dc42bf1276fdf8e255cdda0d5a7a9266254c",
+      "cases": [
+        {
+          "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+          "test": "testSystemExportPickersCanCancelAndReopenWithoutLosingSavedCopy",
+          "result": "failed",
+          "seconds": 98.155
+        }
+      ]
+    },
+    {
+      "artifact": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\build22-validation\\picker-mini-export-picker-1",
+      "folder": "picker-mini-export-picker-1",
+      "run": 37212409115,
+      "sourceCommit": "42a02acdce338fbf93090d4d830f62ebbd6b1711",
+      "result": "Failed",
+      "runtimeEquivalentToSourceCommit": true,
+      "deviceFamily": "mini",
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "9D9BF050-F6F5-4D32-84C0-4B7AC57F63EF",
+        "deviceName": "iPad mini (A17 Pro)",
+        "modelName": "iPad mini (A17 Pro)",
+        "osBuildNumber": "23C54",
+        "osVersion": "26.2",
+        "platform": "iOS Simulator"
+      },
+      "startTime": 1791127436.458,
+      "finishTime": 1791127762.847,
+      "total": 1,
+      "passed": 0,
+      "failed": 1,
+      "skipped": 0,
+      "suiteCounts": {
+        "PelicanSaveEditorUITests.PersistenceUITests": 1
+      },
+      "logSHA256": "b6cb31343913ff92c076b688a31bc79402bd9c3c0f263c536f1ed01144bf0806",
+      "cases": [
+        {
+          "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+          "test": "testSystemExportPickersCanCancelAndReopenWithoutLosingSavedCopy",
+          "result": "failed",
+          "seconds": 130.961
+        }
+      ]
+    },
+    {
+      "artifact": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\build22-validation\\initial-iphone-editor-lifecycle-1",
+      "folder": "initial-iphone-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "result": "Failed",
+      "runtimeEquivalentToSourceCommit": true,
+      "deviceFamily": "iphone",
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "48B2DA2E-AF18-4E36-BB25-B25969A4EBCF",
+        "deviceName": "iPhone SE (3rd generation)",
+        "modelName": "iPhone SE (3rd generation)",
+        "osBuildNumber": "23C54",
+        "osVersion": "26.2",
+        "platform": "iOS Simulator"
+      },
+      "startTime": 1791126848.804,
+      "finishTime": 1791127891.092,
+      "total": 192,
+      "passed": 188,
+      "failed": 4,
+      "skipped": 0,
+      "suiteCounts": {
+        "PelicanSaveEditorUITests.PelicanBrandUITests": 3,
+        "PelicanSaveEditorUITests.PersistenceUITests": 9,
+        "PelicanSaveEditorTests.ExpandedEditorTests": 23,
+        "PelicanSaveEditorTests.ExportPresentationTests": 2,
+        "PelicanSaveEditorTests.GameLogicRegressionTests": 10,
+        "PelicanSaveEditorTests.ReferenceFeatureTests": 14,
+        "PelicanSaveEditorTests.ReliabilityRegressionTests": 25,
+        "PelicanSaveEditorTests.RepairRegressionTests": 31,
+        "PelicanSaveEditorTests.SaveCoreTests": 39,
+        "PelicanSaveEditorTests.ToolDirectoryTests": 2,
+        "PelicanSaveEditorTests.TrackerMetricsTests": 7,
+        "PelicanSaveEditorTests.TransactionRegressionTests": 9,
+        "PelicanSaveEditorTests.WorldEditorTests": 18
+      },
+      "logSHA256": "277df86a22c8057e899624e08e60e1b9613eb66d74b2f2b83bbc8b346744b2ab",
+      "cases": [
+        {
+          "suite": "PelicanSaveEditorUITests.PelicanBrandUITests",
+          "test": "testAllToolCategoriesOpenAndKeepDraft",
+          "result": "passed",
+          "seconds": 229.342
+        },
+        {
+          "suite": "PelicanSaveEditorUITests.PelicanBrandUITests",
+          "test": "testChildEditorAndMapReviewReturnToTheirSource",
+          "result": "passed",
+          "seconds": 55.656
+        },
+        {
+          "suite": "PelicanSaveEditorUITests.PelicanBrandUITests",
+          "test": "testNumericInputCanReturnReviewAndUndoWithoutLosingDraft",
+          "result": "passed",
+          "seconds": 43.735
+        },
+        {
+          "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+          "test": "testAnimalRenameSaveKeepsSameAnimalAfterListReorders",
+          "result": "passed",
+          "seconds": 79.423
+        },
+        {
+          "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+          "test": "testCancelledExportCanResumeAfterRelaunchWithoutSavingAgain",
+          "result": "failed",
+          "seconds": 68.846
+        },
+        {
+          "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+          "test": "testChangedTargetIsPreservedUntilReinspectionAndExplicitConfirmation",
+          "result": "failed",
+          "seconds": 37.551
+        },
+        {
+          "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+          "test": "testDraftSurvivesTerminationAndCanBeRecoveredThenDiscarded",
+          "result": "passed",
+          "seconds": 60.237
+        },
+        {
+          "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+          "test": "testReloadFromReviewThenEditAndSaveUsesCurrentSession",
+          "result": "passed",
+          "seconds": 60.809
+        },
+        {
+          "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+          "test": "testSaveAndExportRunsContinuouslyThenReturnsToSameEditor",
+          "result": "failed",
+          "seconds": 29.601
+        },
+        {
+          "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+          "test": "testSavedCopySurvivesTerminationAndOpensVerifiedExportScreen",
+          "result": "passed",
+          "seconds": 42.378
+        },
+        {
+          "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+          "test": "testSaveReturnAndContinueEditingPersistsBothChanges",
+          "result": "passed",
+          "seconds": 45.156
+        },
+        {
+          "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+          "test": "testWrongFarmIsRejectedAndCorrectTargetCanBeSelectedAgain",
+          "result": "failed",
+          "seconds": 48.457
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+          "test": "testAddingAtLastChestSlotPreservesOpaqueChildrenAndClearingKeepsSerializedFloor",
+          "result": "passed",
+          "seconds": 0.157
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+          "test": "testBigChestSeventySlotsAndOrdinaryFridgeSupported",
+          "result": "passed",
+          "seconds": 0.057
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+          "test": "testBundlesReadDefinitionsProgressChoicesAndGoldWithoutChangingCompletion",
+          "result": "passed",
+          "seconds": 0.085
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+          "test": "testBundleSupplyAddsExactMaterialsToEmptySlotsAndLeavesAllQuestStateUnchanged",
+          "result": "passed",
+          "seconds": 0.149
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+          "test": "testBundleSupplyInsufficientSpaceInvalidSelectionsAndJojaAreAtomicFailures",
+          "result": "passed",
+          "seconds": 0.12
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+          "test": "testChestQuantityPreservesQualitySpellingMetadataOtherContainersAndSummary",
+          "result": "passed",
+          "seconds": 0.048
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+          "test": "testDiscoversFarmNestedShedAndFridgeWithoutTreatingFurnitureAsChest",
+          "result": "passed",
+          "seconds": 0.023
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+          "test": "testDuplicateObjectCoordinatesCannotTargetTheWrongContainer",
+          "result": "passed",
+          "seconds": 0.031
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+          "test": "testExpandedDiffsGroupAndUndoIndependentlyIncludingMaterialSupply",
+          "result": "passed",
+          "seconds": 0.064
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+          "test": "testFinishingMachineKeepsOutputIdentityQuantityQualityAndMetadata",
+          "result": "passed",
+          "seconds": 0.079
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+          "test": "testLegacyNumericWeatherRetainsNumericEncodingAndLuckRange",
+          "result": "passed",
+          "seconds": 0.063
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+          "test": "testMissingLuckCannotBeInventedAndIslandRejectsSnow",
+          "result": "passed",
+          "seconds": 0.027
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+          "test": "testReadyMachineCannotBeFinishedAgainAndForgedMachineRejected",
+          "result": "passed",
+          "seconds": 0.032
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+          "test": "testSharedSpecialAndOversizedChestsRemainReadOnly",
+          "result": "passed",
+          "seconds": 0.117
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+          "test": "testSpecialConflictingDuplicateAndMissingWeatherRemainsUnavailable",
+          "result": "passed",
+          "seconds": 0.333
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+          "test": "testStorageWriteBoundaryRejectsSlotLayoutTemplateAndItemMetadataTampering",
+          "result": "passed",
+          "seconds": 0.028
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+          "test": "testTomorrowWeatherSynchronizesDefaultAliasesAndPreservesCurrentWeatherAndIsland",
+          "result": "passed",
+          "seconds": 0.063
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+          "test": "testUnknownEmptyCaskAndMalformedMachinesAreExcluded",
+          "result": "passed",
+          "seconds": 0.098
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+          "test": "testUnknownQuestAndMalformedItemsCannotBeEditedOrCleared",
+          "result": "passed",
+          "seconds": 0.222
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+          "test": "testUnreadableDuplicateAndMissingBundleStateNeverAssumedIncomplete",
+          "result": "passed",
+          "seconds": 0.123
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+          "test": "testUnrelatedEditsDoNotSerializeSyntheticStorageSlotsOrNormalizeWeather",
+          "result": "passed",
+          "seconds": 0.057
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+          "test": "testWorkerReparsePreservesUneditedStorageUUIDBaseline",
+          "result": "passed",
+          "seconds": 0.059
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ExpandedEditorTests",
+          "test": "testZlibExpandedEditsRoundTripWithoutChangingOriginalTree",
+          "result": "passed",
+          "seconds": 0.053
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ExportPresentationTests",
+          "test": "testFileExportCancellationAndLateCallbacksDoNotAffectNextPresentation",
+          "result": "passed",
+          "seconds": 0.003
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ExportPresentationTests",
+          "test": "testFileExportSuccessIsConsumedOnceInEitherCallbackOrder",
+          "result": "passed",
+          "seconds": 0.001
+        },
+        {
+          "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+          "test": "testCodecAcceptsUTF8CharacterAcrossOldPrefixBoundary",
+          "result": "passed",
+          "seconds": 0.003
+        },
+        {
+          "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+          "test": "testDebrisCleanupPreservesTypeNamespacesContainersAndModObjects",
+          "result": "passed",
+          "seconds": 0.007
+        },
+        {
+          "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+          "test": "testEightStringIDObjectsHaveChineseNamesAndRoundTrip",
+          "result": "passed",
+          "seconds": 0.044
+        },
+        {
+          "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+          "test": "testEveryDiffIsGroupedAndEachEditCanBeUndone",
+          "result": "passed",
+          "seconds": 0.001
+        },
+        {
+          "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+          "test": "testPairingRejectsWrongRootAndDifferentFarmerButAllowsRenamedSameID",
+          "result": "passed",
+          "seconds": 0.002
+        },
+        {
+          "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+          "test": "testProfessionValidationRejectsConflictsButPreservesUnrelatedExistingExtensions",
+          "result": "passed",
+          "seconds": 0.001
+        },
+        {
+          "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+          "test": "testRenamingOneAnimalPreservesOtherAnimalsAndIndependentAges",
+          "result": "passed",
+          "seconds": 0.004
+        },
+        {
+          "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+          "test": "testSingleDebrisUndoDoesNotUndoNeighborAndEqualCountSelectionIsVisible",
+          "result": "passed",
+          "seconds": 0.001
+        },
+        {
+          "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+          "test": "testSkillLevelAndExperienceUseSameProfessionRules",
+          "result": "passed",
+          "seconds": 0.001
+        },
+        {
+          "suite": "PelicanSaveEditorTests.GameLogicRegressionTests",
+          "test": "testWalletFalseIsFalseAndOnlyEditedLegacyKeyIsMigrated",
+          "result": "passed",
+          "seconds": 0.004
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+          "test": "testCapacityExpansionRoundTripsBothFilesAndPreservesOpaqueItems",
+          "result": "passed",
+          "seconds": 0.041
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+          "test": "testCapacityUndoRemovesNewSlotEditsAndKeepsOldSlotEdits",
+          "result": "passed",
+          "seconds": 0.043
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+          "test": "testGiftResetChangesOnlyExistingCountersAndEachDiffCanBeUndone",
+          "result": "passed",
+          "seconds": 0.003
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+          "test": "testMissingGiftFieldsAreNotCreatedAndMalformedValuesArePreserved",
+          "result": "passed",
+          "seconds": 0.002
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+          "test": "testMissingMalformedAndModdedCapacitiesRemainUnchanged",
+          "result": "passed",
+          "seconds": 0.003
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+          "test": "testMissingPointsAndStatusStayReadOnly",
+          "result": "passed",
+          "seconds": 0.004
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+          "test": "testOriginalSerializedSlotsSurviveShrinkAndCannotReceiveNewHiddenItems",
+          "result": "passed",
+          "seconds": 0.03
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+          "test": "testRelationshipFiltersReflectGiftResetAndUndo",
+          "result": "passed",
+          "seconds": 0.002
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+          "test": "testRelationshipWriteBoundaryRejectsUnsupportedStatusAndFriendshipLimits",
+          "result": "passed",
+          "seconds": 0.002
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+          "test": "testScopedFullHeartsRespectsRelationshipsAndPreservesHigherAndUnknownPoints",
+          "result": "passed",
+          "seconds": 0.002
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+          "test": "testShrinkWithOccupiedTailFailsWithoutChangingDraft",
+          "result": "passed",
+          "seconds": 0.028
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+          "test": "testUneditedFriendshipXMLIsNotNormalizedWhenAnotherFriendChanges",
+          "result": "passed",
+          "seconds": 0.002
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+          "test": "testUnrelatedEditDoesNotSerializeSyntheticEmptySlotsOrInventSummaryCapacity",
+          "result": "passed",
+          "seconds": 0.002
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReferenceFeatureTests",
+          "test": "testWriteBoundaryRejectsInvalidCapacityAndSlotLayout",
+          "result": "passed",
+          "seconds": 0.001
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+          "test": "testActiveTransactionBlocksBackupUnprotectAndCopyDelete",
+          "result": "passed",
+          "seconds": 0.062
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+          "test": "testBackupExportCacheLeaseAndCleanupAndProtection",
+          "result": "passed",
+          "seconds": 0.041
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+          "test": "testChangedTargetAfterReviewAbortsWithoutWriting",
+          "result": "passed",
+          "seconds": 0.063
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+          "test": "testCopyLibraryNormalizesNewRootWithoutDirectorySlash",
+          "result": "passed",
+          "seconds": 0.024
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+          "test": "testCurrentAndDraftCopiesCannotBeDeletedThenExportedCopyCan",
+          "result": "passed",
+          "seconds": 0.089
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+          "test": "testDebrisRequiresUnambiguousFalseAndPreservesWhitespaceTruePlants",
+          "result": "passed",
+          "seconds": 0.003
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+          "test": "testDraftRejectsChangedPairAndPreservesCheckpoint",
+          "result": "passed",
+          "seconds": 0.034
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+          "test": "testDraftReopensAndRebindsInventoryUUIDs",
+          "result": "passed",
+          "seconds": 0.032
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+          "test": "testExportRecoveryTargetIsClearedWhenSwitchingOrClosingCopy",
+          "result": "passed",
+          "seconds": 0.262
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+          "test": "testExportRejectsWrongPlayerAndShowsChangedTarget",
+          "result": "passed",
+          "seconds": 0.081
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+          "test": "testExportReviewRejectsAnotherIdenticalCopyAndChangedLocalBytes",
+          "result": "passed",
+          "seconds": 0.114
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+          "test": "testFailedUnindexedImportCanBeRemovedWithoutTouchingOriginal",
+          "result": "passed",
+          "seconds": 0.038
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+          "test": "testFullDraftCheckpointPreservesNewItemsAndRebindsStorageItems",
+          "result": "passed",
+          "seconds": 0.049
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+          "test": "testIntentVerifierRejectsUnexpectedScalarChange",
+          "result": "passed",
+          "seconds": 0.005
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+          "test": "testLateFileExportRecordsCapturedCopyAndRejectsNewerSavedRevision",
+          "result": "passed",
+          "seconds": 0.202
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+          "test": "testLegacyCopyMigratesWithoutInventingOriginHashes",
+          "result": "passed",
+          "seconds": 0.023
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+          "test": "testMixedXMLTextCDATAWhitespaceAndCarriageReturnsSurviveMoneyEdit",
+          "result": "passed",
+          "seconds": 0.002
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+          "test": "testNilAndConflictingIDsNeverBecomeDebris",
+          "result": "passed",
+          "seconds": 0.001
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+          "test": "testQueuedDraftSaveDoesNotResurrectCheckpointAndFailedDraftCannotBeClosed",
+          "result": "passed",
+          "seconds": 0.165
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+          "test": "testSaveClearsDraftAndProtectsPendingExportFromDeletion",
+          "result": "passed",
+          "seconds": 0.043
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+          "test": "testSavedCopyIsDiscoverableAfterNewWorkerAndReopensExactBytes",
+          "result": "passed",
+          "seconds": 0.043
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+          "test": "testUnknownDraftSchemaAndCorruptDraftAreRetained",
+          "result": "passed",
+          "seconds": 0.022
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+          "test": "testUnsupportedMixedContainerMutationIsRejected",
+          "result": "passed",
+          "seconds": 0.001
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+          "test": "testUppercasePlayerIdentityAndDuplicateIDsAreChecked",
+          "result": "passed",
+          "seconds": 0.001
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ReliabilityRegressionTests",
+          "test": "testVerifiedExportBacksUpTargetAndRecordsExactWrittenPair",
+          "result": "passed",
+          "seconds": 0.094
+        },
+        {
+          "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+          "test": "testArtifactAndFishArrayCountsAndMalformedArrayAreDistinguished",
+          "result": "passed",
+          "seconds": 0.064
+        },
+        {
+          "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+          "test": "testBackgroundRenderRejectsUnappliedEdit",
+          "result": "passed",
+          "seconds": 0.048
+        },
+        {
+          "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+          "test": "testBackgroundRenderVerifiesEquipmentRecipeAndExpandedBackpack",
+          "result": "passed",
+          "seconds": 0.03
+        },
+        {
+          "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+          "test": "testCopyMoveAndCanonicalNondefaultQuantityRemainSupported",
+          "result": "passed",
+          "seconds": 0.112
+        },
+        {
+          "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+          "test": "testDuplicateAndMismatchedAnimalIDsRemainUntouched",
+          "result": "passed",
+          "seconds": 0.043
+        },
+        {
+          "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+          "test": "testDuplicateFriendshipsAreExcludedWithoutModifyingTheirXML",
+          "result": "passed",
+          "seconds": 0.048
+        },
+        {
+          "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+          "test": "testDuplicateInventoryContainerAndNilWithDataAreNotWritable",
+          "result": "passed",
+          "seconds": 0.055
+        },
+        {
+          "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+          "test": "testDuplicatePlayersAreNotSilentlyAccepted",
+          "result": "passed",
+          "seconds": 0.001
+        },
+        {
+          "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+          "test": "testEquipmentAndOrdinaryInventoryEditsCanBeSavedTogether",
+          "result": "passed",
+          "seconds": 0.055
+        },
+        {
+          "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+          "test": "testEquipmentBoundsNaNAndDamageOrderAreRejected",
+          "result": "passed",
+          "seconds": 0.028
+        },
+        {
+          "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+          "test": "testEquipmentChangesOnlySelectedFieldAndPreservesEnchantments",
+          "result": "passed",
+          "seconds": 0.062
+        },
+        {
+          "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+          "test": "testEquipmentChestMachineWateringAndDebrisRemovalSaveTogether",
+          "result": "passed",
+          "seconds": 0.055
+        },
+        {
+          "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+          "test": "testEquipmentUndoRestoresOneFieldWithoutLosingOtherChanges",
+          "result": "passed",
+          "seconds": 0.028
+        },
+        {
+          "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+          "test": "testEquipmentVerificationSurvivesLegacyWalletFieldRemoval",
+          "result": "passed",
+          "seconds": 0.085
+        },
+        {
+          "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+          "test": "testEquippedBootsWithoutExplicitTypeAndUnknownGearHandling",
+          "result": "passed",
+          "seconds": 0.027
+        },
+        {
+          "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+          "test": "testEquivalentCoordinateSpellingsCannotTargetTwoContainers",
+          "result": "passed",
+          "seconds": 0.023
+        },
+        {
+          "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+          "test": "testIntentVerifierChecksItemIDInsteadOfOnlyDisplayText",
+          "result": "passed",
+          "seconds": 0.052
+        },
+        {
+          "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+          "test": "testIntentVerifierRejectsMissingScalarWriteBeforeAnyFileWrite",
+          "result": "passed",
+          "seconds": 0.057
+        },
+        {
+          "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+          "test": "testInventoryMetadataAndDuplicateIdentityAreRejected",
+          "result": "passed",
+          "seconds": 0.038
+        },
+        {
+          "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+          "test": "testInventoryQuantityPreservesQualitySpellingAndOpaqueMetadata",
+          "result": "passed",
+          "seconds": 0.063
+        },
+        {
+          "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+          "test": "testMalformedDuplicateAndQualifiedCollectionIDs",
+          "result": "passed",
+          "seconds": 0.061
+        },
+        {
+          "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+          "test": "testMissingCollectionDataIsUnknownNotZeroProgress",
+          "result": "passed",
+          "seconds": 0.078
+        },
+        {
+          "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+          "test": "testMissingRecipeContainerCanBeCreatedAndDuplicateRecipeCannotBeEdited",
+          "result": "passed",
+          "seconds": 0.083
+        },
+        {
+          "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+          "test": "testMuseumCoordinatesAndNilCollectionsDoNotReportFalseCompletion",
+          "result": "passed",
+          "seconds": 0.082
+        },
+        {
+          "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+          "test": "testMuseumUsesDonationRecordsInsteadOfDiscoveryRecords",
+          "result": "passed",
+          "seconds": 0.077
+        },
+        {
+          "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+          "test": "testQuestUnknownAndMalformedInventoryAreReadOnly",
+          "result": "passed",
+          "seconds": 0.074
+        },
+        {
+          "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+          "test": "testReadOnlyInventoryCannotBeRemovedMovedOrForged",
+          "result": "passed",
+          "seconds": 0.026
+        },
+        {
+          "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+          "test": "testRecipeInvalidCountAndChangedScopeAreRejected",
+          "result": "passed",
+          "seconds": 0.022
+        },
+        {
+          "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+          "test": "testRecipeUnlockPreservesOtherCountsAndMalformedRecordsExactly",
+          "result": "passed",
+          "seconds": 0.048
+        },
+        {
+          "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+          "test": "testStorageAcceptsCanonicalInitialQuantityAndRejectsDuplicateIDs",
+          "result": "passed",
+          "seconds": 0.126
+        },
+        {
+          "suite": "PelicanSaveEditorTests.RepairRegressionTests",
+          "test": "testWrappedRecipesKeepStructureAndMalformedValuesStayReadOnly",
+          "result": "passed",
+          "seconds": 0.068
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testBackupManifestDetectsTamperedData",
+          "result": "passed",
+          "seconds": 0.027
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testBundledCatalogHasFullUpstreamData",
+          "result": "passed",
+          "seconds": 0.034
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testBundledCropCatalogIsCompleteAndInternallyConsistent",
+          "result": "passed",
+          "seconds": 0.013
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testBundledRecipeCatalogHasCompleteChineseNames",
+          "result": "passed",
+          "seconds": 0.002
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testCatalogAndBackupInitializationSurviveUnavailableTransactionDirectory",
+          "result": "passed",
+          "seconds": 0.062
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testCodecReadsStandardZlibFixture",
+          "result": "passed",
+          "seconds": 0.002
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testCoordinatedWriteUpdatesSelectedFileWithoutReplacingIt",
+          "result": "passed",
+          "seconds": 0.012
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testCopyImportCancellationDoesNotLeakSelectionIntoNextPresentation",
+          "result": "passed",
+          "seconds": 0.002
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testCopyImportCreatesIndependentAppOwnedPair",
+          "result": "passed",
+          "seconds": 0.02
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testCopyImportDismissalBeforeSelectionIsConsumedOnce",
+          "result": "passed",
+          "seconds": 0.001
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testCopyImportSelectionBeforeDismissalIsConsumedOnce",
+          "result": "passed",
+          "seconds": 0.0
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testCropGrowthSpeedMirrorsGamePhaseRules",
+          "result": "passed",
+          "seconds": 0.001
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testCropPlannerChargesInitialSeedsBeforeFirstHarvest",
+          "result": "passed",
+          "seconds": 0.004
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testCropPlannerSchedulesCrossSeasonRegrowthAndProfit",
+          "result": "passed",
+          "seconds": 0.006
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testDiscoversSaveFoldersFromAuthorizedStardewRoot",
+          "result": "passed",
+          "seconds": 0.012
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testFarmhouseAndMagicFarmActionsRoundTripWithoutRemovingNormalObjects",
+          "result": "passed",
+          "seconds": 0.008
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testFarmSnapshotExtractsActualEntitiesCountsAndCoordinates",
+          "result": "passed",
+          "seconds": 0.067
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testGlobalKeyboardReturnAccessoryInstallsOnEveryUIKitTextInputKind",
+          "result": "passed",
+          "seconds": 0.06
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testInterruptedMixedPairIsRecoveredFromBackup",
+          "result": "passed",
+          "seconds": 0.057
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testLargeLocalSaveLoadingDiagnostics",
+          "result": "passed",
+          "seconds": 1.75
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testLazyXMLTraversalPreservesOrderAndStopsAtFirstMatch",
+          "result": "passed",
+          "seconds": 0.001
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testLegacyBackupManifestWithoutHashesRemainsReadable",
+          "result": "passed",
+          "seconds": 0.018
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testMagicMapCanRemoveOneSelectedDebrisWithoutTouchingNeighbors",
+          "result": "passed",
+          "seconds": 0.006
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testModern16HouseProgressWalletProfessionsAndAnimalsRoundTrip",
+          "result": "passed",
+          "seconds": 0.007
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testMovingEquivalentItemsStillProducesInventoryDiffs",
+          "result": "passed",
+          "seconds": 0.002
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testParseEditRenderAndReparsePair",
+          "result": "passed",
+          "seconds": 0.004
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testPlainAndZlibCodecRoundTrips",
+          "result": "passed",
+          "seconds": 0.001
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testSaveDiscoveryReportsRootWithoutValidSaves",
+          "result": "passed",
+          "seconds": 0.007
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testSessionEditingFreezeRejectsLateBindingsButCanInstallCommittedSnapshot",
+          "result": "passed",
+          "seconds": 0.018
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testSnapshotStillPrefersNamedFarmInsideWrappedLocations",
+          "result": "passed",
+          "seconds": 0.001
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testTeaBushGrowsAcrossOutdoorWinterButOnlyHarvestsInProducingSeasons",
+          "result": "passed",
+          "seconds": 0.029
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testTransactionWritesPairAndCreatesRestorableBackup",
+          "result": "passed",
+          "seconds": 0.032
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testUnchangedExtendedValuesSurviveAnUnrelatedEdit",
+          "result": "passed",
+          "seconds": 0.005
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testValidationRejectsUnsafeValues",
+          "result": "passed",
+          "seconds": 0.003
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testWorkerPreparesSnapshotAndRefreshesItAfterCommittedMapChanges",
+          "result": "passed",
+          "seconds": 0.039
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testWorkerPreservesInventoryBaselineWhenReparsingForUnrelatedEdit",
+          "result": "passed",
+          "seconds": 0.004
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testWorkerRejectsInvalidTargetBeforeCreatingBackupOrWritingSource",
+          "result": "passed",
+          "seconds": 0.021
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testWorkerTransfersOnlyFreshParsedTreesAndReturnsVerifiedPair",
+          "result": "passed",
+          "seconds": 0.043
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testXMLTreePreservesUnknownElementsAndEscapesText",
+          "result": "passed",
+          "seconds": 0.001
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ToolDirectoryTests",
+          "test": "testEveryEditorHasOneCategoryAndStableIdentifier",
+          "result": "passed",
+          "seconds": 0.001
+        },
+        {
+          "suite": "PelicanSaveEditorTests.ToolDirectoryTests",
+          "test": "testSearchIgnoresCategoryAndAcceptsWhitespaceAndAliases",
+          "result": "passed",
+          "seconds": 0.001
+        },
+        {
+          "suite": "PelicanSaveEditorTests.TrackerMetricsTests",
+          "test": "testCollectionFootprintIsAnObservedCountNotPerfection",
+          "result": "passed",
+          "seconds": 0.001
+        },
+        {
+          "suite": "PelicanSaveEditorTests.TrackerMetricsTests",
+          "test": "testDraftsAndClearStateHaveDistinctStatus",
+          "result": "passed",
+          "seconds": 0.023
+        },
+        {
+          "suite": "PelicanSaveEditorTests.TrackerMetricsTests",
+          "test": "testEmptySkillsHaveNoArtificialMaximumOrCompletedProgress",
+          "result": "passed",
+          "seconds": 0.002
+        },
+        {
+          "suite": "PelicanSaveEditorTests.TrackerMetricsTests",
+          "test": "testProgressDoesNotInventCompletionForMissingTotals",
+          "result": "passed",
+          "seconds": 0.002
+        },
+        {
+          "suite": "PelicanSaveEditorTests.TrackerMetricsTests",
+          "test": "testProgressStaysWithinItsDisplayRange",
+          "result": "passed",
+          "seconds": 0.001
+        },
+        {
+          "suite": "PelicanSaveEditorTests.TrackerMetricsTests",
+          "test": "testSkillSummaryUsesAvailableSkillsAndClampsExtendedLevels",
+          "result": "passed",
+          "seconds": 0.006
+        },
+        {
+          "suite": "PelicanSaveEditorTests.TrackerMetricsTests",
+          "test": "testWarningsRemainVisibleEvenWithoutDraftsOrAlongsideDrafts",
+          "result": "passed",
+          "seconds": 0.001
+        },
+        {
+          "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+          "test": "testBackupExportsWithoutOriginalFilesOrEditingSession",
+          "result": "passed",
+          "seconds": 0.016
+        },
+        {
+          "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+          "test": "testBoundKnownMixedPairRestoresOriginal",
+          "result": "passed",
+          "seconds": 0.038
+        },
+        {
+          "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+          "test": "testFailureDuringSecondWriteRestoresBothOriginalFiles",
+          "result": "passed",
+          "seconds": 0.038
+        },
+        {
+          "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+          "test": "testInvalidRenderedInfoIsRejectedBeforeSourceWrites",
+          "result": "passed",
+          "seconds": 0.014
+        },
+        {
+          "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+          "test": "testProtectedRecoveryPointSurvivesAutomaticRetention",
+          "result": "passed",
+          "seconds": 0.058
+        },
+        {
+          "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+          "test": "testRollbackFailureRetainsJournalAndExportableProtectedBackup",
+          "result": "passed",
+          "seconds": 0.019
+        },
+        {
+          "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+          "test": "testSameFarmNameAtDifferentSourcesDoesNotShareJournal",
+          "result": "passed",
+          "seconds": 0.038
+        },
+        {
+          "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+          "test": "testUnboundLegacyJournalNeverGuessesSourceFromFarmName",
+          "result": "passed",
+          "seconds": 0.038
+        },
+        {
+          "suite": "PelicanSaveEditorTests.TransactionRegressionTests",
+          "test": "testUnknownNewProgressIsPreservedAndNeedsExplicitChoice",
+          "result": "passed",
+          "seconds": 0.07
+        },
+        {
+          "suite": "PelicanSaveEditorTests.WorldEditorTests",
+          "test": "testColorChangeDoesNotInventOrRepairSummaryFields",
+          "result": "passed",
+          "seconds": 0.005
+        },
+        {
+          "suite": "PelicanSaveEditorTests.WorldEditorTests",
+          "test": "testColorChannelsAndPackedValueRoundTripWithoutLosingMetadata",
+          "result": "passed",
+          "seconds": 0.002
+        },
+        {
+          "suite": "PelicanSaveEditorTests.WorldEditorTests",
+          "test": "testColorDiffUndoRestoresOneFieldAndKeepsOtherDraftChanges",
+          "result": "passed",
+          "seconds": 0.004
+        },
+        {
+          "suite": "PelicanSaveEditorTests.WorldEditorTests",
+          "test": "testColorWriteBoundaryRejectsMissingAddedInvalidAndAlphaChanges",
+          "result": "passed",
+          "seconds": 0.001
+        },
+        {
+          "suite": "PelicanSaveEditorTests.WorldEditorTests",
+          "test": "testHexColorValidationAcceptsSixDigitsOnly",
+          "result": "passed",
+          "seconds": 0.001
+        },
+        {
+          "suite": "PelicanSaveEditorTests.WorldEditorTests",
+          "test": "testInvalidOrMissingColorsStayReadOnlyAndUnchanged",
+          "result": "passed",
+          "seconds": 0.014
+        },
+        {
+          "suite": "PelicanSaveEditorTests.WorldEditorTests",
+          "test": "testMapRegionFiltersBothActionsAndUndoKeepsOtherSelections",
+          "result": "passed",
+          "seconds": 0.003
+        },
+        {
+          "suite": "PelicanSaveEditorTests.WorldEditorTests",
+          "test": "testMapRejectsInvalidRegionsAndNonActionableKeys",
+          "result": "passed",
+          "seconds": 0.002
+        },
+        {
+          "suite": "PelicanSaveEditorTests.WorldEditorTests",
+          "test": "testMapSearchScopeAndToggleReflectDraftImmediately",
+          "result": "passed",
+          "seconds": 0.009
+        },
+        {
+          "suite": "PelicanSaveEditorTests.WorldEditorTests",
+          "test": "testNilUnknownAndAmbiguousRoomFieldsStayReadOnly",
+          "result": "passed",
+          "seconds": 0.007
+        },
+        {
+          "suite": "PelicanSaveEditorTests.WorldEditorTests",
+          "test": "testPackedOnlyColorsPreserveRepresentationAndSummaryAlpha",
+          "result": "passed",
+          "seconds": 0.003
+        },
+        {
+          "suite": "PelicanSaveEditorTests.WorldEditorTests",
+          "test": "testRoomBatchChangesSelectedRoomsOfSameSurfaceKindOnly",
+          "result": "passed",
+          "seconds": 0.002
+        },
+        {
+          "suite": "PelicanSaveEditorTests.WorldEditorTests",
+          "test": "testRoomEditPreservesUntouchedLexicalValuesAndFurniture",
+          "result": "passed",
+          "seconds": 0.003
+        },
+        {
+          "suite": "PelicanSaveEditorTests.WorldEditorTests",
+          "test": "testRoomRestoreKeepsOtherRoomsAndUpgradeDraft",
+          "result": "passed",
+          "seconds": 0.005
+        },
+        {
+          "suite": "PelicanSaveEditorTests.WorldEditorTests",
+          "test": "testRoomSearchAndStyleLibraryCoverKnownRanges",
+          "result": "passed",
+          "seconds": 0.003
+        },
+        {
+          "suite": "PelicanSaveEditorTests.WorldEditorTests",
+          "test": "testRoomWriteBoundaryRejectsAddedRemovedOrRelocatedSurfaces",
+          "result": "passed",
+          "seconds": 0.001
+        },
+        {
+          "suite": "PelicanSaveEditorTests.WorldEditorTests",
+          "test": "testSingleCropWateringChangesExactCoordinateOnly",
+          "result": "passed",
+          "seconds": 0.002
+        },
+        {
+          "suite": "PelicanSaveEditorTests.WorldEditorTests",
+          "test": "testWateringPreservesWetDeadCustomNullableAndMissingStates",
+          "result": "passed",
+          "seconds": 0.007
+        }
+      ]
+    },
+    {
+      "artifact": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\build22-validation\\initial-mini-editor-lifecycle-1",
+      "folder": "initial-mini-editor-lifecycle-1",
+      "run": 37212027843,
+      "sourceCommit": "ed5b68287f99c71b1d64752a98bba736966f1db8",
+      "result": "Failed",
+      "runtimeEquivalentToSourceCommit": true,
+      "deviceFamily": "mini",
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "9D9BF050-F6F5-4D32-84C0-4B7AC57F63EF",
+        "deviceName": "iPad mini (A17 Pro)",
+        "modelName": "iPad mini (A17 Pro)",
+        "osBuildNumber": "23C54",
+        "osVersion": "26.2",
+        "platform": "iOS Simulator"
+      },
+      "startTime": 1791126851.989,
+      "finishTime": 1791127899.391,
+      "total": 13,
+      "passed": 9,
+      "failed": 4,
+      "skipped": 0,
+      "suiteCounts": {
+        "PelicanSaveEditorUITests.PelicanBrandUITests": 3,
+        "PelicanSaveEditorUITests.PersistenceUITests": 9,
+        "PelicanSaveEditorTests.SaveCoreTests": 1
+      },
+      "logSHA256": "94c3c0bcab37356ae2f025a8749fa0fe1da705a078006a6dc5e02ad22520e830",
+      "cases": [
+        {
+          "suite": "PelicanSaveEditorUITests.PelicanBrandUITests",
+          "test": "testAllToolCategoriesOpenAndKeepDraft",
+          "result": "passed",
+          "seconds": 243.922
+        },
+        {
+          "suite": "PelicanSaveEditorUITests.PelicanBrandUITests",
+          "test": "testChildEditorAndMapReviewReturnToTheirSource",
+          "result": "passed",
+          "seconds": 47.596
+        },
+        {
+          "suite": "PelicanSaveEditorUITests.PelicanBrandUITests",
+          "test": "testNumericInputCanReturnReviewAndUndoWithoutLosingDraft",
+          "result": "passed",
+          "seconds": 40.489
+        },
+        {
+          "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+          "test": "testAnimalRenameSaveKeepsSameAnimalAfterListReorders",
+          "result": "passed",
+          "seconds": 70.293
+        },
+        {
+          "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+          "test": "testCancelledExportCanResumeAfterRelaunchWithoutSavingAgain",
+          "result": "failed",
+          "seconds": 55.989
+        },
+        {
+          "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+          "test": "testChangedTargetIsPreservedUntilReinspectionAndExplicitConfirmation",
+          "result": "failed",
+          "seconds": 27.634
+        },
+        {
+          "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+          "test": "testDraftSurvivesTerminationAndCanBeRecoveredThenDiscarded",
+          "result": "passed",
+          "seconds": 55.553
+        },
+        {
+          "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+          "test": "testReloadFromReviewThenEditAndSaveUsesCurrentSession",
+          "result": "passed",
+          "seconds": 90.961
+        },
+        {
+          "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+          "test": "testSaveAndExportRunsContinuouslyThenReturnsToSameEditor",
+          "result": "failed",
+          "seconds": 41.753
+        },
+        {
+          "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+          "test": "testSavedCopySurvivesTerminationAndOpensVerifiedExportScreen",
+          "result": "passed",
+          "seconds": 45.152
+        },
+        {
+          "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+          "test": "testSaveReturnAndContinueEditingPersistsBothChanges",
+          "result": "passed",
+          "seconds": 65.008
+        },
+        {
+          "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+          "test": "testWrongFarmIsRejectedAndCorrectTargetCanBeSelectedAgain",
+          "result": "failed",
+          "seconds": 35.599
+        },
+        {
+          "suite": "PelicanSaveEditorTests.SaveCoreTests",
+          "test": "testGlobalKeyboardReturnAccessoryInstallsOnEveryUIKitTextInputKind",
+          "result": "passed",
+          "seconds": 0.066
+        }
+      ]
+    },
+    {
+      "artifact": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\build22-validation\\picker-final-mini-export-picker-1",
+      "folder": "picker-final-mini-export-picker-1",
+      "run": 37213149874,
+      "sourceCommit": "9735a26e25053602d0cb32852cf2e536a8850b21",
+      "result": "Passed",
+      "runtimeEquivalentToSourceCommit": true,
+      "deviceFamily": "mini",
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "9D9BF050-F6F5-4D32-84C0-4B7AC57F63EF",
+        "deviceName": "iPad mini (A17 Pro)",
+        "modelName": "iPad mini (A17 Pro)",
+        "osBuildNumber": "23C54",
+        "osVersion": "26.2",
+        "platform": "iOS Simulator"
+      },
+      "startTime": 1791127970.396,
+      "finishTime": 1791128262.19,
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "suiteCounts": {
+        "PelicanSaveEditorUITests.PersistenceUITests": 1
+      },
+      "logSHA256": "9e0bd3fd1477192fc355f1082d6fbb7f17514705a06b83ed4797bc690bae5878",
+      "cases": [
+        {
+          "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+          "test": "testSystemExportPickersCanCancelAndReopenWithoutLosingSavedCopy",
+          "result": "passed",
+          "seconds": 118.8
+        }
+      ]
+    },
+    {
+      "artifact": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\build22-validation\\picker-final-iphone-export-picker-1",
+      "folder": "picker-final-iphone-export-picker-1",
+      "run": 37213149874,
+      "sourceCommit": "9735a26e25053602d0cb32852cf2e536a8850b21",
+      "result": "Failed",
+      "runtimeEquivalentToSourceCommit": true,
+      "deviceFamily": "iphone",
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "48B2DA2E-AF18-4E36-BB25-B25969A4EBCF",
+        "deviceName": "iPhone SE (3rd generation)",
+        "modelName": "iPhone SE (3rd generation)",
+        "osBuildNumber": "23C54",
+        "osVersion": "26.2",
+        "platform": "iOS Simulator"
+      },
+      "startTime": 1791127997.502,
+      "finishTime": 1791128355.879,
+      "total": 1,
+      "passed": 0,
+      "failed": 1,
+      "skipped": 0,
+      "suiteCounts": {
+        "PelicanSaveEditorUITests.PersistenceUITests": 1
+      },
+      "logSHA256": "079022df1a125d39e897430dcc313f1cb9cd704dc3ba3b8c10281460c514d4d5",
+      "cases": [
+        {
+          "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+          "test": "testSystemExportPickersCanCancelAndReopenWithoutLosingSavedCopy",
+          "result": "failed",
+          "seconds": 126.448
+        }
+      ]
+    },
+    {
+      "artifact": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\build22-validation\\flow-final-iphone-export-flow-1",
+      "folder": "flow-final-iphone-export-flow-1",
+      "run": 37213660650,
+      "sourceCommit": "2d69094e3d27b34fef4eaf34291405ed2d668f60",
+      "result": "Passed",
+      "runtimeEquivalentToSourceCommit": true,
+      "deviceFamily": "iphone",
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "48B2DA2E-AF18-4E36-BB25-B25969A4EBCF",
+        "deviceName": "iPhone SE (3rd generation)",
+        "modelName": "iPhone SE (3rd generation)",
+        "osBuildNumber": "23C54",
+        "osVersion": "26.2",
+        "platform": "iOS Simulator"
+      },
+      "startTime": 1791128457.954,
+      "finishTime": 1791128913.108,
+      "total": 4,
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "suiteCounts": {
+        "PelicanSaveEditorUITests.PersistenceUITests": 4
+      },
+      "logSHA256": "aebc5a7bc4caa3f54b2286b11a9ea077efa0822b54447bc989081d7138a70e26",
+      "cases": [
+        {
+          "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+          "test": "testCancelledExportCanResumeAfterRelaunchWithoutSavingAgain",
+          "result": "passed",
+          "seconds": 93.54
+        },
+        {
+          "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+          "test": "testChangedTargetIsPreservedUntilReinspectionAndExplicitConfirmation",
+          "result": "passed",
+          "seconds": 102.981
+        },
+        {
+          "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+          "test": "testSaveAndExportRunsContinuouslyThenReturnsToSameEditor",
+          "result": "passed",
+          "seconds": 80.452
+        },
+        {
+          "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+          "test": "testWrongFarmIsRejectedAndCorrectTargetCanBeSelectedAgain",
+          "result": "passed",
+          "seconds": 51.543
+        }
+      ]
+    },
+    {
+      "artifact": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\build22-validation\\flow-final-mini-export-flow-1",
+      "folder": "flow-final-mini-export-flow-1",
+      "run": 37213660650,
+      "sourceCommit": "2d69094e3d27b34fef4eaf34291405ed2d668f60",
+      "result": "Passed",
+      "runtimeEquivalentToSourceCommit": true,
+      "deviceFamily": "mini",
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "9D9BF050-F6F5-4D32-84C0-4B7AC57F63EF",
+        "deviceName": "iPad mini (A17 Pro)",
+        "modelName": "iPad mini (A17 Pro)",
+        "osBuildNumber": "23C54",
+        "osVersion": "26.2",
+        "platform": "iOS Simulator"
+      },
+      "startTime": 1791128374.103,
+      "finishTime": 1791129012.338,
+      "total": 4,
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "suiteCounts": {
+        "PelicanSaveEditorUITests.PersistenceUITests": 4
+      },
+      "logSHA256": "8c07645793a9c0ef3b24a66a8d345173b4506b67c135725234caa4f7885f742c",
+      "cases": [
+        {
+          "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+          "test": "testCancelledExportCanResumeAfterRelaunchWithoutSavingAgain",
+          "result": "passed",
+          "seconds": 105.564
+        },
+        {
+          "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+          "test": "testChangedTargetIsPreservedUntilReinspectionAndExplicitConfirmation",
+          "result": "passed",
+          "seconds": 96.285
+        },
+        {
+          "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+          "test": "testSaveAndExportRunsContinuouslyThenReturnsToSameEditor",
+          "result": "passed",
+          "seconds": 116.764
+        },
+        {
+          "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+          "test": "testWrongFarmIsRejectedAndCorrectTargetCanBeSelectedAgain",
+          "result": "passed",
+          "seconds": 67.577
+        }
+      ]
+    },
+    {
+      "artifact": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\build22-validation\\picker-phone-final-iphone-export-picker-1",
+      "folder": "picker-phone-final-iphone-export-picker-1",
+      "run": 37214108081,
+      "sourceCommit": "f9fe6ed8b87b0d5c5b5fc4a25da0aa81896d8d85",
+      "result": "Failed",
+      "runtimeEquivalentToSourceCommit": true,
+      "deviceFamily": "iphone",
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "48B2DA2E-AF18-4E36-BB25-B25969A4EBCF",
+        "deviceName": "iPhone SE (3rd generation)",
+        "modelName": "iPhone SE (3rd generation)",
+        "osBuildNumber": "23C54",
+        "osVersion": "26.2",
+        "platform": "iOS Simulator"
+      },
+      "startTime": 1791128793.865,
+      "finishTime": 1791129023.698,
+      "total": 1,
+      "passed": 0,
+      "failed": 1,
+      "skipped": 0,
+      "suiteCounts": {
+        "PelicanSaveEditorUITests.PersistenceUITests": 1
+      },
+      "logSHA256": "53cd9d0a5cc0ab29bae701573dcf113ec9d2c4f613f0ee3cee8fd167b4a19d02",
+      "cases": [
+        {
+          "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+          "test": "testSystemExportPickersCanCancelAndReopenWithoutLosingSavedCopy",
+          "result": "failed",
+          "seconds": 98.944
+        }
+      ]
+    },
+    {
+      "artifact": "C:\\Users\\32552\\Documents\\ChatGPT\\星露谷物语修改器 2\\build22-validation\\picker-phone-native-nav-iphone-export-picker-1",
+      "folder": "picker-phone-native-nav-iphone-export-picker-1",
+      "run": 37214842035,
+      "sourceCommit": "a99493432f0fa522f1903f91e8453c2b4f3a6e34",
+      "result": "Passed",
+      "runtimeEquivalentToSourceCommit": true,
+      "deviceFamily": "iphone",
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "48B2DA2E-AF18-4E36-BB25-B25969A4EBCF",
+        "deviceName": "iPhone SE (3rd generation)",
+        "modelName": "iPhone SE (3rd generation)",
+        "osBuildNumber": "23C54",
+        "osVersion": "26.2",
+        "platform": "iOS Simulator"
+      },
+      "startTime": 1791129631.639,
+      "finishTime": 1791129943.103,
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "suiteCounts": {
+        "PelicanSaveEditorUITests.PersistenceUITests": 1
+      },
+      "logSHA256": "38bd3764e5bb91cf11e4fb9a2018983a92ad19b8de78c9221c009abde2e077cf",
+      "cases": [
+        {
+          "suite": "PelicanSaveEditorUITests.PersistenceUITests",
+          "test": "testSystemExportPickersCanCancelAndReopenWithoutLosingSavedCopy",
+          "result": "passed",
+          "seconds": 179.073
+        }
+      ]
+    }
+  ]
+}
