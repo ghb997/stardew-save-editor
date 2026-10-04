@@ -77,7 +77,8 @@ final class EditorStore {
     private var draftWriteTask: Task<Void, Never>?
     private var draftRevision = 0
     private var draftWriteError: String?
-    var exportRecoveryDirectory: URL?
+    private(set) var exportRecoveryDirectory: URL?
+    private var exportRecoverySourceIdentity: String?
 
     init(worker: SaveWorkService? = nil) {
 #if DEBUG
@@ -158,6 +159,7 @@ final class EditorStore {
             else { try await self.preserveCurrentDraft() }
             if discardingChanges { try await self.worker.discardDraft(source: session.source) }
             self.session = nil
+            self.clearExportRecovery()
             self.draftRecoveryMessage = nil; self.recoveredDraft = nil; self.draftStorageMessage = nil
             await self.updateBackups(); await self.updateLocalCopies()
         }
@@ -272,6 +274,7 @@ final class EditorStore {
         lastLoadTimings = result.loadTimings
         loadedSession.setEditingLocked(isBusy)
         session = loadedSession
+        clearExportRecovery()
         draftStorageMessage = nil
         draftWriteError = nil
         recoveredDraft = nil; draftRecoveryMessage = nil
@@ -367,7 +370,9 @@ final class EditorStore {
         }
     }
     func closeUnresolvedDraft() {
+        guard !isBusy else { return }
         draftRecoveryMessage = nil; recoveredDraft = nil
+        clearExportRecovery()
         session = nil; clearMessages()
     }
     func openLocalCopy(_ record: LocalCopyRecord) {
@@ -416,38 +421,69 @@ final class EditorStore {
             await self.updateBackups()
         }
     }
+    func exportSnapshot(for session: SaveSession) -> SavedExportSnapshot? {
+        guard !isBusy, self.session === session, !session.hasChanges,
+              session.source.mode == .importedCopy, draftRecoveryMessage == nil else { return nil }
+        return SavedExportSnapshot(source: session.source, pair: session.pair)
+    }
     func prepareExport(directory: URL, completion: @escaping @MainActor (VerifiedExportReview?) -> Void) {
-        guard let session, !session.hasChanges else { completion(nil); return }
+        guard let session, let snapshot = exportSnapshot(for: session) else { completion(nil); return }
+        prepareExport(snapshot: snapshot, directory: directory, completion: completion)
+    }
+    func prepareExport(snapshot: SavedExportSnapshot, directory: URL,
+                       completion: @escaping @MainActor (VerifiedExportReview?) -> Void) {
+        guard !isBusy else { completion(nil); return }
+        guard let session, !session.hasChanges, draftRecoveryMessage == nil,
+              session.source.identity == snapshot.source.identity,
+              session.mainHash == snapshot.pair.mainHash, session.infoHash == snapshot.pair.infoHash else {
+            errorMessage = "当前副本或已保存内容已变化，请重新开始导出。"
+            completion(nil); return
+        }
         var review: VerifiedExportReview?
-        exportRecoveryDirectory = nil
+        clearExportRecovery()
         perform("正在核对游戏目标…", completion: { success in completion(success ? review : nil) }) {
-            do { review = try await self.worker.prepareExport(source: session.source, expected: session.pair, directory: directory) }
+            do { review = try await self.worker.prepareExport(source: snapshot.source, expected: snapshot.pair, directory: directory) }
             catch SaveTransactionError.recoveryConflict(let message) {
                 self.exportRecoveryDirectory = directory
+                self.exportRecoverySourceIdentity = snapshot.source.identity
                 throw SaveTransactionError.recoveryConflict(message)
             }
             await self.updateBackups()
         }
     }
     func keepExportTarget(completion: @escaping @MainActor (VerifiedExportReview?) -> Void) {
-        guard let directory = exportRecoveryDirectory else { completion(nil); return }
+        guard !isBusy else { completion(nil); return }
+        guard let directory = exportRecoveryDirectory, let session,
+              exportRecoverySourceIdentity == session.source.identity,
+              let snapshot = exportSnapshot(for: session) else {
+            clearExportRecovery(); completion(nil); return
+        }
         perform("正在保留目标当前文件…", completion: { success in
-            if success { self.prepareExport(directory: directory, completion: completion) } else { completion(nil) }
+            if success { self.prepareExport(snapshot: snapshot, directory: directory, completion: completion) } else { completion(nil) }
         }) { try await self.worker.keepExportTarget(directory) }
     }
     func commitExport(_ review: VerifiedExportReview, completion: @escaping @MainActor (Bool) -> Void) {
-        guard let session, !session.hasChanges else { completion(false); return }
+        guard !isBusy else { completion(false); return }
+        guard let session, !session.hasChanges, draftRecoveryMessage == nil,
+              session.source.identity == review.localSourceIdentity,
+              session.mainHash == review.localMainHash, session.infoHash == review.localInfoHash else {
+            errorMessage = "当前副本或已保存内容与核对时不同，请重新选择导出目标。"
+            completion(false); return
+        }
         perform("正在备份游戏目标、写入并校验…", completion: completion) {
             self.libraryWarning = try await self.worker.commitExport(source: session.source, review: review)
             await self.updateBackups(); await self.updateLocalCopies()
         }
     }
-    func recordFileExport() {
-        guard let session else { return }
-        perform("正在记录导出状态…") {
-            try await self.worker.markFileExport(source: session.source, pair: session.pair)
+    func recordFileExport(snapshot: SavedExportSnapshot, completion: @escaping @MainActor (Bool) -> Void) {
+        perform("正在记录导出状态…", completion: completion) {
+            try await self.worker.markFileExport(source: snapshot.source, pair: snapshot.pair)
             await self.updateLocalCopies()
         }
+    }
+    private func clearExportRecovery() {
+        exportRecoveryDirectory = nil
+        exportRecoverySourceIdentity = nil
     }
     func refreshBackups() {
         perform("正在读取备份列表…") { await self.updateBackups(reportFailure: true) }

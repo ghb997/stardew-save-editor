@@ -167,7 +167,7 @@ struct EditorShellView: View {
         case .recipes:
             RecipesEditorView(session: session)
         case .review:
-            ReviewChangesView(session: session)
+            ReviewChangesView(session: session, returnTitle: returnTitle)
         }
     }
 }

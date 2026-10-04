@@ -2,6 +2,7 @@ import Foundation
 
 struct VerifiedExportReview: Identifiable, Sendable {
     let id = UUID()
+    let localSourceIdentity: String
     let target: SaveSource
     let localMainHash: String
     let localInfoHash: String?
@@ -44,7 +45,7 @@ enum VerifiedExportRules {
         let isOrigin = origin.originMainHash != nil && targetPair.mainHash == origin.originMainHash
             && targetPair.infoHash == origin.originInfoHash
         let isAlreadyExported = targetPair.mainHash == pair.mainHash && targetPair.infoHash == pair.infoHash
-        return VerifiedExportReview(target: target, localMainHash: pair.mainHash, localInfoHash: pair.infoHash,
+        return VerifiedExportReview(localSourceIdentity: local.identity, target: target, localMainHash: pair.mainHash, localInfoHash: pair.infoHash,
             targetMainHash: targetPair.mainHash, targetInfoHash: targetPair.infoHash,
             localDescription: description(source), targetDescription: description(destination),
             targetChanged: !isOrigin && !isAlreadyExported, identityWarning: !verifiedIdentity)

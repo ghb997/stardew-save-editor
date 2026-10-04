@@ -233,6 +233,10 @@ actor SaveWorkService {
         if library.owns(source) { try library.discardCheckpoint(for: source) }
     }
     func markFileExport(source: SaveSource, pair: SavePairData) throws {
+        let current = try transactionsService().read(source: source)
+        guard current.mainHash == pair.mainHash, current.infoHash == pair.infoHash else {
+            throw SaveValidationError.invalid("导出期间副本已变化，仍保留待导出状态。")
+        }
         try localLibrary().markExported(source, mainHash: pair.mainHash, infoHash: pair.infoHash, verified: false)
     }
     func prepareExport(source: SaveSource, expected: SavePairData, directory: URL) throws -> VerifiedExportReview {
@@ -245,6 +249,9 @@ actor SaveWorkService {
             target: target, targetPair: transactions.read(source: target))
     }
     func commitExport(source: SaveSource, review: VerifiedExportReview) throws -> String? {
+        guard source.identity == review.localSourceIdentity else {
+            throw SaveValidationError.invalid("当前副本与核对时不同，请重新选择导出目标。")
+        }
         let transactions = try transactionsService()
         let pair = try transactions.read(source: source)
         guard pair.mainHash == review.localMainHash, pair.infoHash == review.localInfoHash else { throw SaveTransactionError.changedExternally }

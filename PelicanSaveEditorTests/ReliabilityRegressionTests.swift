@@ -348,6 +348,93 @@ final class ReliabilityRegressionTests: XCTestCase {
         XCTAssertTrue(backups.isEmpty)
     }
 
+    func testLateFileExportRecordsCapturedCopyAndRejectsNewerSavedRevision() async throws {
+        let root = try root(), original = pair(), service = worker(root)
+        let first = try imported(root, pair: original), second = try imported(root, pair: original)
+        let store = EditorStore(worker: worker(root))
+        try await waitUntilIdle(store)
+        let copies = try await service.localCopies()
+        store.openLocalCopy(try XCTUnwrap(copies.first { $0.id == first.mainURL.deletingLastPathComponent().lastPathComponent }))
+        try await waitUntilIdle(store)
+        let firstSession = try XCTUnwrap(store.session)
+        let captured = try XCTUnwrap(store.exportSnapshot(for: firstSession))
+        store.openLocalCopy(try XCTUnwrap(copies.first { $0.id == second.mainURL.deletingLastPathComponent().lastPathComponent }))
+        try await waitUntilIdle(store)
+        var completed: Bool?
+        store.recordFileExport(snapshot: captured) { completed = $0 }
+        try await waitUntilIdle(store)
+        XCTAssertEqual(completed, true)
+        let after = try await service.localCopies()
+        XCTAssertNotNil(after.first { $0.id == first.mainURL.deletingLastPathComponent().lastPathComponent }?.lastExportAt)
+        XCTAssertNil(after.first { $0.id == second.mainURL.deletingLastPathComponent().lastPathComponent }?.lastExportAt)
+
+        let secondSession = try XCTUnwrap(store.session)
+        let stale = try XCTUnwrap(store.exportSnapshot(for: secondSession))
+        secondSession.draft.money = 999
+        XCTAssertNil(store.exportSnapshot(for: secondSession), "Unsaved drafts cannot be exported as the latest revision")
+        store.save(showSuccess: false); try await waitUntilIdle(store)
+        completed = nil
+        store.recordFileExport(snapshot: stale) { completed = $0 }
+        try await waitUntilIdle(store)
+        XCTAssertEqual(completed, false)
+        let finalCopies = try await service.localCopies()
+        let current = try XCTUnwrap(finalCopies.first { $0.id == second.mainURL.deletingLastPathComponent().lastPathComponent })
+        XCTAssertTrue(current.needsExport)
+        XCTAssertNil(current.lastExportAt)
+        XCTAssertEqual(store.session?.originalDraft.money, 999)
+    }
+
+    func testExportReviewRejectsAnotherIdenticalCopyAndChangedLocalBytes() async throws {
+        let root = try root(), original = pair(), service = worker(root)
+        let first = try imported(root, pair: original), second = try imported(root, pair: original)
+        let target = try game(root, pair: original)
+        let review = try await service.prepareExport(source: first, expected: original, directory: target.mainURL.deletingLastPathComponent())
+        do { _ = try await service.commitExport(source: second, review: review); XCTFail("Review belongs to another copy") } catch {}
+        let changed = pair(money: 777)
+        _ = try await service.write(source: first, expected: original, target: changed, reason: "new revision", items: [], recipes: [:])
+        do { _ = try await service.commitExport(source: first, review: review); XCTFail("Reviewed revision is stale") } catch {}
+        XCTAssertEqual(try Data(contentsOf: target.mainURL), original.main)
+        XCTAssertEqual(try Data(contentsOf: XCTUnwrap(target.infoURL)), original.info)
+        let copies = try await service.localCopies()
+        XCTAssertTrue(try XCTUnwrap(copies.first { $0.id == first.mainURL.deletingLastPathComponent().lastPathComponent }).needsExport)
+        XCTAssertTrue(copies.allSatisfy { $0.lastExportAt == nil })
+    }
+
+    func testExportRecoveryTargetIsClearedWhenSwitchingOrClosingCopy() async throws {
+        let root = try root(), original = pair(), service = worker(root)
+        let first = try imported(root, pair: original), second = try imported(root, pair: original)
+        let target = try game(root, pair: original)
+        let transactions = try SaveTransactionService(backupStore: BackupStore(rootURL: root.appendingPathComponent("Backups")),
+                                                      journalDirectoryURL: root.appendingPathComponent("Transactions"))
+        let journal = transactions.journalURL(for: target), broken = Data("unreadable journal".utf8)
+        try broken.write(to: journal)
+        let store = EditorStore(worker: worker(root))
+        try await waitUntilIdle(store)
+        let copies = try await service.localCopies()
+        let firstRecord = try XCTUnwrap(copies.first { $0.id == first.mainURL.deletingLastPathComponent().lastPathComponent })
+        let secondRecord = try XCTUnwrap(copies.first { $0.id == second.mainURL.deletingLastPathComponent().lastPathComponent })
+        store.openLocalCopy(firstRecord); try await waitUntilIdle(store)
+        store.prepareExport(directory: target.mainURL.deletingLastPathComponent()) { XCTAssertNil($0) }
+        try await waitUntilIdle(store)
+        XCTAssertNotNil(store.exportRecoveryDirectory)
+        store.openLocalCopy(secondRecord); try await waitUntilIdle(store)
+        XCTAssertNil(store.exportRecoveryDirectory)
+        var didComplete = false
+        store.keepExportTarget { review in XCTAssertNil(review); didComplete = true }
+        try await waitUntilIdle(store)
+        XCTAssertTrue(didComplete)
+        XCTAssertEqual(try Data(contentsOf: journal), broken, "Switching copies must not archive the old target transaction")
+        store.openLocalCopy(firstRecord); try await waitUntilIdle(store)
+        store.prepareExport(directory: target.mainURL.deletingLastPathComponent()) { XCTAssertNil($0) }
+        try await waitUntilIdle(store)
+        XCTAssertNotNil(store.exportRecoveryDirectory)
+        store.closeSession(); try await waitUntilIdle(store)
+        XCTAssertNil(store.session)
+        XCTAssertNil(store.exportRecoveryDirectory)
+        XCTAssertEqual(try Data(contentsOf: journal), broken)
+        XCTAssertEqual(try Data(contentsOf: target.mainURL), original.main)
+    }
+
     func testActiveTransactionBlocksBackupUnprotectAndCopyDelete() async throws {
         let root = try root(), original = pair(), source = try imported(root, pair: original), service = worker(root)
         let backup = try await service.createManualBackup(source: source)

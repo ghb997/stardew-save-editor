@@ -78,7 +78,7 @@ struct DraftReviewBar: View {
                 onReview()
             } label: {
                 GameLabel(
-                    session.hasChanges ? "检查 \(session.diffs.count) 项更改并保存" : "查看存档与备份",
+                    session.hasChanges ? "检查 \(session.diffs.count) 项更改并保存" : (session.source.mode == .importedCopy ? "继续导出 / 查看存档" : "查看存档与备份"),
                     systemImage: "checkmark.circle.fill"
                 )
                 .font(.headline)
@@ -96,5 +96,41 @@ struct DraftReviewBar: View {
         .gameBar()
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("editor.review.bar")
+    }
+}
+
+/// The same quiet step indicator follows the user through review and export.
+struct SaveFlowProgress: View {
+    let step: Int
+    private let titles = ["检查更改", "保存与导出", "完成"]
+    var body: some View {
+        HStack(alignment: .top, spacing: 8) {
+            ForEach(0..<3) { index in
+                VStack(spacing: 6) {
+                    Text(index + 1 < step ? "✓" : "\(index + 1)")
+                        .font(.caption.bold())
+                        .frame(width: 26, height: 26)
+                        .foregroundStyle(index + 1 <= step ? AppTheme.onAccent : AppTheme.secondary)
+                        .background(Circle().fill(index + 1 <= step ? AppTheme.accent : AppTheme.inset))
+                    Text(titles[index]).font(.caption)
+                        .foregroundStyle(index + 1 == step ? AppTheme.ink : AppTheme.secondary)
+                        .multilineTextAlignment(.center)
+                }.frame(maxWidth: .infinity)
+            }
+        }
+        .padding(.vertical, 6)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("第 \(step) 步，共 3 步，\(titles[min(2, max(0, step - 1))])")
+    }
+}
+
+struct SaveFlowActionBar<Content: View>: View {
+    @ViewBuilder let content: Content
+    var body: some View {
+        VStack(spacing: 4) { content }
+            .font(.headline)
+            .padding(.horizontal, 16).padding(.vertical, 10)
+            .readablePageWidth(AppLayout.editorWidth)
+            .gameBar()
     }
 }

@@ -48,12 +48,7 @@ final class PersistenceUITests: XCTestCase {
         favorite.tap(); favorite.typeText("Y\n")
         let value = favorite.value as? String
         app.buttons["editor.review.open"].tap()
-        let save = app.buttons["保存副本并导出"]
-        for _ in 0..<12 where !save.isHittable { app.swipeUp() }
-        XCTAssertTrue(save.isHittable); save.tap()
-        app.alerts.buttons["仅保存到应用副本"].tap()
-        let done = app.alerts.buttons["好"]
-        try acknowledgeCompletion(done, app)
+        try saveLocalCopy(app)
         app.terminate(); app.launchArguments = args; app.launch()
         let resume = app.buttons["library.continue"]
         XCTAssertTrue(resume.waitForExistence(timeout: 30)); resume.tap()
@@ -63,17 +58,118 @@ final class PersistenceUITests: XCTestCase {
         try revealDirectoryControl(library, in: app); library.tap()
         XCTAssertTrue(app.staticTexts["已保存，待导出"].waitForExistence(timeout: 15))
         let libraryScreenshot = XCTAttachment(screenshot: app.screenshot())
-        libraryScreenshot.name = "build20-local-library"; libraryScreenshot.lifetime = .keepAlways; add(libraryScreenshot)
+        libraryScreenshot.name = "build22-local-library"; libraryScreenshot.lifetime = .keepAlways; add(libraryScreenshot)
         app.buttons["完成"].tap()
         XCTAssertEqual(try openCharacter(app).value as? String, value)
         app.buttons["editor.review.open"].tap()
-        let export = app.buttons["再次导出已保存副本"]
-        for _ in 0..<12 where !export.isHittable { app.swipeUp() }
+        let export = app.buttons["review.primary"]
+        XCTAssertEqual(export.label, "继续导出")
         XCTAssertTrue(export.isHittable); export.tap()
         XCTAssertTrue(app.buttons["export.choose.directory"].waitForExistence(timeout: 10))
         XCTAssertFalse(app.buttons["export.commit"].exists, "No write can be offered before selecting and inspecting the target")
         let attachment = XCTAttachment(screenshot: app.screenshot())
-        attachment.name = "build20-verified-export"; attachment.lifetime = .keepAlways; add(attachment)
+        attachment.name = "build22-verified-export"; attachment.lifetime = .keepAlways; add(attachment)
+    }
+
+    @MainActor
+    func testSaveAndExportRunsContinuouslyThenReturnsToSameEditor() throws {
+        let app = XCUIApplication()
+        let args = persistenceArguments(exportMode: "success")
+        app.launchArguments = args + ["--ui-library-seed"]; app.launch()
+        defer { app.terminate() }
+        let value = try editAndBeginExport("E", app)
+        try selectExportTarget(app)
+        let commit = app.buttons["export.commit"]
+        XCTAssertFalse(commit.isEnabled, "Writing requires confirmation that the game is closed")
+        capture("build22-export-target-review", app)
+        try confirmGameExited(app)
+        try finishVerifiedExport(app)
+        let favorite = app.textFields["character.favorite"]
+        try revealInEditor(favorite, app)
+        XCTAssertEqual(favorite.value as? String, value, "Completion returns to the editor and retains the saved values")
+        app.buttons["editor.shell.close"].tap()
+        try assertLibraryStatus("已校验写入游戏目录", app)
+        app.terminate(); app.launchArguments = args; app.launch()
+        try resumeCopy(app)
+        XCTAssertFalse(app.alerts["恢复未保存草稿"].exists)
+        try assertLibraryStatus("已校验写入游戏目录", app)
+        XCTAssertEqual(try openCharacter(app).value as? String, value)
+    }
+
+    @MainActor
+    func testCancelledExportCanResumeAfterRelaunchWithoutSavingAgain() throws {
+        let app = XCUIApplication()
+        let args = persistenceArguments(exportMode: "cancel-once")
+        app.launchArguments = args + ["--ui-library-seed"]; app.launch()
+        defer { app.terminate() }
+        let value = try editAndBeginExport("C", app)
+        let choose = app.buttons["export.choose.directory"]
+        choose.tap()
+        XCTAssertTrue(choose.isEnabled)
+        XCTAssertFalse(app.buttons["export.commit"].exists, "Cancelling directory selection must not start a write")
+        let later = app.buttons["export.later"]
+        XCTAssertTrue(later.isHittable); later.tap()
+        XCTAssertTrue(app.staticTexts["review.saved.notice"].waitForExistence(timeout: 10))
+        capture("build22-export-later", app)
+        try returnFromReview(app)
+        app.buttons["editor.shell.close"].tap()
+        app.terminate(); app.launchArguments = args; app.launch()
+        try resumeCopy(app)
+        XCTAssertFalse(app.alerts["恢复未保存草稿"].exists)
+        try assertLibraryStatus("已保存，待导出", app)
+        XCTAssertEqual(try openCharacter(app).value as? String, value)
+        app.buttons["editor.review.open"].tap()
+        let continueExport = app.buttons["review.primary"]
+        XCTAssertEqual(continueExport.label, "继续导出")
+        XCTAssertTrue(continueExport.isHittable); continueExport.tap()
+        XCTAssertTrue(choose.waitForExistence(timeout: 10))
+        XCTAssertFalse(app.alerts.firstMatch.exists, "A previously saved copy must continue without a second save confirmation")
+        try selectExportTarget(app)
+        try confirmGameExited(app)
+        try finishVerifiedExport(app)
+    }
+
+    @MainActor
+    func testWrongFarmIsRejectedAndCorrectTargetCanBeSelectedAgain() throws {
+        let app = XCUIApplication()
+        app.launchArguments = persistenceArguments(exportMode: "wrong-farm-once") + ["--ui-library-seed"]
+        app.launch()
+        defer { app.terminate() }
+        _ = try editAndBeginExport("W", app)
+        app.buttons["export.choose.directory"].tap()
+        try assertExportFailure(contains: "另一份农场", app)
+        XCTAssertFalse(app.buttons["export.commit"].exists, "A different stable player identity must never offer a write")
+        capture("build22-export-wrong-farm-retry", app)
+        try selectExportTarget(app)
+        XCTAssertFalse(app.switches["export.confirm.target"].exists)
+        try confirmGameExited(app)
+        try finishVerifiedExport(app)
+    }
+
+    @MainActor
+    func testChangedTargetIsPreservedUntilReinspectionAndExplicitConfirmation() throws {
+        let app = XCUIApplication()
+        app.launchArguments = persistenceArguments(exportMode: "stale-once") + ["--ui-library-seed"]
+        app.launch()
+        defer { app.terminate() }
+        _ = try editAndBeginExport("S", app)
+        try selectExportTarget(app)
+        try confirmGameExited(app)
+        app.buttons["export.commit"].tap()
+        try assertExportFailure(contains: "修改", app)
+        XCTAssertFalse(app.buttons["export.done"].exists, "A stale target cannot be reported as successfully exported")
+        try selectExportTarget(app)
+        let changedTarget = app.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", "101 金币")).firstMatch
+        XCTAssertTrue(changedTarget.waitForExistence(timeout: 10), "Failed writing must preserve the newer target bytes")
+        let acknowledge = app.switches["export.confirm.target"]
+        try revealInEditor(acknowledge, app)
+        XCTAssertTrue(acknowledge.exists)
+        try confirmGameExited(app, mayWrite: false)
+        XCTAssertFalse(app.buttons["export.commit"].isEnabled, "Game exit alone must not authorize replacing a changed target")
+        try revealInEditor(acknowledge, app); acknowledge.tap()
+        XCTAssertTrue(app.buttons["export.commit"].isEnabled)
+        capture("build22-export-changed-target-confirmed", app)
+        try finishVerifiedExport(app)
     }
 
     @MainActor
@@ -96,7 +192,7 @@ final class PersistenceUITests: XCTestCase {
         try returnFromReview(app)
         try revealInEditor(name, app)
         XCTAssertEqual(name.value as? String, renamed, "Returning after saving must stay on animal ID 1")
-        capture("build21-animal-after-reordered-save", app)
+        capture("build22-animal-after-reordered-save", app)
         name.tap(); name.typeText("X\n")
         let editedAgain = try XCTUnwrap(name.value as? String)
         app.buttons["editor.review.open"].tap()
@@ -153,7 +249,7 @@ final class PersistenceUITests: XCTestCase {
         dismissNotice(app)
         XCTAssertFalse(app.alerts["恢复未保存草稿"].exists)
         XCTAssertEqual(try openCharacter(app).value as? String, secondValue)
-        capture("build21-second-save-reopened", app)
+        capture("build22-second-save-reopened", app)
     }
 
     @MainActor
@@ -165,6 +261,8 @@ final class PersistenceUITests: XCTestCase {
         var favorite = try openCharacter(app)
         favorite.tap(); favorite.typeText("DiscardMe\n")
         app.buttons["editor.review.open"].tap()
+        let more = app.buttons["review.more"]
+        try revealInEditor(more, app); more.tap()
         let reload = app.buttons["重新载入文件"]
         try revealInEditor(reload, app); reload.tap()
         let confirm = app.alerts.buttons["放弃草稿并重新载入"]
@@ -187,7 +285,7 @@ final class PersistenceUITests: XCTestCase {
         dismissNotice(app)
         XCTAssertEqual(try openCharacter(app).value as? String, value,
                        "Edits after reload must save to the active session and survive relaunch")
-        capture("build21-reload-edit-save-reopened", app)
+        capture("build22-reload-edit-save-reopened", app)
     }
 
     @MainActor
@@ -198,15 +296,100 @@ final class PersistenceUITests: XCTestCase {
 
     @MainActor
     private func saveLocalCopy(_ app: XCUIApplication) throws {
-        let save = app.buttons["保存副本并导出"]
-        try revealInEditor(save, app)
+        let save = app.buttons["review.save.later"]
+        XCTAssertTrue(save.waitForExistence(timeout: 10))
+        XCTAssertTrue(save.isHittable, "Save actions stay visible without scrolling past every change")
         XCTAssertTrue(save.isEnabled)
         save.tap()
-        let confirm = app.alerts.buttons["仅保存到应用副本"]
-        XCTAssertTrue(confirm.waitForExistence(timeout: 10)); confirm.tap()
-        let done = app.alerts.buttons["好"]
-        try acknowledgeCompletion(done, app)
-        XCTAssertFalse(save.isEnabled, "Successful saving must clear pending changes")
+        XCTAssertTrue(app.staticTexts["review.saved.notice"].waitForExistence(timeout: 30))
+        XCTAssertFalse(app.alerts.firstMatch.exists, "Saving for later gives inline feedback without a redundant completion alert")
+        XCTAssertFalse(save.exists && save.isEnabled, "Successful saving must clear pending changes")
+        XCTAssertEqual(app.buttons["review.primary"].label, "继续导出")
+        capture("build22-saved-for-later", app)
+    }
+
+    @MainActor
+    private func persistenceArguments(exportMode: String) -> [String] {
+        ["--ui-library", UUID().uuidString, "--ui-export-fixture", exportMode,
+         "--ui-tab", "tools", "-AppleLanguages", "(zh-Hans)", "-AppleLocale", "zh_CN"]
+    }
+
+    @MainActor
+    private func editAndBeginExport(_ suffix: String, _ app: XCUIApplication) throws -> String {
+        let favorite = try openCharacter(app)
+        favorite.tap(); favorite.typeText(suffix + "\n")
+        let value = try XCTUnwrap(favorite.value as? String)
+        XCTAssertTrue(value.contains(suffix))
+        app.buttons["editor.review.open"].tap()
+        let save = app.buttons["review.primary"]
+        XCTAssertTrue(save.waitForExistence(timeout: 10))
+        XCTAssertTrue(save.isHittable, "The main action is visible immediately on entering review")
+        XCTAssertEqual(save.label, "保存并导出")
+        capture("build22-review-primary", app)
+        save.tap()
+        let choose = app.buttons["export.choose.directory"]
+        XCTAssertTrue(choose.waitForExistence(timeout: 30), "Saving proceeds directly to the export stage")
+        XCTAssertTrue(app.navigationBars["保存并导出"].exists)
+        XCTAssertFalse(app.alerts.firstMatch.exists)
+        XCTAssertFalse(app.buttons["export.commit"].exists)
+        capture("build22-export-select-directory", app)
+        return value
+    }
+
+    @MainActor
+    private func selectExportTarget(_ app: XCUIApplication) throws {
+        let choose = app.buttons["export.choose.directory"]
+        XCTAssertTrue(choose.waitForExistence(timeout: 10))
+        try revealInEditor(choose, app); choose.tap()
+        XCTAssertTrue(app.buttons["export.commit"].waitForExistence(timeout: 30))
+        XCTAssertFalse(app.buttons["export.commit"].isEnabled, "Every target inspection starts with fresh confirmations")
+    }
+
+    @MainActor
+    private func confirmGameExited(_ app: XCUIApplication, mayWrite: Bool = true) throws {
+        let exited = app.switches["export.game.exited"]
+        try revealInEditor(exited, app); exited.tap()
+        XCTAssertEqual(app.buttons["export.commit"].isEnabled, mayWrite)
+    }
+
+    @MainActor
+    private func finishVerifiedExport(_ app: XCUIApplication) throws {
+        let commit = app.buttons["export.commit"]
+        try revealInEditor(commit, app)
+        XCTAssertTrue(commit.isEnabled); commit.tap()
+        let done = app.buttons["export.done"]
+        XCTAssertTrue(done.waitForExistence(timeout: 30))
+        XCTAssertTrue(done.isEnabled)
+        XCTAssertTrue(app.staticTexts["export.result"].exists)
+        XCTAssertFalse(app.alerts.firstMatch.exists)
+        capture("build22-export-complete", app)
+        done.tap()
+        XCTAssertTrue(app.buttons["editor.review.open"].waitForExistence(timeout: 10))
+    }
+
+    @MainActor
+    private func assertExportFailure(contains message: String, _ app: XCUIApplication) throws {
+        let failure = app.alerts["操作失败"]
+        XCTAssertTrue(failure.waitForExistence(timeout: 30))
+        XCTAssertTrue(failure.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", message)).firstMatch.exists)
+        capture("build22-export-failure", app)
+        try acknowledgeCompletion(failure.buttons["好"], app)
+    }
+
+    @MainActor
+    private func resumeCopy(_ app: XCUIApplication) throws {
+        let resume = app.buttons["library.continue"]
+        XCTAssertTrue(resume.waitForExistence(timeout: 30)); resume.tap()
+        dismissNotice(app)
+    }
+
+    @MainActor
+    private func assertLibraryStatus(_ status: String, _ app: XCUIApplication) throws {
+        let library = app.buttons["tools.library"]
+        try revealDirectoryControl(library, in: app); library.tap()
+        XCTAssertTrue(app.staticTexts[status].waitForExistence(timeout: 15))
+        capture("build22-library-export-state", app)
+        app.buttons["完成"].tap()
     }
 
     @MainActor
@@ -214,7 +397,7 @@ final class PersistenceUITests: XCTestCase {
         let ready = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == true AND enabled == true AND hittable == true"), object: button)
         XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 30), .completed,
                        "The completion action must become enabled after writing finishes")
-        capture("build21-completion-enabled", app)
+        capture("build22-completion-enabled", app)
         button.tap()
         let dismissed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: app.alerts.firstMatch)
         XCTAssertEqual(XCTWaiter.wait(for: [dismissed], timeout: 10), .completed,
@@ -226,7 +409,7 @@ final class PersistenceUITests: XCTestCase {
         let back = app.navigationBars["检查更改"].buttons["editor.shell.close"]
         XCTAssertTrue(back.waitForExistence(timeout: 10))
         XCTAssertEqual(back.label, "返回编辑")
-        capture("build21-review-after-operation", app)
+        capture("build22-review-after-operation", app)
         back.tap()
         XCTAssertTrue(app.buttons["editor.review.open"].waitForExistence(timeout: 10))
     }
